@@ -15,6 +15,8 @@
 
 ### PM 선별 근거
 
+[삼성 브라우저 PM 페르소나와 선별 규칙](../docs/pm-persona-and-selection.md)에 따라 작성합니다.
+
 - 선별 결과(selection_status): selected / watch / pending_verification / excluded
 - 사용자 과제와 구체적인 영향:
 - 기존 기능 대비 실질적 변화:
