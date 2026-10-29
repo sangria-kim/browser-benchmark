@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "kind": "baseline_not_new_release",
+  "observed_at": "2026-10-29T22:43:00Z",
+  "next_review_after": "2026-11-05T22:43:00Z",
+  "items": [
+    {
+      "feature_id": "chrome-gmail-enhanced-autofill",
+      "korea_availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "공식 현재 대상은 미국 18세 이상이며 Personal Intelligence 선택적 활성화 조건을 명시한다. 일반 Gemini in Chrome 한국 출시는 이 기능의 한국 제공 근거가 아니다.",
+      "source": "https://support.google.com/chrome/answer/142893?hl=en",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "firefox-smart-window",
+      "korea_availability": "미확인",
+      "korean_language": "미지원",
+      "conditions": "공식 베타 범위는 미국·캐나다 및 프랑스 확장, en-US/en-CA/fr 언어. Mozilla 계정 조건.",
+      "source": "https://support.mozilla.org/en-US/kb/smart-window",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "firefox-smart-window-tasks",
+      "korea_availability": "미확인",
+      "korean_language": "미지원",
+      "conditions": "영어 및 미국·캐나다. 60일간 일치 없음 시 일시정지와 생성 후 90일 경과 일시정지는 서로 다른 조건으로 현재 본문에 명시된다. 조건 변경일은 미확인으로 재알림하지 않는다.",
+      "source": "https://support.mozilla.org/en-US/kb/create-tasks-smart-window",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "edge-accelerated-app-launch",
+      "korea_availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "기능별 공식 자료에 한국·한국어 제공 명시를 확인하지 못함. 지역 제한 미언급은 한국 제공 확정 근거가 아님.",
+      "sources": [
+        "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/",
+        "https://support.microsoft.com/en-us/servicing/os/windows-11/2026/10/kb5127936-windows-11-25h2-26h2-update",
+        "https://learn.microsoft.com/en-us/windows/apps/develop/launch/accelerated-launch"
+      ],
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "opera-web-ai-local-apis",
+      "korea_availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "기능별 공식 자료에 한국·한국어 제공 명시를 확인하지 못함. 지역 제한 미언급은 한국 제공 확정 근거가 아님.",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-139-stable/",
+        "https://blogs.opera.com/news/2026/10/webai-local-ai-for-the-web-now-in-opera/",
+        "https://next.opera.com/blog/web-ai-local-ai/",
+        "https://next.opera.com/web-ai/"
+      ],
+      "effective_at": null,
+      "real_test": "미실행"
+    }
+  ]
+}

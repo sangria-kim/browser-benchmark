@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-omnibox-aim-open-in-new-tab-registration-f1bad2d61e8a",
+  "feature_id": "chrome-omnibox-aim-open-in-new-tab",
+  "browser": "chrome",
+  "event_type": "registration",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Android"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": true,
+  "scope": "Official source observation only; not a shipped feature claim.",
+  "observed_at": "2026-10-29T22:39:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "f1bad2d61e8af482e4adb3898578b9657659c667",
+  "sources": [
+    "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667"
+  ],
+  "summary": "Actual navigation branch and unit-test additions observed: AI Mode from a non-NTP opens a new tab; NTP stays current, new-window modifiers take precedence. Build availability and country/language eligibility remain unknown.",
+  "delta": {
+    "flag_id": "omnibox-aim-open-in-new-tab",
+    "related_feature_id": "omnibox::kOmniboxAimOpenInNewTab",
+    "change_kind": "registration",
+    "expiry_before": null,
+    "expiry_after": 160,
+    "options": [],
+    "source_default_state": "disabled",
+    "committed_at": "2026-10-29T21:13:25Z"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "Actual navigation branch and unit-test additions observed: AI Mode from a non-NTP opens a new tab; NTP stays current, new-window modifiers take precedence. Build availability and country/language eligibility remain unknown.",
+  "priority": "P2",
+  "priority_reason": "사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "88a6300f57e4065836e99a87a4431e0b6829f978",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-10-30",
+    "real_test": "미실행",
+    "evidence": [
+      "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667"
+    ]
+  }
+}

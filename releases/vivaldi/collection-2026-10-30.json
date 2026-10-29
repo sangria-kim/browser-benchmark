@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "browser": "vivaldi",
+  "observed_at": "2026-10-29T22:42:30Z",
+  "coverage": {
+    "start": "2026-10-22T00:00:00Z",
+    "scope": "weekly_auxiliary",
+    "limitations": [
+      {
+        "browser": "vivaldi",
+        "url": "https://vivaldi.com/blog/desktop/",
+        "status": "success",
+        "cadence": "weekly_auxiliary",
+        "detail": "October 22/23/29 stable minor updates and October 23/28 snapshots original bodies read."
+      },
+      {
+        "browser": "vivaldi",
+        "url": "https://vivaldi.com/blog/android/releases/",
+        "status": "success_index",
+        "cadence": "weekly_auxiliary",
+        "detail": "Latest major September 10. Linked Android updates index latest October 19. No in-window stable item found; Android snapshots not fully enumerated."
+      }
+    ]
+  },
+  "items": [
+    {
+      "browser": "vivaldi",
+      "version": "8.2 minor 14",
+      "channel": "stable",
+      "announced_at": "2026-10-29",
+      "event_type": "security",
+      "summary": "Chromium 152 ESR security backport from 156.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://vivaldi.com/blog/desktop/minor-update-fourteen-8-2/"
+      ],
+      "item_id": "vivaldi-20261030-1",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "vivaldi",
+      "version": "8.2 minor 13",
+      "channel": "stable",
+      "announced_at": "2026-10-23",
+      "event_type": "security",
+      "summary": "Compromised eMudhra intermediates added to built-in blocklist; additional defense beyond prior emergency CRLSet.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://vivaldi.com/blog/desktop/minor-update-thirteen-8-2/"
+      ],
+      "item_id": "vivaldi-20261030-2",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "vivaldi",
+      "version": "8.2 minor 12",
+      "channel": "stable",
+      "announced_at": "2026-10-22",
+      "event_type": "security",
+      "summary": "Chromium 152 ESR security backport from 156.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://vivaldi.com/blog/minor-update-twelve-8-2/"
+      ],
+      "item_id": "vivaldi-20261030-3",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "vivaldi",
+      "version": "4191.3",
+      "channel": "snapshot",
+      "announced_at": "2026-10-28",
+      "event_type": "fix",
+      "summary": "Ad blocker details, address field, vertical tabs, toolbar and UI fixes.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://vivaldi.com/blog/desktop/a-few-more-fixes-vivaldi-desktop-snapshot-4191-3/"
+      ],
+      "item_id": "vivaldi-20261030-4",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "vivaldi",
+      "version": "4191.1",
+      "channel": "snapshot",
+      "announced_at": "2026-10-23",
+      "event_type": "experiment_disabled",
+      "summary": "Direct vCard import and Follow Theme disabled for 8.3 pending further work; ad-blocker, mail-domain classification and general UI fixes.",
+      "selection_status": "watch",
+      "reason": "Preview withdrawal/deferment, not removal of an established stable feature.",
+      "sources": [
+        "https://vivaldi.com/blog/desktop/more-ad-blocker-polishing-vivaldi-desktop-snapshot-4191-1/"
+      ],
+      "item_id": "vivaldi-20261030-5",
+      "selection_reason": "Preview withdrawal/deferment, not removal of an established stable feature.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    }
+  ]
+}

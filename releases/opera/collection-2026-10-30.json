@@ -1,0 +1,214 @@
+{
+  "schema_version": 1,
+  "browser": "opera",
+  "observed_at": "2026-10-29T22:42:30Z",
+  "coverage": {
+    "start": "2026-10-22T00:00:00Z",
+    "scope": "weekly_auxiliary",
+    "limitations": [
+      {
+        "browser": "opera",
+        "url": "https://blogs.opera.com/desktop/",
+        "status": "success",
+        "cadence": "weekly_auxiliary",
+        "detail": "October 27 stable 139 and October 28 developer 140 original articles and linked changelogs read."
+      },
+      {
+        "browser": "opera",
+        "url": "https://blogs.opera.com/news/",
+        "status": "success",
+        "cadence": "weekly_auxiliary",
+        "detail": "October 27 WebAI/HTML-in-Canvas and October 29 GX original bodies read. Product variants kept separate."
+      },
+      {
+        "browser": "opera",
+        "url": "https://blogs.opera.com/mobile/",
+        "status": "partial",
+        "cadence": "weekly_auxiliary",
+        "detail": "Index fetched. October 22 Nigeria free-data article original and AMP cache miss; cannot classify change from headline. Other displayed announcements predate window."
+      }
+    ]
+  },
+  "items": [
+    {
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.15",
+      "channel": "stable_with_early_preview_feature",
+      "feature_key": "web-ai-local-apis",
+      "announced_at": "2026-10-27",
+      "effective_at": "2026-10-27",
+      "event_type": "release_inclusion",
+      "summary": "Opera 139 Stable notes explicitly include WebAI; feature remains opt-in early preview using local models and browser APIs.",
+      "selection_status": "selected",
+      "priority": "P2",
+      "benchmark_readiness": "conditional",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-139-stable/",
+        "https://blogs.opera.com/news/2026/10/webai-local-ai-for-the-web-now-in-opera/",
+        "https://next.opera.com/blog/web-ai-local-ai/",
+        "https://next.opera.com/web-ai/"
+      ],
+      "limits": [
+        "Same feature article on official Next site dated October 22 versus News site October 27; first introduction date unresolved. October 27 identifies release inclusion only.",
+        "Windows x64 Intel/AMD and Apple silicon macOS supported; Intel Mac, Linux and Windows ARM excluded.",
+        "Model downloaded after Settings > Opera AI > Enable Web AI API opt-in; actual model, resource needs and behavior not independently tested.",
+        "Example extensions are experimental examples, not built-in browser features."
+      ],
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행",
+        "basis": "Feature-specific article and playground do not state Korea or Korean. Cloud Opera AI FAQ is not evidence for local WebAI."
+      },
+      "item_id": "opera-20261030-1",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "opera",
+      "product": "Opera GX",
+      "version": null,
+      "channel": "unknown",
+      "feature_key": "gx-search-tabs",
+      "announced_at": "2026-10-29",
+      "effective_at": null,
+      "event_type": "reference_pending_delta",
+      "summary": "Announcement describes tab content search and restoring closed tabs with browsing history and original workspace/island context.",
+      "selection_status": "watch",
+      "priority": "P2",
+      "reason": "Content/title search already documented in official GX September 2021 article. Exact new restore/context delta not established; do not present search as newly introduced.",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
+        "https://blogs.opera.com/desktop/2021/09/opera-gx-pinboards/",
+        "https://press.opera.com/2020/05/19/opera-gx-instagram-workspaces-press-release/"
+      ],
+      "item_id": "opera-20261030-2",
+      "selection_reason": "Content/title search already documented in official GX September 2021 article. Exact new restore/context delta not established; do not present search as newly introduced.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    },
+    {
+      "browser": "opera",
+      "product": "Opera GX",
+      "version": null,
+      "channel": "unknown",
+      "feature_key": "gx-audio-controls",
+      "announced_at": "2026-10-29",
+      "effective_at": null,
+      "event_type": "announcement",
+      "summary": "GX article describes tab-specific volume up to 500% and eight EQ presets in tooltip/sidebar player.",
+      "selection_status": "watch",
+      "reason": "GX-specific rollout version and prior state not fully resolved. General Opera 130 already documented 500% booster in April; do not infer identical GX timing.",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
+        "https://blogs.opera.com/desktop/changelog-for-130/"
+      ],
+      "item_id": "opera-20261030-3",
+      "selection_reason": "GX-specific rollout version and prior state not fully resolved. General Opera 130 already documented 500% booster in April; do not infer identical GX timing.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    },
+    {
+      "browser": "opera",
+      "product": "Opera GX",
+      "version": null,
+      "channel": "early_bird",
+      "feature_key": "gx-split-screen",
+      "announced_at": "2026-10-29",
+      "effective_at": null,
+      "event_type": "announcement",
+      "summary": "Up to four pages and visual drop zones; article instructs Early Bird for ongoing split-screen work.",
+      "selection_status": "watch",
+      "reason": "Exact delta and rollout scope need verification.",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/"
+      ],
+      "item_id": "opera-20261030-4",
+      "selection_reason": "Exact delta and rollout scope need verification.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    },
+    {
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.15",
+      "channel": "early_bird",
+      "feature_key": "html-in-canvas",
+      "announced_at": "2026-10-27",
+      "effective_at": "2026-10-27",
+      "event_type": "experiment",
+      "summary": "HTML-in-Canvas preview via canvas-draw-element; same-origin limitation, One first and GX/Neon follow.",
+      "selection_status": "watch",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-brings-html-in-canvas-to-the-browser/",
+        "https://blogs.opera.com/desktop/changelog-for-139/"
+      ],
+      "item_id": "opera-20261030-5",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    },
+    {
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.15",
+      "channel": "stable",
+      "feature_key": "make-opera-yours-v2",
+      "announced_at": "2026-10-27",
+      "event_type": "rollout_expansion",
+      "summary": "Personalization start-page widget enabled across streams with theme-gallery and welcome/hover changes.",
+      "selection_status": "watch",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-139-stable/"
+      ],
+      "item_id": "opera-20261030-6",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    },
+    {
+      "browser": "opera",
+      "version": "139.0.6053.15",
+      "channel": "stable",
+      "announced_at": "2026-10-27",
+      "event_type": "fix",
+      "summary": "Side-panel, tabs, Linux bookmark dragging, account sync, H.264/Paramount+ and crash fixes; Chromium 155.0.8059.85.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://blogs.opera.com/desktop/changelog-for-139/"
+      ],
+      "item_id": "opera-20261030-7",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "opera",
+      "version": "140.0.6066.0",
+      "channel": "developer",
+      "announced_at": "2026-10-28",
+      "event_type": "feature_and_fix",
+      "summary": "Related-sites tooltip five lines with scroll; vertical tabs, installers, wallpaper, connector onboarding, permission removal and crash fixes.",
+      "selection_status": "watch",
+      "reason": "Tooltip can be tracked; routine fixes excluded from alert.",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-140-0-6066-0-developer-update/",
+        "https://blogs.opera.com/desktop/changelog-for-140/"
+      ],
+      "item_id": "opera-20261030-8",
+      "selection_reason": "Tooltip can be tracked; routine fixes excluded from alert.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    },
+    {
+      "browser": "opera",
+      "product": "Opera Mini",
+      "version": null,
+      "announced_at": "2026-10-22",
+      "event_type": "unknown",
+      "summary": "Nigeria free-data article in official mobile index; body unavailable.",
+      "selection_status": "pending_verification",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/10/5538-tb-later-why-free-data-still-matters-in-nigeria/"
+      ],
+      "item_id": "opera-20261030-9",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": "공식 제공 버전·이전 상태·본문 또는 실제 배포 근거 확보 시 재검토"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "observed_at": "2026-10-29T22:42:30Z",
+  "coverage": {
+    "start": "2026-10-22T00:00:00Z",
+    "scope": "current_source_observation",
+    "limitations": [
+      {
+        "browser": "whale",
+        "url": "https://forum.whale.naver.com/forum/26/?sortby=start_date&sortdirection=desc",
+        "status": "success_index",
+        "detail": "Official announcements listing fetched. No in-window new announcement found; latest pertinent release body October 1, not September 17 posting timestamp or October 2 comment timestamp."
+      },
+      {
+        "browser": "whale",
+        "url": "https://whale.naver.com/",
+        "status": "failed_body",
+        "detail": "JavaScript shell and tagline only; product guidance unverified."
+      }
+    ]
+  },
+  "items": [
+    {
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "event_type": "reference",
+      "summary": "Official Whaleteam release body gives October 1; listing posting September 17 and October 2 reply are not release dates. AI chat/local history search outside collection window.",
+      "selection_status": "excluded",
+      "reason": "Out-of-window reference, not new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "item_id": "whale-20261030-1",
+      "selection_reason": "Out-of-window reference, not new.",
+      "revisit_trigger": null
+    }
+  ]
+}

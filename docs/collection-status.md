@@ -28,3 +28,19 @@ about_flags.cc는 manifest의 end_revision 이후를 겹쳐 확인하고 source_
 - Safari는 제외. 공식 출처·제품 구분·한국 지원 절차 및 적용용 공개 지시문을 추가.
 - 추가 4종의 릴리스 수집·baseline·실기 검증은 아직 미실행. 빈 결과와 성공 checkpoint를 생성하지 않음.
 - dots 실제 자동화 설정은 사용자가 직접 변경 예정. 문서 게시를 설정 적용·수집 성공으로 간주하지 않음.
+
+
+## 2026-10-30 실행 결과 (관찰 마감 2026-10-29 22:43 UTC)
+
+규칙 커밋: `88a6300f57e4065836e99a87a4431e0b6829f978`. 기존 기록은 이전 시점의 상태로 보존한다. [출처별 범위](../data/collection/2026-10-30.json), [상세 보고서](../reports/2026-10-30.md).
+
+- Chrome Releases 22개 공지, Enterprise 156/157 공식 API 본문 재확인, ChromeStatus 157 Preview 18항목. ChromeStatus 156/158 전체 이력과 Enterprise 이전 본문 해시 비교는 미완료.
+- Edge 및 Firefox 현재 릴리스·개발 문서 확인. 이미 전달한 Gmail 자동완성·Smart Window·Firefox 160 Beta와 Edge 신규성 정정은 재알림하지 않았다.
+- Brave·Whale 매회 범위를 최초 점검했다. Brave Android 고정 태그와 중간 사전배포 목록, Whale 제품 페이지 본문은 미확인이다. 실패 범위는 다음 실행에서 재시도한다.
+- Opera·Vivaldi 주간 보조 관찰을 최초 수행했다. 성공한 출처의 다음 정기 점검은 2026-11-05 이후 첫 기존 실행이다. Opera Mini 원문 실패는 다음 실행에서 재시도한다. Vivaldi Android 전체 Snapshot 조사가 완료됐다는 뜻은 아니다.
+- Chrome about_flags.cc: 기존 검증 종점 이후 7개 커밋의 diff를 추가 관찰했다. 기존 전체 스냅숏 replay 검증 결과와 새 관찰 결과를 분리했다. metadata는 최근 8개 diff와 6월 1일 과거 이력을 보완했고, 6월 2일부터 재개해야 한다. 6월 2일~10월 21일은 미완료다.
+- flag_descriptions.cc는 2025-11-05 삭제된 경로로 확인했다. 현재 설명 헤더의 최근 연결 diff만 검토했으며 헤더 전체 과거 이력 완료를 주장하지 않는다.
+- 한국 발표 아카이브 전체 확인과 기존 938개 flag의 한국 조건 확인은 미완료다. 새 관심 기능 및 기존 관심 기능 일부를 [한국 기준선](../data/korea/2026-10-30-baseline.json)에 기록했다. 기준선은 신규 출시 또는 알림 사건이 아니다.
+- 모든 실기 검증은 미실행이다. selected 2건만 보고하며 watch·excluded·미확인도 원천 색인에 보존한다. Safari는 수집 대상에서 제외했다.
+
+추가 확인 22:49 UTC: Brave 고정 태그 Android 파일 접근은 성공했으나 본문 최상단이 1.96.59여서 최신 Android 변경 미확인은 해소되지 않았다.

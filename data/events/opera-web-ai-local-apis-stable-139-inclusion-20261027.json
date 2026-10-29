@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "event_id": "opera-web-ai-local-apis-stable-139-inclusion-20261027",
+  "feature_id": "opera-web-ai-local-apis",
+  "browser": "opera",
+  "event_type": "release_inclusion",
+  "version": "139.0.6053.15",
+  "channel": "stable_browser_early_preview_feature",
+  "platform": [
+    "Windows",
+    "macOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "scope": "Opera 139 Stable inclusion; WebAI opt-in early preview. Windows x64 Intel/AMD and Apple silicon Mac; not Linux, Intel Mac or Windows ARM.",
+  "announced_at": "2026-10-27",
+  "effective_at": "2026-10-27",
+  "sources": [
+    "https://blogs.opera.com/desktop/2026/10/opera-139-stable/",
+    "https://blogs.opera.com/news/2026/10/webai-local-ai-for-the-web-now-in-opera/",
+    "https://next.opera.com/blog/web-ai-local-ai/",
+    "https://next.opera.com/web-ai/"
+  ],
+  "summary": "웹·확장에서 로컬 모델을 호출하는 WebAI 초기 preview가 Opera 139 Stable 릴리스에 명시됨.",
+  "delta": "10월 22일 Next와 10월 27일 News의 동일 기능 글이 있으므로 최초 공개일·최초 가용일은 확정하지 않고 139 Stable 포함 사건만 기록.",
+  "selection_reason": "웹 AI 처리 위치와 초기 모델 준비 비용, 오프라인 작업 가능성을 구체적으로 비교할 수 있는 배포 단계입니다.",
+  "comparison_question": "삼성 브라우저는 동등한 로컬 AI API를 공개 제공하는가? 동일 합성 과제에서 사용자 동의·준비 시간·오프라인 실패 안내는 어떤가?",
+  "priority_reason": "로컬 처리와 확장성 검토 가치가 있지만 opt-in 초기 preview와 제한된 하드웨어 범위입니다.",
+  "revisit_trigger": "한국·한국어, 모델 요구사항, 정식화 또는 추가 플랫폼의 공식 지원 변화가 확인될 때.",
+  "observed_at": "2026-10-29T22:43:00Z",
+  "source_revision": null,
+  "verification_status": "official_documentation_only_not_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "priority": "P2",
+  "benchmark_readiness": "conditional",
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "88a6300f57e4065836e99a87a4431e0b6829f978",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-10-30",
+    "real_test": "미실행",
+    "evidence": [
+      "https://blogs.opera.com/desktop/2026/10/opera-139-stable/",
+      "https://blogs.opera.com/news/2026/10/webai-local-ai-for-the-web-now-in-opera/",
+      "https://next.opera.com/blog/web-ai-local-ai/",
+      "https://next.opera.com/web-ai/"
+    ],
+    "conditions": "Opera 139 Stable inclusion; WebAI opt-in early preview. Windows x64 Intel/AMD and Apple silicon Mac; not Linux, Intel Mac or Windows ARM."
+  }
+}

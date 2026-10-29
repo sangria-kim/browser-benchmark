@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "observed_at": "2026-10-29T22:42:30Z",
+  "coverage": {
+    "start": "2026-10-22T00:00:00Z",
+    "scope": "current_source_observation",
+    "limitations": [
+      {
+        "browser": "brave",
+        "url": "https://brave.com/latest/",
+        "status": "partial",
+        "detail": "Body fetched; latest displayed desktop 1.97.57 dated October 14, older than GitHub latest. Not evidence of no newer release."
+      },
+      {
+        "browser": "brave",
+        "url": "https://github.com/brave/brave-browser/releases/latest",
+        "status": "success",
+        "detail": "Redirected to v1.98.62; release body read. October 28 03:43 display, security fix and Chromium update."
+      },
+      {
+        "browser": "brave",
+        "url": "https://github.com/brave/brave-browser/releases",
+        "status": "partial",
+        "detail": "First page October 28-29 prereleases read; page 2 cached to October 22. Intervening enumeration not proven complete. GitHub API connector Transport closed and web API inaccessible."
+      },
+      {
+        "browser": "brave",
+        "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_ANDROID.md",
+        "status": "partial",
+        "detail": "Body fetched but only through 1.97.59. v1.98.62 fixed-tag Android changelog cache miss. Preserve failed Android checkpoint."
+      },
+      {
+        "browser": "brave",
+        "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md",
+        "status": "success",
+        "detail": "Latest 1.98.62 body agrees with release."
+      },
+      {
+        "browser": "brave",
+        "url": "https://brave.com/blog/",
+        "status": "success_index",
+        "detail": "Latest feature article shown October 15 outside seven-day window; not a new event."
+      }
+    ]
+  },
+  "items": [
+    {
+      "browser": "brave",
+      "version": "1.98.62",
+      "channel": "stable",
+      "announced_at": "2026-10-28",
+      "event_type": "security",
+      "summary": "brave:// navigation security fix #60127 and Chromium 156.0.8078.74 update #60210.",
+      "selection_status": "excluded",
+      "reason": "Security and engine maintenance; no new meaningful user workflow established.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.62",
+        "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md"
+      ],
+      "item_id": "brave-20261030-1",
+      "selection_reason": "Security and engine maintenance; no new meaningful user workflow established.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "brave",
+      "version": "1.98.61",
+      "channel": "pre-release",
+      "announced_at": "2026-10-22",
+      "event_type": "reference",
+      "summary": "Release title but explicit Pre-release badge; Chromium 156.0.8078.48, no feature notes.",
+      "selection_status": "excluded",
+      "reason": "Artifact reference, not established new user feature.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.61"
+      ],
+      "item_id": "brave-20261030-2",
+      "selection_reason": "Artifact reference, not established new user feature.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "brave",
+      "version": "1.101.6",
+      "channel": "nightly",
+      "announced_at": "2026-10-29",
+      "event_type": "reference",
+      "summary": "Latest observed nightly October 29 21:38; Chromium 157.0.8103.30; installation artifacts not feature changelog.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases"
+      ],
+      "item_id": "brave-20261030-3",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    },
+    {
+      "browser": "brave",
+      "version": "1.100.44",
+      "channel": "beta",
+      "announced_at": "2026-10-29",
+      "event_type": "reference",
+      "summary": "Observed beta October 29 05:16 with Chromium 156.0.8078.74; not stable.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases"
+      ],
+      "item_id": "brave-20261030-4",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조.",
+      "revisit_trigger": null
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-autofill-enable-offers-and-loyalty-cards-settings-registration-701fc033a82d",
+  "feature_id": "chrome-autofill-enable-offers-and-loyalty-cards-settings",
+  "browser": "chrome",
+  "event_type": "registration",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "ChromeOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": "Official source observation only; not a shipped feature claim.",
+  "observed_at": "2026-10-29T22:39:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "701fc033a82d424cd2f9741e4dcd3c1e1559847c",
+  "sources": [
+    "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
+  ],
+  "summary": "Gate proposes a separate Offers and loyalty cards settings leaf/toggle instead of Payments; this commit contains flag definitions rather than completed settings UI.",
+  "delta": {
+    "flag_id": "autofill-enable-offers-and-loyalty-cards-settings",
+    "related_feature_id": "autofill::features::kAutofillEnableOffersAndLoyaltyCardsSettings",
+    "change_kind": "registration",
+    "expiry_before": null,
+    "expiry_after": 170,
+    "options": [],
+    "source_default_state": "disabled",
+    "committed_at": "2026-10-29T18:43:14Z"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "Gate proposes a separate Offers and loyalty cards settings leaf/toggle instead of Payments; this commit contains flag definitions rather than completed settings UI.",
+  "priority": "P2",
+  "priority_reason": "사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "88a6300f57e4065836e99a87a4431e0b6829f978",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-10-30",
+    "real_test": "미실행",
+    "evidence": [
+      "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
+    ]
+  }
+}

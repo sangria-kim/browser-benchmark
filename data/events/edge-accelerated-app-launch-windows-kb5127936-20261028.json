@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "event_id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
+  "feature_id": "edge-accelerated-app-launch",
+  "browser": "edge",
+  "event_type": "rollout",
+  "version": "150+",
+  "channel": "stable_browser_with_optional_windows_preview_update",
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": "Windows 11 25H2/26H2/26H1 with October non-security update or later; the inspected KB package covers 25H2/26H2.",
+  "announced_at": "2026-10-29",
+  "effective_at": "2026-10-28",
+  "sources": [
+    "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/",
+    "https://support.microsoft.com/en-us/servicing/os/windows-11/2026/10/kb5127936-windows-11-25h2-26h2-update",
+    "https://learn.microsoft.com/en-us/windows/apps/develop/launch/accelerated-launch"
+  ],
+  "summary": "Windows의 기존 Edge 프로세스 직접 호출로 warm launch의 중간 프로세스 생성을 줄이는 배포 단계.",
+  "delta": "10월 28일 KB5127936의 Normal rollout에 New로 기재. 10월 29일 제품 발표와 구분하며 Edge 150 최초 출시일을 뜻하지 않음.",
+  "selection_reason": "지원 OS 업데이트에서 새 배포 단계가 확인되고 링크·시작 메뉴의 대기 시간을 동일 조건으로 비교할 수 있습니다.",
+  "comparison_question": "삼성 브라우저 Windows판은 해당 OS 가속 등록을 지원하는가? 미지원이더라도 같은 warm launch 과제에서 지연과 프로세스 비용은 어떤가?",
+  "priority_reason": "빈번한 진입 과제이나 warm state와 선택적 OS 업데이트 조건에 한정됩니다.",
+  "revisit_trigger": "26H1 패키지 및 국내 테스트 환경, 다음 보안 업데이트 포함 여부가 공식 확인될 때.",
+  "observed_at": "2026-10-29T22:43:00Z",
+  "source_revision": null,
+  "verification_status": "official_documentation_only_not_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "priority": "P2",
+  "benchmark_readiness": "conditional",
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "88a6300f57e4065836e99a87a4431e0b6829f978",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-10-30",
+    "real_test": "미실행",
+    "evidence": [
+      "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/",
+      "https://support.microsoft.com/en-us/servicing/os/windows-11/2026/10/kb5127936-windows-11-25h2-26h2-update",
+      "https://learn.microsoft.com/en-us/windows/apps/develop/launch/accelerated-launch"
+    ],
+    "conditions": "Windows 11 25H2/26H2/26H1 with October non-security update or later; the inspected KB package covers 25H2/26H2."
+  }
+}

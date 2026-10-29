@@ -5862,6 +5862,180 @@
       "verification_status": "source_only",
       "installed_availability": "unknown",
       "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b967e34f97b231956605bd92f31a20d86eb9e9e9",
+      "source_revision": "b967e34f97b231956605bd92f31a20d86eb9e9e9",
+      "committed_at": "2026-10-29T22:03:19Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b967e34f97b231956605bd92f31a20d86eb9e9e9/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b967e34f97b231956605bd92f31a20d86eb9e9e9",
+      "changes": [
+        {
+          "flag_id": "android-multiprofile-startup-data",
+          "action": "added",
+          "platform": [
+            "Android"
+          ],
+          "platform_evidence": "about_flags.cc kOsAndroid"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
+    },
+    {
+      "event_id": "chrome-about-flags-f1bad2d61e8af482e4adb3898578b9657659c667",
+      "source_revision": "f1bad2d61e8af482e4adb3898578b9657659c667",
+      "committed_at": "2026-10-29T21:13:25Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f1bad2d61e8af482e4adb3898578b9657659c667/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667",
+      "changes": [
+        {
+          "flag_id": "omnibox-aim-open-in-new-tab",
+          "action": "added",
+          "platform": [
+            "Android"
+          ],
+          "platform_evidence": "about_flags.cc kOsAndroid"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
+    },
+    {
+      "event_id": "chrome-about-flags-2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
+      "source_revision": "2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
+      "committed_at": "2026-10-29T20:20:12Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
+      "changes": [
+        {
+          "flag_id": "lens-overlay-permission-bubble-alt",
+          "action": "removed",
+          "platform": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "ChromeOS"
+          ],
+          "platform_evidence": "about_flags.cc kOsDesktop"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
+    },
+    {
+      "event_id": "chrome-about-flags-984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
+      "source_revision": "984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
+      "committed_at": "2026-10-29T18:52:58Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/984200769f7441aa18ce4c9c3cc41f8f52b9b22f/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
+      "changes": [
+        {
+          "flag_id": "fre-string-changes",
+          "action": "added",
+          "platform": [
+            "Android"
+          ],
+          "platform_evidence": "about_flags.cc kOsAndroid"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
+    },
+    {
+      "event_id": "chrome-about-flags-701fc033a82d424cd2f9741e4dcd3c1e1559847c",
+      "source_revision": "701fc033a82d424cd2f9741e4dcd3c1e1559847c",
+      "committed_at": "2026-10-29T18:43:14Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/701fc033a82d424cd2f9741e4dcd3c1e1559847c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c",
+      "changes": [
+        {
+          "flag_id": "autofill-enable-offers-and-loyalty-cards-settings",
+          "action": "added",
+          "platform": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "ChromeOS"
+          ],
+          "platform_evidence": "about_flags.cc kOsDesktop"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
+    },
+    {
+      "event_id": "chrome-about-flags-54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
+      "source_revision": "54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
+      "committed_at": "2026-10-29T17:56:56Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/54315355e9a1e3481bbdf7e6fecd8dd32b80885c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
+      "changes": [
+        {
+          "flag_id": "omnibox-ai-mode-space-does-not-activate",
+          "action": "removed",
+          "platform": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "ChromeOS"
+          ],
+          "platform_evidence": "about_flags.cc kOsDesktop"
+        },
+        {
+          "flag_id": "webui-omnibox-hide-aim-url",
+          "action": "removed",
+          "platform": [
+            "Windows",
+            "macOS",
+            "Linux",
+            "ChromeOS"
+          ],
+          "platform_evidence": "about_flags.cc kOsDesktop"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
+    },
+    {
+      "event_id": "chrome-about-flags-1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
+      "source_revision": "1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
+      "committed_at": "2026-10-29T17:25:54Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/1ab53bc5148b29d0c6bf96a42e229986b4147fb2/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
+      "changes": [
+        {
+          "flag_id": "android-unified-keyboard-shortcuts",
+          "action": "added",
+          "platform": [
+            "Android"
+          ],
+          "platform_evidence": "about_flags.cc kOsAndroid"
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "watch",
+      "validation": "Relevant official diffs read; snapshot replay not performed."
     }
   ]
 }

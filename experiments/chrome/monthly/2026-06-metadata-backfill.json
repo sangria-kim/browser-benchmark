@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "query_url": "https://api.github.com/repos/chromium/chromium/commits?path=chrome/browser/flag-metadata.json&since=2026-06-01T00:00:00Z&until=2026-06-02T00:00:00Z&per_page=100",
+  "completed_from": "2026-06-01T00:00:00Z",
+  "completed_to_exclusive": "2026-06-02T00:00:00Z",
+  "resume_from": "2026-06-02T00:00:00Z",
+  "uncollected_before_overlap": "2026-06-02T00:00:00Z through 2026-10-21T23:59:59Z",
+  "commit_count": 7,
+  "diffs_reviewed": true,
+  "snapshot_replay_performed": false,
+  "commits": [
+    {
+      "revision": "6b19acd724052abde1d259888b431360c3b12dcc",
+      "committed_at": "2026-06-01T23:32:32Z",
+      "title": "[iOS] Add feature flag for gemini bottom sheet migration",
+      "url": "https://github.com/chromium/chromium/commit/6b19acd724052abde1d259888b431360c3b12dcc",
+      "mapped_changes": [
+        {
+          "flag_id": "ios-bottom-sheet-migration",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 160
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    },
+    {
+      "revision": "cc994a0e8a591dcd346220cb5f8f1d5a41b37838",
+      "committed_at": "2026-06-01T20:43:13Z",
+      "title": "[Glic] Support GeminiEnterpriseSettings enterprise policy",
+      "url": "https://github.com/chromium/chromium/commit/cc994a0e8a591dcd346220cb5f8f1d5a41b37838",
+      "mapped_changes": [
+        {
+          "flag_id": "glic-gemini-enterprise-settings-enabled",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 160
+        },
+        {
+          "flag_id": "glic-gemini-enterprise-settings-override",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 160
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    },
+    {
+      "revision": "f2a909660b720277519f25e82867fc4a4598dbf1",
+      "committed_at": "2026-06-01T18:15:30Z",
+      "title": "[actor] TabObservationStrategy 4/4",
+      "url": "https://github.com/chromium/chromium/commit/f2a909660b720277519f25e82867fc4a4598dbf1",
+      "mapped_changes": [
+        {
+          "flag_id": "actor-script-tool-skip-page-content",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 170
+        },
+        {
+          "flag_id": "actor-script-tool-skip-screenshot",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 170
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    },
+    {
+      "revision": "c52346cc196cf435add6b430911e91901b6d03fa",
+      "committed_at": "2026-06-01T16:54:27Z",
+      "title": "[DC] Implement capability delegation for Digital Credentials",
+      "url": "https://github.com/chromium/chromium/commit/c52346cc196cf435add6b430911e91901b6d03fa",
+      "mapped_changes": [
+        {
+          "flag_id": "capability-delegation-digital-credentials",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 160
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    },
+    {
+      "revision": "fd96d197a11e620807016754fe3c4f29b6bdf639",
+      "committed_at": "2026-06-01T15:57:26Z",
+      "title": "#NativePreviewBling Add a new feature flag to enable Maps Native Preview for linkified addresses.",
+      "url": "https://github.com/chromium/chromium/commit/fd96d197a11e620807016754fe3c4f29b6bdf639",
+      "mapped_changes": [
+        {
+          "flag_id": "ios-mini-map-linkified-address",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 153
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    },
+    {
+      "revision": "37c122abf1fce4cd01068cf2d8090fbae687007a",
+      "committed_at": "2026-06-01T15:54:58Z",
+      "title": "[iOS] Clean up Overflow Menu Tab Groups entry point",
+      "url": "https://github.com/chromium/chromium/commit/37c122abf1fce4cd01068cf2d8090fbae687007a",
+      "mapped_changes": [
+        {
+          "flag_id": "ios-tab-group-entry-point-overflow-menu",
+          "change_kind": "removal",
+          "expiry_milestone_before": 150,
+          "expiry_milestone_after": null
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    },
+    {
+      "revision": "e3a24dde936f4574b078a30e3d9e8a8ab09d55ef",
+      "committed_at": "2026-06-01T14:32:16Z",
+      "title": "[FileSystem API DLP] Add EnableDlpFileSystemApi flag to chrome://flags",
+      "url": "https://github.com/chromium/chromium/commit/e3a24dde936f4574b078a30e3d9e8a8ab09d55ef",
+      "mapped_changes": [
+        {
+          "flag_id": "enable-dlp-file-system-api",
+          "change_kind": "registration",
+          "expiry_milestone_before": null,
+          "expiry_milestone_after": 153
+        }
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical backfill, not a newly released or newly announced feature."
+    }
+  ]
+}

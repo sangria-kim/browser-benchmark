@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "rule_commit": "88a6300f57e4065836e99a87a4431e0b6829f978",
+  "observed_at": "2026-10-29T22:43:00Z",
+  "sources": [
+    {
+      "source_id": "chrome-releases",
+      "url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-22T00:00:00Z",
+      "coverage_status": "complete_index",
+      "coverage": "2026-10-22 이후 22개 공식 공지 본문. 10/29 신규 3건은 Android156패치, Desktop156 보안21건, iOS158Beta빌드. 개별 Git log 전수 미검토."
+    },
+    {
+      "source_id": "chrome-blog",
+      "url": "https://blog.google/products-and-platforms/products/chrome/rss/",
+      "coverage_status": "complete_index",
+      "coverage": "공식 RSS 최신10/28 17UTC Gmail자동완성,다음9/24. 최신기사 실제본문 확인; 기존발송 중복."
+    },
+    {
+      "source_id": "chrome-enterprise",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "coverage_status": "complete_index",
+      "coverage": "렌더된 웹페이지는 껍데기. 공식 API curl GET으로156 29건/157 28건 게시·검토완료 항목 확인. 최신updated156 10/26,157 10/27. 기존본문 해시대조 미실행."
+    },
+    {
+      "source_id": "chrome-status",
+      "url": "https://chromestatus.com/release-notes",
+      "coverage_status": "partial",
+      "coverage": "157 Preview18항목 본문 확인. 예정Stable11/3. 개별기능 최초발표·지원·이력 대조,156/158전체 목록 미완료."
+    },
+    {
+      "source_id": "edge-stable",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+      "coverage_status": "complete_current",
+      "coverage": "156.0.4314.42 10/22 본문과156.0.4314.50 10/26 일반버그성능수정 확인. 기존사이트권한/자동완성/키아이콘 재기재 신규성정정 유지."
+    },
+    {
+      "source_id": "edge-mobile",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "coverage_status": "complete_current",
+      "coverage": "최신156.0.4314.43 10/26. OneAuth11.2.2, iOS계정전환/첫실행로그인/진단로그/접근성,Android정책로그인오류메시지,양OSCopilot일반UX개선. 업무학교계정중심,새상세사용흐름 미공개."
+    },
+    {
+      "source_id": "edge-blog",
+      "url": "https://blogs.windows.com/msedgedev/",
+      "coverage_status": "complete_current",
+      "coverage": "최신10/29 Accelerated App Launches 실제본문;이전10/15updates. 발표10/29와OS10/28배포단계 구분."
+    },
+    {
+      "source_id": "edge-site-impact",
+      "url": "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/site-impacting-changes?tabs=latest",
+      "coverage_status": "complete_current",
+      "coverage": "전체표 본문확인. 추가WebView2 v159제거/ACL/파일탐색제약은10/12예고참조,현재출시 아님. XSLT159 Stable/157사전채널,unload152-155 등 기존."
+    },
+    {
+      "source_id": "firefox-desktop",
+      "url": "https://www.firefox.com/en-US/firefox/159.0/releasenotes/",
+      "coverage_status": "complete_current",
+      "coverage": "최신159 10/27 본문확인. SmartWindow/watch 및요약URL전달기존. macOS공유/기본비밀번호sidebar/수정/개발자내용 기존."
+    },
+    {
+      "source_id": "firefox-android",
+      "url": "https://www.firefox.com/en-US/firefox/android/159.0/releasenotes/",
+      "coverage_status": "complete_current",
+      "coverage": "159 10/27 XiaomiRedmi탭재로드감소,영상중알람음침묵/NYT영상재생수정,보안. 새로운수정발표 아님."
+    },
+    {
+      "source_id": "firefox-releases",
+      "url": "https://www.firefox.com/en-US/releases/",
+      "coverage_status": "complete_current",
+      "coverage": "최신159.0,다음158.0/158.0.1.159.0.1없음."
+    },
+    {
+      "source_id": "firefox-beta",
+      "url": "https://www.firefox.com/en-US/firefox/160.0beta/releasenotes/",
+      "coverage_status": "complete_current",
+      "coverage": "160Beta최초10/26. MiniWindow/PiP속도기존발송. 프랑스어탭정리/붙여넣기검색/외부프로토콜Neverallow/MathML접근성/MKV/AndroidLNA기본값/수정 확인. 개별항목추가일 미공개,새로생긴것으로추정안함."
+    },
+    {
+      "source_id": "firefox-mdn",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/159",
+      "coverage_status": "complete_current",
+      "coverage": "159본문전체확인. scroll-driven animations기본지원,Sanitizer파싱,WebGL확장,scopedregistry,WebDriver변경,실험2항목. 최종수정10/26를새출시일로사용안함."
+    },
+    {
+      "source_id": "google-korea",
+      "url": "https://blog.google/intl/ko-kr/",
+      "coverage_status": "partial",
+      "coverage": "최신홈본문및검색확인. 새Chrome한국출시근거없음. 전아카이브추적은미완료. Gmail기능공식글은미국명시."
+    },
+    {
+      "source_id": "microsoft-korea",
+      "url": "https://news.microsoft.com/source/asia/region/korea/?lang=ko",
+      "coverage_status": "partial",
+      "coverage": "홈과검색확인. EdgeAAL한국출시명시발견못함. 영어기능문서지역제한미언급을한국지원명시로바꾸지않음."
+    },
+    {
+      "browser": "brave",
+      "url": "https://brave.com/latest/",
+      "status": "partial",
+      "detail": "Body fetched; latest displayed desktop 1.97.57 dated October 14, older than GitHub latest. Not evidence of no newer release."
+    },
+    {
+      "browser": "brave",
+      "url": "https://github.com/brave/brave-browser/releases/latest",
+      "status": "success",
+      "detail": "Redirected to v1.98.62; release body read. October 28 03:43 display, security fix and Chromium update."
+    },
+    {
+      "browser": "brave",
+      "url": "https://github.com/brave/brave-browser/releases",
+      "status": "partial",
+      "detail": "First page October 28-29 prereleases read; page 2 cached to October 22. Intervening enumeration not proven complete. GitHub API connector Transport closed and web API inaccessible."
+    },
+    {
+      "browser": "brave",
+      "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_ANDROID.md",
+      "status": "partial",
+      "detail": "Body fetched but only through 1.97.59. v1.98.62 fixed-tag Android changelog cache miss. Preserve failed Android checkpoint."
+    },
+    {
+      "browser": "brave",
+      "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md",
+      "status": "success",
+      "detail": "Latest 1.98.62 body agrees with release."
+    },
+    {
+      "browser": "brave",
+      "url": "https://brave.com/blog/",
+      "status": "success_index",
+      "detail": "Latest feature article shown October 15 outside seven-day window; not a new event."
+    },
+    {
+      "browser": "whale",
+      "url": "https://forum.whale.naver.com/forum/26/?sortby=start_date&sortdirection=desc",
+      "status": "success_index",
+      "detail": "Official announcements listing fetched. No in-window new announcement found; latest pertinent release body October 1, not September 17 posting timestamp or October 2 comment timestamp."
+    },
+    {
+      "browser": "whale",
+      "url": "https://whale.naver.com/",
+      "status": "failed_body",
+      "detail": "JavaScript shell and tagline only; product guidance unverified."
+    },
+    {
+      "browser": "opera",
+      "url": "https://blogs.opera.com/desktop/",
+      "status": "success",
+      "cadence": "weekly_auxiliary",
+      "detail": "October 27 stable 139 and October 28 developer 140 original articles and linked changelogs read."
+    },
+    {
+      "browser": "opera",
+      "url": "https://blogs.opera.com/news/",
+      "status": "success",
+      "cadence": "weekly_auxiliary",
+      "detail": "October 27 WebAI/HTML-in-Canvas and October 29 GX original bodies read. Product variants kept separate."
+    },
+    {
+      "browser": "opera",
+      "url": "https://blogs.opera.com/mobile/",
+      "status": "partial",
+      "cadence": "weekly_auxiliary",
+      "detail": "Index fetched. October 22 Nigeria free-data article original and AMP cache miss; cannot classify change from headline. Other displayed announcements predate window."
+    },
+    {
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/desktop/",
+      "status": "success",
+      "cadence": "weekly_auxiliary",
+      "detail": "October 22/23/29 stable minor updates and October 23/28 snapshots original bodies read."
+    },
+    {
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/android/releases/",
+      "status": "success_index",
+      "cadence": "weekly_auxiliary",
+      "detail": "Latest major September 10. Linked Android updates index latest October 19. No in-window stable item found; Android snapshots not fully enumerated."
+    }
+  ],
+  "limitations": [
+    "Collection is source-summary index, not full original copy or exhaustive every-issue reproduction.",
+    "Brave Android and intermediate prerelease enumeration incomplete.",
+    "Whale product page full body unavailable.",
+    "Opera Mini article body unavailable; GX press newsroom body unavailable.",
+    "No country or language support inferred from translated/general service pages.",
+    "No installed browser tests."
+  ],
+  "supplementary_checks": [
+    {
+      "observed_at": "2026-10-29T22:49:50Z",
+      "url": "https://github.com/brave/brave-browser/blob/v1.98.62/CHANGELOG_ANDROID.md",
+      "status": "partial",
+      "detail": "고정 태그 파일 읽기는 재시도 성공했으나 최상단 버전이 1.96.59인 오래된 본문이다. 1.98.62 Android 실제 변경을 확인하지 못했으며 checkpoint는 유지한다."
+    }
+  ]
+}
