@@ -29,9 +29,13 @@ PC는 창·탭·키보드·사이드바·확장 기능·멀티태스킹, Mobile�
 - **선정(selected)**: 공식 근거와 과거 이력 대조로 새로운 사건이 확인되고, 구체적인 사용자 영향·제품 비교 질문·검증 과제가 있다. 상세 보고 대상으로 삼고 중복 확인 후 알린다.
 - **관찰(watch)**: 실험·예고 등 변화 자체와 제품 가치는 확인됐지만 시험 조건이나 접근성이 부족하다. 미확인 조건과 재검토 계기를 기록한다. 발표·소스 관찰 자체가 위 선정 요건을 충족하면 실험 후보로 선정할 수 있으나 실제 사용 가능·시험 완료로 표현하지 않는다.
 - **검증 대기(pending_verification)**: 공식 근거 접근 실패, 출처 충돌, 신규성 불명확 등 사실 판정이 미완료다. 상세 신규 보고·자동 알림에서 제외하고 필요한 근거를 기록한다.
-- **제외(excluded)**: 반복 발표, 단순 보안 패치·일반 수정, 근거 없는 성능 홍보 또는 구체적인 사용자 영향·비교 과제가 없는 항목이다. 제외 이유를 남기고 새로운 근거가 생기면 재검토한다.
+- **제외(excluded)**: 반복 발표, 단순 보안 패치·사용자 행동에 의미 있는 영향이 없는 일반 수정, 근거 없는 성능 홍보 또는 구체적인 사용자 영향·비교 과제가 없는 항목이다. 제외 이유를 남기고 새로운 근거가 생기면 재검토한다.
 
 선정된 항목의 P1은 기본 동작·개인정보·인증·기능 삭제처럼 기존 과제에 큰 영향을 주거나 핵심 과제의 변화를 우선 검증할 필요가 있는 경우, P2는 유용하지만 영향 범위가 제한적이거나 탐색적 비교가 필요한 경우로 구분한다. 각 우선순위에 이유를 붙인다. AI라는 이유만으로 P1을 부여하지 않으며, 국내 미출시도 제외 사유로 단정하지 않고 선행 검토 가치와 접근 제약을 함께 판단한다.
 
-판정에는 selection_status, selection_reason, priority(P1/P2/null), priority_reason, comparison_question, benchmark_readiness(ready/conditional/unknown), revisit_trigger, assessed_at, selection_rule_version을 기록한다. 이 기준의 rule version은 pm-selection-v1이다. 과거 샘플을 새 기준으로 검토하지 않았다면 판정 완료로 표시하지 않는다.
+판정에는 selection_status, selection_reason, priority(P1/P2/null), priority_reason, comparison_question, benchmark_readiness(ready/conditional/unknown), revisit_trigger, assessed_at, selection_rule_version을 기록한다. 이 기준의 rule version은 pm-selection-v2이다. 과거 샘플을 새 기준으로 검토하지 않았다면 판정 완료로 표시하지 않는다.
 
+
+## 대상 확장 관점
+
+Brave는 개인정보 보호·AI 흐름, Whale은 한국 사용 환경·국내 서비스 연결, Opera는 AI·탭·사이드패널, Vivaldi는 탭 관리·사용자 설정을 관찰한다. 브라우저 이름만으로 우선순위·우열을 정하지 않으며 위 관점으로 원천 수집을 제한하지 않는다. 공통 Chromium 변경은 제품별 도입 근거를 확인한다. 주기와 출처는 [출처 문서](browser-sources-and-cadence.md)를 따른다. v2는 일반 수정 제외 조건과 추가 브라우저 관점을 명확히 했으며 과거 판정을 소급 변경하지 않는다.
