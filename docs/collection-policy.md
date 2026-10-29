@@ -4,7 +4,7 @@
 
 ## 범위와 출처
 
-Chrome, Edge, Firefox의 새 기능과 주요 동작 변경을 공식 자료에서 확인한다. Windows와 Android를 우선한다. 공개 제품 정보만 사용하며 사내 데이터를 읽거나 전송하지 않는다.
+Chrome, Edge, Firefox, Brave, Whale, Opera, Vivaldi의 새 기능과 주요 동작 변경을 공식 자료에서 확인한다. Windows와 Android를 우선한다. 공개 제품 정보만 사용하며 사내 데이터를 읽거나 전송하지 않는다.
 
 - Chrome: https://chromereleases.googleblog.com/ · https://blog.google/products-and-platforms/products/chrome/ · https://chromeenterprise.google/intl/en_en/resources/release-notes/ · https://chromestatus.com/release-notes
 - Edge: https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel · https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel · https://blogs.windows.com/msedgedev/ 및 공식 site-impacting changes 문서
@@ -12,6 +12,8 @@ Chrome, Edge, Firefox의 새 기능과 주요 동작 변경을 공식 자료에�
 - Chrome flags: https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/about_flags.cc · https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/flag_descriptions.cc · https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/flag-metadata.json 및 해당 파일 변경 이력
 
 검색 요약이 아니라 본문·발표일·적용 버전·실제 출시 시점을 확인한다. Chrome Enterprise 본문이 로드되지 않으면 미확인으로 남긴다. Edge 모바일 문서의 업무/학교 계정 범위를 소비자 Android 전체로 일반화하지 않는다.
+
+추가 브라우저의 공식 URL·제품 구분·점검 주기와 한국 시장 절차는 [브라우저별 출처와 점검 주기](browser-sources-and-cadence.md)를 따른다. Brave·Whale은 기존 매 실행, Opera·Vivaldi는 기존 실행 안에서 주 1회 보조 관찰하며 Safari는 제외한다. 주간 대상의 한국 발표도 해당 주기에 점검한다. 적용용 전체 문구는 [공개 지시문](automation-prompt.md)을 참조한다.
 
 ## Chrome 실험 기능
 
@@ -25,7 +27,7 @@ flag ID, 관련 feature ID, 소스 revision, 최초 관찰일, 플랫폼, 설명
 
 첫 실행은 최근 7일, 이후 마지막 성공 점검 이후를 확인하며 이전 7일도 겹쳐 확인한다. 실패한 출처의 checkpoint는 전진시키지 않는다. 접근 실패와 변화 없음을 구분하고 실패 범위·재시도 대상을 비공개 실행 상태에 기록한다.
 
-탭·탐색 UX, AI 작업 흐름, 개인정보 기본값, 인증·자동완성, 확장 기능, 기기간 연속성, 미디어, 접근성, 근거 있는 성능 변화와 기능 삭제를 우선한다. 보안 패치·일반 버그 수정·내용 없는 성능 홍보·반복 발표는 상세 보고와 알림에서 제외한다.
+탭·탐색 UX, AI 작업 흐름, 개인정보 기본값, 인증·자동완성, 확장 기능, 기기간 연속성, 미디어, 접근성, 근거 있는 성능 변화와 기능 삭제를 우선한다. 단순 보안 패치·사용자 행동에 의미 있는 영향이 없는 일반 버그 수정·내용 없는 성능 홍보·반복 발표는 상세 보고와 알림에서 제외한다.
 
 기능 identity는 browser + canonical feature key로 유지하고 버전·URL·번역명이 달라도 같은 기능 이력을 연결한다. flag와 제품 기능은 근거가 있을 때 연결하며 한 flag와 한 기능의 1:1 대응을 가정하지 않는다.
 
@@ -83,3 +85,7 @@ releases/<browser>/<version>/에는 공식 자료의 전체 항목 색인과 수
 Chrome 소스 실험은 experiments/chrome에 flag ID 이력과 월별 JSON으로 저장한다. 2026-06-01부터의 backfill은 about_flags.cc 범위이며 만료·설명 파일 독립 변경은 별도 미완료로 관리한다. 추가/삭제를 출시로 추정하지 않는다.
 
 사내 PRD는 사내 clone 바깥 경로에서만 읽는다. 공개 collector와 외부 AI에 입력하지 않고, 내부 분석 출력도 저장소 바깥에 둔다. 공개 수집 기준은 공개 persona 문서로 유지한다. 내부 PRD를 사용한 판단을 공개 보고서에 자동 병합하지 않는다.
+
+## 기준 접근 및 발송 보류
+
+적용한 기준 commit 또는 규칙 버전을 기록한다. 필수 기준 접근 실패 시 의존하는 선별·게시·발송을 보류한다. 공개 문서로 비공개 설정의 수신자·공개 범위를 변경하지 않는다. 비공개 발송 상태를 영속 보관할 수 없거나 전달 이력을 복구하지 못하면 자동 발송을 보류한다. 이 자동화는 사내 PRD·사내 clone·내부 분석을 읽지 않는다. 위 사내 로컬 검토 안내는 별도 사내 작업에만 적용된다.
