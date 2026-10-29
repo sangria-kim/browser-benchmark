@@ -1,6 +1,8 @@
 # Browser Benchmark
 
-Chrome 실험 기능과 Chrome·Edge·Firefox의 새 기능 및 주요 동작 변경을 공개 공식 자료로 추적하는 아카이브입니다. Windows와 Android를 우선하며, 제품 비교와 재현 가능한 벤치마크 후보를 기록합니다.
+Chrome 실험 기능과 Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 새 기능 및 주요 동작 변경을 공개 공식 자료로 추적하는 아카이브입니다. Windows와 Android를 우선하며, 제품 비교와 재현 가능한 벤치마크 후보를 기록합니다.
+
+Brave·Whale은 기존 매 실행, Opera·Vivaldi는 주 1회 보조 관찰합니다. Safari는 제외합니다. 추가 4종의 실제 수집은 아직 미실행입니다.
 
 ## 현재 상태
 
@@ -35,6 +37,8 @@ git pull --ff-only
 
 ## 운영 문서
 
+- [브라우저별 공식 출처와 점검 주기](docs/browser-sources-and-cadence.md)
+- [자동화 적용용 압축 지시문(공개본)](docs/automation-prompt.md)
 - [수집 및 게시 지침](docs/collection-policy.md)
 - [삼성 브라우저 PM 페르소나와 선별 규칙](docs/pm-persona-and-selection.md)
 - [보고서 템플릿](templates/report.md)
