@@ -9,6 +9,8 @@
 
 - Feature ID / Event ID:
 - Browser / Version / Channel / Platform:
+- 업무 범위(workstreams): pc / mobile / 미확인 (복수 가능)
+- AI 관련(ai_related): true / false / unknown
 - 분류: 실험 관찰 / 정식 도입 / 배포 확대 / 동작 변경 / 철회 / 검증 대기
 
 ### 1. 변경과 근거
