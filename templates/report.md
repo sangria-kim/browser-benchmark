@@ -13,6 +13,20 @@
 - AI 관련(ai_related): true / false / unknown
 - 분류: 실험 관찰 / 정식 도입 / 배포 확대 / 동작 변경 / 철회 / 검증 대기
 
+### PM 선별 근거
+
+- 선별 결과(selection_status): selected / watch / pending_verification / excluded
+- 사용자 과제와 구체적인 영향:
+- 기존 기능 대비 실질적 변화:
+- 삼성 브라우저 관점의 비교 질문(미확인 지원 여부를 단정하지 않음):
+- 선정·관찰·보류·제외 이유(selection_reason):
+- 우선순위(priority): P1 / P2 / null — 이유:
+- 벤치마크 준비 상태(benchmark_readiness): ready / conditional / unknown
+- 재검토 계기(revisit_trigger):
+- 판정일(assessed_at) / 규칙(selection_rule_version): / pm-selection-v1
+
+날짜별 신규 보고서에는 selected 항목만 포함합니다. 나머지 후보는 수집 상태에서 이유·재검토 조건을 관리합니다. 실험 후보는 실제 사용 가능 여부와 분리합니다.
+
 ### 1. 변경과 근거
 
 - 이전 상태 대비 구체적 변화:
