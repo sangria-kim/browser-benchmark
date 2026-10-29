@@ -34,6 +34,7 @@ git pull --ff-only
 ## 운영 문서
 
 - [수집 및 게시 지침](docs/collection-policy.md)
+- [삼성 브라우저 PM 페르소나와 선별 규칙](docs/pm-persona-and-selection.md)
 - [보고서 템플릿](templates/report.md)
 
 ## 공개 범위
