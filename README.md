@@ -4,9 +4,10 @@ Chrome 실험 기능과 Chrome·Edge·Firefox의 새 기능 및 주요 동작 �
 
 ## 현재 상태
 
-2026-10-26~29 기간의 공개용 샘플 보고서 2건을 저장했습니다. [보고서 목록](reports/README.md)에서 날짜별·버전별로 볼 수 있습니다. 신규 수집 실행 및 dots 자동화 연결은 아직 완료되지 않았습니다. 이 저장소 자체에는 예약 실행 기능이 없습니다.
-
-현재 저장된 자료는 Markdown 보고서와 색인입니다. 기능별 문서·Chrome flags snapshot·JSON 사건 데이터는 설계 단계이며 아직 생성되지 않았습니다. 샘플은 원문 작성 당시의 기록으로, 이번 정리에서 공식 출처를 재검증한 결과가 아닙니다.
+- [릴리스 전체 항목 색인](releases/README.md): Chrome 156/157, Firefox 159·160 Beta, Edge 156의 명시된 공식 자료 범위.
+- [PC](reports/pc/README.md) · [Mobile](reports/mobile/README.md) · [AI](reports/ai/README.md): 기존 날짜별 보고서의 업무별 색인.
+- [Chrome flags](experiments/chrome/README.md): 2026-06-01 이후 about_flags.cc 1,169 commit, 938개 flag ID 이력. 설치본 검증·PM 선별은 미완료.
+- [수집 범위와 남은 작업](docs/collection-status.md)을 확인하세요. 자동화 연결·메일 발송 상태는 이 문서 변경으로 바뀌지 않습니다.
 
 ## 읽기 전용 사용
 
@@ -26,6 +27,7 @@ git pull --ff-only
 | `features/<browser>/<feature-id>.md` | 버전 간 기능 이력 |
 | `experiments/chrome/<flag-id>.md` | Chrome flag 관찰 및 검증 상태 |
 | `data/events/<event-id>.json` | 구조화된 변경 사건 |
+| `reports/<workstream>/README.md` | 업무별 분석 색인(중복 집계 금지) |
 | `reports/YYYY-MM-DD.md` | Asia/Seoul 날짜별 의미 있는 변화 |
 | `assets/` | 공개 가능한 이미지, 상대 경로로 참조 |
 

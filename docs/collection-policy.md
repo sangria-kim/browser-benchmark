@@ -70,8 +70,16 @@ GitHub를 보고서의 기준 저장소로 사용한다. 이전에 전달한 사
 - 공개 파일에 계정 주소·메시지 ID·인증 정보·사내 자료가 포함되지 않는다.
 - 사내 환경에서 clone/pull 후 상대 링크를 따라 문서를 읽을 수 있다.
 
-현재 샘플은 Markdown 보고서와 색인만 포함한다. JSON 사건 데이터·기능별 문서·flags snapshot과 위 운영 검증은 아직 완료되지 않았다. 메일·checkpoint 영속 저장 위치는 실제 실행 환경에서 마련하고 확인해야 한다.
+현재 릴리스 항목 JSON, flag별 문서와 월별 소스 사건 JSON을 보관한다. 통합 제품 사건 schema 적용·설치본 검증·위 운영 검증은 아직 완료되지 않았다. 메일·checkpoint 영속 저장 위치는 실제 실행 환경에서 마련하고 확인해야 한다.
 
 ## 업무 분류 원칙
 
-PC/Mobile은 플랫폼, AI는 기능 속성으로 분리한다. platform에는 실제 OS를 기록하고 workstreams에는 pc/mobile, ai_related에는 true/false/unknown을 둔다. 같은 사건이 여러 업무 목록에 노출돼도 event_id 기준으로 한 번만 집계·알림한다. 실제 지원 범위가 미확인인 플랫폼을 임의로 추가하지 않는다. 업무별 색인은 현재 미구현이며 날짜별·버전별 색인을 사용한다.
+PC/Mobile은 플랫폼, AI는 기능 속성으로 분리한다. platform에는 실제 OS를 기록하고 workstreams에는 pc/mobile, ai_related에는 true/false/unknown을 둔다. 같은 사건이 여러 업무 목록에 노출돼도 event_id 기준으로 한 번만 집계·알림한다. 실제 지원 범위가 미확인인 플랫폼을 임의로 추가하지 않는다. 업무별 색인은 reports/pc, reports/mobile, reports/ai에 제공한다. 동일 사건을 복제하지 않고 날짜별 원문과 event_id를 참조한다.
+
+## 전체 수집과 선별 보고의 저장 위치
+
+releases/<browser>/<version>/에는 공식 자료의 전체 항목 색인과 수집 범위를 남긴다. 버그 수정·정책·예고도 수집하되 신규 기능으로 자동 판정하지 않는다. reports/pc·mobile·ai는 선별 분석을 연결하며 AI와 플랫폼의 중복은 같은 사건으로 유지한다. 버전 미확인 발표는 억지로 버전에 배정하지 않는다.
+
+Chrome 소스 실험은 experiments/chrome에 flag ID 이력과 월별 JSON으로 저장한다. 2026-06-01부터의 backfill은 about_flags.cc 범위이며 만료·설명 파일 독립 변경은 별도 미완료로 관리한다. 추가/삭제를 출시로 추정하지 않는다.
+
+사내 PRD는 사내 clone 바깥 경로에서만 읽는다. 공개 collector와 외부 AI에 입력하지 않고, 내부 분석 출력도 저장소 바깥에 둔다. 공개 수집 기준은 공개 persona 문서로 유지한다. 내부 PRD를 사용한 판단을 공개 보고서에 자동 병합하지 않는다.

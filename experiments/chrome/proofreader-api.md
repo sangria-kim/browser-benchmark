@@ -1,0 +1,15 @@
+# proofreader-api
+
+검증 상태: **소스 관찰만 완료**. 설치본 노출·동작·최소 Chrome 버전은 미확인입니다. PM 선별은 검증 대기입니다.
+
+- 기간 시작 snapshot에 등록: 예
+- 기간 종료 snapshot에 등록: 예
+- 추가는 기간 내 등록/재등록을 뜻하며 최초 출시를 보장하지 않습니다. 삭제는 정식 출시·철회의 증거가 아닙니다.
+- OS mask는 소스 표현이며 실제 빌드 조건·지원 범위는 별도 확인이 필요합니다.
+
+| UTC 날짜 | 사건 | OS mask | 공식 diff |
+| --- | --- | --- | --- |
+| 2026-06-01 | modified | kOsDesktop | [e3a24dde936f](https://github.com/chromium/chromium/commit/e3a24dde936f4574b078a30e3d9e8a8ab09d55ef) |
+| 2026-06-11 | modified | kOsDesktop | [7c3187682a88](https://github.com/chromium/chromium/commit/7c3187682a885c7829087de60766ad268f4cb98e) |
+
+[전체 목록](README.md)

@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "period_start": "2026-06-01T00:00:00Z",
+  "period_end": "2026-10-29T15:00:00Z",
+  "scope": "commits touching chrome/browser/about_flags.cc only",
+  "baseline_revision": "87214e6721f6c34afd9181b80769a24c0c601c50",
+  "end_revision": "3a520e41da378388a3e9b4a87f3c2f9e4d311ba9",
+  "commit_count": 1169,
+  "flags_with_direct_entry_changes": 938,
+  "change_counts": {
+    "modified": 160,
+    "added": 520,
+    "removed": 430
+  },
+  "commits_without_direct_entry_change": 206,
+  "baseline_sha256": "429a947baf09ebb828a4d6c5078d12519d0b1bd84918d9532ac3ecc27867d871",
+  "end_sha256": "019011f498d4e7b3fc8729811939d61e81f4c7f16d0974de424a08decae7202b",
+  "validation": "All diffs replayed from baseline; final content exactly matches official end snapshot.",
+  "limitations": [
+    "Only literal IDs in kFeatureEntries are mapped. Symbolic IDs, external definitions and preprocessor-only changes require manual review.",
+    "Changes solely to flag_descriptions.cc or flag-metadata.json are not covered.",
+    "An addition is a registration within this window, not proof of first-ever introduction.",
+    "No installed Chrome builds were tested."
+  ]
+}

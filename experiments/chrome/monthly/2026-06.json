@@ -1,0 +1,3745 @@
+{
+  "schema_version": 1,
+  "events": [
+    {
+      "event_id": "chrome-about-flags-e3a24dde936f4574b078a30e3d9e8a8ab09d55ef",
+      "source_revision": "e3a24dde936f4574b078a30e3d9e8a8ab09d55ef",
+      "committed_at": "2026-06-01T14:32:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/e3a24dde936f4574b078a30e3d9e8a8ab09d55ef/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/e3a24dde936f4574b078a30e3d9e8a8ab09d55ef",
+      "changes": [
+        {
+          "flag_id": "autofill-ai-wallet-pass-branding-2026",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        },
+        {
+          "flag_id": "enable-dlp-file-system-api",
+          "action": "added",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        },
+        {
+          "flag_id": "proofreader-api",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-c52346cc196cf435add6b430911e91901b6d03fa",
+      "source_revision": "c52346cc196cf435add6b430911e91901b6d03fa",
+      "committed_at": "2026-06-01T16:54:27Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/c52346cc196cf435add6b430911e91901b6d03fa/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/c52346cc196cf435add6b430911e91901b6d03fa",
+      "changes": [
+        {
+          "flag_id": "capability-delegation-digital-credentials",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f2a909660b720277519f25e82867fc4a4598dbf1",
+      "source_revision": "f2a909660b720277519f25e82867fc4a4598dbf1",
+      "committed_at": "2026-06-01T18:15:30Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f2a909660b720277519f25e82867fc4a4598dbf1/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f2a909660b720277519f25e82867fc4a4598dbf1",
+      "changes": [
+        {
+          "flag_id": "actor-script-tool-skip-page-content",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "actor-script-tool-skip-screenshot",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-cc994a0e8a591dcd346220cb5f8f1d5a41b37838",
+      "source_revision": "cc994a0e8a591dcd346220cb5f8f1d5a41b37838",
+      "committed_at": "2026-06-01T20:43:13Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/cc994a0e8a591dcd346220cb5f8f1d5a41b37838/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/cc994a0e8a591dcd346220cb5f8f1d5a41b37838",
+      "changes": [
+        {
+          "flag_id": "glic-gemini-enterprise-settings-enabled",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "glic-gemini-enterprise-settings-override",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-761a91b24492e2e66fb834b7342e71ee3e03cef3",
+      "source_revision": "761a91b24492e2e66fb834b7342e71ee3e03cef3",
+      "committed_at": "2026-06-02T00:05:34Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/761a91b24492e2e66fb834b7342e71ee3e03cef3/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/761a91b24492e2e66fb834b7342e71ee3e03cef3",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-a8ab6ab7c2fac281f01c9fee0ca8ea4327cc4e6b",
+      "source_revision": "a8ab6ab7c2fac281f01c9fee0ca8ea4327cc4e6b",
+      "committed_at": "2026-06-02T00:48:53Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/a8ab6ab7c2fac281f01c9fee0ca8ea4327cc4e6b/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/a8ab6ab7c2fac281f01c9fee0ca8ea4327cc4e6b",
+      "changes": [
+        {
+          "flag_id": "android-bricks-native-page",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-093255f42ae706fe42c649194af37161ad339e07",
+      "source_revision": "093255f42ae706fe42c649194af37161ad339e07",
+      "committed_at": "2026-06-02T01:04:39Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/093255f42ae706fe42c649194af37161ad339e07/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/093255f42ae706fe42c649194af37161ad339e07",
+      "changes": [
+        {
+          "flag_id": "enable-realbox-virtual-focus",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-4fd4100f3958ea81cc36922ab0a3cf6e18b91242",
+      "source_revision": "4fd4100f3958ea81cc36922ab0a3cf6e18b91242",
+      "committed_at": "2026-06-02T01:51:02Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/4fd4100f3958ea81cc36922ab0a3cf6e18b91242/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/4fd4100f3958ea81cc36922ab0a3cf6e18b91242",
+      "changes": [
+        {
+          "flag_id": "autofill-vcn-enroll-strike-expiry-time",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d51b5ae9d47615a8efdae377acc43795c4e9df3f",
+      "source_revision": "d51b5ae9d47615a8efdae377acc43795c4e9df3f",
+      "committed_at": "2026-06-02T04:56:47Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d51b5ae9d47615a8efdae377acc43795c4e9df3f/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d51b5ae9d47615a8efdae377acc43795c4e9df3f",
+      "changes": [
+        {
+          "flag_id": "context-management-in-omnibox",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-9d241c645043904853aae26ae5d799fd1e26a89b",
+      "source_revision": "9d241c645043904853aae26ae5d799fd1e26a89b",
+      "committed_at": "2026-06-02T14:57:02Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/9d241c645043904853aae26ae5d799fd1e26a89b/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/9d241c645043904853aae26ae5d799fd1e26a89b",
+      "changes": [
+        {
+          "flag_id": "picture-in-picture-show-window-animation",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-68a7f20a3535b8bbf99b51332980873b795ed77c",
+      "source_revision": "68a7f20a3535b8bbf99b51332980873b795ed77c",
+      "committed_at": "2026-06-02T15:15:04Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/68a7f20a3535b8bbf99b51332980873b795ed77c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/68a7f20a3535b8bbf99b51332980873b795ed77c",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-850b2223ed3f92dfd1868aa31b0f0fd8f5761596",
+      "source_revision": "850b2223ed3f92dfd1868aa31b0f0fd8f5761596",
+      "committed_at": "2026-06-02T16:21:19Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/850b2223ed3f92dfd1868aa31b0f0fd8f5761596/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/850b2223ed3f92dfd1868aa31b0f0fd8f5761596",
+      "changes": [
+        {
+          "flag_id": "wide-screen-feed-for-foldables",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d9bbf82916759ef71a92f1b4a18965f2acfc1935",
+      "source_revision": "d9bbf82916759ef71a92f1b4a18965f2acfc1935",
+      "committed_at": "2026-06-02T16:34:54Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d9bbf82916759ef71a92f1b4a18965f2acfc1935/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d9bbf82916759ef71a92f1b4a18965f2acfc1935",
+      "changes": [
+        {
+          "flag_id": "mojo-use-eventfd",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsCrOS",
+            "kOsLinux"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d8efec1e30c16d6792a9847e89696c48c973eb45",
+      "source_revision": "d8efec1e30c16d6792a9847e89696c48c973eb45",
+      "committed_at": "2026-06-02T16:50:29Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d8efec1e30c16d6792a9847e89696c48c973eb45/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d8efec1e30c16d6792a9847e89696c48c973eb45",
+      "changes": [
+        {
+          "flag_id": "auto-picture-in-picture-for-video-playback",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-896ab0a1ef2916687cbc750c2bae5ff83f327816",
+      "source_revision": "896ab0a1ef2916687cbc750c2bae5ff83f327816",
+      "committed_at": "2026-06-02T17:20:58Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/896ab0a1ef2916687cbc750c2bae5ff83f327816/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/896ab0a1ef2916687cbc750c2bae5ff83f327816",
+      "changes": [
+        {
+          "flag_id": "android-context-menu-disabled-menu-items",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        },
+        {
+          "flag_id": "glic-gemini-enterprise-settings-enabled",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "glic-gemini-enterprise-settings-override",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b9d48008084ec8badb36576d567a3c22360d1c4f",
+      "source_revision": "b9d48008084ec8badb36576d567a3c22360d1c4f",
+      "committed_at": "2026-06-02T22:12:26Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b9d48008084ec8badb36576d567a3c22360d1c4f/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b9d48008084ec8badb36576d567a3c22360d1c4f",
+      "changes": [
+        {
+          "flag_id": "android-tabstrip-startup-capture-bug-fix",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d8900ba175532b3addf5ca91e12660c228f760d7",
+      "source_revision": "d8900ba175532b3addf5ca91e12660c228f760d7",
+      "committed_at": "2026-06-02T22:33:36Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d8900ba175532b3addf5ca91e12660c228f760d7/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d8900ba175532b3addf5ca91e12660c228f760d7",
+      "changes": [
+        {
+          "flag_id": "cast-streaming-media-video-encoder",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-4ba6ab5aa3bdc3fc2fc51caf5b88aeb7752b9fc3",
+      "source_revision": "4ba6ab5aa3bdc3fc2fc51caf5b88aeb7752b9fc3",
+      "committed_at": "2026-06-02T22:35:59Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/4ba6ab5aa3bdc3fc2fc51caf5b88aeb7752b9fc3/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/4ba6ab5aa3bdc3fc2fc51caf5b88aeb7752b9fc3",
+      "changes": [
+        {
+          "flag_id": "enable-audio-monitoring-on-android",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-cb4ffc3b1cc89e562c3116e093b04443bc773946",
+      "source_revision": "cb4ffc3b1cc89e562c3116e093b04443bc773946",
+      "committed_at": "2026-06-02T23:17:03Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/cb4ffc3b1cc89e562c3116e093b04443bc773946/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/cb4ffc3b1cc89e562c3116e093b04443bc773946",
+      "changes": [
+        {
+          "flag_id": "android-bookmark-bar",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-24c4d444a0e994af63b197706b1fc58a6eaf5b60",
+      "source_revision": "24c4d444a0e994af63b197706b1fc58a6eaf5b60",
+      "committed_at": "2026-06-02T23:51:28Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/24c4d444a0e994af63b197706b1fc58a6eaf5b60/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/24c4d444a0e994af63b197706b1fc58a6eaf5b60",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-bd29b9659541efd4d769a890e24a4fc7387632ef",
+      "source_revision": "bd29b9659541efd4d769a890e24a4fc7387632ef",
+      "committed_at": "2026-06-03T00:27:36Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/bd29b9659541efd4d769a890e24a4fc7387632ef/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/bd29b9659541efd4d769a890e24a4fc7387632ef",
+      "changes": [
+        {
+          "flag_id": "realbox-context-menu-animation-capping",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-517a66ffadd867c17ee76f41c0e79b0bf5cb10b3",
+      "source_revision": "517a66ffadd867c17ee76f41c0e79b0bf5cb10b3",
+      "committed_at": "2026-06-03T03:27:48Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/517a66ffadd867c17ee76f41c0e79b0bf5cb10b3/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/517a66ffadd867c17ee76f41c0e79b0bf5cb10b3",
+      "changes": [
+        {
+          "flag_id": "omnibox-loom",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-ab8c7f9e184a7846a318b8c806d41b7dcb50f58e",
+      "source_revision": "ab8c7f9e184a7846a318b8c806d41b7dcb50f58e",
+      "committed_at": "2026-06-03T03:40:27Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/ab8c7f9e184a7846a318b8c806d41b7dcb50f58e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/ab8c7f9e184a7846a318b8c806d41b7dcb50f58e",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-cookie-prefetch",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-4ae906d85d5ca19234e9617d5d994130f525bb3d",
+      "source_revision": "4ae906d85d5ca19234e9617d5d994130f525bb3d",
+      "committed_at": "2026-06-03T04:15:23Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/4ae906d85d5ca19234e9617d5d994130f525bb3d/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/4ae906d85d5ca19234e9617d5d994130f525bb3d",
+      "changes": [
+        {
+          "flag_id": "user-feedback-allowed-policy",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-3a6d15298a1b6545efec7410cbe0b4dfd9f62120",
+      "source_revision": "3a6d15298a1b6545efec7410cbe0b4dfd9f62120",
+      "committed_at": "2026-06-03T10:11:39Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/3a6d15298a1b6545efec7410cbe0b4dfd9f62120/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/3a6d15298a1b6545efec7410cbe0b4dfd9f62120",
+      "changes": [
+        {
+          "flag_id": "autofill-more-prominent-popup",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f4a27845e6528a23ed910a620834b238433f29d4",
+      "source_revision": "f4a27845e6528a23ed910a620834b238433f29d4",
+      "committed_at": "2026-06-03T15:06:40Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f4a27845e6528a23ed910a620834b238433f29d4/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f4a27845e6528a23ed910a620834b238433f29d4",
+      "changes": [
+        {
+          "flag_id": "webrtc-allow-wgc-screen-capturer",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0f8654a82ab23e1bbace6126b53bed8514deb144",
+      "source_revision": "0f8654a82ab23e1bbace6126b53bed8514deb144",
+      "committed_at": "2026-06-03T17:24:10Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0f8654a82ab23e1bbace6126b53bed8514deb144/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0f8654a82ab23e1bbace6126b53bed8514deb144",
+      "changes": [
+        {
+          "flag_id": "enable-extensions-menu-teardown-fix",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-cf664a9ad8ec006e20ad234c68abeda9b73f1dac",
+      "source_revision": "cf664a9ad8ec006e20ad234c68abeda9b73f1dac",
+      "committed_at": "2026-06-03T19:20:27Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/cf664a9ad8ec006e20ad234c68abeda9b73f1dac/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/cf664a9ad8ec006e20ad234c68abeda9b73f1dac",
+      "changes": [
+        {
+          "flag_id": "launch-queue-stop-sending-on-reload",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-057e5e5fe9c14a8e94aafb413d2f2f970da379f4",
+      "source_revision": "057e5e5fe9c14a8e94aafb413d2f2f970da379f4",
+      "committed_at": "2026-06-03T20:18:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/057e5e5fe9c14a8e94aafb413d2f2f970da379f4/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/057e5e5fe9c14a8e94aafb413d2f2f970da379f4",
+      "changes": [
+        {
+          "flag_id": "media-indicators-android",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-dd11f12d82d243ff834a6949a9346392820f2a0a",
+      "source_revision": "dd11f12d82d243ff834a6949a9346392820f2a0a",
+      "committed_at": "2026-06-03T21:35:14Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/dd11f12d82d243ff834a6949a9346392820f2a0a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/dd11f12d82d243ff834a6949a9346392820f2a0a",
+      "changes": [
+        {
+          "flag_id": "extension-manifest-v2-deprecation-unsupported",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-47116f375b8457054a37a4ca48634bc942c00111",
+      "source_revision": "47116f375b8457054a37a4ca48634bc942c00111",
+      "committed_at": "2026-06-03T23:10:00Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/47116f375b8457054a37a4ca48634bc942c00111/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/47116f375b8457054a37a4ca48634bc942c00111",
+      "changes": [
+        {
+          "flag_id": "autofill-enable-ai-card-recommendation",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-8af1d4c2879902ce558fa60dcd3d1494093c2b26",
+      "source_revision": "8af1d4c2879902ce558fa60dcd3d1494093c2b26",
+      "committed_at": "2026-06-03T23:46:24Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/8af1d4c2879902ce558fa60dcd3d1494093c2b26/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/8af1d4c2879902ce558fa60dcd3d1494093c2b26",
+      "changes": [
+        {
+          "flag_id": "disable-partner-homepage-android",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-bd7d23ac60219efde800ddf9537c5c9d61ef41ad",
+      "source_revision": "bd7d23ac60219efde800ddf9537c5c9d61ef41ad",
+      "committed_at": "2026-06-03T23:51:29Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/bd7d23ac60219efde800ddf9537c5c9d61ef41ad/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/bd7d23ac60219efde800ddf9537c5c9d61ef41ad",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-3b00237934e5515d7f3c27ca444cf58558e59a91",
+      "source_revision": "3b00237934e5515d7f3c27ca444cf58558e59a91",
+      "committed_at": "2026-06-04T01:07:08Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/3b00237934e5515d7f3c27ca444cf58558e59a91/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/3b00237934e5515d7f3c27ca444cf58558e59a91",
+      "changes": [
+        {
+          "flag_id": "enable-cross-device-theme-tracker",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-6a5eef881ada459f8a1a39be89185180051b7748",
+      "source_revision": "6a5eef881ada459f8a1a39be89185180051b7748",
+      "committed_at": "2026-06-04T01:59:13Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/6a5eef881ada459f8a1a39be89185180051b7748/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/6a5eef881ada459f8a1a39be89185180051b7748",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-fulfill-search-queries-in-aim",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-be509520814b67f5a5694986822cd745db42e10a",
+      "source_revision": "be509520814b67f5a5694986822cd745db42e10a",
+      "committed_at": "2026-06-04T04:31:26Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/be509520814b67f5a5694986822cd745db42e10a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/be509520814b67f5a5694986822cd745db42e10a",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f0668ddabe1fe01b574932fab25adc11b722d0d2",
+      "source_revision": "f0668ddabe1fe01b574932fab25adc11b722d0d2",
+      "committed_at": "2026-06-04T15:33:01Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f0668ddabe1fe01b574932fab25adc11b722d0d2/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f0668ddabe1fe01b574932fab25adc11b722d0d2",
+      "changes": [
+        {
+          "flag_id": "ui-automation-provider",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-3154d3403ac0c0ec3e8fe3e668e2c8e1985a52d9",
+      "source_revision": "3154d3403ac0c0ec3e8fe3e668e2c8e1985a52d9",
+      "committed_at": "2026-06-04T16:06:36Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/3154d3403ac0c0ec3e8fe3e668e2c8e1985a52d9/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/3154d3403ac0c0ec3e8fe3e668e2c8e1985a52d9",
+      "changes": [
+        {
+          "flag_id": "infobar-inline-links",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-9955226f9fb6cc914dfc1eee5164f487f7096fa1",
+      "source_revision": "9955226f9fb6cc914dfc1eee5164f487f7096fa1",
+      "committed_at": "2026-06-04T18:05:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/9955226f9fb6cc914dfc1eee5164f487f7096fa1/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/9955226f9fb6cc914dfc1eee5164f487f7096fa1",
+      "changes": [
+        {
+          "flag_id": "glic-os-icon-variant",
+          "action": "added",
+          "source_os_masks": [
+            "kOsMac"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-6aba51dff54b37e2c8382b4f80ad674165d7dd35",
+      "source_revision": "6aba51dff54b37e2c8382b4f80ad674165d7dd35",
+      "committed_at": "2026-06-04T20:10:18Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/6aba51dff54b37e2c8382b4f80ad674165d7dd35/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/6aba51dff54b37e2c8382b4f80ad674165d7dd35",
+      "changes": [
+        {
+          "flag_id": "autofill-enable-bnpl-affirm-internationalization",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "autofill-enable-bnpl-klarna-internationalization",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-6febc2ecafe6f21e85d074a98584f4c3543bf9a3",
+      "source_revision": "6febc2ecafe6f21e85d074a98584f4c3543bf9a3",
+      "committed_at": "2026-06-04T20:55:54Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/6febc2ecafe6f21e85d074a98584f4c3543bf9a3/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/6febc2ecafe6f21e85d074a98584f4c3543bf9a3",
+      "changes": [
+        {
+          "flag_id": "omnibox-improvement-for-lff",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-4784cc5db44a2699bc25250ed1b786d504da15d7",
+      "source_revision": "4784cc5db44a2699bc25250ed1b786d504da15d7",
+      "committed_at": "2026-06-04T22:27:58Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/4784cc5db44a2699bc25250ed1b786d504da15d7/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/4784cc5db44a2699bc25250ed1b786d504da15d7",
+      "changes": [
+        {
+          "flag_id": "collapse-tab-group-during-drag",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-806d70458ecd769a87bc32e872f748385b3d18c2",
+      "source_revision": "806d70458ecd769a87bc32e872f748385b3d18c2",
+      "committed_at": "2026-06-05T01:23:52Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/806d70458ecd769a87bc32e872f748385b3d18c2/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/806d70458ecd769a87bc32e872f748385b3d18c2",
+      "changes": [
+        {
+          "flag_id": "enable-task-manager-clank",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-402a9eb2541f15a97781112ebe7da78fc4c46294",
+      "source_revision": "402a9eb2541f15a97781112ebe7da78fc4c46294",
+      "committed_at": "2026-06-05T03:24:32Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/402a9eb2541f15a97781112ebe7da78fc4c46294/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/402a9eb2541f15a97781112ebe7da78fc4c46294",
+      "changes": [
+        {
+          "flag_id": "android-caret-browsing",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f76944c19c77191160266b59ce497c637384e197",
+      "source_revision": "f76944c19c77191160266b59ce497c637384e197",
+      "committed_at": "2026-06-05T17:33:36Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f76944c19c77191160266b59ce497c637384e197/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f76944c19c77191160266b59ce497c637384e197",
+      "changes": [
+        {
+          "flag_id": "tips-self-service",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-8f45fc478e8ae138aeee829f4a4ccc4e1b3445b5",
+      "source_revision": "8f45fc478e8ae138aeee829f4a4ccc4e1b3445b5",
+      "committed_at": "2026-06-05T18:11:22Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/8f45fc478e8ae138aeee829f4a4ccc4e1b3445b5/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/8f45fc478e8ae138aeee829f4a4ccc4e1b3445b5",
+      "changes": [
+        {
+          "flag_id": "use-p-link-in-help",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-9af8e5451c764bd97ba4734c5f580342752fc654",
+      "source_revision": "9af8e5451c764bd97ba4734c5f580342752fc654",
+      "committed_at": "2026-06-05T19:48:11Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/9af8e5451c764bd97ba4734c5f580342752fc654/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/9af8e5451c764bd97ba4734c5f580342752fc654",
+      "changes": [
+        {
+          "flag_id": "privacy-sandbox-internals",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-bdff84d062f87996cb05584bae2d340514df84cf",
+      "source_revision": "bdff84d062f87996cb05584bae2d340514df84cf",
+      "committed_at": "2026-06-05T20:26:38Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/bdff84d062f87996cb05584bae2d340514df84cf/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/bdff84d062f87996cb05584bae2d340514df84cf",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-fulfill-search-queries-in-aim",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-dc2d45e9fe3a1d035923734803edb5149e07ad0e",
+      "source_revision": "dc2d45e9fe3a1d035923734803edb5149e07ad0e",
+      "committed_at": "2026-06-06T02:25:40Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/dc2d45e9fe3a1d035923734803edb5149e07ad0e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/dc2d45e9fe3a1d035923734803edb5149e07ad0e",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-107008951309b4285de9c4573137d163dffedf38",
+      "source_revision": "107008951309b4285de9c4573137d163dffedf38",
+      "committed_at": "2026-06-08T09:20:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/107008951309b4285de9c4573137d163dffedf38/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/107008951309b4285de9c4573137d163dffedf38",
+      "changes": [
+        {
+          "flag_id": "devtools-plus-button",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-22ef6cf7733af11fa7b39042c6aa89d0e57335a8",
+      "source_revision": "22ef6cf7733af11fa7b39042c6aa89d0e57335a8",
+      "committed_at": "2026-06-08T15:19:33Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/22ef6cf7733af11fa7b39042c6aa89d0e57335a8/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/22ef6cf7733af11fa7b39042c6aa89d0e57335a8",
+      "changes": [
+        {
+          "flag_id": "enable-smart-card-web-api",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-552396a013bcbdc34d183d3b981f65853f339fac",
+      "source_revision": "552396a013bcbdc34d183d3b981f65853f339fac",
+      "committed_at": "2026-06-08T18:47:18Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/552396a013bcbdc34d183d3b981f65853f339fac/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/552396a013bcbdc34d183d3b981f65853f339fac",
+      "changes": [
+        {
+          "flag_id": "web-app-install-dialog-win-pin",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-cc4aa8c907e544371c0f477799838b7225bc7442",
+      "source_revision": "cc4aa8c907e544371c0f477799838b7225bc7442",
+      "committed_at": "2026-06-08T18:56:00Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/cc4aa8c907e544371c0f477799838b7225bc7442/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/cc4aa8c907e544371c0f477799838b7225bc7442",
+      "changes": [
+        {
+          "flag_id": "autofill-enable-card-info-runtime-retrieval",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-99379627490e8b73b6c81ba1884138c43068bc62",
+      "source_revision": "99379627490e8b73b6c81ba1884138c43068bc62",
+      "committed_at": "2026-06-08T19:09:00Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/99379627490e8b73b6c81ba1884138c43068bc62/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/99379627490e8b73b6c81ba1884138c43068bc62",
+      "changes": [
+        {
+          "flag_id": "split-view-horizontal",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-508cfeae4c744931dc617d9dd1a01e87fba72d04",
+      "source_revision": "508cfeae4c744931dc617d9dd1a01e87fba72d04",
+      "committed_at": "2026-06-08T20:03:35Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/508cfeae4c744931dc617d9dd1a01e87fba72d04/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/508cfeae4c744931dc617d9dd1a01e87fba72d04",
+      "changes": [
+        {
+          "flag_id": "reader-mode-improvements",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-68aec9e08ed1dc828b63fd3840eb0b5815cd8365",
+      "source_revision": "68aec9e08ed1dc828b63fd3840eb0b5815cd8365",
+      "committed_at": "2026-06-08T23:31:43Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/68aec9e08ed1dc828b63fd3840eb0b5815cd8365/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/68aec9e08ed1dc828b63fd3840eb0b5815cd8365",
+      "changes": [
+        {
+          "flag_id": "reader-mode-distill-in-app",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d058a3cc1417723f7fad4a10bb57e3f84c9672df",
+      "source_revision": "d058a3cc1417723f7fad4a10bb57e3f84c9672df",
+      "committed_at": "2026-06-09T00:26:05Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d058a3cc1417723f7fad4a10bb57e3f84c9672df/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d058a3cc1417723f7fad4a10bb57e3f84c9672df",
+      "changes": [
+        {
+          "flag_id": "cct-auth-tab",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-82b001346f9a402f4d43e124d6a4331e780e64c0",
+      "source_revision": "82b001346f9a402f4d43e124d6a4331e780e64c0",
+      "committed_at": "2026-06-09T08:20:18Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/82b001346f9a402f4d43e124d6a4331e780e64c0/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/82b001346f9a402f4d43e124d6a4331e780e64c0",
+      "changes": [
+        {
+          "flag_id": "prefetch-activation-beacon",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        },
+        {
+          "flag_id": "prerender-activation-beacon",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-01895ba28309fe60f066dcdb9543e67160ba1916",
+      "source_revision": "01895ba28309fe60f066dcdb9543e67160ba1916",
+      "committed_at": "2026-06-09T08:54:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/01895ba28309fe60f066dcdb9543e67160ba1916/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/01895ba28309fe60f066dcdb9543e67160ba1916",
+      "changes": [
+        {
+          "flag_id": "enable-web-printing-api",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-aaf3a4345a7ae4e89b44db2937348360d742399e",
+      "source_revision": "aaf3a4345a7ae4e89b44db2937348360d742399e",
+      "committed_at": "2026-06-09T09:23:57Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/aaf3a4345a7ae4e89b44db2937348360d742399e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/aaf3a4345a7ae4e89b44db2937348360d742399e",
+      "changes": [
+        {
+          "flag_id": "cross-device-signin",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-eb1d8920ecf589be6142ad07bb377c3e9373bc66",
+      "source_revision": "eb1d8920ecf589be6142ad07bb377c3e9373bc66",
+      "committed_at": "2026-06-09T16:45:07Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/eb1d8920ecf589be6142ad07bb377c3e9373bc66/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/eb1d8920ecf589be6142ad07bb377c3e9373bc66",
+      "changes": [
+        {
+          "flag_id": "android-desktop-ua-spoof-as-chromeos",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-64bb5430343c416f4faa1434184a5843ea06b51c",
+      "source_revision": "64bb5430343c416f4faa1434184a5843ea06b51c",
+      "committed_at": "2026-06-09T19:08:39Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/64bb5430343c416f4faa1434184a5843ea06b51c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/64bb5430343c416f4faa1434184a5843ea06b51c",
+      "changes": [
+        {
+          "flag_id": "read-aloud-native",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f97080b6244d8653fc6fad2a997e88e9f33b1578",
+      "source_revision": "f97080b6244d8653fc6fad2a997e88e9f33b1578",
+      "committed_at": "2026-06-09T22:08:57Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f97080b6244d8653fc6fad2a997e88e9f33b1578/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f97080b6244d8653fc6fad2a997e88e9f33b1578",
+      "changes": [
+        {
+          "flag_id": "enable-palm-suppression",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d73bee78f80c97c2355706e0358e38bc66e31ea0",
+      "source_revision": "d73bee78f80c97c2355706e0358e38bc66e31ea0",
+      "committed_at": "2026-06-09T22:19:55Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d73bee78f80c97c2355706e0358e38bc66e31ea0/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d73bee78f80c97c2355706e0358e38bc66e31ea0",
+      "changes": [
+        {
+          "flag_id": "block-telephony-device-phone-mute",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-6c6b0ab49c0cb55043809c9e999ec04b92dc0b32",
+      "source_revision": "6c6b0ab49c0cb55043809c9e999ec04b92dc0b32",
+      "committed_at": "2026-06-09T22:25:33Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/6c6b0ab49c0cb55043809c9e999ec04b92dc0b32/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/6c6b0ab49c0cb55043809c9e999ec04b92dc0b32",
+      "changes": [
+        {
+          "flag_id": "enable-new-mac-notification-api",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsMac"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-2d023ccd70b7937c101054cf2b937c3a71312e46",
+      "source_revision": "2d023ccd70b7937c101054cf2b937c3a71312e46",
+      "committed_at": "2026-06-09T23:53:01Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/2d023ccd70b7937c101054cf2b937c3a71312e46/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/2d023ccd70b7937c101054cf2b937c3a71312e46",
+      "changes": [
+        {
+          "flag_id": "glic-mi-tab-context-menu",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0083718bad37ae19c1ef45965827651c10808187",
+      "source_revision": "0083718bad37ae19c1ef45965827651c10808187",
+      "committed_at": "2026-06-10T05:37:40Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0083718bad37ae19c1ef45965827651c10808187/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0083718bad37ae19c1ef45965827651c10808187",
+      "changes": [
+        {
+          "flag_id": "glic-hotkey-local-scope",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7d9cb282c56b05d0d5f6e86f7048b6fcd42ed6fb",
+      "source_revision": "7d9cb282c56b05d0d5f6e86f7048b6fcd42ed6fb",
+      "committed_at": "2026-06-10T15:17:21Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7d9cb282c56b05d0d5f6e86f7048b6fcd42ed6fb/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7d9cb282c56b05d0d5f6e86f7048b6fcd42ed6fb",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-de84df1762ae0298c2de90c18432655ae33b18ff",
+      "source_revision": "de84df1762ae0298c2de90c18432655ae33b18ff",
+      "committed_at": "2026-06-10T16:47:28Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/de84df1762ae0298c2de90c18432655ae33b18ff/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/de84df1762ae0298c2de90c18432655ae33b18ff",
+      "changes": [
+        {
+          "flag_id": "fallback-to-sw-if-gles3-not-supported",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsCrOS",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f5889631665591bdd047153b94dfe8fb61618259",
+      "source_revision": "f5889631665591bdd047153b94dfe8fb61618259",
+      "committed_at": "2026-06-10T19:05:43Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f5889631665591bdd047153b94dfe8fb61618259/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f5889631665591bdd047153b94dfe8fb61618259",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0878a420883df7bcf2b7908e8be0cb6a219f6100",
+      "source_revision": "0878a420883df7bcf2b7908e8be0cb6a219f6100",
+      "committed_at": "2026-06-10T19:27:27Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0878a420883df7bcf2b7908e8be0cb6a219f6100/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0878a420883df7bcf2b7908e8be0cb6a219f6100",
+      "changes": [
+        {
+          "flag_id": "throttle-repeated-no-damage-frames",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7c3187682a885c7829087de60766ad268f4cb98e",
+      "source_revision": "7c3187682a885c7829087de60766ad268f4cb98e",
+      "committed_at": "2026-06-11T00:08:41Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7c3187682a885c7829087de60766ad268f4cb98e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7c3187682a885c7829087de60766ad268f4cb98e",
+      "changes": [
+        {
+          "flag_id": "classifier-api",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "classifier-api-for-tiny-model",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "prompt-api",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "prompt-api-for-gemini-nano",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "prompt-api-for-gemini-nano-multimodal-input",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "prompt-api-multimodal-input",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "proofreader-api",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "rewriter-api",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "rewriter-api-for-gemini-nano",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "summarizer-api",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "summarizer-api-for-gemini-nano",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "summarizer-api-performance-preference",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "writer-api",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "writer-api-for-gemini-nano",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-93e7af40185f58b1d327fe4b48d6ef625dd0c758",
+      "source_revision": "93e7af40185f58b1d327fe4b48d6ef625dd0c758",
+      "committed_at": "2026-06-11T05:05:12Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/93e7af40185f58b1d327fe4b48d6ef625dd0c758/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/93e7af40185f58b1d327fe4b48d6ef625dd0c758",
+      "changes": [
+        {
+          "flag_id": "use-search-click-for-right-click",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-3eb9c0c3129bd8cb46c9b559727199e394a73bdc",
+      "source_revision": "3eb9c0c3129bd8cb46c9b559727199e394a73bdc",
+      "committed_at": "2026-06-11T13:02:53Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/3eb9c0c3129bd8cb46c9b559727199e394a73bdc/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/3eb9c0c3129bd8cb46c9b559727199e394a73bdc",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-cbb1341e46e77bffb8dc18afbec67f5280413d57",
+      "source_revision": "cbb1341e46e77bffb8dc18afbec67f5280413d57",
+      "committed_at": "2026-06-11T17:17:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/cbb1341e46e77bffb8dc18afbec67f5280413d57/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/cbb1341e46e77bffb8dc18afbec67f5280413d57",
+      "changes": [
+        {
+          "flag_id": "on-device-model-speculative-decoding",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b972c7d357fcbf514787606675eca5d447907877",
+      "source_revision": "b972c7d357fcbf514787606675eca5d447907877",
+      "committed_at": "2026-06-11T18:07:17Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b972c7d357fcbf514787606675eca5d447907877/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b972c7d357fcbf514787606675eca5d447907877",
+      "changes": [
+        {
+          "flag_id": "enable-experimental-accessibility-language-detection",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5cfa3c5db05f903f8273b03b4fdd336eefab2848",
+      "source_revision": "5cfa3c5db05f903f8273b03b4fdd336eefab2848",
+      "committed_at": "2026-06-11T18:51:19Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5cfa3c5db05f903f8273b03b4fdd336eefab2848/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5cfa3c5db05f903f8273b03b4fdd336eefab2848",
+      "changes": [
+        {
+          "flag_id": "autofill-at-memory",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-e699fbec504b27ceb8e0db0ac664a5e15899cfda",
+      "source_revision": "e699fbec504b27ceb8e0db0ac664a5e15899cfda",
+      "committed_at": "2026-06-11T19:39:40Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/e699fbec504b27ceb8e0db0ac664a5e15899cfda/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/e699fbec504b27ceb8e0db0ac664a5e15899cfda",
+      "changes": [
+        {
+          "flag_id": "tab-bottom-sheet-resize-webview",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7b8f7b20e5c1174cea83aea5defee7e8665ff232",
+      "source_revision": "7b8f7b20e5c1174cea83aea5defee7e8665ff232",
+      "committed_at": "2026-06-11T21:04:37Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7b8f7b20e5c1174cea83aea5defee7e8665ff232/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7b8f7b20e5c1174cea83aea5defee7e8665ff232",
+      "changes": [
+        {
+          "flag_id": "context-menu-animation-limiting",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "realbox-context-menu-animation-capping",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0787dc0024889d9cabefddfd1b9481d2bd93a90d",
+      "source_revision": "0787dc0024889d9cabefddfd1b9481d2bd93a90d",
+      "committed_at": "2026-06-12T00:12:55Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0787dc0024889d9cabefddfd1b9481d2bd93a90d/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0787dc0024889d9cabefddfd1b9481d2bd93a90d",
+      "changes": [
+        {
+          "flag_id": "context-containers",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-e482657352234b0c2c5d4d6ef1c05d59066e5464",
+      "source_revision": "e482657352234b0c2c5d4d6ef1c05d59066e5464",
+      "committed_at": "2026-06-12T03:00:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/e482657352234b0c2c5d4d6ef1c05d59066e5464/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/e482657352234b0c2c5d4d6ef1c05d59066e5464",
+      "changes": [
+        {
+          "flag_id": "force-drive-disclaimer-accepted",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0fb53e40ff85d8ce03e5bb53d4c039050439978f",
+      "source_revision": "0fb53e40ff85d8ce03e5bb53d4c039050439978f",
+      "committed_at": "2026-06-12T09:30:21Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0fb53e40ff85d8ce03e5bb53d4c039050439978f/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0fb53e40ff85d8ce03e5bb53d4c039050439978f",
+      "changes": [
+        {
+          "flag_id": "enable-oauth-multilogin-youtube-cookies-binding",
+          "action": "added",
+          "source_os_masks": [
+            "kOsLinux",
+            "kOsMac",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-2620f2a03e7fe7e32c333ddccd98c070d1691e79",
+      "source_revision": "2620f2a03e7fe7e32c333ddccd98c070d1691e79",
+      "committed_at": "2026-06-12T10:19:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/2620f2a03e7fe7e32c333ddccd98c070d1691e79/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/2620f2a03e7fe7e32c333ddccd98c070d1691e79",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-hide-menu-on-ai-page",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "enable-contextual-tasks-pin-button-in-toolbar",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-611ab5da64fada10e7f8a0c92c12f66a1adf2966",
+      "source_revision": "611ab5da64fada10e7f8a0c92c12f66a1adf2966",
+      "committed_at": "2026-06-12T10:38:26Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/611ab5da64fada10e7f8a0c92c12f66a1adf2966/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/611ab5da64fada10e7f8a0c92c12f66a1adf2966",
+      "changes": [
+        {
+          "flag_id": "permissions-ai-p92",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-8d34f8462a7b30f8288117f12ba5240a8ea2a3b8",
+      "source_revision": "8d34f8462a7b30f8288117f12ba5240a8ea2a3b8",
+      "committed_at": "2026-06-12T14:07:46Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/8d34f8462a7b30f8288117f12ba5240a8ea2a3b8/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/8d34f8462a7b30f8288117f12ba5240a8ea2a3b8",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-ee3a464f26c74e40369415e38fde55fac59ca532",
+      "source_revision": "ee3a464f26c74e40369415e38fde55fac59ca532",
+      "committed_at": "2026-06-12T15:59:40Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/ee3a464f26c74e40369415e38fde55fac59ca532/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/ee3a464f26c74e40369415e38fde55fac59ca532",
+      "changes": [
+        {
+          "flag_id": "fedcm-native-idps",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0a59f5ad058f2f58c7a47adfdd7d10841ad4d592",
+      "source_revision": "0a59f5ad058f2f58c7a47adfdd7d10841ad4d592",
+      "committed_at": "2026-06-12T16:37:57Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0a59f5ad058f2f58c7a47adfdd7d10841ad4d592/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0a59f5ad058f2f58c7a47adfdd7d10841ad4d592",
+      "changes": [
+        {
+          "flag_id": "audio-ducking",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-44b32d21906210a030cf3836339531545d24b4f9",
+      "source_revision": "44b32d21906210a030cf3836339531545d24b4f9",
+      "committed_at": "2026-06-12T17:06:09Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/44b32d21906210a030cf3836339531545d24b4f9/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/44b32d21906210a030cf3836339531545d24b4f9",
+      "changes": [
+        {
+          "flag_id": "context-menu-tool-tips",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5e7101e75dc51a2db8a39202fc7db0d0e6714d36",
+      "source_revision": "5e7101e75dc51a2db8a39202fc7db0d0e6714d36",
+      "committed_at": "2026-06-12T17:46:17Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5e7101e75dc51a2db8a39202fc7db0d0e6714d36/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5e7101e75dc51a2db8a39202fc7db0d0e6714d36",
+      "changes": [
+        {
+          "flag_id": "autofill-ambient-autofill",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b19f8be21ae7b0951ca062e87e3e7561af99381a",
+      "source_revision": "b19f8be21ae7b0951ca062e87e3e7561af99381a",
+      "committed_at": "2026-06-12T20:01:10Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b19f8be21ae7b0951ca062e87e3e7561af99381a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b19f8be21ae7b0951ca062e87e3e7561af99381a",
+      "changes": [
+        {
+          "flag_id": "omnibox-fusebox-async-inflation",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5238168b07cab22014f02247ed84f9dc3079b248",
+      "source_revision": "5238168b07cab22014f02247ed84f9dc3079b248",
+      "committed_at": "2026-06-12T21:00:06Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5238168b07cab22014f02247ed84f9dc3079b248/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5238168b07cab22014f02247ed84f9dc3079b248",
+      "changes": [
+        {
+          "flag_id": "allow-multiple-media-notifications",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b09527a32283f13bd118814d25a64c10e705e046",
+      "source_revision": "b09527a32283f13bd118814d25a64c10e705e046",
+      "committed_at": "2026-06-15T06:35:30Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b09527a32283f13bd118814d25a64c10e705e046/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b09527a32283f13bd118814d25a64c10e705e046",
+      "changes": [
+        {
+          "flag_id": "enable-fast-touchpad-click",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-373ad7707cb1c09f07d96bb193421610d56ef1e5",
+      "source_revision": "373ad7707cb1c09f07d96bb193421610d56ef1e5",
+      "committed_at": "2026-06-15T13:17:55Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/373ad7707cb1c09f07d96bb193421610d56ef1e5/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/373ad7707cb1c09f07d96bb193421610d56ef1e5",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5eee7ae85ae876bd3a210bb1d9e08ea4bc0f2bff",
+      "source_revision": "5eee7ae85ae876bd3a210bb1d9e08ea4bc0f2bff",
+      "committed_at": "2026-06-15T16:42:39Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5eee7ae85ae876bd3a210bb1d9e08ea4bc0f2bff/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5eee7ae85ae876bd3a210bb1d9e08ea4bc0f2bff",
+      "changes": [
+        {
+          "flag_id": "chrome-native-url-overriding",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7e7d76b0c7b06af4f04da5537a0429552bf33d37",
+      "source_revision": "7e7d76b0c7b06af4f04da5537a0429552bf33d37",
+      "committed_at": "2026-06-15T17:42:14Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7e7d76b0c7b06af4f04da5537a0429552bf33d37/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7e7d76b0c7b06af4f04da5537a0429552bf33d37",
+      "changes": [
+        {
+          "flag_id": "debug-chime-notification",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-157e636452a9ed1fb0f53e00b87b86a94aa2e28d",
+      "source_revision": "157e636452a9ed1fb0f53e00b87b86a94aa2e28d",
+      "committed_at": "2026-06-15T20:51:42Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/157e636452a9ed1fb0f53e00b87b86a94aa2e28d/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/157e636452a9ed1fb0f53e00b87b86a94aa2e28d",
+      "changes": [
+        {
+          "flag_id": "no-pause-media-on-headphone-unplug",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-09d42a1340e18c2b5067a1739ac6f21a7332a615",
+      "source_revision": "09d42a1340e18c2b5067a1739ac6f21a7332a615",
+      "committed_at": "2026-06-15T21:39:12Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/09d42a1340e18c2b5067a1739ac6f21a7332a615/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/09d42a1340e18c2b5067a1739ac6f21a7332a615",
+      "changes": [
+        {
+          "flag_id": "customize-tab-group-color-palette",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-c92da76607488e772cabf635b23f481fc412066c",
+      "source_revision": "c92da76607488e772cabf635b23f481fc412066c",
+      "committed_at": "2026-06-16T00:41:42Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/c92da76607488e772cabf635b23f481fc412066c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/c92da76607488e772cabf635b23f481fc412066c",
+      "changes": [
+        {
+          "flag_id": "settings-in-tab",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-ece03a9cbb78a3bb1d3e4a257645567cc03803d4",
+      "source_revision": "ece03a9cbb78a3bb1d3e4a257645567cc03803d4",
+      "committed_at": "2026-06-16T05:07:51Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/ece03a9cbb78a3bb1d3e4a257645567cc03803d4/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/ece03a9cbb78a3bb1d3e4a257645567cc03803d4",
+      "changes": [
+        {
+          "flag_id": "toolbar-stale-capture-bug-fix",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-450c1dc3c2de463d3fef8f206a06c5e53e6a4b32",
+      "source_revision": "450c1dc3c2de463d3fef8f206a06c5e53e6a4b32",
+      "committed_at": "2026-06-16T09:14:54Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/450c1dc3c2de463d3fef8f206a06c5e53e6a4b32/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/450c1dc3c2de463d3fef8f206a06c5e53e6a4b32",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-58cf617e274463be11a281250639020069389eba",
+      "source_revision": "58cf617e274463be11a281250639020069389eba",
+      "committed_at": "2026-06-16T19:11:29Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/58cf617e274463be11a281250639020069389eba/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/58cf617e274463be11a281250639020069389eba",
+      "changes": [
+        {
+          "flag_id": "prompt-api-sampling-mode",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d5ea3d6b1dea54062d3dd44301385d0855919603",
+      "source_revision": "d5ea3d6b1dea54062d3dd44301385d0855919603",
+      "committed_at": "2026-06-16T19:54:22Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d5ea3d6b1dea54062d3dd44301385d0855919603/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d5ea3d6b1dea54062d3dd44301385d0855919603",
+      "changes": [
+        {
+          "flag_id": "mobile-promo-on-desktop-with-qr-code-wave-2",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        },
+        {
+          "flag_id": "mobile-promo-on-desktop-with-reminder-wave-2",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-8024f354319d878bd92a7a70cefa2b665a5d1078",
+      "source_revision": "8024f354319d878bd92a7a70cefa2b665a5d1078",
+      "committed_at": "2026-06-16T23:44:32Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/8024f354319d878bd92a7a70cefa2b665a5d1078/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/8024f354319d878bd92a7a70cefa2b665a5d1078",
+      "changes": [
+        {
+          "flag_id": "enable-lock-screen-notification",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-986294613a990e328bc99bc1029e2d22a8071488",
+      "source_revision": "986294613a990e328bc99bc1029e2d22a8071488",
+      "committed_at": "2026-06-17T00:00:28Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/986294613a990e328bc99bc1029e2d22a8071488/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/986294613a990e328bc99bc1029e2d22a8071488",
+      "changes": [
+        {
+          "flag_id": "tab-strip-height-transition-glitch-fix",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-def67043c1a6b3b7299fd751884089574a2420c8",
+      "source_revision": "def67043c1a6b3b7299fd751884089574a2420c8",
+      "committed_at": "2026-06-17T10:24:20Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/def67043c1a6b3b7299fd751884089574a2420c8/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/def67043c1a6b3b7299fd751884089574a2420c8",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-80af4d8c3f81e165f48bc32fbbc77908bc5905e7",
+      "source_revision": "80af4d8c3f81e165f48bc32fbbc77908bc5905e7",
+      "committed_at": "2026-06-17T13:33:56Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/80af4d8c3f81e165f48bc32fbbc77908bc5905e7/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/80af4d8c3f81e165f48bc32fbbc77908bc5905e7",
+      "changes": [
+        {
+          "flag_id": "dbd-password-removal-on-android",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-2f53aa1394710e151c997d2d6cd0fa1aac1fa72c",
+      "source_revision": "2f53aa1394710e151c997d2d6cd0fa1aac1fa72c",
+      "committed_at": "2026-06-17T17:31:48Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/2f53aa1394710e151c997d2d6cd0fa1aac1fa72c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/2f53aa1394710e151c997d2d6cd0fa1aac1fa72c",
+      "changes": [
+        {
+          "flag_id": "ai-mode-omnibox-entry-point",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-4022cddd2bf761c72416fae2b2c3b29a4a668c2e",
+      "source_revision": "4022cddd2bf761c72416fae2b2c3b29a4a668c2e",
+      "committed_at": "2026-06-17T17:59:35Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/4022cddd2bf761c72416fae2b2c3b29a4a668c2e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/4022cddd2bf761c72416fae2b2c3b29a4a668c2e",
+      "changes": [
+        {
+          "flag_id": "autofill-enable-resurrecting-payments-users",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-e6f17f4e34396c402ff7142a776f991e71b88eab",
+      "source_revision": "e6f17f4e34396c402ff7142a776f991e71b88eab",
+      "committed_at": "2026-06-17T18:18:37Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/e6f17f4e34396c402ff7142a776f991e71b88eab/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/e6f17f4e34396c402ff7142a776f991e71b88eab",
+      "changes": [
+        {
+          "flag_id": "tab-search-for-al",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-abbcfdef0bca1d63517247e19032deb6976700fd",
+      "source_revision": "abbcfdef0bca1d63517247e19032deb6976700fd",
+      "committed_at": "2026-06-17T18:37:01Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/abbcfdef0bca1d63517247e19032deb6976700fd/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/abbcfdef0bca1d63517247e19032deb6976700fd",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-386409947906da0a4132efe2db9309b45bc0f293",
+      "source_revision": "386409947906da0a4132efe2db9309b45bc0f293",
+      "committed_at": "2026-06-17T18:47:15Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/386409947906da0a4132efe2db9309b45bc0f293/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/386409947906da0a4132efe2db9309b45bc0f293",
+      "changes": [
+        {
+          "flag_id": "read-anything-docs-integration",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-c6932f72fe11c700f054c3d1acb55a6f41f43720",
+      "source_revision": "c6932f72fe11c700f054c3d1acb55a6f41f43720",
+      "committed_at": "2026-06-17T19:17:08Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/c6932f72fe11c700f054c3d1acb55a6f41f43720/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/c6932f72fe11c700f054c3d1acb55a6f41f43720",
+      "changes": [
+        {
+          "flag_id": "enable-webmcp-testing",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b0084e989d43fd9e0f04a7c30e7186cea1ec67c1",
+      "source_revision": "b0084e989d43fd9e0f04a7c30e7186cea1ec67c1",
+      "committed_at": "2026-06-17T21:19:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b0084e989d43fd9e0f04a7c30e7186cea1ec67c1/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b0084e989d43fd9e0f04a7c30e7186cea1ec67c1",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d1d505210e59c8fb5cb5802a8c716b019f6920f7",
+      "source_revision": "d1d505210e59c8fb5cb5802a8c716b019f6920f7",
+      "committed_at": "2026-06-17T21:21:29Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d1d505210e59c8fb5cb5802a8c716b019f6920f7/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d1d505210e59c8fb5cb5802a8c716b019f6920f7",
+      "changes": [
+        {
+          "flag_id": "enable-webmcp-testing",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f044cd765d0fd5478d7b16cf38dc80ba0a242de9",
+      "source_revision": "f044cd765d0fd5478d7b16cf38dc80ba0a242de9",
+      "committed_at": "2026-06-17T22:11:08Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f044cd765d0fd5478d7b16cf38dc80ba0a242de9/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f044cd765d0fd5478d7b16cf38dc80ba0a242de9",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-88502c804acc6547ef032dce2b71047a5058bc9d",
+      "source_revision": "88502c804acc6547ef032dce2b71047a5058bc9d",
+      "committed_at": "2026-06-17T22:52:50Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/88502c804acc6547ef032dce2b71047a5058bc9d/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/88502c804acc6547ef032dce2b71047a5058bc9d",
+      "changes": [
+        {
+          "flag_id": "enable-lens-overlay-android",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-3653829924d18fbde3d55260194dee05b1df0ed2",
+      "source_revision": "3653829924d18fbde3d55260194dee05b1df0ed2",
+      "committed_at": "2026-06-18T14:23:01Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/3653829924d18fbde3d55260194dee05b1df0ed2/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/3653829924d18fbde3d55260194dee05b1df0ed2",
+      "changes": [
+        {
+          "flag_id": "save-passwords-contextual-ui",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-360d3120c68485e4d132ba9af8bfae8883e09d69",
+      "source_revision": "360d3120c68485e4d132ba9af8bfae8883e09d69",
+      "committed_at": "2026-06-18T15:27:47Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/360d3120c68485e4d132ba9af8bfae8883e09d69/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/360d3120c68485e4d132ba9af8bfae8883e09d69",
+      "changes": [
+        {
+          "flag_id": "browser-window-interface-mobile",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0cdf9046a05d0d66066e2d10073fe4f011629b65",
+      "source_revision": "0cdf9046a05d0d66066e2d10073fe4f011629b65",
+      "committed_at": "2026-06-18T16:11:13Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0cdf9046a05d0d66066e2d10073fe4f011629b65/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0cdf9046a05d0d66066e2d10073fe4f011629b65",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-3350193eb902143c2cecea4f9cecc8b042a997d8",
+      "source_revision": "3350193eb902143c2cecea4f9cecc8b042a997d8",
+      "committed_at": "2026-06-18T17:33:57Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/3350193eb902143c2cecea4f9cecc8b042a997d8/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/3350193eb902143c2cecea4f9cecc8b042a997d8",
+      "changes": [
+        {
+          "flag_id": "canvas-accessibility",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "collect-accessibility-heuristic-in-canvas-ukm",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5e159b09c8b908823f815506ce05ec70c2313722",
+      "source_revision": "5e159b09c8b908823f815506ce05ec70c2313722",
+      "committed_at": "2026-06-18T21:24:04Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5e159b09c8b908823f815506ce05ec70c2313722/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5e159b09c8b908823f815506ce05ec70c2313722",
+      "changes": [
+        {
+          "flag_id": "antivirus-telemetry-for-downloads",
+          "action": "added",
+          "source_os_masks": [
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-506aaaf00f4cc4537b194a0159df08d46af25a4b",
+      "source_revision": "506aaaf00f4cc4537b194a0159df08d46af25a4b",
+      "committed_at": "2026-06-19T00:14:45Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/506aaaf00f4cc4537b194a0159df08d46af25a4b/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/506aaaf00f4cc4537b194a0159df08d46af25a4b",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-enable-spatial-model-toolbar-layout",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0bd6138e433483c2bb346a52190bd7d58bb3aefa",
+      "source_revision": "0bd6138e433483c2bb346a52190bd7d58bb3aefa",
+      "committed_at": "2026-06-19T00:42:58Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0bd6138e433483c2bb346a52190bd7d58bb3aefa/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0bd6138e433483c2bb346a52190bd7d58bb3aefa",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7ae3833bec6ecddb8fcc11a71446d79c7473b13f",
+      "source_revision": "7ae3833bec6ecddb8fcc11a71446d79c7473b13f",
+      "committed_at": "2026-06-19T12:19:19Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7ae3833bec6ecddb8fcc11a71446d79c7473b13f/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7ae3833bec6ecddb8fcc11a71446d79c7473b13f",
+      "changes": [
+        {
+          "flag_id": "enable-http-headers-injection",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b7f0f15bc7c58ec8ae12c033c19226ccc4eadeee",
+      "source_revision": "b7f0f15bc7c58ec8ae12c033c19226ccc4eadeee",
+      "committed_at": "2026-06-19T12:51:56Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b7f0f15bc7c58ec8ae12c033c19226ccc4eadeee/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b7f0f15bc7c58ec8ae12c033c19226ccc4eadeee",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-c32b2366db54d762b532046b88d9021fbb82d10a",
+      "source_revision": "c32b2366db54d762b532046b88d9021fbb82d10a",
+      "committed_at": "2026-06-19T13:33:02Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/c32b2366db54d762b532046b88d9021fbb82d10a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/c32b2366db54d762b532046b88d9021fbb82d10a",
+      "changes": [
+        {
+          "flag_id": "glic-actor-autofill-pre-click",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0867a441ab927323a557c58900abc8c03ee9d26e",
+      "source_revision": "0867a441ab927323a557c58900abc8c03ee9d26e",
+      "committed_at": "2026-06-19T17:11:50Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0867a441ab927323a557c58900abc8c03ee9d26e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0867a441ab927323a557c58900abc8c03ee9d26e",
+      "changes": [
+        {
+          "flag_id": "make-identity-manager-source-of-accounts-part2",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-68b0fedb8581d8f8575dc302cdbd4c2b4134d501",
+      "source_revision": "68b0fedb8581d8f8575dc302cdbd4c2b4134d501",
+      "committed_at": "2026-06-19T20:10:59Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/68b0fedb8581d8f8575dc302cdbd4c2b4134d501/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/68b0fedb8581d8f8575dc302cdbd4c2b4134d501",
+      "changes": [
+        {
+          "flag_id": "user-media-element-legacy",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsLinux",
+            "kOsMac",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b2735ecf3a9ca30c23cd683e29ce10b7dfacaab8",
+      "source_revision": "b2735ecf3a9ca30c23cd683e29ce10b7dfacaab8",
+      "committed_at": "2026-06-22T07:08:09Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b2735ecf3a9ca30c23cd683e29ce10b7dfacaab8/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b2735ecf3a9ca30c23cd683e29ce10b7dfacaab8",
+      "changes": [
+        {
+          "flag_id": "autofill-enable-support-for-name-and-email-profile",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-aef01676f2552cf789a938bad20551c970f7001e",
+      "source_revision": "aef01676f2552cf789a938bad20551c970f7001e",
+      "committed_at": "2026-06-22T07:43:09Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/aef01676f2552cf789a938bad20551c970f7001e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/aef01676f2552cf789a938bad20551c970f7001e",
+      "changes": [
+        {
+          "flag_id": "input-cursor-anchor-info-migration",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-da1a144791f227979c55e8b4af6ad04792bd144d",
+      "source_revision": "da1a144791f227979c55e8b4af6ad04792bd144d",
+      "committed_at": "2026-06-22T18:40:00Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/da1a144791f227979c55e8b4af6ad04792bd144d/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/da1a144791f227979c55e8b4af6ad04792bd144d",
+      "changes": [
+        {
+          "flag_id": "in-flow-trusted-vault-key-retrieval-android",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        },
+        {
+          "flag_id": "password-save-in-context-error-resolution",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        },
+        {
+          "flag_id": "password-save-in-context-error-resolution-on-desktop",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b11dd467281199425bc9fe6288b7422000253765",
+      "source_revision": "b11dd467281199425bc9fe6288b7422000253765",
+      "committed_at": "2026-06-22T19:47:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b11dd467281199425bc9fe6288b7422000253765/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b11dd467281199425bc9fe6288b7422000253765",
+      "changes": [
+        {
+          "flag_id": "horizontal-tab-strip-combo-button",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d21c7b4b91f88e1746771bf1f9a4cf172bbf6e63",
+      "source_revision": "d21c7b4b91f88e1746771bf1f9a4cf172bbf6e63",
+      "committed_at": "2026-06-22T21:16:10Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d21c7b4b91f88e1746771bf1f9a4cf172bbf6e63/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d21c7b4b91f88e1746771bf1f9a4cf172bbf6e63",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-enable-spatial-model-toolbar-layout",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d8439eceb29abbf3868e60d1831a41fb3f440df3",
+      "source_revision": "d8439eceb29abbf3868e60d1831a41fb3f440df3",
+      "committed_at": "2026-06-22T21:43:42Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d8439eceb29abbf3868e60d1831a41fb3f440df3/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d8439eceb29abbf3868e60d1831a41fb3f440df3",
+      "changes": [
+        {
+          "flag_id": "search-in-settings",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-0a68c59684091307c1e4e07b46e22390db4ad7da",
+      "source_revision": "0a68c59684091307c1e4e07b46e22390db4ad7da",
+      "committed_at": "2026-06-22T23:35:09Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/0a68c59684091307c1e4e07b46e22390db4ad7da/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/0a68c59684091307c1e4e07b46e22390db4ad7da",
+      "changes": [
+        {
+          "flag_id": "launcher-item-suggest",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-08acbf5a70012ca74ffc0761a8b790cae0ad2dce",
+      "source_revision": "08acbf5a70012ca74ffc0761a8b790cae0ad2dce",
+      "committed_at": "2026-06-23T00:16:25Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/08acbf5a70012ca74ffc0761a8b790cae0ad2dce/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/08acbf5a70012ca74ffc0761a8b790cae0ad2dce",
+      "changes": [
+        {
+          "flag_id": "horizontal-tab-strip-combo-button",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-be77b4cf1c06dca0f808142848d1a57bd4939fcf",
+      "source_revision": "be77b4cf1c06dca0f808142848d1a57bd4939fcf",
+      "committed_at": "2026-06-23T01:07:21Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/be77b4cf1c06dca0f808142848d1a57bd4939fcf/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/be77b4cf1c06dca0f808142848d1a57bd4939fcf",
+      "changes": [
+        {
+          "flag_id": "glic-button-auto-summarize",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f186d4df61db659d02a74dd872a3d51519fcf7ef",
+      "source_revision": "f186d4df61db659d02a74dd872a3d51519fcf7ef",
+      "committed_at": "2026-06-23T01:17:04Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f186d4df61db659d02a74dd872a3d51519fcf7ef/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f186d4df61db659d02a74dd872a3d51519fcf7ef",
+      "changes": [
+        {
+          "flag_id": "context-management-in-composebox",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-b46247c6a422a16a7566b9483758ff12d29502e2",
+      "source_revision": "b46247c6a422a16a7566b9483758ff12d29502e2",
+      "committed_at": "2026-06-23T03:28:04Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/b46247c6a422a16a7566b9483758ff12d29502e2/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/b46247c6a422a16a7566b9483758ff12d29502e2",
+      "changes": [
+        {
+          "flag_id": "cast-streaming-hardware-av1",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "cast-streaming-hardware-hevc",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-315096353f859592cb85ded8433a45f871356de4",
+      "source_revision": "315096353f859592cb85ded8433a45f871356de4",
+      "committed_at": "2026-06-23T08:05:44Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/315096353f859592cb85ded8433a45f871356de4/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/315096353f859592cb85ded8433a45f871356de4",
+      "changes": [
+        {
+          "flag_id": "partition-alloc-scheduler-loop-quarantine",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-54dffc934cfbe4d107eb1efe7e9ff4a29caa43be",
+      "source_revision": "54dffc934cfbe4d107eb1efe7e9ff4a29caa43be",
+      "committed_at": "2026-06-23T17:18:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/54dffc934cfbe4d107eb1efe7e9ff4a29caa43be/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/54dffc934cfbe4d107eb1efe7e9ff4a29caa43be",
+      "changes": [
+        {
+          "flag_id": "child-process-security-policy-rust",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-75c75d9f8fac2db1ebf16d213c2caa088c2db948",
+      "source_revision": "75c75d9f8fac2db1ebf16d213c2caa088c2db948",
+      "committed_at": "2026-06-23T17:53:09Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/75c75d9f8fac2db1ebf16d213c2caa088c2db948/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/75c75d9f8fac2db1ebf16d213c2caa088c2db948",
+      "changes": [
+        {
+          "flag_id": "rcaps-dynamic-profile-country",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-a6e6b2f2acc0723eaf629f030a14d64f4624ead1",
+      "source_revision": "a6e6b2f2acc0723eaf629f030a14d64f4624ead1",
+      "committed_at": "2026-06-23T19:51:50Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/a6e6b2f2acc0723eaf629f030a14d64f4624ead1/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/a6e6b2f2acc0723eaf629f030a14d64f4624ead1",
+      "changes": [
+        {
+          "flag_id": "horizontal-tab-strip-combo-button",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-57acc7ce68c60b23094df40f4bdd178d850b3b88",
+      "source_revision": "57acc7ce68c60b23094df40f4bdd178d850b3b88",
+      "committed_at": "2026-06-24T00:41:15Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/57acc7ce68c60b23094df40f4bdd178d850b3b88/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/57acc7ce68c60b23094df40f4bdd178d850b3b88",
+      "changes": [
+        {
+          "flag_id": "enable-dynamic-route-fetching",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        },
+        {
+          "flag_id": "enable-proxy-authentication-service",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-9bf192151d49f0e6d3a1b13120ea71d3529c51b4",
+      "source_revision": "9bf192151d49f0e6d3a1b13120ea71d3529c51b4",
+      "committed_at": "2026-06-24T00:51:15Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/9bf192151d49f0e6d3a1b13120ea71d3529c51b4/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/9bf192151d49f0e6d3a1b13120ea71d3529c51b4",
+      "changes": [
+        {
+          "flag_id": "cast-streaming-max-video-bitrate",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-55722722206fee5bd907092d32451665cd41e082",
+      "source_revision": "55722722206fee5bd907092d32451665cd41e082",
+      "committed_at": "2026-06-24T01:52:24Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/55722722206fee5bd907092d32451665cd41e082/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/55722722206fee5bd907092d32451665cd41e082",
+      "changes": [
+        {
+          "flag_id": "contextual-tasks-rearchitecture",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-72fd91f738d1e206156d1cc499e775ea15d2b5a5",
+      "source_revision": "72fd91f738d1e206156d1cc499e775ea15d2b5a5",
+      "committed_at": "2026-06-24T02:46:21Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/72fd91f738d1e206156d1cc499e775ea15d2b5a5/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/72fd91f738d1e206156d1cc499e775ea15d2b5a5",
+      "changes": [
+        {
+          "flag_id": "vids-app-existing-consumer-preinstall",
+          "action": "added",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-e919fe8956e563a0ac779e4cb906443fd6c83875",
+      "source_revision": "e919fe8956e563a0ac779e4cb906443fd6c83875",
+      "committed_at": "2026-06-24T16:22:59Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/e919fe8956e563a0ac779e4cb906443fd6c83875/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/e919fe8956e563a0ac779e4cb906443fd6c83875",
+      "changes": [
+        {
+          "flag_id": "glic-experimental-triggering-screenshot",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f61c5fb79b5a5e8a16687fba43a37c1513781687",
+      "source_revision": "f61c5fb79b5a5e8a16687fba43a37c1513781687",
+      "committed_at": "2026-06-24T22:48:18Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f61c5fb79b5a5e8a16687fba43a37c1513781687/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f61c5fb79b5a5e8a16687fba43a37c1513781687",
+      "changes": [
+        {
+          "flag_id": "webui-omnibox-full-popup",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-a9e7d75286b359b1c84afa08493bfb753ecf1899",
+      "source_revision": "a9e7d75286b359b1c84afa08493bfb753ecf1899",
+      "committed_at": "2026-06-24T23:55:29Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/a9e7d75286b359b1c84afa08493bfb753ecf1899/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/a9e7d75286b359b1c84afa08493bfb753ecf1899",
+      "changes": [
+        {
+          "flag_id": "webui-omnibox-full-popup",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "webui-omnibox-full-popup-v2",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-953ec2e07c479e33e608aa5ef68b1f5fbc39c6c1",
+      "source_revision": "953ec2e07c479e33e608aa5ef68b1f5fbc39c6c1",
+      "committed_at": "2026-06-25T08:54:54Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/953ec2e07c479e33e608aa5ef68b1f5fbc39c6c1/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/953ec2e07c479e33e608aa5ef68b1f5fbc39c6c1",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-602914b1210597d3065cd92817bfc4e4b4724660",
+      "source_revision": "602914b1210597d3065cd92817bfc4e4b4724660",
+      "committed_at": "2026-06-25T12:29:45Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/602914b1210597d3065cd92817bfc4e4b4724660/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/602914b1210597d3065cd92817bfc4e4b4724660",
+      "changes": [
+        {
+          "flag_id": "cross-device-signin-from-desktop",
+          "action": "added",
+          "source_os_masks": [
+            "kOsLinux",
+            "kOsMac",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-78a202a05fd6add2fb0f67be4f12e55b9a878b50",
+      "source_revision": "78a202a05fd6add2fb0f67be4f12e55b9a878b50",
+      "committed_at": "2026-06-25T12:38:11Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/78a202a05fd6add2fb0f67be4f12e55b9a878b50/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/78a202a05fd6add2fb0f67be4f12e55b9a878b50",
+      "changes": [
+        {
+          "flag_id": "password-save-update-dropdown-menu-experiment",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-4f3e4c11a297cb6db5ba8fe4d9a95459bf79b422",
+      "source_revision": "4f3e4c11a297cb6db5ba8fe4d9a95459bf79b422",
+      "committed_at": "2026-06-25T14:55:11Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/4f3e4c11a297cb6db5ba8fe4d9a95459bf79b422/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/4f3e4c11a297cb6db5ba8fe4d9a95459bf79b422",
+      "changes": [
+        {
+          "flag_id": "android-device-signals-disclaimer",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        },
+        {
+          "flag_id": "webui-omnibox-full-popup",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-fdb703474131f2c18a34e9dbc01a485a34c37f0e",
+      "source_revision": "fdb703474131f2c18a34e9dbc01a485a34c37f0e",
+      "committed_at": "2026-06-25T15:06:47Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/fdb703474131f2c18a34e9dbc01a485a34c37f0e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/fdb703474131f2c18a34e9dbc01a485a34c37f0e",
+      "changes": [
+        {
+          "flag_id": "ntp-simplification",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-68231276598bb20a2fc58cce35c8913286facf3a",
+      "source_revision": "68231276598bb20a2fc58cce35c8913286facf3a",
+      "committed_at": "2026-06-25T17:19:39Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/68231276598bb20a2fc58cce35c8913286facf3a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/68231276598bb20a2fc58cce35c8913286facf3a",
+      "changes": [
+        {
+          "flag_id": "omnibox-loom",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-088a3ae8a1a0fad59aad432a27dabb1c31ddf77a",
+      "source_revision": "088a3ae8a1a0fad59aad432a27dabb1c31ddf77a",
+      "committed_at": "2026-06-25T20:24:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/088a3ae8a1a0fad59aad432a27dabb1c31ddf77a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/088a3ae8a1a0fad59aad432a27dabb1c31ddf77a",
+      "changes": [
+        {
+          "flag_id": "session-encryption",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-625bd1e33bf58ff9ce0163ef5a3f1c5f914251b9",
+      "source_revision": "625bd1e33bf58ff9ce0163ef5a3f1c5f914251b9",
+      "committed_at": "2026-06-25T21:18:00Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/625bd1e33bf58ff9ce0163ef5a3f1c5f914251b9/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/625bd1e33bf58ff9ce0163ef5a3f1c5f914251b9",
+      "changes": [
+        {
+          "flag_id": "toolbar-glow-up",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-81639c8d56a159d35a70c9af4eed22cea4733986",
+      "source_revision": "81639c8d56a159d35a70c9af4eed22cea4733986",
+      "committed_at": "2026-06-25T23:07:08Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/81639c8d56a159d35a70c9af4eed22cea4733986/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/81639c8d56a159d35a70c9af4eed22cea4733986",
+      "changes": [
+        {
+          "flag_id": "test-root-store",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-52ba8a770906e8262cc6e248db5822d1b56a7745",
+      "source_revision": "52ba8a770906e8262cc6e248db5822d1b56a7745",
+      "committed_at": "2026-06-26T01:34:34Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/52ba8a770906e8262cc6e248db5822d1b56a7745/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/52ba8a770906e8262cc6e248db5822d1b56a7745",
+      "changes": [
+        {
+          "flag_id": "tab-strip-layout-transition-debounce-fix",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-71673ca4b1b8f09a7dd0f32f539b9ec1040abf87",
+      "source_revision": "71673ca4b1b8f09a7dd0f32f539b9ec1040abf87",
+      "committed_at": "2026-06-26T15:25:34Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/71673ca4b1b8f09a7dd0f32f539b9ec1040abf87/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/71673ca4b1b8f09a7dd0f32f539b9ec1040abf87",
+      "changes": [
+        {
+          "flag_id": "enable-cookie-binding-cookie-upgrade",
+          "action": "added",
+          "source_os_masks": [
+            "kOsLinux",
+            "kOsMac",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5ad5ecc26de30dea6ddff9698359824cc15f936a",
+      "source_revision": "5ad5ecc26de30dea6ddff9698359824cc15f936a",
+      "committed_at": "2026-06-26T16:18:30Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5ad5ecc26de30dea6ddff9698359824cc15f936a/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5ad5ecc26de30dea6ddff9698359824cc15f936a",
+      "changes": [
+        {
+          "flag_id": "long-screenshots-no-memory-check",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-00b0d165c3d256a4de38250640e2cb041974c76c",
+      "source_revision": "00b0d165c3d256a4de38250640e2cb041974c76c",
+      "committed_at": "2026-06-26T20:01:41Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/00b0d165c3d256a4de38250640e2cb041974c76c/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/00b0d165c3d256a4de38250640e2cb041974c76c",
+      "changes": [
+        {
+          "flag_id": "settings-multi-column",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        },
+        {
+          "flag_id": "settings-single-activity",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-726c678356a6a48c0436b588e7be2bef3abbab11",
+      "source_revision": "726c678356a6a48c0436b588e7be2bef3abbab11",
+      "committed_at": "2026-06-28T17:38:36Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/726c678356a6a48c0436b588e7be2bef3abbab11/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/726c678356a6a48c0436b588e7be2bef3abbab11",
+      "changes": [
+        {
+          "flag_id": "enable-welcome-experience-test-unsupported-devices",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsCrOS"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5cb3de9b3df2e71bf363e598b157546d0699f592",
+      "source_revision": "5cb3de9b3df2e71bf363e598b157546d0699f592",
+      "committed_at": "2026-06-29T15:17:31Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5cb3de9b3df2e71bf363e598b157546d0699f592/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5cb3de9b3df2e71bf363e598b157546d0699f592",
+      "changes": [
+        {
+          "flag_id": "device-signals-backfill-disclaimer",
+          "action": "added",
+          "source_os_masks": [
+            "kOsLinux",
+            "kOsMac",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-62a61f0f72193bc1f0ccf1397316c3e413ce84ba",
+      "source_revision": "62a61f0f72193bc1f0ccf1397316c3e413ce84ba",
+      "committed_at": "2026-06-29T16:57:01Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/62a61f0f72193bc1f0ccf1397316c3e413ce84ba/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/62a61f0f72193bc1f0ccf1397316c3e413ce84ba",
+      "changes": [
+        {
+          "flag_id": "enable-android-omnibox-autofocus-on-incognito-ntp",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        },
+        {
+          "flag_id": "enable-android-reporting-omnibox-autofocus-header",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-70dfa4cfc915fc27e5d9f6e6ed6f6a1ef119e3a0",
+      "source_revision": "70dfa4cfc915fc27e5d9f6e6ed6f6a1ef119e3a0",
+      "committed_at": "2026-06-29T18:09:21Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/70dfa4cfc915fc27e5d9f6e6ed6f6a1ef119e3a0/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/70dfa4cfc915fc27e5d9f6e6ed6f6a1ef119e3a0",
+      "changes": [
+        {
+          "flag_id": "desktop-fling-curve-on-android",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-991145fc14b68885685814f75fc292f965b55639",
+      "source_revision": "991145fc14b68885685814f75fc292f965b55639",
+      "committed_at": "2026-06-29T18:33:27Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/991145fc14b68885685814f75fc292f965b55639/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/991145fc14b68885685814f75fc292f965b55639",
+      "changes": [
+        {
+          "flag_id": "data-controls-drag-enforcement",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsAll"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-6751d4b9c41a80ff52400acb1ecd49728e3ab76e",
+      "source_revision": "6751d4b9c41a80ff52400acb1ecd49728e3ab76e",
+      "committed_at": "2026-06-29T18:50:57Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/6751d4b9c41a80ff52400acb1ecd49728e3ab76e/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/6751d4b9c41a80ff52400acb1ecd49728e3ab76e",
+      "changes": [
+        {
+          "flag_id": "enable-android-enterprise-screenshot-protection",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-839c7bb4454c96c394a0753e7cf4471bfcfc9490",
+      "source_revision": "839c7bb4454c96c394a0753e7cf4471bfcfc9490",
+      "committed_at": "2026-06-29T18:52:19Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/839c7bb4454c96c394a0753e7cf4471bfcfc9490/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/839c7bb4454c96c394a0753e7cf4471bfcfc9490",
+      "changes": [
+        {
+          "flag_id": "glic-detached",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7f0c48e19132e5a47d54d5361c87d43d73865a45",
+      "source_revision": "7f0c48e19132e5a47d54d5361c87d43d73865a45",
+      "committed_at": "2026-06-29T20:11:23Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7f0c48e19132e5a47d54d5361c87d43d73865a45/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7f0c48e19132e5a47d54d5361c87d43d73865a45",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-d0c84e3e652c4c558b9bd7ce943ad8ad7ba1bcd1",
+      "source_revision": "d0c84e3e652c4c558b9bd7ce943ad8ad7ba1bcd1",
+      "committed_at": "2026-06-29T21:02:27Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/d0c84e3e652c4c558b9bd7ce943ad8ad7ba1bcd1/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/d0c84e3e652c4c558b9bd7ce943ad8ad7ba1bcd1",
+      "changes": [
+        {
+          "flag_id": "read-anything-images-via-algorithm",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        },
+        {
+          "flag_id": "read-anything-immersive-reading-mode",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f8225d438782cfe238ff1cba039ecba5a74f48ce",
+      "source_revision": "f8225d438782cfe238ff1cba039ecba5a74f48ce",
+      "committed_at": "2026-06-29T22:07:15Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f8225d438782cfe238ff1cba039ecba5a74f48ce/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f8225d438782cfe238ff1cba039ecba5a74f48ce",
+      "changes": [
+        {
+          "flag_id": "windows11-mica-titlebar",
+          "action": "removed",
+          "source_os_masks": [
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-04413bb5d6b03c89c3c3aa296c16c2620018db01",
+      "source_revision": "04413bb5d6b03c89c3c3aa296c16c2620018db01",
+      "committed_at": "2026-06-29T22:56:58Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/04413bb5d6b03c89c3c3aa296c16c2620018db01/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/04413bb5d6b03c89c3c3aa296c16c2620018db01",
+      "changes": [
+        {
+          "flag_id": "api-contextual-tasks-private",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-eb8e9feb1e29274e0e0ef2c59ac28edf66ac9b28",
+      "source_revision": "eb8e9feb1e29274e0e0ef2c59ac28edf66ac9b28",
+      "committed_at": "2026-06-30T02:20:56Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/eb8e9feb1e29274e0e0ef2c59ac28edf66ac9b28/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/eb8e9feb1e29274e0e0ef2c59ac28edf66ac9b28",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-543eb13a56fb551fa6a1e9f651e8e86af99e693f",
+      "source_revision": "543eb13a56fb551fa6a1e9f651e8e86af99e693f",
+      "committed_at": "2026-06-30T11:34:08Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/543eb13a56fb551fa6a1e9f651e8e86af99e693f/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/543eb13a56fb551fa6a1e9f651e8e86af99e693f",
+      "changes": [],
+      "mapping_status": "no_direct_entry_change",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-5ec023cb1e393d93d62d3043c14860e4189f42e5",
+      "source_revision": "5ec023cb1e393d93d62d3043c14860e4189f42e5",
+      "committed_at": "2026-06-30T15:13:03Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/5ec023cb1e393d93d62d3043c14860e4189f42e5/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/5ec023cb1e393d93d62d3043c14860e4189f42e5",
+      "changes": [
+        {
+          "flag_id": "aim-3p-entrypoint",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-ea6b830904343d9bd57597439ed42d0c21868321",
+      "source_revision": "ea6b830904343d9bd57597439ed42d0c21868321",
+      "committed_at": "2026-06-30T15:14:16Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/ea6b830904343d9bd57597439ed42d0c21868321/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/ea6b830904343d9bd57597439ed42d0c21868321",
+      "changes": [
+        {
+          "flag_id": "cross-device-signin-from-desktop",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsLinux",
+            "kOsMac",
+            "kOsWin"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-ba12a6973ac2cc303950367a76cc228a964a2df7",
+      "source_revision": "ba12a6973ac2cc303950367a76cc228a964a2df7",
+      "committed_at": "2026-06-30T18:01:40Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/ba12a6973ac2cc303950367a76cc228a964a2df7/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/ba12a6973ac2cc303950367a76cc228a964a2df7",
+      "changes": [
+        {
+          "flag_id": "omnibox-aim-image-downscaling",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-7a48d8f0d46e66b1611b3bd3821ebd3b7b77a158",
+      "source_revision": "7a48d8f0d46e66b1611b3bd3821ebd3b7b77a158",
+      "committed_at": "2026-06-30T18:40:57Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/7a48d8f0d46e66b1611b3bd3821ebd3b7b77a158/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/7a48d8f0d46e66b1611b3bd3821ebd3b7b77a158",
+      "changes": [
+        {
+          "flag_id": "android-pdf-reuse-fragment",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-f3b6b1628f90d30b6040a41d3509d2fd0befd4a8",
+      "source_revision": "f3b6b1628f90d30b6040a41d3509d2fd0befd4a8",
+      "committed_at": "2026-06-30T19:15:06Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/f3b6b1628f90d30b6040a41d3509d2fd0befd4a8/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/f3b6b1628f90d30b6040a41d3509d2fd0befd4a8",
+      "changes": [
+        {
+          "flag_id": "chrome-dark-neutrals-26",
+          "action": "added",
+          "source_os_masks": [
+            "kOsDesktop"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-cceb9bace27536b225e44b6117f93ff6bd24d0f5",
+      "source_revision": "cceb9bace27536b225e44b6117f93ff6bd24d0f5",
+      "committed_at": "2026-06-30T19:35:47Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/cceb9bace27536b225e44b6117f93ff6bd24d0f5/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/cceb9bace27536b225e44b6117f93ff6bd24d0f5",
+      "changes": [
+        {
+          "flag_id": "in-app-window-manager-deprecation",
+          "action": "added",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    },
+    {
+      "event_id": "chrome-about-flags-09b4d17fcca5cf918e6805c269330d63b8e4b2ed",
+      "source_revision": "09b4d17fcca5cf918e6805c269330d63b8e4b2ed",
+      "committed_at": "2026-06-30T22:24:25Z",
+      "source_url": "https://chromium.googlesource.com/chromium/src/+/09b4d17fcca5cf918e6805c269330d63b8e4b2ed/chrome/browser/about_flags.cc",
+      "diff_url": "https://github.com/chromium/chromium/commit/09b4d17fcca5cf918e6805c269330d63b8e4b2ed",
+      "changes": [
+        {
+          "flag_id": "android-vertical-tabs",
+          "action": "modified",
+          "source_os_masks": [
+            "kOsAndroid"
+          ]
+        }
+      ],
+      "mapping_status": "direct_entries_changed",
+      "verification_status": "source_only",
+      "installed_availability": "unknown",
+      "selection_status": "pending_verification"
+    }
+  ]
+}
