@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-glic-print-menu-item-removal-835ee59ef722",
+  "feature_id": "chrome-glic-print-menu-item",
+  "browser": "chrome",
+  "event_type": "removal",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "scope": "Official source observation only; source guards are not verified product availability.",
+  "observed_at": "2026-10-31T23:25:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "835ee59ef722e2215eb7254c8fe291c6ed5da3e2",
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/835ee59ef722e2215eb7254c8fe291c6ed5da3e2^!"
+  ],
+  "summary": "기존 기본 활성화 Glic 인쇄 메뉴 feature gate와 flag 등록 제거. 관련 인쇄 경로는 유지되며 소스 gate 정리이지 기능 철회나 신규 출시 근거가 아님.",
+  "delta": {
+    "flag_id": "glic-print-menu-item",
+    "related_feature_id": "features::kGlicPrintMenuItem",
+    "change_kind": "removal",
+    "expiry_before": 150,
+    "expiry_after": null,
+    "options": [],
+    "source_default_state": "removed_gate_previously_enabled",
+    "committed_at": "2026-10-30T23:21:02Z",
+    "source_os_masks_before": [
+      "kOsLinux",
+      "kOsMac",
+      "kOsWin"
+    ],
+    "source_os_masks_after": []
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "selection_status": "excluded",
+  "selection_reason": "이미 기본 활성화된 기능의 gate 정리이며 새 사용자 행동 변화가 확인되지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "Glic 인쇄의 실제 노출과 사용자 과제 변화가 공식 제품 자료로 확인되는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 제품 배포·사용자 영향 또는 실행 가능한 검증 조건이 확인될 때.",
+  "assessed_at": "2026-10-31T23:25:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "5400a062489b64e5df5cf32541f47e2eaa3eaff4",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-01",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/835ee59ef722e2215eb7254c8fe291c6ed5da3e2^!"
+    ]
+  }
+}

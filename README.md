@@ -71,3 +71,7 @@ git pull --ff-only
 ### 2026-10-31 수집 추가
 
 [출처별 관찰 범위](data/collection/2026-10-31.json)와 [수집 상태](docs/collection-status.md)를 갱신했습니다. 새 selected 사건은 없어 새 날짜별 상세 보고서는 생성하지 않았습니다. 실험 소스 관찰·과거 누락 복구와 실제 제품 출시를 구분합니다.
+
+### 2026-11-01 수집 추가
+
+[출처별 관찰 범위](data/collection/2026-11-01.json)와 [수집 상태](docs/collection-status.md)를 갱신했습니다. 새 selected 사건은 0건이며, 소스 변경·역사 보완·부분 확인을 제품 출시와 구분합니다.

@@ -56,3 +56,16 @@ about_flags.cc는 manifest의 end_revision 이후를 겹쳐 확인하고 source_
 - Chrome 최신 고유8commit의 관련 diff를 확보했습니다. about_flags6개는 직전 관찰 revision부터 replay해 공식 종료 snapshot과 일치했습니다. 원래1169commit archive의 종점·hash·건수는 바꾸지 않았습니다. metadata6/2~6/8의81diff를 보완했고 다음 재개는6/9 00:00UTC입니다. 설명.cc는 요청기간 전에 삭제된 경로이며 후속.h 전체 과거 이력은 미완료입니다.
 - AIM4개 flag의 Android mask 확장, 다운로드 Last-Modified 보존, 감독계정 재인증 followup, Decisions API 옵션 복원은 source-only watch입니다. Android mask는 일반 Android 배포 증거가 아니며 모든 설치본·한국 제공·한국어 지원·실기 결과는 미확인/미실행입니다.
 - 한국 Google 최신 RSS는 겹침 범위까지 확인했고 Microsoft 한국 아카이브는 부분 확인입니다. 기존 기능의 주간 지원조건 점검은 아직 예정 전입니다. 접근 실패를 미지원 또는 변화 없음으로 기록하지 않았습니다.
+
+
+## 2026-11-01 실행 결과
+
+규칙 커밋: `5400a062489b64e5df5cf32541f47e2eaa3eaff4`, `pm-selection-v2`. [출처별 실제 관찰 범위](../data/collection/2026-11-01.json). 이전 기록과 정정은 보존합니다.
+
+- 새 selected 사건 0건. 빈 상세 보고서와 알림을 만들지 않습니다. Chrome Releases 겹침 구간 16개 본문, Enterprise 156/157의 55개 항목, ChromeStatus 156–158의 58개 그룹 항목은 기존과 동일합니다. ChromeStatus 개별 출시 이력은 여전히 부분 확인입니다.
+- Edge Stable 156.0.4314.58·Mobile 156.0.4314.43, Firefox 159 Desktop/Android·160 Beta를 재확인했습니다. 기존 Edge 신규성 정정과 Mobile 업무·학교 계정 범위를 유지합니다. Firefox note ID 52개와 개발자 참조 3개는 기존 55개 색인과 일치하며, 본문 hash는 향후 비교용으로 저장했습니다.
+- Brave 최근 7일의 29개 릴리스가 이전 관찰과 동일합니다. Android 최신 변경 상세는 미확인입니다. Whale 공식 공지의 최신 발표는 10/1이며, 공개 제품 locale 자산에서 안내 15개를 baseline으로 복구했지만 실제 화면·출시 시점·플랫폼 범위는 미확인으로 남겼습니다.
+- Opera·Vivaldi 5개 주간 출처는 아직 예정 전이므로 재수집하지 않았습니다. 이를 성공이나 변화 없음으로 기록하지 않았습니다.
+- Chrome 최신 소스 commit 2개를 수집했습니다. Android GPU sandbox 등록은 보안 격리 실험이며 Glic 인쇄 flag 제거는 이미 기본 활성화된 gate 정리입니다. 둘 다 제품 출시·철회로 간주하지 않습니다. about_flags 2개 diff replay 결과가 공식 종료 snapshot과 일치합니다. 원래 1,169개 commit archive는 변경하지 않았습니다.
+- metadata 6/9–15의 51개 diff, 설명 후속 헤더 6/1의 4개 diff를 보완했습니다. 다음 재개는 각각 6/16·6/2 00:00 UTC입니다. 나머지 역사 구간과 flag 연결 미완료를 유지합니다.
+- Google 한국 RSS·본문을 확인했고 Microsoft 한국 아카이브는 부분 확인입니다. 기존 관심 기능 지원조건의 주간 점검은 예정 전입니다. 모든 설치본·한국 단말·벤치마크 실기는 미실행입니다.

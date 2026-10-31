@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-seccomp-filter-gpu-sandbox-registration-bbc7faad4959",
+  "feature_id": "chrome-seccomp-filter-gpu-sandbox",
+  "browser": "chrome",
+  "event_type": "registration",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Android"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": false,
+  "scope": "Official source observation only; source guards are not verified product availability.",
+  "observed_at": "2026-10-31T23:25:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "bbc7faad495945a3dd1d60dc2b41d03ea2e90171",
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/bbc7faad495945a3dd1d60dc2b41d03ea2e90171^!"
+  ],
+  "summary": "Android GPU 프로세스 seccomp-bpf sandbox flag를 소스에 등록. 출시·기본 활성화·실기 효과는 미확인.",
+  "delta": {
+    "flag_id": "seccomp-filter-gpu-sandbox",
+    "related_feature_id": "sandbox::policy::features::kSeccompFilterGpuSandbox",
+    "change_kind": "registration",
+    "expiry_before": null,
+    "expiry_after": 179,
+    "options": [],
+    "source_default_state": "disabled",
+    "committed_at": "2026-10-30T23:41:16Z",
+    "source_os_masks_before": [],
+    "source_os_masks_after": [
+      "kOsAndroid"
+    ]
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "selection_status": "excluded",
+  "selection_reason": "소스 보안 격리 실험이며 검증된 사용자 과제 변화나 비교 지표 근거가 아직 없음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "공식 배포와 사용자 영향 근거가 확인되면 같은 Android GPU 안정성 과제를 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 제품 배포·사용자 영향 또는 실행 가능한 검증 조건이 확인될 때.",
+  "assessed_at": "2026-10-31T23:25:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "5400a062489b64e5df5cf32541f47e2eaa3eaff4",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-01",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/bbc7faad495945a3dd1d60dc2b41d03ea2e90171^!"
+    ]
+  }
+}
