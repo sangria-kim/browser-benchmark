@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-10-30T22:47:29.279762Z",
+  "sources": [
+    {
+      "source_id": "chrome-releases",
+      "url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-23T00:00:00Z",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "2026-10-23 00:00 UTC 이후 공식 피드 21개 공지 본문, totalResults=21. 신규 10/30 Dev Windows/macOS/Linux·Android 159 및 ChromeOS Dev 158은 개별 기능 미명시. 연결 Git log 전체 미검토."
+    },
+    {
+      "source_id": "chrome-enterprise",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "공식 API 156 29개/157 26개 본문. 이전157 28개 중 CAA와 iOS Level up이 현재 목록에 없음. 개별 API는 deleted=false이며 160 단계(일부157 병존)를 반환. 철회로 추정하지 않음. 신규 출시 근거 없음."
+    },
+    {
+      "source_id": "chrome-status",
+      "url": "https://chromestatus.com/release-notes",
+      "coverage_status": "partial",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "156 13개/157 24개/158 21개 그룹 항목 API 본문 확보. 157은 중복2개 포함22개ID. 웹157 release notes는 Preview·11/3 Stable 예정. 개별 변화 시점/전체 과거 이력 미완료."
+    },
+    {
+      "source_id": "chrome-blog",
+      "url": "https://blog.google/products-and-platforms/products/chrome/rss/",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "공식 RSS 20항목의 최신 발표는10/28 Gmail 자동완성. 원문 재확인, 미국·Personal Intelligence 조건 기존 보고와 동일. 신규 사건 아님."
+    },
+    {
+      "source_id": "google-korea",
+      "url": "https://blog.google/intl/ko-kr/rss/",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "한국 공식 RSS 최신20항목이10/23 겹침 범위를 포함. 해당 범위 3개 비브라우저 발표. 전체 과거 아카이브 확인은 아님."
+    }
+  ],
+  "articles": [
+    {
+      "source": "blog",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "source_published_at": "Wed, 28 Oct 2026 17:00:00 +0000",
+      "kind": "repeat_reference",
+      "selection_status": "excluded",
+      "selection_reason": "Gmail 자동완성은10/29 보고로 이미 전달."
+    },
+    {
+      "source": "korea",
+      "title": "[요즘구글] 대한민국의 평범한 회사원 구서방, 중국 숏폼 드라마 세트장에서 살아남을 수 있을까?",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/gooseobang-ep19-micro-drama-frontier/",
+      "source_published_at": "Fri, 30 Oct 2026 14:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "구글과 2026 MAMA AWARDS가 함께 여는 전 세계 K팝 팬들의 축제",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/google-2026-mama-awards/",
+      "source_published_at": "Fri, 30 Oct 2026 09:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "지니 4(Genie 4): 월드 시뮬레이션의 새로운 세대",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/genie-4-a-new-generation-of-world-simulation-kr/",
+      "source_published_at": "Wed, 28 Oct 2026 01:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "제미나이와 함께 성수에서 캠퍼스 라이프를 완성해보세요!",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/gemini-seongsu-meetup-oct-kr/",
+      "source_published_at": "Fri, 16 Oct 2026 10:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "구글플레이에서 더 스마트한 앱 발견, 참여도 향상, 그리고 비즈니스 성장을 이끄는 새로운 방법",
+      "source_url": "https://blog.google/intl/ko-kr/products/android-play-hardware/2026-10-new-tools-for-discovery-and-engagement-kr/",
+      "source_published_at": "Wed, 14 Oct 2026 00:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "구글플레이의 새로운 소식: 발견하고, 플레이하고, 창작하는 더 많은 방법",
+      "source_url": "https://blog.google/intl/ko-kr/products/android-play-hardware/google-play-updates-october-2026-kr/",
+      "source_published_at": "Wed, 14 Oct 2026 00:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "구글 안티그래비티에 탑재된 제미나이 4 아르곤",
+      "source_url": "https://blog.google/intl/ko-kr/products/gemini-4-argon-in-google-antigravity-kr/",
+      "source_published_at": "Tue, 13 Oct 2026 16:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "제미나이 4 아르곤, 이제 제미나이 앱에서 만나보세요",
+      "source_url": "https://blog.google/intl/ko-kr/products/gemini-4-argon-availability-kr/",
+      "source_published_at": "Tue, 13 Oct 2026 16:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "제미나이 4 아르곤: 가장 까다로운 난제를 해결하도록 설계된 모델",
+      "source_url": "https://blog.google/intl/ko-kr/products/introducing-gemini-4-argon-kr/",
+      "source_published_at": "Tue, 13 Oct 2026 16:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "Play Store 서비스 장애 정상화 안내",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/play-notice-fix-20261009/",
+      "source_published_at": "Fri, 09 Oct 2026 13:10:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "Play Store 서비스 장애 공지",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/play-notice-20261009/",
+      "source_published_at": "Fri, 09 Oct 2026 13:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "온라인 속 AI 생성 콘텐츠, 이제 더 쉽고 투명하게 확인해 보세요",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/synth-id-ai-content-kr/",
+      "source_published_at": "Wed, 07 Oct 2026 14:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "[하찮은 질문쇼] \"언제 한번 밥 먹자\"의 불편한 진실",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/ssqs-ep2-true-meaning-of-lets-grab-a-meal/",
+      "source_published_at": "Tue, 06 Oct 2026 03:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    },
+    {
+      "source": "korea",
+      "title": "더 강력해진 제미나이 ‘구글 AI 프로’ 캠페인과 특별 할인 혜택을 소개합니다",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/google-gemini-ai-pro-campaign-kr/",
+      "source_published_at": "Fri, 02 Oct 2026 01:00:00 +0000",
+      "kind": "non_browser_reference",
+      "selection_status": "excluded",
+      "selection_reason": "한국 공식 최신 피드의 비브라우저 발표. 개별 Chrome 한국 출시 근거 없음."
+    }
+  ],
+  "selected_events": [],
+  "korea_conditions_review": "기존 관심 기능 baseline은10/30 작성, 다음 주간 확인11/05 이후. 신규 관심 사건이 없어 불필요한 baseline 재알림 없음.",
+  "limitations": [
+    "모든 실기 검증 미실행",
+    "Enterprise 일반 Proposed 값은 Enterprise 단계의 출시판정을 대체하지 않음",
+    "ChromeStatus 개별 신규성·전체 과거 이력 미완료"
+  ]
+}

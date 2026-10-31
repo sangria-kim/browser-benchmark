@@ -1,0 +1,67 @@
+{
+  "observed_at": "2026-10-30T22:45:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "eda174533f4bc781a97165bbd94af438c99184b1",
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "selection_status": "watch",
+  "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "With identical structured classification inputs, how do selectable backends affect result consistency, latency and cross-API CPU impact?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Compatible installed experimental build and model access; baseline backend and CPU/GPU conditions recorded.",
+  "assessed_at": "2026-10-30T22:49:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "chrome-decisions-api-options_modified-eda174533f4b",
+  "feature_id": "chrome-decisions-api",
+  "browser": "chrome",
+  "event_type": "options_modified",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "ChromeOS"
+  ],
+  "scope": {
+    "source_os_masks_before": [
+      "kOsDesktop"
+    ],
+    "source_os_masks_after": [
+      "kOsDesktop"
+    ],
+    "caveat": "소스 조건이며 설치본 지원을 증명하지 않음"
+  },
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/eda174533f4bc781a97165bbd94af438c99184b1^!",
+    "https://github.com/chromium/chromium/commit/eda174533f4bc781a97165bbd94af438c99184b1"
+  ],
+  "summary": "Decisions API backend 선택 옵션 복원. Gemma4 CPU 옵션은 해당 계열의 다른 내장 API에도 영향을 줄 수 있음.",
+  "delta": {
+    "flag_id": "decisions-api",
+    "related_feature_ids": [],
+    "change_kind": "options_modified",
+    "committed_at": "2026-10-30T06:44:47Z",
+    "details_index": "../../experiments/chrome/monthly/2026-10-source-index-2026-10-31.json"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "conditions": "소스 등록/옵션만 관찰. 공개 빌드·지역·언어·계정 제공 조건 미확인.",
+    "effective_at": null,
+    "checked_at": "2026-10-31",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/eda174533f4bc781a97165bbd94af438c99184b1^!"
+    ]
+  }
+}

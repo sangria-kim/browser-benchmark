@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "version": "1.98.64",
+  "observed_at": "2026-10-30T22:46:00Z",
+  "coverage": "해당 버전의 이번 관찰 요약. 브라우저 전체·과거 변경이력 완료 아님. 원천·제약은 상위 collection 파일 참조.",
+  "items": [
+    {
+      "item_id": "brave-release-1.98.64",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.98.64",
+      "channel": "pre-release",
+      "api_prerelease": true,
+      "announced_at": "2026-10-30T21:25:24Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.64"
+      ],
+      "source_revision": "master",
+      "body_sha256": "846b691c844c9fd83de5a6cbb881b72adc739103a1a946d3eecfb7edcd22c1d5",
+      "is_since_checkpoint": true,
+      "selection_status": "excluded",
+      "selection_reason": "Engine/security maintenance or build artifacts without established meaningful new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    }
+  ]
+}

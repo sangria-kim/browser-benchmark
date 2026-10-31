@@ -1,0 +1,67 @@
+{
+  "observed_at": "2026-10-30T22:45:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "f117b891e09e628d40532e484ff6e64548d59546",
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": true,
+  "selection_status": "watch",
+  "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "On an eligible desktop-Android build, how do persistent AIM button placement, clear-X, hint text and outside-click affect NTP query completion and dismissal?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Eligible desktop-Android installed build exposes these flags; verify regional/account AI availability before behavioral comparison.",
+  "assessed_at": "2026-10-30T22:49:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "chrome-composebox-persistent-aim-button-realbox-modified-f117b891e09e",
+  "feature_id": "chrome-composebox-persistent-aim-button-realbox",
+  "browser": "chrome",
+  "event_type": "modified",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Android"
+  ],
+  "scope": {
+    "source_os_masks_before": [
+      "kOsDesktop"
+    ],
+    "source_os_masks_after": [
+      "kOsAndroid",
+      "kOsDesktop"
+    ],
+    "caveat": "소스 조건이며 설치본 지원을 증명하지 않음"
+  },
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!",
+    "https://github.com/chromium/chromium/commit/f117b891e09e628d40532e484ff6e64548d59546"
+  ],
+  "summary": "기존 NTP composebox 플래그의 소스 OS mask에 Android 추가. desktop Android 테스트 목적이며 일반 Android 출시 증거는 아님.",
+  "delta": {
+    "flag_id": "composebox-persistent-aim-button-realbox",
+    "related_feature_ids": [
+      "omnibox::kComposeboxPersistentAimButtonRealbox"
+    ],
+    "change_kind": "modified",
+    "committed_at": "2026-10-30T22:07:10Z",
+    "details_index": "../../experiments/chrome/monthly/2026-10-source-index-2026-10-31.json"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "conditions": "소스 등록/옵션만 관찰. 공개 빌드·지역·언어·계정 제공 조건 미확인.",
+    "effective_at": null,
+    "checked_at": "2026-10-31",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!"
+    ]
+  }
+}

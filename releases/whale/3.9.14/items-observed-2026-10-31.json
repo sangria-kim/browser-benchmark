@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "version": "3.9.14",
+  "observed_at": "2026-10-30T22:46:00Z",
+  "coverage": "해당 버전의 이번 관찰 요약. 브라우저 전체·과거 변경이력 완료 아님. 원천·제약은 상위 collection 파일 참조.",
+  "items": [
+    {
+      "item_id": "whale-android-dark-mode-reference",
+      "browser": "whale",
+      "version": "3.9.14",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-06-18",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Official team explains intentional respect for native site dark mode rather than force-inverting some sites; users should also enable site theme. Not a new report.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62305/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical pinned reference outside interval.",
+      "revisit_trigger": "New behavior change evidence."
+    }
+  ]
+}

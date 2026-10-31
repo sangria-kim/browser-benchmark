@@ -1,0 +1,1370 @@
+{
+  "schema_version": 1,
+  "source_url": "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+  "observed_at": "2026-10-30T22:47:29.279762Z",
+  "coverage": "공식 Enterprise API 전체 응답 항목 색인. 공개 필드만 선택 저장; 이전 전체 본문 hash baseline 부재로 내용 동일성은 미확인.",
+  "count": 26,
+  "items": [
+    {
+      "feature_id": "chrome-4873044867809280",
+      "source_feature_id": 4873044867809280,
+      "title": "검색엔진별 AI 채팅 진입",
+      "source_url": "https://chromestatus.com/feature/4873044867809280",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 검색엔진별 AI 채팅 진입",
+      "source_updated_at": "2026-10-21 13:38:43.836022",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 151,
+          "rollout_platforms": [
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "1"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "710f881616337f9fdad4c7d9cb5e5a5d494bea40af01556f585ea5a362c845cc",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5085885921099776",
+      "source_feature_id": 5085885921099776,
+      "title": "Android 앱 평가 요청",
+      "source_url": "https://chromestatus.com/feature/5085885921099776",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: Android 앱 평가 요청",
+      "source_updated_at": "2026-10-21 10:42:50.964266",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "1"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "Gradual rollout on Android starting in Chrome 157."
+        }
+      ],
+      "summary_sha256": "56a45baa7b9f61b61aec39aa5a709a797318b08e237f0d8e2f13031d2d9e4409",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-6210300985606144",
+      "source_feature_id": 6210300985606144,
+      "title": "Background Fetch의 CORS 적용",
+      "source_url": "https://chromestatus.com/feature/6210300985606144",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: Background Fetch의 CORS 적용",
+      "source_updated_at": "2026-10-21 10:45:08.808987",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 110,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 120,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 130,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 140,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 150,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 160,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        }
+      ],
+      "summary_sha256": "e3d2fbce31cf6f771180afed0396c041a1542d7e80d9d7948365d0d02474fec6",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5089197961641984",
+      "source_feature_id": 5089197961641984,
+      "title": "CAA 보고서 인증서 신호",
+      "source_url": "https://chromestatus.com/feature/5089197961641984",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: CAA 보고서 인증서 신호",
+      "source_updated_at": "2026-10-16 18:55:23.860663",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 159,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "aafa5e6e2d2a6ae214053985db232209f18399dc10e7d8e827ac24d55c5911d6",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5196169004318720",
+      "source_feature_id": 5196169004318720,
+      "title": "Chrome Remote Desktop 구형 OS 지원 종료",
+      "source_url": "https://chromestatus.com/feature/5196169004318720",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: Chrome Remote Desktop 구형 OS 지원 종료",
+      "source_updated_at": "2026-10-21 13:56:28.915125",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 155,
+          "rollout_platforms": [
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Making connections to affected hosts require a confirmation dialog informing the user of the upcoming change.\n"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 168,
+          "rollout_platforms": [
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Forcing hosts running on affected platforms offline, making them no longer connectable."
+        }
+      ],
+      "summary_sha256": "0a795ac716663a7d02f9dbcc1799b5a600449741878e86ecf6b8c52941d74e00",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5141192584069120",
+      "source_feature_id": 5141192584069120,
+      "title": "iOS 프로필 신호 공유",
+      "source_url": "https://chromestatus.com/feature/5141192584069120",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: iOS 프로필 신호 공유",
+      "source_updated_at": "2026-10-21 11:35:01.385184",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 158,
+          "rollout_platforms": [
+            "2"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "a85f67b0e546d45ce10915e848db2b862bdc5b1785963b53a55006e8d81f5743",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5068314259881984",
+      "source_feature_id": 5068314259881984,
+      "title": "사용자 지정 HTTP 헤더",
+      "source_url": "https://chromestatus.com/feature/5068314259881984",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 사용자 지정 HTTP 헤더",
+      "source_updated_at": "2026-10-26 15:52:29.474096",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 152,
+          "rollout_platforms": [
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Custom HTTP headers feature becomes available on desktop platforms"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 160,
+          "rollout_platforms": [
+            "1"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Custom HTTP headers feature becomes available on Android platform"
+        }
+      ],
+      "summary_sha256": "0f697739acef346e1b36053a06bf1b7bccf645e0b170cc7a086580303ffbca38",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5173957790662656",
+      "source_feature_id": 5173957790662656,
+      "title": "DLP 복사 차단 조건",
+      "source_url": "https://chromestatus.com/feature/5173957790662656",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: DLP 복사 차단 조건",
+      "source_updated_at": "2026-10-07 14:02:11.568526",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 160,
+          "rollout_platforms": [
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "Copy trigger becomes available on Desktop"
+        }
+      ],
+      "summary_sha256": "03fb26d0c9b0b059987f873b4827d19168d863aa81a907151240fea873abdaf8",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5160724576993280",
+      "source_feature_id": 5160724576993280,
+      "title": "WebRTC 메서드 제거",
+      "source_url": "https://chromestatus.com/feature/5160724576993280",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: WebRTC 메서드 제거",
+      "source_updated_at": "2026-10-19 09:14:32.849069",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 410,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 430,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 450,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 460,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 470,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        }
+      ],
+      "summary_sha256": "36909b86c060db1b35394b36aad2702cca5f53bf9f4cdec6671db14c569f9d80",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-4709671889534976",
+      "source_feature_id": 4709671889534976,
+      "title": "XSLT 폐기 계획",
+      "source_url": "https://chromestatus.com/feature/4709671889534976",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: XSLT 폐기 계획",
+      "source_updated_at": "2026-10-13 18:46:22.710727",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 410,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 430,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 450,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 460,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 470,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 143,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Deprecation (but not removal) of the APIs."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 152,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Origin Trial (OT) and Enterprise Policy go live for testing. These allow sites and enterprises to continue using features past the removal date."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 158,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "XSLT stops functioning on Stable releases, for all users other than Origin Trial and enterprise policy participants."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 176,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Origin Trial and enterprise policy stop functioning. XSLT is disabled for all users."
+        }
+      ],
+      "summary_sha256": "d13b225472c0222dba07887a8ac128cd2b264302af105a3236ee6e3bef1baad8",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5152835382673408",
+      "source_feature_id": 5152835382673408,
+      "title": "로밍 프로필 정책 폐기",
+      "source_url": "https://chromestatus.com/feature/5152835382673408",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 로밍 프로필 정책 폐기",
+      "source_updated_at": "2026-09-22 15:49:20.069775",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 150,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "Policies are deprecated but remain functional."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 161,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "Policies removed. Chrome will no longer use data from roaming profiles or update them."
+        }
+      ],
+      "summary_sha256": "d755f1181d92e80d0852dc2f75238bc2cc8c8c9ff6bff408ee1d259b39d793f1",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5083335148437504",
+      "source_feature_id": 5083335148437504,
+      "title": "URL host 공백 제한",
+      "source_url": "https://chromestatus.com/feature/5083335148437504",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: URL host 공백 제한",
+      "source_updated_at": "2026-10-05 17:44:42.444745",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 110,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 120,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 130,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 140,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 150,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 160,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 167,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "1f7d38fbce88e4c409fc9c2d70338efcbbe22de35fa45cd73b261ba6b41595b9",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5068439115923456",
+      "source_feature_id": 5068439115923456,
+      "title": "BFCache 진입 시 WebSocket 연결 처리",
+      "source_url": "https://chromestatus.com/feature/5068439115923456",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: BFCache 진입 시 WebSocket 연결 처리",
+      "source_updated_at": "2026-10-21 10:48:07.561316",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 320,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 330,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 360,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "The [BackForwardCacheForWebSocketsAllowed](https://chromeenterprise.google/policies/#BackForwardCacheForWebSocketsAllowed) policy is deprecated and will be removed"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 149,
+          "rollout_platforms": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 152,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "The [BackForwardCacheForWebSocketsAllowed](https://chromeenterprise.google/policies/#BackForwardCacheForWebSocketsAllowed) policy is available"
+        }
+      ],
+      "summary_sha256": "230df095c773c617ce4edb7f6939a7346718201850fbe2b49c068d1acfa70487",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5164317761732608",
+      "source_feature_id": 5164317761732608,
+      "title": "자식 프로세스 동적 패치",
+      "source_url": "https://chromestatus.com/feature/5164317761732608",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 자식 프로세스 동적 패치",
+      "source_updated_at": "2026-10-21 13:05:30.126632",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "39ca70abbced0ad22745a37e207af405dfaf830d3f0c5f2f1e92b048e4d0925f",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5163880346812416",
+      "source_feature_id": 5163880346812416,
+      "title": "Chrome 내 Gemini",
+      "source_url": "https://chromestatus.com/feature/5163880346812416",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: Chrome 내 Gemini",
+      "source_updated_at": "2026-10-22 20:31:15.042457",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 151,
+          "rollout_platforms": [
+            "3",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "- Gemini in Chrome became available to users in the United Kingdom and 14 additional countries and territories.\n- File upload support: Users may upload files in Gemini in Chrome, enabling them to ask questions about files, such as comparing them with the content of their open tabs. In Chrome 151, this feature rolls out to consumers only, but Admins can set the [RestrictSigninToPattern](https://chromeenterprise.google/policies/restrict-signin-to-pattern/) policy to restrict sign-ins from personal Gmail accounts, or use the [LocalUserFilesAllowed](https://chromeenterprise.google/policies/#LocalUserFilesAllowed) policy. In Chrome 152, Admins can use the GeminiChromeFileUploadSettings policy to control this feature directly.\n- File generation support: Users can generate files like Google Docs, Sheets, PDFs, and more directly from Gemini in Chrome. \n- Gemini in Chrome improved scam blocking: Safe Browsing protections have been expanded to provide an even safer experience during Gemini in Chrome interactions. By triggering real-time Safe Browsing verdicts for active pages, this update increases coverage to protect against newly created malicious sites and keep AI-assisted browsing secure. This update introduces no new enterprise policies. Existing enterprise policies governing Safe Browsing protections (such as [SafeBrowsingProtectionLevel](https://chromeenterprise.google/policies/#SafeBrowsingProtectionLevel)) and generative AI features (such as [GenAiDefaultSettings](https://chromeenterprise.google/policies/#GenAiDefaultSettings)) continue to govern user access and warning behaviors across managed devices. For more information, see [Google Safe Browsing](https://safebrowsing.google.com/) and [Gemini in Chrome](https://support.google.com/chrome/a/answer/16291696).\n"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 154,
+          "rollout_platforms": [
+            "2",
+            "3",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "- Try it on: Users can now virtually try on clothes, right in context of their favorite brands with shopping insights in Gemini in Chrome. This feature is not yet available with all retailers and only available for US-en users. Admins can control this feature using a new enterprise policy is TryOnYouSettings.\n- Gemini Live in Chrome for iOS: Enables real-time, voice-driven conversations in Chrome iOS to discuss active page content with Gemini while browsing.\n"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 156,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "- On Chrome on Android, users can background an auto browse task and see the status update through a live notification instead of a Picture in Picture.\n- On desktop, Gemini in Chrome now supports creating Quizzes, enabling the user to transform any web page, PDF, slide deck, Youtube video, and more into an interactive study session. Initially available to limited countries and languages.\n"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 150,
+          "rollout_platforms": [
+            "3",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "- Gemini Spark can use Chrome auto browse to complete tasks that need web actuation. Enterprise policy is [GeminiSparkSettings](https://chromeenterprise.google/policies/#GeminiSparkSettings).\n- Chrome will also now suggest Gemini in Chrome features at relevant moments. Enterprise policy is [ChromeSuggestionsSettings](https://chromeenterprise.google/policies/#ChromeSuggestionsSettings)."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "* The **AutofillPredictionSettings** policy is superseded by [AutofillGenAiSettings](https://chromeenterprise.google/policies/#AutofillGenAiSettings) policy (available starting in Chrome 156).\n"
+        }
+      ],
+      "summary_sha256": "c443d1785839dd0bc19c9533b2c3452fb2e7e28a6b39a9960d00212833c901b5",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5152834368700416",
+      "source_feature_id": 5152834368700416,
+      "title": "HTML 설치 요소",
+      "source_url": "https://chromestatus.com/feature/5152834368700416",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: HTML 설치 요소",
+      "source_updated_at": "2026-10-19 17:45:58.189617",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 110,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 120,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 130,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 140,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 150,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 160,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        }
+      ],
+      "summary_sha256": "7d8bf129724db7952a9148182ccfe35c0847f7b3e87d770c6257af1525417e9f",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5165663061671936",
+      "source_feature_id": 5165663061671936,
+      "title": "Chrome 관리 API",
+      "source_url": "https://chromestatus.com/feature/5165663061671936",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: Chrome 관리 API",
+      "source_updated_at": "2026-10-13 17:01:23.601498",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 154,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 1,
+          "rollout_details": "The new Browser & Enrollment Token APIs becomes available under [Chrome Management API](https://developers.google.com/chrome/management) for Trusted Testers"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 156,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Browser & Enrollment Token API V1 becomes publicly available under [Chrome Management API](https://developers.google.com/chrome/management) to all customers."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 167,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "The beta [Takeout](https://support.google.com/chrome/a/answer/9681204) and [Enrollment Token](https://support.google.com/chrome/a/answer/9949706) APIs will be deprecated and unavailable"
+        }
+      ],
+      "summary_sha256": "42936d0e2d9c49addc7f9515bcb4b86a11c3c9db5b7141f8c7bd82baba504876",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-6492906882990080",
+      "source_feature_id": 6492906882990080,
+      "title": "Digital Credential 프로토콜 필터",
+      "source_url": "https://chromestatus.com/feature/6492906882990080",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: Digital Credential 프로토콜 필터",
+      "source_updated_at": "2026-08-26 12:57:01.414230",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 410,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 430,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 450,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 460,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 470,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        }
+      ],
+      "summary_sha256": "0c035703e69d50c457a86534f0168fc706e322446c0c6b48c2b304e2f1f8aa9b",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-6316392143650816",
+      "source_feature_id": 6316392143650816,
+      "title": "자동완성 설정 개편",
+      "source_url": "https://chromestatus.com/feature/6316392143650816",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 자동완성 설정 개편",
+      "source_updated_at": "2026-10-07 12:49:44.548391",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 137,
+          "rollout_platforms": [
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 140,
+          "rollout_platforms": [
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "The existing _Autofill with AI_ feature will be renamed to _Enhanced autofill_. This feature allows users to save and fill additional types of information, and with this update becomes available in more countries and languages."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 148,
+          "rollout_platforms": [
+            "1"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "Enhanced autofill will be made available to users of Chrome on Android."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 149,
+          "rollout_platforms": [
+            "2"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "Enhanced autofill will be made available to users of Chrome on iOS."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 152,
+          "rollout_platforms": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "*Enhanced autofill* will be renamed to *Smarter form understanding*. \n\n"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 153,
+          "rollout_platforms": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "Smarter form understanding will be available to all users by default, including the highest-quality form field predictions, as it will be migrated to use Private Inference for data processing."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "The new Enhanced autofill feature will be available to select users of Chrome on Desktop, Android, and iOS."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 154,
+          "rollout_platforms": [
+            "1",
+            "2",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "New [AutofillSettings](https://chromeenterprise.google/policies/#AutofillSettings) policy available to give admins granular control over which autofill data types are permitted and where they can be filled."
+        }
+      ],
+      "summary_sha256": "fffc177e7f526955a575a28f88e665937da4ae73ce625a8b8907a0bbe13589b3",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-6693216974929920",
+      "source_feature_id": 6693216974929920,
+      "title": "메뉴 디자인 개편",
+      "source_url": "https://chromestatus.com/feature/6693216974929920",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 메뉴 디자인 개편",
+      "source_updated_at": "2026-10-21 10:38:52.762191",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "0ee81c66dd95e5ff07582f350d069380dac505f03fb33259012965a8e5759e42",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5191443735642112",
+      "source_feature_id": 5191443735642112,
+      "title": "WebRTC DTLS 양자내성 암호",
+      "source_url": "https://chromestatus.com/feature/5191443735642112",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: WebRTC DTLS 양자내성 암호",
+      "source_updated_at": "2026-09-23 14:29:55.486381",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 149,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 168,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Remove [WebRtcPostQuantumKeyAgreement](https://chromeenterprise.google/policies/#WebRtcPostQuantumKeyAgreement) enterprise policy"
+        }
+      ],
+      "summary_sha256": "42bd3cb24b606780ee95a1163392ba3f6a2aeaf7b643fd81eda15f5ac40a9aeb",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5137532038807552",
+      "source_feature_id": 5137532038807552,
+      "title": "기본 검색·새 탭 설정 덮어쓰기 제한",
+      "source_url": "https://chromestatus.com/feature/5137532038807552",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 기본 검색·새 탭 설정 덮어쓰기 제한",
+      "source_updated_at": "2026-10-21 13:41:50.545203",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": ""
+        }
+      ],
+      "summary_sha256": "93243198bebef9436527e3ce085516c68473202e177ea039d967da0d23c0437c",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5100248314806272",
+      "source_feature_id": 5100248314806272,
+      "title": "프로필 생성 흐름 개편",
+      "source_url": "https://chromestatus.com/feature/5100248314806272",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 프로필 생성 흐름 개편",
+      "source_updated_at": "2026-10-26 15:51:30.936802",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 148,
+          "rollout_platforms": [
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "A visual update to the First Run and Secondary profile creation flows."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 155,
+          "rollout_platforms": [
+            "5",
+            "6"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "A visual update to the First Run and Secondary profile creation flows."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 151,
+          "rollout_platforms": [
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "Media effects added and the Feature Showcase step added to the First Run flow."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 159,
+          "rollout_platforms": [
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "Media effects added and the Feature Showcase step added to the First Run flow."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 159,
+          "rollout_platforms": [
+            "7"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "The Welcome step added to the First Run flow."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 161,
+          "rollout_platforms": [
+            "5",
+            "6"
+          ],
+          "rollout_stage_plan": 0,
+          "rollout_details": "The Welcome step added to the First Run flow."
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 161,
+          "rollout_platforms": [
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": null,
+          "rollout_details": "Visual change only. Enterprise management screens are updated to use a new visual design. All user flows and enterprise policies remain unchanged."
+        }
+      ],
+      "summary_sha256": "19ac84d5a9647328bfa2b9bd042181d19825e6faed1430dff605316315b8396d",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5371370719543296",
+      "source_feature_id": 5371370719543296,
+      "title": "다른 브라우저용 기업 보안 확장",
+      "source_url": "https://chromestatus.com/feature/5371370719543296",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 다른 브라우저용 기업 보안 확장",
+      "source_updated_at": "2026-10-21 19:34:06.400166",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "The extension will first be available for Microsoft Edge browser on macOS and Windows. Support on Safari will be available later."
+        }
+      ],
+      "summary_sha256": "7c58eaa66c67d5768b3be99c7010d6a82ae5269967bc0231467b43f0526499d2",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5141266420596736",
+      "source_feature_id": 5141266420596736,
+      "title": "HTTP 인증의 proxy 제어 분리",
+      "source_url": "https://chromestatus.com/feature/5141266420596736",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: HTTP 인증의 proxy 제어 분리",
+      "source_updated_at": "2026-10-07 14:25:10.259011",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 157,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "New [AllHttpAuthSchemesAllowedForProxies](https://chromeenterprise.google/policies/#AllHttpAuthSchemesAllowedForProxies)  policy introduced"
+        },
+        {
+          "stage_type": 1061,
+          "rollout_milestone": 161,
+          "rollout_platforms": [
+            "1",
+            "3",
+            "5",
+            "6",
+            "7"
+          ],
+          "rollout_stage_plan": 2,
+          "rollout_details": "Proxy support removed from [AllHttpAuthSchemesAllowedForOrigins](https://chromeenterprise.google/policies/#AllHttpAuthSchemesAllowedForOrigins)."
+        }
+      ],
+      "summary_sha256": "d1c48b2d0852576962b0e62afb810bb87fee523319ba070fa85ef9a89a848f63",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    },
+    {
+      "feature_id": "chrome-5183481574850560",
+      "source_feature_id": 5183481574850560,
+      "title": "웹 설치 API",
+      "source_url": "https://chromestatus.com/feature/5183481574850560",
+      "kind": "policy_or_feature_reference",
+      "summary": "기존 공식 Enterprise 항목 재관찰: 웹 설치 API",
+      "source_updated_at": "2026-10-19 17:45:49.039339",
+      "announced_at": null,
+      "effective_at": null,
+      "enterprise_stages": [
+        {
+          "stage_type": 110,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 120,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 130,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 140,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 150,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": 0,
+          "rollout_details": null
+        },
+        {
+          "stage_type": 160,
+          "rollout_milestone": null,
+          "rollout_platforms": [],
+          "rollout_stage_plan": null,
+          "rollout_details": null
+        }
+      ],
+      "summary_sha256": "68afad0f88d2aa67d77b81acd0ba8863239fa3545509252e0bdba2733df304bb",
+      "selection_status": "pending_verification",
+      "selection_reason": "동일 ID가 기존 색인에 있음. 새 사건·배포 변화 확인 없이 문서 수정일이나 API 일반 상태를 출시로 해석하지 않음.",
+      "revisit_trigger": "명시적 기능/배포 변경 또는 이전 본문과의 의미 있는 차이 확인",
+      "real_test": "미실행"
+    }
+  ],
+  "absent_from_current_list": [
+    {
+      "source_feature_id": 6308234016194560,
+      "title": "Agent 없는 CAA 신호 공유",
+      "status": "pending_verification",
+      "reason": "이번 버전 목록에서 빠진 것만으로 철회 또는 삭제로 해석하지 않음."
+    },
+    {
+      "source_feature_id": 5131679546081280,
+      "title": "iOS 사용 안내",
+      "status": "pending_verification",
+      "reason": "이번 버전 목록에서 빠진 것만으로 철회 또는 삭제로 해석하지 않음."
+    }
+  ]
+}

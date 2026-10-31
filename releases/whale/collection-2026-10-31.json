@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "observed_at": "2026-10-30T22:46:00Z",
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "coverage": {
+    "start": "2026-10-23T00:00:00Z",
+    "scope": "current_source_observation",
+    "sources": [
+      {
+        "source_id": "whale-announcements",
+        "browser": "whale",
+        "url": "https://forum.whale.naver.com/forum/26/?sortby=start_date&sortdirection=desc",
+        "coverage_status": "success_index",
+        "coverage": "Sorted and current default index checked. Latest nonpinned topic Oct1 iOS 4.0 minimum OS notice; latest Desktop 5.39.412.57 official Whaleteam body dated Oct1. June18 Android dark-mode official body also checked. No Oct23+ item. User replies excluded from release proof.",
+        "observed_at": "2026-10-30T22:46:00Z"
+      },
+      {
+        "source_id": "whale-product",
+        "browser": "whale",
+        "url": "https://whale.naver.com/",
+        "coverage_status": "failed_body",
+        "coverage": "Web fetch timeout; direct HTTP200 only JavaScript shell and noscript tagline. Local browser rendering blocked by socket() Operation not permitted / Chromium launch failure. No permission bypass attempted, full guidance unverified.",
+        "observed_at": "2026-10-30T22:46:00Z",
+        "sha256": "35612c1a922105d0fd8e57389fdcf45127e505b1c5b3a0d9d54d91a661c74513"
+      }
+    ]
+  },
+  "items": [
+    {
+      "item_id": "whale-5.39.412.57-reference",
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "summary": "Official team body still Oct1. AI Chat/sidebar, tab/quick commands, NAVER Calendar/Scrapbook, local history AI search and AI controls unchanged reference; user replies and listing timestamp not release proof.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window already collected reference.",
+      "revisit_trigger": "New official release or rollout evidence."
+    },
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release.",
+      "revisit_trigger": "Dated final release evidence."
+    },
+    {
+      "item_id": "whale-android-dark-mode-reference",
+      "browser": "whale",
+      "version": "3.9.14",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-06-18",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Official team explains intentional respect for native site dark mode rather than force-inverting some sites; users should also enable site theme. Not a new report.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62305/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical pinned reference outside interval.",
+      "revisit_trigger": "New behavior change evidence."
+    }
+  ]
+}

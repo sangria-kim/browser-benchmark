@@ -1,0 +1,67 @@
+{
+  "observed_at": "2026-10-30T22:45:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "selection_status": "watch",
+  "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "For an eligible supervised account in pending reauthentication, does the flow avoid repeated identifier entry and retain safe fallback?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Eligible DICE-enabled installed build and supervised test account with reproducible pending reauth state.",
+  "assessed_at": "2026-10-30T22:49:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "chrome-reauth-skip-identifier-page-followup-added-703ba63f0515",
+  "feature_id": "chrome-reauth-skip-identifier-page-followup",
+  "browser": "chrome",
+  "event_type": "added",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "ChromeOS"
+  ],
+  "scope": {
+    "source_os_masks_before": [],
+    "source_os_masks_after": [
+      "kOsDesktop"
+    ],
+    "caveat": "소스 조건이며 설치본 지원을 증명하지 않음"
+  },
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/703ba63f0515cff79d0ce7380df79f12e82a5b95^!",
+    "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
+  ],
+  "summary": "감독 계정의 재인증 대기 상태에서 식별자 단계 생략과 fallback 계측을 위한 소스 플래그 등록.",
+  "delta": {
+    "flag_id": "reauth-skip-identifier-page-followup",
+    "related_feature_ids": [
+      "switches::kReauthSkipIdentifierPageFollowup"
+    ],
+    "change_kind": "added",
+    "committed_at": "2026-10-30T18:12:33Z",
+    "details_index": "../../experiments/chrome/monthly/2026-10-source-index-2026-10-31.json"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "conditions": "소스 등록/옵션만 관찰. 공개 빌드·지역·언어·계정 제공 조건 미확인.",
+    "effective_at": null,
+    "checked_at": "2026-10-31",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/703ba63f0515cff79d0ce7380df79f12e82a5b95^!"
+    ]
+  }
+}

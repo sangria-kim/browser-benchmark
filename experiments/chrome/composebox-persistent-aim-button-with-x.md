@@ -12,3 +12,14 @@
 | 2026-09-09 | added | kOsDesktop | [4df04ae54054](https://github.com/chromium/chromium/commit/4df04ae54054498404e18e19fd0e24d499eba2f9) |
 
 [전체 목록](README.md)
+
+## 2026-10-31 수집 — f117b891e09e
+
+- 소스 commit: 2026-10-30T22:07:10Z
+- 등록부 사건: modified
+- OS mask: kOsDesktop → kOsAndroid, kOsDesktop
+- [공식 diff](https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!) · [전체 수집](monthly/2026-10-source-index-2026-10-31.json)
+- 소스 변경은 출시·철회를 증명하지 않습니다. PM: watch.
+
+- 요약: 기존 NTP composebox 플래그의 소스 OS mask에 Android 추가. desktop Android 테스트 목적이며 일반 Android 출시 증거는 아님.
+- [정규 사건 JSON](../../data/events/chrome-composebox-persistent-aim-button-with-x-modified-f117b891e09e.json) · 한국 제공/한국어: 미확인, 실기 미실행.

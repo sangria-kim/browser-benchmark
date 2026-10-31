@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "browser": "opera",
+  "observed_at": "2026-10-30T22:46:00Z",
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "coverage": {
+    "start": "2026-10-23T00:00:00Z",
+    "scope": "weekly_auxiliary_retry",
+    "sources": [
+      {
+        "source_id": "opera-mobile",
+        "browser": "opera",
+        "url": "https://blogs.opera.com/mobile/",
+        "coverage_status": "success_current",
+        "coverage": "Retry of previous failed Oct22 article: official original HTTP200 full body recovered. Current mobile index newest Oct22, then Oct6; no newer entry. Summary is longstanding Nigeria free-data retrospective, no new release. Weekly auxiliary scope only.",
+        "observed_at": "2026-10-30T22:46:00Z"
+      },
+      {
+        "source_id": "opera-mini-nigeria",
+        "browser": "opera",
+        "url": "https://blogs.opera.com/mobile/2026/10/5538-tb-later-why-free-data-still-matters-in-nigeria/",
+        "coverage_status": "success_body",
+        "coverage": "Official full article recovered by direct HTTP GET after web cache miss; published Oct22. Evidence not based on headline.",
+        "observed_at": "2026-10-30T22:46:00Z",
+        "sha256": "7a273872f95ca9db91a6fa1206cdb22b2b59a798d7444513a4fc7367a54c1e08"
+      },
+      {
+        "source_id": "opera-desktop",
+        "browser": "opera",
+        "url": "https://blogs.opera.com/desktop/",
+        "coverage_status": "skipped_not_due",
+        "coverage": "Weekly source already successful Oct29; next scheduled check Nov5 or first existing run thereafter. Not checked; not no-change.",
+        "observed_at": "2026-10-30T22:46:00Z"
+      },
+      {
+        "source_id": "opera-news",
+        "browser": "opera",
+        "url": "https://blogs.opera.com/news/",
+        "coverage_status": "skipped_not_due",
+        "coverage": "Weekly source already successful Oct29; next scheduled check Nov5 or first existing run thereafter. Not checked; not no-change.",
+        "observed_at": "2026-10-30T22:46:00Z"
+      }
+    ]
+  },
+  "items": [
+    {
+      "item_id": "opera-mini-nigeria-free-data-retrospective-20261022",
+      "browser": "opera",
+      "product": "Opera Mini",
+      "version": null,
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-10-22",
+      "effective_at": null,
+      "event_type": "retrospective",
+      "summary": "Nigeria partner-network users get 50 MB daily, up to 1.5 GB monthly, with no form, subscription or promo code. Jan–Sep2026 free data total 5,538 TB; 30bn page loads, 2.9bn searches, 378m news reads. Article discusses affordability and existing server-side compression (claimed up to 90%), compatibility with low-resource/slow-network devices, education/business/entertainment/community uses, and intent to continue expansion. It explicitly says free data has existed for years; no new country/network/date/version expansion established.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/10/5538-tb-later-why-free-data-still-matters-in-nigeria/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Recovered failed source is a retrospective/usage-statistics article, not a new feature or rollout.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Specific new network, country or allowance change announcement.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "scope": "Article specifically Nigeria partner networks; not evidence of Korean offer.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    }
+  ]
+}

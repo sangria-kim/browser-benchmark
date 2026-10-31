@@ -18,3 +18,8 @@
 - AutofillCreditCardEnabled 폐기
 - NewPDFReaderEnabled 폐기
 - 156.0.4314.50 일반 수정
+
+## 2026-10-31 재확인
+
+- 156.0.4314.56 (10월29일),156.0.4314.58 (10월30일): 일반 수정 및 Chromium 보안 반영. 구체적 사용자 동작 변경은 미공개로 상세보고 제외. [보안 노트](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security)는 CVE를 추후 추가한다고 명시한다.
+- [이번 항목 색인](../collection-2026-10-31.json). 기존 기능 신규성 정정은 유지한다.

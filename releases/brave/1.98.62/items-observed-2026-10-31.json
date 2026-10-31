@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "version": "1.98.62",
+  "observed_at": "2026-10-30T22:46:00Z",
+  "coverage": "해당 버전의 이번 관찰 요약. 브라우저 전체·과거 변경이력 완료 아님. 원천·제약은 상위 collection 파일 참조.",
+  "items": [
+    {
+      "item_id": "brave-release-1.98.62",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.98.62",
+      "channel": "stable",
+      "api_prerelease": false,
+      "announced_at": "2026-10-28T03:43:08Z",
+      "effective_at": null,
+      "event_type": "maintenance",
+      "summary": "brave:// navigation security fix and Chromium 156.0.8078.74 update; already collected.",
+      "full_item_summary": {
+        "general_brave": [
+          "[Security] Fixed \"brave://\" scheme navigation issue as reported on HackerOne by miauuu.",
+          "Upgraded Chromium to 156.0.8078.74."
+        ],
+        "brave_origin": [
+          "[Security] Fixed \"brave://\" scheme navigation issue as reported on HackerOne by miauuu.",
+          "Upgraded Chromium to 156.0.8078.74."
+        ]
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.62"
+      ],
+      "source_revision": "master",
+      "body_sha256": "b37a8c391e71445fa873862a591fe0740e7de368d42e7e6acf9581b3b03ed172",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Engine/security maintenance or build artifacts without established meaningful new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    }
+  ]
+}

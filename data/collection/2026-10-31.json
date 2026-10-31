@@ -1,0 +1,284 @@
+{
+  "schema_version": 1,
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-10-30T22:51:33.604596Z",
+  "source_observation_window": "각 출처의 observed_at 및 범위를 따름. 하나의 시각으로 모든 출처 성공을 주장하지 않음.",
+  "sources": [
+    {
+      "source_id": "chrome-releases",
+      "url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-23T00:00:00Z",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "2026-10-23 00:00 UTC 이후 공식 피드 21개 공지 본문, totalResults=21. 신규 10/30 Dev Windows/macOS/Linux·Android 159 및 ChromeOS Dev 158은 개별 기능 미명시. 연결 Git log 전체 미검토."
+    },
+    {
+      "source_id": "chrome-enterprise",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "공식 API 156 29개/157 26개 본문. 이전157 28개 중 CAA와 iOS Level up이 현재 목록에 없음. 개별 API는 deleted=false이며 160 단계(일부157 병존)를 반환. 철회로 추정하지 않음. 신규 출시 근거 없음."
+    },
+    {
+      "source_id": "chrome-status",
+      "url": "https://chromestatus.com/release-notes",
+      "coverage_status": "partial",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "156 13개/157 24개/158 21개 그룹 항목 API 본문 확보. 157은 중복2개 포함22개ID. 웹157 release notes는 Preview·11/3 Stable 예정. 개별 변화 시점/전체 과거 이력 미완료."
+    },
+    {
+      "source_id": "chrome-blog",
+      "url": "https://blog.google/products-and-platforms/products/chrome/rss/",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "공식 RSS 20항목의 최신 발표는10/28 Gmail 자동완성. 원문 재확인, 미국·Personal Intelligence 조건 기존 보고와 동일. 신규 사건 아님."
+    },
+    {
+      "source_id": "google-korea",
+      "url": "https://blog.google/intl/ko-kr/rss/",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-10-30T22:47:29.279762Z",
+      "coverage": "한국 공식 RSS 최신20항목이10/23 겹침 범위를 포함. 해당 범위 3개 비브라우저 발표. 전체 과거 아카이브 확인은 아님."
+    },
+    {
+      "source_id": "edge-stable",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+      "coverage_status": "complete_current",
+      "coverage": "156 전체 항목 및10/26 .50·10/29 .56·10/30 .58 확인. 새 패치 2개는 일반수정·보안 참조. 10/22 기능 재기재 신규성 정정 유지. 개별 버그·CVE 전수 아님.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "edge-security",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security",
+      "coverage_status": "complete_current",
+      "coverage": "10/29 .56 및10/30 .58 Chromium 보안 반영. CVE 목록은 추후 추가 예정이라고 명시; 개별 CVE 추정 안함.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "edge-mobile",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "coverage_status": "complete_current",
+      "coverage": "최신156.0.4314.43 10/26의8개 항목 모두 확인. 업무·학교 계정 중심. 소비자 전체 Android 범위로 일반화 안함.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "edge-blog",
+      "url": "https://blogs.windows.com/msedgedev/",
+      "coverage_status": "complete_current",
+      "coverage": "현재 홈 및 posts 12개 제목 목록 확인. 최신10/29 AAL 본문,다음10/15 업데이트 본문 확인. 기간 내 새 글은 기존 AAL과 중복.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "edge-blog-posts",
+      "url": "https://blogs.windows.com/msedgedev/posts/",
+      "coverage_status": "complete_current",
+      "coverage": "최근12개 게시물 목록.10/29 다음10/15로 overlap 하한 이전까지 확인; 전체 역사 아카이브 조사 아님.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "edge-aal",
+      "url": "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/",
+      "coverage_status": "complete_current",
+      "coverage": "10/29 발표 재확인. Edge150+ 및 Win11 25H2/26H1/26H2 KB5127936+; 이미 실행중인 프로세스 재호출 최적화.10/30 보고 사건과 동일. 한국 지원 명시로 추론 안함.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "edge-site-impact",
+      "url": "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/site-impacting-changes?tabs=latest",
+      "coverage_status": "complete_current",
+      "coverage": "표 본문 확인. WebView2 v159의3개 예고는10/12 Preview 참조. XSLT159/157·unload152~155 등 기존. 세부 연결 변경이력 전수 아님.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "firefox-desktop",
+      "url": "https://www.firefox.com/en-US/firefox/notes/",
+      "coverage_status": "complete_current",
+      "coverage": "159.0 본문으로 이동.10/27 출시,27개 항목 기존 색인과 일치.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "firefox-android",
+      "url": "https://www.firefox.com/en-US/firefox/android/notes/",
+      "coverage_status": "complete_current",
+      "coverage": "159.0 본문으로 이동.10/27 출시,5개 항목 기존 색인과 일치.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "firefox-releases",
+      "url": "https://www.firefox.com/en-US/releases/",
+      "coverage_status": "complete_current",
+      "coverage": "최신159.0.159.0.1 없음;다음158.0/158.0.1.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "firefox-beta",
+      "url": "https://www.firefox.com/en-US/firefox/160.0beta/releasenotes/",
+      "coverage_status": "complete_current",
+      "coverage": "10/26 최초 Beta.23개 항목 기존 색인과 일치.항목별 추가일 미공개. MiniWindow/PiP 재알림 안함.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "firefox-mdn",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/159",
+      "coverage_status": "complete_current",
+      "coverage": "159 전체 개발자 항목 확인.최종수정10/26.최초발견·문서수정은 새 출시 아님.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "firefox-mdn-beta",
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/160",
+      "coverage_status": "complete_current",
+      "coverage": "작업중 문서. ARM64 runtime.PlatformInfo arch 변경1개;최종수정10/26.신규성 미확인 baseline,11/10 Stable 예정은 현재출시 아님.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "microsoft-korea",
+      "url": "https://news.microsoft.com/source/asia/region/korea/?lang=ko",
+      "coverage_status": "partial",
+      "coverage": "홈 목록 및 Edge 2026년10월 한정 공식 도메인 검색 확인(검색결과 없음).목록 연결 Windows글은10/8로 기간밖.전아카이브 완전성 미확인.한국 확대 증거 없음은 미지원 뜻 아님.",
+      "observed_at": "2026-10-30T22:47:04Z",
+      "body_read": true
+    },
+    {
+      "source_id": "brave-latest",
+      "browser": "brave",
+      "url": "https://brave.com/latest/",
+      "coverage_status": "partial",
+      "coverage": "Displayed newest 1.98.62 dated Oct28; lags current GitHub stable 1.98.63. 1.98.60 dated Oct22 on marketing notes, but API release published Oct21. Dates not conflated.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "brave-releases",
+      "browser": "brave",
+      "url": "https://api.github.com/repos/brave/brave-browser/releases?per_page=100",
+      "coverage_status": "complete_interval",
+      "coverage": "100 official API release objects with actual bodies spanning Oct7–30; all 33 published Oct23–30 preserved, including seven since Oct29 22:43 UTC. Prior intermediate enumeration gap resolved. API is authoritative for prerelease metadata; titles/body identify Nightly/Beta even when metadata is false. HTML pages 1/2/3 stale and inconsistent, not relied on for enumeration.",
+      "observed_at": "2026-10-30T22:46:00Z",
+      "sha256": "63d2464e1f5a081a13dade479f6701b2fc5e627b5ab80715d7ac27e10592cc30"
+    },
+    {
+      "source_id": "brave-desktop-changelog",
+      "browser": "brave",
+      "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md",
+      "coverage_status": "complete_current",
+      "coverage": "Current through 1.98.63. Overlap stable notes 1.98.62 and 1.98.63 read in full, general Brave and Origin separated.",
+      "observed_at": "2026-10-30T22:46:00Z",
+      "sha256": "695da2c0c0b749932725bb95f427cee9fa690b1b196073a8dba872814854b1a4"
+    },
+    {
+      "source_id": "brave-android-changelog",
+      "browser": "brave",
+      "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_ANDROID.md",
+      "coverage_status": "partial",
+      "coverage": "Full body retrieved but newest section 1.98.60, predating Oct23 window; recovered its 13 items, not new Oct31 launches. Latest 1.98.62/63 Android-specific delta absent; checkpoint remains null.",
+      "observed_at": "2026-10-30T22:46:00Z",
+      "sha256": "b657471d5f474ae5c627271f0f38e063911bb5219164178b1d781871f42d77cb"
+    },
+    {
+      "source_id": "brave-blog",
+      "browser": "brave",
+      "url": "https://brave.com/blog/",
+      "coverage_status": "success_index",
+      "coverage": "Latest dated feature article Oct15; no Oct23+ article in current index. No evidence of an in-window new blog event.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "whale-announcements",
+      "browser": "whale",
+      "url": "https://forum.whale.naver.com/forum/26/?sortby=start_date&sortdirection=desc",
+      "coverage_status": "success_index",
+      "coverage": "Sorted and current default index checked. Latest nonpinned topic Oct1 iOS 4.0 minimum OS notice; latest Desktop 5.39.412.57 official Whaleteam body dated Oct1. June18 Android dark-mode official body also checked. No Oct23+ item. User replies excluded from release proof.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "whale-product",
+      "browser": "whale",
+      "url": "https://whale.naver.com/",
+      "coverage_status": "failed_body",
+      "coverage": "Web fetch timeout; direct HTTP200 only JavaScript shell and noscript tagline. Local browser rendering blocked by socket() Operation not permitted / Chromium launch failure. No permission bypass attempted, full guidance unverified.",
+      "observed_at": "2026-10-30T22:46:00Z",
+      "sha256": "35612c1a922105d0fd8e57389fdcf45127e505b1c5b3a0d9d54d91a661c74513"
+    },
+    {
+      "source_id": "opera-mobile",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/mobile/",
+      "coverage_status": "success_current",
+      "coverage": "Retry of previous failed Oct22 article: official original HTTP200 full body recovered. Current mobile index newest Oct22, then Oct6; no newer entry. Summary is longstanding Nigeria free-data retrospective, no new release. Weekly auxiliary scope only.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "opera-mini-nigeria",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/mobile/2026/10/5538-tb-later-why-free-data-still-matters-in-nigeria/",
+      "coverage_status": "success_body",
+      "coverage": "Official full article recovered by direct HTTP GET after web cache miss; published Oct22. Evidence not based on headline.",
+      "observed_at": "2026-10-30T22:46:00Z",
+      "sha256": "7a273872f95ca9db91a6fa1206cdb22b2b59a798d7444513a4fc7367a54c1e08"
+    },
+    {
+      "source_id": "opera-desktop",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/desktop/",
+      "coverage_status": "skipped_not_due",
+      "coverage": "Weekly source already successful Oct29; next scheduled check Nov5 or first existing run thereafter. Not checked; not no-change.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "opera-news",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/news/",
+      "coverage_status": "skipped_not_due",
+      "coverage": "Weekly source already successful Oct29; next scheduled check Nov5 or first existing run thereafter. Not checked; not no-change.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "vivaldi-desktop",
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/desktop/",
+      "coverage_status": "skipped_not_due",
+      "coverage": "Weekly source already successful Oct29; next scheduled check Nov5 or first existing run thereafter. Not checked; not no-change.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "vivaldi-android",
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/android/releases/",
+      "coverage_status": "skipped_not_due",
+      "coverage": "Weekly source already successful Oct29; next scheduled check Nov5 or first existing run thereafter. Not checked; not no-change.",
+      "observed_at": "2026-10-30T22:46:00Z"
+    },
+    {
+      "source_id": "chrome-experiments",
+      "url": "https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/about_flags.cc",
+      "coverage_status": "complete_incremental_partial_history",
+      "observed_at": "2026-10-30T22:45:00Z",
+      "coverage": "8개 최신 고유 commit diff (about_flags6·metadata6·설명헤더5), about_flags 최신6 replay 일치. metadata6/2~6/8 81diff backfill.6/9~10/21 및 설명헤더 전체 과거 이력 미완료."
+    }
+  ],
+  "selected_events": [],
+  "collected_indexes": [
+    "chrome-2026-10-31.json",
+    "../../releases/edge/collection-2026-10-31.json",
+    "../../releases/firefox/collection-2026-10-31.json",
+    "../../releases/brave/collection-2026-10-31.json",
+    "../../releases/whale/collection-2026-10-31.json",
+    "../../releases/opera/collection-2026-10-31.json",
+    "../../experiments/chrome/monthly/2026-10-source-index-2026-10-31.json"
+  ],
+  "summary": "새 selected 사건 없음. 일반/보안/빌드와 기존 기능은 알림 제외. Chrome source watch만 기록. 미확인 출처는 변화 없음이 아님.",
+  "korea_review": "기존 기능 조건 baseline 10/30, 다음 주간 확인11/5 이후. 새 source watch는 출시/국가/언어 증거 없음으로 미확인; 실기 모두 미실행."
+}

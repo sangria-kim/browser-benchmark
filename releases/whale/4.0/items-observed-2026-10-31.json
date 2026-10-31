@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "version": "4.0",
+  "observed_at": "2026-10-30T22:46:00Z",
+  "coverage": "해당 버전의 이번 관찰 요약. 브라우저 전체·과거 변경이력 완료 아님. 원천·제약은 상위 collection 파일 참조.",
+  "items": [
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release.",
+      "revisit_trigger": "Dated final release evidence."
+    }
+  ]
+}

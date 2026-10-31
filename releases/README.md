@@ -6,4 +6,9 @@
 - Firefox [159 Desktop](firefox/159/README.md), [159 Android](firefox/159-android/README.md), [160 Beta](firefox/160-beta/README.md)
 - Edge [156 Desktop](edge/156/README.md), [156 Mobile](edge/156-mobile/README.md)
 
-ChromeStatus 웹 플랫폼 전체 목록 및 더 과거 버전은 아직 별도 수집하지 않았습니다. Chrome 실험은 [flags](../experiments/chrome/README.md)로 분리합니다.
+ChromeStatus 156–158 현재 API 목록은 아래 2026-10-31 관찰에 추가했습니다. 개별 최초 발표·출시 이력 및 더 과거 버전은 미완료입니다. Chrome 실험은 [flags](../experiments/chrome/README.md)로 분리합니다.
+
+## 2026-10-31 추가 관찰
+
+- [Chrome](chrome/README.md) · [Edge](edge/README.md) · [Firefox](firefox/README.md) · [Brave](brave/README.md) · [Whale](whale/README.md) · [Opera 모바일 재시도](opera/README.md)
+- Vivaldi 및 Opera Desktop/news는 주간 예정 전 미점검입니다. 변화 없음 판정이 아닙니다.

@@ -1,0 +1,60 @@
+{
+  "observed_at": "2026-10-30T22:45:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
+  "workstreams": [],
+  "ai_related": "unknown",
+  "selection_status": "excluded",
+  "selection_reason": "Expired flag cleanup or metadata maintenance; not evidence of feature release/withdrawal.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Explicit product behavior/release evidence beyond cleanup or expiry maintenance.",
+  "assessed_at": "2026-10-30T22:49:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "chrome-omnibox-adjust-indentation-removed-8bc404f155c2",
+  "feature_id": "chrome-omnibox-adjust-indentation",
+  "browser": "chrome",
+  "event_type": "removed",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [],
+  "scope": {
+    "source_os_masks_before": [
+      "kOsDesktop"
+    ],
+    "source_os_masks_after": [],
+    "caveat": "소스 조건이며 설치본 지원을 증명하지 않음"
+  },
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/8bc404f155c2a1853b910c02bb9a7175b7fc056c^!",
+    "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
+  ],
+  "summary": "[omnibox] Remove omnibox-adjust-indentation flag",
+  "delta": {
+    "flag_id": "omnibox-adjust-indentation",
+    "related_feature_ids": [
+      "omnibox_feature_configs::AdjustOmniboxIndent::kAdjustOmniboxIndent"
+    ],
+    "change_kind": "removed",
+    "committed_at": "2026-10-30T17:11:01Z",
+    "details_index": "../../experiments/chrome/monthly/2026-10-source-index-2026-10-31.json"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "conditions": "소스 등록/옵션만 관찰. 공개 빌드·지역·언어·계정 제공 조건 미확인.",
+    "effective_at": null,
+    "checked_at": "2026-10-31",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/8bc404f155c2a1853b910c02bb9a7175b7fc056c^!"
+    ]
+  }
+}

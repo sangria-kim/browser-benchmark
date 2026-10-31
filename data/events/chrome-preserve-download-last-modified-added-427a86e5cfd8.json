@@ -1,0 +1,60 @@
+{
+  "observed_at": "2026-10-30T22:45:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "427a86e5cfd867701c768ff75048837891638f2f",
+  "workstreams": [],
+  "ai_related": false,
+  "selection_status": "watch",
+  "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "Given a controlled server response with known Last-Modified, does enabling the flag preserve mtime and how does it affect sorting/retrieval compared with download-time timestamps?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Installed build exposes flag and controlled download fixture available; compare enabled/disabled plus missing/invalid header cases.",
+  "assessed_at": "2026-10-30T22:49:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "chrome-preserve-download-last-modified-added-427a86e5cfd8",
+  "feature_id": "chrome-preserve-download-last-modified",
+  "browser": "chrome",
+  "event_type": "added",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [],
+  "scope": {
+    "source_os_masks_before": [],
+    "source_os_masks_after": [
+      "kOsAll"
+    ],
+    "caveat": "소스 조건이며 설치본 지원을 증명하지 않음"
+  },
+  "sources": [
+    "https://chromium.googlesource.com/chromium/src/+/427a86e5cfd867701c768ff75048837891638f2f^!",
+    "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
+  ],
+  "summary": "HTTP Last-Modified 헤더를 다운로드 파일 수정시각에 반영하는 소스 플래그 등록. 설치본 동작은 미확인.",
+  "delta": {
+    "flag_id": "preserve-download-last-modified",
+    "related_feature_ids": [
+      "download::features::kPreserveDownloadLastModified"
+    ],
+    "change_kind": "added",
+    "committed_at": "2026-10-30T16:37:37Z",
+    "details_index": "../../experiments/chrome/monthly/2026-10-source-index-2026-10-31.json"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "rule_commit": "da65ff91c0f604fb1dba7737869fee3f9fe87e8a",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "conditions": "소스 등록/옵션만 관찰. 공개 빌드·지역·언어·계정 제공 조건 미확인.",
+    "effective_at": null,
+    "checked_at": "2026-10-31",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromium.googlesource.com/chromium/src/+/427a86e5cfd867701c768ff75048837891638f2f^!"
+    ]
+  }
+}
