@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "rule_commit": "31dafe16e8d748c8c55da33e63ed4a56e74b6acf",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-01T22:58:47Z",
+  "sources": [
+    {
+      "source_id": "chrome-releases",
+      "url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-25T00:00:00Z",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-11-01T22:58:47Z",
+      "coverage": "최근 7일 겹침 구간 2026-10-25 이후 공식 피드 totalResults=16, 16개 공지 본문 모두 직전 항목과 일치. 최신 10/30 Dev; 연결 Git log 전체 미검토.",
+      "body_read": true,
+      "response_sha256": "05468321f2ccef8615d468639050bfe082b944ab27b737b3033efa38377afb60"
+    },
+    {
+      "source_id": "chrome-enterprise",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-11-01T22:58:47Z",
+      "coverage": "156의 29개, 157의 26개 항목 전체 API 본문·단계가 직전 응답과 byte 단위 동일. 이전 버전 목록에서 빠진 2개 항목의 철회 여부는 기존 미확인 유지.",
+      "body_read": true,
+      "response_sha256": "712dbe10c39d13b0ef4ebb46c2a0522e46b4c2863b349e4b89e87cce18b7735a"
+    },
+    {
+      "source_id": "chrome-status",
+      "url": "https://chromestatus.com/api/v0/features?milestone=157",
+      "coverage_status": "partial",
+      "observed_at": "2026-11-01T22:58:47Z",
+      "coverage": "156/157 공식 응답은 직전과 byte 동일. 158은 21→20개, SVG textPath side attribute 1개 목록 누락. 개별 API 존속 확인했으나 출시·철회 근거 없음. 총57개 현재 항목과 누락1개 보존; 전체 역사 미완료로 성공 checkpoint 유지.",
+      "body_read": true,
+      "response_sha256": "a0f860188ee1a28c92282bcbf297aaae7aeebaaa66fb921f75f64224f682d7fb"
+    },
+    {
+      "source_id": "chrome-blog",
+      "url": "https://blog.google/products-and-platforms/products/chrome/rss/",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-11-01T22:58:47Z",
+      "coverage": "최근 20개 공식 RSS 항목은 직전과 동일. 겹침 기간 유일한 10/28 Gmail 자동완성 기사 본문 재조회: 미국·Personal Intelligence 조건 기존 보고와 동일.",
+      "body_read": true,
+      "response_sha256": "7d3ea3ff2037511078aa6195228d20cfd1a85c4c081d550884a3074fe77c38a5"
+    },
+    {
+      "source_id": "google-korea",
+      "url": "https://blog.google/intl/ko-kr/rss/",
+      "coverage_status": "complete_index",
+      "observed_at": "2026-11-01T22:58:47Z",
+      "coverage": "최근 20개 RSS 항목은 직전과 동일하고 겹침 구간을 포함. 10/28–30 기사 3개 원문 모두 재조회했으며 YouTube·Genie 관련, Chrome 새 사건 아님.",
+      "body_read": true,
+      "response_sha256": "d5e7964fecb9e14ffc6407ebec606897cf2c7ddc2648972188759ef08cfd28af"
+    }
+  ],
+  "articles": [
+    {
+      "browser": "chrome",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "Wed, 28 Oct 2026 17:00:00 +0000",
+      "effective_at": null,
+      "kind": "repeat_reference",
+      "summary": "Gmail 정보 자동완성의 미국 단계 배포 및 Personal Intelligence 조건 재확인. 기존 10/29 보고와 동일.",
+      "selection_status": "excluded",
+      "selection_reason": "기존 보고의 반복 발표.",
+      "revisit_trigger": "별도 Chrome 동작 또는 한국 제공 조건 변화의 공식 근거",
+      "body_read": true,
+      "body_sha256": "d99e4b09103d93fb956357fd4b781c18500d82aad8d1d84a6fa4859e479a06bf"
+    },
+    {
+      "browser": "chrome",
+      "title": "[요즘구글] 대한민국의 평범한 회사원 구서방, 중국 숏폼 드라마 세트장에서 살아남을 수 있을까?",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/gooseobang-ep19-micro-drama-frontier/",
+      "announced_at": "Fri, 30 Oct 2026 14:00:00 +0000",
+      "effective_at": null,
+      "kind": "non_browser_reference",
+      "summary": "YouTube Shorts 시리즈의 한국 지원을 소개한 비브라우저 기사. Chrome 한국 제공 근거 아님.",
+      "selection_status": "excluded",
+      "selection_reason": "YouTube/월드 모델의 변경으로 Chrome 기능 범위 밖.",
+      "revisit_trigger": "별도 Chrome 동작 또는 한국 제공 조건 변화의 공식 근거",
+      "body_read": true,
+      "body_sha256": "83b8a74b7b1e9ad96cf12cbf44c82b360410c72493e9313fafffcf32e1c7d322"
+    },
+    {
+      "browser": "chrome",
+      "title": "구글과 2026 MAMA AWARDS가 함께 여는 전 세계 K팝 팬들의 축제",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/google-2026-mama-awards/",
+      "announced_at": "Fri, 30 Oct 2026 09:00:00 +0000",
+      "effective_at": null,
+      "kind": "non_browser_reference",
+      "summary": "MAMA Awards의 YouTube 생중계·Gemini 제작 협업 안내. 브라우저 기능 변경 아님.",
+      "selection_status": "excluded",
+      "selection_reason": "YouTube/월드 모델의 변경으로 Chrome 기능 범위 밖.",
+      "revisit_trigger": "별도 Chrome 동작 또는 한국 제공 조건 변화의 공식 근거",
+      "body_read": true,
+      "body_sha256": "a0e4ed2129e7e38fa7be7c57850bbe7a4cf4c37fce2232a22fee92c473fdf684"
+    },
+    {
+      "browser": "chrome",
+      "title": "지니 4(Genie 4): 월드 시뮬레이션의 새로운 세대",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/genie-4-a-new-generation-of-world-simulation-kr/",
+      "announced_at": "Wed, 28 Oct 2026 01:00:00 +0000",
+      "effective_at": null,
+      "kind": "non_browser_reference",
+      "summary": "Genie 4 연구 프리뷰 및 향후 접근 확대 안내. Chrome 기능 출시 아님.",
+      "selection_status": "excluded",
+      "selection_reason": "YouTube/월드 모델의 변경으로 Chrome 기능 범위 밖.",
+      "revisit_trigger": "별도 Chrome 동작 또는 한국 제공 조건 변화의 공식 근거",
+      "body_read": true,
+      "body_sha256": "de64cd99f9f162818545e48c3036c0d1cca7b89e636e3369e51248bbf9ce6849"
+    }
+  ],
+  "selected_events": [],
+  "selected_candidates": [],
+  "pending_verification_candidates": [
+    {
+      "source_feature_id": 5422782593761280,
+      "feature_id": "chrome-5422782593761280",
+      "title": "SVG textPath side attribute",
+      "source_url": "https://chromestatus.com/feature/5422782593761280",
+      "kind": "web_platform_reference",
+      "source_group": "Enabled by default",
+      "summary": "웹 플랫폼 목록 항목: SVG textPath side attribute",
+      "summary_sha256": "8d8f0394bf91c029073e81358cf677c1e2eb398b8ad2db9fb3c333db755417af",
+      "announced_at": null,
+      "effective_at": null,
+      "selection_status": "pending_verification",
+      "selection_reason": "158 목록에서 빠졌으나 개별 공식 기능 API는 존재하며 deleted=false, Chrome Proposed 및 모든 shipping milestone null. 목록 누락만으로 출시 취소·철회·다른 버전 이동을 단정할 수 없음.",
+      "revisit_trigger": "공식 기능 상태/일정 변경의 명시적 근거 또는 목록 복구",
+      "real_test": "미실행",
+      "observation": "absent_from_milestone_list",
+      "observed_at": "2026-11-01T22:58:47Z",
+      "individual_api_url": "https://chromestatus.com/api/v0/features/5422782593761280",
+      "individual_api_sha256": "9aa5ce1f5b3b55540e23a5616b4553429869863e7a29eec8ab2c1d0638cee83e",
+      "individual_api_status": {
+        "deleted": false,
+        "chrome_status": "Proposed",
+        "is_released": false,
+        "desktop": null,
+        "android": null,
+        "ios": null,
+        "webview": null
+      }
+    }
+  ],
+  "collected_indexes": [
+    "releases/chrome/158/release-announcements-2026-11-02.json",
+    "releases/chrome/159/release-announcements-2026-11-02.json",
+    "releases/chrome/156/release-announcements-2026-11-02.json",
+    "releases/chrome/157/release-announcements-2026-11-02.json",
+    "releases/chrome/150/release-announcements-2026-11-02.json",
+    "releases/chrome/156/enterprise-observation-2026-11-02.json",
+    "releases/chrome/157/enterprise-observation-2026-11-02.json",
+    "releases/chrome/156/chromestatus-observation-2026-11-02.json",
+    "releases/chrome/157/chromestatus-observation-2026-11-02.json",
+    "releases/chrome/158/chromestatus-observation-2026-11-02.json"
+  ],
+  "korea_conditions_review": "관심 기능 주간 조건 점검은 예정 전. 신규 Chrome 사건이 없어 baseline 재알림 없음. 한국어 문서 존재를 Chrome 한국 출시로 해석하지 않음.",
+  "limitations": [
+    "모든 실기 검증 미실행",
+    "ChromeStatus 최초 발표·단계 변화 및 전체 역사 미완료",
+    "Chrome 릴리스 연결 Git log 및 개별 CVE 본문 전수 미검토",
+    "Enterprise 과거 목록에서 빠진 항목은 철회로 추정하지 않음"
+  ]
+}

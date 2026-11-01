@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-svg-textpath-side-list-omission-20261102",
+  "feature_id": "chrome-5422782593761280",
+  "browser": "chrome",
+  "event_type": "verification_pending",
+  "version": null,
+  "channel": null,
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "ChromeStatus milestone 158 listing observation; actual OS and release state unresolved.",
+  "observed_at": "2026-11-01T22:58:47Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://chromestatus.com/api/v0/features?milestone=158",
+    "https://chromestatus.com/api/v0/features/5422782593761280"
+  ],
+  "summary": "ChromeStatus 158 목록에서 SVG textPath side attribute 항목이 누락됨. 개별 API는 존속하며 제품 출시·철회 여부는 미확인.",
+  "delta": {
+    "previous_list_state": "present in Enabled by default group",
+    "current_list_state": "absent",
+    "individual_feature_state": {
+      "deleted": false,
+      "chrome_status": "Proposed",
+      "is_released": false,
+      "desktop": null,
+      "android": null,
+      "ios": null,
+      "webview": null
+    },
+    "individual_api_sha256": "9aa5ce1f5b3b55540e23a5616b4553429869863e7a29eec8ab2c1d0638cee83e"
+  },
+  "verification_status": "official_bodies_read_state_conflict_unresolved",
+  "previous_event_id": null,
+  "selection_status": "pending_verification",
+  "selection_reason": "158 목록에서 빠졌으나 개별 공식 기능 API는 존재하며 deleted=false, Chrome Proposed 및 모든 shipping milestone null. 목록 누락만으로 출시 취소·철회·다른 버전 이동을 단정할 수 없음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "공식 지원 상태가 확인되면 동일 SVG 텍스트 경로의 렌더링 호환성을 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 기능 상태/일정 변경의 명시적 근거 또는 목록 복구",
+  "assessed_at": "2026-11-01T22:58:47Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "31dafe16e8d748c8c55da33e63ed4a56e74b6acf",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-02",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/api/v0/features/5422782593761280"
+    ]
+  }
+}

@@ -1,0 +1,1700 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "observed_at": "2026-11-01T22:59:01Z",
+  "rule_commit": "31dafe16e8d748c8c55da33e63ed4a56e74b6acf",
+  "coverage": {
+    "start": "2026-10-25T00:00:00Z",
+    "scope": "current_source_observation",
+    "sources": [
+      {
+        "source_id": "brave-releases",
+        "browser": "brave",
+        "url": "https://api.github.com/repos/brave/brave-browser/releases?per_page=100",
+        "coverage_status": "complete_interval",
+        "coverage": "100 official API release objects and full bodies fetched; 29 published since October 25. All 29 titles, body text, publication dates and prerelease fields match the previous observation. Newest publication remains October 30 21:25 UTC v1.98.64. JSON asset statistics changed but are not new feature events. Stable/Beta/Nightly are determined from titles, not prerelease flag alone.",
+        "observed_at": "2026-11-01T22:59:01Z",
+        "sha256": "11cf840d5702fb89587de4eef1f9b6492dcb82c4e13ca2de90fc4f8545a02e94"
+      },
+      {
+        "source_id": "brave-latest",
+        "browser": "brave",
+        "url": "https://brave.com/latest/",
+        "coverage_status": "partial",
+        "coverage": "Official release notes byte-identical to previous check: desktop 1.98.62 and Android 1.97.59 remain behind API/changelog. Actual body rechecked; latest Android-specific changes remain unverified.",
+        "observed_at": "2026-11-01T22:59:01Z",
+        "sha256": "99b94d62e493f0328fa654435154337309f866c5f16d97ecdfd6c37fa4d63594"
+      },
+      {
+        "source_id": "brave-desktop-changelog",
+        "browser": "brave",
+        "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md",
+        "coverage_status": "complete_current",
+        "coverage": "Current full file byte-identical to previous observation. Top section 1.98.63 remains Chromium maintenance; v1.98.64 release body contains artifact references, not new user feature evidence.",
+        "observed_at": "2026-11-01T22:59:01Z",
+        "sha256": "695da2c0c0b749932725bb95f427cee9fa690b1b196073a8dba872814854b1a4"
+      },
+      {
+        "source_id": "brave-android-changelog",
+        "browser": "brave",
+        "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_ANDROID.md",
+        "coverage_status": "partial",
+        "coverage": "Current full Android file byte-identical to previous observation. Latest 1.98.60 has 13 already indexed items. No Android-specific 1.98.62/63/64 detail established; no desktop-to-Android inference.",
+        "observed_at": "2026-11-01T22:59:01Z",
+        "sha256": "b657471d5f474ae5c627271f0f38e063911bb5219164178b1d781871f42d77cb"
+      },
+      {
+        "source_id": "brave-blog",
+        "browser": "brave",
+        "url": "https://brave.com/blog/",
+        "coverage_status": "success_index",
+        "coverage": "Current dated product index byte-identical to previous observation. Newest dated product announcement remains October 15; no October 25 onward post in current index.",
+        "observed_at": "2026-11-01T22:59:01Z",
+        "sha256": "a12df8ff49c27d40b2879e1b6792cf1d09c46ce36a4ddaf31c61da0383cf41ac"
+      }
+    ]
+  },
+  "items": [
+    {
+      "item_id": "brave-release-1.101.10",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.10",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-30T17:21:35Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.10"
+      ],
+      "source_revision": "master",
+      "body_sha256": "da9bbc9d3a32bafa4e900f6c5f5d52d9edd9a77f494480b7a3fe211dee8c1918",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.9",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.9",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-30T13:47:26Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.9"
+      ],
+      "source_revision": "master",
+      "body_sha256": "52db249be71d58585e193837736dce1ee621a92de61ab301467117428f790567",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.8",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.8",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-30T13:26:56Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.8"
+      ],
+      "source_revision": "master",
+      "body_sha256": "3c26dcf09c251ecd46d17e8c0a21efd1326ac55a085c33d770e922f5fbb2eb76",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.7",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.7",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-30T01:18:43Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.7"
+      ],
+      "source_revision": "master",
+      "body_sha256": "95435c6afb48e22af7cacf10fa31d8675faf01f6106489cccf22de4c9bf58e26",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.45",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.45",
+      "channel": "beta",
+      "api_prerelease": true,
+      "announced_at": "2026-10-30T05:17:51Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.45"
+      ],
+      "source_revision": "master",
+      "body_sha256": "8544214c663b3d574e5e372778efca093276e38b4617fbd4d57265dbac091c58",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.98.64",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.98.64",
+      "channel": "pre-release",
+      "api_prerelease": true,
+      "announced_at": "2026-10-30T21:25:24Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.64"
+      ],
+      "source_revision": "master",
+      "body_sha256": "846b691c844c9fd83de5a6cbb881b72adc739103a1a946d3eecfb7edcd22c1d5",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.98.63",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.98.63",
+      "channel": "stable",
+      "api_prerelease": false,
+      "announced_at": "2026-10-30T05:50:37Z",
+      "effective_at": null,
+      "event_type": "maintenance",
+      "summary": "Chromium 156.0.8078.80 engine maintenance only.",
+      "full_item_summary": {
+        "general_brave": [
+          "Upgraded Chromium to 156.0.8078.80."
+        ],
+        "brave_origin": [
+          "Upgraded Chromium to 156.0.8078.80."
+        ]
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.63"
+      ],
+      "source_revision": "master",
+      "body_sha256": "3fd6f57464559200dc8af84248f2d7e9d60a13ba9baaa20700052c6f47c32620",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.6",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.6",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-29T21:38:31Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.6"
+      ],
+      "source_revision": "master",
+      "body_sha256": "311e7951a3473d8643474841b9ca0c53d8650995feacf426df331e1244372087",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.5",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.5",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-29T17:18:51Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.5"
+      ],
+      "source_revision": "master",
+      "body_sha256": "4a6edff5978e2d937e8dbec67d7d77148ab4475a26a6d9744c29a603dbe5a05f",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.4",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.4",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-29T13:48:54Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.4"
+      ],
+      "source_revision": "master",
+      "body_sha256": "864559eab51c8eeefbd1b8b9d85298f6ebd943365d42b5076bc736ae8952debb",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.3",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.3",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-29T13:26:29Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.3"
+      ],
+      "source_revision": "master",
+      "body_sha256": "f94f0f65263bb8ec88d3dc5765efba260cd27059b8b6e55fed41c1a17e773b71",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.2",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.2",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-29T01:18:06Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.2"
+      ],
+      "source_revision": "master",
+      "body_sha256": "3c792f6fed57a695edeea1d691aee50eeac82672f5fefc45acc09be03e591f52",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.44",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.44",
+      "channel": "beta",
+      "api_prerelease": false,
+      "announced_at": "2026-10-29T05:16:16Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.44"
+      ],
+      "source_revision": "master",
+      "body_sha256": "b2667a1a7f1215f6a7093f71882a999d52a79b7b27ec84c642fdf07e781ebeb1",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.101.1",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.1",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-28T23:37:15Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.1"
+      ],
+      "source_revision": "master",
+      "body_sha256": "42b9e0747a39a4743835149777d4ef5679e6979c19f5e6eceff49e911f96a0b6",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.43",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.43",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-28T17:19:58Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.43"
+      ],
+      "source_revision": "master",
+      "body_sha256": "86b166f9ab84e7068db781383c07edd25a1e270e035481e5f6ffdf24e05b9525",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.42",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.42",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-28T13:48:39Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.42"
+      ],
+      "source_revision": "master",
+      "body_sha256": "0b377ac2b72bb30781da25e55e9eeebce697d3e1f55e960389d0616598dce698",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.41",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.41",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-28T13:26:58Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.41"
+      ],
+      "source_revision": "master",
+      "body_sha256": "0e3db2939fff419b4440a4395d13ecc70c07b62267230358b13d8c1c415f110d",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.40",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.40",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-28T01:59:37Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.40"
+      ],
+      "source_revision": "master",
+      "body_sha256": "758f2b8868653a1b2ab756a77137807d53362bcb0e8f665928788e866002f3cb",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.99.53",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.99.53",
+      "channel": "beta",
+      "api_prerelease": false,
+      "announced_at": "2026-10-28T05:21:08Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.99.53"
+      ],
+      "source_revision": "master",
+      "body_sha256": "2a594b630119ce98290b4c1bebef53701e32f711c56bcb300e9bd9baf08618e0",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.98.62",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.98.62",
+      "channel": "stable",
+      "api_prerelease": false,
+      "announced_at": "2026-10-28T03:43:08Z",
+      "effective_at": null,
+      "event_type": "maintenance",
+      "summary": "brave:// navigation security fix and Chromium 156.0.8078.74 update; already collected.",
+      "full_item_summary": {
+        "general_brave": [
+          "[Security] Fixed \"brave://\" scheme navigation issue as reported on HackerOne by miauuu.",
+          "Upgraded Chromium to 156.0.8078.74."
+        ],
+        "brave_origin": [
+          "[Security] Fixed \"brave://\" scheme navigation issue as reported on HackerOne by miauuu.",
+          "Upgraded Chromium to 156.0.8078.74."
+        ]
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.62"
+      ],
+      "source_revision": "master",
+      "body_sha256": "b37a8c391e71445fa873862a591fe0740e7de368d42e7e6acf9581b3b03ed172",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.39",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.39",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-27T17:26:29Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.39"
+      ],
+      "source_revision": "master",
+      "body_sha256": "89cbdcf3ee7a630439fd29e2b8fd3b9108188335c938cc04c973fc3163c7ddd1",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.38",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.38",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-27T13:54:39Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.38"
+      ],
+      "source_revision": "master",
+      "body_sha256": "c7cbe5d47d2596fd22709a1cf6b02c2dd9fbe4d56bfbc8efd7ff386353961828",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.37",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.37",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-27T13:29:48Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.37"
+      ],
+      "source_revision": "master",
+      "body_sha256": "7c3347058dd30fbdcf0c6819bc4c922dbdfb081fbe62142ce5c42911bcb7ceb0",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.36",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.36",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "announced_at": "2026-10-27T01:23:38Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.36"
+      ],
+      "source_revision": "master",
+      "body_sha256": "01d8d982c5c82feec70487a9834c4f7249e31e34eb492f85fc6bc467170a9fb8",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.99.52",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.99.52",
+      "channel": "beta",
+      "api_prerelease": true,
+      "announced_at": "2026-10-27T07:03:21Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.99.52"
+      ],
+      "source_revision": "master",
+      "body_sha256": "7fb24c80355653af29bab05d13d5506464db3dbe642acef4a6daca99d06ec8a0",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.35",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.35",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-26T22:01:09Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.35"
+      ],
+      "source_revision": "master",
+      "body_sha256": "a2dafc1574f6b641f918383ba47817b537a9ae54a7dcdcdee5ed5667b955164e",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.33",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.33",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-26T15:02:19Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.33"
+      ],
+      "source_revision": "master",
+      "body_sha256": "ccf302a35470116d5981ba9218efaa6091de3bb6517eb767534a6be1c68a9be7",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.100.32",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.32",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-10-26T05:54:08Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.32"
+      ],
+      "source_revision": "master",
+      "body_sha256": "67d95f125a060d35bdefc3d62472c004157b7d45c3bbd9b3beec286f7b3e7649",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    },
+    {
+      "item_id": "brave-release-1.99.51",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.99.51",
+      "channel": "beta",
+      "api_prerelease": true,
+      "announced_at": "2026-10-26T09:57:31Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "Artifact/install instructions only; no feature-specific changelog.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.99.51"
+      ],
+      "source_revision": "master",
+      "body_sha256": "89b813ffa609877181cff359b1096e9a2fe66b4c96354de1bf3bef170a171012",
+      "is_since_checkpoint": false,
+      "selection_status": "excluded",
+      "selection_reason": "Previously collected unchanged release. Engine/security maintenance or artifact reference only; no new user workflow.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-01T22:59:01Z",
+      "novelty": "unchanged_previous_observation",
+      "assessed_at": "2026-11-01T22:59:01Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    }
+  ],
+  "limitations": [
+    "No installed-browser or rendered-page tests performed.",
+    "Brave Android latest delta remains unverified; checkpoint retained.",
+    "Whale product text recovered from official frontend localization resource only; runtime, date and platform-specific coverage incomplete.",
+    "Weekly sources not due, no new weekly fetch or success claimed.",
+    "Korean website language does not establish individual feature Korean availability."
+  ],
+  "evidence_comparison": {
+    "release_fields_compared": [
+      "name",
+      "body",
+      "published_at",
+      "prerelease"
+    ],
+    "whale_announcement_comparison": "HTML normalized visible text identical",
+    "brave_changelogs_blog_latest": "byte-identical",
+    "whale_locale_and_bundle": "byte-identical",
+    "official_alternative_api": "https://api.github.com/repos/brave/brave-browser/releases?per_page=100"
+  }
+}
