@@ -92,3 +92,16 @@ about_flags.cc는 manifest의 end_revision 이후를 겹쳐 확인하고 source_
 Desktop 27개와 Android 4.0 13개를 과거 보완하고 Android 4.1 4개를 신규 출처 관찰로 저장했습니다. 기존 파일은 보존합니다. 개별 본문은 전체 최상위 항목을 대조했으나 게시판 전체 과거/플랫폼별 범위와 제품 소개 본문은 partial입니다. iOS 기존 예고·제품 소개·연구소 전체 checkpoint를 이번 단일 본문 확인으로 전진시키지 않습니다. 새 selected 0건, 상세 보고·메일·일정 변경 없음. Android 4.1의 신규성·이전 전달 대조가 남아 있습니다.
 
 기존 Whale 수집 스크립트·CI는 없었습니다. 항목 검증기와 회귀 테스트 8개를 추가해 실행했고 3개 본문 색인의 44개 항목 검증을 통과했습니다. 실제 브라우저 제품 동작 테스트는 미실행입니다.
+
+
+## 2026-11-03 실행 결과
+
+규칙 커밋: `c2bfde4b1d3aeaef29b44302753c9f9981d3c867`, `pm-selection-v2`. [출처별 실제 범위](../data/collection/2026-11-03.json).
+
+- Whale Android 4.1 설정 검색(한글 초성·문장 질의)과 시크릿 캡처·녹화 허용 옵션 2개를 신규성 대조 후 선정했습니다. [상세 분석](../reports/2026-11-03.md). 등록 11/2·본문 배포 10/29·관찰 시각을 분리했고 한국 제공 및 설치본 동작은 미확인입니다. 원래 보완 수집의 pending 판정 이력은 보존했습니다.
+- Whale 홈페이지 공식 공지 전체 및 Desktop(categoryId=99)·iOS(100)·Android(101) 탭을 실제 UI로 확인했습니다. 각 첫 페이지가 최근 7일 경계를 덮고, 기간 내 Android 4.1 한·영 원문은 고유 4개 항목으로 대조했습니다. 공지의 현재 구간 확인 성공은 전체 과거 이력 완료가 아닙니다. 연구소 본문은 정규화 텍스트 동일. 제품 소개 텍스트 렌더링을 확인했지만 영상 재생과 기능별 적용 조건은 미확인으로 별도 partial 유지합니다.
+- Chrome Releases 16개와 블로그 본문은 동일. Enterprise Gemini 목록 누락·GPC 목록 누락은 검증 대기, scroll snap 159 계획은 watch이며 출시·철회로 단정하지 않습니다. WebHID 재수록과 수정 시각은 신규 사건이 아닙니다. 기존 SVG 미확인 이력도 보존합니다.
+- Edge Mobile 156.0.4314.56(11/2)은 일반·보안 수정으로 수집만 합니다. WebView2 디렉터리 검사 예고의 두 문서 누락은 pending입니다. Firefox 6개 본문 hash 동일. Microsoft 한국 홈의 10/29 새 기사 본문은 브라우저 기능이 아니며 전체 아카이브는 여전히 partial입니다.
+- Brave Beta/Nightly artifact-only 신규 5개를 수집했습니다. Android 1.98.60의 공식 릴리스 노트 날짜 10/27 근거 보완은 과거 GitHub 게시일과 분리해 정정·검증 대기로 보존합니다. Android 최신 상세와 latest 채널 시차는 partial이며 desktop 내용을 Android 도입 근거로 삼지 않습니다.
+- Chrome 소스 최신 고유 5개 commit을 확인하고 about_flags 3 diff를 재적용해 공식 종료 snapshot과 일치함을 확인했습니다. MagiChrome 실험 정리는 watch, 나머지는 수집·제외입니다. metadata 6/23–29의 47 diff, header 6/9–15의 36 diff를 보완했습니다. 재개는 각각 6/30·6/16. 원래 1,169 commit archive와 소스/실기 구분은 유지합니다.
+- Opera·Vivaldi 5개 주간 출처와 기존 한국 지원 조건·P1/P2 검토는 예정 전으로 생략했습니다. 성공·변화 없음으로 표시하지 않습니다. 사내 자료 접근과 실제 벤치마크는 수행하지 않았습니다.

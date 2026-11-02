@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-single-axis-scroll-snap-target-159-20261103",
+  "feature_id": "chrome-5086608215900160",
+  "browser": "chrome",
+  "event_type": "planned_milestone_change",
+  "version": "159",
+  "channel": "Proposed",
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "공식 목록 및 개별 API 관찰. 제품 출시·철회와 구분.",
+  "observed_at": "2026-11-02T23:31:17Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://chromestatus.com/api/v0/features/5086608215900160"
+  ],
+  "summary": "개별 API의 desktop/android/webview 목표 milestone이 159로 확인되며 Proposed 유지. 158 목록 누락은 목표 버전 이동에 부합하나 정식 출시 증거 아님.",
+  "delta": {
+    "observation": "absent_from_milestone_list",
+    "individual_api_status": {
+      "status": {
+        "text": "Proposed",
+        "val": 2,
+        "milestone_str": "Proposed"
+      },
+      "desktop": 159,
+      "android": 159,
+      "webview": 159,
+      "ios": null,
+      "deleted": false
+    },
+    "individual_api_sha256": "58094ed78551ec2f0945a065b5f2ace4b71915173ba9600ee7b7824de6710395",
+    "current_target_milestone": 159,
+    "previous_observed_list_milestone": 158,
+    "previous_individual_api_target": null
+  },
+  "verification_status": "official_body_read",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "개별 API의 desktop/android/webview 목표 milestone이 159로 확인되며 Proposed 유지. 158 목록 누락은 목표 버전 이동에 부합하나 정식 출시 증거 아님.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 상태·일정과 개별 본문 추가 확인",
+  "assessed_at": "2026-11-02T23:31:17Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "c2bfde4b1d3aeaef29b44302753c9f9981d3c867",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-03",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/api/v0/features/5086608215900160"
+    ]
+  }
+}

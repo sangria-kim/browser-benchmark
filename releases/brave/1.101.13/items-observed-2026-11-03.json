@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "version": "1.101.13",
+  "observed_at": "2026-11-02T23:31:30Z",
+  "coverage": "Full release body: artifact references only, not feature rollout verification.",
+  "items": [
+    {
+      "item_id": "brave-release-1.101.13",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.13",
+      "channel": "nightly",
+      "api_prerelease": true,
+      "announced_at": "2026-11-02T13:43:40Z",
+      "effective_at": null,
+      "event_type": "artifact_reference",
+      "summary": "New pre-release build with platform artifact/install references; no feature-specific notes.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.13"
+      ],
+      "source_revision": "master",
+      "body_sha256": "88532156d3391f2460cddb664e9cf5afd910cb5e5f111e0f9e463354b42a46c8",
+      "is_since_checkpoint": true,
+      "selection_status": "excluded",
+      "selection_reason": "New Beta/Nightly build artifact reference only; no feature-specific behavior change in body.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Feature-specific release notes or meaningful behavior change evidence.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "observed_at": "2026-11-02T23:31:30Z",
+      "novelty": "new_artifact_reference_not_feature",
+      "assessed_at": "2026-11-02T23:31:30Z",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Artifact platforms listed in release body; not proof of identical feature adoption."
+    }
+  ]
+}

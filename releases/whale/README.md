@@ -15,3 +15,7 @@
 - [Android 4.0: 11개 개선 + 2개 수정](4.0/items-android-backfill-2026-11-03.json) — 기존 iOS 4.0 예고와 별도
 - [Android 4.1: 2개 개선 + 2개 수정](4.1/items-android-backfill-2026-11-03.json)
 - [수집 절차·실행 방법·남은 한계](../../docs/whale-collection.md)
+
+## 2026-11-03 기존 실행 재검증
+
+[전체·제품별 공식 공지와 소개의 관찰 범위](collection-2026-11-03.json), [Android 4.1 신규성 판정 4개](4.1/items-android-assessment-2026-11-03.json). 원래 backfill 판정은 보존합니다. 선택 2개는 [상세 보고](../../reports/2026-11-03.md)에 연결합니다. 공지 최근 7일 확인 성공과 제품 소개 영상 미확인을 구분합니다.

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "version": "1.98.62",
+  "observed_at": "2026-11-02T23:31:30Z",
+  "coverage": "One Android-specific maintenance item; does not imply 1.98.63/64 feature coverage.",
+  "items": [
+    {
+      "item_id": "brave-android-1.98.62-chromium-156-8078-74",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.98.62",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "event_type": "maintenance",
+      "summary": "Android-specific notes now explicitly list Chromium 156.0.8078.74 maintenance.",
+      "announced_at": "2026-10-28T03:43:08Z",
+      "effective_at": null,
+      "date_note": "Original GitHub release publication timestamp; Android-specific note edit observed now, actual Android rollout date unknown.",
+      "observed_at": "2026-11-02T23:31:30Z",
+      "assessed_at": "2026-11-02T23:31:30Z",
+      "selection_rule_version": "pm-selection-v2",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.62",
+        "https://github.com/brave/brave-browser/blob/master/CHANGELOG_ANDROID.md",
+        "https://github.com/brave/brave-browser/issues/60210"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Engine maintenance; documentation scope recovery is not a new feature launch.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "Evidence of meaningful user-facing behavior change."
+    }
+  ]
+}

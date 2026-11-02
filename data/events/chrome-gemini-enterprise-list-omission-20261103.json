@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-gemini-enterprise-list-omission-20261103",
+  "feature_id": "chrome-5163880346812416",
+  "browser": "chrome",
+  "event_type": "verification_pending",
+  "version": null,
+  "channel": null,
+  "platform": [],
+  "workstreams": [],
+  "ai_related": true,
+  "scope": "공식 목록 및 개별 API 관찰. 제품 출시·철회와 구분.",
+  "observed_at": "2026-11-02T23:31:17Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://chromestatus.com/api/v0/features/5163880346812416",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=156&lang=en",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en"
+  ],
+  "summary": "Enterprise 목록 누락이나 개별 API는 publish_ready/reviewed 및 156/157 Enterprise 단계를 유지. Android 설명에 Googlebook OS 문구가 추가됐으나 별도 배포일·범위는 미확인. 일반 Proposed 상태로 Enterprise 출시를 부정하지 않음.",
+  "delta": {
+    "observation": "absent_from_milestone_list",
+    "individual_api_status": {
+      "status": {
+        "text": "Proposed",
+        "val": 2,
+        "milestone_str": "Proposed"
+      },
+      "desktop": null,
+      "android": null,
+      "webview": null,
+      "ios": null,
+      "deleted": false
+    },
+    "individual_api_sha256": "57c7307dc3fb89bceaee9d563fdd4be804d272ec398c4057013ab6903f014771"
+  },
+  "verification_status": "official_body_read",
+  "previous_event_id": null,
+  "selection_status": "pending_verification",
+  "selection_reason": "Enterprise 목록 누락이나 개별 API는 publish_ready/reviewed 및 156/157 Enterprise 단계를 유지. Android 설명에 Googlebook OS 문구가 추가됐으나 별도 배포일·범위는 미확인. 일반 Proposed 상태로 Enterprise 출시를 부정하지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 상태·일정과 개별 본문 추가 확인",
+  "assessed_at": "2026-11-02T23:31:17Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "c2bfde4b1d3aeaef29b44302753c9f9981d3c867",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-03",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/api/v0/features/5163880346812416"
+    ]
+  }
+}

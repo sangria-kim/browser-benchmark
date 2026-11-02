@@ -83,3 +83,7 @@ git pull --ff-only
 ### Whale 누락 보완 (2026-11-03)
 
 [공식 업데이트 게시판 수집 절차와 검증 도구](docs/whale-collection.md), [Desktop·Android 44개 항목 색인](releases/whale/README.md#2026-11-03-전체-항목-보완)을 추가했습니다. 기존 요약을 보존한 보완이며 새 출시 알림·자동화 일정 변경은 아닙니다.
+
+### 2026-11-03 수집 추가
+
+[출처별 범위](data/collection/2026-11-03.json)와 [Whale Android 4.1 상세 분석](reports/2026-11-03.md)을 추가했습니다. 공지 제품별 최근 7일 확인과 제품 소개·전체 과거 이력의 미완료 범위를 구분했습니다.

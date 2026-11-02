@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "version": "4.1",
+  "product": "Android",
+  "observed_at": "2026-11-02T23:33:28Z",
+  "rule_commit": "c2bfde4b1d3aeaef29b44302753c9f9981d3c867",
+  "collection_scope": "single_official_body",
+  "collection_status": "success",
+  "source_url": "https://notice.naver.com/notices/whalehomepage/35236",
+  "registered_date": "2026-11-02",
+  "effective_at": "2026-10-29",
+  "expected_counts": {
+    "improvement": 2,
+    "fix": 2
+  },
+  "coverage": "공식 한국어·영문 본문 전체 4개 고유 항목. 원래 backfill 원문·분류 이력은 보존하고 이번 신규성 검증 결과를 별도 기록.",
+  "items": [
+    {
+      "item_id": "whale-android-4.1-settings-search",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "settings-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 1,
+      "summary": "설정 검색에 한글 초성 및 문장 질의 지원",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "official_version_delta_verified_not_duplicate",
+      "selection_status": "selected",
+      "selection_reason": "4.1 공식 개선 항목과 직전 4.0 본문을 대조했고 기존 수집·보고 및 과거 보고 검색에서 같은 사건을 확인하지 못함. 설정 찾기 또는 시크릿 화면 저장의 구체적 사용자 과제와 비교 실험을 정의할 수 있음.",
+      "priority": "P2",
+      "priority_reason": "한글 설정 탐색의 제한적이지만 재현 가능한 편의 개선.",
+      "comparison_question": "동일 Android 환경에서 설정 검색에 한글 초성 및 문장 질의 지원 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "Android 4.1 설치본과 직전 버전의 동일 조건 노출·동작 검증, 국가·언어 조건 추가 공개",
+      "assessed_at": "2026-11-02T23:33:28Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "지원",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 한글 초성·문장 설정 검색 지원은 명시됨.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-android-settings-search-4-1-20261029",
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35237"
+      ]
+    },
+    {
+      "item_id": "whale-android-4.1-incognito-capture",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "incognito-capture",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 2,
+      "summary": "시크릿 탭 캡처·화면 녹화를 설정에서 허용",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "official_version_delta_verified_not_duplicate",
+      "selection_status": "selected",
+      "selection_reason": "4.1 공식 개선 항목과 직전 4.0 본문을 대조했고 기존 수집·보고 및 과거 보고 검색에서 같은 사건을 확인하지 못함. 설정 찾기 또는 시크릿 화면 저장의 구체적 사용자 과제와 비교 실험을 정의할 수 있음.",
+      "priority": "P1",
+      "priority_reason": "시크릿 화면의 외부 저장 허용을 사용자가 통제하는 개인정보 관련 변화.",
+      "comparison_question": "동일 Android 환경에서 시크릿 탭 캡처·화면 녹화를 설정에서 허용 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "Android 4.1 설치본과 직전 버전의 동일 조건 노출·동작 검증, 국가·언어 조건 추가 공개",
+      "assessed_at": "2026-11-02T23:33:28Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 설정에서 화면 캡처·녹화를 허용하도록 켜는 동작을 명시. 기본값·정확한 경로 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-android-incognito-capture-4-1-20261029",
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35237"
+      ]
+    },
+    {
+      "item_id": "whale-android-4.1-history-delete",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "history-delete",
+      "event_type": "fix",
+      "section": "오류 해결",
+      "source_item_number": 1,
+      "summary": "기간별 방문기록 삭제 동작 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "official_version_delta_verified_not_duplicate",
+      "selection_status": "watch",
+      "selection_reason": "기간별 기록 삭제 실패 수정은 개인정보 삭제 과제에 직접 영향이 있음. 발생 조건·영향 버전·범위가 미공개이므로 상세 알림보다 재현 과제로 관찰.",
+      "priority": "P2",
+      "priority_reason": "개인정보 삭제 과제의 회귀 확인이 유용하나 발생 범위는 미확인.",
+      "comparison_question": "동일 Android 환경에서 기간별 방문기록 삭제 동작 수정 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "영향 버전·기간 선택 조건·삭제 후 잔존 여부의 공식 보완 또는 합성 데이터 재현",
+      "assessed_at": "2026-11-02T23:33:28Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 해당 수정의 국가·언어 별 적용 조건 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35237"
+      ]
+    },
+    {
+      "item_id": "whale-android-4.1-omnibox-display",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "omnibox-display",
+      "event_type": "fix",
+      "section": "오류 해결",
+      "source_item_number": 2,
+      "summary": "등록 검색엔진은 검색어, 다른 사이트는 URL로 주소창 표시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "official_version_delta_verified_not_duplicate",
+      "selection_status": "excluded",
+      "selection_reason": "방문 기록 기간 삭제 및 주소창 검색어 표시의 기존 기능 오류 수정. 상세 회귀 범위·새 사용자 흐름 근거가 없어 원천 수집만 보존.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": "동일 Android 환경에서 등록 검색엔진은 검색어, 다른 사이트는 URL로 주소창 표시 수정 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "광범위한 데이터 보존 영향 또는 추가 사용자 흐름 변화의 공식 근거",
+      "assessed_at": "2026-11-02T23:33:28Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 해당 수정의 국가·언어 별 적용 조건 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35237"
+      ]
+    }
+  ]
+}

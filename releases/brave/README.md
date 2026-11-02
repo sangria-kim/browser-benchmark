@@ -37,3 +37,14 @@
 - [1.99.51 항목](1.99.51/items-observed-2026-10-31.json)
 - [1.99.52 항목](1.99.52/items-observed-2026-10-31.json)
 - [1.99.53 항목](1.99.53/items-observed-2026-10-31.json)
+
+## 2026-11-03 관찰
+
+- [전체 관찰 및 출처 범위](collection-2026-11-03.json): 신규 Beta/Nightly artifact 5건, 새 selected 0건.
+- [Android 1.98.60 날짜 의미 보완](1.98.60/items-date-clarification-2026-11-03.json): 공식 Android 노트가 10/27을 명시해 이전 기간 밖 판정의 날짜 근거를 정정합니다. 실제 활성화·최초 도입은 미확인입니다. 기존 기록은 보존합니다.
+- [Android 1.98.62 유지보수](1.98.62/items-android-observed-2026-11-03.json): Chromium 유지보수만 명시됩니다.
+- [1.101.15 artifact](1.101.15/items-observed-2026-11-03.json)
+- [1.101.14 artifact](1.101.14/items-observed-2026-11-03.json)
+- [1.101.13 artifact](1.101.13/items-observed-2026-11-03.json)
+- [1.101.11 artifact](1.101.11/items-observed-2026-11-03.json)
+- [1.100.46 artifact](1.100.46/items-observed-2026-11-03.json)

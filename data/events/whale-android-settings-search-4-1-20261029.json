@@ -1,0 +1,52 @@
+{
+  "browser": "whale",
+  "event_type": "improvement",
+  "version": "4.1",
+  "channel": null,
+  "platform": [
+    "Android"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-02T23:33:28Z",
+  "announced_at": "2026-11-02",
+  "effective_at": "2026-10-29",
+  "summary": "설정 검색에 한글 초성 및 문장 질의 지원",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "4.1 공식 개선 항목과 직전 4.0 본문을 대조했고 기존 수집·보고 및 과거 보고 검색에서 같은 사건을 확인하지 못함. 설정 찾기 또는 시크릿 화면 저장의 구체적 사용자 과제와 비교 실험을 정의할 수 있음.",
+  "priority": "P2",
+  "priority_reason": "한글 설정 탐색의 제한적이지만 재현 가능한 편의 개선.",
+  "comparison_question": "동일 Android 환경에서 설정 검색에 한글 초성 및 문장 질의 지원 과제의 조작·결과를 비교할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Android 4.1 설치본과 직전 버전의 동일 조건 노출·동작 검증, 국가·언어 조건 추가 공개",
+  "assessed_at": "2026-11-02T23:33:28Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-android-settings-search-4-1-20261029",
+  "feature_id": "whale-settings-search",
+  "scope": {
+    "product": "Whale Android",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "지원",
+      "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 한글 초성·문장 설정 검색 지원은 명시됨.",
+      "checked_at": "2026-11-02T23:33:28Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "actual_device_validation": "미실행",
+    "channel_basis": "공식 본문에 Stable/Beta 표기 없음",
+    "registered_date": "2026-11-02",
+    "registered_time": null
+  },
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35236",
+    "https://notice.naver.com/notices/whalehomepage/35237"
+  ],
+  "delta": "4.1 공지가 새 개선으로 명시. 설정 검색의 초성·문장 질의 확대.",
+  "previous_event_id": null
+}

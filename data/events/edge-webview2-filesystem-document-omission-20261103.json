@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "event_id": "edge-webview2-filesystem-document-omission-20261103",
+  "feature_id": "edge-webview2-filesystem",
+  "browser": "edge",
+  "event_type": "verification_pending",
+  "version": null,
+  "channel": null,
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": "WebView2 document observation, not confirmed product withdrawal",
+  "observed_at": "2026-11-02T23:31:37Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/site-impacting-changes?tabs=latest",
+    "https://learn.microsoft.com/en-us/microsoft-edge/webview2/release-notes/runtime/156#upcoming-breaking-change-stricter-file-system-access-directory-checks"
+  ],
+  "summary": "WebView2 디렉터리 접근 검사 강화 예고가 영향표와 연결 Runtime 문서에서 미노출. 실제 정책 철회·일정은 미확인.",
+  "delta": {
+    "previous_list_state": "v159 stricter directory-check announcement present",
+    "current_list_state": "absent",
+    "linked_runtime_body": "corresponding section absent; remaining document accessible",
+    "prior_version_reference": "159 planned, not confirmed shipping"
+  },
+  "verification_status": "official_document_omission_confirmed_product_state_unresolved",
+  "previous_event_id": null,
+  "selection_status": "pending_verification",
+  "selection_reason": "문서 항목 누락은 확인했으나 명시적 정책 철회·출시 취소·일정 변경의 공식 설명이 없어 검증 대기로 보존.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "공식 상태가 확정되면 Windows 웹 파일 접근 동작과 호환성 영향을 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 명시적 변경 설명 또는 문서 복구",
+  "assessed_at": "2026-11-02T23:31:37Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "c2bfde4b1d3aeaef29b44302753c9f9981d3c867",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-03",
+    "real_test": "미실행",
+    "evidence": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/site-impacting-changes?tabs=latest",
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/release-notes/runtime/156#upcoming-breaking-change-stricter-file-system-access-directory-checks"
+    ]
+  }
+}

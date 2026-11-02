@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-gpc-list-omission-20261103",
+  "feature_id": "chrome-5095781286674432",
+  "browser": "chrome",
+  "event_type": "verification_pending",
+  "version": null,
+  "channel": null,
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "공식 목록 및 개별 API 관찰. 제품 출시·철회와 구분.",
+  "observed_at": "2026-11-02T23:31:17Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://chromestatus.com/api/v0/features/5095781286674432"
+  ],
+  "summary": "157 목록에서 GPC 항목 누락. 개별 API 요청은 HTTP 403으로 본문 미확인. 목록 누락만으로 철회 또는 배포 변경을 판단하지 않음.",
+  "delta": {
+    "observation": "absent_from_milestone_list",
+    "individual_api_error": "HTTP 403 Forbidden"
+  },
+  "verification_status": "individual_api_access_failed",
+  "previous_event_id": null,
+  "selection_status": "pending_verification",
+  "selection_reason": "157 목록에서 GPC 항목 누락. 개별 API 요청은 HTTP 403으로 본문 미확인. 목록 누락만으로 철회 또는 배포 변경을 판단하지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 상태·일정과 개별 본문 추가 확인",
+  "assessed_at": "2026-11-02T23:31:17Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "c2bfde4b1d3aeaef29b44302753c9f9981d3c867",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-03",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/api/v0/features/5095781286674432"
+    ]
+  }
+}
