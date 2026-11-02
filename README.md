@@ -79,3 +79,7 @@ git pull --ff-only
 ### 2026-11-02 수집 추가
 
 [출처별 관찰 범위](data/collection/2026-11-02.json)와 [수집 상태](docs/collection-status.md)를 갱신했습니다. 새 selected 사건은 0건입니다. 목록 누락의 미확인 상태와 과거 소스 이력 보완을 실제 제품 출시·철회와 구분합니다.
+
+### Whale 누락 보완 (2026-11-03)
+
+[공식 업데이트 게시판 수집 절차와 검증 도구](docs/whale-collection.md), [Desktop·Android 44개 항목 색인](releases/whale/README.md#2026-11-03-전체-항목-보완)을 추가했습니다. 기존 요약을 보존한 보완이며 새 출시 알림·자동화 일정 변경은 아닙니다.
