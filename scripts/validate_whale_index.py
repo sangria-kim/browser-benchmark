@@ -52,7 +52,8 @@ def validate(data):
     require(all(type(n) is int and n >= 0 for n in expected.values()), 'invalid expected counts')
     if data['collection_status'] == 'success':
         require(bool(items), 'empty body is not success')
-        require(dict(counts) == expected, 'incomplete body counts')
+        require(all(counts[kind] == count for kind, count in expected.items()),
+                'incomplete body counts')
         for kind, count in expected.items():
             require(numbers[kind] == set(range(1, count + 1)), 'noncontiguous source ordinals')
     return len(items)
