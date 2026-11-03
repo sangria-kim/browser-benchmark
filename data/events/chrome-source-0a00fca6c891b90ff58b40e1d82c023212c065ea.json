@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
+  "feature_id": "chrome-bookmark-bar-area-keyboard-navigation",
+  "browser": "chrome",
+  "event_type": "experiment_observation",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Windows",
+    "Linux",
+    "ChromeOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "flag_id": "bookmark-bar-area-keyboard-navigation",
+    "source_os_masks": [
+      "kOsWin",
+      "kOsLinux",
+      "kOsCrOS"
+    ],
+    "source_feature_symbol": "features::kBookmarkBarAreaKeyboardNavigation",
+    "default_state": "disabled_by_default",
+    "platform_basis": "소스 등록부 및 구현 설명. 설치본 지원 여부·최소 버전은 미확인. macOS와 Android는 이 소스 실험의 대상 mask에 포함되지 않음.",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "국가·언어·계정·구독·설치본 조건은 명시되지 않음. Windows 우선 검증 후보.",
+      "checked_at": "2026-11-03T23:27:14Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    }
+  },
+  "observed_at": "2026-11-03T23:27:14Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "0a00fca6c891b90ff58b40e1d82c023212c065ea",
+  "sources": [
+    "https://github.com/chromium/chromium/commit/0a00fca6c891b90ff58b40e1d82c023212c065ea",
+    "https://chromium.googlesource.com/chromium/src/+/0a00fca6c891b90ff58b40e1d82c023212c065ea^!"
+  ],
+  "source_evidence": [
+    {
+      "path": "chrome/browser/about_flags.cc",
+      "patch_sha256": "e24c7a49a697bf6531217394871c9af037bfa97d98980bbf85ddea899c657634",
+      "section": "@@ -14456,6 +14456,14 @@ const FeatureEntry kFeatureEntries[] = {"
+    },
+    {
+      "path": "chrome/browser/flag-metadata.json",
+      "patch_sha256": "f9c449722e88a603c4b0a0cf92a82d99f6a7ddadd053f19479ded75099694ea5",
+      "section": "@@ -1541,6 +1541,11 @@"
+    },
+    {
+      "path": "chrome/browser/flag_descriptions.h",
+      "patch_sha256": "e288005bfb40be5b157a8e3240620561e61cdd3a83785ca4effe2faace218ef7",
+      "section": "@@ -816,6 +816,13 @@ inline constexpr char kBookmarkBarPrefetchName[] = \"BookmarkBarPrefetch\";"
+    }
+  ],
+  "summary": "북마크바를 세 키보드 탐색 구역으로 나누는 비활성 기본 실험 flag 등록. Tab은 구역별 첫 표시 버튼에 정지하고 좌우 화살표는 해당 구역의 버튼 사이를 순환.",
+  "delta": {
+    "flag_id": "bookmark-bar-area-keyboard-navigation",
+    "change_kind": "source_registration_added",
+    "committed_at": "2026-11-03T20:47:29Z",
+    "behavior": "표시되는 첫 버튼만 구역별 Tab 정지점으로 두고 Left/Right는 같은 구역의 표시 버튼 사이를 순환.",
+    "source_areas": [
+      "Apps shortcut and Managed Bookmarks",
+      "Saved tab groups and Everything menu",
+      "Bookmarks, overflow and All Bookmarks"
+    ],
+    "history_check": "직전 snapshot에는 해당 등록이 없었고 이번 diff에 추가됨. 저장소의 기존 flag·event·feature·보고서 검색에서 같은 identity를 찾지 못함. commit 날짜는 첫 제품 출시일이 아님.",
+    "details_index": "../../experiments/chrome/monthly/2026-11-source-index-2026-11-04.json"
+  },
+  "verification_status": "official_source_diff_reviewed_not_executed",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "공식 commit·등록부·설명·구현의 신규 실험을 확인했고 키보드 접근성·탐색 조작 수의 비교 과제가 구체적임. 제품 출시가 아닌 source-only 실험 후보로 선정.",
+  "priority": "P2",
+  "priority_reason": "키보드 탐색·접근성 개선의 비교 과제가 구체적이나 제한된 소스 실험이며 실제 노출 미확인.",
+  "comparison_question": "동일 Windows 환경에서 북마크바 구역 단위 Tab 정지와 구역 내 좌우 이동이 목표 북마크·저장 탭 그룹 탐색의 조작 수·완료 시간·오류를 줄이는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함하는 설치본에서 flag 노출 확인 후 비활성/활성 비교. 공식 제품 출시 또는 지원 조건 문서가 공개되면 재검토.",
+  "assessed_at": "2026-11-03T23:27:14Z",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "35058584c0ab1b2b75b4dc8bf09dec550e8a2c5e"
+}

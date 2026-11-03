@@ -1,0 +1,58 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.2",
+  "channel": "beta",
+  "platform": [],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-03T23:26:47Z",
+  "announced_at": "2026-11-03",
+  "effective_at": "2026-11-02",
+  "summary": "Whale 가져오기에 단축키 포함 설정 전체 추가",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "북마크 이동을 넘어 작업 환경 재구성 비용에 영향을 주는 가져오기 범위 확대.",
+  "priority": "P2",
+  "priority_reason": "환경 이전 후 수작업으로 재설정하는 비용과 오류의 비교 가능성이 있음.",
+  "comparison_question": "같은 작업 환경을 옮길 때 설정·단축키 복원률과 수작업 보정 횟수가 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "지원하는 원본 형식·버전·덮어쓰기 범위와 누락률 확인",
+  "assessed_at": "2026-11-03T23:30:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102",
+  "feature_id": "whale-settings-import",
+  "event_type": "improvement",
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35247",
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/"
+  ],
+  "delta": "공지에 Whale 원본에서 가져올 설정 범위의 확장이 명시된다. 다른 브라우저의 모든 설정 가져오기나 모든 OS 사이 호환으로 확대하지 않는다.",
+  "previous_event_id": null,
+  "scope": {
+    "product": "Whale Desktop",
+    "source_item_numbers": [
+      11
+    ],
+    "release_stage": "beta",
+    "channel_basis": "홈페이지 한국어·영문 공지와 연구소 제목·한국어 본문은 Beta. 연구소 영문 본문의 Stable, Beta 표기는 상충하며 Stable 제공은 미확인.",
+    "platform_basis": "Desktop 공지. 기능별 OS 범위 미공개로 platform=[]를 유지. Windows는 우선 시험 후보일 뿐 이 기능의 지원 확인값이 아님.",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+      "checked_at": "2026-11-03T23:26:47Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "actual_device_validation": "미실행",
+    "registered_date": "2026-11-03",
+    "registered_time": null,
+    "effective_at_basis": "공식 본문의 2026-11-02 날짜; 개별 설치본 업데이트·활성화 확인값은 아님.",
+    "novelty_basis": "버전별 명시적 변경과 이전 5.39.412.57 본문·기존 공개 아카이브·공식 도움말의 사용자 동작을 대조. 최초 제공일 또는 전체 과거 이력 완결로 확대하지 않음."
+  }
+}

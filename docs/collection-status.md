@@ -105,3 +105,14 @@ Desktop 27개와 Android 4.0 13개를 과거 보완하고 Android 4.1 4개를 �
 - Brave Beta/Nightly artifact-only 신규 5개를 수집했습니다. Android 1.98.60의 공식 릴리스 노트 날짜 10/27 근거 보완은 과거 GitHub 게시일과 분리해 정정·검증 대기로 보존합니다. Android 최신 상세와 latest 채널 시차는 partial이며 desktop 내용을 Android 도입 근거로 삼지 않습니다.
 - Chrome 소스 최신 고유 5개 commit을 확인하고 about_flags 3 diff를 재적용해 공식 종료 snapshot과 일치함을 확인했습니다. MagiChrome 실험 정리는 watch, 나머지는 수집·제외입니다. metadata 6/23–29의 47 diff, header 6/9–15의 36 diff를 보완했습니다. 재개는 각각 6/30·6/16. 원래 1,169 commit archive와 소스/실기 구분은 유지합니다.
 - Opera·Vivaldi 5개 주간 출처와 기존 한국 지원 조건·P1/P2 검토는 예정 전으로 생략했습니다. 성공·변화 없음으로 표시하지 않습니다. 사내 자료 접근과 실제 벤치마크는 수행하지 않았습니다.
+
+## 2026-11-04 실행 결과
+
+규칙 commit `35058584c0ab1b2b75b4dc8bf09dec550e8a2c5e` / pm-selection-v2. [출처별 실제 범위](../data/collection/2026-11-04.json), [선정 13건 분석](../reports/2026-11-04.md). 기존 정정·이력은 보존합니다.
+
+- Whale 전체·Desktop·iOS·Android 목록의 최근 7일 구간과 해당 4개 한·영 본문, 연구소 신규 63213 원문을 읽었습니다. Desktop 5.41.429.2의 19항목을 별도 색인화하고 Android 4.1의 기존 사건은 반복 제외했습니다. 등록 11/3·본문 11/2 Beta를 구분하며 연구소 영어 Stable/Beta 상충을 보존합니다. 제품 소개 영상은 부분 확인입니다.
+- Edge 신규 사기 알림 자동 권한 취소·차단 및 신고, Firefox 159.0.1 관련 사이트 간 패스키 로그인 수정은 구체적 사용자 행동 변화로 선별했습니다. 일반 패치·예고·문서 누락은 전체 색인에서 별도로 유지합니다.
+- Chrome 새 157 Stable 3개 및 156 Extended Stable 공지는 빌드·보안·일반 수정으로 수집만 했습니다. SVG textPath 158 목록 복귀는 watch이며 기존 누락 사건을 지우지 않았습니다. GPC API 403, Enterprise Gemini 목록 누락의 미확인은 유지합니다.
+- Brave 37개 겹침 구간 릴리스·50개 최신 본문 항목·Android 2개 참조를 색인화했습니다. 새 artifact-only 7개와 Android 1.98.63 엔진 수정은 selected 제외. 1.99.54의 Release 이름과 prerelease=true를 혼동하지 않습니다.
+- Chrome 최신 고유 15개 commit의 파일별 13/11/8 diff, 과거 metadata 22개·설명 헤더 28개 diff를 검증했습니다. about_flags replay는 공식 828926d snapshot과 일치. 원래 1,169개 archive는 유지하고 과거 재개는 metadata 7/7·헤더 6/23 UTC입니다. 북마크바 키보드 구역 탐색은 소스 실험 P2, 설치본 미확인입니다.
+- Opera·Vivaldi, 기존 한국 조건 주간 점검 및 P1/P2 적정성 검토는 기한 전입니다. 예정 전 생략을 성공·변화 없음으로 기록하지 않았고 기준·일정은 변경하지 않았습니다. 모든 직접 시험은 미실행입니다.

@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "source_url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-27T00:00:00Z",
+  "observed_at": "2026-11-03T23:22:11.137211+00:00",
+  "coverage": "10/27 00:00 UTC 이후 공식 공지 20개 전체 content 본문을 확인. 신규 4개(157 Desktop/Android/iOS Stable, 156 Extended Stable), 기존 14개 본문 hash 동일, 기존 보안 공지 2개 HTML hash 변경. 연결 Git log·개별 CVE 본문은 전수 확인하지 않음.",
+  "count": 2,
+  "items": [
+    {
+      "item_id": "4399288682666858511",
+      "browser": "chrome",
+      "title": "Chrome Dev for Desktop Update",
+      "source_url": "https://chromereleases.googleblog.com/2026/10/chrome-dev-for-desktop-update_01100896752.html",
+      "announced_at": "2026-10-30T07:58:33.169-07:00",
+      "versions": [
+        "159.0.8130.0"
+      ],
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "channel": "Dev",
+      "kind": "release_reference",
+      "summary": "직전 수집과 같은 공식 빌드 공지 본문 재확인.",
+      "selection_status": "excluded",
+      "selection_reason": "같은 공지 ID와 본문 hash. 반복 배포·보안 공지를 재알림하지 않음.",
+      "revisit_trigger": "개별 기능·기본 동작 또는 지원 범위 변화의 명시적 공식 근거",
+      "body_sha256": "4da020902239b091dfcddbaf686a09317655bdd620af02d1f7e234814a9d89ae",
+      "body_matches_previous": true,
+      "security_identifiers": [],
+      "real_test": "미실행",
+      "source_updated_at": "2026-10-30T07:58:33.169-07:00",
+      "effective_at": null,
+      "security_fix_count": null,
+      "observed_at": "2026-11-03T23:22:11.137211+00:00",
+      "novelty": "repeat_reference",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "assessed_at": "2026-11-03T23:28:09.142492+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "item_id": "571114130667822043",
+      "browser": "chrome",
+      "title": "Chrome Dev for Android Update",
+      "source_url": "https://chromereleases.googleblog.com/2026/10/chrome-dev-for-android-update_0754174154.html",
+      "announced_at": "2026-10-30T05:13:32.558-07:00",
+      "versions": [
+        "159.0.8130.0"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "channel": "Dev",
+      "kind": "release_reference",
+      "summary": "직전 수집과 같은 공식 빌드 공지 본문 재확인.",
+      "selection_status": "excluded",
+      "selection_reason": "같은 공지 ID와 본문 hash. 반복 배포·보안 공지를 재알림하지 않음.",
+      "revisit_trigger": "개별 기능·기본 동작 또는 지원 범위 변화의 명시적 공식 근거",
+      "body_sha256": "f779de2bd1f5c3313f64e73a1240c8e25eec26d77838e23795bf847dda3bbc8a",
+      "body_matches_previous": true,
+      "security_identifiers": [],
+      "real_test": "미실행",
+      "source_updated_at": "2026-10-30T05:13:32.558-07:00",
+      "effective_at": null,
+      "security_fix_count": null,
+      "observed_at": "2026-11-03T23:22:11.137211+00:00",
+      "novelty": "repeat_reference",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "assessed_at": "2026-11-03T23:28:09.142492+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    }
+  ]
+}

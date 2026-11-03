@@ -6,3 +6,5 @@
 - [2026-10-29](../2026-10-29.md): Gmail 기반 자동완성; 프랑스어 탭 그룹·온디바이스 음성은 후속 후보
 
 - [2026-10-30 — Edge 실행 중 재호출 · Opera WebAI](../2026-10-30.md) · P2 / 조건부 · 공개 문헌 조사, 미실측.
+
+- [2026-11-04 — 신규 변화 2건](../2026-11-04.md): edge-notification-scam-auto-revocation-156, whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102. 공식 문헌·소스 관찰이며 실기 미실행.

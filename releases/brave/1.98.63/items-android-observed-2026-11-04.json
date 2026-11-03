@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "version": "1.98.63",
+  "observed_at": "2026-11-03T23:22:36Z",
+  "coverage": "Explicit Android engine-maintenance note in both current changelog and revised release body; actual Android rollout time unverified.",
+  "items": [
+    {
+      "browser": "brave",
+      "observed_at": "2026-11-03T23:22:36Z",
+      "assessed_at": "2026-11-03T23:22:36Z",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "priority_reason": "Not newly selected for detailed reporting.",
+      "benchmark_readiness": "unknown",
+      "comparison_question": null,
+      "effective_at": null,
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "item_id": "brave-android-1.98.63-chromium-156-8078-80",
+      "product": "Brave browser",
+      "version": "1.98.63",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "announced_at": "2026-10-30T05:50:37Z",
+      "date_note": "Timestamp is original release-object publication. Android-specific note edit was observed now; Android rollout time is unverified.",
+      "event_type": "maintenance",
+      "summary": "Android-specific note records Chromium 156.0.8078.80 maintenance.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.98.63",
+        "https://github.com/brave/brave-browser/blob/master/CHANGELOG_ANDROID.md",
+        "https://github.com/brave/brave-browser/issues/60306"
+      ],
+      "source_section": "Android Release Notes",
+      "source_ordinal": 1,
+      "selection_status": "excluded",
+      "selection_reason": "Engine maintenance and documentation recovery do not establish a newly introduced feature.",
+      "novelty": "new_explicit_android_note_not_feature_launch",
+      "revisit_trigger": "Evidence of a meaningful user-facing behavior change.",
+      "body_sha256": "16ca6b1d345ff55408a859f1bfb23f82103be15f4b7539f95ddaffb9e0bc8daf",
+      "source_presence": "Release API and current Android changelog."
+    }
+  ]
+}

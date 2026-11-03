@@ -1,0 +1,59 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.2",
+  "channel": "beta",
+  "platform": [],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-03T23:26:47Z",
+  "announced_at": "2026-11-03",
+  "effective_at": "2026-11-02",
+  "summary": "첫 로그인에서 기존 북마크·비밀번호·설정 이어쓰기",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "기존 로그인 안내 디자인 수정과 구별되는 데이터 연속성 선택이 명시됨.",
+  "priority": "P1",
+  "priority_reason": "첫 계정 로그인에서 비밀번호·북마크·설정의 귀속과 작업 연속성을 다루므로 보존·혼입·취소를 우선 검증할 필요가 있음.",
+  "comparison_question": "로그인 전 환경을 계정에 연결할 때 데이터 보존·선택 명확성·계정 혼입 방지가 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "이어쓰기 선택·취소·충돌 처리 및 계정 조건 검증",
+  "assessed_at": "2026-11-03T23:30:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-desktop-sign-in-continuity-5-41-429-2-20261102",
+  "feature_id": "whale-sign-in-continuity",
+  "event_type": "improvement",
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35247",
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/"
+  ],
+  "delta": "5.39.412.57의 로그인 관련 변경은 안내창 디자인·문구 통일이었다. 이번은 첫 로그인에서 사용 중인 환경을 이어가는 명시적 선택이다. 기존 모든 동기화 기능의 도입으로 일반화하지 않는다.",
+  "previous_event_id": null,
+  "scope": {
+    "product": "Whale Desktop",
+    "source_item_numbers": [
+      4
+    ],
+    "release_stage": "beta",
+    "channel_basis": "홈페이지 한국어·영문 공지와 연구소 제목·한국어 본문은 Beta. 연구소 영문 본문의 Stable, Beta 표기는 상충하며 Stable 제공은 미확인.",
+    "platform_basis": "Desktop 공지. 기능별 OS 범위 미공개로 platform=[]를 유지. Windows는 우선 시험 후보일 뿐 이 기능의 지원 확인값이 아님.",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+      "checked_at": "2026-11-03T23:26:47Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "actual_device_validation": "미실행",
+    "registered_date": "2026-11-03",
+    "registered_time": null,
+    "effective_at_basis": "공식 본문의 2026-11-02 날짜; 개별 설치본 업데이트·활성화 확인값은 아님.",
+    "novelty_basis": "버전별 명시적 변경과 이전 5.39.412.57 본문·기존 공개 아카이브·공식 도움말의 사용자 동작을 대조. 최초 제공일 또는 전체 과거 이력 완결로 확대하지 않음.",
+    "account_condition": "처음 브라우저 로그인 및 이어쓰기 선택이 명시됨. 기존 계정 데이터와의 병합·충돌·취소·로그아웃 후 처리 미공개."
+  }
+}

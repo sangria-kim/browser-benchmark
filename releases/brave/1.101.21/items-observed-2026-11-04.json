@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "version": "1.101.21",
+  "observed_at": "2026-11-03T23:22:36Z",
+  "coverage": "Full official release body read; download and installation references only. No newly confirmed feature rollout.",
+  "items": [
+    {
+      "browser": "brave",
+      "observed_at": "2026-11-03T23:22:36Z",
+      "assessed_at": "2026-11-03T23:22:36Z",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "priority_reason": "Not newly selected for detailed reporting.",
+      "benchmark_readiness": "unknown",
+      "comparison_question": null,
+      "effective_at": null,
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "item_id": "brave-release-1.101.21",
+      "product": "Brave browser",
+      "version": "1.101.21",
+      "channel": "nightly",
+      "api_prerelease": false,
+      "release_title": "Nightly v1.101.21 (Chromium 157.0.8103.30)",
+      "announced_at": "2026-11-03T18:34:30Z",
+      "event_type": "artifact_reference",
+      "summary": "Build downloads and installation references without feature-specific notes.",
+      "full_item_summary": {
+        "artifact_scope": [
+          "Android APK",
+          "iOS package",
+          "Linux DEB/RPM",
+          "macOS package",
+          "Windows installer"
+        ],
+        "feature_notes": null
+      },
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.21"
+      ],
+      "source_revision": "master",
+      "body_sha256": "b8510f59d6a977282538bcf353d17b61fe3fc1645d61f535cd81064dce5a6532",
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout.",
+      "revisit_trigger": "Feature-specific release notes or evidence of a meaningful new behavior.",
+      "novelty": "new_artifact_reference_not_feature",
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "platform_note": "Platforms identify artifact availability only; notes for ordinary Brave and Origin are separately scoped.",
+      "channel_note": "Channel comes from official release title and body, not the independent API prerelease flag. Artifact publication is not verified installation availability."
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "event_id": "edge-notification-block-report-announced-20261102",
+  "feature_id": "edge-notification-block-report",
+  "browser": "edge",
+  "event_type": "behavior_change",
+  "version": null,
+  "channel": null,
+  "platform": [],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "release_status": "officially_announced_available",
+    "platform_note": "Desktop context; individual OS rollout and Android support are not enumerated.",
+    "section": "Report the notification lure before the abuse begins"
+  },
+  "observed_at": "2026-11-03T23:29:07.543849+00:00",
+  "announced_at": "2026-11-02",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://blogs.windows.com/msedgedev/2026/11/02/client-side-threat-detection-how-scareware-blocker-uncovered-malicious-notification-abuse/",
+    "https://blogs.windows.com/msedgedev/2020/07/23/reducing-distractions-quiet-notification-requests/",
+    "https://blogs.windows.com/msedgedev/2023/07/06/fighting-notification-spam-microsoft-edge/"
+  ],
+  "summary": "알림 권한 요청 단계에서 차단과 신고를 연결하는 Block and report 메뉴 공개",
+  "delta": {
+    "before": "조용한 요청·수동 차단·일반 피드백은 기존 기능이다.",
+    "after": "권한 요청의 차단 메뉴에서 신고 흐름에 진입해 URL과 화면 이미지를 포함할 수 있다.",
+    "version_limit": "같은 글의 자동 회수는 156으로 명시되지만 신고 메뉴의 개별 버전·채널·출시일은 명시되지 않았다."
+  },
+  "verification_status": "official_body_and_prior_history_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "공식 현재 제공 발표와 과거 요청 UI를 대조한 구체적인 새 신고 진입 경로다. 개별 버전이 명시되지 않아 156을 추정하지 않는다.",
+  "priority": "P2",
+  "priority_reason": "사기 신고 상황에 한정된 추가 흐름이며 개별 버전·OS 조건은 검증이 필요하다.",
+  "comparison_question": "단순 차단과 차단 후 신고에서 조작 수·정보 전송 고지·취소 가능성은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "한국 단말·OS·계정 조건에서 실제 노출과 통제된 재현 시험, 공식 지원 조건 보완",
+  "assessed_at": "2026-11-03T23:29:07.543849+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "35058584c0ab1b2b75b4dc8bf09dec550e8a2c5e",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-04",
+    "real_test": "미실행",
+    "evidence": [
+      "https://support.microsoft.com/ko-kr/edge/manage-website-notifications-in-microsoft-edge",
+      "https://support.microsoft.com/ko-kr/edge/prevent-online-scams-with-the-scareware-blocker-in-microsoft-edge",
+      "https://blogs.windows.com/msedgedev/2026/11/02/client-side-threat-detection-how-scareware-blocker-uncovered-malicious-notification-abuse/"
+    ],
+    "evidence_limit": "한국어 도움말은 기존 수동 알림 관리·Scareware를 설명하지만 새 자동 회수·신고 메뉴의 한국 배포와 한국어 UI를 확인하지 않는다.",
+    "device_condition_conflict": "2025년 공식 글의 4코어와 현재 EN/KR 도움말의 최소 5코어 조건이 상충한다. 신규 알림 기능의 공통 최소 조건으로 일반화하지 않는다."
+  }
+}

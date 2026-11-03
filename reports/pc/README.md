@@ -6,3 +6,5 @@
 - [2026-10-29](../2026-10-29.md): Gmail 자동완성, Mini Window, PiP 속도
 
 - [2026-10-30 — Edge 실행 중 재호출 · Opera WebAI](../2026-10-30.md) · P2 / 조건부 · 공개 문헌 조사, 미실측.
+
+- [2026-11-04 — 신규 변화 13건](../2026-11-04.md): chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea, firefox-related-origin-passkey-fix-159-0-1, edge-notification-block-report-announced-20261102, edge-notification-scam-auto-revocation-156, whale-desktop-multiplay-follow-exit-5-41-429-2-20261102, whale-desktop-settings-import-shortcuts-5-41-429-2-20261102, whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102, whale-desktop-vertical-tab-window-width-5-41-429-2-20261102, whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102, whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102, whale-desktop-sign-in-continuity-5-41-429-2-20261102, whale-desktop-memo-formatting-5-41-429-2-20261102, whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102. 공식 문헌·소스 관찰이며 실기 미실행.

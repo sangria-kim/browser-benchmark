@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-svg-textpath-side-list-restored-20261104",
+  "feature_id": "chrome-5422782593761280",
+  "browser": "chrome",
+  "event_type": "planned_milestone_confirmation",
+  "version": "158",
+  "channel": "Proposed",
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "ChromeStatus 문서 관찰. desktop/android/webview 필드의 목표 milestone 158이며 설치본 지원 OS·실제 배포는 미검증.",
+  "observed_at": "2026-11-03T23:22:16.583453+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://chromestatus.com/api/v0/features/5422782593761280",
+    "https://chromestatus.com/api/v0/features?milestone=158"
+  ],
+  "summary": "158 목록에 SVG textPath side가 복귀했고 개별 API의 desktop/android/webview 목표값은 158. 일반 상태는 Proposed여서 정식 출시로 단정하지 않음.",
+  "delta": {
+    "previous_list_state": "absent",
+    "current_list_state": "present in Enabled by default group",
+    "previous_individual_shipping_milestones": {
+      "desktop": null,
+      "android": null,
+      "webview": null,
+      "ios": null
+    },
+    "current_individual_state": {
+      "status": {
+        "text": "Proposed",
+        "val": 2,
+        "milestone_str": "Proposed"
+      },
+      "desktop": 158,
+      "android": 158,
+      "webview": 158,
+      "ios": null
+    },
+    "deleted": false,
+    "is_released": false,
+    "source_updated_at": "2026-11-03 00:45:12.314689",
+    "individual_api_sha256": "13697ebb6ecd51d6e7ff4196d092c1943c49b04c8bf6f3c41f7574afa7a66df7"
+  },
+  "verification_status": "official_bodies_read_planned_milestone_confirmed",
+  "previous_event_id": "chrome-svg-textpath-side-list-omission-20261102",
+  "selection_status": "watch",
+  "selection_reason": "이전 누락은 기록으로 보존. 현재 문서의 계획 대상 버전은 확인됐지만 제품 배포·설치본 동작이 확인되지 않아 관찰 유지.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동일 SVG 텍스트 경로의 side 좌우 변경이 대상 버전에서 예상한 방향·위치로 렌더링되는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 확인 또는 대상 버전 설치본의 SVG 렌더링 검증",
+  "assessed_at": "2026-11-03T23:28:09.142492+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "rule_commit": "35058584c0ab1b2b75b4dc8bf09dec550e8a2c5e",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-04",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/api/v0/features/5422782593761280"
+    ]
+  }
+}

@@ -2,7 +2,7 @@
 
 Chrome 실험 기능과 Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 새 기능 및 주요 동작 변경을 공개 공식 자료로 추적하는 아카이브입니다. Windows와 Android를 우선하며, 제품 비교와 재현 가능한 벤치마크 후보를 기록합니다.
 
-Brave·Whale은 기존 매 실행, Opera·Vivaldi는 주 1회 보조 관찰합니다. Safari는 제외합니다. 추가 4종의 실제 수집은 아직 미실행입니다.
+Brave·Whale은 기존 매 실행, Opera·Vivaldi는 주 1회 보조 관찰합니다. Safari는 제외합니다. 추가 4종의 수집은 2026-10-30부터 출처별로 진행 중이며, 전체 과거 이력 및 부분 확인 범위는 [수집 상태](docs/collection-status.md)에 구분합니다.
 
 ## P1·P2 우선순위 한눈에 보기
 
@@ -87,3 +87,7 @@ git pull --ff-only
 ### 2026-11-03 수집 추가
 
 [출처별 범위](data/collection/2026-11-03.json)와 [Whale Android 4.1 상세 분석](reports/2026-11-03.md)을 추가했습니다. 공지 제품별 최근 7일 확인과 제품 소개·전체 과거 이력의 미완료 범위를 구분했습니다.
+
+### 2026-11-04 수집 추가
+
+[신규 selected 13건 상세 분석](reports/2026-11-04.md)과 [출처별 범위](data/collection/2026-11-04.json)를 저장했습니다. Whale Desktop Beta, Edge 알림 제어, Firefox 패스키 수정 및 Chrome 소스 실험을 실제 출시 조건·검증 상태와 구분합니다. 첫 문단의 추가 브라우저 미실행 표기는 과거 상태여서 현행 수집 상태 링크로 정정했습니다.
