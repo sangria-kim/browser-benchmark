@@ -123,3 +123,19 @@ Desktop 27개와 Android 4.0 13개를 과거 보완하고 Android 4.1 4개를 �
 - [152 공식 근거](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release) · [정정 분석](../reports/2026-11-04.md) · [사건 이력](../data/events/edge-notification-scam-auto-revocation-156.json).
 - 최초 게시의 selected 13건에서 해당 1건을 `pending_verification`으로 전환하여 현행 selected는 12건이다. 기존 선정·P1 사유와 관찰 시각은 정정 이력으로 보존했다.
 - 156의 최초 도입·Scareware 최초 추가·배포 확대를 단정하지 않으며 신규 출시로 재알림하지 않는다. 실기·한국 제공은 여전히 미확인이다. 정정은 수집 checkpoint 전진이나 새로운 수집 성공을 뜻하지 않는다.
+
+## 2026-11-05 실행 결과
+
+규칙 commit `4663962fcdf1abddd0753e783a9fc5cd26a71007` / `pm-selection-v2`. [출처별 실제 범위](../data/collection/2026-11-05.json). 기존 기록과 Edge 신규성 정정을 보존합니다.
+
+- 확인한 범위에서 새 selected 사건은 0건입니다. 실패·부분 수집 범위에 변화가 없었다는 뜻은 아니며 빈 상세 보고서는 만들지 않습니다.
+- [Chrome 158 빌드 공지 4개](../releases/chrome/collection-2026-11-05.json)를 저장했습니다. Windows 소수 대상 Early Stable과 Desktop·Android·iOS Beta를 구분합니다. 개별 기능 변경이 명시되지 않은 빌드 참조로 수집만 했으며 Mac Early Stable은 예정입니다. 전체 feed·Git log·10월 겹침 구간은 미완료입니다.
+- Chrome Enterprise는 API 접근 실패와 새 UI shell로 본문 재확인에 실패했습니다. ChromeStatus는 HTML 일부만 확인했고 Chrome Blog·Google 한국은 RSS/XML 및 본문 접근 제약으로 partial입니다. Chrome flags 현재 3개 소스는 확인했으나 이전 revision·변경 로그를 확보하지 못해 증분 diff·replay·과거 backfill은 미완료입니다. 기존 manifest와 1,169 commit archive는 변경하지 않습니다.
+- Firefox Desktop 159.0.1의 9항목·Android 5항목, 160 Beta 및 MDN 159/160은 기존 수집과 의미상 같은 구성을 확인했습니다. 정규화 hash 전체 비교는 하지 않았으며 패스키 등 기존 사건을 재선정하지 않습니다.
+- Edge Stable·보안·개발자 블로그·site-impacting 본문은 기존 근거와 의미상 중복입니다. Mobile Stable 직접 본문은 이번에 미조회했으며 보안 문서의 모바일 항목이 이를 대체하지 않습니다. Microsoft 한국 홈과 전체보기는 최근 기간 전체 확인이 안 되어 partial입니다.
+- [Brave 신규 아티팩트 6개](../releases/brave/collection-2026-11-05.json)를 수집했습니다. Nightly 1.101.22–25, Beta 1.100.48, Release 표제 1.99.55이며 개별 기능 노트가 없어 상세보고에서는 제외합니다. API prerelease와 표제 채널을 따로 보존합니다. 최근 7일 전체 API 목록·수정 본문 비교는 두 차례 전송 실패로 partial입니다. latest의 Android 1.98.63 노출은 기존 changelog/API 사건과 같아 재선정하지 않습니다.
+- [Whale 공식 API 목록·4개 한영 본문 및 연구소 재확인](../releases/whale/collection-2026-11-05.json)은 최근 7일 구간을 덮었습니다. 기존 Desktop 19항목·Android 4항목을 기존 색인과 대조했으며 새 원문은 없습니다. 홈페이지 한영 공지는 모두 Beta이고 연구소 영어의 Stable/Beta 상충은 보존합니다. 제품 소개는 JS shell로 partial이며 전체 과거 이력·제품 기능 검증 완료를 주장하지 않습니다.
+- Opera·Vivaldi 정규 주간 수집, 기존 관심 기능의 한국 지원 조건 및 P1/P2 재검토는 예정 전입니다. 예정 외 참고 조회가 있더라도 정규 주간 수집 성공으로 처리하지 않습니다. 모든 설치본·한국 단말·직접 벤치마크는 미실행입니다.
+
+
+예정 외 참고: Opera Desktop 139 Stable·140 Developer 및 Vivaldi 8.2 minor update·8.3 RC 공지를 보조 조회했습니다. [참고 URL과 한계](../data/collection/2026-11-05.json)에 남기며 이번 정규 주간 완료나 신규 selected 판정으로 집계하지 않습니다.

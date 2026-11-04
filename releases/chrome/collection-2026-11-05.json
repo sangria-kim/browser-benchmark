@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "browser": "chrome",
+  "rule_commit": "4663962fcdf1abddd0753e783a9fc5cd26a71007",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-04T22:37:58Z",
+  "coverage": {
+    "status": "partial",
+    "scope": "현재 첫 페이지 및 개별 11/4 네 본문, 11/3 Stable, 10/28 Beta 소개 확인. 10/28-30 공식 검색 결과 겹침. 전체 feed 및 Git log 미검증. 10월 아카이브 직접 열기 HTTP 429.",
+    "source": "https://chromereleases.googleblog.com/"
+  },
+  "items": [
+    {
+      "item_id": "chrome-build-158-early-stable-desktop-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.18/.19",
+      "channel": "Early Stable",
+      "platform": [
+        "Windows"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "announced_at_precision": "date",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/early-stable-update-for-desktop.html"
+      ],
+      "summary": "소수 사용자 대상, Mac 곧 제공 예정. 일반 Stable 출시 아님.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 변경 설명 또는 구체적 사용자 동작 변화가 확인될 때.",
+      "assessed_at": "2026-11-04T22:42:07Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_build_announcement_not_feature",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "chrome-build-158-beta-desktop-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.18",
+      "channel": "Beta",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "announced_at_precision": "date",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/chrome-beta-for-desktop-update.html"
+      ],
+      "summary": "Chrome 158 Beta 빌드 업데이트 공지. 개별 사용자 기능 변경은 이 본문에서 명시하지 않음.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 변경 설명 또는 구체적 사용자 동작 변화가 확인될 때.",
+      "assessed_at": "2026-11-04T22:42:07Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_build_announcement_not_feature",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "chrome-build-158-beta-android-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.22",
+      "channel": "Beta",
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "announced_at_precision": "date",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/chrome-beta-for-android-update.html"
+      ],
+      "summary": "Chrome 158 Beta 빌드 업데이트 공지. 개별 사용자 기능 변경은 이 본문에서 명시하지 않음.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 변경 설명 또는 구체적 사용자 동작 변화가 확인될 때.",
+      "assessed_at": "2026-11-04T22:42:07Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_build_announcement_not_feature",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "chrome-build-158-beta-ios-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.13",
+      "channel": "Beta",
+      "platform": [
+        "iOS"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "announced_at_precision": "date",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/chrome-beta-for-ios-update.html"
+      ],
+      "summary": "Chrome 158 Beta 빌드 업데이트 공지. 개별 사용자 기능 변경은 이 본문에서 명시하지 않음.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 변경 설명 또는 구체적 사용자 동작 변화가 확인될 때.",
+      "assessed_at": "2026-11-04T22:42:07Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_build_announcement_not_feature",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    }
+  ],
+  "evidence_comparison": {
+    "baseline_commit": "4663962fcdf1abddd0753e783a9fc5cd26a71007",
+    "baseline_file": "data/collection/2026-11-04.json",
+    "new_build_announcements": 4,
+    "selected_count": 0
+  },
+  "limitations": [
+    "전체 feed·Git log·개별 기능 릴리스 노트 비교 미완료.",
+    "Early Stable은 Windows 소수 사용자 대상으로 일반 Stable 전체 배포가 아니다. Mac은 예정으로 분리한다.",
+    "발표일은 원문 일자 정밀도이며 실제 효력 시각·한국 제공·설치본 검증은 미확인."
+  ]
+}

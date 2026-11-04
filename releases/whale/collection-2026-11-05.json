@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "rule_commit": "4663962fcdf1abddd0753e783a9fc5cd26a71007",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-04T22:40:10Z",
+  "coverage": {
+    "sources": [
+      {
+        "source_id": "whale-homepage-all",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10",
+        "coverage_status": "success",
+        "observed_at": "2026-11-04T22:40:10Z",
+        "coverage": "공식 목록 첫 페이지가 최근 7일 경계를 덮고 기간 내 연결된 원문 4개(한영 2쌍)를 확인. 전체 과거 이력 완료를 뜻하지 않는다.",
+        "body_read": true,
+        "list_count": 10,
+        "list_oldest_registration_date": "2026-09-21",
+        "list_newest_registration_date": "2026-11-03",
+        "response_sha256": "2e0b02e6a139b52521ff65e126803879446138d732224bb67e3114f7ee0b8398"
+      },
+      {
+        "source_id": "whale-homepage-desktop",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10&categoryId=99",
+        "coverage_status": "success",
+        "observed_at": "2026-11-04T22:40:10Z",
+        "coverage": "공식 목록 첫 페이지가 최근 7일 경계를 덮고 기간 내 연결된 원문 4개(한영 2쌍)를 확인. 전체 과거 이력 완료를 뜻하지 않는다.",
+        "body_read": true,
+        "list_count": 10,
+        "list_oldest_registration_date": "2026-08-12",
+        "list_newest_registration_date": "2026-11-03",
+        "response_sha256": "ee21160dd786f0c30930362e47f8086dc4951b981de5029d8c5030104cc6a9d7"
+      },
+      {
+        "source_id": "whale-homepage-ios",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10&categoryId=100",
+        "coverage_status": "success",
+        "observed_at": "2026-11-04T22:40:10Z",
+        "coverage": "공식 목록 첫 페이지가 최근 7일 경계를 덮고 기간 내 연결된 원문 4개(한영 2쌍)를 확인. 전체 과거 이력 완료를 뜻하지 않는다.",
+        "body_read": true,
+        "list_count": 10,
+        "list_oldest_registration_date": "2025-08-28",
+        "list_newest_registration_date": "2026-10-02",
+        "response_sha256": "a61aea217e21d99b904961b8f71f01a948fb81a1c72fbe08c660b06c48d168e5"
+      },
+      {
+        "source_id": "whale-homepage-android",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10&categoryId=101",
+        "coverage_status": "success",
+        "observed_at": "2026-11-04T22:40:10Z",
+        "coverage": "공식 목록 첫 페이지가 최근 7일 경계를 덮고 기간 내 연결된 원문 4개(한영 2쌍)를 확인. 전체 과거 이력 완료를 뜻하지 않는다.",
+        "body_read": true,
+        "list_count": 10,
+        "list_oldest_registration_date": "2026-04-16",
+        "list_newest_registration_date": "2026-11-02",
+        "response_sha256": "9cec0d4c384d108da59b9785307f94b97b9e03a15ff8a8db4662655116fe5101"
+      },
+      {
+        "source_id": "whale-forum",
+        "url": "https://forum.whale.naver.com/forum/26/?page=1&sortby=start_date&sortdirection=desc",
+        "coverage_status": "success",
+        "observed_at": "2026-11-04T22:40:10Z",
+        "coverage": "게시 순서 목록과 운영팀 63213 본문을 확인. 기존 Beta 공지이며 새 원문 없음. 댓글을 출시일로 사용하지 않는다.",
+        "body_read": true
+      },
+      {
+        "source_id": "whale-product",
+        "url": "https://whale.naver.com/",
+        "coverage_status": "partial",
+        "observed_at": "2026-11-04T22:40:10Z",
+        "coverage": "JS shell 및 일부 SEO 텍스트만 확보. 전체 제품 소개·영상·기능 조건을 확인하지 못함.",
+        "body_read": false
+      }
+    ],
+    "scope": "최근 구간 공식 목록·연결된 본문 재확인. 새 본문·새 사건은 없으며 기존 항목을 복제하지 않고 색인을 참조한다."
+  },
+  "method": "Official public notice API discovered from official frontend JavaScript; category IDs and categoryId query parameter confirmed in public frontend, not guessed. Forum read through web and direct HTML.",
+  "category_evidence": "https://notice.naver.com/api/v1/services/whalehomepage/categories?sectionId=199",
+  "notices": [
+    {
+      "notice_id": 35247,
+      "title": "v5.41.429.2 업데이트",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35247?sectionId=199",
+      "public_url": "https://notice.naver.com/notices/whalehomepage/35247",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-02",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "body_text_sha256": "36fee68538a8a150441e66bf68f5c205ad18d6ba834556bbbc5fd739a934cba3",
+      "independent_counts": {
+        "improvement": 17,
+        "fix": 2
+      },
+      "novelty": "repeat_of_collected_official_body",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "existing_index": "releases/whale/5.41.429.2/items-desktop-assessment-2026-11-04.json"
+    },
+    {
+      "notice_id": 35248,
+      "title": "v5.41.429.2 Updates",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35248?sectionId=199",
+      "public_url": "https://notice.naver.com/notices/whalehomepage/35248",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-02",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "body_text_sha256": "ba976cf99ce7b9edd959f64dee94ce019a8fc7a1bef11eadf427a23f0fa2abe4",
+      "independent_counts": {
+        "improvement": 17,
+        "fix": 2
+      },
+      "novelty": "repeat_of_collected_official_body",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "existing_index": "releases/whale/5.41.429.2/items-desktop-assessment-2026-11-04.json"
+    },
+    {
+      "notice_id": 35236,
+      "title": "v4.1 업데이트",
+      "product": "Android",
+      "version": "4.1",
+      "channel": "unknown",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35236?sectionId=199",
+      "public_url": "https://notice.naver.com/notices/whalehomepage/35236",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "body_text_sha256": "b0ef3166afb3d392e49280e70d3a5d603f8d95688155c5a83cc36729391ca6ce",
+      "independent_counts": {
+        "improvement": 2,
+        "fix": 2
+      },
+      "novelty": "repeat_of_collected_official_body",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "existing_index": "releases/whale/4.1/items-android-assessment-2026-11-03.json"
+    },
+    {
+      "notice_id": 35237,
+      "title": "v4.1 Updates",
+      "product": "Android",
+      "version": "4.1",
+      "channel": "unknown",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35237?sectionId=199",
+      "public_url": "https://notice.naver.com/notices/whalehomepage/35237",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "body_text_sha256": "d366ddbc02174aff508fdfe234c9d7e87aa1c15043c2153ca636a7671b0dee64",
+      "independent_counts": {
+        "improvement": 2,
+        "fix": 2
+      },
+      "novelty": "repeat_of_collected_official_body",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "existing_index": "releases/whale/4.1/items-android-assessment-2026-11-03.json"
+    }
+  ],
+  "selected_events": [],
+  "evidence_comparison": {
+    "existing_desktop_items": 19,
+    "existing_android_items": 4,
+    "new_original_bodies": 0,
+    "language_duplicates": 2,
+    "forum_published_at": "2026-11-03T01:50:56Z",
+    "forum_url": "https://forum.whale.naver.com/topic/63213/",
+    "channel_caveat": "Official homepage Korean and English 5.41 notices both say Beta; forum English says Stable/Beta, forum Korean/title say Beta. Do not claim Stable rollout."
+  },
+  "limitations": [
+    "API includes timezone-less timestamps. Do not assert UTC/KST precision until verified; public UI registration dates remain date precision.",
+    "Homepage provides JS shell and small SEO text; full product introduction not recovered. Keep prior checkpoint.",
+    "공식 홈페이지 한국어·영어는 Beta이며 forum 영어의 Stable/Beta 상충을 보존. Stable 출시로 단정하지 않는다.",
+    "설치본·한국 제공·직접 동작 검증 미실행."
+  ]
+}

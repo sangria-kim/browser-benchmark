@@ -1,0 +1,407 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "rule_commit": "4663962fcdf1abddd0753e783a9fc5cd26a71007",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": null,
+  "observation_window": {
+    "start": "2026-11-04T22:36:09Z",
+    "end": "2026-11-04T22:39:48Z"
+  },
+  "coverage": {
+    "status": "partial",
+    "scope": "공식 최신 목록과 신규 6개 개별 API 객체 본문. 최근 7일 전체 release 객체·수정 본문 재비교는 미완료.",
+    "sources": [
+      {
+        "source_id": "brave-releases",
+        "url": "https://github.com/brave/brave-browser/releases",
+        "coverage_status": "partial",
+        "coverage": "Latest HTML list and all six new individual API release bodies read. Bulk per_page=50 API twice Transport closed. Seven-day complete overlap body/metadata comparison not completed.",
+        "observed_at": null,
+        "retrieval_method": "web_search_open",
+        "observation_precision": "interval",
+        "observation_window": {
+          "start": "2026-11-04T22:36:09Z",
+          "end": "2026-11-04T22:39:48Z"
+        }
+      },
+      {
+        "source_id": "brave-android-changelog",
+        "url": "https://github.com/brave/brave-browser/blob/master/CHANGELOG_ANDROID.md",
+        "coverage_status": "complete_current",
+        "coverage": "Lines 1-85 read. Top 1.98.63 maintenance and 13 issue references for 1.98.60 agree with baseline; historical backfill not claimed.",
+        "observed_at": null,
+        "retrieval_method": "github_connector",
+        "observation_precision": "interval",
+        "observation_window": {
+          "start": "2026-11-04T22:36:09Z",
+          "end": "2026-11-04T22:39:48Z"
+        }
+      },
+      {
+        "source_id": "brave-latest",
+        "url": "https://brave.com/latest/",
+        "coverage_status": "complete_current",
+        "coverage": "Android 1.98.63 now displayed in latest page; already captured in prior Android changelog/API collection, not a new feature. Other latest notes agree semantically.",
+        "observed_at": null,
+        "retrieval_method": "web_search_open",
+        "observation_precision": "interval",
+        "observation_window": {
+          "start": "2026-11-04T22:36:09Z",
+          "end": "2026-11-04T22:39:48Z"
+        }
+      },
+      {
+        "source_id": "brave-blog",
+        "url": "https://brave.com/blog/",
+        "coverage_status": "success_index",
+        "coverage": "Latest dated index entry October 15; no new in-window article observed.",
+        "observed_at": null,
+        "retrieval_method": "web_search_open",
+        "observation_precision": "interval",
+        "observation_window": {
+          "start": "2026-11-04T22:36:09Z",
+          "end": "2026-11-04T22:39:48Z"
+        }
+      }
+    ]
+  },
+  "items": [
+    {
+      "item_id": "brave-release-1.101.22",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.22",
+      "channel": "nightly",
+      "release_title": "Nightly v1.101.22 (Chromium 157.0.8103.30)",
+      "api_prerelease": true,
+      "engine_version": "157.0.8103.30",
+      "announced_at": "2026-11-04T01:24:41Z",
+      "effective_at": null,
+      "observed_at": null,
+      "observation_window": {
+        "start": "2026-11-04T22:36:09Z",
+        "end": "2026-11-04T22:39:48Z"
+      },
+      "observation_precision": "interval",
+      "event_type": "artifact_reference",
+      "summary": "빌드 다운로드·설치 안내를 확인했으나 개별 기능 변경 노트는 명시되지 않았다.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.22"
+      ],
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "platform_note": "설치 아티팩트 안내 범위이며 제품 기능의 플랫폼별 출시를 뜻하지 않는다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout. Feature-specific release evidence remains unverified.",
+      "priority": null,
+      "priority_reason": "새 상세보고 대상으로 선정하지 않음.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 릴리스 노트 또는 의미 있는 사용자 동작 변경의 근거가 확인될 때 재검토.",
+      "assessed_at": "2026-11-04T22:40:00Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_artifact_reference_not_feature",
+      "feature_launch_confirmed": false,
+      "channel_note": "공식 표제·본문의 채널을 API prerelease 값과 구분한다. Release 표제의 1.99.55는 API prerelease=true이며 배포 완료를 주장하지 않는다.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "brave-release-1.101.23",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.23",
+      "channel": "nightly",
+      "release_title": "Nightly v1.101.23 (Chromium 157.0.8103.30)",
+      "api_prerelease": false,
+      "engine_version": "157.0.8103.30",
+      "announced_at": "2026-11-04T13:30:26Z",
+      "effective_at": null,
+      "observed_at": null,
+      "observation_window": {
+        "start": "2026-11-04T22:36:09Z",
+        "end": "2026-11-04T22:39:48Z"
+      },
+      "observation_precision": "interval",
+      "event_type": "artifact_reference",
+      "summary": "빌드 다운로드·설치 안내를 확인했으나 개별 기능 변경 노트는 명시되지 않았다.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.23"
+      ],
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "platform_note": "설치 아티팩트 안내 범위이며 제품 기능의 플랫폼별 출시를 뜻하지 않는다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout. Feature-specific release evidence remains unverified.",
+      "priority": null,
+      "priority_reason": "새 상세보고 대상으로 선정하지 않음.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 릴리스 노트 또는 의미 있는 사용자 동작 변경의 근거가 확인될 때 재검토.",
+      "assessed_at": "2026-11-04T22:40:00Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_artifact_reference_not_feature",
+      "feature_launch_confirmed": false,
+      "channel_note": "공식 표제·본문의 채널을 API prerelease 값과 구분한다. Release 표제의 1.99.55는 API prerelease=true이며 배포 완료를 주장하지 않는다.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "brave-release-1.101.24",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.24",
+      "channel": "nightly",
+      "release_title": "Nightly v1.101.24 (Chromium 157.0.8103.30)",
+      "api_prerelease": true,
+      "engine_version": "157.0.8103.30",
+      "announced_at": "2026-11-04T13:50:16Z",
+      "effective_at": null,
+      "observed_at": null,
+      "observation_window": {
+        "start": "2026-11-04T22:36:09Z",
+        "end": "2026-11-04T22:39:48Z"
+      },
+      "observation_precision": "interval",
+      "event_type": "artifact_reference",
+      "summary": "빌드 다운로드·설치 안내를 확인했으나 개별 기능 변경 노트는 명시되지 않았다.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.24"
+      ],
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "platform_note": "설치 아티팩트 안내 범위이며 제품 기능의 플랫폼별 출시를 뜻하지 않는다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout. Feature-specific release evidence remains unverified.",
+      "priority": null,
+      "priority_reason": "새 상세보고 대상으로 선정하지 않음.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 릴리스 노트 또는 의미 있는 사용자 동작 변경의 근거가 확인될 때 재검토.",
+      "assessed_at": "2026-11-04T22:40:00Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_artifact_reference_not_feature",
+      "feature_launch_confirmed": false,
+      "channel_note": "공식 표제·본문의 채널을 API prerelease 값과 구분한다. Release 표제의 1.99.55는 API prerelease=true이며 배포 완료를 주장하지 않는다.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "brave-release-1.101.25",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.101.25",
+      "channel": "nightly",
+      "release_title": "Nightly v1.101.25 (Chromium 157.0.8103.30)",
+      "api_prerelease": false,
+      "engine_version": "157.0.8103.30",
+      "announced_at": "2026-11-04T17:38:50Z",
+      "effective_at": null,
+      "observed_at": null,
+      "observation_window": {
+        "start": "2026-11-04T22:36:09Z",
+        "end": "2026-11-04T22:39:48Z"
+      },
+      "observation_precision": "interval",
+      "event_type": "artifact_reference",
+      "summary": "빌드 다운로드·설치 안내를 확인했으나 개별 기능 변경 노트는 명시되지 않았다.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.101.25"
+      ],
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "platform_note": "설치 아티팩트 안내 범위이며 제품 기능의 플랫폼별 출시를 뜻하지 않는다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout. Feature-specific release evidence remains unverified.",
+      "priority": null,
+      "priority_reason": "새 상세보고 대상으로 선정하지 않음.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 릴리스 노트 또는 의미 있는 사용자 동작 변경의 근거가 확인될 때 재검토.",
+      "assessed_at": "2026-11-04T22:40:00Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_artifact_reference_not_feature",
+      "feature_launch_confirmed": false,
+      "channel_note": "공식 표제·본문의 채널을 API prerelease 값과 구분한다. Release 표제의 1.99.55는 API prerelease=true이며 배포 완료를 주장하지 않는다.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "brave-release-1.100.48",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.100.48",
+      "channel": "beta",
+      "release_title": "Beta v1.100.48 (Chromium 157.0.8103.30)",
+      "api_prerelease": false,
+      "engine_version": "157.0.8103.30",
+      "announced_at": "2026-11-04T05:23:26Z",
+      "effective_at": null,
+      "observed_at": null,
+      "observation_window": {
+        "start": "2026-11-04T22:36:09Z",
+        "end": "2026-11-04T22:39:48Z"
+      },
+      "observation_precision": "interval",
+      "event_type": "artifact_reference",
+      "summary": "빌드 다운로드·설치 안내를 확인했으나 개별 기능 변경 노트는 명시되지 않았다.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.100.48"
+      ],
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "platform_note": "설치 아티팩트 안내 범위이며 제품 기능의 플랫폼별 출시를 뜻하지 않는다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout. Feature-specific release evidence remains unverified.",
+      "priority": null,
+      "priority_reason": "새 상세보고 대상으로 선정하지 않음.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 릴리스 노트 또는 의미 있는 사용자 동작 변경의 근거가 확인될 때 재검토.",
+      "assessed_at": "2026-11-04T22:40:00Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_artifact_reference_not_feature",
+      "feature_launch_confirmed": false,
+      "channel_note": "공식 표제·본문의 채널을 API prerelease 값과 구분한다. Release 표제의 1.99.55는 API prerelease=true이며 배포 완료를 주장하지 않는다.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "brave-release-1.99.55",
+      "browser": "brave",
+      "product": "Brave browser",
+      "version": "1.99.55",
+      "channel": "release_label",
+      "release_title": "Release v1.99.55 (Chromium 157.0.8103.39)",
+      "api_prerelease": true,
+      "engine_version": "157.0.8103.39",
+      "announced_at": "2026-11-04T18:56:17Z",
+      "effective_at": null,
+      "observed_at": null,
+      "observation_window": {
+        "start": "2026-11-04T22:36:09Z",
+        "end": "2026-11-04T22:39:48Z"
+      },
+      "observation_precision": "interval",
+      "event_type": "artifact_reference",
+      "summary": "빌드 다운로드·설치 안내를 확인했으나 개별 기능 변경 노트는 명시되지 않았다.",
+      "sources": [
+        "https://github.com/brave/brave-browser/releases/tag/v1.99.55"
+      ],
+      "platform": [
+        "Android",
+        "iOS",
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "platform_note": "설치 아티팩트 안내 범위이며 제품 기능의 플랫폼별 출시를 뜻하지 않는다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": false,
+      "selection_status": "excluded",
+      "selection_reason": "Artifact publication alone does not establish a new user-facing behavior or feature rollout. Feature-specific release evidence remains unverified.",
+      "priority": null,
+      "priority_reason": "새 상세보고 대상으로 선정하지 않음.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "기능별 공식 릴리스 노트 또는 의미 있는 사용자 동작 변경의 근거가 확인될 때 재검토.",
+      "assessed_at": "2026-11-04T22:40:00Z",
+      "selection_rule_version": "pm-selection-v2",
+      "novelty": "new_artifact_reference_not_feature",
+      "feature_launch_confirmed": false,
+      "channel_note": "공식 표제·본문의 채널을 API prerelease 값과 구분한다. Release 표제의 1.99.55는 API prerelease=true이며 배포 완료를 주장하지 않는다.",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    }
+  ],
+  "evidence_comparison": {
+    "baseline_commit": "4663962fcdf1abddd0753e783a9fc5cd26a71007",
+    "baseline_file": "releases/brave/collection-2026-11-04.json",
+    "new_artifact_references": 6,
+    "selected_count": 0,
+    "latest_android_note": "latest의 Android 1.98.63 노출은 이전 changelog/API 수집 사건과 동일하여 새 기능으로 재선정하지 않는다."
+  },
+  "limitations": [
+    "Bulk per_page=50 API가 두 차례 Transport closed로 끝나 전체 겹침 비교는 partial.",
+    "일반 Brave의 채널 및 API prerelease 상태를 별도로 보존.",
+    "설치본·한국 제공·직접 동작 검증 미실행."
+  ]
+}
