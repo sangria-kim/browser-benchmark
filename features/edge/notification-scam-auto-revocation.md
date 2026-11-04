@@ -10,3 +10,11 @@
 
 - [2026-11-04 분석](../../reports/2026-11-04.md): [사건 `edge-notification-scam-auto-revocation-156`](../../data/events/edge-notification-scam-auto-revocation-156.json).
 - 공식 근거·PM 판정·한국 조건은 연결 사건과 분석에 기록.
+
+## 2026-11-04 KST 신규성 정정
+
+Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.
+
+- [공식 Edge 152 선행 근거](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release)
+- 현재 판정: `pending_verification`, priority `null`. 기존 selected/P1 판정은 사건의 correction_history에 보존한다.
+- 위 156 범위·흐름 설명은 최초 관찰 기록이며 최초 출시 근거가 아니다. 추가 공식 근거 전 신규 출시로 재알림하지 않는다.

@@ -455,7 +455,8 @@
       "previous_body_sha256": null,
       "hash_normalization": "HTML main (fallback article), omit script/style, join nonempty trimmed text lines with LF, SHA-256 UTF-8",
       "body_comparison": "first_hash_baseline",
-      "coverage": "113의 unfamiliar-site quiet prompt와 평판 기반 알림 권한 회수를 확인했다. 신규성은 알림 차단 일반이 아니라 탐지와 발신 사이트를 연결한 156 흐름에 한정한다."
+      "coverage": "2023년 기존 권한 회수·quiet prompt를 확인했다. 2026-11-04 추가 확인한 Edge 152 선행 근거 때문에 156 흐름의 신규성은 검증 대기로 정정했다.",
+      "original_coverage_before_correction": "113의 unfamiliar-site quiet prompt와 평판 기반 알림 권한 회수를 확인했다. 신규성은 알림 차단 일반이 아니라 탐지와 발신 사이트를 연결한 156 흐름에 한정한다."
     },
     {
       "source_id": "edge-scareware-history-2025",
@@ -777,7 +778,6 @@
     "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
     "firefox-related-origin-passkey-fix-159-0-1",
     "edge-notification-block-report-announced-20261102",
-    "edge-notification-scam-auto-revocation-156",
     "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102",
     "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102",
     "whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102",
@@ -788,7 +788,9 @@
     "whale-desktop-memo-formatting-5-41-429-2-20261102",
     "whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102"
   ],
-  "pending_verification_events": [],
+  "pending_verification_events": [
+    "edge-notification-scam-auto-revocation-156"
+  ],
   "collected_indexes": [
     "releases/brave/1.100.47/items-observed-2026-11-04.json",
     "releases/brave/1.101.16/items-observed-2026-11-04.json",
@@ -819,7 +821,7 @@
     "experiments/chrome/monthly/2026-11-source-index-2026-11-04.json"
   ],
   "summary": {
-    "selected_unique_events": 13,
+    "selected_unique_events": 12,
     "source_status_counts": {
       "complete_index": 4,
       "partial": 6,
@@ -853,5 +855,15 @@
     "ChromeStatus GPC 개별 API 접근 실패, Microsoft 한국 아카이브 및 Brave 최신/Android 상세는 부분 확인.",
     "Whale 제품 영상 재생 불가. Desktop 공지의 Stable 표기 상충은 해소하지 않고 Beta 범위만 보고.",
     "원문·출시·배포 단계·소스 실험을 구분하며 보안·일반 수정·backfill은 재알림하지 않음."
+  ],
+  "corrections": [
+    {
+      "corrected_at": "2026-11-04T01:32:00Z",
+      "event_id": "edge-notification-scam-auto-revocation-156",
+      "reason": "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+      "source": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release",
+      "previous_selection_status": "selected",
+      "selection_status": "pending_verification"
+    }
   ]
 }

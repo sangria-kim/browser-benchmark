@@ -71,8 +71,11 @@
       "sources": [
         "https://blogs.windows.com/msedgedev/2026/11/02/client-side-threat-detection-how-scareware-blocker-uncovered-malicious-notification-abuse/",
         "https://blogs.windows.com/msedgedev/2023/07/06/fighting-notification-spam-microsoft-edge/",
-        "https://blogs.windows.com/msedgedev/2025/10/31/protecting-more-edge-users-with-expanded-scareware-blocker-availability-and-real-time-protection/"
-      ]
+        "https://blogs.windows.com/msedgedev/2025/10/31/protecting-more-edge-users-with-expanded-scareware-blocker-availability-and-real-time-protection/",
+        "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release"
+      ],
+      "correction_note": "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+      "selection_status": "pending_verification"
     },
     {
       "event_id": "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102",
@@ -367,5 +370,15 @@
     }
   ],
   "weekly_existing_watchlist": "not_due_until_2026-11-05T22:43:00Z",
-  "real_device_tests": "미실행"
+  "real_device_tests": "미실행",
+  "corrections": [
+    {
+      "corrected_at": "2026-11-04T01:32:00Z",
+      "event_id": "edge-notification-scam-auto-revocation-156",
+      "reason": "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+      "source": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release",
+      "previous_selection_status": "selected",
+      "selection_status": "pending_verification"
+    }
+  ]
 }

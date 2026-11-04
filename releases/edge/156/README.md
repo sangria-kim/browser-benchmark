@@ -23,3 +23,7 @@
 
 - 156.0.4314.56 (10월29일),156.0.4314.58 (10월30일): 일반 수정 및 Chromium 보안 반영. 구체적 사용자 동작 변경은 미공개로 상세보고 제외. [보안 노트](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security)는 CVE를 추후 추가한다고 명시한다.
 - [이번 항목 색인](../collection-2026-10-31.json). 기존 기능 신규성 정정은 유지한다.
+
+## 2026-11-04 알림 자동 해제 설명 정정
+
+[11월 2일 발표를 분석한 보고서](../../../reports/2026-11-04.md)의 알림 자동 해제 사건은 신규성 검증 대기로 정정했습니다. [Edge 152 공식 노트](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release)에 SmartScreen 연계 자동 해제·안내·복구의 controlled rollout이 이미 기재되어 있습니다. 156과의 구체적 차이 및 Scareware 최초 추가 시점은 미확인입니다.

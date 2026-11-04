@@ -116,3 +116,10 @@ Desktop 27개와 Android 4.0 13개를 과거 보완하고 Android 4.1 4개를 �
 - Brave 37개 겹침 구간 릴리스·50개 최신 본문 항목·Android 2개 참조를 색인화했습니다. 새 artifact-only 7개와 Android 1.98.63 엔진 수정은 selected 제외. 1.99.54의 Release 이름과 prerelease=true를 혼동하지 않습니다.
 - Chrome 최신 고유 15개 commit의 파일별 13/11/8 diff, 과거 metadata 22개·설명 헤더 28개 diff를 검증했습니다. about_flags replay는 공식 828926d snapshot과 일치. 원래 1,169개 archive는 유지하고 과거 재개는 metadata 7/7·헤더 6/23 UTC입니다. 북마크바 키보드 구역 탐색은 소스 실험 P2, 설치본 미확인입니다.
 - Opera·Vivaldi, 기존 한국 조건 주간 점검 및 P1/P2 적정성 검토는 기한 전입니다. 예정 전 생략을 성공·변화 없음으로 기록하지 않았고 기준·일정은 변경하지 않았습니다. 모든 직접 시험은 미실행입니다.
+
+## 2026-11-04 KST Edge 알림 자동 해제 신규성 정정
+
+- 사건: `edge-notification-scam-auto-revocation-156`. Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.
+- [152 공식 근거](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release) · [정정 분석](../reports/2026-11-04.md) · [사건 이력](../data/events/edge-notification-scam-auto-revocation-156.json).
+- 최초 게시의 selected 13건에서 해당 1건을 `pending_verification`으로 전환하여 현행 selected는 12건이다. 기존 선정·P1 사유와 관찰 시각은 정정 이력으로 보존했다.
+- 156의 최초 도입·Scareware 최초 추가·배포 확대를 단정하지 않으며 신규 출시로 재알림하지 않는다. 실기·한국 제공은 여전히 미확인이다. 정정은 수집 checkpoint 전진이나 새로운 수집 성공을 뜻하지 않는다.

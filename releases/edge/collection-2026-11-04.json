@@ -238,7 +238,8 @@
       "previous_body_sha256": null,
       "hash_normalization": "HTML main (fallback article), omit script/style, join nonempty trimmed text lines with LF, SHA-256 UTF-8",
       "body_comparison": "first_hash_baseline",
-      "coverage": "113의 unfamiliar-site quiet prompt와 평판 기반 알림 권한 회수를 확인했다. 신규성은 알림 차단 일반이 아니라 탐지와 발신 사이트를 연결한 156 흐름에 한정한다."
+      "coverage": "2023년 기존 권한 회수·quiet prompt를 확인했다. 2026-11-04 추가 확인한 Edge 152 선행 근거 때문에 156 흐름의 신규성은 검증 대기로 정정했다.",
+      "original_coverage_before_correction": "113의 unfamiliar-site quiet prompt와 평판 기반 알림 권한 회수를 확인했다. 신규성은 알림 차단 일반이 아니라 탐지와 발신 사이트를 연결한 156 흐름에 한정한다."
     },
     {
       "source_id": "edge-scareware-history-2025",
@@ -2558,7 +2559,7 @@
       "browser": "edge",
       "canonical_feature_key": "notification-scam-auto-revocation-156",
       "summary": "알림에서 유입된 사기를 탐지하면 발신 사이트 알림을 자동 해제하고 재시작 후 사유와 복구 경로를 안내",
-      "item_type": "behavior_change",
+      "item_type": "pending_verification",
       "source_url": "https://blogs.windows.com/msedgedev/2026/11/02/client-side-threat-detection-how-scareware-blocker-uncovered-malicious-notification-abuse/",
       "source_section": "Connecting the dots to stop repeat notification abuse",
       "version": "156",
@@ -2567,10 +2568,10 @@
       "announced_at": "2026-11-02",
       "effective_at": null,
       "observed_at": "2026-11-03T23:29:07.543849+00:00",
-      "novelty": "new_official_source_observation",
-      "selection_status": "selected",
-      "selection_reason": "구체적인 권한 동작과 오탐 복구 경로가 변경됐다. 2020·2023·2025년 공식 이력 및 공개 저장소의 41개 commit과 대조해 같은 사건이 없음을 확인했다.",
-      "priority": "P1",
+      "novelty": "unresolved_relative_to_edge_152",
+      "selection_status": "pending_verification",
+      "selection_reason": "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+      "priority": null,
       "priority_reason": "이미 허용한 알림 권한의 자동 변경은 반복 사기 노출과 사용자 통제에 직접 영향을 준다.",
       "comparison_question": "탐지 후 반복 알림을 줄이면서 차단 사유 인지와 오탐 복구를 명확하게 제공하는가?",
       "benchmark_readiness": "conditional",
@@ -2582,7 +2583,9 @@
         "pc"
       ],
       "ai_related": true,
-      "event_id": "edge-notification-scam-auto-revocation-156"
+      "event_id": "edge-notification-scam-auto-revocation-156",
+      "correction_note": "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+      "previous_priority": "P1"
     },
     {
       "item_id": "edge-notification-block-report-announced-20261102",
@@ -2617,7 +2620,6 @@
     }
   ],
   "selected_event_ids": [
-    "edge-notification-scam-auto-revocation-156",
     "edge-notification-block-report-announced-20261102"
   ],
   "limitations": [
@@ -2632,14 +2634,25 @@
   "summary": {
     "indexed_items": 83,
     "new_items": 6,
-    "selected_count": 2,
+    "selected_count": 1,
     "new_meaningful_event_verified": true,
     "normalized_body_hash_identical_sources": [
       "edge-stable",
       "edge-site-impact"
     ],
     "pending_event_ids": [
-      "edge-webview2-filesystem-document-omission-20261103"
+      "edge-webview2-filesystem-document-omission-20261103",
+      "edge-notification-scam-auto-revocation-156"
     ]
-  }
+  },
+  "corrections": [
+    {
+      "corrected_at": "2026-11-04T01:32:00Z",
+      "event_id": "edge-notification-scam-auto-revocation-156",
+      "reason": "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+      "source": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel#version-1520419153-august-27-2026-stable---main-release",
+      "previous_selection_status": "selected",
+      "selection_status": "pending_verification"
+    }
+  ]
 }

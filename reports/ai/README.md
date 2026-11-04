@@ -7,4 +7,6 @@
 
 - [2026-10-30 — Edge 실행 중 재호출 · Opera WebAI](../2026-10-30.md) · P2 / 조건부 · 공개 문헌 조사, 미실측.
 
-- [2026-11-04 — 신규 변화 2건](../2026-11-04.md): edge-notification-scam-auto-revocation-156, whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102. 공식 문헌·소스 관찰이며 실기 미실행.
+- [2026-11-04 — 정정 후 선정 1건·검증 대기 1건](../2026-11-04.md): edge-notification-scam-auto-revocation-156, whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102. 공식 문헌·소스 관찰이며 실기 미실행.
+
+2026-11-04 정정: `edge-notification-scam-auto-revocation-156`는 신규성 검증 대기이며 AI 경로의 존재를 새 AI 기능 출시로 해석하지 않습니다. [정정 근거](../2026-11-04.md).
