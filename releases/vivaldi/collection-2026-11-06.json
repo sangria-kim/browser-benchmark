@@ -1,0 +1,4526 @@
+{
+  "schema_version": 1,
+  "browser": "vivaldi",
+  "report_date": "2026-11-06",
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-05T22:53:14.091Z",
+  "coverage": {
+    "sources": [
+      {
+        "coverage_status": "success",
+        "body_read": true,
+        "observed_at": "2026-11-05T22:53:14.091Z",
+        "cadence": "weekly_auxiliary",
+        "coverage_start_date": "2026-10-29",
+        "coverage_end_date": "2026-11-05",
+        "scope": "주간 주요 공식 발표와 연결된 변경 기록. 브라우저 모든 변경 수집 아님.",
+        "source_id": "vivaldi-desktop",
+        "url": "https://vivaldi.com/blog/desktop/",
+        "coverage": "첫 목록이 10/29 이전까지 덮음. 8.3 Stable와 111개 항목, Snapshot/RC 4개 13항목, 기존 minor14 보안 항목을 읽고 분리 보존."
+      },
+      {
+        "coverage_status": "success",
+        "body_read": true,
+        "observed_at": "2026-11-05T22:53:14.091Z",
+        "cadence": "weekly_auxiliary",
+        "coverage_start_date": "2026-10-29",
+        "coverage_end_date": "2026-11-05",
+        "scope": "주간 주요 공식 발표와 연결된 변경 기록. 브라우저 모든 변경 수집 아님.",
+        "source_id": "vivaldi-android",
+        "url": "https://vivaldi.com/blog/android/releases/",
+        "coverage": "주요 릴리스 목록과 연결된 업데이트 목록, 8.3 Android 74개 변경과 10/29 minor8 2개 변경 확인. Android Snapshot 전수와 iOS changelog는 범위 밖. 모바일 공지의 iOS 내용은 Android로 적용하지 않음."
+      }
+    ],
+    "scope": "weekly_auxiliary",
+    "limitations": [
+      "설치본·한국 제공·벤치마크 미실행.",
+      "사전배포 이력을 포함한 최초 기능 도입일은 주장하지 않음.",
+      "한국어 VPN 제품 소개와 최신 Android 공식 도움말의 범위 차이를 보존."
+    ]
+  },
+  "items": [
+    {
+      "item_id": "vivaldi-8-3-desktop-001",
+      "source_item_number": 1,
+      "source_issue_id": "VB-125441",
+      "source_section": [
+        "New",
+        "Ad Blocker"
+      ],
+      "summary": "차단기 개편",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 34,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-ad-blocker-levels-8-3-stable-20261105",
+      "feature_id": "vivaldi-ad-tracker-blocker",
+      "priority": "P1"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-002",
+      "source_item_number": 2,
+      "source_issue_id": "VB-131036",
+      "source_section": [
+        "New",
+        "Tabs",
+        "Vertical Tabs"
+      ],
+      "summary": "세로 탭 자동 확장",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 36,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-vertical-tab-hover-expand-8-3-stable-20261105",
+      "feature_id": "vivaldi-vertical-tabs",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-003",
+      "source_item_number": 3,
+      "source_issue_id": "VB-131272",
+      "source_section": [
+        "New",
+        "Commands",
+        "Keyboard"
+      ],
+      "summary": "복수 URL 열기",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 38,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-multi-url-paste-go-8-3-stable-20261105",
+      "feature_id": "vivaldi-multi-url-paste-go",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-004",
+      "source_item_number": 4,
+      "source_issue_id": "VB-127942",
+      "source_section": [
+        "New",
+        "UI"
+      ],
+      "summary": "추적정보 제거 복사",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 40,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-copy-sanitized-link-8-3-stable-20261105",
+      "feature_id": "vivaldi-copy-sanitized-link",
+      "priority": "P1"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-005",
+      "source_item_number": 5,
+      "source_issue_id": "VB-104993",
+      "source_section": [
+        "New",
+        "Reader Mode"
+      ],
+      "summary": "리더 모드 재구현",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 42,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "excluded",
+      "selection_reason": "리더 모드 재구현 사실은 기록하되 속도 개선 크기·새 사용자 동작은 미검증. 성능 홍보만으로 선정하지 않음.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-006",
+      "source_item_number": 6,
+      "source_issue_id": "VB-131507",
+      "source_section": [
+        "New",
+        "Extensions",
+        "Tabs"
+      ],
+      "summary": "탭 그룹 API",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 44,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-extension-tab-groups-api-8-3-stable-20261105",
+      "feature_id": "vivaldi-extension-tab-groups-api",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-007",
+      "source_item_number": 7,
+      "source_issue_id": "VB-132078",
+      "source_section": [
+        "Address Field",
+        "AutoHide"
+      ],
+      "summary": "주소창 목록 숨김 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 47,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-008",
+      "source_item_number": 8,
+      "source_issue_id": "VB-132116",
+      "source_section": [
+        "Address Field"
+      ],
+      "summary": "data URI 배지 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 49,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-009",
+      "source_item_number": 9,
+      "source_issue_id": "VB-131548",
+      "source_section": [
+        "Address Field",
+        "Calculator"
+      ],
+      "summary": "전화번호 계산 오인 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 51,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-010",
+      "source_item_number": 10,
+      "source_issue_id": "VB-132119",
+      "source_section": [
+        "Address Field"
+      ],
+      "summary": "붙여넣기 자동완성 방지",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 53,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-011",
+      "source_item_number": 11,
+      "source_issue_id": "VB-132558",
+      "source_section": [
+        "Address Field"
+      ],
+      "summary": "방문 기록과 이동 구분",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 55,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-012",
+      "source_item_number": 12,
+      "source_issue_id": "VB-131168",
+      "source_section": [
+        "Address Field"
+      ],
+      "summary": "잘못된 URL 단축어 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 57,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-013",
+      "source_item_number": 13,
+      "source_issue_id": "VB-131612",
+      "source_section": [
+        "Address Field"
+      ],
+      "summary": "목록 키보드 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 58,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-014",
+      "source_item_number": 14,
+      "source_issue_id": "VB-131708",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 기본 폴더 변경",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 61,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "pending_verification",
+      "selection_reason": "북마크 기본 저장 위치 변경의 사용자 UI 적용 범위 확인 필요.",
+      "revisit_trigger": "공식 도움말·과거 릴리스로 동작·신규성 확인"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-015",
+      "source_item_number": 15,
+      "source_issue_id": "VB-125831",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 루트 외 쓰기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 63,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-016",
+      "source_item_number": 16,
+      "source_issue_id": "VB-131586",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 UI 명칭 조정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 65,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-017",
+      "source_item_number": 17,
+      "source_issue_id": "VB-131197",
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "WebCal URL 검증 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 68,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-018",
+      "source_item_number": 18,
+      "source_issue_id": "VB-132060",
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "현재시각 표시 갱신 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 70,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-019",
+      "source_item_number": 19,
+      "source_issue_id": null,
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "자정 걸친 일정 분류 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 72,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-020",
+      "source_item_number": 20,
+      "source_issue_id": "VB-129509",
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "일정 검색 포커스 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 74,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-021",
+      "source_item_number": 21,
+      "source_issue_id": "VB-132114",
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "다음 일정 상태 표시",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 76,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-022",
+      "source_item_number": 22,
+      "source_issue_id": "VB-115963",
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "초대 수락 거절 버튼 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 78,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-023",
+      "source_item_number": 23,
+      "source_issue_id": "VB-131198",
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "WebCal 오류 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 79,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-024",
+      "source_item_number": 24,
+      "source_issue_id": null,
+      "source_section": [
+        "Calendar"
+      ],
+      "summary": "일정 추가 버튼 간격",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 81,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-025",
+      "source_item_number": 25,
+      "source_issue_id": "VB-130454",
+      "source_section": [
+        "Crash"
+      ],
+      "summary": "모델 알림 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 84,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-026",
+      "source_item_number": 26,
+      "source_issue_id": "VB-131526",
+      "source_section": [
+        "Crash"
+      ],
+      "summary": "WebTransport 초기화 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 86,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-027",
+      "source_item_number": 27,
+      "source_issue_id": "VB-129619",
+      "source_section": [
+        "Crash"
+      ],
+      "summary": "숨긴 탭 대화상자 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 88,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-028",
+      "source_item_number": 28,
+      "source_issue_id": "VB-132371",
+      "source_section": [
+        "Crash",
+        "PWA"
+      ],
+      "summary": "PWA 권한 변경 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 90,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-029",
+      "source_item_number": 29,
+      "source_issue_id": "VB-131951",
+      "source_section": [
+        "Crash",
+        "Reader"
+      ],
+      "summary": "리더 로딩 탭 종료 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 92,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-030",
+      "source_item_number": 30,
+      "source_issue_id": "VB-132077",
+      "source_section": [
+        "Crash",
+        "Tabs"
+      ],
+      "summary": "PDF 타일링 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 93,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-031",
+      "source_item_number": 31,
+      "source_issue_id": "VB-129877",
+      "source_section": [
+        "Crash"
+      ],
+      "summary": "가상 데스크톱 충돌 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 95,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-032",
+      "source_item_number": 32,
+      "source_issue_id": "VB-131585",
+      "source_section": [
+        "macOS",
+        "AutoUpdate"
+      ],
+      "summary": "Sparkle 2.10 업데이트",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 98,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-033",
+      "source_item_number": 33,
+      "source_issue_id": "VB-131362",
+      "source_section": [
+        "macOS"
+      ],
+      "summary": "macOS 외부 링크 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 100,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-034",
+      "source_item_number": 34,
+      "source_issue_id": "VB-132003",
+      "source_section": [
+        "macOS",
+        "Keyboard"
+      ],
+      "summary": "macOS 확대 초기화 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 102,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-035",
+      "source_item_number": 35,
+      "source_issue_id": "VB-132380",
+      "source_section": [
+        "macOS"
+      ],
+      "summary": "macOS 최대화 여백 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 104,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-036",
+      "source_item_number": 36,
+      "source_issue_id": "VB-130936",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 송수신시각 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 107,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-037",
+      "source_item_number": 37,
+      "source_issue_id": "VB-128849",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "도메인 단위 메일링리스트",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 109,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-038",
+      "source_item_number": 38,
+      "source_issue_id": "VB-124688",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "mbox 가져오기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 111,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-039",
+      "source_item_number": 39,
+      "source_issue_id": "VB-131559",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "삭제 메일 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 113,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-040",
+      "source_item_number": 40,
+      "source_issue_id": "VB-131470",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "읽음 처리 여백 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 115,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-041",
+      "source_item_number": 41,
+      "source_issue_id": "VB-131753",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "기존 메일 가져오기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 117,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-042",
+      "source_item_number": 42,
+      "source_issue_id": "VB-131201",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "초안 복원 내용 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 119,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-043",
+      "source_item_number": 43,
+      "source_issue_id": "VB-128889",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 목록 렌더링 개선",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 120,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-044",
+      "source_item_number": 44,
+      "source_issue_id": "VB-131843",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 정렬 테두리 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 122,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-045",
+      "source_item_number": 45,
+      "source_issue_id": "VB-132085",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 삭제 후 선택 갱신",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 124,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-046",
+      "source_item_number": 46,
+      "source_issue_id": "VB-130968",
+      "source_section": [
+        "Mail",
+        "Settings"
+      ],
+      "summary": "회신 형식 설정 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 126,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-047",
+      "source_item_number": 47,
+      "source_issue_id": "VB-129270",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 로그 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 128,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-048",
+      "source_item_number": 48,
+      "source_issue_id": "VB-130837",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 미확인 개수 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 130,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-049",
+      "source_item_number": 49,
+      "source_issue_id": "VB-129503",
+      "source_section": [
+        "Mail"
+      ],
+      "summary": "메일 DB 헤더 복원",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 132,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-050",
+      "source_item_number": 50,
+      "source_issue_id": "VB-130009",
+      "source_section": [
+        "Panels"
+      ],
+      "summary": "사이드바 항목 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 135,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-051",
+      "source_item_number": 51,
+      "source_issue_id": "VB-131027",
+      "source_section": [
+        "Panels"
+      ],
+      "summary": "방문 기록 선택 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 137,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-052",
+      "source_item_number": 52,
+      "source_issue_id": "VB-131035",
+      "source_section": [
+        "Panels"
+      ],
+      "summary": "방문 기록 갱신 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 139,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-053",
+      "source_item_number": 53,
+      "source_issue_id": "VB-129499",
+      "source_section": [
+        "Panels",
+        "Tasks"
+      ],
+      "summary": "작업 목록 스크롤 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 141,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-054",
+      "source_item_number": 54,
+      "source_issue_id": "VB-131788",
+      "source_section": [
+        "Panels",
+        "Themes"
+      ],
+      "summary": "패널 정렬 UI 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 143,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-055",
+      "source_item_number": 55,
+      "source_issue_id": "VB-131298",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "일정 공급자 대비 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 146,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-056",
+      "source_item_number": 56,
+      "source_issue_id": "VB-131300",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "페이지와 UI 확대 분리",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 148,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-057",
+      "source_item_number": 57,
+      "source_issue_id": "VB-132545",
+      "source_section": [
+        "Settings",
+        "Passwords"
+      ],
+      "summary": "비밀번호 거절 목록 스크롤",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 150,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-058",
+      "source_item_number": 58,
+      "source_issue_id": "VB-132786",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "후원 설정 새로고침 추가",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 152,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-059",
+      "source_item_number": 59,
+      "source_issue_id": "VB-131672",
+      "source_section": [
+        "Settings",
+        "Tabs"
+      ],
+      "summary": "탭 닫기 버튼 정렬 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 154,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-060",
+      "source_item_number": 60,
+      "source_issue_id": "VB-131570",
+      "source_section": [
+        "Settings",
+        "Tabs"
+      ],
+      "summary": "고정 탭 설정 문구",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 156,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-061",
+      "source_item_number": 61,
+      "source_issue_id": "VB-127395",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "테마 편집 경고 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 157,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-062",
+      "source_item_number": 62,
+      "source_issue_id": "VB-130979",
+      "source_section": [
+        "Start Page"
+      ],
+      "summary": "날짜 위젯 일정 연결",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 160,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-063",
+      "source_item_number": 63,
+      "source_issue_id": "VB-132531",
+      "source_section": [
+        "Start Page"
+      ],
+      "summary": "개인정보 대시보드 대비",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 162,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-064",
+      "source_item_number": 64,
+      "source_issue_id": "VB-114491",
+      "source_section": [
+        "Start Page",
+        "Speed Dial"
+      ],
+      "summary": "빠른 실행 폴더별 정렬",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 164,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "pending_verification",
+      "selection_reason": "폴더별 정렬의 이전 기능 범위와 동작 차이 확인 필요.",
+      "revisit_trigger": "공식 도움말·과거 릴리스로 동작·신규성 확인"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-065",
+      "source_item_number": 65,
+      "source_issue_id": "VB-127828",
+      "source_section": [
+        "Start Page",
+        "Speed Dial"
+      ],
+      "summary": "빠른 실행 제목 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 166,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-066",
+      "source_item_number": 66,
+      "source_issue_id": "VB-131258",
+      "source_section": [
+        "Start Page",
+        "Speed Dial"
+      ],
+      "summary": "빠른 실행 버튼 위치 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 168,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-067",
+      "source_item_number": 67,
+      "source_issue_id": "VB-131616",
+      "source_section": [
+        "Start Page"
+      ],
+      "summary": "날짜 위젯 색상 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 170,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-068",
+      "source_item_number": 68,
+      "source_issue_id": "VB-131729",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "아코디언 테두리 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 173,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-069",
+      "source_item_number": 69,
+      "source_issue_id": "VB-131573",
+      "source_section": [
+        "Tabs",
+        "AutoHide"
+      ],
+      "summary": "세로 탭 버튼 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 175,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-070",
+      "source_item_number": 70,
+      "source_issue_id": "VB-130893",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "잘라 붙인 탭 위치 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 177,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-071",
+      "source_item_number": 71,
+      "source_issue_id": "VB-130441",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "재시작 읽지않음 표시 조정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 179,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-072",
+      "source_item_number": 72,
+      "source_issue_id": "VB-130892",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "끌어 놓은 링크 위치 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 181,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-073",
+      "source_item_number": 73,
+      "source_issue_id": "VB-132655",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "세로 탭 확장 여백 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 183,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-074",
+      "source_item_number": 74,
+      "source_issue_id": "VB-132456",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "스택 밖 새 탭 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 184,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-075",
+      "source_item_number": 75,
+      "source_issue_id": "VB-130761",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "고정 탭 이동 이미지 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 186,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-076",
+      "source_item_number": 76,
+      "source_issue_id": "VB-130984",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "고정 탭 활성 팝업 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 188,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-077",
+      "source_item_number": 77,
+      "source_issue_id": "VB-130970",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "아래쪽 고정 탭 가림 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 190,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-078",
+      "source_item_number": 78,
+      "source_issue_id": "VB-131613",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "닫힌 탭 세션 복원 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 192,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-079",
+      "source_item_number": 79,
+      "source_issue_id": "VB-122808",
+      "source_section": [
+        "Tabs",
+        "Tiling"
+      ],
+      "summary": "타일 탭 키보드 조작",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 194,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "pending_verification",
+      "selection_reason": "타일 탭 키보드 조작의 구체 명령과 기존 범위 대조 필요.",
+      "revisit_trigger": "공식 도움말·과거 릴리스로 동작·신규성 확인"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-080",
+      "source_item_number": 80,
+      "source_issue_id": "VB-131318",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "작은 탭 미리보기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 196,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-081",
+      "source_item_number": 81,
+      "source_issue_id": "VB-132562",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "툴바 편집 확장 탭 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 197,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-082",
+      "source_item_number": 82,
+      "source_issue_id": "VB-130813",
+      "source_section": [
+        "Tabs",
+        "Vertical Tabs",
+        "Settings"
+      ],
+      "summary": "고정 탭 제목 표시 설정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 199,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105",
+      "feature_id": "vivaldi-vertical-tabs",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-083",
+      "source_item_number": 83,
+      "source_issue_id": "VB-130522",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "접힌 그룹 닫기 영역 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 201,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-084",
+      "source_item_number": 84,
+      "source_issue_id": "VB-132212",
+      "source_section": [
+        "Themes",
+        "Panel"
+      ],
+      "summary": "패널 상태별 색상 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 204,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-085",
+      "source_item_number": 85,
+      "source_issue_id": "VB-127561",
+      "source_section": [
+        "Themes",
+        "Performance"
+      ],
+      "summary": "파비콘 색상 처리 개선",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 206,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-086",
+      "source_item_number": 86,
+      "source_issue_id": "VB-130771",
+      "source_section": [
+        "Themes"
+      ],
+      "summary": "고정 탭 배경 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 208,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-087",
+      "source_item_number": 87,
+      "source_issue_id": "VB-127600",
+      "source_section": [
+        "Themes"
+      ],
+      "summary": "페이지 경계 대비 강화",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 210,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-088",
+      "source_item_number": 88,
+      "source_issue_id": "VB-132239",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "목록 확장 화살표 갱신",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 213,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-089",
+      "source_item_number": 89,
+      "source_issue_id": "VB-132232",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "전체화면 여백 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 215,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-090",
+      "source_item_number": 90,
+      "source_issue_id": "VB-131847",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "전체화면 메뉴 숨김 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 217,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-091",
+      "source_item_number": 91,
+      "source_issue_id": "VB-131591",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "패널과 본문 간격 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 219,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-092",
+      "source_item_number": 92,
+      "source_issue_id": "VB-131378",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "재시작 비밀번호 대화상자 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 221,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-093",
+      "source_item_number": 93,
+      "source_issue_id": "VB-129583",
+      "source_section": [
+        "AutoHide",
+        "Capture"
+      ],
+      "summary": "자동숨김 캡처 정렬 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 224,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-094",
+      "source_item_number": 94,
+      "source_issue_id": "VB-131327",
+      "source_section": [
+        "AutoHide"
+      ],
+      "summary": "패널 첫 클릭 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 226,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-095",
+      "source_item_number": 95,
+      "source_issue_id": "VB-132297",
+      "source_section": [
+        "Break Mode"
+      ],
+      "summary": "휴식모드 숨김 일관성",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 228,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-096",
+      "source_item_number": 96,
+      "source_issue_id": "VB-131794",
+      "source_section": [
+        "Calculator"
+      ],
+      "summary": "상수 단독 계산 방지",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 230,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-097",
+      "source_item_number": 97,
+      "source_issue_id": null,
+      "source_section": [
+        "Chromium"
+      ],
+      "summary": "Chromium 156 ESR 보안",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 232,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "security",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-098",
+      "source_item_number": 98,
+      "source_issue_id": "VB-132534",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "7tv 팝업 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 234,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-099",
+      "source_item_number": 99,
+      "source_issue_id": "VB-89807",
+      "source_section": [
+        "Feeds"
+      ],
+      "summary": "피드 읽지않음 배지 설정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 236,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "pending_verification",
+      "selection_reason": "피드 배지 설정과 기존 통합 설정의 차이 확인 필요.",
+      "revisit_trigger": "공식 도움말·과거 릴리스로 동작·신규성 확인"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-100",
+      "source_item_number": 100,
+      "source_issue_id": "VB-126693",
+      "source_section": [
+        "Find in Page"
+      ],
+      "summary": "F3 페이지 검색 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 237,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-101",
+      "source_item_number": 101,
+      "source_issue_id": "VB-132091",
+      "source_section": [
+        "Gestures"
+      ],
+      "summary": "링크 로커 제스처 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 239,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-102",
+      "source_item_number": 102,
+      "source_issue_id": "VB-131887",
+      "source_section": [
+        "Linux",
+        "Media"
+      ],
+      "summary": "Linux FFmpeg 링크 정리",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 241,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-103",
+      "source_item_number": 103,
+      "source_issue_id": null,
+      "source_section": [
+        "Linux",
+        "Media"
+      ],
+      "summary": "Linux FFmpeg 업데이트",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 243,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-104",
+      "source_item_number": 104,
+      "source_issue_id": "VB-108523",
+      "source_section": [
+        "Performance"
+      ],
+      "summary": "UI 렌더링 최적화",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 245,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-105",
+      "source_item_number": 105,
+      "source_issue_id": "VB-131191",
+      "source_section": [
+        "Permissions"
+      ],
+      "summary": "비동기 클립보드 권한 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 247,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-106",
+      "source_item_number": 106,
+      "source_issue_id": "VB-132036",
+      "source_section": [
+        "Quick Commands"
+      ],
+      "summary": "명령 체인 강조 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 249,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-107",
+      "source_item_number": 107,
+      "source_issue_id": "VB-124318",
+      "source_section": [
+        "Tiling"
+      ],
+      "summary": "자기 탭 드롭 타일링 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 250,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-108",
+      "source_item_number": 108,
+      "source_issue_id": "VB-131799",
+      "source_section": [
+        "Tiling"
+      ],
+      "summary": "외부 클릭 타일정렬 종료",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 252,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-109",
+      "source_item_number": 109,
+      "source_issue_id": "VB-132607",
+      "source_section": [
+        "Toolbars"
+      ],
+      "summary": "툴바 공백 중복 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 254,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-110",
+      "source_item_number": 110,
+      "source_issue_id": "VB-131909",
+      "source_section": [
+        "Welcome"
+      ],
+      "summary": "온보딩 개인정보 UI",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 256,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-desktop-111",
+      "source_item_number": 111,
+      "source_issue_id": "VB-129901",
+      "source_section": [
+        "Workspaces"
+      ],
+      "summary": "워크스페이스 탭 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3/",
+      "source_line_reference": 258,
+      "browser": "vivaldi",
+      "version": "8.3.4191.26",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-001",
+      "source_item_number": 1,
+      "source_issue_id": "VAB-13197",
+      "source_section": [
+        "New",
+        "Ad Blocker"
+      ],
+      "summary": "차단기 개편",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 34,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-ad-blocker-levels-8-3-stable-20261105",
+      "feature_id": "vivaldi-ad-tracker-blocker",
+      "priority": "P1"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-002",
+      "source_item_number": 2,
+      "source_issue_id": "VAB-13029",
+      "source_section": [
+        "New",
+        "Address Bar"
+      ],
+      "summary": "추적정보 제거 복사",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 35,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-copy-sanitized-link-8-3-stable-20261105",
+      "feature_id": "vivaldi-copy-sanitized-link",
+      "priority": "P1"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-003",
+      "source_item_number": 3,
+      "source_issue_id": "VAB-1720",
+      "source_section": [
+        "New",
+        "External link"
+      ],
+      "summary": "앱으로 열기",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 36,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-android-open-in-app-8-3-stable-20261105",
+      "feature_id": "vivaldi-android-open-in-app",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-004",
+      "source_item_number": 4,
+      "source_issue_id": "VAB-13716",
+      "source_section": [
+        "New",
+        "Media"
+      ],
+      "summary": "중단 후 미디어 알림 유지",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 37,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-android-media-session-controls-8-3-stable-20261105",
+      "feature_id": "vivaldi-android-media-controls",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-005",
+      "source_item_number": 5,
+      "source_issue_id": "VAB-13200",
+      "source_section": [
+        "New",
+        "Tab Stacks"
+      ],
+      "summary": "대상 스택으로 링크 열기",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 38,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-android-open-link-in-stack-8-3-stable-20261105",
+      "feature_id": "vivaldi-android-tab-stacks",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-006",
+      "source_item_number": 6,
+      "source_issue_id": "VAB-12601",
+      "source_section": [
+        "New",
+        "VPN"
+      ],
+      "summary": "Proton VPN 통합",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 39,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "new_or_improved",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-android-proton-vpn-8-3-stable-20261105",
+      "feature_id": "vivaldi-android-proton-vpn",
+      "priority": "P1"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-007",
+      "source_item_number": 7,
+      "source_issue_id": "VAB-13821",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 별칭 삭제 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 42,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-008",
+      "source_item_number": 8,
+      "source_issue_id": "VAB-13822",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 별칭 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 43,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-009",
+      "source_item_number": 9,
+      "source_issue_id": "VAB-13325",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 루트 변경 대응",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 44,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-010",
+      "source_item_number": 10,
+      "source_issue_id": "VAB-8367",
+      "source_section": [
+        "Bookmarks"
+      ],
+      "summary": "북마크 편집 단계 개선",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 45,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-011",
+      "source_item_number": 11,
+      "source_issue_id": "VAB-13753",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 스토어 위젯 안내 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 47,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-012",
+      "source_item_number": 12,
+      "source_issue_id": "VAB-13466",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 전체화면 주소창 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 48,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-013",
+      "source_item_number": 13,
+      "source_issue_id": "VAB-13530",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "모바일 확장 권한 크기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 49,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-014",
+      "source_item_number": 14,
+      "source_issue_id": "VAB-13705",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 배경 탭 새로고침 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 50,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-015",
+      "source_item_number": 15,
+      "source_issue_id": "VAB-13671",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 권한 팝업 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 51,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-016",
+      "source_item_number": 16,
+      "source_issue_id": "VAB-13693",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "다운로드 관리자 확장 설치 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 52,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-017",
+      "source_item_number": 17,
+      "source_issue_id": "VAB-13549",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "모바일 스토어 가림 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 53,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-018",
+      "source_item_number": 18,
+      "source_issue_id": "VAB-13534",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 비활성 상태 유지 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 54,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-019",
+      "source_item_number": 19,
+      "source_issue_id": "VAB-13696",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 검색 링크 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 55,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-020",
+      "source_item_number": 20,
+      "source_issue_id": "VAB-13557",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "모바일 확장 추가 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 56,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-021",
+      "source_item_number": 21,
+      "source_issue_id": "VAB-13582",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 메뉴 크기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 57,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-022",
+      "source_item_number": 22,
+      "source_issue_id": "VAB-13542",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 메뉴 새로고침 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 58,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-023",
+      "source_item_number": 23,
+      "source_issue_id": "VAB-13594",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "MV3 호스트 권한 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 59,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-024",
+      "source_item_number": 24,
+      "source_issue_id": "VAB-13552",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 버튼 재탭 닫기",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 60,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-025",
+      "source_item_number": 25,
+      "source_issue_id": "VAB-13742",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "비공개 탭 확장 호환 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 61,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-026",
+      "source_item_number": 26,
+      "source_issue_id": "VAB-13631",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "비공개 탭 확장 지원",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 62,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "pending_verification",
+      "selection_reason": "비공개 탭 확장 지원의 기존 허용 경로·권한과 새 범위 대조 필요.",
+      "revisit_trigger": "공식 도움말·과거 릴리스로 동작·신규성 확인"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-027",
+      "source_item_number": 27,
+      "source_issue_id": "VAB-13838",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "확장 알림 앱 열기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 63,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-028",
+      "source_item_number": 28,
+      "source_issue_id": "VAB-13580",
+      "source_section": [
+        "Extensions"
+      ],
+      "summary": "하단 주소창 확장 키보드 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 64,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-029",
+      "source_item_number": 29,
+      "source_issue_id": "VAB-13847",
+      "source_section": [
+        "Extensions",
+        "Private"
+      ],
+      "summary": "비공개 확장 VPN 메뉴 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 65,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-030",
+      "source_item_number": 30,
+      "source_issue_id": "VAB-13915",
+      "source_section": [
+        "Media"
+      ],
+      "summary": "탭별 미디어 식별자",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 68,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-android-media-session-controls-8-3-stable-20261105",
+      "feature_id": "vivaldi-android-media-controls",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-031",
+      "source_item_number": 31,
+      "source_issue_id": "VAB-13569",
+      "source_section": [
+        "Media"
+      ],
+      "summary": "미디어 채널 전환 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 69,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-032",
+      "source_item_number": 32,
+      "source_issue_id": "VAB-13923",
+      "source_section": [
+        "Media"
+      ],
+      "summary": "일부 기기 중복 미디어 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 70,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-033",
+      "source_item_number": 33,
+      "source_issue_id": "VAB-13701",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "설정 검색 뒤로가기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 73,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-034",
+      "source_item_number": 34,
+      "source_issue_id": "VAB-13850",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "확대 강제 설정 검색 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 74,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-035",
+      "source_item_number": 35,
+      "source_issue_id": "VAB-13424",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "설정 검색 현재값 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 75,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-036",
+      "source_item_number": 36,
+      "source_issue_id": "VAB-13829",
+      "source_section": [
+        "Settings"
+      ],
+      "summary": "저장공간 설정 잘림 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 76,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-037",
+      "source_item_number": 37,
+      "source_issue_id": "VAB-13538",
+      "source_section": [
+        "Tab Stacks"
+      ],
+      "summary": "스택 비활성 메뉴 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 79,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-038",
+      "source_item_number": 38,
+      "source_issue_id": "VAB-13650",
+      "source_section": [
+        "Tab Stacks"
+      ],
+      "summary": "새 탭 위치 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 80,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-039",
+      "source_item_number": 39,
+      "source_issue_id": "VAB-13501",
+      "source_section": [
+        "Tab Stacks"
+      ],
+      "summary": "연관 스택 열기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 81,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-040",
+      "source_item_number": 40,
+      "source_issue_id": "VAB-13905",
+      "source_section": [
+        "Tab Stacks"
+      ],
+      "summary": "스택 내부 탭 위치 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 82,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-041",
+      "source_item_number": 41,
+      "source_issue_id": "VAB-13788",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "키보드 주소창 간격 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 85,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-042",
+      "source_item_number": 42,
+      "source_issue_id": "VAB-13927",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "마지막 탭 닫기 애니메이션",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 86,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-043",
+      "source_item_number": 43,
+      "source_issue_id": "VAB-13959",
+      "source_section": [
+        "UI"
+      ],
+      "summary": "오프라인 알림 터치좌표 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 87,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-044",
+      "source_item_number": 44,
+      "source_issue_id": "VB-131548",
+      "source_section": [
+        "Calculator"
+      ],
+      "summary": "전화번호 계산 오인 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 89,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-045",
+      "source_item_number": 45,
+      "source_issue_id": "VB-131340",
+      "source_section": [
+        "Calculator"
+      ],
+      "summary": "계산기 반올림 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 90,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-046",
+      "source_item_number": 46,
+      "source_issue_id": "VAB-13554",
+      "source_section": [
+        "Download"
+      ],
+      "summary": "다운로드 위치 질문 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 91,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-047",
+      "source_item_number": 47,
+      "source_issue_id": "VAB-13868",
+      "source_section": [
+        "Downloads"
+      ],
+      "summary": "다운로드 앱 선택 표시",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 92,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-048",
+      "source_item_number": 48,
+      "source_issue_id": "VAB-13928",
+      "source_section": [
+        "External link"
+      ],
+      "summary": "앱 이동 후 탭 보존",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 93,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "selected",
+      "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토",
+      "event_id": "vivaldi-android-open-in-app-8-3-stable-20261105",
+      "feature_id": "vivaldi-android-open-in-app",
+      "priority": "P2"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-049",
+      "source_item_number": 49,
+      "source_issue_id": "VAB-13910",
+      "source_section": [
+        "Find in Page"
+      ],
+      "summary": "페이지 검색 여백 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 94,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-050",
+      "source_item_number": 50,
+      "source_issue_id": "VAB-13795",
+      "source_section": [
+        "Fullscreen"
+      ],
+      "summary": "전체화면 종료 안내 시간",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 95,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-051",
+      "source_item_number": 51,
+      "source_issue_id": "VAB-13819",
+      "source_section": [
+        "Gestures"
+      ],
+      "summary": "제스처 후 첫 탭 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 96,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-052",
+      "source_item_number": 52,
+      "source_issue_id": "VAB-13368",
+      "source_section": [
+        "Icon"
+      ],
+      "summary": "공유 아이콘 정렬 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 97,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-053",
+      "source_item_number": 53,
+      "source_issue_id": "VAB-13911",
+      "source_section": [
+        "Menu"
+      ],
+      "summary": "메뉴 상단 버튼 정렬",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 98,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-054",
+      "source_item_number": 54,
+      "source_issue_id": "VAB-13916",
+      "source_section": [
+        "Menu"
+      ],
+      "summary": "PDF 메뉴 비활성 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 99,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-055",
+      "source_item_number": 55,
+      "source_issue_id": "VAB-13563",
+      "source_section": [
+        "Passwords"
+      ],
+      "summary": "비밀번호 조회 종료 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 100,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-056",
+      "source_item_number": 56,
+      "source_issue_id": "VAB-13903",
+      "source_section": [
+        "PDF"
+      ],
+      "summary": "PDF 다운로드 열기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 101,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-057",
+      "source_item_number": 57,
+      "source_issue_id": "VAB-13904",
+      "source_section": [
+        "PDF"
+      ],
+      "summary": "PDF 앱 중복 표시 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 102,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-058",
+      "source_item_number": 58,
+      "source_issue_id": "VAB-13752",
+      "source_section": [
+        "Pinned tab"
+      ],
+      "summary": "고정 탭 복제 제한",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 103,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-059",
+      "source_item_number": 59,
+      "source_issue_id": "VAB-13949",
+      "source_section": [
+        "PWA"
+      ],
+      "summary": "PWA 툴바 중복 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 104,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-060",
+      "source_item_number": 60,
+      "source_issue_id": "VAB-13950",
+      "source_section": [
+        "PWA"
+      ],
+      "summary": "PWA 검색창 겹침 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 105,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-061",
+      "source_item_number": 61,
+      "source_issue_id": "VAB-13540",
+      "source_section": [
+        "Reading List"
+      ],
+      "summary": "주소창 이동 읽기목록 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 106,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-062",
+      "source_item_number": 62,
+      "source_issue_id": "VAB-13533",
+      "source_section": [
+        "Speed Dial"
+      ],
+      "summary": "빠른 실행 정렬 이동 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 107,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-063",
+      "source_item_number": 63,
+      "source_issue_id": "VAB-13739",
+      "source_section": [
+        "Start Page"
+      ],
+      "summary": "빠른 실행 강조선 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 108,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-064",
+      "source_item_number": 64,
+      "source_issue_id": "VAB-13512",
+      "source_section": [
+        "Sync"
+      ],
+      "summary": "로그인 전 비밀번호 동기화 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 109,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-065",
+      "source_item_number": 65,
+      "source_issue_id": "VAB-13793",
+      "source_section": [
+        "Tab Bar"
+      ],
+      "summary": "동영상 전체화면 탭바 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 110,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-066",
+      "source_item_number": 66,
+      "source_issue_id": "VAB-13489",
+      "source_section": [
+        "Tabs"
+      ],
+      "summary": "새 비공개 탭 메뉴 복구",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 111,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-067",
+      "source_item_number": 67,
+      "source_issue_id": "VAB-13541",
+      "source_section": [
+        "Tablet"
+      ],
+      "summary": "태블릿 새 탭 메뉴 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 112,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-068",
+      "source_item_number": 68,
+      "source_issue_id": "VAB-12904",
+      "source_section": [
+        "Tablet"
+      ],
+      "summary": "태블릿 QR 밝기 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 113,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-069",
+      "source_item_number": 69,
+      "source_issue_id": "VAB-13914",
+      "source_section": [
+        "Tablet",
+        "Tab bar"
+      ],
+      "summary": "하단 이중 탭 전환 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 114,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-070",
+      "source_item_number": 70,
+      "source_issue_id": "VAB-13571",
+      "source_section": [
+        "Top Sites"
+      ],
+      "summary": "인기 사이트 새 탭 처리",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 115,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-071",
+      "source_item_number": 71,
+      "source_issue_id": "VAB-13862",
+      "source_section": [
+        "Touch"
+      ],
+      "summary": "터치 좌표 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 116,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-072",
+      "source_item_number": 72,
+      "source_issue_id": "VAB-13709",
+      "source_section": [
+        "Theme"
+      ],
+      "summary": "시작 후 탭 색상 수정",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 117,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "fix_or_improvement",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-073",
+      "source_item_number": 73,
+      "source_issue_id": null,
+      "source_section": [
+        "Chromium"
+      ],
+      "summary": "Chromium 156 ESR 보안",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 118,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "security",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-8-3-android-074",
+      "source_item_number": 74,
+      "source_issue_id": null,
+      "source_section": [],
+      "summary": "번역 업데이트",
+      "source_url": "https://vivaldi.com/changelog-vivaldi-browser-8-3-on-android/",
+      "source_line_reference": 119,
+      "browser": "vivaldi",
+      "version": "8.3.4192.48",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "event_type": "translation",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·보안·번역 또는 사용자 동작 변화의 상세 신규성 근거가 없는 항목. 전체 원천 색인에는 보존.",
+      "revisit_trigger": "구체적인 새 동작·기본값·지원 범위 증거 확보 시 재검토"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.10-42",
+      "browser": "vivaldi",
+      "version": "4191.10",
+      "channel": "snapshot",
+      "announced_at": "2026-10-30",
+      "source_issue_id": "VB-132292",
+      "summary": "[Ad Blocker] Scrollbar appears in site dialog when layout is set to vertical left (VB-132292)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/weekend-fixes-vivaldi-desktop-snapshot-4191-10/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.10-43",
+      "browser": "vivaldi",
+      "version": "4191.10",
+      "channel": "snapshot",
+      "announced_at": "2026-10-30",
+      "source_issue_id": null,
+      "summary": "[Chromium] Update to 156.0.8078.79",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/weekend-fixes-vivaldi-desktop-snapshot-4191-10/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.10-44",
+      "browser": "vivaldi",
+      "version": "4191.10",
+      "channel": "snapshot",
+      "announced_at": "2026-10-30",
+      "source_issue_id": "VB-132544",
+      "summary": "[Extensions] Various issues with the Side panel API (VB-132544)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/weekend-fixes-vivaldi-desktop-snapshot-4191-10/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.10-45",
+      "browser": "vivaldi",
+      "version": "4191.10",
+      "channel": "snapshot",
+      "announced_at": "2026-10-30",
+      "source_issue_id": "VB-132786",
+      "summary": "[Settings] Support Vivaldi lacks options to refresh: add context menu to refresh, copy source URL, and a tooltip (VB-132786)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/weekend-fixes-vivaldi-desktop-snapshot-4191-10/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.15-18-50",
+      "browser": "vivaldi",
+      "version": "4191.15/18",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-02",
+      "source_issue_id": null,
+      "summary": "[Chromium] Update to 156.0.8078.85",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-1/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.15-18-51",
+      "browser": "vivaldi",
+      "version": "4191.15/18",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-02",
+      "source_issue_id": "VB-132842",
+      "summary": "[Crash][Ad Blocker] When parsing malformed rules VB-132842",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-1/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.15-18-52",
+      "browser": "vivaldi",
+      "version": "4191.15/18",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-02",
+      "source_issue_id": null,
+      "summary": "[UI][Translations] Updates to various translations within the browser",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-1/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.19-21-49",
+      "browser": "vivaldi",
+      "version": "4191.19/21",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-03",
+      "source_issue_id": "VB-132832",
+      "summary": "[Ad Blocker] Add help page link to settings (VB-132832)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-2/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.19-21-50",
+      "browser": "vivaldi",
+      "version": "4191.19/21",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-03",
+      "source_issue_id": "VB-132830",
+      "summary": "[Ad Blocker] Correct the resize transition and background color for segmented controls (VB-132830)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-2/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.19-21-51",
+      "browser": "vivaldi",
+      "version": "4191.19/21",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-03",
+      "source_issue_id": "VAB-13978",
+      "summary": "[Ad Blocker][Crash] When a filter list changes during startup (VAB-13978)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-2/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.19-21-52",
+      "browser": "vivaldi",
+      "version": "4191.19/21",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-03",
+      "source_issue_id": "VB-129583",
+      "summary": "[Auto Hide][Capture] Area is misaligned (VB-129583)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-2/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.19-21-53",
+      "browser": "vivaldi",
+      "version": "4191.19/21",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-03",
+      "source_issue_id": "VB-132537",
+      "summary": "[Developer Tools] Toggling does not close the inspector (VB-132537)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-2/"
+    },
+    {
+      "item_id": "vivaldi-snapshot-4191.23-26-49",
+      "browser": "vivaldi",
+      "version": "4191.23/26",
+      "channel": "snapshot_release_candidate",
+      "announced_at": "2026-11-04",
+      "source_issue_id": null,
+      "summary": "[Chromium] Update to 156.0.8078.91 ESR (includes security fixes from 157.0.8103.38/39)",
+      "selection_status": "excluded",
+      "selection_reason": "Stable 8.3에 이어진 사전배포 일반 수정·보안 항목. 사전 배포를 Stable 출시로 중복 집계하지 않음.",
+      "source_section": "Changelog",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-3/"
+    },
+    {
+      "item_id": "vivaldi-8-2-desktop-minor14-overlap",
+      "browser": "vivaldi",
+      "version": "8.2 minor 14",
+      "channel": "stable",
+      "announced_at": "2026-10-29",
+      "summary": "Chromium 152 ESR 보안 백포트",
+      "selection_status": "excluded",
+      "selection_reason": "10/30 기존 수집과 동일.",
+      "source_url": "https://vivaldi.com/blog/desktop/minor-update-fourteen-8-2/"
+    },
+    {
+      "item_id": "vivaldi-8-2-android-minor8-crash",
+      "browser": "vivaldi",
+      "version": "8.2 minor 8",
+      "channel": "stable",
+      "announced_at": "2026-10-29",
+      "summary": "GPU 채널 대기 충돌 수정",
+      "source_issue_id": "VAB-13948",
+      "selection_status": "excluded",
+      "selection_reason": "일반 안정성 수정.",
+      "source_url": "https://vivaldi.com/blog/android/minor-update8-android-8-2/"
+    },
+    {
+      "item_id": "vivaldi-8-2-android-minor8-security",
+      "browser": "vivaldi",
+      "version": "8.2 minor 8",
+      "channel": "stable",
+      "announced_at": "2026-10-29",
+      "summary": "Chromium 156 보안 백포트",
+      "selection_status": "excluded",
+      "selection_reason": "보안 유지보수.",
+      "source_url": "https://vivaldi.com/blog/android/minor-update8-android-8-2/"
+    },
+    {
+      "item_id": "vivaldi-rc-known-issue-4191.15-18",
+      "browser": "vivaldi",
+      "version": "4191.15/18",
+      "channel": "snapshot_release_candidate",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "announced_at": "2026-11-02",
+      "event_type": "known_issue",
+      "summary": "정식 출시 전 설치하면 시작 안내 페이지가 이전 내용으로 표시될 수 있음.",
+      "source_section": "Known Issues",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-1/",
+      "selection_status": "excluded",
+      "selection_reason": "사전배포의 알려진 안내 페이지 문제. Stable 기능 출시와 중복 집계하지 않음.",
+      "revisit_trigger": null
+    },
+    {
+      "item_id": "vivaldi-rc-known-issue-4191.19-21",
+      "browser": "vivaldi",
+      "version": "4191.19/21",
+      "channel": "snapshot_release_candidate",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "announced_at": "2026-11-03",
+      "event_type": "known_issue",
+      "summary": "정식 출시 전 설치하면 시작 안내 페이지가 이전 내용으로 표시될 수 있음.",
+      "source_section": "Known Issues",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-2/",
+      "selection_status": "excluded",
+      "selection_reason": "사전배포의 알려진 안내 페이지 문제. Stable 기능 출시와 중복 집계하지 않음.",
+      "revisit_trigger": null
+    },
+    {
+      "item_id": "vivaldi-rc-known-issue-4191.23-26",
+      "browser": "vivaldi",
+      "version": "4191.23/26",
+      "channel": "snapshot_release_candidate",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "announced_at": "2026-11-04",
+      "event_type": "known_issue",
+      "summary": "정식 출시 전 설치하면 시작 안내 페이지가 이전 내용으로 표시될 수 있음.",
+      "source_section": "Known Issues",
+      "source_url": "https://vivaldi.com/blog/desktop/8-3-rc-3/",
+      "selection_status": "excluded",
+      "selection_reason": "사전배포의 알려진 안내 페이지 문제. Stable 기능 출시와 중복 집계하지 않음.",
+      "revisit_trigger": null
+    }
+  ],
+  "selected_events": [
+    "vivaldi-ad-blocker-levels-8-3-stable-20261105",
+    "vivaldi-copy-sanitized-link-8-3-stable-20261105",
+    "vivaldi-vertical-tab-hover-expand-8-3-stable-20261105",
+    "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105",
+    "vivaldi-multi-url-paste-go-8-3-stable-20261105",
+    "vivaldi-extension-tab-groups-api-8-3-stable-20261105",
+    "vivaldi-android-open-link-in-stack-8-3-stable-20261105",
+    "vivaldi-android-media-session-controls-8-3-stable-20261105",
+    "vivaldi-android-open-in-app-8-3-stable-20261105",
+    "vivaldi-android-proton-vpn-8-3-stable-20261105"
+  ],
+  "source_item_counts": {
+    "desktop_8_3": 111,
+    "android_8_3": 74,
+    "desktop_snapshot_rc": 13,
+    "overlap_maintenance": 3,
+    "desktop_rc_known_issues": 3
+  },
+  "korea_support_sources": [
+    "https://help.vivaldi.com/desktop/privacy/tracking-and-ad-blocking/",
+    "https://help.vivaldi.com/android/android-privacy/android-tracker-and-ad-blocker/",
+    "https://help.vivaldi.com/android/android-tools/proton-vpn-for-vivaldi-on-android/",
+    "https://vivaldi.com/ko/protonvpn/"
+  ],
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "real_test": "미실행",
+    "checked_at": "2026-11-05T22:53:14.091Z",
+    "basis": "기능별 공식 출시·도움말 확인. 한국 제공일·한국어 UI·지역 제한은 명시되지 않았으며 문서 언어로 추정하지 않음."
+  }
+}

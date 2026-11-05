@@ -1,0 +1,744 @@
+{
+  "schema_version": 1,
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-06",
+  "observed_at": "2026-11-05T22:50:20.782471+00:00",
+  "source_url": "https://chromestatus.com/api/v0/features?milestone=156",
+  "coverage": "공식 milestone API 15 개 그룹 레코드 전체와 HTML 릴리스 본문 확보. 개별 최초 발표·과거 단계 이력은 미완료.",
+  "coverage_status": "complete_current_snapshot_history_partial",
+  "response_sha256": "e06a9748c97aa4121a13864e9aa273d9806d41f88c9804667c7ea1c226cc4e69",
+  "count": 15,
+  "grouped_entry_count": 15,
+  "unique_feature_count": 14,
+  "items": [
+    {
+      "item_id": "chrome-status-5214647044145152-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5214647044145152",
+      "source_feature_id": 5214647044145152,
+      "title": "Avoid caching module failures",
+      "source_url": "https://chromestatus.com/feature/5214647044145152",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Avoid caching module failures",
+      "item_type": "web_platform",
+      "source_summary_sha256": "2d404792eb73d7973e6a4c78188b8dfd6d7b43e7c46c52bee25a1bb708fb6e91",
+      "previous_summary_sha256": "2d404792eb73d7973e6a4c78188b8dfd6d7b43e7c46c52bee25a1bb708fb6e91",
+      "source_updated_at": "2026-09-19 09:49:45.669187",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-6327898878377984-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-6327898878377984",
+      "source_feature_id": 6327898878377984,
+      "title": "CSS pseudo-class for navigation source element",
+      "source_url": "https://chromestatus.com/feature/6327898878377984",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: CSS pseudo-class for navigation source element",
+      "item_type": "web_platform",
+      "source_summary_sha256": "f719488272f9088f803bcccea117e74f3b3c66ee8d93a8d25a34a753b1c34652",
+      "previous_summary_sha256": "f719488272f9088f803bcccea117e74f3b3c66ee8d93a8d25a34a753b1c34652",
+      "source_updated_at": "2026-09-09 10:47:20.319678",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5324559251275776-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5324559251275776",
+      "source_feature_id": 5324559251275776,
+      "title": "CSS random() function",
+      "source_url": "https://chromestatus.com/feature/5324559251275776",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: CSS random() function",
+      "item_type": "web_platform",
+      "source_summary_sha256": "411d3cda3c5f9860f83ee63f254cc669cfdfcf3361695c9eda7ed3d0a3cb46c2",
+      "previous_summary_sha256": "411d3cda3c5f9860f83ee63f254cc669cfdfcf3361695c9eda7ed3d0a3cb46c2",
+      "source_updated_at": "2026-09-28 09:02:50.480003",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-4895435813683200-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-4895435813683200",
+      "source_feature_id": 4895435813683200,
+      "title": "Compression dictionary transport Updates",
+      "source_url": "https://chromestatus.com/feature/4895435813683200",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Compression dictionary transport Updates",
+      "item_type": "web_platform",
+      "source_summary_sha256": "5bd5a1e2fce148829de5cef21c38d5e047446c49202d8f9c4d14424b87ca7705",
+      "previous_summary_sha256": "5bd5a1e2fce148829de5cef21c38d5e047446c49202d8f9c4d14424b87ca7705",
+      "source_updated_at": "2026-10-16 12:59:19.418269",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5161589557821440-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5161589557821440",
+      "source_feature_id": 5161589557821440,
+      "title": "IndexedDB: SQLite backend",
+      "source_url": "https://chromestatus.com/feature/5161589557821440",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: IndexedDB: SQLite backend",
+      "item_type": "web_platform",
+      "source_summary_sha256": "cf5d2125e0b7a8492fc7e9776eb556ee1875fe780516db94cbdf916101976351",
+      "previous_summary_sha256": "cf5d2125e0b7a8492fc7e9776eb556ee1875fe780516db94cbdf916101976351",
+      "source_updated_at": "2026-08-17 10:14:13.261333",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5067363861004288-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5067363861004288",
+      "source_feature_id": 5067363861004288,
+      "title": "Single-axis scroll containers",
+      "source_url": "https://chromestatus.com/feature/5067363861004288",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Single-axis scroll containers",
+      "item_type": "web_platform",
+      "source_summary_sha256": "9d3177deca2b3bf49c0cee3a353578af1cf2361b9ae0e8f9a19f49ed0d876296",
+      "previous_summary_sha256": "9d3177deca2b3bf49c0cee3a353578af1cf2361b9ae0e8f9a19f49ed0d876296",
+      "source_updated_at": "2026-10-20 13:04:00.664957",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5124378896498688-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5124378896498688",
+      "source_feature_id": 5124378896498688,
+      "title": "Use scroll-snap-type: pair to snap to a single element",
+      "source_url": "https://chromestatus.com/feature/5124378896498688",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Use scroll-snap-type: pair to snap to a single element",
+      "item_type": "web_platform",
+      "source_summary_sha256": "573161d4d4d0ad3876db0a61c3e95205d48b3358a185b32c7900de041bde86a8",
+      "previous_summary_sha256": "573161d4d4d0ad3876db0a61c3e95205d48b3358a185b32c7900de041bde86a8",
+      "source_updated_at": "2026-10-01 18:52:02.990991",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5663304168112128-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5663304168112128",
+      "source_feature_id": 5663304168112128,
+      "title": "WebGPU: WGSL Fragment Depth",
+      "source_url": "https://chromestatus.com/feature/5663304168112128",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: WebGPU: WGSL Fragment Depth",
+      "item_type": "web_platform",
+      "source_summary_sha256": "7d46f6be4e877396dbb444d3349c83d00d6d0383840fc07173ebc7b59371a430",
+      "previous_summary_sha256": "7d46f6be4e877396dbb444d3349c83d00d6d0383840fc07173ebc7b59371a430",
+      "source_updated_at": "2026-09-08 18:41:33.556964",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5091582546149376-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5091582546149376",
+      "source_feature_id": 5091582546149376,
+      "title": "WebRTC Diagnostic Logging API",
+      "source_url": "https://chromestatus.com/feature/5091582546149376",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: WebRTC Diagnostic Logging API",
+      "item_type": "web_platform",
+      "source_summary_sha256": "ea50c94157571ca608f35952604227ecebef94e5013b0cb5e9d4b675edeb1062",
+      "previous_summary_sha256": "ea50c94157571ca608f35952604227ecebef94e5013b0cb5e9d4b675edeb1062",
+      "source_updated_at": "2026-10-21 15:18:17.669503",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-5194104408506368-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5194104408506368",
+      "source_feature_id": 5194104408506368,
+      "title": "WebTransport headers and responseHeaders",
+      "source_url": "https://chromestatus.com/feature/5194104408506368",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: WebTransport headers and responseHeaders",
+      "item_type": "web_platform",
+      "source_summary_sha256": "23b74b2c8a64958375dc7858f8c29cf883b66ab54f1b084150c29c8a8ec4a351",
+      "previous_summary_sha256": "23b74b2c8a64958375dc7858f8c29cf883b66ab54f1b084150c29c8a8ec4a351",
+      "source_updated_at": "2026-09-23 02:02:01.664339",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default"
+    },
+    {
+      "item_id": "chrome-status-6366274495053824-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-6366274495053824",
+      "source_feature_id": 6366274495053824,
+      "title": "Remove FencedFrame element and window.fence APIs",
+      "source_url": "https://chromestatus.com/feature/6366274495053824",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Deprecated"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Deprecated"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Remove FencedFrame element and window.fence APIs",
+      "item_type": "web_platform",
+      "source_summary_sha256": "0b2bdb50884ee0b5d8cc10a79e53b636ac3e86c284acfb0c4ea1fea6f9b204eb",
+      "previous_summary_sha256": "0b2bdb50884ee0b5d8cc10a79e53b636ac3e86c284acfb0c4ea1fea6f9b204eb",
+      "source_updated_at": "2026-09-24 15:41:15.420605",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Deprecated"
+    },
+    {
+      "item_id": "chrome-status-5152728072060928-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5152728072060928",
+      "source_feature_id": 5152728072060928,
+      "title": "Local network access restrictions",
+      "source_url": "https://chromestatus.com/feature/5152728072060928",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Stepped rollout"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "Stepped rollout"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Local network access restrictions",
+      "item_type": "web_platform",
+      "source_summary_sha256": "4a0836996e4a0ee43ecedc8f27019f3d792e0be224093b250bbfd48ceb0c2aef",
+      "previous_summary_sha256": "4a0836996e4a0ee43ecedc8f27019f3d792e0be224093b250bbfd48ceb0c2aef",
+      "source_updated_at": "2026-07-15 12:31:13.053381",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "In development",
+        "val": 3
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Stepped rollout"
+    },
+    {
+      "item_id": "chrome-status-5754395122860032-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5754395122860032",
+      "source_feature_id": 5754395122860032,
+      "title": "Deprecate and stop firing events during subframe removal",
+      "source_url": "https://chromestatus.com/feature/5754395122860032",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Origin trial"
+        },
+        {
+          "milestone": 156,
+          "group": "In developer trial (Behind a flag)"
+        }
+      ],
+      "previous_source_groups": [],
+      "summary": "상위 프레임 DOM 에 접근 가능한 하위 프레임 제거 시 pagehide·visibilitychange·unload 동기 이벤트를 중지하는 실험.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "1182ce27a990e9a17f9c157f6168e743e965f8f17b983372c5e29d341af8ef89",
+      "previous_summary_sha256": null,
+      "source_updated_at": "2026-11-05 12:04:59.906034",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "In developer trial (Behind a flag)",
+        "val": 4
+      },
+      "novelty": "new_to_current_snapshot",
+      "real_test": "미실행",
+      "selection_status": "watch",
+      "selection_reason": "개별 API가 개발자 시험 상태와 Desktop/Android 156–158 범위의 Finch 실험 계획·호환성 위험을 명시합니다. 첫 관찰이며 최초 대외 발표일은 미확인입니다.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "individual_api": {
+        "source_url": "https://chromestatus.com/api/v0/features/5754395122860032",
+        "observed_at": "2026-11-05T22:59:15.196038+00:00",
+        "response_sha256": "5a4e5ca91fbb70851ad5c635d06bd78833341e5ec7e9fc2aadcb4791e6f78a84",
+        "status": {
+          "text": "In developer trial (Behind a flag)",
+          "val": 4,
+          "milestone_str": "In developer trial (Behind a flag)"
+        },
+        "experiment_range": {
+          "desktop_first": 156,
+          "desktop_last": 158,
+          "android_first": 156,
+          "android_last": 158
+        },
+        "experiment_scope": "Finch Beta 및 Stable 1% 실험 계획. 실제 배포 완료나 설치본 검증은 미확인."
+      },
+      "event_id": "chrome-subframe-removal-events-trial-observed-20261106",
+      "source_group": "Origin trial"
+    },
+    {
+      "item_id": "chrome-status-5754395122860032-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5754395122860032",
+      "source_feature_id": 5754395122860032,
+      "title": "Deprecate and stop firing events during subframe removal",
+      "source_url": "https://chromestatus.com/feature/5754395122860032",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "Origin trial"
+        },
+        {
+          "milestone": 156,
+          "group": "In developer trial (Behind a flag)"
+        }
+      ],
+      "previous_source_groups": [],
+      "summary": "상위 프레임 DOM 에 접근 가능한 하위 프레임 제거 시 pagehide·visibilitychange·unload 동기 이벤트를 중지하는 실험.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "1182ce27a990e9a17f9c157f6168e743e965f8f17b983372c5e29d341af8ef89",
+      "previous_summary_sha256": null,
+      "source_updated_at": "2026-11-05 12:04:59.906034",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "In developer trial (Behind a flag)",
+        "val": 4
+      },
+      "novelty": "new_to_current_snapshot",
+      "real_test": "미실행",
+      "selection_status": "watch",
+      "selection_reason": "개별 API가 개발자 시험 상태와 Desktop/Android 156–158 범위의 Finch 실험 계획·호환성 위험을 명시합니다. 첫 관찰이며 최초 대외 발표일은 미확인입니다.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "individual_api": {
+        "source_url": "https://chromestatus.com/api/v0/features/5754395122860032",
+        "observed_at": "2026-11-05T22:59:15.196038+00:00",
+        "response_sha256": "5a4e5ca91fbb70851ad5c635d06bd78833341e5ec7e9fc2aadcb4791e6f78a84",
+        "status": {
+          "text": "In developer trial (Behind a flag)",
+          "val": 4,
+          "milestone_str": "In developer trial (Behind a flag)"
+        },
+        "experiment_range": {
+          "desktop_first": 156,
+          "desktop_last": 158,
+          "android_first": 156,
+          "android_last": 158
+        },
+        "experiment_scope": "Finch Beta 및 Stable 1% 실험 계획. 실제 배포 완료나 설치본 검증은 미확인."
+      },
+      "event_id": "chrome-subframe-removal-events-trial-observed-20261106",
+      "source_group": "In developer trial (Behind a flag)"
+    },
+    {
+      "item_id": "chrome-status-5167864517623808-observed-20261106",
+      "browser": "chrome",
+      "feature_id": "chrome-5167864517623808",
+      "source_feature_id": 5167864517623808,
+      "title": "Web haptics JavaScript API",
+      "source_url": "https://chromestatus.com/feature/5167864517623808",
+      "source_groups": [
+        {
+          "milestone": 156,
+          "group": "In developer trial (Behind a flag)"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 156,
+          "group": "In developer trial (Behind a flag)"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Web haptics JavaScript API",
+      "item_type": "web_platform",
+      "source_summary_sha256": "7b23a1a0373eed8a2202ea5df78686574eac375970f3142d39be47b1d1c6905e",
+      "previous_summary_sha256": "7b23a1a0373eed8a2202ea5df78686574eac375970f3142d39be47b1d1c6905e",
+      "source_updated_at": "2026-11-02 13:17:36.724441",
+      "observed_at": "2026-11-05T22:50:20.782471+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 목록·본문을 수집했으나 개별 최초 발표와 실제 출시 단계의 과거 이력 검증은 미완료. 목록 변경을 출시·철회로 단정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 개별 기능 이력·지원 범위·배포 단계 변화와 시험 조건 확인",
+      "assessed_at": "2026-11-05T22:56:50.628480+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "In developer trial (Behind a flag)"
+    }
+  ],
+  "limitations": [
+    "현재 API의 그룹 항목 전체를 저장했으나 개별 기능의 과거 단계 이력은 부분 확인입니다.",
+    "같은 기능이 여러 그룹에 나타나도 하나의 기능 identity로 연결하며 고유 출시 수로 더하지 않습니다."
+  ]
+}

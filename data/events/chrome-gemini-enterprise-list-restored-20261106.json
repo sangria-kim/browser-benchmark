@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-06",
+  "observed_at": "2026-11-05T22:49:05.197904+00:00",
+  "event_id": "chrome-gemini-enterprise-list-restored-20261106",
+  "feature_id": "chrome-5163880346812416",
+  "browser": "chrome",
+  "event_type": "verification_pending",
+  "version": null,
+  "channel": null,
+  "platform": [],
+  "workstreams": [],
+  "ai_related": true,
+  "scope": "기존 기능의 공식 목록 재등장입니다. 개별 기능 범위와 배포 변화는 별도 검증해야 하며 이전 누락으로 제품 철회를 추론하지 않습니다.",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": {
+    "summary_sha256": "9673a69e4eeba3ace6870bef748ca949f1ecbf7af259b92334406b1891b1068a",
+    "individual_api_sha256": null
+  },
+  "sources": [
+    "https://chromestatus.com/feature/5163880346812416",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=156&lang=en",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en"
+  ],
+  "summary": "기존 Gemini in Chrome 기능 ID가 Enterprise 156/157 목록에서 다시 관찰되었습니다. 이전 누락 기록을 연결하며 새 기능이나 재출시로 보지 않습니다.",
+  "delta": {
+    "observation": "milestone_list_reference_restored",
+    "current_list_milestones": [
+      156,
+      157
+    ],
+    "product_release_inferred": false
+  },
+  "verification_status": "official_body_read_no_installed_test",
+  "previous_event_id": "chrome-gemini-enterprise-list-omission-20261103",
+  "selection_status": "pending_verification",
+  "selection_reason": "공식 현재 문서의 추가·본문 변경은 확인했으나 개별 최초 공지 및 과거 전체 본문 대비 의미 차이 검증 미완료. 문서 수정일을 출시일로 쓰지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
+  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-06",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/feature/5163880346812416",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=156&lang=en",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en"
+    ]
+  }
+}

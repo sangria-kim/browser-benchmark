@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-06",
+  "observed_at": "2026-11-05T22:59:15.197685+00:00",
+  "event_id": "chrome-windows10-pre1809-support-plan-160-20261106",
+  "feature_id": "chrome-6404936660287488",
+  "browser": "chrome",
+  "event_type": "verification_pending",
+  "version": "160",
+  "channel": "Planned",
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": "지원 종료 계획의 현재 본문은 확인했지만 최초 대외 발표와 과거 전체 이력은 미확인입니다. 11/4 수정일을 발표일 또는 지원 종료일로 사용하지 않습니다.",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": {
+    "summary_sha256": "685e1a297ac99695a0c1cb19c43fbd3c2f35297e4a6c75e10234d08c7645128b",
+    "individual_api_sha256": "77cd548ced1327cbac72df78b785e0ed2ca88708e301a377b0d325a4e3fd92cc"
+  },
+  "sources": [
+    "https://chromestatus.com/feature/6404936660287488",
+    "https://chromestatus.com/api/v0/features/6404936660287488",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=158&lang=en"
+  ],
+  "summary": "Windows 10 버전 1809/build 17763 미만에서 Chrome 160이 최종 지원 버전이라는 공식 계획을 처음 수집했습니다. 기존 Chrome은 계속 실행되지만 이후 업데이트를 받지 않는다는 안내입니다.",
+  "delta": {
+    "observation": "first_observed_support_end_plan",
+    "source_created_at": "2026-10-20 20:15:34.977845",
+    "source_updated_at": "2026-11-04 13:04:59.408808",
+    "first_public_announcement_at": null
+  },
+  "verification_status": "official_body_read_no_installed_test",
+  "previous_event_id": null,
+  "selection_status": "pending_verification",
+  "selection_reason": "공식 현재 문서의 추가·본문 변경은 확인했으나 개별 최초 공지 및 과거 전체 본문 대비 의미 차이 검증 미완료. 문서 수정일을 출시일로 쓰지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
+  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-06",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/feature/6404936660287488",
+      "https://chromestatus.com/api/v0/features/6404936660287488",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=158&lang=en"
+    ]
+  }
+}

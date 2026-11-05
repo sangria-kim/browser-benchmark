@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-06",
+  "observed_at": "2026-11-05T22:59:15.193058+00:00",
+  "event_id": "chrome-5180947573112832-target-159-observed-20261106",
+  "feature_id": "chrome-5180947573112832",
+  "browser": "chrome",
+  "event_type": "planned_milestone_change",
+  "version": "159",
+  "channel": "Proposed",
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "ChromeStatus의 목록과 개별 API를 교차 확인했습니다. 대상 버전 변경은 문서 관찰이며 실제 탑재·활성화·배포를 증명하지 않습니다.",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": {
+    "summary_sha256": "736e0b9f4bef663e7feff27ef68cb310be32454320926b0fcd555653de3ca92e",
+    "individual_api_sha256": "d198953e81031e39c7192dfb98ba6feca8130d2f9f0bac65c276065314a21965"
+  },
+  "sources": [
+    "https://chromestatus.com/feature/5180947573112832",
+    "https://chromestatus.com/api/v0/features/5180947573112832",
+    "https://chromestatus.com/api/v0/features?milestone=159"
+  ],
+  "summary": "WebTransport congestion control의 공식 목표 milestone이 159로 확인되었습니다. 기존 158 목록에서 이동한 계획 관찰이며 정식 출시나 철회가 아닙니다.",
+  "delta": {
+    "observation": "milestone_listing_moved",
+    "previous_observed_list_milestone": 158,
+    "current_target_milestone": 159,
+    "individual_api_status": {
+      "status": {
+        "text": "Proposed",
+        "val": 2,
+        "milestone_str": "Proposed"
+      },
+      "desktop": 159,
+      "android": 159,
+      "webview": 159,
+      "ios": null
+    }
+  },
+  "verification_status": "official_body_read_no_installed_test",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "개별 공식 API가 desktop/android/webview 목표 milestone 159와 Proposed 상태를 명시합니다. 기존 목록에서 159로 이동한 계획 관찰이며 출시·철회가 아닙니다.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
+  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-06",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/feature/5180947573112832",
+      "https://chromestatus.com/api/v0/features/5180947573112832",
+      "https://chromestatus.com/api/v0/features?milestone=159"
+    ]
+  }
+}

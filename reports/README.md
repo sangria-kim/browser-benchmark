@@ -15,3 +15,6 @@
 - [2026-11-04 — Whale Beta · Edge · Firefox · Chrome 실험](2026-11-04.md) · 정정 후 selected 12건과 신규성 검증 대기 1건을 구분합니다.
 
 새 selected가 없는 날은 빈 날짜별 보고서를 만들지 않으며, 미생성 이유와 수집 제약은 위 전체 기록에 남깁니다.
+
+
+- [2026-11-06 — Vivaldi 8.3 · Brave Stable · Edge 새 탭 · Chrome 실험](2026-11-06.md) · 고유 selected 17건 전체 보고. 업무별 중복 노출은 한 사건으로 집계.

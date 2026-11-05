@@ -10,3 +10,6 @@
 - [2026-11-04 — 정정 후 선정 12건·검증 대기 1건](../2026-11-04.md): chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea, firefox-related-origin-passkey-fix-159-0-1, edge-notification-block-report-announced-20261102, edge-notification-scam-auto-revocation-156, whale-desktop-multiplay-follow-exit-5-41-429-2-20261102, whale-desktop-settings-import-shortcuts-5-41-429-2-20261102, whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102, whale-desktop-vertical-tab-window-width-5-41-429-2-20261102, whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102, whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102, whale-desktop-sign-in-continuity-5-41-429-2-20261102, whale-desktop-memo-formatting-5-41-429-2-20261102, whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102. 공식 문헌·소스 관찰이며 실기 미실행.
 
 2026-11-04 정정: `edge-notification-scam-auto-revocation-156`는 신규성 검증 대기로 전환했으며 위 목록에서 신규 선정으로 세지 않습니다. [정정 근거](../2026-11-04.md).
+
+
+- [2026-11-06 — Vivaldi 8.3 · Brave Stable · Edge 새 탭 · Chrome 실험](../2026-11-06.md) · 고유 selected 17건 전체 보고. 업무별 중복 노출은 한 사건으로 집계.

@@ -10,3 +10,6 @@
 - [2026-11-04 — 정정 후 선정 1건·검증 대기 1건](../2026-11-04.md): edge-notification-scam-auto-revocation-156, whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102. 공식 문헌·소스 관찰이며 실기 미실행.
 
 2026-11-04 정정: `edge-notification-scam-auto-revocation-156`는 신규성 검증 대기이며 AI 경로의 존재를 새 AI 기능 출시로 해석하지 않습니다. [정정 근거](../2026-11-04.md).
+
+
+- [2026-11-06 — Vivaldi 8.3 · Brave Stable · Edge 새 탭 · Chrome 실험](../2026-11-06.md) · 고유 selected 17건 전체 보고. 업무별 중복 노출은 한 사건으로 집계.

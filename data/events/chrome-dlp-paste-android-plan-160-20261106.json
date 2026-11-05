@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-06",
+  "observed_at": "2026-11-05T22:49:05.197904+00:00",
+  "event_id": "chrome-dlp-paste-android-plan-160-20261106",
+  "feature_id": "chrome-5162613332901888",
+  "browser": "chrome",
+  "event_type": "planned_scope_expansion",
+  "version": "160",
+  "channel": "Planned",
+  "platform": [
+    "Android"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": false,
+  "scope": "기업 관리 환경에서 정책으로 설정한 사이트·데이터 분류에 따라 붙여넣기를 검사하고 경고 또는 차단하는 계획입니다. 일반 소비자 Android 전체의 기본 기능이 아니며 실제 배포는 검증하지 않았습니다.",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": {
+    "summary_sha256": "51e55f76211788f9a9085e9a2fd8256f0aad9302ff00a5a76f343a8560bb7698",
+    "individual_api_sha256": null
+  },
+  "sources": [
+    "https://chromestatus.com/feature/5162613332901888",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=156&lang=en",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+    "https://release-notes-787862449254.us-central1.run.app/features?version=158&lang=en"
+  ],
+  "summary": "Chrome Enterprise Premium의 DLP 붙여넣기 보호 계획에 Android 160 단계가 추가되었습니다. 기존 iOS 156 단계와 구분합니다.",
+  "delta": {
+    "observation": "enterprise_android_stage_added",
+    "previous_rollout": {
+      "ios": 156
+    },
+    "current_rollout": {
+      "ios": 156,
+      "android": 160
+    },
+    "source_updated_at": "2026-11-04 14:28:40.589637"
+  },
+  "verification_status": "official_body_read_no_installed_test",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "직전 iOS 156 단계에 없던 Android 160 배포 계획을 확인. 기업 정책과 시험 계정 조건이 필요하며 현재 소비자 Android 제공으로 해석하지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동일한 기업 DLP 규칙에서 Android의 붙여넣기 경고·차단·취소 흐름과 작업 완료율은 브라우저별로 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
+  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-06",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/feature/5162613332901888",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=156&lang=en",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "https://release-notes-787862449254.us-central1.run.app/features?version=158&lang=en"
+    ]
+  }
+}

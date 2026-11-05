@@ -1,0 +1,824 @@
+{
+  "schema_version": 1,
+  "browser": "opera",
+  "report_date": "2026-11-06",
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-05T22:53:14.091Z",
+  "coverage": {
+    "sources": [
+      {
+        "coverage_status": "success",
+        "body_read": true,
+        "observed_at": "2026-11-05T22:53:14.091Z",
+        "cadence": "weekly_auxiliary",
+        "coverage_start_date": "2026-10-29",
+        "coverage_end_date": "2026-11-05",
+        "scope": "주간 주요 공식 발표와 연결된 변경 기록. 브라우저 모든 변경 수집 아님.",
+        "source_id": "opera-desktop",
+        "url": "https://blogs.opera.com/desktop/",
+        "coverage": "첫 페이지가 기간 경계를 덮고 11/4 Stable .38 및 11/3 Developer .0 본문·연결 changelog 13+18항목 확인."
+      },
+      {
+        "coverage_status": "success",
+        "body_read": true,
+        "observed_at": "2026-11-05T22:53:14.091Z",
+        "cadence": "weekly_auxiliary",
+        "coverage_start_date": "2026-10-29",
+        "coverage_end_date": "2026-11-05",
+        "scope": "주간 주요 공식 발표와 연결된 변경 기록. 브라우저 모든 변경 수집 아님.",
+        "source_id": "opera-news",
+        "url": "https://blogs.opera.com/news/",
+        "coverage": "11/5 사용자 수 발표 및 10/29 GX 중복 공지 본문 확인. 목록이 10/29 이전을 덮음. GX·일반 Opera 분리."
+      },
+      {
+        "source_id": "opera-mobile",
+        "url": "https://blogs.opera.com/mobile/",
+        "coverage_status": "not_due",
+        "observed_at": null,
+        "body_read": false,
+        "cadence": "weekly_auxiliary",
+        "coverage": "정규 주간 기한 전. 미점검을 성공 또는 변화 없음으로 처리하지 않음."
+      }
+    ],
+    "scope": "weekly_auxiliary",
+    "limitations": [
+      "정규 Opera Mobile 점검은 예정 전.",
+      "Browser Connector/Operator flag의 권한·사용 조건은 검증 대기.",
+      "설치본·한국 제공 시험 미실행."
+    ]
+  },
+  "items": [
+    {
+      "item_id": "opera-139.0.6053.38-dna-126115",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "DNA-126115",
+      "source_item_number": 1,
+      "summary": "Windows 권한 승인 충돌",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-3898",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-3898",
+      "source_item_number": 2,
+      "summary": "투명 테마 사이드바 중복",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-4474",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-4474",
+      "source_item_number": 3,
+      "summary": "설치 화면 이미지 누락",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5090",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5090",
+      "source_item_number": 4,
+      "summary": "설치 프로그램 리브랜딩",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5092",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5092",
+      "source_item_number": 5,
+      "summary": "Opera One 리브랜딩",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5258",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5258",
+      "source_item_number": 6,
+      "summary": "브라우저 커넥터 flag 확대",
+      "event_type": "flag_rollout",
+      "selection_status": "pending_verification",
+      "selection_reason": "flag 활성화만으로 에이전트 권한·배포·사용 조건 확정 불가.",
+      "revisit_trigger": "공식 사용 조건·설치본 검증",
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5372",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5372",
+      "source_item_number": 7,
+      "summary": "커넥터와 오퍼레이터 flag 확대",
+      "event_type": "flag_rollout",
+      "selection_status": "pending_verification",
+      "selection_reason": "flag 활성화만으로 에이전트 권한·배포·사용 조건 확정 불가.",
+      "revisit_trigger": "공식 사용 조건·설치본 검증",
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5196",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5196",
+      "source_item_number": 8,
+      "summary": "비공개 분할화면 충돌",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5198",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5198",
+      "source_item_number": 9,
+      "summary": "접힌 세로 탭 너비",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5340",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5340",
+      "source_item_number": 10,
+      "summary": "초기 탭 가져오기 UI",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5373",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5373",
+      "source_item_number": 11,
+      "summary": "대비 테마 위젯 표시",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5392",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5392",
+      "source_item_number": 12,
+      "summary": "창별 세로 탭 접힘 기억",
+      "event_type": "improvement",
+      "selection_status": "selected",
+      "selection_reason": "세로 탭 접힘 상태를 창별로 기억하는 사용자 동작 변화 명시.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/",
+      "event_id": "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104",
+      "feature_id": "opera-vertical-tabs",
+      "priority": "P2"
+    },
+    {
+      "item_id": "opera-139.0.6053.38-rna-5443",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.38",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-04",
+      "source_issue_id": "RNA-5443",
+      "source_item_number": 13,
+      "summary": "Early Bird 관련 사이트 툴팁",
+      "event_type": "rollout_expansion",
+      "selection_status": "watch",
+      "selection_reason": "기존 Developer 툴팁의 Early Bird 확대. 새 기능 최초 도입 아님.",
+      "revisit_trigger": "공식 사용 조건·설치본 검증",
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-dna-126115",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "DNA-126115",
+      "source_item_number": 1,
+      "summary": "Windows 권한 승인 충돌",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-2584",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-2584",
+      "source_item_number": 2,
+      "summary": "분할화면 평가 팝업 위치",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-3630",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-3630",
+      "source_item_number": 3,
+      "summary": "Linux 탭 툴팁 테두리",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-3859",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-3859",
+      "source_item_number": 4,
+      "summary": "Linux 개발자도구 상단바",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-3898",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-3898",
+      "source_item_number": 5,
+      "summary": "투명 테마 사이드바 중복",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-4474",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-4474",
+      "source_item_number": 6,
+      "summary": "설치 화면 이미지 누락",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-4997",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-4997",
+      "source_item_number": 7,
+      "summary": "Wayland 창간 끌기",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5171",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5171",
+      "source_item_number": 8,
+      "summary": "선택 탭 묶음 끌기",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5179",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5179",
+      "source_item_number": 9,
+      "summary": "Windows 200% 배율 체크박스",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5187",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5187",
+      "source_item_number": 10,
+      "summary": "페이지 정보 열린 뒤로가기 충돌",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5196",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5196",
+      "source_item_number": 11,
+      "summary": "비공개 분할화면 충돌",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5280",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5280",
+      "source_item_number": 12,
+      "summary": "세로 탭 자동숨김 대기시간",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5283",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5283",
+      "source_item_number": 13,
+      "summary": "시작화면 탭 추가 메뉴",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5329",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5329",
+      "source_item_number": 14,
+      "summary": "사이드바 위 탭바 겹침",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5340",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5340",
+      "source_item_number": 15,
+      "summary": "초기 탭 가져오기 UI",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5367",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5367",
+      "source_item_number": 16,
+      "summary": "첫 탭 위치 드롭",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5373",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5373",
+      "source_item_number": 17,
+      "summary": "대비 테마 위젯 표시",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-140.0.6072.0-rna-5395",
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "140.0.6072.0",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "announced_at": "2026-11-03",
+      "source_issue_id": "RNA-5395",
+      "source_item_number": 18,
+      "summary": "자동숨김 애니메이션 조정",
+      "event_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
+      "revisit_trigger": null,
+      "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
+    },
+    {
+      "item_id": "opera-news-desktop-100m-20261105",
+      "browser": "opera",
+      "product": "Opera desktop family",
+      "announced_at": "2026-11-05",
+      "summary": "Desktop 이용자 1억 명 경과 발표와 기존 기능 회고",
+      "selection_status": "excluded",
+      "selection_reason": "이용자 수·기존 기능 회고이며 신규 제품 변화 아님.",
+      "source_url": "https://blogs.opera.com/news/2026/11/opera-breaks-through-100-million-users-on-desktop/"
+    },
+    {
+      "item_id": "opera-gx-booster-overlap-20261029",
+      "browser": "opera",
+      "product": "Opera GX",
+      "announced_at": "2026-10-29",
+      "summary": "GX 오디오·탭 검색·분할화면 기존 공지 재확인",
+      "selection_status": "excluded",
+      "selection_reason": "10/30 색인의 watch 3건과 같은 본문. 일반 Opera와 혼합하지 않음. 신규 알림 제외.",
+      "source_url": "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
+      "existing_index": "releases/opera/collection-2026-10-30.json"
+    }
+  ],
+  "selected_events": [
+    "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104"
+  ]
+}

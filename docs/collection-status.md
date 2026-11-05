@@ -139,3 +139,17 @@ Desktop 27개와 Android 4.0 13개를 과거 보완하고 Android 4.1 4개를 �
 
 
 예정 외 참고: Opera Desktop 139 Stable·140 Developer 및 Vivaldi 8.2 minor update·8.3 RC 공지를 보조 조회했습니다. [참고 URL과 한계](../data/collection/2026-11-05.json)에 남기며 이번 정규 주간 완료나 신규 selected 판정으로 집계하지 않습니다.
+
+
+## 2026-11-06 실행 결과
+
+규칙 commit `d1b38c7d605bff79d5526cfcc01729fc71d1bab5` / `pm-selection-v2`. [출처별 범위](../data/collection/2026-11-06.json), [상세 분석](../reports/2026-11-06.md), [전체 생성 기록](../reports/run-history.md).
+
+- 확인 범위에서 신규 selected 17건. Vivaldi 8.3의 정식 포함·동작 변화 10건, Opera 창별 세로 탭 상태 1건, Brave 정식 채널 3건, Edge 새 탭 1건, Chrome 소스 실험 2건입니다. 기존 기능의 최초 출시로 확대하지 않습니다.
+- Chrome Releases 21개 본문, Enterprise 88개 그룹/41개 고유 항목, ChromeStatus 75개 그룹/70개 고유 항목을 확인했습니다. 목록 재등장·milestone 이동은 출시·철회로 세지 않습니다. Firefox 기존 노트와 MDN을 대조했고 PiP 반복 note는 재선정하지 않았습니다.
+- Brave 48개 겹침 릴리스와 1.99.55 기능별 정식 노트를 확보했습니다. 이전 artifact-only 수집과 날짜·채널을 분리했고 Android에 Desktop 기능을 일반화하지 않았습니다.
+- Whale 최근 구간 목록·본문은 기존과 같으며 제품 소개는 부분 확인입니다. Vivaldi Stable Desktop 111개·Android 74개 변경 항목, Opera 31개 changelog 항목을 보조 관찰 범위에 보존했습니다.
+- 기존 한국 지원 기준선 5개와 과거 관심 기능 7개를 재확인·보완했습니다. 새로운 한국 제공 사건은 0건이며 한국어 Smart Window 본문 실패는 유지합니다. P1/P2 검토는 기한 전이며 등급 기준은 바꾸지 않았습니다.
+- 모든 설치본·실기 벤치마크는 미실행입니다. 전체 과거 수집·한국 제공 검증 완료를 주장하지 않습니다.
+
+Chrome 소스 최신 고유 23개 commit을 수집했습니다. about_flags 21·metadata 19·설명 후속 헤더 16 diff 모두 직전 snapshot부터 재적용하여 공식 종료 8b41794e snapshot과 일치했습니다. 10/27부터의 겹침 78/77/60개 이력도 직전 성공 색인과 대조했습니다. 과거 metadata 7/7–13의 40개·헤더 6/23–29의 33개 diff도 각각 공식 endpoint snapshot replay를 검증했습니다. 재개는 metadata 7/14·헤더 6/30 UTC입니다. 원래 1,169개 archive는 유지합니다. descriptions.cc는 요청기간 이전에 삭제된 경로로 재확인했으며 현재 이력 0건을 접근 실패로 처리하지 않습니다. 소스 실험 P2 2건, watch 14건, excluded 7건이며 모든 설치본·한국 조건·실기 시험은 미확인/미실행입니다.

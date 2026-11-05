@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-06",
+  "observed_at": "2026-11-05T22:59:15.196038+00:00",
+  "event_id": "chrome-subframe-removal-events-trial-observed-20261106",
+  "feature_id": "chrome-5754395122860032",
+  "browser": "chrome",
+  "event_type": "experimental_observation",
+  "version": null,
+  "channel": "Developer trial / Finch plan",
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "공식 API는 개발자 시험 상태를 표시하며 실험 목표·위험·범위를 명시합니다. 버전 필드는 정식 출시 미확인으로 null입니다. 이벤트 핸들러에 의존하는 정리 작업이 생략될 수 있다는 호환성 위험이 있습니다. 실제 실험 배포·설치본 노출은 미확인입니다.",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": {
+    "summary_sha256": "1182ce27a990e9a17f9c157f6168e743e965f8f17b983372c5e29d341af8ef89",
+    "individual_api_sha256": "5a4e5ca91fbb70851ad5c635d06bd78833341e5ec7e9fc2aadcb4791e6f78a84"
+  },
+  "sources": [
+    "https://chromestatus.com/feature/5754395122860032",
+    "https://chromestatus.com/api/v0/features/5754395122860032",
+    "https://chromestatus.com/api/v0/features?milestone=156"
+  ],
+  "summary": "상위 프레임 DOM에 접근할 수 있는 하위 프레임을 제거할 때 pagehide·visibilitychange·unload를 동기 호출하지 않는 실험을 관찰했습니다.",
+  "delta": {
+    "observation": "first_observed_developer_trial",
+    "flag": "OmitSubframeDetachmentEventsOnRemoval",
+    "desktop_trial_range": [
+      156,
+      158
+    ],
+    "android_trial_range": [
+      156,
+      158
+    ],
+    "trial_plan": "Finch Beta 및 Stable 1%",
+    "source_updated_at": "2026-11-05 12:04:59.906034"
+  },
+  "verification_status": "official_body_read_no_installed_test",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "개별 API가 개발자 시험 상태와 Desktop/Android 156–158 범위의 Finch 실험 계획·호환성 위험을 명시합니다. 첫 관찰이며 최초 대외 발표일은 미확인입니다.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
+  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-06",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/feature/5754395122860032",
+      "https://chromestatus.com/api/v0/features/5754395122860032",
+      "https://chromestatus.com/api/v0/features?milestone=156"
+    ]
+  }
+}

@@ -960,3 +960,8 @@
 ## 2026-11-04 관찰
 
 [월별 소스 색인](monthly/2026-11-source-index-2026-11-04.json): 새 고유 15개 commit, 파일별 최신 diff 13/11/8개. about_flags 13개를 replay해 공식 종료 snapshot과 일치했습니다. 북마크바 구역별 키보드 탐색은 source-only selected P2이며 설치본·동작은 미확인입니다. metadata 6/30–7/6 22개, 설명 헤더 6/16–22 28개 이력을 보완했습니다. 다음 과거 재개는 각각 7/7, 6/23 UTC이며 전체 완료가 아닙니다. 원래 1,169개 archive의 종점·건수는 유지합니다.
+
+
+### 2026-11-06 소스 관찰
+
+[최신 23개 commit 및 독립 이력 보완](monthly/2026-11-source-index-2026-11-06.json). 원래 1,169개 commit archive는 유지합니다. 메뉴 검색 및 Android Actor 알림 실험은 [상세 보고서](../../reports/2026-11-06.md)에 연결하며 설치본·출시 증거로 일반화하지 않습니다.

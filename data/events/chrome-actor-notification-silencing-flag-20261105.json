@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-actor-notification-silencing-flag-20261105",
+  "feature_id": "chrome-actor-task-notification-silencing",
+  "browser": "chrome",
+  "event_type": "experiment_observed",
+  "version": null,
+  "channel": null,
+  "platform": [
+    "Android"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": true,
+  "scope": "Android의 experimental-triggering Actor 작업에만 적용하는 기본 비활성 실험. 일반 작업과 전체 Android 알림 정책으로 일반화하지 않는다.",
+  "observed_at": "2026-11-05T22:53:24Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "2951e28c3f03b55e5b7b4a383bec73f84176456c",
+  "committed_at": "2026-11-05T17:17:06Z",
+  "sources": [
+    {
+      "url": "https://chromium.googlesource.com/chromium/src/+/2951e28c3f03b55e5b7b4a383bec73f84176456c^!",
+      "section": "about_flags.cc, flag_descriptions.h, flag-metadata.json 및 관련 feature/구현 diff",
+      "verified_at": "2026-11-05T22:53:24Z"
+    },
+    {
+      "url": "https://github.com/chromium/chromium/commit/2951e28c3f03b55e5b7b4a383bec73f84176456c",
+      "section": "Official Chromium GitHub mirror commit metadata and full diff",
+      "verified_at": "2026-11-05T22:53:24Z"
+    }
+  ],
+  "summary": "Chrome Android Actor 작업 알림의 무음화 실험 (소스 관찰)",
+  "delta": "첫 비경고 ACTING/REFLECTING 알림만 소리를 낼 수 있도록 상태를 추적한다. 준비·후속 진행·일시정지·사용자 입력 요청·경고·완료 알림은 무음으로 만들며 완료·clearAll 때 추적을 초기화한다.",
+  "verification_status": "source_diff_and_snapshot_verified",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "등록뿐 아니라 구현·단위 테스트 변경이 확인되어 알림 소음 감소와 개입 요청 인지의 상충을 비교할 수 있다.",
+  "priority": "P2",
+  "priority_reason": "실험적으로 시작한 AI 작업의 알림 방해와 개입 요청 인지를 함께 비교할 가치가 있다. 전체 알림 정책이 아닌 특정 작업 흐름의 사용성 개선이므로 P2로 둔다.",
+  "comparison_question": "Android에서 AI 작업의 소리·진동 알림 수를 줄이면서 사용자 입력 요청·경고를 놓치지 않도록 하는 방식은 무엇인가? 동일한 작업과 알림 설정으로 비교할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함한 설치본·계정·지역 조건을 확보하면 flag 노출과 과제 동작을 확인한다.",
+  "assessed_at": "2026-11-05T22:53:24Z",
+  "selection_rule_version": "pm-selection-v2",
+  "flag_ids": [
+    "actor-silence-notifications-after-first-working"
+  ],
+  "related_feature_symbols": [
+    "chrome::android::kActorSilenceNotificationsAfterFirstWorking"
+  ],
+  "source_event_id": "chrome-source-2951e28c3f03b55e5b7b4a383bec73f84176456c",
+  "korea_availability": "unknown",
+  "korean_language_support": "unknown",
+  "installed_build_verification": "not_run",
+  "behavioral_verification": "not_run",
+  "novelty_basis": "직전 성공 snapshot에 해당 등록이 없고 이번 diff에 추가됨. 과거 repository source index·flag 문서 및 정확한 ID 검색에서 이전 사건을 찾지 못했다. 기능 자체의 최초 구현 또는 세계 최초 공개를 주장하지 않는다."
+}
