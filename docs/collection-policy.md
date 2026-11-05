@@ -45,6 +45,8 @@ Stable/실험/Beta/예고, 지역·언어·계정·기기 제한과 단계적 �
 
 PM 선별 결과가 selected인 의미 있는 새 사건이 있을 때만 reports/YYYY-MM-DD.md를 작성한다. 같은 날짜 문서가 있으면 기존 내용과 정정 이력을 보존하여 추가한다. 기능별 전체 이력, 브라우저/버전별 색인, JSON 사건 데이터를 함께 갱신한다. 버전 미확인 실험을 임의의 버전 폴더에 넣지 않는다. 변경이 없으면 빈 보고서를 만들지 않는다.
 
+**보고서 생성 여부와 관계없이** 매 수집·보고 생성 시도 결과는 [수집·보고서 생성 전체 기록](../reports/run-history.md)에 남긴다. 생성·미생성·생성 실패·보류·확인 불가를 구분하고, Asia/Seoul 날짜·시도 구분·확인 범위 신규 selected 수·구체적 이유·오류/미완료 출처·공개 근거를 적는다. 선별 미수행은 0건이 아니라 확인 불가이며, 부분 수집의 0건을 전체 변화 없음으로 일반화하지 않는다. 같은 날짜 재시도·정정은 이전 결과를 보존하고 별도로 남긴다. GitHub 접근 실패로 기록하지 못하면 비공개로 보존한 공개 가능 요약을 접근 복구 후 보충한다. 세부 양식·기존 기록의 한계는 해당 파일을 따른다.
+
 JSON 사건 필드: schema_version, event_id, feature_id, browser, event_type, version, channel, platform, workstreams, ai_related, scope, observed_at, announced_at, effective_at, source_revision, sources, summary, delta, verification_status, previous_event_id, selection_status, selection_reason, priority, priority_reason, comparison_question, benchmark_readiness, revisit_trigger, assessed_at, selection_rule_version. 날짜 의미를 혼용하지 않으며 미확인은 null로 둔다.
 
 게시 후 파일을 다시 읽어 내용·상대 링크·commit을 확인한다. 충돌 시 최신 파일을 읽어 병합하며 다른 변경을 덮어쓰지 않는다. 보고서 commit 성공 전 전달 완료로 처리하지 않는다.
@@ -68,7 +70,8 @@ GitHub를 보고서의 기준 저장소로 사용한다. 이전에 전달한 사
 - 새 사건 1건이 날짜별 보고서와 버전 색인에 함께 저장되고 상대 링크로 열린다.
 - 동일 입력 재실행과 동시 실행에서 사건·보고서·메일이 중복되지 않는다.
 - 출처 실패, 게시 실패, 발송 결과 불확실 상황에서 완료된 단계만 보존해 복구한다.
-- 변경 없음은 빈 보고서를 만들지 않고 비공개 점검 상태만 갱신한다.
+- 변경 없음은 빈 보고서를 만들지 않고 `reports/run-history.md`에 미생성 사유와 공개 수집 범위를 남긴다. checkpoint·게시 상태·메일 전달 상태는 계속 별도 비공개로 관리한다.
+- 수집 오류·보고 생성 실패·검증 보류에도 공개 가능한 사유와 재개 조건을 전체 기록에 남긴다. 실패를 변화 없음으로 처리하거나 과거 미확인 실행을 추정하지 않는다.
 - 공개 파일에 계정 주소·메시지 ID·인증 정보·사내 자료가 포함되지 않는다.
 - 사내 환경에서 clone/pull 후 상대 링크를 따라 문서를 읽을 수 있다.
 

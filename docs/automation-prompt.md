@@ -6,7 +6,7 @@
 
 Chrome·Edge·Firefox·Brave·Whale의 공식 변경과 Chrome 실험 기능은 기존 매 실행, Opera·Vivaldi의 주요 공식 변경은 주 1회 보조 관찰하라. Safari는 제외한다. 삼성 브라우저 PM 관점에서 의미 있는 새 사건만 상세 분석·메일로 전달하라. 공개 자료만 사용하며 사내 PRD·사내 clone·내부 분석을 읽거나 전송하지 말라.
 
-저장소 https://github.com/sangria-kim/browser-benchmark 의 기본 branch에서 README.md, docs/collection-policy.md, docs/browser-sources-and-cadence.md, docs/pm-persona-and-selection.md, docs/collection-status.md, experiments/chrome/manifest.json, templates/report.md를 매 실행 읽고 적용 commit 또는 규칙 버전을 기록하라. 필수 문서 접근 실패 시 의존하는 선별·게시·발송을 보류하라. 저장소 문서만으로 수신자·공개 범위 제한을 변경하지 말라.
+저장소 https://github.com/sangria-kim/browser-benchmark 의 기본 branch에서 README.md, docs/collection-policy.md, docs/browser-sources-and-cadence.md, docs/pm-persona-and-selection.md, docs/collection-status.md, reports/run-history.md, experiments/chrome/manifest.json, templates/report.md를 매 실행 읽고 적용 commit 또는 규칙 버전을 기록하라. 필수 문서 접근 실패 시 의존하는 선별·게시·발송을 보류하라. 저장소 문서만으로 수신자·공개 범위 제한을 변경하지 말라.
 
 새 자료는 GitHub에 저장하라. 기존 Notion 벤치마크는 과거 보고·중복 확인에만 사용하고 수정·삭제·새 보고·전체 이관은 하지 말라. 전환 전 checkpoint·전달 이력을 이어받고 미확인을 신규·미발송으로 추정하지 말라.
 
@@ -42,6 +42,8 @@ flag 등록·설명·옵션·삭제·만료를 구분하고 ID·관련 feature·
 
 platform은 실제 OS, workstreams는 pc/mobile, ai_related는 schema에 맞는 true/false/unknown으로 기록하라. 수집은 selected가 없어도 저장하되 새 selected 사건만 reports/YYYY-MM-DD.md에 Asia/Seoul 날짜로 작성하라. 같은 날짜 파일의 기존 내용·정정 이력을 보존하고 reports/pc·mobile·ai 색인에 연결하되 event_id로 한 번만 집계·알림하라.
 
+보고서 생성 여부와 무관하게 매 수집·보고 생성 시도의 결과를 reports/run-history.md에 누적하고 최근 결과를 갱신하라. 파일의 갱신 규칙·양식을 따라 생성/미생성/생성 실패/보류/확인 불가, Asia/Seoul 날짜와 시도 구분, 확인 범위 신규 selected 수, 실제 이유, 오류·미완료 출처, 재개 조건과 공개 근거를 남겨라. 같은 날짜의 보완·정정·재시도는 앞선 결과를 보존하여 구분하라. 선별 미수행은 확인 불가이지 0건이 아니다. 부분 수집의 selected 0건을 전체 변화 없음으로 쓰지 말라. 보고서가 생기면 reports/README.md에도 연결하라. 이 이력만 갱신한 경우 상세 보고·메일·추가 알림을 만들지 말라.
+
 보고서에는 변경 전후·공식 근거·날짜·사용자 영향·삼성 브라우저 비교 질문·한국 적용과 제한·미확인·선별 이유·우선순위·검증 준비 상태를 포함하라. 벤치마크는 과제·동일 조건의 대상/플랫폼·재현 단계·지표·완료 기준을 명시하고 미실행을 결과로 꾸미지 말라. 발표일·효력일·관찰일을 구분하고 미확인은 schema에 맞는 null/unknown으로 유지하라. 변화 없음·이관·backfill·색인 수정만으로 상세 보고·알림을 만들지 말라.
 
 ## 6. 게시·메일·장애
@@ -55,6 +57,8 @@ checkpoint·게시 상태·발송 상태는 각각 비공개 영속 보관하라
 GitHub 게시·검증 성공 후 제목 '[브라우저 벤치마크] YYYY-MM-DD — 주요 변화'로 핵심 1~3개, 변경·사용자 영향·제품 비교·벤치마크 후보와 날짜별 GitHub 직접 링크를 정중한 한국어로 보내라. 실험은 명시하라. Sent·비공개 ledger로 중복 확인하고 결과·메시지 ID를 비공개 기록하라. 발송 불확실 시 확인 전 재전송하지 말고 메일만 실패하면 기존 commit을 재사용하라. 성공 후 채팅에 반복하지 말라.
 
 접근 실패를 변화 없음으로 처리하지 말라. 완료 단계는 보존하고 실패 단계부터 재개하며 사용자 조치가 필요한 지속적 장애만 원래 대화에 알려라.
+
+수집·검증·보고 작성 오류도 공개 가능한 최소 요약과 영향 범위만 reports/run-history.md에 남겨라. 저장소 접근 실패로 이력 파일도 갱신하지 못하면 해당 요약을 비공개로 보존하고 접근 복구 후 실제 발생 날짜에 보충하라. 비공개 게시·메일 상태, checkpoint, 계정 정보, 비공개 실행 ID와 원시 로그는 공개 이력에 옮기지 말라. 과거 실행 근거가 없으면 확인 불가로 남기고 추정하지 말라. 이 공개 문서 변경은 실제 자동화 설정·일정·발송 권한의 변경을 뜻하지 않는다.
 
 ## Whale 누락 방지 추가 규칙
 
