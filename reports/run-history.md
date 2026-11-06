@@ -10,7 +10,7 @@
 
 ## 최근 결과
 
-**2026-11-06: 상세 보고서 생성, 확인 범위 신규 selected 17건, 수집은 부분 완료.** Vivaldi·Opera 주간 보조 관찰, Brave 정식 채널, Edge 새 탭과 Chrome 소스 실험을 분석했습니다. Chrome Enterprise·소스 증분·Brave API 접근은 복구했으나 ChromeStatus 과거 단계·Whale 제품 소개·일부 한국 출처는 미완료입니다. [상세 보고서](2026-11-06.md) · [출처별 사유](../data/collection/2026-11-06.json)
+**2026-11-07: 상세 보고서 생성, 확인 범위 신규 selected 15건, 수집은 부분 완료.** Whale Stable 확대와 새 동작·수정, Edge 로그인 전환·탭 정보, Chrome 소스 실험을 분석했습니다. ChromeStatus 전체 과거 단계·Whale 제품 소개·일부 한국 출처는 미완료이며 설치본·벤치마크는 미실행입니다. [상세 보고서](2026-11-07.md) · [출처별 사유](../data/collection/2026-11-07.json)
 
 ## 날짜별 전체 이력
 
@@ -30,8 +30,8 @@
 | 2026-11-04 / 정규 수집 | [보고서 생성](2026-11-04.md) | 13 → 정정 후 12 | Whale Desktop Beta, Edge 알림 제어, Firefox 패스키 수정, Chrome 소스 실험 분석. Edge 1건은 아래 정정 참조. | 부분 완료. GPC API 접근 실패, Microsoft 한국·Brave 일부 상세·Whale 영상 미확인. Whale Stable/Beta 문서 상충 유지. 실기 미실행. | [수집 JSON·정정](../data/collection/2026-11-04.json), [최초 commit](https://github.com/sangria-kim/browser-benchmark/commit/26ee8103fc191f0f439f696b0170b7cc7eb93516) |
 | 2026-11-04 / Edge 신규성 정정 | 기존 보고서 수정 | — | 최초 selected 13건 중 자동 알림 해제 1건을 pending_verification으로 전환. 현재 selected 12건. 새 수집·새 출시가 아님. | Edge 152 선행 공식 근거가 있어 156 최초 도입·배포 확대 여부는 미확인. 최초 판정 이력은 보존. | [정정 보고서](2026-11-04.md), [정정 commit](https://github.com/sangria-kim/browser-benchmark/commit/4663962fcdf1abddd0753e783a9fc5cd26a71007) |
 | 2026-11-05 / 정규 수집 | **미생성** | 0 | 확인 범위에서 새 selected 없음. Chrome 빌드 참조·Brave 아티팩트에는 개별 새 기능 근거가 없고 Firefox·Edge·Whale 기존 사건은 반복 제외. | 부분 완료. Chrome Enterprise 본문 실패, flags 증분 이력·replay 미완료, ChromeStatus·블로그·한국 출처 부분 확인, Brave API 전송 실패, Edge Mobile 본문 미조회, Whale 제품 JS shell. Opera·Vivaldi는 정규 예정 전이며 참고 조회를 완료로 세지 않음. | [수집 JSON](../data/collection/2026-11-05.json), [commit](https://github.com/sangria-kim/browser-benchmark/commit/9e8517a35a24fa3d8614b7fb677f910a8b29465e) |
-
 | 2026-11-06 / 정규 수집·주간 보조 관찰 | [보고서 생성](2026-11-06.md) | 17 | Vivaldi Stable·Opera 창별 탭 상태, Brave 정식 노트, Edge 새 탭, Chrome 소스 실험을 신규 사건으로 선정. 기존 기능·베타 선행 이력과 구분. | 부분 완료. ChromeStatus 전체 과거 이력·일부 신규성, Whale 제품 소개, Microsoft 한국 아카이브·일부 한국어 도움말 미완료. Opera Mobile 예정 전. 실기 미실행. | [수집 JSON](../data/collection/2026-11-06.json), [보고서](2026-11-06.md) |
+| 2026-11-07 / 정규 수집·Opera Mobile 주간 보조 관찰 | [보고서 생성](2026-11-07.md) | 15 | Whale .3 Stable 범위 확대 9건·새 동작/수정 3건, Edge 157 단계/동작 2건, Chrome 소스 옵션 1건을 선정. 과거 재기재·빌드/보안 및 활용 안내는 제외. | 부분 완료. ChromeStatus 전체 과거 단계, Whale 제품 소개, Microsoft 한국 최근 전체 아카이브·한국어 Smart Window 도움말 미완료. Opera Desktop/news·Vivaldi 및 정규 한국 조건·P1/P2 검토는 예정 전. 실기 미실행. | [수집 JSON](../data/collection/2026-11-07.json), [보고서](2026-11-07.md) |
 
 ## 갱신 규칙
 
@@ -52,4 +52,5 @@
 | YYYY-MM-DD / 정규·보완·정정·재시도 구분 | 생성 / 수정 / 미생성 / 생성 실패 / 보류 / 확인 불가 | 확인한 수 또는 확인 불가 | 실제 사유와 필요 시 재개 조건 | 수집 범위·실패 단계/출처·미확인·예정 전 생략 | 실제 보고서·수집 자료·공개 근거 링크 |
 
 운영 기준: [수집 및 게시 지침](../docs/collection-policy.md) · [자동화 적용용 공개 지시문](../docs/automation-prompt.md) · [상세 수집 상태](../docs/collection-status.md)
+
 

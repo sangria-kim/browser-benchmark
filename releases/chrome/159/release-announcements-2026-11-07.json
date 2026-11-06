@@ -1,0 +1,145 @@
+{
+  "schema_version": 1,
+  "rule_commit": "3740f5c80e1c14f191bbd4ea4357db9fcbd750d4",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-07",
+  "observed_at": "2026-11-06T22:54:39.672005+00:00",
+  "source_url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100",
+  "coverage": "JSON feed 88개, 가장 오래된 공지 2026-09-29T11:38:51.470-07:00. 10/29 22:49 UTC 이후 16개 공지 전체 본문·일시·버전 색인. 모든 연결 Git diff 전수는 제외.",
+  "count": 4,
+  "items": [
+    {
+      "item_id": "5458199997867866755",
+      "browser": "chrome",
+      "title": "Chrome Dev for Desktop Update",
+      "source_url": "https://chromereleases.googleblog.com/2026/11/chrome-dev-for-desktop-update.html",
+      "announced_at": "2026-11-06T09:28:33.341-08:00",
+      "source_updated_at": "2026-11-06T09:28:33.341-08:00",
+      "effective_at": null,
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "versions": [
+        "159.0.8144.0"
+      ],
+      "channel": "Dev",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "body_sha256": "757f0fd8da6d5096258b309d945ddd7bac711a06754402243cd54be4f365642e",
+      "security_identifiers": [],
+      "summary": "Chrome Dev for Desktop Update: 159.0.8144.0. 개별 신규 사용자 기능이 명시되지 않은 빌드·보안·일반 안정성 공지.",
+      "rollout_conditions": "공지 채널·플랫폼에 따른 배포",
+      "novelty": "new_build_reference",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "개별 새 사용자 동작 근거가 없는 빌드·보안·일반 개선 공지. 신규 기능으로 재선정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "version_interpretation": "versions는 이 공지의 실제 배포 대상 버전입니다. 다른 플랫폼의 대응 보안 참조는 referenced_versions로, 예정 플랫폼은 planned_platforms로 분리합니다."
+    },
+    {
+      "item_id": "2634158098541198219",
+      "browser": "chrome",
+      "title": "Chrome Dev for Android Update",
+      "source_url": "https://chromereleases.googleblog.com/2026/11/chrome-dev-for-android-update.html",
+      "announced_at": "2026-11-06T06:28:32.500-08:00",
+      "source_updated_at": "2026-11-06T06:28:32.500-08:00",
+      "effective_at": null,
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "versions": [
+        "159.0.8144.0"
+      ],
+      "channel": "Dev",
+      "platform": [
+        "Android"
+      ],
+      "body_sha256": "db9c85c8c718e5584f0cc21a2de5476a0c9e9c2587d4b4c9f2ff51838f58717f",
+      "security_identifiers": [],
+      "summary": "Chrome Dev for Android Update: 159.0.8144.0. 개별 신규 사용자 기능이 명시되지 않은 빌드·보안·일반 안정성 공지.",
+      "rollout_conditions": "공지 채널·플랫폼에 따른 배포",
+      "novelty": "new_build_reference",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "개별 새 사용자 동작 근거가 없는 빌드·보안·일반 개선 공지. 신규 기능으로 재선정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "version_interpretation": "versions는 이 공지의 실제 배포 대상 버전입니다. 다른 플랫폼의 대응 보안 참조는 referenced_versions로, 예정 플랫폼은 planned_platforms로 분리합니다."
+    },
+    {
+      "item_id": "4399288682666858511",
+      "browser": "chrome",
+      "title": "Chrome Dev for Desktop Update",
+      "source_url": "https://chromereleases.googleblog.com/2026/10/chrome-dev-for-desktop-update_01100896752.html",
+      "announced_at": "2026-10-30T07:58:33.169-07:00",
+      "source_updated_at": "2026-10-30T07:58:33.169-07:00",
+      "effective_at": null,
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "versions": [
+        "159.0.8130.0"
+      ],
+      "channel": "Dev",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "body_sha256": "af9f5cdfa2a41c00b962bf6474f46f566ffab24dfb2c3624c20202dd453ccdb3",
+      "security_identifiers": [],
+      "summary": "Chrome Dev for Desktop Update: 159.0.8130.0. 개별 신규 사용자 기능이 명시되지 않은 빌드·보안·일반 안정성 공지.",
+      "rollout_conditions": "공지 채널·플랫폼에 따른 배포",
+      "novelty": "overlap_reference",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "개별 새 사용자 동작 근거가 없는 빌드·보안·일반 개선 공지. 신규 기능으로 재선정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "version_interpretation": "versions는 이 공지의 실제 배포 대상 버전입니다. 다른 플랫폼의 대응 보안 참조는 referenced_versions로, 예정 플랫폼은 planned_platforms로 분리합니다."
+    },
+    {
+      "item_id": "571114130667822043",
+      "browser": "chrome",
+      "title": "Chrome Dev for Android Update",
+      "source_url": "https://chromereleases.googleblog.com/2026/10/chrome-dev-for-android-update_0754174154.html",
+      "announced_at": "2026-10-30T05:13:32.558-07:00",
+      "source_updated_at": "2026-10-30T05:13:32.558-07:00",
+      "effective_at": null,
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "versions": [
+        "159.0.8130.0"
+      ],
+      "channel": "Dev",
+      "platform": [
+        "Android"
+      ],
+      "body_sha256": "25fa8049b21aff3ad43fac32009c9f95cc636f2b7c89a1ad4f4a2994ad7e19be",
+      "security_identifiers": [],
+      "summary": "Chrome Dev for Android Update: 159.0.8130.0. 개별 신규 사용자 기능이 명시되지 않은 빌드·보안·일반 안정성 공지.",
+      "rollout_conditions": "공지 채널·플랫폼에 따른 배포",
+      "novelty": "overlap_reference",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "개별 새 사용자 동작 근거가 없는 빌드·보안·일반 개선 공지. 신규 기능으로 재선정하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "version_interpretation": "versions는 이 공지의 실제 배포 대상 버전입니다. 다른 플랫폼의 대응 보안 참조는 referenced_versions로, 예정 플랫폼은 planned_platforms로 분리합니다."
+    }
+  ],
+  "validation_note": "원문 16개 공지의 실제 배포 버전·참조 버전·플랫폼을 재검토했습니다. 축약된 /.19 및 /.39 버전을 풀어 쓰고 Windows Early Stable의 macOS 예정과 Extended Stable의 Linux 비대상을 구분했습니다."
+}

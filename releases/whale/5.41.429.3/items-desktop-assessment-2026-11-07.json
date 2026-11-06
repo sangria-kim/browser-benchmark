@@ -1,0 +1,1373 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "version": "5.41.429.3",
+  "product": "Desktop",
+  "observed_at": "2026-11-06T22:54:23Z",
+  "rule_commit": "3740f5c80e1c14f191bbd4ea4357db9fcbd750d4",
+  "collection_scope": "single_official_body",
+  "collection_status": "success",
+  "source_url": "https://notice.naver.com/notices/whalehomepage/35247",
+  "corroborating_sources": [
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/"
+  ],
+  "registered_date": "2026-11-03",
+  "registered_time": null,
+  "effective_at": "2026-11-06",
+  "expected_counts": {
+    "improvement": 18,
+    "fix": 10
+  },
+  "coverage": "18개 개선과 10개 수정 및 하위 설명 전체. 홈페이지 한영 본문과 운영팀 첫 글 대조. 전체 과거 아카이브 완료는 아님.",
+  "date_note": "동일 URL의 최초 등록은 11/3, 현재 본문 배포 표기는 11/6. 수정일은 API 11/6이며 timezone 미공개. 실기 배포 확인값 아님.",
+  "channel_note": "현재 홈페이지 한영·연구소 한영 모두 Stable, Beta로 일치. 이전 .2 Beta 기록과 당시 영문 상충을 보존.",
+  "platform_note": "Desktop 제품 구분만으로 모든 OS를 추정하지 않음. Windows가 명시된 PlayStation 및 웹 앱 다중모니터 수정은 Windows, 그 외 platform=[]로 미확인 유지.",
+  "novelty_review": {
+    "previous_index": "releases/whale/5.41.429.2/items-desktop-assessment-2026-11-04.json",
+    "previous_release": "https://forum.whale.naver.com/topic/62927/",
+    "method": "기존19항목·이전 Stable 본문과 전체 항목 비교 후 선별."
+  },
+  "items": [
+    {
+      "item_id": "whale-desktop-5.41.429.3-1-chromium-engine",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "chromium-engine",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 1,
+      "summary": "Chromium 156 엔진 적용",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "excluded",
+      "selection_reason": "엔진 버전 변경만으로 구체적인 새 사용자 과제나 성능 효과를 확정할 수 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-2-address-bar-ai-query",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": true,
+      "canonical_feature_key": "address-bar-ai-query",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 2,
+      "summary": "주소창의 ChatGPT·Claude 검색어 직접 전송",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "selected",
+      "selection_reason": "이전 .2 전체 색인과 직전 Stable 본문에 없는 주소창 질의 직접 전달 동작.",
+      "priority": "P2",
+      "priority_reason": "AI 질문 입력의 화면 전환·재입력 감소를 비교 가능.",
+      "comparison_question": "같은 질문을 주소창과 AI 사이트에서 보낼 때 조작 수·질의 보존·전송 인지가 어떻게 다른가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "검색 제공자 설정·로그인 조건·설치본 노출 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": [],
+      "event_id": "whale-desktop-address-bar-ai-query-5-41-429-3-20261106"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-3-quick-search",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": true,
+      "canonical_feature_key": "quick-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 3,
+      "summary": "선택 텍스트 AI 브리핑 및 사이드바 연결",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "읽던 문맥에서 검색 답변을 보는 탐색 경로의 제한적 개선이며 AI라는 이유만으로 P1을 부여하지 않음.",
+      "comparison_question": "같은 글의 질문을 해결할 때 페이지·탭 전환 수와 원문 복귀 비용이 어떻게 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106",
+      "subitems": [
+        "선택문 답변을 현재 페이지에서 확인",
+        "더보기에서 사이드바 검색으로 연결"
+      ]
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-4-memo-formatting",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "memo-formatting",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 4,
+      "summary": "새 탭 메모 서식",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "브라우징 중 기록을 구조화하는 보조 과제의 편의 개선.",
+      "comparison_question": "자료를 읽으며 목록·인용을 기록하고 다시 편집할 때 외부 앱 전환과 서식 손실을 줄일 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-memo-formatting-5-41-429-3-stable-20261106",
+      "subitems": [
+        "제목·강조·목록·체크·인용 편집"
+      ]
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-5-sign-in-continuity",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "sign-in-continuity",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 5,
+      "summary": "첫 로그인 기존 데이터 이어쓰기",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P1",
+      "priority_reason": "첫 계정 로그인에서 비밀번호·북마크·설정의 귀속과 작업 연속성을 다루므로 보존·혼입·취소를 우선 검증할 필요가 있음.",
+      "comparison_question": "로그인 전 환경을 계정에 연결할 때 데이터 보존·선택 명확성·계정 혼입 방지가 어떻게 다른가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106",
+      "subitems": [
+        "북마크·비밀번호·설정 유지"
+      ]
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-6-mobile-window-tabs",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "mobile-window-tabs",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 6,
+      "summary": "Desktop 모바일창 카드형 탭 목록",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "PC의 보조 창에서 여러 페이지를 전환하는 제한된 과제의 탐색 개선.",
+      "comparison_question": "작은 보조 창에서 여러 페이지를 찾고 전환할 때 선택 시간과 오선택이 어떻게 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106",
+      "subitems": [
+        "창 크기에 맞는 카드 탭 목록"
+      ]
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-7-contextual-feature-tips",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "contextual-feature-tips",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 7,
+      "summary": "상황별 기능 안내",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "watch",
+      "selection_reason": "기능 발견에 영향을 줄 수 있으나 노출 조건·빈도·해제 방식이 미공개여서 재현 조건이 부족함.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "팁별 발생 조건·빈도·끄기 옵션 또는 재현 가능한 공식 도움말",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": [
+        "세로 탭·주소 위젯·제스처·듀얼 탭·퀵서치·메모리 절약 안내"
+      ]
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-8-quick-search",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "quick-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 8,
+      "summary": "퀵서치 결과 유형별 표시 설정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "특정 검색 결과의 노출을 세부 조정하는 사용자 통제 개선.",
+      "comparison_question": "필요한 즉답만 남길 때 설정 탐색 비용과 원치 않는 결과 노출이 얼마나 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106",
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-9-skin-colors",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "skin-colors",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 9,
+      "summary": "추출 스킨 색상 조화",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "excluded",
+      "selection_reason": "시각적 조정이며 읽기·접근성·작업 성과의 실질적 변화 근거는 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "대비·가독성·접근성에 대한 구체적 변화 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-10-vertical-tabs",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "vertical-tabs",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 10,
+      "summary": "창별 세로 탭 너비 저장",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "다중 창의 작업 배치를 유지하는 반복 조작 감소 후보.",
+      "comparison_question": "크기가 다른 여러 창을 번갈아 쓰면서 탭 목록을 다시 맞추는 조작이 줄어드는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106",
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-11-dual-tab",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "dual-tab",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 11,
+      "summary": "다른 창 가장자리로 듀얼 탭 구성",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "이미 열린 두 자료를 비교 화면으로 구성하는 직접 조작 경로.",
+      "comparison_question": "서로 다른 창의 자료를 나란히 볼 때 이동 횟수·구성 시간·의도치 않은 창 분리가 어떻게 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-dual-tab-cross-window-drag-5-41-429-3-stable-20261106",
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-12-settings-import",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "settings-import",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 12,
+      "summary": "단축키를 포함한 설정 가져오기",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "환경 이전 후 수작업으로 재설정하는 비용과 오류의 비교 가능성이 있음.",
+      "comparison_question": "같은 작업 환경을 옮길 때 설정·단축키 복원률과 수작업 보정 횟수가 어떻게 다른가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106",
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-13-multiplay",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "multiplay",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 13,
+      "summary": "멀티플레이 팔로우 해제·분할 새 탭·단축키·툴팁 개선",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "협업 화면 따라가기에서 개인 탐색으로 전환하는 제한된 동작 규칙 개선.",
+      "comparison_question": "공동 탐색 중 스스로 다른 탭을 볼 때 팔로우 상태를 이해하고 통제하기 쉬운가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-multiplay-follow-exit-5-41-429-3-stable-20261106",
+      "subitems": [
+        "탭을 두 번 이탈하면 팔로우 종료",
+        "듀얼 탭에서 멀티플레이 새 탭",
+        "마이크 툴팁 단축키",
+        "참여자 프로필 툴팁 깜빡임 수정"
+      ]
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-14-memo-formatting",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "memo-formatting",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 14,
+      "summary": "스크랩북 메모 서식",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "release_stage_expansion",
+      "selection_status": "selected",
+      "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+      "priority": "P2",
+      "priority_reason": "브라우징 중 기록을 구조화하는 보조 과제의 편의 개선.",
+      "comparison_question": "자료를 읽으며 목록·인용을 기록하고 다시 편집할 때 외부 앱 전환과 서식 손실을 줄일 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-memo-formatting-5-41-429-3-stable-20261106",
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-15-site-compatibility",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "site-compatibility",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 15,
+      "summary": "일반 사이트 호환성 개선",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "excluded",
+      "selection_reason": "대상 사이트·변경 동작·재현 조건이 없어 구체적 비교 과제를 정의하기 어려움.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "영향 사이트와 수정 전후 동작이 특정된 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-16-problem-report-diagnostics",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "problem-report-diagnostics",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 16,
+      "summary": "신고 유형별 진단 정보 첨부",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "watch",
+      "selection_reason": "오류 해결 및 데이터 전송 통제 관점의 가치가 있으나 수집 항목·동의·제외 조건이 미공개.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신고 화면의 첨부 자료 목록·동의와 제거 옵션·공식 개인정보 설명",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-17-memory-tab-notice",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "memory-tab-notice",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 17,
+      "summary": "메모리 부족 페이지 중단 안내",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "pending_verification",
+      "selection_reason": "5.39.412.57 개선 17번에도 메모리 부족 탭 안내가 있어 새로운 동작 차이를 확인하지 못함.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "이전 안내와 달라진 원인 구분·표시 조건의 구체적 설명",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "previous_item_id": "whale-desktop-5.39.412.57-memory-tab-notice",
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-18-video-quality-enhancement",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "video-quality-enhancement",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "source_item_number": 18,
+      "summary": "실험실 동영상 화질 향상",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "watch",
+      "selection_reason": "실험 존재는 명시됐으나 flag ID·GPU·코덱·영상 조건이 없어 재현 가능한 시험 설정이 부족함.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "정확한 flag와 지원 OS·GPU·코덱·재생 조건 공개",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "subitems": []
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-browser-crashes",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "browser-crashes",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 1,
+      "summary": "일반 크래시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-mobile-window-report-crash",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "mobile-window-report-crash",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 2,
+      "summary": "모바일창 문제 신고 진입 크래시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-ai-chat-dark-flash",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "ai-chat-dark-flash",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 3,
+      "summary": "다크모드 AI Chat 첫 화면 깜빡임 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-tab-preview-dismiss",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "tab-preview-dismiss",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 4,
+      "summary": "마우스 이탈 후 탭 미리보기 잔류 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-incognito-sidebar-crash",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "incognito-sidebar-crash",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 5,
+      "summary": "사이드바를 연 시크릿창 종료 크래시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-sidebar-bookmark-context-menu",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "sidebar-bookmark-context-menu",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 6,
+      "summary": "사이드바 북마크 우클릭 반응 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-sidebar-calculator",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "sidebar-calculator",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 7,
+      "summary": "사이드바 계산기의 일부 수식 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-page-capture",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "page-capture",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 8,
+      "summary": "사이트별 검은 캡처·스크롤 캡처 실패 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "selected",
+      "selection_reason": "특정 사이트에서 검은 출력·스크롤 캡처 실패를 바로잡아 페이지 증거 저장 과제의 완료를 회복한다.",
+      "priority": "P2",
+      "priority_reason": "캡처 결과 또는 다중 모니터 작업 배치의 구체 실패 회복.",
+      "comparison_question": "동일 사이트 캡처의 출력 성공률·완결성은?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-page-capture-5-41-429-3-20261106"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-playstation-sign-in",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [
+        "Windows"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "playstation-sign-in",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 9,
+      "summary": "Windows PlayStation 로그인 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "repeat_existing_item",
+      "selection_status": "excluded",
+      "selection_reason": "일반 수정 또는 기존 Beta 수정 반복. 상세 신규 보고 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "구체적인 사용자 동작·웹 호환성 변화의 제품별 근거",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.3-fix-webapp-multimonitor",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.3",
+      "channel": "stable_and_beta",
+      "platform": [
+        "Windows"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "webapp-multimonitor",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "source_item_number": 10,
+      "summary": "Windows 웹 앱 최대화 시 인접 모니터 침범 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "corroborating_sources": [
+        "https://notice.naver.com/notices/whalehomepage/35248",
+        "https://forum.whale.naver.com/topic/63213/"
+      ],
+      "announced_at": "2026-11-06",
+      "effective_at": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:23Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "novelty": "new_release_delta",
+      "selection_status": "selected",
+      "selection_reason": "Windows 웹 앱 최대화가 인접 모니터를 침범하는 오류를 바로잡아 다중 화면 작업영역 경계를 회복한다.",
+      "priority": "P2",
+      "priority_reason": "캡처 결과 또는 다중 모니터 작업 배치의 구체 실패 회복.",
+      "comparison_question": "서로 다른 배율의 모니터에서 웹 앱 최대화 경계는 정확한가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
+      "assessed_at": "2026-11-06T22:54:23Z",
+      "selection_rule_version": "pm-selection-v2",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+        "checked_at": "2026-11-06T22:54:23Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-webapp-multimonitor-5-41-429-3-20261106"
+    }
+  ]
+}

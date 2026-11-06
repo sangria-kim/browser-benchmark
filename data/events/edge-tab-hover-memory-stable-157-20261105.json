@@ -1,0 +1,68 @@
+{
+  "browser": "edge",
+  "version": "157.0.4341.42",
+  "channel": "stable",
+  "platform": [
+    "Windows",
+    "macOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-06T22:58:32.221765+00:00",
+  "announced_at": "2026-11-05",
+  "effective_at": null,
+  "source_revision": null,
+  "summary": "탭 hover의 메모리·절감량 안내 개선과 미리보기/메모리 설정 분리",
+  "selection_status": "selected",
+  "selection_reason": "Beta157의 예고가 Stable157에 포함됐으며 사용자가 정보를 읽고 표시를 따로 통제하는 과제가 명확하다.",
+  "priority": "P2",
+  "priority_reason": "표시 가독성과 선택 제어의 제한적·탐색적 개선.",
+  "comparison_question": "비활성 탭 메모리 상태와 절감량을 인지하고 미리보기와 정보를 독립 제어할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 세부 동작·출시범위·설치본 조건 변경 확인",
+  "assessed_at": "2026-11-06T22:58:32.221765+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "edge-tab-hover-memory-stable-157-20261105",
+  "feature_id": "edge-tab-hover-memory-information",
+  "event_type": "stable_introduction",
+  "scope": {
+    "product": "Microsoft Edge Desktop",
+    "target": "Desktop tab hover; Windows/macOS 정책 문서로 범위 보강",
+    "rollout": "정식 릴리스 노트 수록; 모든 설치본 활성화 미확인",
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "account": "개인/관리형 분리 시험; mandatory 정책은 사용자 설정 제한 가능",
+    "subscription": "별도 요구 명시 없음"
+  },
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+      "section": "Feature Updates",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00",
+      "response_sha256": "92895f27d2dd7065f14a9fc5465d8134c4ba76cc7adfbb78795aedce492cfbff"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+      "section": "157.0.4341.10 Feature updates",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/ko-kr/deployedge/microsoft-edge-relnote-stable-channel",
+      "section": "현재 번역은156; 157 한국 제공 증거 아님",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/showtabpreviewenabled",
+      "section": "Supported versions / Description",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00"
+    }
+  ],
+  "delta": "Beta157 예고 → Stable157에 개선된 메모리 안내와 두 표시 설정 분리 수록. hover 최초 발명이나 실제 RAM 절감 성능 개선을 주장하지 않음.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "previous_event_id": null
+}

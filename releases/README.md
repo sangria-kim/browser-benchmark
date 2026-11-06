@@ -17,3 +17,7 @@ ChromeStatus 156–158 현재 API 목록은 아래 2026-10-31 관찰에 추가�
 ### 2026-11-06
 
 [Chrome](chrome/collection-2026-11-06.json) · [Firefox](firefox/collection-2026-11-06.json) · [Edge](edge/collection-2026-11-06.json) · [Brave](brave/collection-2026-11-06.json) · [Whale](whale/collection-2026-11-06.json) · [Opera](opera/collection-2026-11-06.json) · [Vivaldi](vivaldi/collection-2026-11-06.json). Opera/Vivaldi는 주간 보조 범위이며 상세 범위·미확인은 각 색인에 명시합니다.
+
+### 2026-11-07
+
+[Chrome](chrome/collection-2026-11-07.json) · [Edge 157](edge/157/README.md) · [Firefox](firefox/collection-2026-11-07.json) · [Brave](brave/collection-2026-11-07.json) · [Whale .3](whale/5.41.429.3/README.md) · [Opera Mobile](opera/collection-mobile-2026-11-07.json). 정규·주간 보조 범위와 미확인은 각 색인에 구분합니다.

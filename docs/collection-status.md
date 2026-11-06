@@ -153,3 +153,18 @@ Desktop 27개와 Android 4.0 13개를 과거 보완하고 Android 4.1 4개를 �
 - 모든 설치본·실기 벤치마크는 미실행입니다. 전체 과거 수집·한국 제공 검증 완료를 주장하지 않습니다.
 
 Chrome 소스 최신 고유 23개 commit을 수집했습니다. about_flags 21·metadata 19·설명 후속 헤더 16 diff 모두 직전 snapshot부터 재적용하여 공식 종료 8b41794e snapshot과 일치했습니다. 10/27부터의 겹침 78/77/60개 이력도 직전 성공 색인과 대조했습니다. 과거 metadata 7/7–13의 40개·헤더 6/23–29의 33개 diff도 각각 공식 endpoint snapshot replay를 검증했습니다. 재개는 metadata 7/14·헤더 6/30 UTC입니다. 원래 1,169개 archive는 유지합니다. descriptions.cc는 요청기간 이전에 삭제된 경로로 재확인했으며 현재 이력 0건을 접근 실패로 처리하지 않습니다. 소스 실험 P2 2건, watch 14건, excluded 7건이며 모든 설치본·한국 조건·실기 시험은 미확인/미실행입니다.
+
+## 2026-11-07 실행 결과
+
+규칙 commit `3740f5c80e1c14f191bbd4ea4357db9fcbd750d4` / `pm-selection-v2`. [출처별 범위](../data/collection/2026-11-07.json), [상세 보고서](../reports/2026-11-07.md), [전체 기록](../reports/run-history.md). 이전 기록과 Edge 신규성 정정을 보존합니다.
+
+- 확인 범위 신규 selected 15건. Whale 기존 Beta 기능 9건의 Stable 포함, 주소창 AI 질의 전송·캡처·Windows 웹 앱 다중모니터 수정 3건, Edge 157 두 변화와 Chrome 소스 실험 한 건입니다. 공식 노트 수록과 실제 설치본 제공을 구분합니다.
+- Whale 홈페이지 같은 URL의 .2→.3 본문 갱신에서 최초 등록 11/3·현재 본문 배포 11/6·관찰일을 구분했습니다. 한·영 홈페이지와 운영팀의 Stable/Beta 표기가 일치하며 .2 당시 19개 색인·상충은 보존합니다. 현재 28개 최상위 항목(개선 18·수정 10)을 모두 색인화했습니다.
+- Chrome Releases 16개 겹침 공지와 새 빌드 참조 3개, Enterprise 88개 그룹/41개 기능, ChromeStatus 75개 그룹/70개 기능을 확인했습니다. Android 실제 배포와 Desktop 보안 참조 버전, 플랫폼별 예정·배포를 분리했습니다. Enterprise 및 Status 현재 본문·단계는 직전과 동일하며 전체 과거 이력 완료는 아닙니다.
+- Edge 157의 OneAuth 완료와 탭 hover 메모리 정보·설정 분리를 선정했습니다. Apple 로그인·fading 제거는 152/153 선행 근거로 새 도입에서 제외하고 Copilot 등 단계 차이 미확인은 보존했습니다. Firefox 70개 note 본문은 직전과 동일합니다.
+- Brave 겹침 35개 릴리스 중 새 Nightly 4·Beta 1은 artifact 참조로 수집만 했습니다. Opera Mobile 주간 본문은 기존 여행 기능 활용 안내이며 새 기능으로 선정하지 않았습니다. 다른 Opera/Vivaldi 주간 출처는 예정 전입니다.
+- 한국어 Smart Window 도움말 재시도는 실패했고 Microsoft 한국 최근 전체 아카이브·Whale 제품 소개는 부분 확인을 유지합니다. 정규 한국 지원 주간 점검과 P1/P2 적정성 검토는 예정 전이며 기준·일정은 변경하지 않았습니다.
+- 모든 설치본·한국 단말·벤치마크 시험은 미실행입니다.
+
+Chrome 소스 고유 신규 14커밋을 수집했다. about_flags 12·metadata 10·설명 헤더 9개 diff를 직전 snapshot부터 재생하여 공식 종료 d67aec7c와 byte-identical임을 확인했다. 10/29 22:47 UTC부터 최근 겹침 57/51/43개 이력은 직전 색인과 정확히 일치했다. metadata 7/14–20 40개·header 6/30–7/6 18개도 전체 재생 검증했다. 재개는 metadata 7/21, header 7/7 UTC이다. 원본 1,169개 archive와 retired descriptions.cc의 과거 삭제 증거를 유지했다. 신규 selected 1·watch 7·excluded 6. 한국·설치본·실기는 미확인이다. 전체 과거 파일 이력은 여전히 부분 완료다.
+

@@ -26,3 +26,22 @@
 홈페이지 한국어·영문 공지와 연구소 제목·한국어 본문은 Beta. 연구소 영문 본문의 Stable, Beta 표기는 상충하며 Stable 제공은 미확인.
 
 Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음. 실제 지원 OS는 미확인이며 Desktop을 Windows·macOS·Linux 전체 지원으로 확장하지 않습니다.
+
+## 2026-11-07 관찰: Desktop 5.41.429.3
+
+공식 본문의 배포 표기는 2026-11-06 Stable/Beta다. 동일 URL의 최초 등록일 11/3과 구분하며, .2 Beta의 기존 기록을 변경하지 않는다. 한국 제공·한국어 지원은 각각 미확인, 실기 미실행이다.
+
+- [whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106](../../data/events/whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106.json): 기존 .2 Beta 기능의 소개는 반복이지만 .3의 공식 채널이 Stable/Beta로 일치해 정식 채널 포함을 확인. 실제 전체 설치본 활성화는 미검증.
+  - P2: 읽던 문맥에서 검색 답변을 보는 탐색 경로의 제한적 개선이며 AI라는 이유만으로 P1을 부여하지 않음.
+  - 비교 질문: 같은 글의 질문을 해결할 때 페이지·탭 전환 수와 원문 복귀 비용이 어떻게 달라지는가?
+  - 검증: 같은 글의 동일 문장을 선택해 AI 브리핑을 읽고 더보기로 이동한 뒤 원문에 복귀한다. 결과 유형 설정을 각각 끄고 켠다.
+  - 지표: 답변 노출, 페이지 전환 수, 스크롤 위치 유지, 설정별 노출 일치
+  - 준비도: conditional. 5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인
+- [whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106](../../data/events/whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106.json): 기존 .2 Beta 기능의 소개는 반복이지만 .3의 공식 채널이 Stable/Beta로 일치해 정식 채널 포함을 확인. 실제 전체 설치본 활성화는 미검증.
+  - P2: 특정 검색 결과의 노출을 세부 조정하는 사용자 통제 개선.
+  - 비교 질문: 필요한 즉답만 남길 때 설정 탐색 비용과 원치 않는 결과 노출이 얼마나 달라지는가?
+  - 검증: 같은 글의 동일 문장을 선택해 AI 브리핑을 읽고 더보기로 이동한 뒤 원문에 복귀한다. 결과 유형 설정을 각각 끄고 켠다.
+  - 지표: 답변 노출, 페이지 전환 수, 스크롤 위치 유지, 설정별 노출 일치
+  - 준비도: conditional. 5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인
+
+[공식 한국어](https://notice.naver.com/notices/whalehomepage/35247) · [공식 영어](https://notice.naver.com/notices/whalehomepage/35248) · [운영팀](https://forum.whale.naver.com/topic/63213/)

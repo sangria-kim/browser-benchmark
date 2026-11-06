@@ -1,0 +1,62 @@
+{
+  "browser": "edge",
+  "version": "157.0.4341.42",
+  "channel": "stable",
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-06T22:58:32.221765+00:00",
+  "announced_at": "2026-11-05",
+  "effective_at": null,
+  "source_revision": null,
+  "summary": "Windows direct-WAM 로그인 구현 종료·OneAuth 전환 완료",
+  "selection_status": "selected",
+  "selection_reason": "기존 155/156의 예정에서 157의 완료 문구로 단계가 바뀌었다. 미전환 프로필 업데이트와 재로그인 가능성을 검증할 가치가 있다.",
+  "priority": "P1",
+  "priority_reason": "미전환 프로필의 인증 연속성과 재로그인 실패를 우선 확인.",
+  "comparison_question": "브라우저 인증 구현 전환 후 기존 프로필·계정 연속성과 복구 안내는 얼마나 유지되는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 세부 동작·출시범위·설치본 조건 변경 확인",
+  "assessed_at": "2026-11-06T22:58:32.221765+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "edge-oneauth-migration-completed-stable-157-20261105",
+  "feature_id": "edge-oneauth-signin-migration",
+  "event_type": "behavior_change",
+  "scope": {
+    "product": "Microsoft Edge Desktop",
+    "target": "Windows에서 아직 direct-WAM인 프로필",
+    "rollout": "정식 릴리스 노트 수록; 모든 설치본 활성화 미확인",
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "account": "기존 로그인 프로필·관리 여부에 따라 다름",
+    "subscription": "별도 요구 명시 없음"
+  },
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+      "section": "Announcements",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00",
+      "response_sha256": "92895f27d2dd7065f14a9fc5465d8134c4ba76cc7adfbb78795aedce492cfbff"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel",
+      "section": "155/156 OneAuth 예정",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/ko-kr/deployedge/microsoft-edge-relnote-stable-channel",
+      "section": "현재 번역은156; 157 한국 제공 증거 아님",
+      "observed_at": "2026-11-06T22:58:32.221765+00:00"
+    }
+  ],
+  "delta": "155/156 예고 → 157 direct-WAM 종료 및 OneAuth 전환 완료 명시. WAM 자체는 계속 사용.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "previous_event_id": null
+}

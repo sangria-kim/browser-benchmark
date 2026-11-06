@@ -1,0 +1,293 @@
+{
+  "schema_version": 1,
+  "rule_commit": "3740f5c80e1c14f191bbd4ea4357db9fcbd750d4",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-07",
+  "observed_at": "2026-11-06T22:54:39.672005+00:00",
+  "browser": "chrome",
+  "coverage_status": "complete_current_snapshots_historical_verification_partial",
+  "sources": [
+    {
+      "source_id": "chrome-enterprise-156",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=156&lang=en",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "c5a64ba454da8d4bb3c2ee90b7285ee4cb09771ac85b1d3d318d7572d37d3e39",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "공식 현재 API의 31개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 31
+    },
+    {
+      "source_id": "chrome-enterprise-157",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=157&lang=en",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "64db43ee85f0c546d270b19ffba2c6798a738af3f39e46fb8b311fd9346a0b73",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "공식 현재 API의 32개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 32
+    },
+    {
+      "source_id": "chrome-enterprise-158",
+      "url": "https://release-notes-787862449254.us-central1.run.app/features?version=158&lang=en",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "d1edd0700aacc380e4547d220c80ab0956571b4060d58fc033c6e83d14099b43",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "공식 현재 API의 25개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 25
+    },
+    {
+      "source_id": "chrome-chromestatus-156",
+      "url": "https://chromestatus.com/api/v0/features?milestone=156",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "e06a9748c97aa4121a13864e9aa273d9806d41f88c9804667c7ea1c226cc4e69",
+      "coverage_status": "complete_current_snapshot_history_partial",
+      "body_read": true,
+      "coverage": "공식 현재 API의 15개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 15
+    },
+    {
+      "source_id": "chrome-chromestatus-157",
+      "url": "https://chromestatus.com/api/v0/features?milestone=157",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "43c3970007ef578716adc5f31c46301973b4240e834ad3865a3a22065ba5133f",
+      "coverage_status": "complete_current_snapshot_history_partial",
+      "body_read": true,
+      "coverage": "공식 현재 API의 22개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 22
+    },
+    {
+      "source_id": "chrome-chromestatus-158",
+      "url": "https://chromestatus.com/api/v0/features?milestone=158",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "292f38214731c69b4198080b08173fc1dedc93b80e1e5b9ddbd26698829c91ab",
+      "coverage_status": "complete_current_snapshot_history_partial",
+      "body_read": true,
+      "coverage": "공식 현재 API의 16개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 16
+    },
+    {
+      "source_id": "chrome-chromestatus-159",
+      "url": "https://chromestatus.com/api/v0/features?milestone=159",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "ba4ea3b4a75114a49c955e9213f5af62dd04034337164e1cb8efa899a5840962",
+      "coverage_status": "complete_current_snapshot_history_partial",
+      "body_read": true,
+      "coverage": "공식 현재 API의 22개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+      "count": 22
+    },
+    {
+      "source_id": "chrome-releases",
+      "url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "feffff22ac3f9b9fdc23524708fef8aaa83f3d19fabb0183b39623ac317cc8e6",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "JSON feed 88개, 가장 오래된 공지 2026-09-29T11:38:51.470-07:00. 10/29 22:49 UTC 이후 16개 공지 전체 본문·일시·버전 색인. 모든 연결 Git diff 전수는 제외.",
+      "count": 16
+    },
+    {
+      "source_id": "chrome-blog",
+      "url": "https://blog.google/products-and-platforms/products/chrome/rss/",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "7d3ea3ff2037511078aa6195228d20cfd1a85c4c081d550884a3074fe77c38a5",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "RSS 20개 목록이 overlap 이전까지 도달. 기존 최근 1개 기사 본문 재확인. RSS 밖 전수는 제외.",
+      "count": 1
+    },
+    {
+      "source_id": "google-korea",
+      "url": "https://blog.google/intl/ko-kr/rss/",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "http_status": 200,
+      "response_sha256": "d5e7964fecb9e14ffc6407ebec606897cf2c7ddc2648972188759ef08cfd28af",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "RSS 20개 목록이 overlap 이전까지 도달. 기존 최근 3개 기사 본문 재확인. RSS 밖 전수는 제외.",
+      "count": 3
+    }
+  ],
+  "collected_indexes": [
+    "releases/chrome/156/enterprise-observation-2026-11-07.json",
+    "releases/chrome/157/enterprise-observation-2026-11-07.json",
+    "releases/chrome/158/enterprise-observation-2026-11-07.json",
+    "releases/chrome/156/chromestatus-observation-2026-11-07.json",
+    "releases/chrome/157/chromestatus-observation-2026-11-07.json",
+    "releases/chrome/158/chromestatus-observation-2026-11-07.json",
+    "releases/chrome/159/chromestatus-observation-2026-11-07.json",
+    "releases/chrome/156/release-announcements-2026-11-07.json",
+    "releases/chrome/157/release-announcements-2026-11-07.json",
+    "releases/chrome/158/release-announcements-2026-11-07.json",
+    "releases/chrome/159/release-announcements-2026-11-07.json"
+  ],
+  "blog_items": [
+    {
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "2026-10-28T17:00:00+00:00",
+      "body_sha256": "2b5e2dbb8c7f88cfffbf1275a8fb6601b292d78963789da09ff16ac52b288e6e",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "summary": "기존 Gmail 자동완성 발표 반복. 한국 제공 신규 근거 아님.",
+      "novelty": "repeat_reference",
+      "korea_availability": "미확인",
+      "korean_language_support": "미확인",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "이전 실행에 수집한 동일 발표. 새로운 브라우저 기능 또는 한국 제공 변경 근거 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    }
+  ],
+  "korea_news_items": [
+    {
+      "title": "[요즘구글] 대한민국의 평범한 회사원 구서방, 중국 숏폼 드라마 세트장에서 살아남을 수 있을까?",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/inside-google/gooseobang-ep19-micro-drama-frontier/",
+      "announced_at": "2026-10-30T14:00:00+00:00",
+      "body_sha256": "0efd6aa2e539c5d739f7fedf6e9487b933788924a8b6094ce82fcdd6251b5386",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "summary": "Google 한국 공식 일반 제품/콘텐츠 발표. Chrome 기능 발표가 아님.",
+      "novelty": "repeat_reference",
+      "korea_availability": "미확인",
+      "korean_language_support": "미확인",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "이전 실행에 수집한 동일 발표. 새로운 브라우저 기능 또는 한국 제공 변경 근거 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "title": "구글과 2026 MAMA AWARDS가 함께 여는 전 세계 K팝 팬들의 축제",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/google-2026-mama-awards/",
+      "announced_at": "2026-10-30T09:00:00+00:00",
+      "body_sha256": "0ad934804c5a814f1079e5b4170742ecd1e8dc479dd4a3ce2f7bc5ed9d3a9dac",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "summary": "Google 한국 공식 일반 제품/콘텐츠 발표. Chrome 기능 발표가 아님.",
+      "novelty": "repeat_reference",
+      "korea_availability": "미확인",
+      "korean_language_support": "미확인",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "이전 실행에 수집한 동일 발표. 새로운 브라우저 기능 또는 한국 제공 변경 근거 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "title": "지니 4(Genie 4): 월드 시뮬레이션의 새로운 세대",
+      "source_url": "https://blog.google/intl/ko-kr/company-news/technology/genie-4-a-new-generation-of-world-simulation-kr/",
+      "announced_at": "2026-10-28T01:00:00+00:00",
+      "body_sha256": "389db0e112353b868350cb0a4123ab551f66b1bd2a9f21f0cd789eb91715f2b2",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "summary": "Google 한국 공식 일반 제품/콘텐츠 발표. Chrome 기능 발표가 아님.",
+      "novelty": "repeat_reference",
+      "korea_availability": "미확인",
+      "korean_language_support": "미확인",
+      "real_test": "미실행",
+      "selection_status": "excluded",
+      "selection_reason": "이전 실행에 수집한 동일 발표. 새로운 브라우저 기능 또는 한국 제공 변경 근거 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    }
+  ],
+  "event_ids": [],
+  "selected_event_ids": [],
+  "summary": "확인 범위 신규 selected 0건. 새 빌드 공지는 사용자 기능 사건으로 세지 않음. Enterprise 및 ChromeStatus 전체 현재 항목 수집 후 이전 색인과 비교.",
+  "limitations": [
+    "ChromeStatus 개별 전체 단계 이력은 미완료. 목록 포함을 실제 출시로 간주하지 않음.",
+    "모든 연결 Git diff와 전체 과거 릴리스 backfill 미완료.",
+    "한국 실기 및 설치본 검증 미실행.",
+    "전체 원문·계정 필드·비공개 상태는 공개 산출물에 포함하지 않음."
+  ],
+  "release_note_headers": [
+    {
+      "milestone": 156,
+      "source_url": "https://chromestatus.com/release-notes/156",
+      "header_observed": "Chrome 156 Release Notes Preview Scheduled Stable Release October 20, 2026",
+      "body_sha256": "0bec515d70114abb0906cbcef7a3064d57405d3f4991e63e2b0f177441d434b2"
+    },
+    {
+      "milestone": 157,
+      "source_url": "https://chromestatus.com/release-notes/157",
+      "header_observed": "Chrome 157 Release Notes Preview Scheduled Stable Release November 3, 2026",
+      "body_sha256": "c860974ffeaabd80829fcc53a08dc6a7101e269bab6fd1b068ac4842d33a59f3"
+    },
+    {
+      "milestone": 158,
+      "source_url": "https://chromestatus.com/release-notes/158",
+      "header_observed": "Chrome 158 Release Notes Preview Scheduled Stable Release November 17, 2026 (Currently on Beta channel)",
+      "body_sha256": "e373b64a5055d3e68ade370014ed4d0fadf3cabfc3bfb590faccc78257edc84d"
+    },
+    {
+      "milestone": 159,
+      "source_url": "https://chromestatus.com/release-notes/159",
+      "header_observed": "Chrome 159 Release Notes Preview Scheduled Stable Release December 8, 2026 (Currently on Dev channel, reaches Beta on November ",
+      "body_sha256": "5227297e646983611d98a2813fdb0c45817252a252baf7e000a7bd6fd8889d05"
+    }
+  ],
+  "current_unique_inventory_count": {
+    "enterprise": {
+      "group_records": 88,
+      "unique_features": 41
+    },
+    "chromestatus": {
+      "group_records": 75,
+      "unique_features": 70
+    }
+  },
+  "new_build_references": [
+    {
+      "title": "Chrome for Android Update",
+      "versions": [
+        "158.0.8127.22"
+      ],
+      "channel": "Early Stable",
+      "source_url": "https://chromereleases.googleblog.com/2026/11/chrome-for-android-update_0698823948.html"
+    },
+    {
+      "title": "Chrome Dev for Desktop Update",
+      "versions": [
+        "159.0.8144.0"
+      ],
+      "channel": "Dev",
+      "source_url": "https://chromereleases.googleblog.com/2026/11/chrome-dev-for-desktop-update.html"
+    },
+    {
+      "title": "Chrome Dev for Android Update",
+      "versions": [
+        "159.0.8144.0"
+      ],
+      "channel": "Dev",
+      "source_url": "https://chromereleases.googleblog.com/2026/11/chrome-dev-for-android-update.html"
+    }
+  ],
+  "field_interpretation": {
+    "chromestatus_is_released": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다.",
+    "chromestatus_item_identity": "개별 milestone 색인은 안정적인 source_group 해시를 item_id에 포함하여 그룹 행과 고유 source_feature_id를 구분합니다."
+  }
+}

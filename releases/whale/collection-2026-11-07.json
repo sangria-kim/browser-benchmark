@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "report_date": "2026-11-07",
+  "rule_commit": "3740f5c80e1c14f191bbd4ea4357db9fcbd750d4",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-06T22:54:23Z",
+  "coverage": {
+    "sources": [
+      {
+        "source_id": "whale-notice-all",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10",
+        "observed_at": "2026-11-06T22:53:57.311956+00:00",
+        "coverage_status": "success",
+        "body_read": true,
+        "coverage": "첫 페이지 10개가 최근 7일과 직전 성공 이후를 덮음. 기간 내 한영 4본문 전체 읽음. 과거 전체 아님.",
+        "raw_response_sha256": "aeecd56997d7b6ddc00b55095d09e3a0923e94e3f6ab2507323607c03f93e89b",
+        "retrieval_method": "official_http",
+        "list_count": 10,
+        "list_newest_registration_date": "2026-11-03",
+        "list_oldest_registration_date": "2026-09-21"
+      },
+      {
+        "source_id": "whale-notice-desktop",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10&categoryId=99",
+        "observed_at": "2026-11-06T22:53:57.493226+00:00",
+        "coverage_status": "success",
+        "body_read": true,
+        "coverage": "첫 페이지 10개가 최근 7일과 직전 성공 이후를 덮음. 기간 내 한영 4본문 전체 읽음. 과거 전체 아님.",
+        "raw_response_sha256": "d86a2536c39d76f72c00c98b991104b462279dc2b6582581268311ac2613ffc4",
+        "retrieval_method": "official_http",
+        "list_count": 10,
+        "list_newest_registration_date": "2026-11-03",
+        "list_oldest_registration_date": "2026-08-12"
+      },
+      {
+        "source_id": "whale-notice-ios",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10&categoryId=100",
+        "observed_at": "2026-11-06T22:53:57.327857+00:00",
+        "coverage_status": "success",
+        "body_read": true,
+        "coverage": "첫 페이지 10개가 최근 7일과 직전 성공 이후를 덮음. 기간 내 한영 4본문 전체 읽음. 과거 전체 아님.",
+        "raw_response_sha256": "da5e3cf7ab4ea30563156e15e7a4e9d9ab4bec944404a36b3473a71c76e747ee",
+        "retrieval_method": "official_http",
+        "list_count": 10,
+        "list_newest_registration_date": "2026-10-02",
+        "list_oldest_registration_date": "2025-08-28"
+      },
+      {
+        "source_id": "whale-notice-android",
+        "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices?sectionId=199&page=1&pageSize=10&categoryId=101",
+        "observed_at": "2026-11-06T22:53:57.327156+00:00",
+        "coverage_status": "success",
+        "body_read": true,
+        "coverage": "첫 페이지 10개가 최근 7일과 직전 성공 이후를 덮음. 기간 내 한영 4본문 전체 읽음. 과거 전체 아님.",
+        "raw_response_sha256": "ec4f205baaa718154558883aae59a1f877cf39c559880b03e6717b241aa93d57",
+        "retrieval_method": "official_http",
+        "list_count": 10,
+        "list_newest_registration_date": "2026-11-02",
+        "list_oldest_registration_date": "2026-04-16"
+      },
+      {
+        "source_id": "whale-announcements",
+        "url": "https://forum.whale.naver.com/forum/26/?page=1&sortby=start_date&sortdirection=desc",
+        "observed_at": "2026-11-06T22:53:58.366576+00:00",
+        "coverage_status": "success",
+        "body_read": true,
+        "coverage": "게시일순 목록과 운영팀 63213 첫 본문 전체. 같은 URL .3 Stable/Beta 갱신, 댓글 제외.",
+        "raw_response_sha256": "5008bbe9b7ef7d3e2c84b78fedf969a15b057a32f854eeeb427f7b7b2cf15d57",
+        "retrieval_method": "official_http"
+      },
+      {
+        "source_id": "whale-product",
+        "url": "https://whale.naver.com/",
+        "observed_at": "2026-11-06T22:53:58.343111+00:00",
+        "coverage_status": "partial",
+        "body_read": true,
+        "coverage": "재시도 HTTP 본문은 JS shell/일부 SEO 내용. 영상·기능별 조건 전체 미확인.",
+        "raw_response_sha256": "35612c1a922105d0fd8e57389fdcf45127e505b1c5b3a0d9d54d91a661c74513",
+        "retrieval_method": "official_http"
+      }
+    ]
+  },
+  "notices": [
+    {
+      "notice_id": 35247,
+      "title": "v5.41.429.3 업데이트",
+      "registration_date": "2026-11-03",
+      "registration_timestamp_without_timezone": "2026-11-03T10:46:15",
+      "registration_timezone": null,
+      "modified_timestamp_without_timezone": "2026-11-06T18:51:32",
+      "body_release_date": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:22.808335+00:00",
+      "body_text_sha256": "4cdd0dbc8e69f83802c1705249eae6d15565d8f8e5edb907ad56dd06ce9c4638",
+      "url": "https://notice.naver.com/notices/whalehomepage/35247",
+      "independent_counts": {
+        "improvement": 18,
+        "fix": 10
+      },
+      "existing_index": "releases/whale/5.41.429.3/items-desktop-assessment-2026-11-07.json",
+      "novelty": "same_url_version_and_channel_replacement"
+    },
+    {
+      "notice_id": 35248,
+      "title": "v5.41.429.3 Updates",
+      "registration_date": "2026-11-03",
+      "registration_timestamp_without_timezone": "2026-11-03T10:48:34",
+      "registration_timezone": null,
+      "modified_timestamp_without_timezone": "2026-11-06T18:51:54",
+      "body_release_date": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:22.888257+00:00",
+      "body_text_sha256": "92091185ea3d6b68a44f155d3db86676c48d800325b8297916c3300d637809b9",
+      "url": "https://notice.naver.com/notices/whalehomepage/35248",
+      "independent_counts": {
+        "improvement": 18,
+        "fix": 10
+      },
+      "existing_index": "releases/whale/5.41.429.3/items-desktop-assessment-2026-11-07.json",
+      "novelty": "same_url_version_and_channel_replacement"
+    },
+    {
+      "notice_id": 35236,
+      "title": "v4.1 업데이트",
+      "registration_date": "2026-11-02",
+      "registration_timestamp_without_timezone": "2026-11-02T18:40:41",
+      "registration_timezone": null,
+      "modified_timestamp_without_timezone": "2026-11-02T18:40:58",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-06T22:54:22.743094+00:00",
+      "body_text_sha256": "b0ef3166afb3d392e49280e70d3a5d603f8d95688155c5a83cc36729391ca6ce",
+      "url": "https://notice.naver.com/notices/whalehomepage/35236",
+      "independent_counts": {
+        "improvement": 2,
+        "fix": 2
+      },
+      "existing_index": "releases/whale/4.1/items-android-assessment-2026-11-03.json",
+      "novelty": "repeat_previous_body"
+    },
+    {
+      "notice_id": 35237,
+      "title": "v4.1 Updates",
+      "registration_date": "2026-11-02",
+      "registration_timestamp_without_timezone": "2026-11-02T18:43:35",
+      "registration_timezone": null,
+      "modified_timestamp_without_timezone": "2026-11-02T18:43:35",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-06T22:54:22.848896+00:00",
+      "body_text_sha256": "d366ddbc02174aff508fdfe234c9d7e87aa1c15043c2153ca636a7671b0dee64",
+      "url": "https://notice.naver.com/notices/whalehomepage/35237",
+      "independent_counts": {
+        "improvement": 2,
+        "fix": 2
+      },
+      "existing_index": "releases/whale/4.1/items-android-assessment-2026-11-03.json",
+      "novelty": "repeat_previous_body"
+    }
+  ],
+  "selected_events": [
+    "whale-desktop-address-bar-ai-query-5-41-429-3-20261106",
+    "whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106",
+    "whale-desktop-memo-formatting-5-41-429-3-stable-20261106",
+    "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106",
+    "whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106",
+    "whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106",
+    "whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106",
+    "whale-desktop-dual-tab-cross-window-drag-5-41-429-3-stable-20261106",
+    "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106",
+    "whale-desktop-multiplay-follow-exit-5-41-429-3-stable-20261106",
+    "whale-desktop-page-capture-5-41-429-3-20261106",
+    "whale-desktop-webapp-multimonitor-5-41-429-3-20261106"
+  ],
+  "limitations": [
+    "제품소개 partial 유지",
+    "실기 미실행",
+    "원문 전체 및 댓글 제외"
+  ],
+  "evidence_comparison": "이전 .2 Beta19항목 보존. .3은 개선18/수정10, 한영 번역 중복 제거. 신규 개선1·수정8, 기존 selected9개 고유 사건은 Stable 포함 확대."
+}

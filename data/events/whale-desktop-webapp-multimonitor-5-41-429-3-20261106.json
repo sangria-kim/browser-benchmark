@@ -1,0 +1,65 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.3",
+  "channel": "stable_and_beta",
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-06T22:54:23Z",
+  "announced_at": "2026-11-06",
+  "effective_at": "2026-11-06",
+  "summary": "Windows 웹 앱 최대화 시 인접 모니터 침범 수정",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "Windows 웹 앱 최대화가 인접 모니터를 침범하는 오류를 바로잡아 다중 화면 작업영역 경계를 회복한다.",
+  "priority": "P2",
+  "priority_reason": "캡처 결과 또는 다중 모니터 작업 배치의 구체 실패 회복.",
+  "comparison_question": "서로 다른 배율의 모니터에서 웹 앱 최대화 경계는 정확한가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
+  "assessed_at": "2026-11-06T22:54:23Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-desktop-webapp-multimonitor-5-41-429-3-20261106",
+  "feature_id": "whale-webapp-multimonitor",
+  "event_type": "behavior_change",
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35247",
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/"
+  ],
+  "delta": "이전 .2의 2개 수정에는 없고 .3에서 추가된 구체 동작 수정. 모든 사이트·모니터 구성이 해결되었다고 일반화하지 않음.",
+  "previous_event_id": null,
+  "scope": {
+    "product": "Whale Desktop",
+    "source_item_numbers": [
+      10
+    ],
+    "release_stage": "Stable/Beta",
+    "registration_date": "2026-11-03",
+    "body_release_date": "2026-11-06",
+    "actual_device_validation": "미실행",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+      "checked_at": "2026-11-06T22:54:23Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "platform_basis": "Desktop 공지. Windows 명시 수정 외 OS별 적용은 미공개.",
+    "effective_at_basis": "공식 본문 배포 날짜이며 전체 설치본 배포 완료 아님.",
+    "benchmark_plan": {
+      "procedure": "Windows에서 서로 다른 해상도 듀얼 모니터를 좌우 배치하고 100%/150% 배율로 설정한다. 웹 앱을 각 모니터로 이동해 최대화·복원을 3회씩 반복한 뒤 모니터 좌우 순서를 바꿔 재실행한다.",
+      "metrics": "인접 모니터 침범 픽셀, 최대화 경계, 복원 크기·위치 오차",
+      "execution": "미실행",
+      "comparison_limit": "삼성 브라우저의 동등 기능·차이는 미확인. 같은 OS·조건에서만 비교.",
+      "completion_criteria": "각 배치·배율의 최대화 영역이 해당 모니터 작업영역 안에 있고 복원 위치가 예측대로 유지됨. 실행 전 현 디스플레이 설정 보존."
+    }
+  }
+}

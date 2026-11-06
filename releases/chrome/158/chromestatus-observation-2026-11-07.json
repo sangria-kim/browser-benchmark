@@ -1,0 +1,925 @@
+{
+  "schema_version": 1,
+  "rule_commit": "3740f5c80e1c14f191bbd4ea4357db9fcbd750d4",
+  "selection_rule_version": "pm-selection-v2",
+  "report_date": "2026-11-07",
+  "observed_at": "2026-11-06T22:54:39.672005+00:00",
+  "source_url": "https://chromestatus.com/api/v0/features?milestone=158",
+  "coverage_status": "complete_current_snapshot_history_partial",
+  "coverage": "공식 현재 API의 16개 전체 항목 색인 및 직전 summary hash/단계 비교. 전체 과거 이력 및 설치본 검증 제외.",
+  "count": 16,
+  "response_sha256": "292f38214731c69b4198080b08173fc1dedc93b80e1e5b9ddbd26698829c91ab",
+  "items": [
+    {
+      "item_id": "chrome-chromestatus-5174965228929024-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5174965228929024",
+      "source_feature_id": 5174965228929024,
+      "title": "CSS Custom Highlight Universal Selector ::highlight(*)",
+      "source_url": "https://chromestatus.com/feature/5174965228929024",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: CSS Custom Highlight Universal Selector ::highlight(*)",
+      "item_type": "web_platform",
+      "source_summary_sha256": "e62b5c4f4856055ab52ffb967132943bbd2cc4794e986a3eaa36ebeddb3978f5",
+      "previous_summary_sha256": "e62b5c4f4856055ab52ffb967132943bbd2cc4794e986a3eaa36ebeddb3978f5",
+      "source_updated_at": "2026-10-20 01:01:45.452901",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-08-13 07:40:29.031506",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5069051687731200-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5069051687731200",
+      "source_feature_id": 5069051687731200,
+      "title": "CSS flow-start and flow-end alignment keywords",
+      "source_url": "https://chromestatus.com/feature/5069051687731200",
+      "source_groups": [
+        {
+          "milestone": 157,
+          "group": "In developer trial (Behind a flag)"
+        },
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 157,
+          "group": "In developer trial (Behind a flag)"
+        },
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: CSS flow-start and flow-end alignment keywords",
+      "item_type": "web_platform",
+      "source_summary_sha256": "b79aab430d4f4f4b067b6c51ba5bc262d7d9298a726d3c82e0516f87ddcb83b4",
+      "previous_summary_sha256": "b79aab430d4f4f4b067b6c51ba5bc262d7d9298a726d3c82e0516f87ddcb83b4",
+      "source_updated_at": "2026-10-21 18:32:33.417295",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-08-27 23:11:08.503217",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5152834368700416-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5152834368700416",
+      "source_feature_id": 5152834368700416,
+      "title": "HTML install element",
+      "source_url": "https://chromestatus.com/feature/5152834368700416",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "선언적 웹앱 설치 요소와 기업·권한 정책 통제를 설명.158 예정 항목의 설명 갱신.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "c14519c33bff1b752005d98e2e8222d7f4715ac2c90d4995f86988fa8e5156dc",
+      "previous_summary_sha256": "c14519c33bff1b752005d98e2e8222d7f4715ac2c90d4995f86988fa8e5156dc",
+      "source_updated_at": "2026-11-04 18:29:44.608763",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2025-12-09 00:12:00.386133",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5068277495758848-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5068277495758848",
+      "source_feature_id": 5068277495758848,
+      "title": "Media element pseudo-classes",
+      "source_url": "https://chromestatus.com/feature/5068277495758848",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Media element pseudo-classes",
+      "item_type": "web_platform",
+      "source_summary_sha256": "1a1e7cfef89c2fe3231a8dc4dd4632d47a661559912de1c3f8c623f76f0199c2",
+      "previous_summary_sha256": "1a1e7cfef89c2fe3231a8dc4dd4632d47a661559912de1c3f8c623f76f0199c2",
+      "source_updated_at": "2026-10-28 15:35:07.576453",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2025-11-17 09:33:59.608651",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5109900936085504-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5109900936085504",
+      "source_feature_id": 5109900936085504,
+      "title": "OfflineAudioContext incremental rendering",
+      "source_url": "https://chromestatus.com/feature/5109900936085504",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: OfflineAudioContext incremental rendering",
+      "item_type": "web_platform",
+      "source_summary_sha256": "f0a7391e527697dd80dcacbb5afb273fef3c46adde17d7eeb7690edb45a531ab",
+      "previous_summary_sha256": "f0a7391e527697dd80dcacbb5afb273fef3c46adde17d7eeb7690edb45a531ab",
+      "source_updated_at": "2026-10-21 17:49:02.493920",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2025-12-03 00:30:36.994203",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5179186249465856-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5179186249465856",
+      "source_feature_id": 5179186249465856,
+      "title": "Permissions Policy: focus-without-user-activation",
+      "source_url": "https://chromestatus.com/feature/5179186249465856",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Permissions Policy: focus-without-user-activation",
+      "item_type": "web_platform",
+      "source_summary_sha256": "e1316f72ce14af0c2fee03986563d0ef72faebfbe049531008e67c993b8b28f1",
+      "previous_summary_sha256": "e1316f72ce14af0c2fee03986563d0ef72faebfbe049531008e67c993b8b28f1",
+      "source_updated_at": "2026-10-21 21:36:12.357096",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "In developer trial (Behind a flag)",
+        "val": 4
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2019-05-20 21:29:46.529640",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "In developer trial (Behind a flag)",
+        "val": 4
+      },
+      "is_released": true,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5422782593761280-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5422782593761280",
+      "source_feature_id": 5422782593761280,
+      "title": "SVG textPath side attribute",
+      "source_url": "https://chromestatus.com/feature/5422782593761280",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "158 목록에 SVG textPath side 가 복귀했고 개별 API 의 desktop/android/webview 목표값은 158. 일반 상태는 Proposed 여서 정식 출시로 단정하지 않음.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "8d8f0394bf91c029073e81358cf677c1e2eb398b8ad2db9fb3c333db755417af",
+      "previous_summary_sha256": "8d8f0394bf91c029073e81358cf677c1e2eb398b8ad2db9fb3c333db755417af",
+      "source_updated_at": "2026-11-03 00:45:12.314689",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-08-18 01:19:44.390954",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-6208452397498368-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-6208452397498368",
+      "source_feature_id": 6208452397498368,
+      "title": "Source Specific Multicast for Direct Sockets API",
+      "source_url": "https://chromestatus.com/feature/6208452397498368",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: Source Specific Multicast for Direct Sockets API",
+      "item_type": "web_platform",
+      "source_summary_sha256": "8e63c78517acbf70cdcb7ed9d878cb821e13e7b7343f33c1e00ca94dbe8c72d9",
+      "previous_summary_sha256": "8e63c78517acbf70cdcb7ed9d878cb821e13e7b7343f33c1e00ca94dbe8c72d9",
+      "source_updated_at": "2026-10-27 13:20:19.154317",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Enabled by default",
+        "val": 5
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2025-11-19 00:28:43.263619",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Enabled by default",
+        "val": 5
+      },
+      "is_released": true,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5172464636133376-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5172464636133376",
+      "source_feature_id": 5172464636133376,
+      "title": "Support for WebHID",
+      "source_url": "https://chromestatus.com/feature/5172464636133376",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "기존 Android 17/API 37 이상 Chrome 158 WebHID 계획 및 WebView 제외·기업 정책 조건을 설명.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "21879492edb3c4d6299462705c08e5e983acd55414ceeb2811e9d6a5d6cac0fd",
+      "previous_summary_sha256": "21879492edb3c4d6299462705c08e5e983acd55414ceeb2811e9d6a5d6cac0fd",
+      "source_updated_at": "2026-11-04 16:28:02.092824",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Enabled by default",
+        "val": 5
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2018-09-27 21:48:02.098804",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Enabled by default",
+        "val": 5
+      },
+      "is_released": true,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5183481574850560-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5183481574850560",
+      "source_feature_id": 5183481574850560,
+      "title": "Web Install API",
+      "source_url": "https://chromestatus.com/feature/5183481574850560",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "navigator.install 기반 웹앱 설치와 기업·권한 정책 통제를 설명.158 예정 항목의 설명 갱신.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "f5f6c2cf187266ef2ef3b454b7bc60c1d4288689af1c0dafd4a7188d38f8d622",
+      "previous_summary_sha256": "f5f6c2cf187266ef2ef3b454b7bc60c1d4288689af1c0dafd4a7188d38f8d622",
+      "source_updated_at": "2026-11-04 18:30:15.745333",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "In development",
+        "val": 3
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2023-08-29 15:10:30.752766",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "In development",
+        "val": 3
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5089961022980096-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5089961022980096",
+      "source_feature_id": 5089961022980096,
+      "title": "WebTransport anticipated concurrent incoming streams",
+      "source_url": "https://chromestatus.com/feature/5089961022980096",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: WebTransport anticipated concurrent incoming streams",
+      "item_type": "web_platform",
+      "source_summary_sha256": "c14c0b8dd7ce75be908bebc0a37cd8d01dc7c06df738c909d264f34a1c0b4299",
+      "previous_summary_sha256": "c14c0b8dd7ce75be908bebc0a37cd8d01dc7c06df738c909d264f34a1c0b4299",
+      "source_updated_at": "2026-10-21 15:48:50.043189",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-09-25 20:16:20.217618",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-6427766428925952-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-6427766428925952",
+      "source_feature_id": 6427766428925952,
+      "title": "WebTransport draining",
+      "source_url": "https://chromestatus.com/feature/6427766428925952",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: WebTransport draining",
+      "item_type": "web_platform",
+      "source_summary_sha256": "8dcd0327cbf3323abb9aafb0c20fa189396fd1b023fb6a76e282472a07ebc7c9",
+      "previous_summary_sha256": "8dcd0327cbf3323abb9aafb0c20fa189396fd1b023fb6a76e282472a07ebc7c9",
+      "source_updated_at": "2026-10-19 23:36:39.934794",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-09-22 18:38:37.344386",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5094058497277952-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5094058497277952",
+      "source_feature_id": 5094058497277952,
+      "title": "WebTransport reliability attributes",
+      "source_url": "https://chromestatus.com/feature/5094058497277952",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: WebTransport reliability attributes",
+      "item_type": "web_platform",
+      "source_summary_sha256": "35147c5dca9cfb6aef68fc5e6ee104621f47b0e00562a660c4ba8c6b3de6c530",
+      "previous_summary_sha256": "35147c5dca9cfb6aef68fc5e6ee104621f47b0e00562a660c4ba8c6b3de6c530",
+      "source_updated_at": "2026-10-12 18:46:36.765141",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-08-31 17:46:54.484796",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-5100672946143232-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-5100672946143232",
+      "source_feature_id": 5100672946143232,
+      "title": "closest-corner and farthest-corner radii for circle() and ellipse() basic shapes",
+      "source_url": "https://chromestatus.com/feature/5100672946143232",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: closest-corner and farthest-corner radii for circle() and ellipse() basic shapes",
+      "item_type": "web_platform",
+      "source_summary_sha256": "bc0a30e017d1b8dfffb49b7e916975db6a3273fa4893d8e2faaa97b7af865e92",
+      "previous_summary_sha256": "bc0a30e017d1b8dfffb49b7e916975db6a3273fa4893d8e2faaa97b7af865e92",
+      "source_updated_at": "2026-09-30 08:49:46.488879",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-05-06 17:45:46.518154",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-4886345347629056-group-145f5c3a6e90-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-4886345347629056",
+      "source_feature_id": 4886345347629056,
+      "title": "object-fit and object-position apply to SVG documents in <object> and <embed>",
+      "source_url": "https://chromestatus.com/feature/4886345347629056",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Enabled by default"
+        }
+      ],
+      "summary": "웹 플랫폼 목록 항목: object-fit and object-position apply to SVG documents in <object> and <embed>",
+      "item_type": "web_platform",
+      "source_summary_sha256": "4d759be3cac37fd8161885c87120a466f481e000ac78bc69052ace608e217495",
+      "previous_summary_sha256": "4d759be3cac37fd8161885c87120a466f481e000ac78bc69052ace608e217495",
+      "source_updated_at": "2026-10-20 13:25:22.283767",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Enabled by default",
+      "source_created_at": "2026-09-21 01:43:32.041927",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    },
+    {
+      "item_id": "chrome-chromestatus-4709671889534976-group-48ea5abf7f3c-observed-20261107",
+      "browser": "chrome",
+      "feature_id": "chrome-4709671889534976",
+      "source_feature_id": 4709671889534976,
+      "title": "Deprecate and remove XSLT",
+      "source_url": "https://chromestatus.com/feature/4709671889534976",
+      "source_groups": [
+        {
+          "milestone": 158,
+          "group": "Stepped rollout"
+        }
+      ],
+      "previous_source_groups": [
+        {
+          "milestone": 158,
+          "group": "Stepped rollout"
+        }
+      ],
+      "summary": "XSLT 의 Stable 158 중단과 유예 참가자 176 종료 계획을 다시 설명.",
+      "item_type": "web_platform",
+      "source_summary_sha256": "9e81164c34bd9fd4325cf4316041d22edf8df745e8faa62d1278b36d9b9c0166",
+      "previous_summary_sha256": "9e81164c34bd9fd4325cf4316041d22edf8df745e8faa62d1278b36d9b9c0166",
+      "source_updated_at": "2026-11-04 11:45:25.003471",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "announced_at": null,
+      "effective_at": null,
+      "platform": [],
+      "channel": "mixed_or_planned",
+      "current_browser_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "novelty": "repeat_reference",
+      "real_test": "미실행",
+      "selection_status": "pending_verification",
+      "selection_reason": "현재 전체 항목 본문 확보. 과거 개별 단계 이력과 실제 출시 여부 검증은 미완료이며 반복 관찰을 신규로 알리지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·단계·지원 조건 변화 또는 새 검증 근거",
+      "assessed_at": "2026-11-06T22:54:39.672005+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "source_group": "Stepped rollout",
+      "source_created_at": "2025-08-01 19:18:08.633405",
+      "summary_hash_changed": false,
+      "stage_fields_changed": false,
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "is_released": false,
+      "milestone": null,
+      "is_released_interpretation": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다."
+    }
+  ],
+  "field_interpretation": {
+    "is_released": "is_released는 ChromeStatus API의 원천 플래그입니다. Origin trial 등에도 true일 수 있으므로 Stable 출시 확인이나 모든 설치본 활성화를 뜻하지 않습니다. source_group·milestone·개별 출시 근거와 함께 해석해야 합니다.",
+    "item_id": "source_feature_id와 안정적인 source_group 해시로 그룹 행을 구분합니다. 같은 기능이 여러 그룹에 포함되면 별도 행으로 보존합니다.",
+    "source_feature_id": "그룹 간 중복을 제거한 고유 기능 식별자입니다."
+  },
+  "grouped_entry_count": 16,
+  "unique_feature_count": 16
+}

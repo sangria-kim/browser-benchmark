@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "browser": "opera",
+  "report_date": "2026-11-07",
+  "rule_commit": "3740f5c80e1c14f191bbd4ea4357db9fcbd750d4",
+  "observed_at": "2026-11-06T22:55:04.825670+00:00",
+  "cadence": "weekly_auxiliary",
+  "sources": [
+    {
+      "source_id": "opera-mobile",
+      "url": "https://blogs.opera.com/mobile/",
+      "observed_at": "2026-11-06T22:53:57.557999+00:00",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "coverage": "주간 due. 11/3 여행 안내 글 모든6개 절과 9/29 eSIM 최초 발표 비교. 목록의 다음 글10/22로 겹침 경계 확보.",
+      "raw_response_sha256": "d5be06a6302f2a679937751d71a60526c87357279f2858c0123fad1fc36aaf92",
+      "retrieval_method": "official_http"
+    },
+    {
+      "source_id": "opera-mobile-travel",
+      "url": "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "coverage": "6절 전체·연결 eSIM9/29 본문 확인"
+    },
+    {
+      "source_id": "opera-mobile-esim-history",
+      "url": "https://blogs.opera.com/mobile/2026/09/esim-with-opera-for-android-is-here/",
+      "coverage_status": "complete_current",
+      "body_read": true,
+      "observed_at": "2026-11-06T22:55:04.772243+00:00",
+      "coverage": "9/29 eSIM 최초 발표와 조건을 읽어 여행 글의 반복 소개를 대조."
+    }
+  ],
+  "items": [
+    {
+      "item_id": "opera-android-travel-travel-esim-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "source_item_number": 1,
+      "summary": "브라우저 내 여행 eSIM. 전 기기 데이터, 호환·통신사 잠금해제 Android 조건.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신규 버전·기능·지원범위 변경 근거",
+      "assessed_at": "2026-11-06T22:55:04.825670+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "item_id": "opera-android-travel-vpn-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "source_item_number": 2,
+      "summary": "계정·구독 없는 브라우징 범위 VPN 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신규 버전·기능·지원범위 변경 근거",
+      "assessed_at": "2026-11-06T22:55:04.825670+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "item_id": "opera-android-travel-data-saver-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "source_item_number": 3,
+      "summary": "데이터 압축·광고 차단 사용 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신규 버전·기능·지원범위 변경 근거",
+      "assessed_at": "2026-11-06T22:55:04.825670+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "item_id": "opera-android-travel-offline-pages-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "source_item_number": 4,
+      "summary": "오프라인 페이지 저장·열기 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신규 버전·기능·지원범위 변경 근거",
+      "assessed_at": "2026-11-06T22:55:04.825670+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "item_id": "opera-android-travel-download-player-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "source_item_number": 5,
+      "summary": "다운로드 관리·내장 미디어 플레이어 사용 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신규 버전·기능·지원범위 변경 근거",
+      "assessed_at": "2026-11-06T22:55:04.825670+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    },
+    {
+      "item_id": "opera-android-travel-flow-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "source_item_number": 6,
+      "summary": "기기간 QR 연결과 파일·메모 공유, 24시간 임시 보관 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "신규 버전·기능·지원범위 변경 근거",
+      "assessed_at": "2026-11-06T22:55:04.825670+00:00",
+      "selection_rule_version": "pm-selection-v2"
+    }
+  ],
+  "selected_event_ids": [],
+  "limitations": [
+    "보조 관찰이며 전체 Opera 변경 완결 아님",
+    "Desktop/news 이번 정규 수집 생략",
+    "실기 미실행"
+  ]
+}

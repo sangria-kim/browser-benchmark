@@ -1,0 +1,81 @@
+{
+  "version": null,
+  "channel": null,
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-06T22:56:00Z",
+  "source_revision": "b15c57b8d29d899032cc36c0de9cfde74aaf1512",
+  "committed_at": "2026-11-06T18:38:52Z",
+  "verification_status": "source_diff_and_snapshot_verified",
+  "selection_status": "selected",
+  "selection_reason": "새 옵션·구현·단위 테스트가 함께 확인되어 OS 설정 전환 후 사용자 과제 완료를 비교할 수 있다. 제품 출시나 시험 완료로 보지 않는다.",
+  "priority": "P2",
+  "priority_reason": "기본 브라우저 지정이라는 구체적 전환 과제의 이탈·오류를 비교할 수 있으나 Windows 11의 선택적 실험에 한정된다.",
+  "comparison_question": "Windows 11에서 기본 브라우저 지정 시 OS 설정 창으로 이동한 뒤 안내 버블이 없는 기존 방식보다 완료 시간·잘못된 클릭·미완료 비율이 달라지는가? 삼성 브라우저의 동일 안내 지원은 별도 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함한 설치본에서 실험 노출·조건 및 사용자 과제 동작이 확인될 때 다시 검토한다.",
+  "assessed_at": "2026-11-06T22:56:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "chrome-annotated-default-browser-setter-20261106",
+  "feature_id": "chrome-default-browser-setter-selection",
+  "browser": "chrome",
+  "event_type": "experiment_observed",
+  "scope": "Windows 11 이상에서 기본 브라우저 지정 shell integration 흐름을 안내 버블로 보조하는 선택적 소스 실험. Windows 10 및 다른 플랫폼은 기존 shell_integration으로 fallback.",
+  "announced_at": null,
+  "effective_at": null,
+  "summary": "Windows 11 기본 브라우저 지정 과정에서 설정의 Set default 버튼을 가리키는 안내 버블을 기존 shell integration에 결합하는 실험 옵션 추가.",
+  "delta": "기존 shell_integration·visual_guide 옵션에 annotated_shell_integration을 추가하고 Windows 전용 setter와 단위 테스트를 구현했다. 안내 종료는 OS 지정 흐름의 성공·취소를 의미하지 않으며 기존 흐름의 결과를 사용한다.",
+  "sources": [
+    {
+      "url": "https://chromium.googlesource.com/chromium/src/+/b15c57b8d29d899032cc36c0de9cfde74aaf1512^!",
+      "section": "about_flags.cc 옵션·flag_descriptions.h 설명·Windows setter와 단위 테스트 diff",
+      "verified_at": "2026-11-06T22:56:00Z"
+    },
+    {
+      "url": "https://github.com/chromium/chromium/commit/b15c57b8d29d899032cc36c0de9cfde74aaf1512",
+      "section": "공식 Chromium mirror의 commit metadata·전체 diff",
+      "verified_at": "2026-11-06T22:56:00Z"
+    }
+  ],
+  "previous_event_id": null,
+  "flag_ids": [
+    "default-browser-setter-selection"
+  ],
+  "related_feature_symbols": [
+    "default_browser::kDefaultBrowserSetterSelection"
+  ],
+  "source_event_id": "chrome-source-b15c57b8d29d899032cc36c0de9cfde74aaf1512",
+  "conditions": {
+    "os": "Windows 11 or later in source IsWin11OrGreater gate",
+    "flag_id": "default-browser-setter-selection",
+    "option": "with Annotated Shell Integration (Windows 11)",
+    "parameter": {
+      "setter_option": "annotated_shell_integration"
+    },
+    "fallback": "Windows 10 and other platforms use shell_integration",
+    "version": null,
+    "account": "unknown",
+    "region": "unknown",
+    "language": "unknown"
+  },
+  "previous_comparison": {
+    "baseline_revision": "8b41794e3219f184a946f63323e64bfe7e3221b3",
+    "existing_options": [
+      "shell_integration",
+      "visual_guide"
+    ],
+    "new_option": "annotated_shell_integration",
+    "novelty": "New source option and setter implementation, not first introduction of default-browser guidance."
+  },
+  "korea_availability": "unknown",
+  "korean_language_support": "unknown",
+  "installed_build_verification": "not_run",
+  "behavioral_verification": "not_run",
+  "novelty_basis": "직전 성공 snapshot의 기존 2개 옵션과 이번 diff를 대조하여 새 annotated 옵션을 확인했다. 기존 기본 브라우저 안내 기능 최초 도입 또는 제품 배포로 해석하지 않는다."
+}

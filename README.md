@@ -100,3 +100,7 @@ git pull --ff-only
 ### 2026-11-06 수집 추가
 
 [새 selected 17건 분석](reports/2026-11-06.md)과 [전체 생성 기록](reports/run-history.md)을 갱신했습니다. 정식 채널 포함·동작 변경·소스 실험을 구분하고 [부분 수집 범위](data/collection/2026-11-06.json)를 함께 보존합니다.
+
+### 2026-11-07 수집 추가
+
+[상세 보고서](reports/2026-11-07.md)와 [출처별 범위](data/collection/2026-11-07.json), [보고서 생성 전체 기록](reports/run-history.md)을 갱신했습니다. Whale Stable 범위 확대·새 동작/수정, Edge 로그인·탭 정보 및 Chrome 소스 실험의 고유 selected 15건입니다. 전체 과거 이력·일부 출처와 실기 검증은 미완료입니다.
