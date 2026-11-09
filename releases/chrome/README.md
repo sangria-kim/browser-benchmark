@@ -86,3 +86,6 @@
 - [공식 기능 참고 자료](feature-references.json)
 
 - [CSS corner shorthand 목표 159](../../features/chrome/chrome-5152215540039680.md) · Proposed / pending_verification. 목표 milestone과 실제 출시는 다릅니다.
+
+- [157 보안·수정](157.0.8103.50/items-2026-11-10.json) · [156 Extended Stable](156.0.8078.96/items-2026-11-10.json)
+- 공식 계획: [156 iOS stage](156/planned-items-2026-11-10.json), [159](159/planned-items-2026-11-10.json), [160](160/planned-items-2026-11-10.json). 실제 출시 확인과 구분합니다.

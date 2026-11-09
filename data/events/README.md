@@ -129,3 +129,5 @@
 | [whale-desktop-vertical-tab-window-width-5-41-429-2-20261102](whale-desktop-vertical-tab-window-width-5-41-429-2-20261102.json) | selected / P2 | [whale-vertical-tabs](../../features/whale/vertical-tabs.md) |
 | [whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106](whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106.json) | selected / P2 | [whale-vertical-tabs](../../features/whale/vertical-tabs.md) |
 | [whale-desktop-webapp-multimonitor-5-41-429-3-20261106](whale-desktop-webapp-multimonitor-5-41-429-3-20261106.json) | selected / P2 | [whale-webapp-multimonitor](../../features/whale/webapp-multimonitor.md) |
+
+- [Edge Entra Mobile Stable 157 확대](edge-entra-passkey-sync-mobile-stable-157-20261109.json) · selected / P1.

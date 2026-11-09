@@ -76,3 +76,5 @@
 - [첫 로그인 때 기존 환경 이어쓰기](whale/sign-in-continuity.md) · `whale-sign-in-continuity`
 - [세로 탭 너비를 창별로 보존](whale/vertical-tabs.md) · `whale-vertical-tabs`
 - [Windows 웹 앱 최대화 시 인접 모니터 침범 수정](whale/webapp-multimonitor.md) · `whale-webapp-multimonitor`
+
+- [Edge Entra 패스키 동기화](edge/entra-passkey-sync.md) · Mobile Stable 확대.
