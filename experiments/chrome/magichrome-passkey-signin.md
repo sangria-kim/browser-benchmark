@@ -22,7 +22,6 @@
 - 재검토: 해당 revision 포함 설치본에서 flag 옵션·테스트 계정·QR 인증 기기 조건을 확보한 뒤 실제 진입 흐름을 확인할 때.
 - 플랫폼 근거: Windows/macOS/Linux 소스 mask 및 ENABLE_DICE_SUPPORT guard. 실제 배포 범위는 미확인.
 - 한국 제공·한국어 지원: 미확인. 실기 검증: 미실행.
-- [공식 diff](https://chromium.googlesource.com/chromium/src/+/18bebb374e8f95e77f15c03f3166663b781c5a54^!) · [수집 범위](monthly/2026-11-source-index-2026-11-03.json)
 
 ## 2026-11-03 소스 관찰 — 86a738936fd1
 
@@ -32,4 +31,3 @@
 - 재검토: 해당 revision 포함 설치본에서 flag 옵션·테스트 계정·QR 인증 기기 조건을 확보한 뒤 실제 진입 흐름을 확인할 때.
 - 플랫폼 근거: Windows/macOS/Linux 소스 mask 및 ENABLE_DICE_SUPPORT guard. 실제 배포 범위는 미확인.
 - 한국 제공·한국어 지원: 미확인. 실기 검증: 미실행.
-- [공식 diff](https://chromium.googlesource.com/chromium/src/+/86a738936fd153aa01ad73addd550c8fe5e45bdf^!) · [수집 범위](monthly/2026-11-source-index-2026-11-03.json)

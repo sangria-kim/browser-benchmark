@@ -1,40 +1,9 @@
 {
   "schema_version": 1,
-  "period_start": "2026-06-01T00:00:00Z",
-  "period_end": "2026-10-29T15:00:00Z",
   "scope": "commits touching chrome/browser/about_flags.cc only",
   "baseline_revision": "87214e6721f6c34afd9181b80769a24c0c601c50",
   "end_revision": "3a520e41da378388a3e9b4a87f3c2f9e4d311ba9",
-  "commit_count": 1169,
-  "flags_with_direct_entry_changes": 938,
-  "change_counts": {
-    "modified": 160,
-    "added": 520,
-    "removed": 430
-  },
-  "commits_without_direct_entry_change": 206,
   "baseline_sha256": "429a947baf09ebb828a4d6c5078d12519d0b1bd84918d9532ac3ecc27867d871",
   "end_sha256": "019011f498d4e7b3fc8729811939d61e81f4c7f16d0974de424a08decae7202b",
-  "validation": "All diffs replayed from baseline; final content exactly matches official end snapshot.",
-  "limitations": [
-    "Only literal IDs in kFeatureEntries are mapped. Symbolic IDs, external definitions and preprocessor-only changes require manual review.",
-    "Changes solely to flag_descriptions.cc or flag-metadata.json are not covered.",
-    "An addition is a registration within this window, not proof of first-ever introduction.",
-    "No installed Chrome builds were tested."
-  ],
-  "incremental_observation": {
-    "observed_at": "2026-11-06T22:56:00Z",
-    "query_cutoff": "2026-11-06T22:50:00Z",
-    "latest_observed_revision": "d67aec7cd147986540c9c0caa825f0b2b8828bc0",
-    "about_flags_new_commits": 12,
-    "metadata_new_commits": 10,
-    "description_header_new_commits": 9,
-    "monthly_index": "monthly/2026-11-source-index-2026-11-07.json",
-    "validated_archive_end_revision": "3a520e41da378388a3e9b4a87f3c2f9e4d311ba9",
-    "validation": "Three current path replays and historical metadata 40/header 18 patches match official endpoint snapshots exactly. Original 1169-commit archive unchanged.",
-    "metadata_backfill_resume": "2026-07-21T00:00:00Z",
-    "description_header_backfill_resume": "2026-07-07T00:00:00Z",
-    "descriptions_cc_status": "retired_before_requested_window",
-    "descriptions_cc_evidence": "description-path-status.json"
-  }
+  "evidence_level": "Source registration changes only; not proof of product availability, first introduction, or installed-build behavior."
 }

@@ -2,8 +2,6 @@
 
 공식 본문 날짜 2026-11-06, Stable/Beta. 관찰일 2026-11-07 KST. 최초 공지 등록11/3과 본문 날짜를 구분한다.
 
-[전체28항목](items-desktop-assessment-2026-11-07.json) · [수집 기록](../collection-2026-11-07.json) · [이전 .2 Beta19항목](../5.41.429.2/items-desktop-assessment-2026-11-04.json)
-
 ## 선정 사건
 
 - [Desktop 모바일창 카드형 탭 목록](../../../data/events/whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106.json) · rollout_expansion · P2

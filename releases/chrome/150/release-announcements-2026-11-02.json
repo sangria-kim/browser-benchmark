@@ -2,7 +2,6 @@
   "schema_version": 1,
   "source_url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-25T00:00:00Z",
   "observed_at": "2026-11-01T22:58:47Z",
-  "coverage": "2026-10-25 이후 공식 피드 16개 본문 중 해당 major 부분집합. 연결 Git log 및 개별 CVE 본문은 미검토.",
   "items": [
     {
       "item_id": "2026129518798281934",
@@ -23,7 +22,6 @@
       "selection_reason": "직전 공지와 ID·본문이 같으며 새 기능 또는 사용자 행동 변화 근거 없음.",
       "revisit_trigger": "공식 기능 또는 동작 변화 근거 추가",
       "body_sha256": "8bcb7ac981b687e2e42e6ac3234e5bcd4144cd72eef46f23f777e584cbedc0ce",
-      "body_matches_previous": true,
       "security_identifiers": [
         "CVE-2026-103629",
         "CVE-2026-110166",

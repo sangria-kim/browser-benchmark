@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "browser": "chrome",
+  "evidence_level": "Official publication references; product conditions and novelty must be read per item. Not installed-build test results.",
+  "items": [
+    {
+      "item_id": "chrome-blog-ff68e260eb77",
+      "browser": "chrome",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "2026-10-28T17:00:00+00:00",
+      "effective_at": null,
+      "observed_at": "2026-11-05T22:52:27.385389+00:00",
+      "body_sha256": "fdbcc803d5a72c662db98372e400cad8983eb56ab231225d541a865fd46c0419",
+      "summary": "기존 Gmail 기반 Enhanced autofill 의 미국·Personal Intelligence 조건을 재확인.",
+      "selection_status": "excluded",
+      "selection_reason": "기존 발표 반복 또는 브라우저 제품 기능 범위 밖. 한국 출시로 확대 해석하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "chrome-build-158-early-stable-desktop-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.18/.19",
+      "channel": "Early Stable",
+      "platform": [
+        "Windows"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/early-stable-update-for-desktop.html"
+      ],
+      "summary": "소수 사용자 대상, Mac 곧 제공 예정. 일반 Stable 출시 아님.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "chrome-build-158-beta-desktop-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.18",
+      "channel": "Beta",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/chrome-beta-for-desktop-update.html"
+      ],
+      "summary": "Chrome 158 Beta 빌드 업데이트 공지. 개별 사용자 기능 변경은 이 본문에서 명시하지 않음.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "chrome-build-158-beta-android-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.22",
+      "channel": "Beta",
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/chrome-beta-for-android-update.html"
+      ],
+      "summary": "Chrome 158 Beta 빌드 업데이트 공지. 개별 사용자 기능 변경은 이 본문에서 명시하지 않음.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "chrome-build-158-beta-ios-20261104",
+      "browser": "chrome",
+      "version": "158.0.8127.13",
+      "channel": "Beta",
+      "platform": [
+        "iOS"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "event_type": "build_reference",
+      "announced_at": "2026-11-04",
+      "effective_at": null,
+      "observed_at": "2026-11-04T22:37:58Z",
+      "sources": [
+        "https://chromereleases.googleblog.com/2026/11/chrome-beta-for-ios-update.html"
+      ],
+      "summary": "Chrome 158 Beta 빌드 업데이트 공지. 개별 사용자 기능 변경은 이 본문에서 명시하지 않음.",
+      "selection_status": "excluded",
+      "selection_reason": "개별 기능 변화 없는 빌드 공지",
+      "priority": null,
+      "priority_reason": "상세보고 선정 근거가 되는 개별 사용자 동작 변경 미확인.",
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "2026-10-28T17:00:00+00:00",
+      "body_sha256": "2b5e2dbb8c7f88cfffbf1275a8fb6601b292d78963789da09ff16ac52b288e6e",
+      "observed_at": "2026-11-06T22:54:39.672005+00:00",
+      "summary": "기존 Gmail 자동완성 발표 반복. 한국 제공 신규 근거 아님.",
+      "korea_availability": "미확인",
+      "selection_status": "excluded",
+      "selection_reason": "이전 실행에 수집한 동일 발표. 새로운 브라우저 기능 또는 한국 제공 변경 근거 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "browser": "chrome"
+    },
+    {
+      "browser": "chrome",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "Wed, 28 Oct 2026 17:00:00 +0000",
+      "effective_at": null,
+      "kind": "repeat_reference",
+      "summary": "Gmail 정보 자동완성의 미국 단계 배포 및 Personal Intelligence 조건 재확인. 기존 10/29 보고와 동일.",
+      "selection_status": "excluded",
+      "selection_reason": "기존 보고의 반복 발표.",
+      "body_sha256": "0a58cfd915d9f6c7ed23a065a4be52d6ad5ed4673bff59d91e077489f535de0f",
+      "observed_at": "2026-11-03T23:23:17.588956+00:00",
+      "response_sha256": "dc4c7d7cf62a129640b5c66240b7d31560253fca3ec948475e2df64c2f94cc2d",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "browser": "chrome",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "Wed, 28 Oct 2026 17:00:00 +0000",
+      "effective_at": null,
+      "kind": "repeat_reference",
+      "summary": "Gmail 정보 자동완성의 미국 단계 배포 및 Personal Intelligence 조건 재확인. 기존 10/29 보고와 동일.",
+      "selection_status": "excluded",
+      "selection_reason": "기존 보고의 반복 발표.",
+      "body_sha256": "bb7ff95723979856dcb3948b48f9398fa97ab5c6a1cfb7345128c8efd881b4b1"
+    },
+    {
+      "browser": "chrome",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "Wed, 28 Oct 2026 17:00:00 +0000",
+      "effective_at": null,
+      "kind": "repeat_reference",
+      "summary": "Gmail 정보 자동완성의 미국 단계 배포 및 Personal Intelligence 조건 재확인. 기존 10/29 보고와 동일.",
+      "selection_status": "excluded",
+      "selection_reason": "기존 보고의 반복 발표.",
+      "body_sha256": "d99e4b09103d93fb956357fd4b781c18500d82aad8d1d84a6fa4859e479a06bf"
+    },
+    {
+      "source": "blog",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "kind": "repeat_reference",
+      "selection_status": "excluded",
+      "selection_reason": "Gmail 자동완성은10/29 보고로 이미 전달.",
+      "browser": "chrome"
+    },
+    {
+      "browser": "chrome",
+      "title": "Chrome’s enhanced autofill helps you fill out forms with suggestions pulled from Gmail.",
+      "source_url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "announced_at": "Wed, 28 Oct 2026 17:00:00 +0000",
+      "effective_at": null,
+      "kind": "repeat_reference",
+      "summary": "Gmail 정보 자동완성의 미국 단계 배포 및 Personal Intelligence 조건 재확인. 기존 10/29 보고와 동일.",
+      "selection_status": "excluded",
+      "selection_reason": "기존 보고의 반복 발표.",
+      "body_sha256": "aea9abf3545d8324fc654cf9975bbee53af430a07f71fa297b3f28eff5f7d1b6"
+    }
+  ]
+}

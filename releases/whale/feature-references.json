@@ -1,0 +1,3369 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "evidence_level": "Official publication references; product conditions and novelty must be read per item. Not installed-build test results.",
+  "items": [
+    {
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "event_type": "reference",
+      "summary": "Official Whaleteam release body gives October 1; listing posting September 17 and October 2 reply are not release dates. AI chat/local history search outside collection window.",
+      "selection_status": "excluded",
+      "reason": "Out-of-window reference, not new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "item_id": "whale-20261030-1",
+      "selection_reason": "Out-of-window reference, not new."
+    },
+    {
+      "item_id": "whale-5.39.412.57-reference",
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "summary": "Official team body still Oct1. AI Chat/sidebar, tab/quick commands, NAVER Calendar/Scrapbook, local history AI search and AI controls unchanged reference; user replies and listing timestamp not release proof.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window already collected reference.",
+      "observed_at": "2026-10-31T23:26:18Z"
+    },
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release.",
+      "observed_at": "2026-10-31T23:26:18Z"
+    },
+    {
+      "item_id": "whale-product-copy-baseline-ai",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "ai",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "사이드바에서 현재 화면·열린 탭을 대상으로 요약·번역 질의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-naver-services",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "naver-services",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "네이버 메일·증권 등 서비스 연결",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-sidebar",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "sidebar",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "페이지를 떠나지 않고 도구 이용",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-quick-search",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "quick-search",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "선택 내용의 검색·번역·사전·환율 확인",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-mouse-gestures",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "mouse-gestures",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "마우스 동작으로 탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-dual-tab",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "dual-tab",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "두 화면의 비교·탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-scrapbook",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "scrapbook",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "메모·동영상 등 보관",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-search-customization",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "search-customization",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "여러 검색 엔진·AI 검색 병행",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-whaleon",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "whaleon",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "브라우저 화상회의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-multiplay",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "multiplay",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "다른 사용자와 탭·화면 공유 및 음성 대화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-safe-browsing",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "safe-browsing",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "의심 사이트 접근 안내·차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-malware-block",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "malware-block",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "다운로드 전 악성 프로그램 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-my-activity",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "my-activity",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "북마크·비밀번호 저장과 기기간 동기화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-clean-web",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "clean-web",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "불편한 광고 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Recovered public product copy has no per-feature date, version or platform-specific rollout evidence. This baseline is not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-download-requirements-baseline",
+      "browser": "whale",
+      "version": null,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-10-31T23:26:18Z",
+      "summary": "Official download copy lists Windows 10+, macOS 12+, Ubuntu 14.04 64-bit+, Android 8.0+, iOS/iPadOS 16.0+. These are current download-page text, not proof that planned Whale 4.0 iOS 26 minimum has taken effect.",
+      "sources": [
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js",
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "pending_verification",
+      "selection_reason": "Current download copy and future iOS 4.0 notice refer to different undated release scopes; do not infer a new rollout or resolve to a single minimum.",
+      "benchmark_readiness": "unknown",
+      "priority": null
+    },
+    {
+      "item_id": "whale-android-4.1-settings-search",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "settings-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "설정 검색에 한글 초성 및 문장 질의 지원",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "4.1 공식 개선 항목과 직전 4.0 본문을 대조했고 설정 찾기 또는 시크릿 화면 저장의 구체적 사용자 과제와 비교 실험을 정의할 수 있음.",
+      "priority": "P2",
+      "priority_reason": "한글 설정 탐색의 제한적이지만 재현 가능한 편의 개선.",
+      "comparison_question": "동일 Android 환경에서 설정 검색에 한글 초성 및 문장 질의 지원 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "지원",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 한글 초성·문장 설정 검색 지원은 명시됨.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-android-settings-search-4-1-20261029"
+    },
+    {
+      "item_id": "whale-android-4.1-incognito-capture",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "incognito-capture",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "시크릿 탭 캡처·화면 녹화를 설정에서 허용",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "4.1 공식 개선 항목과 직전 4.0 본문을 대조했고 설정 찾기 또는 시크릿 화면 저장의 구체적 사용자 과제와 비교 실험을 정의할 수 있음.",
+      "priority": "P1",
+      "priority_reason": "시크릿 화면의 외부 저장 허용을 사용자가 통제하는 개인정보 관련 변화.",
+      "comparison_question": "동일 Android 환경에서 시크릿 탭 캡처·화면 녹화를 설정에서 허용 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 설정에서 화면 캡처·녹화를 허용하도록 켜는 동작을 명시. 기본값·정확한 경로 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-android-incognito-capture-4-1-20261029"
+    },
+    {
+      "item_id": "whale-android-4.1-history-delete",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "history-delete",
+      "event_type": "fix",
+      "section": "오류 해결",
+      "summary": "기간별 방문기록 삭제 동작 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "watch",
+      "selection_reason": "기간별 기록 삭제 실패 수정은 개인정보 삭제 과제에 직접 영향이 있음. 발생 조건·영향 버전·범위가 미공개이므로 상세 알림보다 재현 과제로 관찰.",
+      "priority": "P2",
+      "priority_reason": "개인정보 삭제 과제의 회귀 확인이 유용하나 발생 범위는 미확인.",
+      "comparison_question": "동일 Android 환경에서 기간별 방문기록 삭제 동작 수정 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 해당 수정의 국가·언어 별 적용 조건 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-android-4.1-omnibox-display",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "omnibox-display",
+      "event_type": "fix",
+      "section": "오류 해결",
+      "summary": "등록 검색엔진은 검색어, 다른 사이트는 URL로 주소창 표시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-02T23:33:28Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "방문 기록 기간 삭제 및 주소창 검색어 표시의 기존 기능 오류 수정. 상세 회귀 범위·새 사용자 흐름 근거가 없어 공식 변경 항목으로 기록.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": "동일 Android 환경에서 등록 검색엔진은 검색어, 다른 사이트는 URL로 주소창 표시 수정 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 해당 수정의 국가·언어 별 적용 조건 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-5.39.412.57-reference",
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "summary": "Official team body still Oct1. AI Chat/sidebar, tab/quick commands, NAVER Calendar/Scrapbook, local history AI search and AI controls unchanged reference; user replies and listing timestamp not release proof.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window already collected reference.",
+      "observed_at": "2026-11-02T23:33:28Z"
+    },
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release.",
+      "observed_at": "2026-11-02T23:33:28Z"
+    },
+    {
+      "item_id": "whale-product-copy-baseline-ai",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "ai",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "사이드바에서 현재 화면·열린 탭을 대상으로 요약·번역 질의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-naver-services",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "naver-services",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "네이버 메일·증권 등 서비스 연결",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-sidebar",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "sidebar",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "페이지를 떠나지 않고 도구 이용",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-quick-search",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "quick-search",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "선택 내용의 검색·번역·사전·환율 확인",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-mouse-gestures",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "mouse-gestures",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "마우스 동작으로 탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-dual-tab",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "dual-tab",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "두 화면의 비교·탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-scrapbook",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "scrapbook",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "메모·동영상 등 보관",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-search-customization",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "search-customization",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "여러 검색 엔진·AI 검색 병행",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-whaleon",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "whaleon",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "브라우저 화상회의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-multiplay",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "multiplay",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "다른 사용자와 탭·화면 공유 및 음성 대화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-safe-browsing",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "safe-browsing",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "의심 사이트 접근 안내·차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-malware-block",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "malware-block",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "다운로드 전 악성 프로그램 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-my-activity",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "my-activity",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "북마크·비밀번호 저장과 기기간 동기화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-clean-web",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "clean-web",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "불편한 광고 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-download-requirements-baseline",
+      "browser": "whale",
+      "version": null,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-02T23:33:28Z",
+      "summary": "Official download copy lists Windows 10+, macOS 12+, Ubuntu 14.04 64-bit+, Android 8.0+, iOS/iPadOS 16.0+. These are current download-page text, not proof that planned Whale 4.0 iOS 26 minimum has taken effect.",
+      "sources": [
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js",
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "pending_verification",
+      "selection_reason": "Current download copy and future iOS 4.0 notice refer to different undated release scopes; do not infer a new rollout or resolve to a single minimum.",
+      "benchmark_readiness": "unknown",
+      "priority": null
+    },
+    {
+      "notice_id": 35247,
+      "title": "v5.41.429.2 업데이트",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35247?sectionId=199",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-02",
+      "observed_at": "2026-11-05T22:49:52.871315+00:00",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35248,
+      "title": "v5.41.429.2 Updates",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35248?sectionId=199",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-02",
+      "observed_at": "2026-11-05T22:49:52.907261+00:00",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35236,
+      "title": "v4.1 업데이트",
+      "product": "Android",
+      "version": "4.1",
+      "channel": "unknown",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35236?sectionId=199",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-05T22:49:52.871228+00:00",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35237,
+      "title": "v4.1 Updates",
+      "product": "Android",
+      "version": "4.1",
+      "channel": "unknown",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35237?sectionId=199",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-05T22:49:52.892314+00:00",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "item_id": "whale-android-4.1-settings-search",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "settings-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "설정 검색에 한글 초성 및 문장 질의 지원",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-03T23:26:24Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "이미 2026-11-03 보고서에 보고된 동일 Android 4.1 사건. 공식 본문 변경 없음.",
+      "priority": "P2",
+      "priority_reason": "한글 설정 탐색의 제한적이지만 재현 가능한 편의 개선.",
+      "comparison_question": "동일 Android 환경에서 설정 검색에 한글 초성 및 문장 질의 지원 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "지원",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 한글 초성·문장 설정 검색 지원은 명시됨.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-android-settings-search-4-1-20261029"
+    },
+    {
+      "item_id": "whale-android-4.1-incognito-capture",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "incognito-capture",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "시크릿 탭 캡처·화면 녹화를 설정에서 허용",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-03T23:26:24Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "이미 2026-11-03 보고서에 보고된 동일 Android 4.1 사건. 공식 본문 변경 없음.",
+      "priority": "P1",
+      "priority_reason": "시크릿 화면의 외부 저장 허용을 사용자가 통제하는 개인정보 관련 변화.",
+      "comparison_question": "동일 Android 환경에서 시크릿 탭 캡처·화면 녹화를 설정에서 허용 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 설정에서 화면 캡처·녹화를 허용하도록 켜는 동작을 명시. 기본값·정확한 경로 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-android-incognito-capture-4-1-20261029"
+    },
+    {
+      "item_id": "whale-android-4.1-history-delete",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "history-delete",
+      "event_type": "fix",
+      "section": "오류 해결",
+      "summary": "기간별 방문기록 삭제 동작 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-03T23:26:24Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "watch",
+      "selection_reason": "기간별 기록 삭제 실패 수정은 개인정보 삭제 과제에 직접 영향이 있음. 발생 조건·영향 버전·범위가 미공개이므로 상세 알림보다 재현 과제로 관찰.",
+      "priority": "P2",
+      "priority_reason": "개인정보 삭제 과제의 회귀 확인이 유용하나 발생 범위는 미확인.",
+      "comparison_question": "동일 Android 환경에서 기간별 방문기록 삭제 동작 수정 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 해당 수정의 국가·언어 별 적용 조건 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-android-4.1-omnibox-display",
+      "browser": "whale",
+      "product": "Android",
+      "version": "4.1",
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "omnibox-display",
+      "event_type": "fix",
+      "section": "오류 해결",
+      "summary": "등록 검색엔진은 검색어, 다른 사이트는 URL로 주소창 표시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35236"
+      ],
+      "announced_at": "2026-11-02",
+      "effective_at": "2026-10-29",
+      "observed_at": "2026-11-03T23:26:24Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "방문 기록 기간 삭제 및 주소창 검색어 표시의 기존 기능 오류 수정. 상세 회귀 범위·새 사용자 흐름 근거가 없어 공식 변경 항목으로 기록.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": "동일 Android 환경에서 등록 검색엔진은 검색어, 다른 사이트는 URL로 주소창 표시 수정 과제의 조작·결과를 비교할 수 있는가?",
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Android 4.1 공지. 한국 국가별 제공·단계 배포·계정·구독 조건 미공개. 해당 수정의 국가·언어 별 적용 조건 미공개.",
+        "checked_at": "2026-11-02T23:33:28Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-5.39.412.57-reference",
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "summary": "Official team body still Oct1. AI Chat/sidebar, tab/quick commands, NAVER Calendar/Scrapbook, local history AI search and AI controls unchanged reference; user replies and listing timestamp not release proof.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window already collected reference.",
+      "observed_at": "2026-11-03T23:26:24Z"
+    },
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release.",
+      "observed_at": "2026-11-03T23:26:24Z"
+    },
+    {
+      "item_id": "whale-product-copy-baseline-ai",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "ai",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "사이드바에서 현재 화면·열린 탭을 대상으로 요약·번역 질의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-naver-services",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "naver-services",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "네이버 메일·증권 등 서비스 연결",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-sidebar",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "sidebar",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "페이지를 떠나지 않고 도구 이용",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-quick-search",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "quick-search",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "선택 내용의 검색·번역·사전·환율 확인",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-mouse-gestures",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "mouse-gestures",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "마우스 동작으로 탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-dual-tab",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "dual-tab",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "두 화면의 비교·탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-scrapbook",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "scrapbook",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "메모·동영상 등 보관",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-search-customization",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "search-customization",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "여러 검색 엔진·AI 검색 병행",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-whaleon",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "whaleon",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "브라우저 화상회의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-multiplay",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "multiplay",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "다른 사용자와 탭·화면 공유 및 음성 대화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_rendered_product_text_and_static_locale",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-safe-browsing",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "safe-browsing",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "의심 사이트 접근 안내·차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-malware-block",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "malware-block",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "다운로드 전 악성 프로그램 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-my-activity",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "my-activity",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "북마크·비밀번호 저장과 기기간 동기화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-clean-web",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "clean-web",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "불편한 광고 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 제품 소개 baseline과 같은 내용. 현재 소개 본문 렌더링을 확인했으나 기능별 최초 출시일·버전·한국 제공 조건은 미공개. 새로운 출시로 보고하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-download-requirements-baseline",
+      "browser": "whale",
+      "version": null,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-03T23:26:24Z",
+      "summary": "Official download copy lists Windows 10+, macOS 12+, Ubuntu 14.04 64-bit+, Android 8.0+, iOS/iPadOS 16.0+. These are current download-page text, not proof that planned Whale 4.0 iOS 26 minimum has taken effect.",
+      "sources": [
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js",
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "pending_verification",
+      "selection_reason": "Current download copy and future iOS 4.0 notice refer to different undated release scopes; do not infer a new rollout or resolve to a single minimum.",
+      "benchmark_readiness": "unknown",
+      "priority": null
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-chromium-engine",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "chromium-engine",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "Chromium 156 엔진 적용",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "엔진 버전 변경만으로 구체적인 새 사용자 과제나 성능 효과를 확정할 수 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-quick-search-ai-briefing",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": true,
+      "canonical_feature_key": "quick-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "선택 텍스트의 NAVER AI 브리핑과 사이드바 검색 연결",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "기존 퀵서치·AI Chat 연결과 구별되는 인페이지 답변 경로가 버전 공지에 명시됨.",
+      "priority": "P2",
+      "priority_reason": "읽던 문맥에서 검색 답변을 보는 탐색 경로의 제한적 개선이며 AI라는 이유만으로 P1을 부여하지 않음.",
+      "comparison_question": "같은 글의 질문을 해결할 때 페이지·탭 전환 수와 원문 복귀 비용이 어떻게 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-memo-formatting-newtab",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "memo-formatting",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "새 탭 메모에 제목·강조·목록·체크·인용 서식",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "기존 메모 작성에 구조화 편집이 추가되어 읽기 중 기록 과제를 비교할 수 있음.",
+      "priority": "P2",
+      "priority_reason": "브라우징 중 기록을 구조화하는 보조 과제의 편의 개선.",
+      "comparison_question": "자료를 읽으며 목록·인용을 기록하고 다시 편집할 때 외부 앱 전환과 서식 손실을 줄일 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-memo-formatting-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-sign-in-continuity",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "sign-in-continuity",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "첫 로그인에서 기존 북마크·비밀번호·설정 이어쓰기",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "기존 로그인 안내 디자인 수정과 구별되는 데이터 연속성 선택이 명시됨.",
+      "priority": "P1",
+      "priority_reason": "첫 계정 로그인에서 비밀번호·북마크·설정의 귀속과 작업 연속성을 다루므로 보존·혼입·취소를 우선 검증할 필요가 있음.",
+      "comparison_question": "로그인 전 환경을 계정에 연결할 때 데이터 보존·선택 명확성·계정 혼입 방지가 어떻게 다른가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-sign-in-continuity-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-mobile-window-tabs",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "mobile-window-tabs",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "Desktop 모바일창에 크기 대응 카드형 탭 목록",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "과거 모바일창 배경 교체와 달리 여러 열린 페이지를 선택하는 구조가 바뀜.",
+      "priority": "P2",
+      "priority_reason": "PC의 보조 창에서 여러 페이지를 전환하는 제한된 과제의 탐색 개선.",
+      "comparison_question": "작은 보조 창에서 여러 페이지를 찾고 전환할 때 선택 시간과 오선택이 어떻게 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-contextual-feature-tips",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "contextual-feature-tips",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "세로 탭·주소 위젯·제스처·분할·검색·메모리 절약의 상황별 안내",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "watch",
+      "selection_reason": "기능 발견에 영향을 줄 수 있으나 노출 조건·빈도·해제 방식이 미공개여서 재현 조건이 부족함.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-quick-search-answer-toggles",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "quick-search",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "퀵서치 정답형 결과를 유형별로 표시 제어",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "전체 퀵서치 사용 설정과 구별되는 세분화된 결과 제어가 명시됨.",
+      "priority": "P2",
+      "priority_reason": "특정 검색 결과의 노출을 세부 조정하는 사용자 통제 개선.",
+      "comparison_question": "필요한 즉답만 남길 때 설정 탐색 비용과 원치 않는 결과 노출이 얼마나 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-skin-colors",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "skin-colors",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "추출 색상의 탭·도구·주소 영역 조화 개선",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "시각적 조정이며 읽기·접근성·작업 성과의 실질적 변화 근거는 없음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-vertical-tabs",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "vertical-tabs",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "창별 세로 탭 목록 너비 유지",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "기존 세로 탭과 별개로 창 단위 레이아웃 상태 저장 범위가 명시됨.",
+      "priority": "P2",
+      "priority_reason": "다중 창의 작업 배치를 유지하는 반복 조작 감소 후보.",
+      "comparison_question": "크기가 다른 여러 창을 번갈아 쓰면서 탭 목록을 다시 맞추는 조작이 줄어드는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-dual-tab",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "dual-tab",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "다른 창 가장자리로 탭을 옮겨 듀얼 탭 구성",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "기존 링크 드롭·탭 메뉴 분할과 구별되는 창 사이 탭 결합 경로가 명시됨.",
+      "priority": "P2",
+      "priority_reason": "이미 열린 두 자료를 비교 화면으로 구성하는 직접 조작 경로.",
+      "comparison_question": "서로 다른 창의 자료를 나란히 볼 때 이동 횟수·구성 시간·의도치 않은 창 분리가 어떻게 달라지는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-settings-import",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "settings-import",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "Whale 가져오기에 단축키 포함 설정 전체 추가",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "북마크 이동을 넘어 작업 환경 재구성 비용에 영향을 주는 가져오기 범위 확대.",
+      "priority": "P2",
+      "priority_reason": "환경 이전 후 수작업으로 재설정하는 비용과 오류의 비교 가능성이 있음.",
+      "comparison_question": "같은 작업 환경을 옮길 때 설정·단축키 복원률과 수작업 보정 횟수가 어떻게 다른가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-multiplay",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "multiplay",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "두 번 탭 이탈 시 팔로우 종료; 분할 새 탭·마이크 단축키·프로필 툴팁 보완",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "기존 협업 기능의 최초 출시가 아니라 자동 팔로우 종료 규칙이라는 구체적 동작 변화.",
+      "priority": "P2",
+      "priority_reason": "협업 화면 따라가기에서 개인 탐색으로 전환하는 제한된 동작 규칙 개선.",
+      "comparison_question": "공동 탐색 중 스스로 다른 탭을 볼 때 팔로우 상태를 이해하고 통제하기 쉬운가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-memo-formatting-scrapbook",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "memo-formatting",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "스크랩북 메모에도 서식 편집 추가",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "selected",
+      "selection_reason": "새 탭과 연결된 동일 메모 편집 기능의 다른 화면 적용으로 한 사건에 묶음.",
+      "priority": "P2",
+      "priority_reason": "브라우징 중 기록을 구조화하는 보조 과제의 편의 개선.",
+      "comparison_question": "자료를 읽으며 목록·인용을 기록하고 다시 편집할 때 외부 앱 전환과 서식 손실을 줄일 수 있는가?",
+      "benchmark_readiness": "conditional",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      },
+      "event_id": "whale-desktop-memo-formatting-5-41-429-2-20261102"
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-site-compatibility",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "site-compatibility",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "일반 사이트 호환성 개선",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "대상 사이트·변경 동작·재현 조건이 없어 구체적 비교 과제를 정의하기 어려움.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-problem-report-diagnostics",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "problem-report-diagnostics",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "신고 유형에 맞춘 진단 자료 첨부",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "watch",
+      "selection_reason": "오류 해결 및 데이터 전송 통제 관점의 가치가 있으나 수집 항목·동의·제외 조건이 미공개.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-memory-tab-notice",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "memory-tab-notice",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "페이지 중단의 메모리 부족 원인 안내",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "pending_verification",
+      "selection_reason": "5.39.412.57 개선 17번에도 메모리 부족 탭 안내가 있어 새로운 동작 차이를 확인하지 못함.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-video-quality-enhancement",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "video-quality-enhancement",
+      "event_type": "improvement",
+      "section": "새로운 기능 및 개선",
+      "summary": "실험실 동영상 화질 향상 후보",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "watch",
+      "selection_reason": "실험 존재는 명시됐으나 flag ID·GPU·코덱·영상 조건이 없어 재현 가능한 시험 설정이 부족함.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-browser-crashes",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "browser-crashes",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "summary": "일반 크래시 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "구체적 사용자 동작이나 영향 범위가 없는 일반 안정성 수정.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-desktop-5.41.429.2-playstation-sign-in",
+      "browser": "whale",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "platform": [
+        "Windows"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "canonical_feature_key": "playstation-sign-in",
+      "event_type": "fix",
+      "section": "오류 수정",
+      "summary": "Windows PlayStation 로그인 오류 수정",
+      "sources": [
+        "https://notice.naver.com/notices/whalehomepage/35247"
+      ],
+      "announced_at": "2026-11-03",
+      "effective_at": "2026-11-02",
+      "observed_at": "2026-11-03T23:26:47Z",
+      "verification_status": "official_bodies_verified_no_device_test",
+      "selection_status": "excluded",
+      "selection_reason": "특정 사이트 호환성 복구이며 인증 수단·정책·일반 로그인 흐름 변경으로 확대하지 않음.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+        "checked_at": "2026-11-03T23:26:47Z",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "notice_id": 35247,
+      "title": "v5.41.429.2 업데이트",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35247?sectionId=199",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-02",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35248,
+      "title": "v5.41.429.2 Updates",
+      "product": "Desktop",
+      "version": "5.41.429.2",
+      "channel": "beta",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35248?sectionId=199",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-02",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35236,
+      "title": "v4.1 업데이트",
+      "product": "Android",
+      "version": "4.1",
+      "channel": "unknown",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35236?sectionId=199",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35237,
+      "title": "v4.1 Updates",
+      "product": "Android",
+      "version": "4.1",
+      "channel": "unknown",
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35237?sectionId=199",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-04T22:40:10Z",
+      "selection_status": "excluded",
+      "selection_reason": "이전 수집·선정 사건의 반복 확인이며 신규 출시가 아니다.",
+      "browser": "whale"
+    },
+    {
+      "item_id": "whale-5.39.412.57-reference",
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "summary": "Official team body still Oct1. AI Chat/sidebar, tab/quick commands, NAVER Calendar/Scrapbook, local history AI search and AI controls unchanged reference; user replies and listing timestamp not release proof.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window already collected reference."
+    },
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release."
+    },
+    {
+      "item_id": "whale-android-dark-mode-reference",
+      "browser": "whale",
+      "version": "3.9.14",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-06-18",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Official team explains intentional respect for native site dark mode rather than force-inverting some sites; users should also enable site theme. Not a new report.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62305/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Historical pinned reference outside interval."
+    },
+    {
+      "notice_id": 35247,
+      "title": "v5.41.429.3 업데이트",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:22.808335+00:00",
+      "url": "https://notice.naver.com/notices/whalehomepage/35247",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35248,
+      "title": "v5.41.429.3 Updates",
+      "registration_date": "2026-11-03",
+      "body_release_date": "2026-11-06",
+      "observed_at": "2026-11-06T22:54:22.888257+00:00",
+      "url": "https://notice.naver.com/notices/whalehomepage/35248",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35236,
+      "title": "v4.1 업데이트",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-06T22:54:22.743094+00:00",
+      "url": "https://notice.naver.com/notices/whalehomepage/35236",
+      "browser": "whale"
+    },
+    {
+      "notice_id": 35237,
+      "title": "v4.1 Updates",
+      "registration_date": "2026-11-02",
+      "body_release_date": "2026-10-29",
+      "observed_at": "2026-11-06T22:54:22.848896+00:00",
+      "url": "https://notice.naver.com/notices/whalehomepage/35237",
+      "browser": "whale"
+    },
+    {
+      "item_id": "whale-5.39.412.57-reference",
+      "browser": "whale",
+      "version": "5.39.412.57",
+      "channel": "stable_beta",
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": "2026-10-01",
+      "summary": "Official team body still Oct1. AI Chat/sidebar, tab/quick commands, NAVER Calendar/Scrapbook, local history AI search and AI controls unchanged reference; user replies and listing timestamp not release proof.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62927/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window already collected reference.",
+      "observed_at": "2026-11-01T22:59:01Z"
+    },
+    {
+      "item_id": "whale-ios-4.0-minimum-os-reference",
+      "browser": "whale",
+      "version": "4.0",
+      "channel": "planned",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-10-01",
+      "effective_at": null,
+      "event_type": "reference",
+      "summary": "Whaleteam notice plans iOS minimum 16→26 with 4.0 release; exact date placeholder remains. Older installs remain usable, no 4.0 update, reinstall last compatible version; updates including security cease. Explicitly no Android change. Index date is Oct1; do not read relative Thursday timestamp as new.",
+      "sources": [
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Out-of-window planned iOS reference; date unresolved, no new in-window release.",
+      "observed_at": "2026-11-01T22:59:01Z"
+    },
+    {
+      "item_id": "whale-product-copy-baseline-ai",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "ai",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "사이드바에서 현재 화면·열린 탭을 대상으로 요약·번역 질의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-naver-services",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "naver-services",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "네이버 메일·증권 등 서비스 연결",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-sidebar",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "sidebar",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "페이지를 떠나지 않고 도구 이용",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-quick-search",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "quick-search",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "선택 내용의 검색·번역·사전·환율 확인",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-mouse-gestures",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "mouse-gestures",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "마우스 동작으로 탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-dual-tab",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "dual-tab",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "두 화면의 비교·탐색",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-scrapbook",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "scrapbook",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "메모·동영상 등 보관",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-search-customization",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "search-customization",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": true,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "여러 검색 엔진·AI 검색 병행",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-whaleon",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "whaleon",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "브라우저 화상회의",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-multiplay",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "multiplay",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "다른 사용자와 탭·화면 공유 및 음성 대화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-safe-browsing",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "safe-browsing",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "의심 사이트 접근 안내·차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-malware-block",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "malware-block",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "다운로드 전 악성 프로그램 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-my-activity",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "my-activity",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "북마크·비밀번호 저장과 기기간 동기화",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-product-copy-baseline-clean-web",
+      "browser": "whale",
+      "product": "Whale",
+      "canonical_feature_key": "clean-web",
+      "version": null,
+      "channel": null,
+      "platform": [],
+      "workstreams": [],
+      "ai_related": false,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "불편한 광고 차단",
+      "sources": [
+        "https://whale.naver.com/",
+        "https://shared-whale.pstatic.net/home2/assets/index-DgAcJoag.js",
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js"
+      ],
+      "verification_status": "official_static_frontend_text_only",
+      "selection_status": "pending_verification",
+      "selection_reason": "Official product localization text unchanged from prior recovered baseline; no per-feature date, version or platform-specific rollout evidence. Not a new launch.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "conditions": "Korean website text alone does not establish feature availability or in-product language support.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
+    },
+    {
+      "item_id": "whale-download-requirements-baseline",
+      "browser": "whale",
+      "version": null,
+      "event_type": "reference",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-01T22:59:01Z",
+      "summary": "Official download copy lists Windows 10+, macOS 12+, Ubuntu 14.04 64-bit+, Android 8.0+, iOS/iPadOS 16.0+. These are current download-page text, not proof that planned Whale 4.0 iOS 26 minimum has taken effect.",
+      "sources": [
+        "https://shared-whale.pstatic.net/home2/assets/ko-CaVMFR4w.js",
+        "https://forum.whale.naver.com/topic/62980/"
+      ],
+      "selection_status": "pending_verification",
+      "selection_reason": "Current download copy and future iOS 4.0 notice refer to different undated release scopes; do not infer a new rollout or resolve to a single minimum.",
+      "benchmark_readiness": "unknown",
+      "priority": null
+    }
+  ]
+}

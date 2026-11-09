@@ -1,106 +1,29 @@
 # Browser Benchmark
 
-Chrome 실험 기능과 Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 새 기능 및 주요 동작 변경을 공개 공식 자료로 추적하는 아카이브입니다. Windows와 Android를 우선하며, 제품 비교와 재현 가능한 벤치마크 후보를 기록합니다.
+Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 공개 브라우저 기능, 동작 변경 및 소스 실험을 정리합니다. Windows와 Android를 중심으로 기능 설명·공식 출처·버전·제품 조건·비교 과제를 제공합니다.
 
-Brave·Whale은 기존 매 실행, Opera·Vivaldi는 주 1회 보조 관찰합니다. Safari는 제외합니다. 추가 4종의 수집은 2026-10-30부터 출처별로 진행 중이며, 전체 과거 이력 및 부분 확인 범위는 [수집 상태](docs/collection-status.md)에 구분합니다.
+## 기능 자료
 
-## P1·P2 우선순위 한눈에 보기
+- [브라우저별 릴리스](releases/README.md)
+- [날짜별 기능 분석](reports/README.md)
+- [PC](reports/pc/README.md) · [Mobile](reports/mobile/README.md) · [AI](reports/ai/README.md)
+- [Chrome 실험 기능](experiments/chrome/README.md)
+- [공식 출처](docs/browser-sources-and-cadence.md)
 
-**P1·P2는 버그 심각도가 아니라, 선정된 브라우저 변화의 PM 검토·벤치마크 우선순위입니다.** 현재 기준은 `pm-selection-v2`입니다.
+## 해석 기준
 
-| 우선순위 | 판단 기준 | 읽는 방법 |
-| --- | --- | --- |
-| **P1** | 기본 동작·개인정보·인증·기능 삭제처럼 기존 사용자 과제에 큰 영향을 주거나, 핵심 과제의 변화를 우선 검증할 필요가 있는 경우 | 우선 검토·검증할 변화 |
-| **P2** | 유용하지만 영향 범위가 제한적이거나 탐색적 비교가 필요한 경우 | 적용 조건을 확인하며 비교할 변화. 중요하지 않다는 뜻은 아님 |
+공식 발표, 소스 등록, 설치본 노출, 직접 동작 확인은 서로 다른 증거입니다. flag 추가·삭제만으로 출시·철회를 단정하지 않습니다. Stable/Beta/실험/예고와 지역·언어·계정·기기·구독·단계적 배포 조건을 각각 확인하세요. 문헌 기반 자료와 제안된 벤치마크는 실측 결과가 아닙니다.
 
-- **현재 등급은 P1·P2만 정의되어 있습니다.** P0·P3는 없으며, 데이터의 `null`은 별도 등급이 아니라 우선순위 미지정 값입니다.
-- **정성 판단:** 고정 점수·합산 컷은 없습니다. 사용자 영향, 실질적 변화, 제품 비교 가치, 벤치마크 가능성, 출시·검증 조건을 함께 보고 항목마다 이유를 기록합니다.
-- **선별·검증 상태와 구분:** 사실·신규성 확인이 안 된 항목은 P2로 낮춰 선정하지 않고 `pending_verification` 등으로 별도 관리합니다. P1·P2만으로 실제 사용 가능·한국 제공·시험 완료를 뜻하지 않으며, 벤치마크 준비 상태(`ready / conditional / unknown`)도 따로 기록합니다.
-- **브라우저 이름이나 AI 여부만으로 우선순위를 정하지 않습니다.** 한국 미출시 역시 자동 제외 사유가 아니며, 선행 검토 가치와 접근 제약을 함께 판단합니다.
-
-자세한 기준: [PM 선별 규칙](docs/pm-persona-and-selection.md) · [수집 및 게시 지침](docs/collection-policy.md) · [보고서 템플릿](templates/report.md)
-
-## 현재 상태
-
-- [수집·보고서 생성 전체 기록](reports/run-history.md): 보고서를 생성하지 않은 날의 이유와 수집 오류·부분 확인 범위까지 한눈에 확인합니다.
-- [릴리스 전체 항목 색인](releases/README.md): Chrome 156/157, Firefox 159·160 Beta, Edge 156의 명시된 공식 자료 범위.
-- [PC](reports/pc/README.md) · [Mobile](reports/mobile/README.md) · [AI](reports/ai/README.md): 기존 날짜별 보고서의 업무별 색인.
-- [Chrome flags](experiments/chrome/README.md): 2026-06-01 이후 about_flags.cc 1,169 commit, 938개 flag ID 이력. 설치본 검증·PM 선별은 미완료.
-- [수집 범위와 남은 작업](docs/collection-status.md)을 확인하세요. 자동화 연결·메일 발송 상태는 이 문서 변경으로 바뀌지 않습니다.
-
-## 읽기 전용 사용
-
-```sh
-git clone https://github.com/sangria-kim/browser-benchmark.git
-cd browser-benchmark
-git pull --ff-only
-```
-
-사내에서는 clone/pull로 열람합니다. 로컬 검토 자료는 저장소 밖에 보관하고 외부로 push하지 않습니다. 문서는 Markdown으로 읽을 수 있으며 별도 문서 서비스 접속 없이 보관된 내용을 열람할 수 있습니다. 외부 출처 링크는 별도 인터넷 접근이 필요합니다.
+P1은 사용자 과제에 큰 영향을 주어 우선 비교할 변화, P2는 조건을 확인하며 비교할 변화입니다. 버그 심각도나 출시 보증이 아닙니다. [분석 기준](docs/pm-persona-and-selection.md) · [공개 자료 원칙](docs/collection-policy.md) · [기능 분석 템플릿](templates/report.md)
 
 ## 저장 구조
 
-| 경로 | 내용 |
-| --- | --- |
-| `releases/<browser>/<version>/README.md` | 버전별 변경 요약 및 기능 문서 링크 |
-| `features/<browser>/<feature-id>.md` | 버전 간 기능 이력 |
-| `experiments/chrome/<flag-id>.md` | Chrome flag 관찰 및 검증 상태 |
-| `data/events/<event-id>.json` | 구조화된 변경 사건 |
-| `reports/<workstream>/README.md` | 업무별 분석 색인(중복 집계 금지) |
-| `reports/YYYY-MM-DD.md` | Asia/Seoul 날짜별 의미 있는 변화 |
-| `reports/run-history.md` | 보고서 생성·미생성 이유 및 공개 수집 오류·미확인 범위의 누적 기록 |
-| `assets/` | 공개 가능한 이미지, 상대 경로로 참조 |
+- releases/: 브라우저·버전별 기능 항목과 공식 출처
+- features/: 기능별 변경 이력
+- experiments/chrome/: flag별 소스 변경과 revision
+- data/events/: 기능 사건, 제품 범위와 증거
+- reports/: 날짜별 기능 분석과 업무별 색인
 
-위 경로는 실제 데이터 발생 시 생성합니다. 빈 보고서나 가짜 샘플 결과는 만들지 않습니다.
+## 공개 경계
 
-## 운영 문서
-
-- [브라우저별 공식 출처와 점검 주기](docs/browser-sources-and-cadence.md)
-- [자동화 적용용 압축 지시문(공개본)](docs/automation-prompt.md)
-- [수집 및 게시 지침](docs/collection-policy.md)
-- [삼성 브라우저 PM 페르소나와 선별 규칙](docs/pm-persona-and-selection.md)
-- [보고서 템플릿](templates/report.md)
-
-## 공개 범위
-
-공개된 제품 정보와 그에 대한 분석, 공개 가능한 수집·보고서 생성 결과만 게시합니다. 사내 데이터, 비공개 의견·평가, 개인정보, 이메일 주소·메시지 ID·계정 연결 ID, 인증 정보는 저장하지 않습니다. checkpoint·게시 상태·메일 전송 등 비공개 운영 상태는 비공개 실행 환경에서 관리합니다. 전체 기록에는 보고서 생성 여부·사유·공개 출처의 오류와 범위만 남깁니다. 제3자 원문은 링크와 필요한 최소 인용으로 출처를 표시합니다.
-
-
-### 2026-10-30 수집 추가
-
-[최신 보고서](reports/2026-10-30.md)와 [출처별 완료·미완료 범위](docs/collection-status.md)를 참고하세요. 확장 브라우저의 최초 관찰을 추가했으나 전체 과거 이력 완료를 의미하지 않습니다.
-
-### 2026-10-31 수집 추가
-
-[출처별 관찰 범위](data/collection/2026-10-31.json)와 [수집 상태](docs/collection-status.md)를 갱신했습니다. 새 selected 사건은 없어 새 날짜별 상세 보고서는 생성하지 않았습니다. 실험 소스 관찰·과거 누락 복구와 실제 제품 출시를 구분합니다.
-
-### 2026-11-01 수집 추가
-
-[출처별 관찰 범위](data/collection/2026-11-01.json)와 [수집 상태](docs/collection-status.md)를 갱신했습니다. 새 selected 사건은 0건이며, 소스 변경·역사 보완·부분 확인을 제품 출시와 구분합니다.
-
-### 2026-11-02 수집 추가
-
-[출처별 관찰 범위](data/collection/2026-11-02.json)와 [수집 상태](docs/collection-status.md)를 갱신했습니다. 새 selected 사건은 0건입니다. 목록 누락의 미확인 상태와 과거 소스 이력 보완을 실제 제품 출시·철회와 구분합니다.
-
-### Whale 누락 보완 (2026-11-03)
-
-[공식 업데이트 게시판 수집 절차와 검증 도구](docs/whale-collection.md), [Desktop·Android 44개 항목 색인](releases/whale/README.md#2026-11-03-전체-항목-보완)을 추가했습니다. 기존 요약을 보존한 보완이며 새 출시 알림·자동화 일정 변경은 아닙니다.
-
-### 2026-11-03 수집 추가
-
-[출처별 범위](data/collection/2026-11-03.json)와 [Whale Android 4.1 상세 분석](reports/2026-11-03.md)을 추가했습니다. 공지 제품별 최근 7일 확인과 제품 소개·전체 과거 이력의 미완료 범위를 구분했습니다.
-
-### 2026-11-04 수집 추가
-
-[정정 후 selected 12건·신규성 검증 대기 1건 분석](reports/2026-11-04.md)과 [출처별 범위](data/collection/2026-11-04.json)를 저장했습니다. Whale Desktop Beta, Edge 알림 제어, Firefox 패스키 수정 및 Chrome 소스 실험을 실제 출시 조건·검증 상태와 구분합니다. 첫 문단의 추가 브라우저 미실행 표기는 과거 상태여서 현행 수집 상태 링크로 정정했습니다.
-
-2026-11-04 정정: Edge 알림 자동 해제는 152 선행 공식 근거에 따라 신규성 검증 대기로 전환했습니다. 최초 선정 이력과 정정 사유는 날짜별 보고서에 보존합니다.
-
-
-### 2026-11-06 수집 추가
-
-[새 selected 17건 분석](reports/2026-11-06.md)과 [전체 생성 기록](reports/run-history.md)을 갱신했습니다. 정식 채널 포함·동작 변경·소스 실험을 구분하고 [부분 수집 범위](data/collection/2026-11-06.json)를 함께 보존합니다.
-
-### 2026-11-07 수집 추가
-
-[상세 보고서](reports/2026-11-07.md)와 [출처별 범위](data/collection/2026-11-07.json), [보고서 생성 전체 기록](reports/run-history.md)을 갱신했습니다. Whale Stable 범위 확대·새 동작/수정, Edge 로그인·탭 정보 및 Chrome 소스 실험의 고유 selected 15건입니다. 전체 과거 이력·일부 출처와 실기 검증은 미완료입니다.
+이 저장소에는 브라우저 기능 내용과 이를 해석하는 근거만 둡니다. 조사 진행도, 확인하지 못한 자료 목록, 실행·실패·발송·게시 기록 및 개인 식별자는 공개하지 않습니다. 운영 원문과 정정 이력은 비공개 Notion의 일별 기록으로 분리합니다. 기능 자체의 제품 제약·근거 수준·사실 정정은 공개 기능 자료에 유지합니다.

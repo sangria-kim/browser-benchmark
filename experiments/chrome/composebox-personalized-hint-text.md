@@ -13,12 +13,12 @@
 
 [전체 목록](README.md)
 
-## 2026-10-31 수집 — f117b891e09e
+## 2026-10-31 소스 관찰 — f117b891e09e
 
 - 소스 commit: 2026-10-30T22:07:10Z
 - 등록부 사건: modified
 - OS mask: kOsDesktop → kOsAndroid, kOsDesktop
-- [공식 diff](https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!) · [전체 수집](monthly/2026-10-source-index-2026-10-31.json)
+- [공식 diff](https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!) · [소스 근거](monthly/2026-10-source-index-2026-10-31.json)
 - 소스 변경은 출시·철회를 증명하지 않습니다. PM: watch.
 
 - 요약: 기존 NTP composebox 플래그의 소스 OS mask에 Android 추가. desktop Android 테스트 목적이며 일반 Android 출시 증거는 아님.

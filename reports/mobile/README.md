@@ -9,5 +9,4 @@
 
 - [2026-11-04 — 신규 변화 1건](../2026-11-04.md): firefox-related-origin-passkey-fix-159-0-1. 공식 문헌·소스 관찰이며 실기 미실행.
 
-
 - [2026-11-06 — Vivaldi 8.3 · Brave Stable · Edge 새 탭 · Chrome 실험](../2026-11-06.md) · 고유 selected 17건 전체 보고. 업무별 중복 노출은 한 사건으로 집계.

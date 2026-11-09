@@ -1,17 +1,10 @@
 {
   "schema_version": 1,
   "report_date": "2026-11-06",
-  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
   "kind": "weekly_support_review_and_baseline_supplement_not_release",
-  "observation_window": {
-    "start": "2026-11-05T22:48:56Z",
-    "end": "2026-11-05T22:51:36.186167Z"
-  },
-  "coverage_status": "partial",
-  "scope": "기존 한국 지원 기준선 5개와 이전 보고서의 관련 기능 도움말을 확인. 한국 발표 채널 및 이번 실행 신규 후보 조사는 별도 수집 범위.",
-  "summary": "기존 5개 기능의 공식 지원 범위에서 한국 확대·한국어 추가·제공 중단의 새 사건은 확인하지 못했다. 이전 관심 기능 7개의 현재 지원 기록을 기준선으로 보완했고 Mini Window 연결 직원 본문을 복구했다. 한국어 Smart Window 도움말 본문은 접근 실패했다. 전체 브라우저의 한국 지원 변화 없음으로 일반화하지 않는다.",
+  "scope": "공식 기능 설명과 소스 변경 근거; 출시 보증이 아님.",
+  "summary": "기능별 공식 한국 제공·한국어 지원 조건과 근거를 정리한 참고 자료. 이 자료만으로 모든 브라우저의 한국 지원 상태를 일반화하지 않음.",
   "new_support_events": [],
-  "selected_event_count": 0,
   "real_device_tests": "미실행",
   "items": [
     {
@@ -245,7 +238,7 @@
         "https://connect.mozilla.org/t5/discussions/mini-window-beta-is-going-live-in-firefox-160-and-we-want-your/m-p/144137"
       ],
       "verification_status": "official_linked_employee_post_read_no_device_test",
-      "details": "웹 도구 실패 후 직접 공개 HTML로 직원 본문과 플랫폼 답변을 확보. 일반 사용자 제보·댓글 날짜를 제공 근거로 사용하지 않았다. 10/19 게시·10/27 편집은 과거 문헌이며 11/10은 예정일이다. 한국 적용일은 null 유지.",
+      "details": "일반 사용자 제보·댓글 날짜를 제공 근거로 사용하지 않았다. 10/19 게시·10/27 편집은 과거 문헌이며 11/10은 예정일이다. 한국 적용일은 null 유지.",
       "planned_global_release_date": "2026-11-10",
       "platform": [
         "Windows",
@@ -258,228 +251,98 @@
   "source_observations": [
     {
       "url": "https://support.google.com/chrome/answer/142893?hl=en",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.google.com/chrome/answer/142893?hl=ko",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/smart-window",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/create-tasks-smart-window",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/ko/kb/create-tasks-smart-window",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://blogs.windows.com/msedgedev/2026/10/29/edge-is-faster-on-windows-with-accelerated-app-launches/",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.microsoft.com/en-us/servicing/os/windows-11/2026/10/kb5127936-windows-11-25h2-26h2-update",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://learn.microsoft.com/en-us/windows/apps/develop/launch/accelerated-launch",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://blogs.opera.com/desktop/2026/10/opera-139-stable/",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://blogs.opera.com/news/2026/10/webai-local-ai-for-the-web-now-in-opera/",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://next.opera.com/blog/web-ai-local-ai/",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://next.opera.com/web-ai/",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/ai-chatbot",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/smart-form-fill",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/about-picture-picture-firefox",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/control-personal-device-local-network-permissions-firefox-android",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/use-sidebar-access-tools-and-vertical-tabs",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/en-US/kb/keyboard-shortcuts-perform-firefox-tasks-quickly",
-      "coverage_status": "support_sections_read",
       "observed_at": null,
-      "observation_precision": "interval",
-      "observation_window": {
-        "start": "2026-11-05T22:48:56Z",
-        "end": "2026-11-05T22:50:57Z"
-      },
-      "body_read": true,
-      "coverage": "기능별 지원 조건·관련 제한의 현재 본문 확인. 전체 변경 이력 수집이 아님."
+      "observation_precision": "interval"
     },
     {
       "url": "https://support.mozilla.org/ko/kb/smart-window",
-      "coverage_status": "failed_body",
-      "body_read": false,
       "observed_at": "2026-11-05T22:51:36.186167Z",
       "observation_precision": "timestamp",
-      "coverage": "웹 도구 not accessible. 직접 HTTP 200은 JavaScript challenge shell이며 본문 성공이 아님. 영문 공식 조건은 별도 확인.",
-      "retrieval_method": "web_open_then_direct_public_http",
       "sha256": "32ed63159c77e21ee19ca1b9aa3213ccf0218eb59539560b132a8e68ef0e18ea"
     },
     {
@@ -488,11 +351,7 @@
       "original_url": "https://connect.mozilla.org/t5/discussions/mini-window-is-going-live-in-firefox-160-and-we-want-your/m-p/144137#M59048",
       "observed_at": "2026-11-05T22:51:30.880503Z",
       "observation_precision": "timestamp",
-      "body_read": true,
-      "coverage_status": "complete_employee_post_and_relevant_reply",
-      "retrieval_method": "direct_public_http",
-      "sha256": "55203093901830dfcc05c7ee01575c75ded060631449f1f1a824efb3ccbd43c1",
-      "coverage": "릴리스 노트에 연결된 직원 본문과 Linux/macOS/Windows에 대한 직원 답변. 일반 사용자 댓글은 제공 조건 근거로 사용하지 않음."
+      "sha256": "55203093901830dfcc05c7ee01575c75ded060631449f1f1a824efb3ccbd43c1"
     }
   ],
   "limitations": [
@@ -501,11 +360,5 @@
     "도움말의 수정일·상대 시각·이번 최초 확인일은 출시일이 아니다.",
     "소스에 없는 국가·언어·계정·구독·연령·기기 조건은 미확인이다.",
     "Mini Window는 연결된 직원 글로 일부 조건을 보완했지만 한국·한국어 조건 및 실기·정식 출시 완료는 미확인이다."
-  ],
-  "coverage_by_scope": {
-    "existing_five_feature_support_comparison": "complete_current_support_sections",
-    "older_report_support_supplements": "7 records; current support evidence and unresolved applicability distinguished",
-    "localized_documents": "partial; Smart Window ko body failed",
-    "all_browser_support_history": "not_exhaustive"
-  }
+  ]
 }

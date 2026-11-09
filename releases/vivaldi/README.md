@@ -1,0 +1,8 @@
+# Vivaldi
+
+공식 자료 기반 기능 항목입니다. 제품 조건과 증거 수준은 각 항목을 참고하세요.
+
+- [8.3 · items-android-2026-11-06](8.3/items-android-2026-11-06.json)
+- [8.3 · items-desktop-2026-11-06](8.3/items-desktop-2026-11-06.json)
+
+- [공식 기능 참고 자료](feature-references.json)

@@ -1,98 +1,23 @@
-# 수집 및 게시 지침
+# 공개 기능 자료 원칙
 
-이 문서는 dots 작업에 반영할 운영 명세입니다. 문서 저장만으로 자동화 설정이 변경되지는 않습니다.
+## 공개 대상
 
-## 범위와 출처
+Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 기능 설명, 사용자 영향, 공식 출처, 발표·적용 시점, 버전·채널·플랫폼, 지역·언어·계정·기기·구독 조건과 증거 수준을 기록합니다. 사내 자료나 내부 의사결정은 포함하지 않습니다.
 
-Chrome, Edge, Firefox, Brave, Whale, Opera, Vivaldi의 새 기능과 주요 동작 변경을 공식 자료에서 확인한다. Windows와 Android를 우선한다. 공개 제품 정보만 사용하며 사내 데이터를 읽거나 전송하지 않는다.
+공식 출처의 본문과 section, URL, 확인일, 소스 revision 또는 내용 hash를 근거로 유지합니다. 확인일과 출시일은 구분합니다. 소스 flag 등록·삭제는 출시나 철회의 단독 증거가 아닙니다. 릴리스 노트 수록을 모든 설치본 활성화로 일반화하지 않습니다.
 
-- Chrome: https://chromereleases.googleblog.com/ · https://blog.google/products-and-platforms/products/chrome/ · https://chromeenterprise.google/intl/en_en/resources/release-notes/ · https://chromestatus.com/release-notes
-- Edge: https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel · https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel · https://blogs.windows.com/msedgedev/ 및 공식 site-impacting changes 문서
-- Firefox: https://www.firefox.com/en-US/firefox/notes/ · https://www.firefox.com/en-US/firefox/android/notes/ · https://www.firefox.com/en-US/releases/ 및 MDN 개발자 릴리스 노트
-- Chrome flags: https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/about_flags.cc · https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/flag_descriptions.cc · https://chromium.googlesource.com/chromium/src/+/main/chrome/browser/flag-metadata.json 및 해당 파일 변경 이력
+## 기능 분석
 
-검색 요약이 아니라 본문·발표일·적용 버전·실제 출시 시점을 확인한다. Chrome Enterprise 본문이 로드되지 않으면 미확인으로 남긴다. Edge 모바일 문서의 업무/학교 계정 범위를 소비자 Android 전체로 일반화하지 않는다.
+[PM 분석 기준](pm-persona-and-selection.md)에 따라 사용자 과제, 실질적 변화, 비교 질문, 벤치마크 절차·지표를 설명합니다. 추측으로 제품 지원을 채우지 않습니다. 기능의 한국 제공·한국어 지원과 직접 동작 확인 여부가 불명확하면 unknown으로 남깁니다. 소스 관찰 / 설치본 노출 / 동작 검증의 증거 수준을 구분합니다.
 
-추가 브라우저의 공식 URL·제품 구분·점검 주기와 한국 시장 절차는 [브라우저별 출처와 점검 주기](browser-sources-and-cadence.md)를 따른다. Brave·Whale은 기존 매 실행, Opera·Vivaldi는 기존 실행 안에서 주 1회 보조 관찰하며 Safari는 제외한다. 주간 대상의 한국 발표도 해당 주기에 점검한다. 적용용 전체 문구는 [공개 지시문](automation-prompt.md)을 참조한다.
+기능 ID는 브라우저와 canonical feature key로 유지하고 사건 ID로 중복을 구분합니다. 기존 기능의 Beta→Stable 확대는 최초 도입과 구분합니다. 기능 사실의 정정은 근거와 함께 설명합니다.
 
-## Chrome 실험 기능
+## 운영 자료와 분리
 
-flag 추가·설명 및 옵션 변경·삭제·만료 변경을 직전 성공 snapshot과 비교한다. 최초 실행은 현재 목록을 baseline으로 기록하고 기존 flags 전체를 신규로 발표하지 않는다. 최근 변경 이력에서 확인된 사건만 새 관찰로 다룬다.
+조사 진행 범위·미확인 자료 목록·실행 시각표·수집 오류·재시도·checkpoint·보고 생성 여부·게시 결과·메일 상태·개인 식별자 및 운영 정정 원문은 비공개 Notion 일별 기록에 보관합니다. 이 저장소에 운영 로그나 비공개 기록 링크를 추가하지 않습니다. 운영 원문을 보존한 후 현재 공개 파일에서 제거하며 과거 Git 이력은 강제 재작성하지 않습니다.
 
-flag ID, 관련 feature ID, 소스 revision, 최초 관찰일, 플랫폼, 설명, 활성화 방법과 근거를 기록한다. 소스 main에서 발견한 사실과 실제 Canary/Dev/Beta/Stable 설치본 노출은 분리한다. 빌드 확인 없이 소스 변경을 특정 Chrome 버전 출시로 단정하지 않는다.
+## 기능 사건 필드
 
-상태는 소스 관찰 / 설치본 확인 / 직접 동작 검증으로 구분한다. flag 만료·삭제는 출시 또는 기능 철회의 증거가 아니다. 모든 예정 기능에 flag가 있거나 실험 기능이 반드시 출시된다고 가정하지 않는다. 설명이 부족하면 추측 대신 미확인으로 기록한다.
+schema_version, event_id, feature_id, browser, event_type, version, channel, platform, workstreams, ai_related, scope, observed_at, announced_at, effective_at, source_revision, sources, summary, delta, verification_status, previous_event_id, selection_status, selection_reason, priority, priority_reason, comparison_question, benchmark_readiness, revisit_trigger, assessed_at, selection_rule_version.
 
-## 수집·판정·중복 방지
-
-첫 실행은 최근 7일, 이후 마지막 성공 점검 이후를 확인하며 이전 7일도 겹쳐 확인한다. 실패한 출처의 checkpoint는 전진시키지 않는다. 접근 실패와 변화 없음을 구분하고 실패 범위·재시도 대상을 비공개 실행 상태에 기록한다.
-
-탭·탐색 UX, AI 작업 흐름, 개인정보 기본값, 인증·자동완성, 확장 기능, 기기간 연속성, 미디어, 접근성, 근거 있는 성능 변화와 기능 삭제를 우선한다. 단순 보안 패치·사용자 행동에 의미 있는 영향이 없는 일반 버그 수정·내용 없는 성능 홍보·반복 발표는 상세 보고와 알림에서 제외한다.
-
-기능 identity는 browser + canonical feature key로 유지하고 버전·URL·번역명이 달라도 같은 기능 이력을 연결한다. flag와 제품 기능은 근거가 있을 때 연결하며 한 flag와 한 기능의 1:1 대응을 가정하지 않는다.
-
-사건은 실험 관찰 / 정식 도입 / 배포 확대 / 동작 변경 / 철회 / 반복 언급 / 검증 대기로 구분한다. event ID와 browser, version, channel, platform, scope, delta를 기준으로 중복 제거한다. 근거 URL·section·확인 시각·소스 revision 또는 hash를 남긴다. 이미 전달한 사건을 다시 알리지 않는다.
-
-Stable/실험/Beta/예고, 지역·언어·계정·기기 제한과 단계적 배포를 명시한다. 릴리스 노트 수록과 모든 설치본 활성화를 구분한다. 과거 공식 이력을 대조하며 재기재를 신규 기능으로 세지 않는다. 미확인 값은 null 또는 unknown으로 유지한다. 삼성 브라우저의 동등 기능·차이는 근거가 없으면 비교 질문으로 남긴다.
-
-## PM 선별 기준 참조
-
-공식 변경 탐지와 사실·신규성 검증 후 [삼성 브라우저 PM 페르소나와 선별 규칙](pm-persona-and-selection.md)을 적용한다. 페르소나, 평가 기준, 선별 상태, 우선순위 및 규칙 버전은 해당 문서를 기준으로 관리한다. 수집 범위를 페르소나로 미리 제한하지 않는다.
-
-## GitHub 게시
-
-대상: https://github.com/sangria-kim/browser-benchmark 의 기본 branch.
-
-PM 선별 결과가 selected인 의미 있는 새 사건이 있을 때만 reports/YYYY-MM-DD.md를 작성한다. 같은 날짜 문서가 있으면 기존 내용과 정정 이력을 보존하여 추가한다. 기능별 전체 이력, 브라우저/버전별 색인, JSON 사건 데이터를 함께 갱신한다. 버전 미확인 실험을 임의의 버전 폴더에 넣지 않는다. 변경이 없으면 빈 보고서를 만들지 않는다.
-
-**보고서 생성 여부와 관계없이** 매 수집·보고 생성 시도 결과는 [수집·보고서 생성 전체 기록](../reports/run-history.md)에 남긴다. 생성·미생성·생성 실패·보류·확인 불가를 구분하고, Asia/Seoul 날짜·시도 구분·확인 범위 신규 selected 수·구체적 이유·오류/미완료 출처·공개 근거를 적는다. 선별 미수행은 0건이 아니라 확인 불가이며, 부분 수집의 0건을 전체 변화 없음으로 일반화하지 않는다. 같은 날짜 재시도·정정은 이전 결과를 보존하고 별도로 남긴다. GitHub 접근 실패로 기록하지 못하면 비공개로 보존한 공개 가능 요약을 접근 복구 후 보충한다. 세부 양식·기존 기록의 한계는 해당 파일을 따른다.
-
-JSON 사건 필드: schema_version, event_id, feature_id, browser, event_type, version, channel, platform, workstreams, ai_related, scope, observed_at, announced_at, effective_at, source_revision, sources, summary, delta, verification_status, previous_event_id, selection_status, selection_reason, priority, priority_reason, comparison_question, benchmark_readiness, revisit_trigger, assessed_at, selection_rule_version. 날짜 의미를 혼용하지 않으며 미확인은 null로 둔다.
-
-게시 후 파일을 다시 읽어 내용·상대 링크·commit을 확인한다. 충돌 시 최신 파일을 읽어 병합하며 다른 변경을 덮어쓰지 않는다. 보고서 commit 성공 전 전달 완료로 처리하지 않는다.
-
-## 이메일과 비공개 실행 상태
-
-기존 사용자가 승인한 발신·수신 계정을 실행 환경에서 확인하고 그대로 사용한다. 계정 주소와 link ID를 이 공개 저장소에 기록하지 않는다. 의미 있는 변화가 있을 때만 정중한 한국어로 핵심 1~3개를 요약하고 GitHub 날짜별 보고서 직접 링크를 제공한다. 제목은 '[브라우저 벤치마크] YYYY-MM-DD — 주요 변화'. CC/BCC 또는 다른 수신자를 추가하지 않는다.
-
-변경·사용자 영향·제품 비교·벤치마크 후보를 간략히 담는다. 실험 후보는 실험임을 제목 또는 항목에 표시한다. Sent 및 비공개 발송 ledger를 확인하며 결과 불확실 시 재전송 전에 조회한다. event ID + 목적지 + 보고 종류로 중복 전송을 막는다. 메시지 ID·발송 결과·checkpoint는 비공개 환경에 보관한다. 게시 성공 후 메일만 실패하면 게시를 반복하지 않는다. 모두 성공하면 채팅에 중복 알림하지 않는다. 지속적인 사용자 조치 필요 장애만 알린다.
-
-## 게시 안정화와 상태 관리
-
-GitHub를 보고서의 기준 저장소로 사용한다. 이전에 전달한 사건은 비공개 발송 ledger와 대조하여 샘플 게시·색인 수정·문구 정리만으로 재알림하지 않는다. 최초 7일 수집 규칙은 새로운 수집 이력이 없는 경우에만 적용하고, 기존 성공 checkpoint가 있으면 이어서 처리한다.
-
-수집 성공 checkpoint, GitHub 게시 상태, 메일 전달 상태를 별도로 관리한다. 수집 결과를 영속 보관하기 전에는 checkpoint를 전진시키지 않는다. GitHub 게시 실패 시 보류 사건을 유지해 재시도하고, 메일 실패 시 이미 게시된 commit을 재사용한다. 비공개 실행 상태를 잃었을 때는 전송 이력을 복구하기 전 자동 발송을 중지한다.
-
-연관 보고서·색인·사건 데이터는 가능하면 하나의 commit으로 게시한다. 여러 commit이 필요한 실행은 미완료 상태를 비공개로 기록하고 모든 파일 검증 후에만 메일을 보낸다. branch 최신 head를 확인하고 충돌 시 최신 내용을 읽어 재적용한다. 정정은 기존 기록을 조용히 덮어쓰지 않고 사유·확인일·관련 사건을 남긴다.
-
-운영 전 확인할 항목:
-
-- 새 사건 1건이 날짜별 보고서와 버전 색인에 함께 저장되고 상대 링크로 열린다.
-- 동일 입력 재실행과 동시 실행에서 사건·보고서·메일이 중복되지 않는다.
-- 출처 실패, 게시 실패, 발송 결과 불확실 상황에서 완료된 단계만 보존해 복구한다.
-- 변경 없음은 빈 보고서를 만들지 않고 `reports/run-history.md`에 미생성 사유와 공개 수집 범위를 남긴다. checkpoint·게시 상태·메일 전달 상태는 계속 별도 비공개로 관리한다.
-- 수집 오류·보고 생성 실패·검증 보류에도 공개 가능한 사유와 재개 조건을 전체 기록에 남긴다. 실패를 변화 없음으로 처리하거나 과거 미확인 실행을 추정하지 않는다.
-- 공개 파일에 계정 주소·메시지 ID·인증 정보·사내 자료가 포함되지 않는다.
-- 사내 환경에서 clone/pull 후 상대 링크를 따라 문서를 읽을 수 있다.
-
-현재 릴리스 항목 JSON, flag별 문서와 월별 소스 사건 JSON을 보관한다. 통합 제품 사건 schema 적용·설치본 검증·위 운영 검증은 아직 완료되지 않았다. 메일·checkpoint 영속 저장 위치는 실제 실행 환경에서 마련하고 확인해야 한다.
-
-## 업무 분류 원칙
-
-PC/Mobile은 플랫폼, AI는 기능 속성으로 분리한다. platform에는 실제 OS를 기록하고 workstreams에는 pc/mobile, ai_related에는 true/false/unknown을 둔다. 같은 사건이 여러 업무 목록에 노출돼도 event_id 기준으로 한 번만 집계·알림한다. 실제 지원 범위가 미확인인 플랫폼을 임의로 추가하지 않는다. 업무별 색인은 reports/pc, reports/mobile, reports/ai에 제공한다. 동일 사건을 복제하지 않고 날짜별 원문과 event_id를 참조한다.
-
-## 전체 수집과 선별 보고의 저장 위치
-
-releases/<browser>/<version>/에는 공식 자료의 전체 항목 색인과 수집 범위를 남긴다. 버그 수정·정책·예고도 수집하되 신규 기능으로 자동 판정하지 않는다. reports/pc·mobile·ai는 선별 분석을 연결하며 AI와 플랫폼의 중복은 같은 사건으로 유지한다. 버전 미확인 발표는 억지로 버전에 배정하지 않는다.
-
-Chrome 소스 실험은 experiments/chrome에 flag ID 이력과 월별 JSON으로 저장한다. 2026-06-01부터의 backfill은 about_flags.cc 범위이며 만료·설명 파일 독립 변경은 별도 미완료로 관리한다. 추가/삭제를 출시로 추정하지 않는다.
-
-사내 PRD는 사내 clone 바깥 경로에서만 읽는다. 공개 collector와 외부 AI에 입력하지 않고, 내부 분석 출력도 저장소 바깥에 둔다. 공개 수집 기준은 공개 persona 문서로 유지한다. 내부 PRD를 사용한 판단을 공개 보고서에 자동 병합하지 않는다.
-
-## 기준 접근 및 발송 보류
-
-적용한 기준 commit 또는 규칙 버전을 기록한다. 필수 기준 접근 실패 시 의존하는 선별·게시·발송을 보류한다. 공개 문서로 비공개 설정의 수신자·공개 범위를 변경하지 않는다. 비공개 발송 상태를 영속 보관할 수 없거나 전달 이력을 복구하지 못하면 자동 발송을 보류한다. 이 자동화는 사내 PRD·사내 clone·내부 분석을 읽지 않는다. 위 사내 로컬 검토 안내는 별도 사내 작업에만 적용된다.
-
-### Whale 전체 항목 보완
-
-Whale는 [출처별 보완 규칙](browser-sources-and-cadence.md#whale-공식-업데이트-게시판-보완-2026-11-03-kst)에 따라 연구소와 홈페이지 업데이트 게시판을 각각 확인한다. 항목별 요약·원문 section·순번을 저장하고 본문 항목 수와 대조한 뒤 PM 선별한다. 요약 1건을 전체 변경 수집 성공으로 표시하지 않는다. 기존 단일 reference는 과거 관찰 증거로 보존하고 별도 보완 색인을 연결한다.
+scope는 제품 적용 조건이며 조사 완료율이 아닙니다. observed_at은 근거를 확인한 시점이며 실행 성공·발송 상태를 의미하지 않습니다. JSON의 null/unknown은 미확인 제품 정보나 증거 수준을 뜻합니다.

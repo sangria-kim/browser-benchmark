@@ -1,6 +1,6 @@
 # Whale Desktop 5.41.429.2
 
-공식 본문 날짜 2026-11-02, 홈페이지 공지 등록 2026-11-03, 수집·분석 2026-11-04 KST. **Beta 근거만 보고하며 Stable은 미확인**입니다.
+공식 본문 날짜 2026-11-02, 홈페이지 공지 등록 2026-11-03, 근거 확인일 2026-11-04 KST. **Beta 근거만 보고하며 Stable은 미확인**입니다.
 
 - [한국어 공지](https://notice.naver.com/notices/whalehomepage/35247) · [영문 공지](https://notice.naver.com/notices/whalehomepage/35248) · [연구소 운영팀 본문](https://forum.whale.naver.com/topic/63213/)
 - [전체 19개 항목과 개별 판정](items-desktop-assessment-2026-11-04.json): 개선 17 + 수정 2.
