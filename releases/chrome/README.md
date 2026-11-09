@@ -84,3 +84,5 @@
 - [159 · release-announcements-2026-11-07](159/release-announcements-2026-11-07.json)
 
 - [공식 기능 참고 자료](feature-references.json)
+
+- [CSS corner shorthand 목표 159](../../features/chrome/chrome-5152215540039680.md) · Proposed / pending_verification. 목표 milestone과 실제 출시는 다릅니다.

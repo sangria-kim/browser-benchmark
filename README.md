@@ -5,6 +5,7 @@ Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 공개 브라우저 기�
 ## 기능 자료
 
 - [브라우저별 릴리스](releases/README.md)
+- [기능별 이력](features/README.md) · [구조화 사건](data/events/README.md)
 - [날짜별 기능 분석](reports/README.md)
 - [PC](reports/pc/README.md) · [Mobile](reports/mobile/README.md) · [AI](reports/ai/README.md)
 - [Chrome 실험 기능](experiments/chrome/README.md)
@@ -17,6 +18,8 @@ Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 공개 브라우저 기�
 P1은 사용자 과제에 큰 영향을 주어 우선 비교할 변화, P2는 조건을 확인하며 비교할 변화입니다. 버그 심각도나 출시 보증이 아닙니다. [분석 기준](docs/pm-persona-and-selection.md) · [공개 자료 원칙](docs/collection-policy.md) · [기능 분석 템플릿](templates/report.md)
 
 ## 저장 구조
+
+[자료 관계와 필드 해석](docs/data-layout.md)을 먼저 확인하세요. 기존 경로와 사건 ID는 유지합니다.
 
 - releases/: 브라우저·버전별 기능 항목과 공식 출처
 - features/: 기능별 변경 이력

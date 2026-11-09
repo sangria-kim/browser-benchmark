@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-07T23:14:18Z",
+  "scope": "Chromium flag cleanup, maintenance and disabled-by-default source registration; not product releases.",
+  "events": [
+    {
+      "flag_id": "android-setup-list",
+      "source_revision": "acf1fde532f7c6b57632e660ba1a4debc68195cb",
+      "committed_at": "2026-11-07T00:28:35Z",
+      "source_url": "https://github.com/chromium/chromium/commit/acf1fde532f7c6b57632e660ba1a4debc68195cb",
+      "summary": "공식 commit은 이미 출시되어 기본 활성인 기능의 flag 정리라고 설명합니다. Java/C++ 분기와 관련 테스트도 바뀝니다. 이 commit으로 새 배포일이나 온보딩 기능 철회를 주장하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested"
+    },
+    {
+      "flag_id": "document-patching",
+      "source_revision": "d52d5d1bd3dd345780cbec68c787f9785930324c",
+      "committed_at": "2026-11-07T12:51:00Z",
+      "source_url": "https://github.com/chromium/chromium/commit/d52d5d1bd3dd345780cbec68c787f9785930324c",
+      "summary": "기존 stable DocumentPatching runtime flag와 구현의 guard를 제거합니다. template htmlFor, parser·patch 검사도 바뀌며 DeclarativeFragment의 해당 의존성은 제거되지만 experimental 상태는 유지됩니다. 기능 철회가 아닙니다.",
+      "selection_status": "excluded",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested"
+    },
+    {
+      "flag_id": "glic-daisy-chain-new-tabs",
+      "source_revision": "a89dd3d8245cfbb3fe7670397efa456a8144514b",
+      "committed_at": "2026-11-07T00:37:59Z",
+      "source_url": "https://github.com/chromium/chromium/commit/a89dd3d8245cfbb3fe7670397efa456a8144514b",
+      "summary": "만료된 chrome://flags 등록을 제거하지만 underlying base::Feature는 Finch 실험을 위해 유지합니다. 사용자 작업 흐름의 제거나 배포 확대를 입증하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested"
+    },
+    {
+      "flag_id": "glic-pdf-summarize",
+      "source_revision": "16b2c85262f306c0036cd9de489939827441a0a1",
+      "committed_at": "2026-11-07T00:30:16Z",
+      "source_url": "https://github.com/chromium/chromium/commit/16b2c85262f306c0036cd9de489939827441a0a1",
+      "summary": "PDF 요약 flag의 만료 버전 155→160과 소유자 관리 변경입니다. 요약 기능 출시나 지원 범위 확대의 근거가 아닙니다.",
+      "selection_status": "excluded",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested"
+    },
+    {
+      "flag_id": "omnibox-native-vector-icons",
+      "source_revision": "5ca001fe83a9f71330b2e170d8a3f56f743259df",
+      "committed_at": "2026-11-07T00:40:45Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5ca001fe83a9f71330b2e170d8a3f56f743259df",
+      "summary": "기본 비활성 flag, wrapper와 flag 항목만 추가합니다. commit은 동작 변화가 없다고 명시합니다. Android 아이콘 원천의 실제 전환이나 성능 개선이 구현됐다고 해석하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested"
+    }
+  ],
+  "limitations": [
+    "Source changes do not establish installed availability, rollout date, Korean support or measured performance.",
+    "The retained base feature and implementation changes are distinguished from chrome://flags registration changes."
+  ]
+}

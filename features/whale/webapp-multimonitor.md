@@ -1,5 +1,7 @@
 # Windows 웹 앱 최대화 시 인접 모니터 침범 수정
 
+Feature ID: `whale-webapp-multimonitor`
+
 Canonical feature: whale-webapp-multimonitor
 
 ## 2026-11-07 관찰: Desktop 5.41.429.3

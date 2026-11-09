@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-css-corner-shorthand-target-159-20261108",
+  "feature_id": "chrome-5152215540039680",
+  "browser": "chrome",
+  "event_type": "verification_pending",
+  "version": null,
+  "channel": "Proposed",
+  "platform": [],
+  "workstreams": [],
+  "ai_related": false,
+  "scope": "ChromeStatus의 157→159 목록 이동 및 현재 상세 목표 milestone 159 관찰. 확정 제품 버전·최초 발표·실제 출시 여부는 미확인.",
+  "observed_at": "2026-11-07T23:10:44.967536+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    "https://chromestatus.com/api/v0/features?milestone=157",
+    "https://chromestatus.com/api/v0/features?milestone=159",
+    "https://chromestatus.com/api/v0/features/5152215540039680"
+  ],
+  "summary": "CSS corner shorthand가 157 Enabled by default 목록에서 빠지고 159의 같은 그룹에 나타남. 상세 API의 desktop/android/ios/webview 목표는 159이나 Proposed와 is_released=false가 유지되어 출시·철회를 판정하지 않음.",
+  "delta": {
+    "previous_observed_list_milestone": 157,
+    "current_observed_list_milestone": 159,
+    "source_group": "Enabled by default",
+    "summary_changed": false,
+    "previous_individual_api_target": null,
+    "previous_individual_api_target_note": "직전 개별 상세 API의 플랫폼별 목표값은 별도 검증하지 않았으므로 이번 상세값 관찰만으로 변경 시점을 단정하지 않음.",
+    "current_individual_api_state": {
+      "chrome_status": "Proposed",
+      "is_released": false,
+      "desktop": 159,
+      "android": 159,
+      "ios": 159,
+      "webview": 159,
+      "shipping_stage_type": 160
+    },
+    "individual_api_sha256": "8d89e9e76f41e9c59f409410721efb05d7513fef24de2215df49dfa1f5ad95a2",
+    "previous_observation": "releases/chrome/157/chromestatus-observation-2026-11-07.json"
+  },
+  "verification_status": "official_bodies_read_list_move_confirmed_release_novelty_unresolved",
+  "previous_event_id": null,
+  "selection_status": "pending_verification",
+  "selection_reason": "공식 목록 이동 자체는 전일 색인과 대조해 확인했다. 그러나 Proposed 상태와 is_released=false가 유지되고 상세 목표 159의 최초 변경 시점·실제 shipping 승인은 미확인이다. 목록의 Enabled by default 표제를 Stable 제공으로 해석하지 않으며 새 기능 출시·배포 확대·철회로 선정하지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "지원 단계가 확정되면 동일 플랫폼에서 corner 단축 선언과 기존 border-radius/corner-shape 조합의 렌더링·호환성 및 작성 오류를 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "명시적 shipping 승인 또는 Stable 배포 근거, 상세 단계 이력과 목표 변경 시점, 설치본 지원 검증",
+  "assessed_at": "2026-11-07T23:10:44.967536+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "korea": {
+    "availability": "미확인",
+    "korean_language": "미확인",
+    "effective_at": null,
+    "checked_at": "2026-11-08",
+    "real_test": "미실행",
+    "evidence": [
+      "https://chromestatus.com/api/v0/features/5152215540039680"
+    ]
+  }
+}

@@ -13,3 +13,5 @@
 - [2026-11-06 — Vivaldi 8.3 · Brave Stable · Edge 새 탭 · Chrome 실험](2026-11-06.md) · 고유 selected 17건 전체 보고. 업무별 중복 노출은 한 사건으로 집계.
 
 - [2026-11-07 — Whale Stable 확대 · Edge 로그인·메모리 안내 · Chrome 실험](2026-11-07.md) · 15개 고유 사건. 전체 selected 15건, 실기 미실행.
+
+- [2026-11-08 — Edge Performance detector 종료 계획](2026-11-08.md) · selected 1건, P1 / conditional. Edge 164 종료 예고이며 실제 제거 확인은 아닙니다.

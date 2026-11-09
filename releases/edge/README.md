@@ -41,3 +41,5 @@
 - [98 · items-observed-2026-10-31](98/items-observed-2026-10-31.json)
 
 - [공식 기능 참고 자료](feature-references.json)
+
+- [158 · Beta 기능·정책](158/README.md) · 164 종료 예고와 조건부 정책을 구분합니다.
