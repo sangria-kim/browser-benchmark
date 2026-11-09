@@ -1,0 +1,62 @@
+{
+  "browser": "edge",
+  "version": "158.0.4370.7",
+  "channel": "beta",
+  "platform": [
+    "Windows",
+    "macOS"
+  ],
+  "observed_at": "2026-11-07T23:12:38.066677+00:00",
+  "announced_at": "2026-11-06",
+  "effective_at": null,
+  "summary": "Copilot browser use URL 허용 정책 수록",
+  "selection_status": "pending_verification",
+  "selection_reason": "본문 확보로 URL 매칭·private-network 예외 동작 확인. 구 BrowsingWithCopilot 정책 대비 실질 변화·마이그레이션 근거는 미확인으로 유지.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동일 URL 패턴을 적용했을 때 외부/인트라넷 접근 경계와 관리자 예상이 일치하는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
+  "assessed_at": "2026-11-07T23:12:38.066677+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "edge-copilot-browser-use-policy-transition-158-20261106",
+  "feature_id": "edge-copilot-browser-use-url-policy",
+  "event_type": "pending_verification",
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "source_revision": null,
+  "previous_event_id": null,
+  "verification_status": "official_document_verified_not_device_tested",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": {
+      "account_conditions": "Windows/macOS158+, MSA 제외; 정책은 기능 자체를 활성화하지 않음.",
+      "default": "allow list 미설정은 block list 외 전부 허용, 명시적으로 빈 allow list는 모두 거부. 빈 block list 자체는 차단 없음. 동일 specificity면 allow 우선.",
+      "constraints": "각 목록 첫1500개, 경로 prefix 매칭. private-network 검사는 별도 content-settings grammar를 쓰므로 * 예외 범위에 주의."
+    }
+  },
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+      "section": "해당 변경 항목",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/copilotbrowseruseallowlist",
+      "section": "Supported versions / Description",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/copilotbrowseruseblocklist",
+      "section": "Supported versions / Description",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    }
+  ],
+  "delta": "Copilot browser use URL 허용 정책 수록"
+}

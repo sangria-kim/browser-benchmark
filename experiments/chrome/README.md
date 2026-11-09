@@ -66,6 +66,7 @@
 - [android-pdf-reuse-fragment](android-pdf-reuse-fragment.md)
 - [android-set-google-account-in-help](android-set-google-account-in-help.md)
 - [android-settings-containment](android-settings-containment.md)
+- [android-setup-list](android-setup-list.md)
 - [android-share-full-link](android-share-full-link.md)
 - [android-sms-otp-filling](android-sms-otp-filling.md)
 - [android-startup-improvements](android-startup-improvements.md)
@@ -317,6 +318,7 @@
 - [disable-u18-feedback-desktop](disable-u18-feedback-desktop.md)
 - [disconnect-wifi-on-ethernet-connected](disconnect-wifi-on-ethernet-connected.md)
 - [display-alignment-assistance](display-alignment-assistance.md)
+- [document-patching](document-patching.md)
 - [download-toolbar-button-for-desktop](download-toolbar-button-for-desktop.md)
 - [draw-chrome-pages-edge-to-edge](draw-chrome-pages-edge-to-edge.md)
 - [drive-fs-mirroring](drive-fs-mirroring.md)
@@ -546,6 +548,7 @@
 - [glic-opt-in-dialog-a11y-fix](glic-opt-in-dialog-a11y-fix.md)
 - [glic-opt-in-dialog-link-a11y-fix](glic-opt-in-dialog-link-a11y-fix.md)
 - [glic-os-icon-variant](glic-os-icon-variant.md)
+- [glic-pdf-summarize](glic-pdf-summarize.md)
 - [glic-reuse-cookies](glic-reuse-cookies.md)
 - [glic-selection-prompt](glic-selection-prompt.md)
 - [glic-settings-a11y-context-fix](glic-settings-a11y-context-fix.md)
@@ -686,6 +689,7 @@
 - [omnibox-max-zero-suggest-matches](omnibox-max-zero-suggest-matches.md)
 - [omnibox-mia-zps](omnibox-mia-zps.md)
 - [omnibox-multiline-edit-field](omnibox-multiline-edit-field.md)
+- [omnibox-native-vector-icons](omnibox-native-vector-icons.md)
 - [omnibox-post-frame-autocomplete-start](omnibox-post-frame-autocomplete-start.md)
 - [omnibox-prefetch-selected-suggestions-omt-android](omnibox-prefetch-selected-suggestions-omt-android.md)
 - [omnibox-resizing-prioritization](omnibox-resizing-prioritization.md)
@@ -953,8 +957,12 @@
 
 ## 2026-11-04 관찰
 
-[월별 소스 색인](monthly/2026-11-source-index-2026-11-04.json): 새 고유 15개 commit, 파일별 최신 diff 13/11/8개. about_flags 13개를 replay해 공식 종료 snapshot과 일치했습니다. 북마크바 구역별 키보드 탐색은 source-only selected P2이며 설치본·동작은 미확인입니다. metadata 6/30–7/6 22개, 설명 헤더 6/16–22 28개 이력을 보완했습니다. 다음 과거 재개는 각각 7/7, 6/23 UTC이며 전체 완료가 아닙니다. 원래 1,169개 archive의 종점·건수는 유지합니다.
+[소스 revision과 변경 근거](monthly/2026-11-source-index-2026-11-04.json). 북마크바 구역별 키보드 탐색은 source-only selected P2이며 설치본 노출·실제 동작은 미확인입니다.
 
 ### 2026-11-06 소스 관찰
 
 [최신 23개 commit 및 독립 이력 보완](monthly/2026-11-source-index-2026-11-06.json). 원래 1,169개 commit archive는 유지합니다. 메뉴 검색 및 Android Actor 알림 실험은 [상세 보고서](../../reports/2026-11-06.md)에 연결하며 설치본·출시 증거로 일반화하지 않습니다.
+
+## 2026-11-08 소스 근거
+
+[다섯 commit의 flag 정리·유지보수·등록](monthly/2026-11-source-index-2026-11-08.json)을 기능별 이력과 연결합니다. 신규 제품 출시로 선정한 사건은 없습니다. 기존 flag 삭제와 underlying 기능의 유지·구현 변경을 구분합니다.

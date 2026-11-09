@@ -17,3 +17,5 @@
 - [160-beta · items](160-beta/items.json)
 
 - [공식 기능 참고 자료](feature-references.json)
+
+- [160 · render-blocking 실험](../../features/firefox/render-blocking.md) · 기본 비활성 pref, watch. Stable 지원 확인이 아닙니다.

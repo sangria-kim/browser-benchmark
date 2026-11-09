@@ -1,5 +1,7 @@
 # 주소창의 ChatGPT·Claude 검색어 직접 전송
 
+Feature ID: `whale-address-bar-ai-query`
+
 Canonical feature: whale-address-bar-ai-query
 
 ## 2026-11-07 관찰: Desktop 5.41.429.3

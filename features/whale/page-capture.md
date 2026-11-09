@@ -1,5 +1,7 @@
 # 사이트별 검은 캡처·스크롤 캡처 실패 수정
 
+Feature ID: `whale-page-capture`
+
 Canonical feature: whale-page-capture
 
 ## 2026-11-07 관찰: Desktop 5.41.429.3
