@@ -4,9 +4,6 @@
   "version": "5.41.429.2",
   "product": "Desktop",
   "observed_at": "2026-11-03T23:26:47Z",
-  "rule_commit": "35058584c0ab1b2b75b4dc8bf09dec550e8a2c5e",
-  "collection_scope": "single_official_body",
-  "collection_status": "success",
   "source_url": "https://notice.naver.com/notices/whalehomepage/35247",
   "corroborating_sources": [
     "https://notice.naver.com/notices/whalehomepage/35248",
@@ -19,13 +16,11 @@
     "improvement": 17,
     "fix": 2
   },
-  "coverage": "한국어 공식 본문의 최상위 19개 변경 전체를 요약. 영어 공지·연구소 번역은 동일 사건으로 대조·중복 제거. 전체 과거 이력 완료를 뜻하지 않음.",
-  "date_note": "홈페이지 등록 날짜 11/3, 본문 Beta 날짜 11/2, 수집 날짜 11/4 KST를 구분. 실제 설치본 배포 완료는 미검증.",
+  "date_note": "홈페이지 등록 날짜 11/3, 본문 Beta 날짜 11/2, 근거 확인일 11/4 KST를 구분. 실제 설치본 배포 완료는 미검증.",
   "channel_note": "홈페이지 한국어·영문 공지와 연구소 제목·한국어 본문은 Beta. 연구소 영문 본문의 Stable, Beta 표기는 상충하며 Stable 제공은 미확인.",
   "platform_note": "Desktop 제품 구분만으로 모든 OS를 추정하지 않음. Windows가 명시된 PlayStation 수정 외 platform은 빈 배열(미확인).",
   "novelty_review": {
     "prior_release": "https://forum.whale.naver.com/topic/62927/",
-    "archive_scope": "기준 commit의 releases/whale 전체 JSON, features/whale, data/events/whale-* 및 reports와 기존 제품 소개 baseline 대조. 전체 공식 과거 출시 이력 완결을 주장하지 않음.",
     "feature_help_sources": [
       "https://help.whale.naver.com/ko/desktop/quicksearch/",
       "https://help.whale.naver.com/ko/desktop/newtab/",
@@ -34,8 +29,7 @@
       "https://help.whale.naver.com/ko/desktop/etc/verticaltab/",
       "https://help.whale.naver.com/ko/desktop/dualtab/",
       "https://help.whale.naver.com/ko/desktop/multiplay/"
-    ],
-    "prior_report_duplicate_screen": "기존 보고 색인과 Whale/웨일 키워드 검색에서 동일 사건 미발견. 검색 부재는 과거 모든 보고서·전달 이력의 완전성을 입증하지 않음."
+    ]
   },
   "items": [
     {
@@ -908,7 +902,7 @@
       "verification_status": "official_bodies_verified_no_device_test",
       "novelty": "official_current_release_item",
       "selection_status": "excluded",
-      "selection_reason": "특정 사이트 호환성 복구로 수집하며 인증 수단·정책·일반 로그인 흐름 변경으로 확대하지 않음.",
+      "selection_reason": "특정 사이트 호환성 복구이며 인증 수단·정책·일반 로그인 흐름 변경으로 확대하지 않음.",
       "priority": null,
       "priority_reason": null,
       "comparison_question": null,

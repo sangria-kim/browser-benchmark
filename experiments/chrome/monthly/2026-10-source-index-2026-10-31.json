@@ -1,750 +1,705 @@
 {
   "schema_version": 1,
   "observed_at": "2026-10-30T22:45:00Z",
-  "scope": "Chrome source experiments, not product releases",
-  "coverage": {
-    "about_flags": {
-      "query_url": "https://api.github.com/repos/chromium/chromium/commits?path=chrome/browser/about_flags.cc&since=2026-10-23T00:00:00Z&until=2026-10-30T22:45:00Z&per_page=100",
-      "overlap_start": "2026-10-23T00:00:00Z",
-      "index": [
-        {
-          "revision": "f117b891e09e628d40532e484ff6e64548d59546",
-          "committed_at": "2026-10-30T22:07:10Z",
-          "title": "[AIM]: Expose the persistent AIM button flags on Android",
-          "url": "https://github.com/chromium/chromium/commit/f117b891e09e628d40532e484ff6e64548d59546"
-        },
-        {
-          "revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
-          "committed_at": "2026-10-30T18:12:33Z",
-          "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
-          "url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
-        },
-        {
-          "revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
-          "committed_at": "2026-10-30T17:11:01Z",
-          "title": "[omnibox] Remove omnibox-adjust-indentation flag",
-          "url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
-        },
-        {
-          "revision": "427a86e5cfd867701c768ff75048837891638f2f",
-          "committed_at": "2026-10-30T16:37:37Z",
-          "title": "[Downloads] Preserve HTTP Last-Modified time",
-          "url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
-        },
-        {
-          "revision": "eda174533f4bc781a97165bbd94af438c99184b1",
-          "committed_at": "2026-10-30T06:44:47Z",
-          "title": "Decisions API: Restore backend flag choices and gate devTrialBackend",
-          "url": "https://github.com/chromium/chromium/commit/eda174533f4bc781a97165bbd94af438c99184b1"
-        },
-        {
-          "revision": "e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
-          "committed_at": "2026-10-30T00:01:35Z",
-          "title": "Remove expired management-promotion-banner-flag",
-          "url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7"
-        },
-        {
-          "revision": "b967e34f97b231956605bd92f31a20d86eb9e9e9",
-          "committed_at": "2026-10-29T22:03:19Z",
-          "title": "[Multiprofile] Add AndroidMultiprofileStartupData feature flag",
-          "url": "https://github.com/chromium/chromium/commit/b967e34f97b231956605bd92f31a20d86eb9e9e9"
-        },
-        {
-          "revision": "f1bad2d61e8af482e4adb3898578b9657659c667",
-          "committed_at": "2026-10-29T21:13:25Z",
-          "title": "Open AI Mode Omnibox queries in a new tab when submitted from a non-NTP page",
-          "url": "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667"
-        },
-        {
-          "revision": "2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
-          "committed_at": "2026-10-29T20:20:12Z",
-          "title": "Remove expired flag lens-overlay-permission-bubble-alt",
-          "url": "https://github.com/chromium/chromium/commit/2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801"
-        },
-        {
-          "revision": "984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
-          "committed_at": "2026-10-29T18:52:58Z",
-          "title": "[FRE Strings] Add feature flag for FRE Strings experiment",
-          "url": "https://github.com/chromium/chromium/commit/984200769f7441aa18ce4c9c3cc41f8f52b9b22f"
-        },
-        {
-          "revision": "701fc033a82d424cd2f9741e4dcd3c1e1559847c",
-          "committed_at": "2026-10-29T18:43:14Z",
-          "title": "[Direct Offers] Add flag for Offers and loyalty cards settings leaf",
-          "url": "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
-        },
-        {
-          "revision": "54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
-          "committed_at": "2026-10-29T17:56:56Z",
-          "title": "[Omnibox] Clean up DesktopOmniboxActionButtonRefinements feature flags",
-          "url": "https://github.com/chromium/chromium/commit/54315355e9a1e3481bbdf7e6fecd8dd32b80885c"
-        },
-        {
-          "revision": "1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
-          "committed_at": "2026-10-29T17:25:54Z",
-          "title": "[Keyboard Shortcuts] Add AndroidUnifiedKeyboardShortcuts feature flag",
-          "url": "https://github.com/chromium/chromium/commit/1ab53bc5148b29d0c6bf96a42e229986b4147fb2"
-        },
-        {
-          "revision": "3a520e41da378388a3e9b4a87f3c2f9e4d311ba9",
-          "committed_at": "2026-10-29T11:18:45Z",
-          "title": "[signin] Remove SignInBenefits IPH promos",
-          "url": "https://github.com/chromium/chromium/commit/3a520e41da378388a3e9b4a87f3c2f9e4d311ba9"
-        },
-        {
-          "revision": "587de762561e727395ba4a6947e76cc1036994fe",
-          "committed_at": "2026-10-29T09:54:15Z",
-          "title": "[DeepCAF] Load custom form control scripts from a local directory",
-          "url": "https://github.com/chromium/chromium/commit/587de762561e727395ba4a6947e76cc1036994fe"
-        },
-        {
-          "revision": "646bcd98d93493c0e826f53e005b947e62bd357a",
-          "committed_at": "2026-10-29T07:15:47Z",
-          "title": "arc: Remove ArcVmmManager and VMM swap feature flags",
-          "url": "https://github.com/chromium/chromium/commit/646bcd98d93493c0e826f53e005b947e62bd357a"
-        },
-        {
-          "revision": "b5548ca1190d2e89df6d7c7500799b19b15f81a2",
-          "committed_at": "2026-10-29T05:33:00Z",
-          "title": "[iframe] Remove expired responsive-iframes flag",
-          "url": "https://github.com/chromium/chromium/commit/b5548ca1190d2e89df6d7c7500799b19b15f81a2"
-        },
-        {
-          "revision": "77b89898595ed2d6ad719ad1708ca7d2008dd28d",
-          "committed_at": "2026-10-29T03:01:29Z",
-          "title": "Remove expired flag fluid-resize and features::kFluidResize",
-          "url": "https://github.com/chromium/chromium/commit/77b89898595ed2d6ad719ad1708ca7d2008dd28d"
-        },
-        {
-          "revision": "a0e1755726b9cfcd9329c2bdb9de4a3689302415",
-          "committed_at": "2026-10-28T23:57:20Z",
-          "title": "[Deprecate Ephemeral Pin] Prepare pinned action eligibility, active state, and task preservation",
-          "url": "https://github.com/chromium/chromium/commit/a0e1755726b9cfcd9329c2bdb9de4a3689302415"
-        },
-        {
-          "revision": "458082e7c49b11703df32435c3a6c32ef02d7f47",
-          "committed_at": "2026-10-28T22:31:52Z",
-          "title": "[Omnibox] Add post-frame trigger for typed autocomplete start",
-          "url": "https://github.com/chromium/chromium/commit/458082e7c49b11703df32435c3a6c32ef02d7f47"
-        },
-        {
-          "revision": "121a03e110c41dbeab94ed61f7246b539490eaa4",
-          "committed_at": "2026-10-28T22:10:39Z",
-          "title": "Remove expired flag update-padding-for-display-calculation",
-          "url": "https://github.com/chromium/chromium/commit/121a03e110c41dbeab94ed61f7246b539490eaa4"
-        },
-        {
-          "revision": "3766d6a9e985c54df326c37163d11badeb1efab7",
-          "committed_at": "2026-10-28T18:54:55Z",
-          "title": "[DeepCAF] Add the kAutofillCustomFormControlScripts feature and flag",
-          "url": "https://github.com/chromium/chromium/commit/3766d6a9e985c54df326c37163d11badeb1efab7"
-        },
-        {
-          "revision": "7554590a7a0b7e065448182716513043c471931d",
-          "committed_at": "2026-10-28T14:50:47Z",
-          "title": "[TrustedVault] Add flag for shared recovery factors and encryption",
-          "url": "https://github.com/chromium/chromium/commit/7554590a7a0b7e065448182716513043c471931d"
-        },
-        {
-          "revision": "c300b58b9f1b08a449a3c4bab1e3afdf01935adb",
-          "committed_at": "2026-10-28T05:37:25Z",
-          "title": "Remove kNativeViewHostManagesLayers and associated dead code",
-          "url": "https://github.com/chromium/chromium/commit/c300b58b9f1b08a449a3c4bab1e3afdf01935adb"
-        },
-        {
-          "revision": "af9637451fa90415db7796a69a81a2975aefc365",
-          "committed_at": "2026-10-28T05:23:44Z",
-          "title": "[SafeBrowsing] Remove safe-browsing-sync-checker-check-allowlist flag",
-          "url": "https://github.com/chromium/chromium/commit/af9637451fa90415db7796a69a81a2975aefc365"
-        },
-        {
-          "revision": "23b546c0bbabefbdf901aa95ff5c4aaee4bc8815",
-          "committed_at": "2026-10-28T03:16:13Z",
-          "title": "Revert \"Clean up expired flag audio selection improvement\"",
-          "url": "https://github.com/chromium/chromium/commit/23b546c0bbabefbdf901aa95ff5c4aaee4bc8815"
-        },
-        {
-          "revision": "47c4b39224e4e9ea6347f94f8dc1a53f82b69e34",
-          "committed_at": "2026-10-28T00:01:13Z",
-          "title": "[media] Remove expired flag enable-media-link-helpers",
-          "url": "https://github.com/chromium/chromium/commit/47c4b39224e4e9ea6347f94f8dc1a53f82b69e34"
-        },
-        {
-          "revision": "0d34268e47cf5bec744f2033c89a62cebfe0a1e8",
-          "committed_at": "2026-10-27T22:19:33Z",
-          "title": "[contextual-tasks] Add side panel tab state chrome://flags entry",
-          "url": "https://github.com/chromium/chromium/commit/0d34268e47cf5bec744f2033c89a62cebfe0a1e8"
-        },
-        {
-          "revision": "95fc6d646a8671c4f79433327614d48728c06059",
-          "committed_at": "2026-10-27T22:11:32Z",
-          "title": "Update GlicShareImage context menu item",
-          "url": "https://github.com/chromium/chromium/commit/95fc6d646a8671c4f79433327614d48728c06059"
-        },
-        {
-          "revision": "2733b67eecec9d153b874e8d1cb1894e63d9d339",
-          "committed_at": "2026-10-27T19:16:55Z",
-          "title": "[Suggestion] Remove the AskGBlockAutoTabZeroStateSuggestions param",
-          "url": "https://github.com/chromium/chromium/commit/2733b67eecec9d153b874e8d1cb1894e63d9d339"
-        },
-        {
-          "revision": "e9144eea599cd2712061c77762781dd0a60dee34",
-          "committed_at": "2026-10-27T17:52:52Z",
-          "title": "Remove expired deprecated-external-picker-function flag",
-          "url": "https://github.com/chromium/chromium/commit/e9144eea599cd2712061c77762781dd0a60dee34"
-        },
-        {
-          "revision": "b6a0af4142d7f73094296f570501bdf3451b1fa3",
-          "committed_at": "2026-10-27T17:40:26Z",
-          "title": "[context-input] Add lens-send-drive-tab-urls-in-composeboxes flag",
-          "url": "https://github.com/chromium/chromium/commit/b6a0af4142d7f73094296f570501bdf3451b1fa3"
-        },
-        {
-          "revision": "85cd8af317ef70cc37cab323a54f73ae6ea890d1",
-          "committed_at": "2026-10-27T14:16:35Z",
-          "title": "[History] Add chrome://flags entry for BrowsingHistoryFilterByDomain",
-          "url": "https://github.com/chromium/chromium/commit/85cd8af317ef70cc37cab323a54f73ae6ea890d1"
-        },
-        {
-          "revision": "f25164af6565e91b6bfc97b7b527474cb88d1b0f",
-          "committed_at": "2026-10-27T02:59:36Z",
-          "title": "Add circle highlight variation for SIC pinned button indicator",
-          "url": "https://github.com/chromium/chromium/commit/f25164af6565e91b6bfc97b7b527474cb88d1b0f"
-        },
-        {
-          "revision": "8fab61e0e07b6dc72cbe3fc06a3c259daeeac763",
-          "committed_at": "2026-10-27T02:35:04Z",
-          "title": "[AF] Remove omnibox GPay button related code",
-          "url": "https://github.com/chromium/chromium/commit/8fab61e0e07b6dc72cbe3fc06a3c259daeeac763"
-        },
-        {
-          "revision": "581378a548a63b1425a0f67efc3543dd2177f017",
-          "committed_at": "2026-10-27T01:54:59Z",
-          "title": "[Omnibox] Add OmniboxVoicePlateIntent feature flag",
-          "url": "https://github.com/chromium/chromium/commit/581378a548a63b1425a0f67efc3543dd2177f017"
-        },
-        {
-          "revision": "7a8182643c91f1262d017f23ad5a72f6259b8a29",
-          "committed_at": "2026-10-27T01:48:37Z",
-          "title": "Remove expired allow-apn-modification-policy flag and feature",
-          "url": "https://github.com/chromium/chromium/commit/7a8182643c91f1262d017f23ad5a72f6259b8a29"
-        },
-        {
-          "revision": "f34fc391953eac9e7431de38a91e9aa4ee26f883",
-          "committed_at": "2026-10-27T01:40:21Z",
-          "title": "Add gray Super G variation for Contextual Tasks unify pin button logos",
-          "url": "https://github.com/chromium/chromium/commit/f34fc391953eac9e7431de38a91e9aa4ee26f883"
-        },
-        {
-          "revision": "bc5a71e28149490537ccc2b51ec780ee9c52486e",
-          "committed_at": "2026-10-27T00:48:35Z",
-          "title": "[Omnibox] Add OmniboxEarlyInflation experiment",
-          "url": "https://github.com/chromium/chromium/commit/bc5a71e28149490537ccc2b51ec780ee9c52486e"
-        },
-        {
-          "revision": "da56e60f9a36d7653fb70485ab1d98c93e130db0",
-          "committed_at": "2026-10-26T18:54:47Z",
-          "title": "[Game Dashboard] Remove expired game-dashboard-utilities flag",
-          "url": "https://github.com/chromium/chromium/commit/da56e60f9a36d7653fb70485ab1d98c93e130db0"
-        },
-        {
-          "revision": "5eadd454289d126f585938dee2c9031de3ae6ec9",
-          "committed_at": "2026-10-26T17:00:02Z",
-          "title": "[MChips] Use \"Add\" for the add image button text.",
-          "url": "https://github.com/chromium/chromium/commit/5eadd454289d126f585938dee2c9031de3ae6ec9"
-        },
-        {
-          "revision": "ec99a59a9378625ae499f5ad6c94a4d0d9db4256",
-          "committed_at": "2026-10-26T14:29:35Z",
-          "title": "Remove expired flag face-retouch-override and associated code",
-          "url": "https://github.com/chromium/chromium/commit/ec99a59a9378625ae499f5ad6c94a4d0d9db4256"
-        },
-        {
-          "revision": "c50e13f609775eca19b2d9600cba8e96ea59daef",
-          "committed_at": "2026-10-26T14:11:07Z",
-          "title": "[RPS] Move remote actor credential sharing flag to components",
-          "url": "https://github.com/chromium/chromium/commit/c50e13f609775eca19b2d9600cba8e96ea59daef"
-        },
-        {
-          "revision": "ce6c06cc0151c123e9b95b98fbcf618e22f3ca80",
-          "committed_at": "2026-10-25T13:45:58Z",
-          "title": "[Smart Card] Add SmartCardContextRelease feature",
-          "url": "https://github.com/chromium/chromium/commit/ce6c06cc0151c123e9b95b98fbcf618e22f3ca80"
-        },
-        {
-          "revision": "7057a5044cc06765b58624f115213aec72277fb2",
-          "committed_at": "2026-10-24T01:20:37Z",
-          "title": "Update omnibox-truncate-search-url chrome://flags choice values",
-          "url": "https://github.com/chromium/chromium/commit/7057a5044cc06765b58624f115213aec72277fb2"
-        },
-        {
-          "revision": "ba8e81823ae37c0abce83fb29bface99ec0ca358",
-          "committed_at": "2026-10-23T22:12:41Z",
-          "title": "[FacilitatedPayments] Remove obsolete EnablePixAccountLinking flag",
-          "url": "https://github.com/chromium/chromium/commit/ba8e81823ae37c0abce83fb29bface99ec0ca358"
-        },
-        {
-          "revision": "5884685a84bf2964e04da4ac842a0df7d85265fa",
-          "committed_at": "2026-10-23T21:20:04Z",
-          "title": "Support close/hide side panel option in pinned contextual tasks button context menu",
-          "url": "https://github.com/chromium/chromium/commit/5884685a84bf2964e04da4ac842a0df7d85265fa"
-        },
-        {
-          "revision": "0f083a97f88efd429665174b7c119e698e66b908",
-          "committed_at": "2026-10-23T18:17:52Z",
-          "title": "[GEiC] Add FRE status storage",
-          "url": "https://github.com/chromium/chromium/commit/0f083a97f88efd429665174b7c119e698e66b908"
-        },
-        {
-          "revision": "f70979431186128a6c10f26d20a1d2805fcb4e52",
-          "committed_at": "2026-10-23T17:48:48Z",
-          "title": "[IA] Add Education Arm 5 with address bar IPH to AndroidBottomBar",
-          "url": "https://github.com/chromium/chromium/commit/f70979431186128a6c10f26d20a1d2805fcb4e52"
-        },
-        {
-          "revision": "1950385368e6987959db8a280722887c24c82624",
-          "committed_at": "2026-10-23T14:16:15Z",
-          "title": "[Okta SSO] Cleanup feature flag",
-          "url": "https://github.com/chromium/chromium/commit/1950385368e6987959db8a280722887c24c82624"
-        },
-        {
-          "revision": "de870ab4e5458d2efb17be9070932318dfb43019",
-          "committed_at": "2026-10-23T04:11:01Z",
-          "title": "Remove expired flag enable-cros-ime-assist-multi-word and feature kAssistMultiWord",
-          "url": "https://github.com/chromium/chromium/commit/de870ab4e5458d2efb17be9070932318dfb43019"
-        },
-        {
-          "revision": "d6affbeba73cbec124c735b21222577c582b58af",
-          "committed_at": "2026-10-23T04:08:36Z",
-          "title": "Remove expired fast-pair-pwa-companion flag",
-          "url": "https://github.com/chromium/chromium/commit/d6affbeba73cbec124c735b21222577c582b58af"
-        },
-        {
-          "revision": "e084609c15607d911fef4324d21f808c2fe0a97b",
-          "committed_at": "2026-10-23T00:51:13Z",
-          "title": "[Omnibox][NTP] Remove dynamic AI Mode button flags",
-          "url": "https://github.com/chromium/chromium/commit/e084609c15607d911fef4324d21f808c2fe0a97b"
-        },
-        {
-          "revision": "9fdc9534a6bad491d402427350d2bba9a80c2487",
-          "committed_at": "2026-10-23T00:46:14Z",
-          "title": "child_accounts: Remove WebTimeNavigationObserver and feature flag",
-          "url": "https://github.com/chromium/chromium/commit/9fdc9534a6bad491d402427350d2bba9a80c2487"
-        }
-      ],
-      "index_count": 54,
-      "new_diff_count": 6,
-      "previous_observed_revision": "b967e34f97b231956605bd92f31a20d86eb9e9e9",
-      "latest_observed_revision": "f117b891e09e628d40532e484ff6e64548d59546",
-      "incremental_replay_validation": "All 6 diffs sequentially applied; exact official end snapshot match. Original June-to-Oct29 archive not rewritten.",
-      "baseline_sha256": "fab6d38e15108530192e095799bd02180d01edc5969545c0795623181b334a87",
-      "end_sha256": "ac8ce8909920494c5a9d06756582051afe2afecfc790ffc9ab47e21427ca037c",
-      "revision_deduplication": "Overlap compared against Oct30 source-index revision set; exactly 6 newly observed revisions."
+  "scope": "Chromium source revisions and flag changes; not product releases.",
+  "source_commits": [
+    {
+      "revision": "f117b891e09e628d40532e484ff6e64548d59546",
+      "committed_at": "2026-10-30T22:07:10Z",
+      "title": "[AIM]: Expose the persistent AIM button flags on Android",
+      "url": "https://github.com/chromium/chromium/commit/f117b891e09e628d40532e484ff6e64548d59546"
     },
-    "metadata_latest": {
-      "query_url": "https://api.github.com/repos/chromium/chromium/commits?path=chrome/browser/flag-metadata.json&since=2026-10-23T00:00:00Z&until=2026-10-30T22:45:00Z&per_page=100",
-      "index": [
-        {
-          "revision": "b3795e19d239a46073e02bcb504f6002babe2ee0",
-          "committed_at": "2026-10-30T18:54:10Z",
-          "title": "[ios] Deprecate Welcome Back prefs and remove model features",
-          "url": "https://github.com/chromium/chromium/commit/b3795e19d239a46073e02bcb504f6002babe2ee0"
-        },
-        {
-          "revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
-          "committed_at": "2026-10-30T18:12:33Z",
-          "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
-          "url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
-        },
-        {
-          "revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
-          "committed_at": "2026-10-30T17:11:01Z",
-          "title": "[omnibox] Remove omnibox-adjust-indentation flag",
-          "url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
-        },
-        {
-          "revision": "427a86e5cfd867701c768ff75048837891638f2f",
-          "committed_at": "2026-10-30T16:37:37Z",
-          "title": "[Downloads] Preserve HTTP Last-Modified time",
-          "url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
-        },
-        {
-          "revision": "e6c8cec4ff8c36f514fceda3e0a98dcb5922a23f",
-          "committed_at": "2026-10-30T15:18:56Z",
-          "title": "[iOS] Add field trial testing config for IOSChooseFromDriveSignedOut",
-          "url": "https://github.com/chromium/chromium/commit/e6c8cec4ff8c36f514fceda3e0a98dcb5922a23f"
-        },
-        {
-          "revision": "e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
-          "committed_at": "2026-10-30T00:01:35Z",
-          "title": "Remove expired management-promotion-banner-flag",
-          "url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7"
-        },
-        {
-          "revision": "b967e34f97b231956605bd92f31a20d86eb9e9e9",
-          "committed_at": "2026-10-29T22:03:19Z",
-          "title": "[Multiprofile] Add AndroidMultiprofileStartupData feature flag",
-          "url": "https://github.com/chromium/chromium/commit/b967e34f97b231956605bd92f31a20d86eb9e9e9"
-        },
-        {
-          "revision": "f1bad2d61e8af482e4adb3898578b9657659c667",
-          "committed_at": "2026-10-29T21:13:25Z",
-          "title": "Open AI Mode Omnibox queries in a new tab when submitted from a non-NTP page",
-          "url": "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667"
-        },
-        {
-          "revision": "2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
-          "committed_at": "2026-10-29T20:20:12Z",
-          "title": "Remove expired flag lens-overlay-permission-bubble-alt",
-          "url": "https://github.com/chromium/chromium/commit/2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801"
-        },
-        {
-          "revision": "984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
-          "committed_at": "2026-10-29T18:52:58Z",
-          "title": "[FRE Strings] Add feature flag for FRE Strings experiment",
-          "url": "https://github.com/chromium/chromium/commit/984200769f7441aa18ce4c9c3cc41f8f52b9b22f"
-        },
-        {
-          "revision": "701fc033a82d424cd2f9741e4dcd3c1e1559847c",
-          "committed_at": "2026-10-29T18:43:14Z",
-          "title": "[Direct Offers] Add flag for Offers and loyalty cards settings leaf",
-          "url": "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
-        },
-        {
-          "revision": "867b136c1b3410a9b370e3484a70e62438b07e85",
-          "committed_at": "2026-10-29T18:36:21Z",
-          "title": "[iOS] Revive ConsistentLogoDoodleHeight flag and fieldtrial config",
-          "url": "https://github.com/chromium/chromium/commit/867b136c1b3410a9b370e3484a70e62438b07e85"
-        },
-        {
-          "revision": "54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
-          "committed_at": "2026-10-29T17:56:56Z",
-          "title": "[Omnibox] Clean up DesktopOmniboxActionButtonRefinements feature flags",
-          "url": "https://github.com/chromium/chromium/commit/54315355e9a1e3481bbdf7e6fecd8dd32b80885c"
-        },
-        {
-          "revision": "1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
-          "committed_at": "2026-10-29T17:25:54Z",
-          "title": "[Keyboard Shortcuts] Add AndroidUnifiedKeyboardShortcuts feature flag",
-          "url": "https://github.com/chromium/chromium/commit/1ab53bc5148b29d0c6bf96a42e229986b4147fb2"
-        },
-        {
-          "revision": "587de762561e727395ba4a6947e76cc1036994fe",
-          "committed_at": "2026-10-29T09:54:15Z",
-          "title": "[DeepCAF] Load custom form control scripts from a local directory",
-          "url": "https://github.com/chromium/chromium/commit/587de762561e727395ba4a6947e76cc1036994fe"
-        },
-        {
-          "revision": "646bcd98d93493c0e826f53e005b947e62bd357a",
-          "committed_at": "2026-10-29T07:15:47Z",
-          "title": "arc: Remove ArcVmmManager and VMM swap feature flags",
-          "url": "https://github.com/chromium/chromium/commit/646bcd98d93493c0e826f53e005b947e62bd357a"
-        },
-        {
-          "revision": "b5548ca1190d2e89df6d7c7500799b19b15f81a2",
-          "committed_at": "2026-10-29T05:33:00Z",
-          "title": "[iframe] Remove expired responsive-iframes flag",
-          "url": "https://github.com/chromium/chromium/commit/b5548ca1190d2e89df6d7c7500799b19b15f81a2"
-        },
-        {
-          "revision": "77b89898595ed2d6ad719ad1708ca7d2008dd28d",
-          "committed_at": "2026-10-29T03:01:29Z",
-          "title": "Remove expired flag fluid-resize and features::kFluidResize",
-          "url": "https://github.com/chromium/chromium/commit/77b89898595ed2d6ad719ad1708ca7d2008dd28d"
-        },
-        {
-          "revision": "a0e1755726b9cfcd9329c2bdb9de4a3689302415",
-          "committed_at": "2026-10-28T23:57:20Z",
-          "title": "[Deprecate Ephemeral Pin] Prepare pinned action eligibility, active state, and task preservation",
-          "url": "https://github.com/chromium/chromium/commit/a0e1755726b9cfcd9329c2bdb9de4a3689302415"
-        },
-        {
-          "revision": "458082e7c49b11703df32435c3a6c32ef02d7f47",
-          "committed_at": "2026-10-28T22:31:52Z",
-          "title": "[Omnibox] Add post-frame trigger for typed autocomplete start",
-          "url": "https://github.com/chromium/chromium/commit/458082e7c49b11703df32435c3a6c32ef02d7f47"
-        },
-        {
-          "revision": "5a164a668072f2756867e49f57e5c69059b8c47b",
-          "committed_at": "2026-10-28T22:24:34Z",
-          "title": "[AF] Extend omnibox autofill flag expiration by 6 months",
-          "url": "https://github.com/chromium/chromium/commit/5a164a668072f2756867e49f57e5c69059b8c47b"
-        },
-        {
-          "revision": "121a03e110c41dbeab94ed61f7246b539490eaa4",
-          "committed_at": "2026-10-28T22:10:39Z",
-          "title": "Remove expired flag update-padding-for-display-calculation",
-          "url": "https://github.com/chromium/chromium/commit/121a03e110c41dbeab94ed61f7246b539490eaa4"
-        },
-        {
-          "revision": "27970e89debeecfe3023db542168c8c4b218209c",
-          "committed_at": "2026-10-28T20:56:34Z",
-          "title": "[PDF V2] Extend expiry of PDF flags to M162",
-          "url": "https://github.com/chromium/chromium/commit/27970e89debeecfe3023db542168c8c4b218209c"
-        },
-        {
-          "revision": "3766d6a9e985c54df326c37163d11badeb1efab7",
-          "committed_at": "2026-10-28T18:54:55Z",
-          "title": "[DeepCAF] Add the kAutofillCustomFormControlScripts feature and flag",
-          "url": "https://github.com/chromium/chromium/commit/3766d6a9e985c54df326c37163d11badeb1efab7"
-        },
-        {
-          "revision": "da119b3938321d1f982c93175525a21251a69af0",
-          "committed_at": "2026-10-28T15:01:06Z",
-          "title": "[context-input] Update hujasonx owner email in histograms and flags",
-          "url": "https://github.com/chromium/chromium/commit/da119b3938321d1f982c93175525a21251a69af0"
-        },
-        {
-          "revision": "7554590a7a0b7e065448182716513043c471931d",
-          "committed_at": "2026-10-28T14:50:47Z",
-          "title": "[TrustedVault] Add flag for shared recovery factors and encryption",
-          "url": "https://github.com/chromium/chromium/commit/7554590a7a0b7e065448182716513043c471931d"
-        },
-        {
-          "revision": "a4692ed6f385b73935c74f8be2c8366e5164aaf6",
-          "committed_at": "2026-10-28T14:29:41Z",
-          "title": "[iOS] Clean up expired kSkipDefaultBrowserPromoInFirstRun feature",
-          "url": "https://github.com/chromium/chromium/commit/a4692ed6f385b73935c74f8be2c8366e5164aaf6"
-        },
-        {
-          "revision": "c300b58b9f1b08a449a3c4bab1e3afdf01935adb",
-          "committed_at": "2026-10-28T05:37:25Z",
-          "title": "Remove kNativeViewHostManagesLayers and associated dead code",
-          "url": "https://github.com/chromium/chromium/commit/c300b58b9f1b08a449a3c4bab1e3afdf01935adb"
-        },
-        {
-          "revision": "af9637451fa90415db7796a69a81a2975aefc365",
-          "committed_at": "2026-10-28T05:23:44Z",
-          "title": "[SafeBrowsing] Remove safe-browsing-sync-checker-check-allowlist flag",
-          "url": "https://github.com/chromium/chromium/commit/af9637451fa90415db7796a69a81a2975aefc365"
-        },
-        {
-          "revision": "23b546c0bbabefbdf901aa95ff5c4aaee4bc8815",
-          "committed_at": "2026-10-28T03:16:13Z",
-          "title": "Revert \"Clean up expired flag audio selection improvement\"",
-          "url": "https://github.com/chromium/chromium/commit/23b546c0bbabefbdf901aa95ff5c4aaee4bc8815"
-        },
-        {
-          "revision": "47c4b39224e4e9ea6347f94f8dc1a53f82b69e34",
-          "committed_at": "2026-10-28T00:01:13Z",
-          "title": "[media] Remove expired flag enable-media-link-helpers",
-          "url": "https://github.com/chromium/chromium/commit/47c4b39224e4e9ea6347f94f8dc1a53f82b69e34"
-        },
-        {
-          "revision": "0d34268e47cf5bec744f2033c89a62cebfe0a1e8",
-          "committed_at": "2026-10-27T22:19:33Z",
-          "title": "[contextual-tasks] Add side panel tab state chrome://flags entry",
-          "url": "https://github.com/chromium/chromium/commit/0d34268e47cf5bec744f2033c89a62cebfe0a1e8"
-        },
-        {
-          "revision": "f1f76d15d8c31c7bc43c23c44987a40ec5cb09a7",
-          "committed_at": "2026-10-27T20:36:11Z",
-          "title": "Extend expiry of three Android flags to M165",
-          "url": "https://github.com/chromium/chromium/commit/f1f76d15d8c31c7bc43c23c44987a40ec5cb09a7"
-        },
-        {
-          "revision": "e9144eea599cd2712061c77762781dd0a60dee34",
-          "committed_at": "2026-10-27T17:52:52Z",
-          "title": "Remove expired deprecated-external-picker-function flag",
-          "url": "https://github.com/chromium/chromium/commit/e9144eea599cd2712061c77762781dd0a60dee34"
-        },
-        {
-          "revision": "b6a0af4142d7f73094296f570501bdf3451b1fa3",
-          "committed_at": "2026-10-27T17:40:26Z",
-          "title": "[context-input] Add lens-send-drive-tab-urls-in-composeboxes flag",
-          "url": "https://github.com/chromium/chromium/commit/b6a0af4142d7f73094296f570501bdf3451b1fa3"
-        },
-        {
-          "revision": "4008e73fb2edf04b0542bcd7342afc4760c217a7",
-          "committed_at": "2026-10-27T14:29:56Z",
-          "title": "[Profiles] Extend profiles-reordering flag expiry",
-          "url": "https://github.com/chromium/chromium/commit/4008e73fb2edf04b0542bcd7342afc4760c217a7"
-        },
-        {
-          "revision": "85cd8af317ef70cc37cab323a54f73ae6ea890d1",
-          "committed_at": "2026-10-27T14:16:35Z",
-          "title": "[History] Add chrome://flags entry for BrowsingHistoryFilterByDomain",
-          "url": "https://github.com/chromium/chromium/commit/85cd8af317ef70cc37cab323a54f73ae6ea890d1"
-        },
-        {
-          "revision": "1616b78c151e8a790cfc82a8e4a0d21d3e1fb2c7",
-          "committed_at": "2026-10-27T14:16:17Z",
-          "title": "Extend safe-browsing-local-lists-use-sbv5 flag",
-          "url": "https://github.com/chromium/chromium/commit/1616b78c151e8a790cfc82a8e4a0d21d3e1fb2c7"
-        },
-        {
-          "revision": "8fab61e0e07b6dc72cbe3fc06a3c259daeeac763",
-          "committed_at": "2026-10-27T02:35:04Z",
-          "title": "[AF] Remove omnibox GPay button related code",
-          "url": "https://github.com/chromium/chromium/commit/8fab61e0e07b6dc72cbe3fc06a3c259daeeac763"
-        },
-        {
-          "revision": "581378a548a63b1425a0f67efc3543dd2177f017",
-          "committed_at": "2026-10-27T01:54:59Z",
-          "title": "[Omnibox] Add OmniboxVoicePlateIntent feature flag",
-          "url": "https://github.com/chromium/chromium/commit/581378a548a63b1425a0f67efc3543dd2177f017"
-        },
-        {
-          "revision": "7a8182643c91f1262d017f23ad5a72f6259b8a29",
-          "committed_at": "2026-10-27T01:48:37Z",
-          "title": "Remove expired allow-apn-modification-policy flag and feature",
-          "url": "https://github.com/chromium/chromium/commit/7a8182643c91f1262d017f23ad5a72f6259b8a29"
-        },
-        {
-          "revision": "bc5a71e28149490537ccc2b51ec780ee9c52486e",
-          "committed_at": "2026-10-27T00:48:35Z",
-          "title": "[Omnibox] Add OmniboxEarlyInflation experiment",
-          "url": "https://github.com/chromium/chromium/commit/bc5a71e28149490537ccc2b51ec780ee9c52486e"
-        },
-        {
-          "revision": "6123abc02ca7922ef544bb668d875dbb35ed00b0",
-          "committed_at": "2026-10-26T23:51:10Z",
-          "title": "[Finch Flag] Remove jamessun from Finch flag owner list",
-          "url": "https://github.com/chromium/chromium/commit/6123abc02ca7922ef544bb668d875dbb35ed00b0"
-        },
-        {
-          "revision": "da56e60f9a36d7653fb70485ab1d98c93e130db0",
-          "committed_at": "2026-10-26T18:54:47Z",
-          "title": "[Game Dashboard] Remove expired game-dashboard-utilities flag",
-          "url": "https://github.com/chromium/chromium/commit/da56e60f9a36d7653fb70485ab1d98c93e130db0"
-        },
-        {
-          "revision": "ec99a59a9378625ae499f5ad6c94a4d0d9db4256",
-          "committed_at": "2026-10-26T14:29:35Z",
-          "title": "Remove expired flag face-retouch-override and associated code",
-          "url": "https://github.com/chromium/chromium/commit/ec99a59a9378625ae499f5ad6c94a4d0d9db4256"
-        },
-        {
-          "revision": "ce6c06cc0151c123e9b95b98fbcf618e22f3ca80",
-          "committed_at": "2026-10-25T13:45:58Z",
-          "title": "[Smart Card] Add SmartCardContextRelease feature",
-          "url": "https://github.com/chromium/chromium/commit/ce6c06cc0151c123e9b95b98fbcf618e22f3ca80"
-        },
-        {
-          "revision": "ba8e81823ae37c0abce83fb29bface99ec0ca358",
-          "committed_at": "2026-10-23T22:12:41Z",
-          "title": "[FacilitatedPayments] Remove obsolete EnablePixAccountLinking flag",
-          "url": "https://github.com/chromium/chromium/commit/ba8e81823ae37c0abce83fb29bface99ec0ca358"
-        },
-        {
-          "revision": "0f083a97f88efd429665174b7c119e698e66b908",
-          "committed_at": "2026-10-23T18:17:52Z",
-          "title": "[GEiC] Add FRE status storage",
-          "url": "https://github.com/chromium/chromium/commit/0f083a97f88efd429665174b7c119e698e66b908"
-        },
-        {
-          "revision": "d6e89099e3c77fb64dcd2b133e42eeba9f3e7a66",
-          "committed_at": "2026-10-23T17:23:48Z",
-          "title": "[iOS] Extend default-browser-promo-overflow-menu flag expiry to M162",
-          "url": "https://github.com/chromium/chromium/commit/d6e89099e3c77fb64dcd2b133e42eeba9f3e7a66"
-        },
-        {
-          "revision": "c82f93aafe8f4e53b34bc252c4c83fe8f2e60603",
-          "committed_at": "2026-10-23T17:22:34Z",
-          "title": "[iOS] Extend ios-settings-default-browser-promo-v2 flag expiry to M162",
-          "url": "https://github.com/chromium/chromium/commit/c82f93aafe8f4e53b34bc252c4c83fe8f2e60603"
-        },
-        {
-          "revision": "7c1b0785f181e20829d484f0aa580f32fd9e87ac",
-          "committed_at": "2026-10-23T17:21:19Z",
-          "title": "[iOS] Extend default-browser-pip-text-video flag expiry to M162",
-          "url": "https://github.com/chromium/chromium/commit/7c1b0785f181e20829d484f0aa580f32fd9e87ac"
-        },
-        {
-          "revision": "b5aa13d89785711fe8cca79c7b02f04fc8d9c0bf",
-          "committed_at": "2026-10-23T16:11:15Z",
-          "title": "[sync] Clean up expired kSyncTrustedVaultInfobarMessageImprovements flag",
-          "url": "https://github.com/chromium/chromium/commit/b5aa13d89785711fe8cca79c7b02f04fc8d9c0bf"
-        },
-        {
-          "revision": "7d15baaf064e49c1055415b17a7b9137acb07cd3",
-          "committed_at": "2026-10-23T13:26:51Z",
-          "title": "[EnterprisePolicy] Extend expiry of autofill-enable-autofill-settings-enterprise-policy to M161",
-          "url": "https://github.com/chromium/chromium/commit/7d15baaf064e49c1055415b17a7b9137acb07cd3"
-        },
-        {
-          "revision": "de870ab4e5458d2efb17be9070932318dfb43019",
-          "committed_at": "2026-10-23T04:11:01Z",
-          "title": "Remove expired flag enable-cros-ime-assist-multi-word and feature kAssistMultiWord",
-          "url": "https://github.com/chromium/chromium/commit/de870ab4e5458d2efb17be9070932318dfb43019"
-        },
-        {
-          "revision": "d6affbeba73cbec124c735b21222577c582b58af",
-          "committed_at": "2026-10-23T04:08:36Z",
-          "title": "Remove expired fast-pair-pwa-companion flag",
-          "url": "https://github.com/chromium/chromium/commit/d6affbeba73cbec124c735b21222577c582b58af"
-        },
-        {
-          "revision": "e084609c15607d911fef4324d21f808c2fe0a97b",
-          "committed_at": "2026-10-23T00:51:13Z",
-          "title": "[Omnibox][NTP] Remove dynamic AI Mode button flags",
-          "url": "https://github.com/chromium/chromium/commit/e084609c15607d911fef4324d21f808c2fe0a97b"
-        },
-        {
-          "revision": "9fdc9534a6bad491d402427350d2bba9a80c2487",
-          "committed_at": "2026-10-23T00:46:14Z",
-          "title": "child_accounts: Remove WebTimeNavigationObserver and feature flag",
-          "url": "https://github.com/chromium/chromium/commit/9fdc9534a6bad491d402427350d2bba9a80c2487"
-        }
-      ],
-      "index_count": 57,
-      "new_diff_count": 6,
-      "revision_deduplication": "Overlap compared against Oct30 source-index revision set; exactly 6 newly observed revisions."
+    {
+      "revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
+      "committed_at": "2026-10-30T18:12:33Z",
+      "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
+      "url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
     },
-    "successor_header_latest": {
-      "query_url": "https://api.github.com/repos/chromium/chromium/commits?path=chrome/browser/flag_descriptions.h&since=2026-10-29T22:39:00Z&until=2026-10-30T22:45:00Z&per_page=100",
-      "index": [
-        {
-          "revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
-          "committed_at": "2026-10-30T18:12:33Z",
-          "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
-          "url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
-        },
-        {
-          "revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
-          "committed_at": "2026-10-30T17:11:01Z",
-          "title": "[omnibox] Remove omnibox-adjust-indentation flag",
-          "url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
-        },
-        {
-          "revision": "427a86e5cfd867701c768ff75048837891638f2f",
-          "committed_at": "2026-10-30T16:37:37Z",
-          "title": "[Downloads] Preserve HTTP Last-Modified time",
-          "url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
-        },
-        {
-          "revision": "eda174533f4bc781a97165bbd94af438c99184b1",
-          "committed_at": "2026-10-30T06:44:47Z",
-          "title": "Decisions API: Restore backend flag choices and gate devTrialBackend",
-          "url": "https://github.com/chromium/chromium/commit/eda174533f4bc781a97165bbd94af438c99184b1"
-        },
-        {
-          "revision": "e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
-          "committed_at": "2026-10-30T00:01:35Z",
-          "title": "Remove expired management-promotion-banner-flag",
-          "url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7"
-        }
-      ],
-      "index_count": 5,
-      "history_complete": false
+    {
+      "revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
+      "committed_at": "2026-10-30T17:11:01Z",
+      "title": "[omnibox] Remove omnibox-adjust-indentation flag",
+      "url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
     },
-    "retired_cc": {
-      "query_url": "https://api.github.com/repos/chromium/chromium/commits?path=chrome/browser/flag_descriptions.cc&since=2026-10-29T22:39:00Z&until=2026-10-30T22:45:00Z&per_page=100",
-      "new_commit_count": 0,
-      "retirement_revision": "50bea28403f1cb40cc765199a3f67e4aa2ab1a11",
-      "retirement_date": "2025-11-05T18:15:29Z",
-      "status": "retired_before_requested_window"
+    {
+      "revision": "427a86e5cfd867701c768ff75048837891638f2f",
+      "committed_at": "2026-10-30T16:37:37Z",
+      "title": "[Downloads] Preserve HTTP Last-Modified time",
+      "url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
     },
-    "metadata_backfill": {
-      "query_url": "https://api.github.com/repos/chromium/chromium/commits?path=chrome/browser/flag-metadata.json&since=2026-06-02T00:00:00Z&until=2026-06-08T23:59:59Z&per_page=100",
-      "from": "2026-06-02T00:00:00Z",
-      "through": "2026-06-08T23:59:59Z",
-      "indexed_count": 81,
-      "diff_count": 81,
-      "next_resume": "2026-06-09T00:00:00Z",
-      "remaining_gap": "2026-06-09 through 2026-10-21; recent overlap separately indexed, not a complete continuous metadata archive"
+    {
+      "revision": "eda174533f4bc781a97165bbd94af438c99184b1",
+      "committed_at": "2026-10-30T06:44:47Z",
+      "title": "Decisions API: Restore backend flag choices and gate devTrialBackend",
+      "url": "https://github.com/chromium/chromium/commit/eda174533f4bc781a97165bbd94af438c99184b1"
+    },
+    {
+      "revision": "e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
+      "committed_at": "2026-10-30T00:01:35Z",
+      "title": "Remove expired management-promotion-banner-flag",
+      "url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7"
+    },
+    {
+      "revision": "b967e34f97b231956605bd92f31a20d86eb9e9e9",
+      "committed_at": "2026-10-29T22:03:19Z",
+      "title": "[Multiprofile] Add AndroidMultiprofileStartupData feature flag",
+      "url": "https://github.com/chromium/chromium/commit/b967e34f97b231956605bd92f31a20d86eb9e9e9"
+    },
+    {
+      "revision": "f1bad2d61e8af482e4adb3898578b9657659c667",
+      "committed_at": "2026-10-29T21:13:25Z",
+      "title": "Open AI Mode Omnibox queries in a new tab when submitted from a non-NTP page",
+      "url": "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667"
+    },
+    {
+      "revision": "2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
+      "committed_at": "2026-10-29T20:20:12Z",
+      "title": "Remove expired flag lens-overlay-permission-bubble-alt",
+      "url": "https://github.com/chromium/chromium/commit/2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801"
+    },
+    {
+      "revision": "984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
+      "committed_at": "2026-10-29T18:52:58Z",
+      "title": "[FRE Strings] Add feature flag for FRE Strings experiment",
+      "url": "https://github.com/chromium/chromium/commit/984200769f7441aa18ce4c9c3cc41f8f52b9b22f"
+    },
+    {
+      "revision": "701fc033a82d424cd2f9741e4dcd3c1e1559847c",
+      "committed_at": "2026-10-29T18:43:14Z",
+      "title": "[Direct Offers] Add flag for Offers and loyalty cards settings leaf",
+      "url": "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
+    },
+    {
+      "revision": "54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
+      "committed_at": "2026-10-29T17:56:56Z",
+      "title": "[Omnibox] Clean up DesktopOmniboxActionButtonRefinements feature flags",
+      "url": "https://github.com/chromium/chromium/commit/54315355e9a1e3481bbdf7e6fecd8dd32b80885c"
+    },
+    {
+      "revision": "1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
+      "committed_at": "2026-10-29T17:25:54Z",
+      "title": "[Keyboard Shortcuts] Add AndroidUnifiedKeyboardShortcuts feature flag",
+      "url": "https://github.com/chromium/chromium/commit/1ab53bc5148b29d0c6bf96a42e229986b4147fb2"
+    },
+    {
+      "revision": "3a520e41da378388a3e9b4a87f3c2f9e4d311ba9",
+      "committed_at": "2026-10-29T11:18:45Z",
+      "title": "[signin] Remove SignInBenefits IPH promos",
+      "url": "https://github.com/chromium/chromium/commit/3a520e41da378388a3e9b4a87f3c2f9e4d311ba9"
+    },
+    {
+      "revision": "587de762561e727395ba4a6947e76cc1036994fe",
+      "committed_at": "2026-10-29T09:54:15Z",
+      "title": "[DeepCAF] Load custom form control scripts from a local directory",
+      "url": "https://github.com/chromium/chromium/commit/587de762561e727395ba4a6947e76cc1036994fe"
+    },
+    {
+      "revision": "646bcd98d93493c0e826f53e005b947e62bd357a",
+      "committed_at": "2026-10-29T07:15:47Z",
+      "title": "arc: Remove ArcVmmManager and VMM swap feature flags",
+      "url": "https://github.com/chromium/chromium/commit/646bcd98d93493c0e826f53e005b947e62bd357a"
+    },
+    {
+      "revision": "b5548ca1190d2e89df6d7c7500799b19b15f81a2",
+      "committed_at": "2026-10-29T05:33:00Z",
+      "title": "[iframe] Remove expired responsive-iframes flag",
+      "url": "https://github.com/chromium/chromium/commit/b5548ca1190d2e89df6d7c7500799b19b15f81a2"
+    },
+    {
+      "revision": "77b89898595ed2d6ad719ad1708ca7d2008dd28d",
+      "committed_at": "2026-10-29T03:01:29Z",
+      "title": "Remove expired flag fluid-resize and features::kFluidResize",
+      "url": "https://github.com/chromium/chromium/commit/77b89898595ed2d6ad719ad1708ca7d2008dd28d"
+    },
+    {
+      "revision": "a0e1755726b9cfcd9329c2bdb9de4a3689302415",
+      "committed_at": "2026-10-28T23:57:20Z",
+      "title": "[Deprecate Ephemeral Pin] Prepare pinned action eligibility, active state, and task preservation",
+      "url": "https://github.com/chromium/chromium/commit/a0e1755726b9cfcd9329c2bdb9de4a3689302415"
+    },
+    {
+      "revision": "458082e7c49b11703df32435c3a6c32ef02d7f47",
+      "committed_at": "2026-10-28T22:31:52Z",
+      "title": "[Omnibox] Add post-frame trigger for typed autocomplete start",
+      "url": "https://github.com/chromium/chromium/commit/458082e7c49b11703df32435c3a6c32ef02d7f47"
+    },
+    {
+      "revision": "121a03e110c41dbeab94ed61f7246b539490eaa4",
+      "committed_at": "2026-10-28T22:10:39Z",
+      "title": "Remove expired flag update-padding-for-display-calculation",
+      "url": "https://github.com/chromium/chromium/commit/121a03e110c41dbeab94ed61f7246b539490eaa4"
+    },
+    {
+      "revision": "3766d6a9e985c54df326c37163d11badeb1efab7",
+      "committed_at": "2026-10-28T18:54:55Z",
+      "title": "[DeepCAF] Add the kAutofillCustomFormControlScripts feature and flag",
+      "url": "https://github.com/chromium/chromium/commit/3766d6a9e985c54df326c37163d11badeb1efab7"
+    },
+    {
+      "revision": "7554590a7a0b7e065448182716513043c471931d",
+      "committed_at": "2026-10-28T14:50:47Z",
+      "title": "[TrustedVault] Add flag for shared recovery factors and encryption",
+      "url": "https://github.com/chromium/chromium/commit/7554590a7a0b7e065448182716513043c471931d"
+    },
+    {
+      "revision": "c300b58b9f1b08a449a3c4bab1e3afdf01935adb",
+      "committed_at": "2026-10-28T05:37:25Z",
+      "title": "Remove kNativeViewHostManagesLayers and associated dead code",
+      "url": "https://github.com/chromium/chromium/commit/c300b58b9f1b08a449a3c4bab1e3afdf01935adb"
+    },
+    {
+      "revision": "af9637451fa90415db7796a69a81a2975aefc365",
+      "committed_at": "2026-10-28T05:23:44Z",
+      "title": "[SafeBrowsing] Remove safe-browsing-sync-checker-check-allowlist flag",
+      "url": "https://github.com/chromium/chromium/commit/af9637451fa90415db7796a69a81a2975aefc365"
+    },
+    {
+      "revision": "23b546c0bbabefbdf901aa95ff5c4aaee4bc8815",
+      "committed_at": "2026-10-28T03:16:13Z",
+      "title": "Revert \"Clean up expired flag audio selection improvement\"",
+      "url": "https://github.com/chromium/chromium/commit/23b546c0bbabefbdf901aa95ff5c4aaee4bc8815"
+    },
+    {
+      "revision": "47c4b39224e4e9ea6347f94f8dc1a53f82b69e34",
+      "committed_at": "2026-10-28T00:01:13Z",
+      "title": "[media] Remove expired flag enable-media-link-helpers",
+      "url": "https://github.com/chromium/chromium/commit/47c4b39224e4e9ea6347f94f8dc1a53f82b69e34"
+    },
+    {
+      "revision": "0d34268e47cf5bec744f2033c89a62cebfe0a1e8",
+      "committed_at": "2026-10-27T22:19:33Z",
+      "title": "[contextual-tasks] Add side panel tab state chrome://flags entry",
+      "url": "https://github.com/chromium/chromium/commit/0d34268e47cf5bec744f2033c89a62cebfe0a1e8"
+    },
+    {
+      "revision": "95fc6d646a8671c4f79433327614d48728c06059",
+      "committed_at": "2026-10-27T22:11:32Z",
+      "title": "Update GlicShareImage context menu item",
+      "url": "https://github.com/chromium/chromium/commit/95fc6d646a8671c4f79433327614d48728c06059"
+    },
+    {
+      "revision": "2733b67eecec9d153b874e8d1cb1894e63d9d339",
+      "committed_at": "2026-10-27T19:16:55Z",
+      "title": "[Suggestion] Remove the AskGBlockAutoTabZeroStateSuggestions param",
+      "url": "https://github.com/chromium/chromium/commit/2733b67eecec9d153b874e8d1cb1894e63d9d339"
+    },
+    {
+      "revision": "e9144eea599cd2712061c77762781dd0a60dee34",
+      "committed_at": "2026-10-27T17:52:52Z",
+      "title": "Remove expired deprecated-external-picker-function flag",
+      "url": "https://github.com/chromium/chromium/commit/e9144eea599cd2712061c77762781dd0a60dee34"
+    },
+    {
+      "revision": "b6a0af4142d7f73094296f570501bdf3451b1fa3",
+      "committed_at": "2026-10-27T17:40:26Z",
+      "title": "[context-input] Add lens-send-drive-tab-urls-in-composeboxes flag",
+      "url": "https://github.com/chromium/chromium/commit/b6a0af4142d7f73094296f570501bdf3451b1fa3"
+    },
+    {
+      "revision": "85cd8af317ef70cc37cab323a54f73ae6ea890d1",
+      "committed_at": "2026-10-27T14:16:35Z",
+      "title": "[History] Add chrome://flags entry for BrowsingHistoryFilterByDomain",
+      "url": "https://github.com/chromium/chromium/commit/85cd8af317ef70cc37cab323a54f73ae6ea890d1"
+    },
+    {
+      "revision": "f25164af6565e91b6bfc97b7b527474cb88d1b0f",
+      "committed_at": "2026-10-27T02:59:36Z",
+      "title": "Add circle highlight variation for SIC pinned button indicator",
+      "url": "https://github.com/chromium/chromium/commit/f25164af6565e91b6bfc97b7b527474cb88d1b0f"
+    },
+    {
+      "revision": "8fab61e0e07b6dc72cbe3fc06a3c259daeeac763",
+      "committed_at": "2026-10-27T02:35:04Z",
+      "title": "[AF] Remove omnibox GPay button related code",
+      "url": "https://github.com/chromium/chromium/commit/8fab61e0e07b6dc72cbe3fc06a3c259daeeac763"
+    },
+    {
+      "revision": "581378a548a63b1425a0f67efc3543dd2177f017",
+      "committed_at": "2026-10-27T01:54:59Z",
+      "title": "[Omnibox] Add OmniboxVoicePlateIntent feature flag",
+      "url": "https://github.com/chromium/chromium/commit/581378a548a63b1425a0f67efc3543dd2177f017"
+    },
+    {
+      "revision": "7a8182643c91f1262d017f23ad5a72f6259b8a29",
+      "committed_at": "2026-10-27T01:48:37Z",
+      "title": "Remove expired allow-apn-modification-policy flag and feature",
+      "url": "https://github.com/chromium/chromium/commit/7a8182643c91f1262d017f23ad5a72f6259b8a29"
+    },
+    {
+      "revision": "f34fc391953eac9e7431de38a91e9aa4ee26f883",
+      "committed_at": "2026-10-27T01:40:21Z",
+      "title": "Add gray Super G variation for Contextual Tasks unify pin button logos",
+      "url": "https://github.com/chromium/chromium/commit/f34fc391953eac9e7431de38a91e9aa4ee26f883"
+    },
+    {
+      "revision": "bc5a71e28149490537ccc2b51ec780ee9c52486e",
+      "committed_at": "2026-10-27T00:48:35Z",
+      "title": "[Omnibox] Add OmniboxEarlyInflation experiment",
+      "url": "https://github.com/chromium/chromium/commit/bc5a71e28149490537ccc2b51ec780ee9c52486e"
+    },
+    {
+      "revision": "da56e60f9a36d7653fb70485ab1d98c93e130db0",
+      "committed_at": "2026-10-26T18:54:47Z",
+      "title": "[Game Dashboard] Remove expired game-dashboard-utilities flag",
+      "url": "https://github.com/chromium/chromium/commit/da56e60f9a36d7653fb70485ab1d98c93e130db0"
+    },
+    {
+      "revision": "5eadd454289d126f585938dee2c9031de3ae6ec9",
+      "committed_at": "2026-10-26T17:00:02Z",
+      "title": "[MChips] Use \"Add\" for the add image button text.",
+      "url": "https://github.com/chromium/chromium/commit/5eadd454289d126f585938dee2c9031de3ae6ec9"
+    },
+    {
+      "revision": "ec99a59a9378625ae499f5ad6c94a4d0d9db4256",
+      "committed_at": "2026-10-26T14:29:35Z",
+      "title": "Remove expired flag face-retouch-override and associated code",
+      "url": "https://github.com/chromium/chromium/commit/ec99a59a9378625ae499f5ad6c94a4d0d9db4256"
+    },
+    {
+      "revision": "c50e13f609775eca19b2d9600cba8e96ea59daef",
+      "committed_at": "2026-10-26T14:11:07Z",
+      "title": "[RPS] Move remote actor credential sharing flag to components",
+      "url": "https://github.com/chromium/chromium/commit/c50e13f609775eca19b2d9600cba8e96ea59daef"
+    },
+    {
+      "revision": "ce6c06cc0151c123e9b95b98fbcf618e22f3ca80",
+      "committed_at": "2026-10-25T13:45:58Z",
+      "title": "[Smart Card] Add SmartCardContextRelease feature",
+      "url": "https://github.com/chromium/chromium/commit/ce6c06cc0151c123e9b95b98fbcf618e22f3ca80"
+    },
+    {
+      "revision": "7057a5044cc06765b58624f115213aec72277fb2",
+      "committed_at": "2026-10-24T01:20:37Z",
+      "title": "Update omnibox-truncate-search-url chrome://flags choice values",
+      "url": "https://github.com/chromium/chromium/commit/7057a5044cc06765b58624f115213aec72277fb2"
+    },
+    {
+      "revision": "ba8e81823ae37c0abce83fb29bface99ec0ca358",
+      "committed_at": "2026-10-23T22:12:41Z",
+      "title": "[FacilitatedPayments] Remove obsolete EnablePixAccountLinking flag",
+      "url": "https://github.com/chromium/chromium/commit/ba8e81823ae37c0abce83fb29bface99ec0ca358"
+    },
+    {
+      "revision": "5884685a84bf2964e04da4ac842a0df7d85265fa",
+      "committed_at": "2026-10-23T21:20:04Z",
+      "title": "Support close/hide side panel option in pinned contextual tasks button context menu",
+      "url": "https://github.com/chromium/chromium/commit/5884685a84bf2964e04da4ac842a0df7d85265fa"
+    },
+    {
+      "revision": "0f083a97f88efd429665174b7c119e698e66b908",
+      "committed_at": "2026-10-23T18:17:52Z",
+      "title": "[GEiC] Add FRE status storage",
+      "url": "https://github.com/chromium/chromium/commit/0f083a97f88efd429665174b7c119e698e66b908"
+    },
+    {
+      "revision": "f70979431186128a6c10f26d20a1d2805fcb4e52",
+      "committed_at": "2026-10-23T17:48:48Z",
+      "title": "[IA] Add Education Arm 5 with address bar IPH to AndroidBottomBar",
+      "url": "https://github.com/chromium/chromium/commit/f70979431186128a6c10f26d20a1d2805fcb4e52"
+    },
+    {
+      "revision": "1950385368e6987959db8a280722887c24c82624",
+      "committed_at": "2026-10-23T14:16:15Z",
+      "title": "[Okta SSO] Cleanup feature flag",
+      "url": "https://github.com/chromium/chromium/commit/1950385368e6987959db8a280722887c24c82624"
+    },
+    {
+      "revision": "de870ab4e5458d2efb17be9070932318dfb43019",
+      "committed_at": "2026-10-23T04:11:01Z",
+      "title": "Remove expired flag enable-cros-ime-assist-multi-word and feature kAssistMultiWord",
+      "url": "https://github.com/chromium/chromium/commit/de870ab4e5458d2efb17be9070932318dfb43019"
+    },
+    {
+      "revision": "d6affbeba73cbec124c735b21222577c582b58af",
+      "committed_at": "2026-10-23T04:08:36Z",
+      "title": "Remove expired fast-pair-pwa-companion flag",
+      "url": "https://github.com/chromium/chromium/commit/d6affbeba73cbec124c735b21222577c582b58af"
+    },
+    {
+      "revision": "e084609c15607d911fef4324d21f808c2fe0a97b",
+      "committed_at": "2026-10-23T00:51:13Z",
+      "title": "[Omnibox][NTP] Remove dynamic AI Mode button flags",
+      "url": "https://github.com/chromium/chromium/commit/e084609c15607d911fef4324d21f808c2fe0a97b"
+    },
+    {
+      "revision": "9fdc9534a6bad491d402427350d2bba9a80c2487",
+      "committed_at": "2026-10-23T00:46:14Z",
+      "title": "child_accounts: Remove WebTimeNavigationObserver and feature flag",
+      "url": "https://github.com/chromium/chromium/commit/9fdc9534a6bad491d402427350d2bba9a80c2487"
+    },
+    {
+      "revision": "b3795e19d239a46073e02bcb504f6002babe2ee0",
+      "committed_at": "2026-10-30T18:54:10Z",
+      "title": "[ios] Deprecate Welcome Back prefs and remove model features",
+      "url": "https://github.com/chromium/chromium/commit/b3795e19d239a46073e02bcb504f6002babe2ee0"
+    },
+    {
+      "revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
+      "committed_at": "2026-10-30T18:12:33Z",
+      "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
+      "url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
+    },
+    {
+      "revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
+      "committed_at": "2026-10-30T17:11:01Z",
+      "title": "[omnibox] Remove omnibox-adjust-indentation flag",
+      "url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
+    },
+    {
+      "revision": "427a86e5cfd867701c768ff75048837891638f2f",
+      "committed_at": "2026-10-30T16:37:37Z",
+      "title": "[Downloads] Preserve HTTP Last-Modified time",
+      "url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
+    },
+    {
+      "revision": "e6c8cec4ff8c36f514fceda3e0a98dcb5922a23f",
+      "committed_at": "2026-10-30T15:18:56Z",
+      "title": "[iOS] Add field trial testing config for IOSChooseFromDriveSignedOut",
+      "url": "https://github.com/chromium/chromium/commit/e6c8cec4ff8c36f514fceda3e0a98dcb5922a23f"
+    },
+    {
+      "revision": "e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
+      "committed_at": "2026-10-30T00:01:35Z",
+      "title": "Remove expired management-promotion-banner-flag",
+      "url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7"
+    },
+    {
+      "revision": "b967e34f97b231956605bd92f31a20d86eb9e9e9",
+      "committed_at": "2026-10-29T22:03:19Z",
+      "title": "[Multiprofile] Add AndroidMultiprofileStartupData feature flag",
+      "url": "https://github.com/chromium/chromium/commit/b967e34f97b231956605bd92f31a20d86eb9e9e9"
+    },
+    {
+      "revision": "f1bad2d61e8af482e4adb3898578b9657659c667",
+      "committed_at": "2026-10-29T21:13:25Z",
+      "title": "Open AI Mode Omnibox queries in a new tab when submitted from a non-NTP page",
+      "url": "https://github.com/chromium/chromium/commit/f1bad2d61e8af482e4adb3898578b9657659c667"
+    },
+    {
+      "revision": "2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801",
+      "committed_at": "2026-10-29T20:20:12Z",
+      "title": "Remove expired flag lens-overlay-permission-bubble-alt",
+      "url": "https://github.com/chromium/chromium/commit/2e9b4bd8d8bbb10b73ebfb904c4c2d3a21263801"
+    },
+    {
+      "revision": "984200769f7441aa18ce4c9c3cc41f8f52b9b22f",
+      "committed_at": "2026-10-29T18:52:58Z",
+      "title": "[FRE Strings] Add feature flag for FRE Strings experiment",
+      "url": "https://github.com/chromium/chromium/commit/984200769f7441aa18ce4c9c3cc41f8f52b9b22f"
+    },
+    {
+      "revision": "701fc033a82d424cd2f9741e4dcd3c1e1559847c",
+      "committed_at": "2026-10-29T18:43:14Z",
+      "title": "[Direct Offers] Add flag for Offers and loyalty cards settings leaf",
+      "url": "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
+    },
+    {
+      "revision": "867b136c1b3410a9b370e3484a70e62438b07e85",
+      "committed_at": "2026-10-29T18:36:21Z",
+      "title": "[iOS] Revive ConsistentLogoDoodleHeight flag and fieldtrial config",
+      "url": "https://github.com/chromium/chromium/commit/867b136c1b3410a9b370e3484a70e62438b07e85"
+    },
+    {
+      "revision": "54315355e9a1e3481bbdf7e6fecd8dd32b80885c",
+      "committed_at": "2026-10-29T17:56:56Z",
+      "title": "[Omnibox] Clean up DesktopOmniboxActionButtonRefinements feature flags",
+      "url": "https://github.com/chromium/chromium/commit/54315355e9a1e3481bbdf7e6fecd8dd32b80885c"
+    },
+    {
+      "revision": "1ab53bc5148b29d0c6bf96a42e229986b4147fb2",
+      "committed_at": "2026-10-29T17:25:54Z",
+      "title": "[Keyboard Shortcuts] Add AndroidUnifiedKeyboardShortcuts feature flag",
+      "url": "https://github.com/chromium/chromium/commit/1ab53bc5148b29d0c6bf96a42e229986b4147fb2"
+    },
+    {
+      "revision": "587de762561e727395ba4a6947e76cc1036994fe",
+      "committed_at": "2026-10-29T09:54:15Z",
+      "title": "[DeepCAF] Load custom form control scripts from a local directory",
+      "url": "https://github.com/chromium/chromium/commit/587de762561e727395ba4a6947e76cc1036994fe"
+    },
+    {
+      "revision": "646bcd98d93493c0e826f53e005b947e62bd357a",
+      "committed_at": "2026-10-29T07:15:47Z",
+      "title": "arc: Remove ArcVmmManager and VMM swap feature flags",
+      "url": "https://github.com/chromium/chromium/commit/646bcd98d93493c0e826f53e005b947e62bd357a"
+    },
+    {
+      "revision": "b5548ca1190d2e89df6d7c7500799b19b15f81a2",
+      "committed_at": "2026-10-29T05:33:00Z",
+      "title": "[iframe] Remove expired responsive-iframes flag",
+      "url": "https://github.com/chromium/chromium/commit/b5548ca1190d2e89df6d7c7500799b19b15f81a2"
+    },
+    {
+      "revision": "77b89898595ed2d6ad719ad1708ca7d2008dd28d",
+      "committed_at": "2026-10-29T03:01:29Z",
+      "title": "Remove expired flag fluid-resize and features::kFluidResize",
+      "url": "https://github.com/chromium/chromium/commit/77b89898595ed2d6ad719ad1708ca7d2008dd28d"
+    },
+    {
+      "revision": "a0e1755726b9cfcd9329c2bdb9de4a3689302415",
+      "committed_at": "2026-10-28T23:57:20Z",
+      "title": "[Deprecate Ephemeral Pin] Prepare pinned action eligibility, active state, and task preservation",
+      "url": "https://github.com/chromium/chromium/commit/a0e1755726b9cfcd9329c2bdb9de4a3689302415"
+    },
+    {
+      "revision": "458082e7c49b11703df32435c3a6c32ef02d7f47",
+      "committed_at": "2026-10-28T22:31:52Z",
+      "title": "[Omnibox] Add post-frame trigger for typed autocomplete start",
+      "url": "https://github.com/chromium/chromium/commit/458082e7c49b11703df32435c3a6c32ef02d7f47"
+    },
+    {
+      "revision": "5a164a668072f2756867e49f57e5c69059b8c47b",
+      "committed_at": "2026-10-28T22:24:34Z",
+      "title": "[AF] Extend omnibox autofill flag expiration by 6 months",
+      "url": "https://github.com/chromium/chromium/commit/5a164a668072f2756867e49f57e5c69059b8c47b"
+    },
+    {
+      "revision": "121a03e110c41dbeab94ed61f7246b539490eaa4",
+      "committed_at": "2026-10-28T22:10:39Z",
+      "title": "Remove expired flag update-padding-for-display-calculation",
+      "url": "https://github.com/chromium/chromium/commit/121a03e110c41dbeab94ed61f7246b539490eaa4"
+    },
+    {
+      "revision": "27970e89debeecfe3023db542168c8c4b218209c",
+      "committed_at": "2026-10-28T20:56:34Z",
+      "title": "[PDF V2] Extend expiry of PDF flags to M162",
+      "url": "https://github.com/chromium/chromium/commit/27970e89debeecfe3023db542168c8c4b218209c"
+    },
+    {
+      "revision": "3766d6a9e985c54df326c37163d11badeb1efab7",
+      "committed_at": "2026-10-28T18:54:55Z",
+      "title": "[DeepCAF] Add the kAutofillCustomFormControlScripts feature and flag",
+      "url": "https://github.com/chromium/chromium/commit/3766d6a9e985c54df326c37163d11badeb1efab7"
+    },
+    {
+      "revision": "da119b3938321d1f982c93175525a21251a69af0",
+      "committed_at": "2026-10-28T15:01:06Z",
+      "title": "[context-input] Update hujasonx owner email in histograms and flags",
+      "url": "https://github.com/chromium/chromium/commit/da119b3938321d1f982c93175525a21251a69af0"
+    },
+    {
+      "revision": "7554590a7a0b7e065448182716513043c471931d",
+      "committed_at": "2026-10-28T14:50:47Z",
+      "title": "[TrustedVault] Add flag for shared recovery factors and encryption",
+      "url": "https://github.com/chromium/chromium/commit/7554590a7a0b7e065448182716513043c471931d"
+    },
+    {
+      "revision": "a4692ed6f385b73935c74f8be2c8366e5164aaf6",
+      "committed_at": "2026-10-28T14:29:41Z",
+      "title": "[iOS] Clean up expired kSkipDefaultBrowserPromoInFirstRun feature",
+      "url": "https://github.com/chromium/chromium/commit/a4692ed6f385b73935c74f8be2c8366e5164aaf6"
+    },
+    {
+      "revision": "c300b58b9f1b08a449a3c4bab1e3afdf01935adb",
+      "committed_at": "2026-10-28T05:37:25Z",
+      "title": "Remove kNativeViewHostManagesLayers and associated dead code",
+      "url": "https://github.com/chromium/chromium/commit/c300b58b9f1b08a449a3c4bab1e3afdf01935adb"
+    },
+    {
+      "revision": "af9637451fa90415db7796a69a81a2975aefc365",
+      "committed_at": "2026-10-28T05:23:44Z",
+      "title": "[SafeBrowsing] Remove safe-browsing-sync-checker-check-allowlist flag",
+      "url": "https://github.com/chromium/chromium/commit/af9637451fa90415db7796a69a81a2975aefc365"
+    },
+    {
+      "revision": "23b546c0bbabefbdf901aa95ff5c4aaee4bc8815",
+      "committed_at": "2026-10-28T03:16:13Z",
+      "title": "Revert \"Clean up expired flag audio selection improvement\"",
+      "url": "https://github.com/chromium/chromium/commit/23b546c0bbabefbdf901aa95ff5c4aaee4bc8815"
+    },
+    {
+      "revision": "47c4b39224e4e9ea6347f94f8dc1a53f82b69e34",
+      "committed_at": "2026-10-28T00:01:13Z",
+      "title": "[media] Remove expired flag enable-media-link-helpers",
+      "url": "https://github.com/chromium/chromium/commit/47c4b39224e4e9ea6347f94f8dc1a53f82b69e34"
+    },
+    {
+      "revision": "0d34268e47cf5bec744f2033c89a62cebfe0a1e8",
+      "committed_at": "2026-10-27T22:19:33Z",
+      "title": "[contextual-tasks] Add side panel tab state chrome://flags entry",
+      "url": "https://github.com/chromium/chromium/commit/0d34268e47cf5bec744f2033c89a62cebfe0a1e8"
+    },
+    {
+      "revision": "f1f76d15d8c31c7bc43c23c44987a40ec5cb09a7",
+      "committed_at": "2026-10-27T20:36:11Z",
+      "title": "Extend expiry of three Android flags to M165",
+      "url": "https://github.com/chromium/chromium/commit/f1f76d15d8c31c7bc43c23c44987a40ec5cb09a7"
+    },
+    {
+      "revision": "e9144eea599cd2712061c77762781dd0a60dee34",
+      "committed_at": "2026-10-27T17:52:52Z",
+      "title": "Remove expired deprecated-external-picker-function flag",
+      "url": "https://github.com/chromium/chromium/commit/e9144eea599cd2712061c77762781dd0a60dee34"
+    },
+    {
+      "revision": "b6a0af4142d7f73094296f570501bdf3451b1fa3",
+      "committed_at": "2026-10-27T17:40:26Z",
+      "title": "[context-input] Add lens-send-drive-tab-urls-in-composeboxes flag",
+      "url": "https://github.com/chromium/chromium/commit/b6a0af4142d7f73094296f570501bdf3451b1fa3"
+    },
+    {
+      "revision": "4008e73fb2edf04b0542bcd7342afc4760c217a7",
+      "committed_at": "2026-10-27T14:29:56Z",
+      "title": "[Profiles] Extend profiles-reordering flag expiry",
+      "url": "https://github.com/chromium/chromium/commit/4008e73fb2edf04b0542bcd7342afc4760c217a7"
+    },
+    {
+      "revision": "85cd8af317ef70cc37cab323a54f73ae6ea890d1",
+      "committed_at": "2026-10-27T14:16:35Z",
+      "title": "[History] Add chrome://flags entry for BrowsingHistoryFilterByDomain",
+      "url": "https://github.com/chromium/chromium/commit/85cd8af317ef70cc37cab323a54f73ae6ea890d1"
+    },
+    {
+      "revision": "1616b78c151e8a790cfc82a8e4a0d21d3e1fb2c7",
+      "committed_at": "2026-10-27T14:16:17Z",
+      "title": "Extend safe-browsing-local-lists-use-sbv5 flag",
+      "url": "https://github.com/chromium/chromium/commit/1616b78c151e8a790cfc82a8e4a0d21d3e1fb2c7"
+    },
+    {
+      "revision": "8fab61e0e07b6dc72cbe3fc06a3c259daeeac763",
+      "committed_at": "2026-10-27T02:35:04Z",
+      "title": "[AF] Remove omnibox GPay button related code",
+      "url": "https://github.com/chromium/chromium/commit/8fab61e0e07b6dc72cbe3fc06a3c259daeeac763"
+    },
+    {
+      "revision": "581378a548a63b1425a0f67efc3543dd2177f017",
+      "committed_at": "2026-10-27T01:54:59Z",
+      "title": "[Omnibox] Add OmniboxVoicePlateIntent feature flag",
+      "url": "https://github.com/chromium/chromium/commit/581378a548a63b1425a0f67efc3543dd2177f017"
+    },
+    {
+      "revision": "7a8182643c91f1262d017f23ad5a72f6259b8a29",
+      "committed_at": "2026-10-27T01:48:37Z",
+      "title": "Remove expired allow-apn-modification-policy flag and feature",
+      "url": "https://github.com/chromium/chromium/commit/7a8182643c91f1262d017f23ad5a72f6259b8a29"
+    },
+    {
+      "revision": "bc5a71e28149490537ccc2b51ec780ee9c52486e",
+      "committed_at": "2026-10-27T00:48:35Z",
+      "title": "[Omnibox] Add OmniboxEarlyInflation experiment",
+      "url": "https://github.com/chromium/chromium/commit/bc5a71e28149490537ccc2b51ec780ee9c52486e"
+    },
+    {
+      "revision": "6123abc02ca7922ef544bb668d875dbb35ed00b0",
+      "committed_at": "2026-10-26T23:51:10Z",
+      "title": "[Finch Flag] Remove jamessun from Finch flag owner list",
+      "url": "https://github.com/chromium/chromium/commit/6123abc02ca7922ef544bb668d875dbb35ed00b0"
+    },
+    {
+      "revision": "da56e60f9a36d7653fb70485ab1d98c93e130db0",
+      "committed_at": "2026-10-26T18:54:47Z",
+      "title": "[Game Dashboard] Remove expired game-dashboard-utilities flag",
+      "url": "https://github.com/chromium/chromium/commit/da56e60f9a36d7653fb70485ab1d98c93e130db0"
+    },
+    {
+      "revision": "ec99a59a9378625ae499f5ad6c94a4d0d9db4256",
+      "committed_at": "2026-10-26T14:29:35Z",
+      "title": "Remove expired flag face-retouch-override and associated code",
+      "url": "https://github.com/chromium/chromium/commit/ec99a59a9378625ae499f5ad6c94a4d0d9db4256"
+    },
+    {
+      "revision": "ce6c06cc0151c123e9b95b98fbcf618e22f3ca80",
+      "committed_at": "2026-10-25T13:45:58Z",
+      "title": "[Smart Card] Add SmartCardContextRelease feature",
+      "url": "https://github.com/chromium/chromium/commit/ce6c06cc0151c123e9b95b98fbcf618e22f3ca80"
+    },
+    {
+      "revision": "ba8e81823ae37c0abce83fb29bface99ec0ca358",
+      "committed_at": "2026-10-23T22:12:41Z",
+      "title": "[FacilitatedPayments] Remove obsolete EnablePixAccountLinking flag",
+      "url": "https://github.com/chromium/chromium/commit/ba8e81823ae37c0abce83fb29bface99ec0ca358"
+    },
+    {
+      "revision": "0f083a97f88efd429665174b7c119e698e66b908",
+      "committed_at": "2026-10-23T18:17:52Z",
+      "title": "[GEiC] Add FRE status storage",
+      "url": "https://github.com/chromium/chromium/commit/0f083a97f88efd429665174b7c119e698e66b908"
+    },
+    {
+      "revision": "d6e89099e3c77fb64dcd2b133e42eeba9f3e7a66",
+      "committed_at": "2026-10-23T17:23:48Z",
+      "title": "[iOS] Extend default-browser-promo-overflow-menu flag expiry to M162",
+      "url": "https://github.com/chromium/chromium/commit/d6e89099e3c77fb64dcd2b133e42eeba9f3e7a66"
+    },
+    {
+      "revision": "c82f93aafe8f4e53b34bc252c4c83fe8f2e60603",
+      "committed_at": "2026-10-23T17:22:34Z",
+      "title": "[iOS] Extend ios-settings-default-browser-promo-v2 flag expiry to M162",
+      "url": "https://github.com/chromium/chromium/commit/c82f93aafe8f4e53b34bc252c4c83fe8f2e60603"
+    },
+    {
+      "revision": "7c1b0785f181e20829d484f0aa580f32fd9e87ac",
+      "committed_at": "2026-10-23T17:21:19Z",
+      "title": "[iOS] Extend default-browser-pip-text-video flag expiry to M162",
+      "url": "https://github.com/chromium/chromium/commit/7c1b0785f181e20829d484f0aa580f32fd9e87ac"
+    },
+    {
+      "revision": "b5aa13d89785711fe8cca79c7b02f04fc8d9c0bf",
+      "committed_at": "2026-10-23T16:11:15Z",
+      "title": "[sync] Clean up expired kSyncTrustedVaultInfobarMessageImprovements flag",
+      "url": "https://github.com/chromium/chromium/commit/b5aa13d89785711fe8cca79c7b02f04fc8d9c0bf"
+    },
+    {
+      "revision": "7d15baaf064e49c1055415b17a7b9137acb07cd3",
+      "committed_at": "2026-10-23T13:26:51Z",
+      "title": "[EnterprisePolicy] Extend expiry of autofill-enable-autofill-settings-enterprise-policy to M161",
+      "url": "https://github.com/chromium/chromium/commit/7d15baaf064e49c1055415b17a7b9137acb07cd3"
+    },
+    {
+      "revision": "de870ab4e5458d2efb17be9070932318dfb43019",
+      "committed_at": "2026-10-23T04:11:01Z",
+      "title": "Remove expired flag enable-cros-ime-assist-multi-word and feature kAssistMultiWord",
+      "url": "https://github.com/chromium/chromium/commit/de870ab4e5458d2efb17be9070932318dfb43019"
+    },
+    {
+      "revision": "d6affbeba73cbec124c735b21222577c582b58af",
+      "committed_at": "2026-10-23T04:08:36Z",
+      "title": "Remove expired fast-pair-pwa-companion flag",
+      "url": "https://github.com/chromium/chromium/commit/d6affbeba73cbec124c735b21222577c582b58af"
+    },
+    {
+      "revision": "e084609c15607d911fef4324d21f808c2fe0a97b",
+      "committed_at": "2026-10-23T00:51:13Z",
+      "title": "[Omnibox][NTP] Remove dynamic AI Mode button flags",
+      "url": "https://github.com/chromium/chromium/commit/e084609c15607d911fef4324d21f808c2fe0a97b"
+    },
+    {
+      "revision": "9fdc9534a6bad491d402427350d2bba9a80c2487",
+      "committed_at": "2026-10-23T00:46:14Z",
+      "title": "child_accounts: Remove WebTimeNavigationObserver and feature flag",
+      "url": "https://github.com/chromium/chromium/commit/9fdc9534a6bad491d402427350d2bba9a80c2487"
+    },
+    {
+      "revision": "703ba63f0515cff79d0ce7380df79f12e82a5b95",
+      "committed_at": "2026-10-30T18:12:33Z",
+      "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
+      "url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95"
+    },
+    {
+      "revision": "8bc404f155c2a1853b910c02bb9a7175b7fc056c",
+      "committed_at": "2026-10-30T17:11:01Z",
+      "title": "[omnibox] Remove omnibox-adjust-indentation flag",
+      "url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c"
+    },
+    {
+      "revision": "427a86e5cfd867701c768ff75048837891638f2f",
+      "committed_at": "2026-10-30T16:37:37Z",
+      "title": "[Downloads] Preserve HTTP Last-Modified time",
+      "url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f"
+    },
+    {
+      "revision": "eda174533f4bc781a97165bbd94af438c99184b1",
+      "committed_at": "2026-10-30T06:44:47Z",
+      "title": "Decisions API: Restore backend flag choices and gate devTrialBackend",
+      "url": "https://github.com/chromium/chromium/commit/eda174533f4bc781a97165bbd94af438c99184b1"
+    },
+    {
+      "revision": "e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
+      "committed_at": "2026-10-30T00:01:35Z",
+      "title": "Remove expired management-promotion-banner-flag",
+      "url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7"
     }
-  },
+  ],
   "events": [
     {
       "event_id": "chrome-source-e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
@@ -754,7 +709,6 @@
       "title": "Remove expired management-promotion-banner-flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -851,7 +805,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "excluded",
       "selection_reason": "Expired flag cleanup or metadata maintenance; not evidence of feature release/withdrawal.",
       "selection_rule_version": "pm-selection-v2",
@@ -877,7 +830,6 @@
       "title": "Decisions API: Restore backend flag choices and gate devTrialBackend",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/eda174533f4bc781a97165bbd94af438c99184b1^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/eda174533f4bc781a97165bbd94af438c99184b1",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -938,7 +890,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "watch",
       "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
       "selection_rule_version": "pm-selection-v2",
@@ -976,7 +927,6 @@
       "title": "[iOS] Add field trial testing config for IOSChooseFromDriveSignedOut",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/e6c8cec4ff8c36f514fceda3e0a98dcb5922a23f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/e6c8cec4ff8c36f514fceda3e0a98dcb5922a23f",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -1006,7 +956,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "excluded",
       "selection_reason": "Expired flag cleanup or metadata maintenance; not evidence of feature release/withdrawal.",
       "selection_rule_version": "pm-selection-v2",
@@ -1032,7 +981,6 @@
       "title": "[Downloads] Preserve HTTP Last-Modified time",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/427a86e5cfd867701c768ff75048837891638f2f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/427a86e5cfd867701c768ff75048837891638f2f",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1126,7 +1074,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "watch",
       "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
       "selection_rule_version": "pm-selection-v2",
@@ -1157,7 +1104,6 @@
       "title": "[omnibox] Remove omnibox-adjust-indentation flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/8bc404f155c2a1853b910c02bb9a7175b7fc056c^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/8bc404f155c2a1853b910c02bb9a7175b7fc056c",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1252,7 +1198,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "excluded",
       "selection_reason": "Expired flag cleanup or metadata maintenance; not evidence of feature release/withdrawal.",
       "selection_rule_version": "pm-selection-v2",
@@ -1278,7 +1223,6 @@
       "title": "Add ReauthSkipIdentifierPageFollowup feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/703ba63f0515cff79d0ce7380df79f12e82a5b95^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/703ba63f0515cff79d0ce7380df79f12e82a5b95",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1373,7 +1317,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "watch",
       "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
       "selection_rule_version": "pm-selection-v2",
@@ -1411,7 +1354,6 @@
       "title": "[ios] Deprecate Welcome Back prefs and remove model features",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/b3795e19d239a46073e02bcb504f6002babe2ee0^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/b3795e19d239a46073e02bcb504f6002babe2ee0",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -1444,7 +1386,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "excluded",
       "selection_reason": "Expired flag cleanup or metadata maintenance; not evidence of feature release/withdrawal.",
       "selection_rule_version": "pm-selection-v2",
@@ -1470,7 +1411,6 @@
       "title": "[AIM]: Expose the persistent AIM button flags on Android",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/f117b891e09e628d40532e484ff6e64548d59546",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1576,7 +1516,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": false,
       "selection_status": "watch",
       "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
       "selection_rule_version": "pm-selection-v2",
@@ -1616,7 +1555,6 @@
       "title": "[Bricks] Add feature flag for the native page",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/a8ab6ab7c2fac281f01c9fee0ca8ea4327cc4e6b^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/a8ab6ab7c2fac281f01c9fee0ca8ea4327cc4e6b",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1697,7 +1635,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -1710,7 +1647,6 @@
       "title": "Add feature flag for virtual-focus navigation to gate behind launch rollout",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/093255f42ae706fe42c649194af37161ad339e07^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/093255f42ae706fe42c649194af37161ad339e07",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1794,7 +1730,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -1807,7 +1742,6 @@
       "title": "[Autofill] Clean up expired flag autofill-vcn-enroll-strike-expiry-time",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/4fd4100f3958ea81cc36922ab0a3cf6e18b91242^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/4fd4100f3958ea81cc36922ab0a3cf6e18b91242",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -1917,7 +1851,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -1930,7 +1863,6 @@
       "title": "[Context-Input] Gate Context Management in Omnibox",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/d51b5ae9d47615a8efdae377acc43795c4e9df3f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/d51b5ae9d47615a8efdae377acc43795c4e9df3f",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -2010,7 +1942,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2023,7 +1954,6 @@
       "title": "[AndroidDesktop] Extend flags to M153.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/ade10c83f4962eabbc7ad2f5bb31bc502e54e19b^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/ade10c83f4962eabbc7ad2f5bb31bc502e54e19b",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2059,7 +1989,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2072,7 +2001,6 @@
       "title": "[Growth] Extend profile-creation-decline-signin-cta-experiment",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/506f297d37ce35e72eeccacf77d6ac3ecd482c06^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/506f297d37ce35e72eeccacf77d6ac3ecd482c06",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2102,7 +2030,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2115,7 +2042,6 @@
       "title": "Remove kPictureInPictureShowWindowAnimation flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/9d241c645043904853aae26ae5d799fd1e26a89b^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/9d241c645043904853aae26ae5d799fd1e26a89b",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -2196,7 +2122,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2209,7 +2134,6 @@
       "title": "[iOS] Add feature flags for Ambient Autofill",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/0d4b7b3be4a6fc120972dec18274e453cbd85fba^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/0d4b7b3be4a6fc120972dec18274e453cbd85fba",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2272,7 +2196,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2285,7 +2208,6 @@
       "title": "Update expiry milestone for SmartZoom feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/40bb5e60b9799f4fb41503441ae57d189a145fa8^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/40bb5e60b9799f4fb41503441ae57d189a145fa8",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2314,7 +2236,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2327,7 +2248,6 @@
       "title": "Add a feature flag for wide screen feed on foldables.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/850b2223ed3f92dfd1868aa31b0f0fd8f5761596^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/850b2223ed3f92dfd1868aa31b0f0fd8f5761596",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -2407,7 +2327,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2420,7 +2339,6 @@
       "title": "cleanup: Remove expired flag mojo-use-eventfd",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/d9bbf82916759ef71a92f1b4a18965f2acfc1935^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/d9bbf82916759ef71a92f1b4a18965f2acfc1935",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -2504,7 +2422,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2517,7 +2434,6 @@
       "title": "Remove kAutoPictureInPictureForVideoPlayback flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/d8efec1e30c16d6792a9847e89696c48c973eb45^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/d8efec1e30c16d6792a9847e89696c48c973eb45",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -2598,7 +2514,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2611,7 +2526,6 @@
       "title": "[TabBottomSheet] Extend flag expiry",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/0c16531180e3179b1013f06100dc5269e835f373^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/0c16531180e3179b1013f06100dc5269e835f373",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2641,7 +2555,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2654,7 +2567,6 @@
       "title": "[TabStripContextMenus] Add new flag for disabled menu items",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/896ab0a1ef2916687cbc750c2bae5ff83f327816^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/896ab0a1ef2916687cbc750c2bae5ff83f327816",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -2756,7 +2668,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2769,7 +2680,6 @@
       "title": "[Android] Extend submenus-in-app-menu to 155",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/ab2e5724f154831e6409a88622e8d7bbd28e29e7^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/ab2e5724f154831e6409a88622e8d7bbd28e29e7",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2799,7 +2709,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2812,7 +2721,6 @@
       "title": "[iOS][Enterprise] Extend Download Protection Flag Expiry Milestone",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/6053aa6b9235e04d402e47235ee6169f33e67c7b^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/6053aa6b9235e04d402e47235ee6169f33e67c7b",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2842,7 +2750,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2855,7 +2762,6 @@
       "title": "glic: Extend kGlic abaout flags expiry",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/a0fbda95cf3e08b32bae7c1ea183b020bd9e2c32^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/a0fbda95cf3e08b32bae7c1ea183b020bd9e2c32",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2884,7 +2790,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2897,7 +2802,6 @@
       "title": "Extend enable-web-bluetooth-confirm-pairing-support flag expiry to M156",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/dfc05ed9f98dffbaaac3e77d58fa2cf85857b3bf^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/dfc05ed9f98dffbaaac3e77d58fa2cf85857b3bf",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2927,7 +2831,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2940,7 +2843,6 @@
       "title": "Extend enable-location-provider-manager flag expiry to M156",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/d56b17376efe8dc18fbf38aee20fe155821dd910^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/d56b17376efe8dc18fbf38aee20fe155821dd910",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -2970,7 +2872,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -2983,7 +2884,6 @@
       "title": "Extend enable-web-bluetooth-new-permissions-backend flag expiry to M156",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/a98d6163778aa2a53ca05e808fea8abed5275527^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/a98d6163778aa2a53ca05e808fea8abed5275527",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -3013,7 +2913,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3026,7 +2925,6 @@
       "title": "Bump ChromeVox MV3 expiration a few milestones",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/7331da98d4f7a83b874904e994f3da0b909477ea^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/7331da98d4f7a83b874904e994f3da0b909477ea",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -3061,7 +2959,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3074,7 +2971,6 @@
       "title": "[actor] Extend glic-actor flag to milestone 172.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/a74797ab66a170b42fd7b7ecb8d2ed031075f9fb^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/a74797ab66a170b42fd7b7ecb8d2ed031075f9fb",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -3103,7 +2999,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3116,7 +3011,6 @@
       "title": "Extend enable-unrestricted-usb flag expiry to M156",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/4df91b8dbd07efb528ebfb4d51757bc5bc325cf0^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/4df91b8dbd07efb528ebfb4d51757bc5bc325cf0",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -3146,7 +3040,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3159,7 +3052,6 @@
       "title": "[Toolbar] Fix toolbar height on tablets when capture doesn't exist",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/b9d48008084ec8badb36576d567a3c22360d1c4f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/b9d48008084ec8badb36576d567a3c22360d1c4f",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3240,7 +3132,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3253,7 +3144,6 @@
       "title": "[codehealth] CastStreamingMediaVideoEncoder Post-Launch Cleanup",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/d8900ba175532b3addf5ca91e12660c228f760d7^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/d8900ba175532b3addf5ca91e12660c228f760d7",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3334,7 +3224,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3347,7 +3236,6 @@
       "title": "[Media Indicator] Remove audio monitoring expired flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/4ba6ab5aa3bdc3fc2fc51caf5b88aeb7752b9fc3^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/4ba6ab5aa3bdc3fc2fc51caf5b88aeb7752b9fc3",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3432,7 +3320,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3445,7 +3332,6 @@
       "title": "gamepad: Extend enable-gamepad-multitouch flag expiry to M175",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/5e4cb26bf6f33361a89da3b82a5ca1ccce5aeb0f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/5e4cb26bf6f33361a89da3b82a5ca1ccce5aeb0f",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -3475,7 +3361,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3488,7 +3373,6 @@
       "title": "[Bookmarks Bar] Clean up android-bookmark-bar flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/cb4ffc3b1cc89e562c3116e093b04443bc773946^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/cb4ffc3b1cc89e562c3116e093b04443bc773946",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3567,7 +3451,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3580,7 +3463,6 @@
       "title": "Extend expiry milestone for on-device-model-litert-lm-backend flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/5780a373a0367edc883e5993695f21160c1d473b^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/5780a373a0367edc883e5993695f21160c1d473b",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -3610,7 +3492,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3623,7 +3504,6 @@
       "title": "[realbox] Add impression limits to the Realbox context menu animation",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/bd29b9659541efd4d769a890e24a4fc7387632ef^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/bd29b9659541efd4d769a890e24a4fc7387632ef",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3708,7 +3588,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3721,7 +3600,6 @@
       "title": "Add omnibox-loom entry to about:flags",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/517a66ffadd867c17ee76f41c0e79b0bf5cb10b3^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/517a66ffadd867c17ee76f41c0e79b0bf5cb10b3",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3799,7 +3677,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3812,7 +3689,6 @@
       "title": "[contextual-tasks] Change cookie prefetch feature param to feature flag.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/ab8c7f9e184a7846a318b8c806d41b7dcb50f58e^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/ab8c7f9e184a7846a318b8c806d41b7dcb50f58e",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3872,7 +3748,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3885,7 +3760,6 @@
       "title": "Add UserFeedbackAllowedPolicy to chrome://flags UI",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/4ae906d85d5ca19234e9617d5d994130f525bb3d^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/4ae906d85d5ca19234e9617d5d994130f525bb3d",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -3965,7 +3839,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -3978,7 +3851,6 @@
       "title": "[Password Manager] Update flag expiry ShowSuggestionsOnAutofocus",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/d6d0e41389692ad205c30cc7d55b3b3e836486b8^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/d6d0e41389692ad205c30cc7d55b3b3e836486b8",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4008,7 +3880,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4021,7 +3892,6 @@
       "title": "[Flags] Extend passthrough decoder flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/3c5a04e3d08c78a46e9fbb276b4aba71990e869d^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/3c5a04e3d08c78a46e9fbb276b4aba71990e869d",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4051,7 +3921,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4064,7 +3933,6 @@
       "title": "autofill: Remove expired flag \"autofill-more-prominent-popup\"",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/3a6d15298a1b6545efec7410cbe0b4dfd9f62120^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/3a6d15298a1b6545efec7410cbe0b4dfd9f62120",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -4148,7 +4016,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4161,7 +4028,6 @@
       "title": "[iOS] Add the composebox drive option feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/81359ecc8b9f6a32f52a5981f49e64236597864f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/81359ecc8b9f6a32f52a5981f49e64236597864f",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4195,7 +4061,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4208,7 +4073,6 @@
       "title": "Clean up stale base::Features 'AllowWgcScreenCapturer' and 'AllowWgcScreenZeroHz'",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/f4a27845e6528a23ed910a620834b238433f29d4^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/f4a27845e6528a23ed910a620834b238433f29d4",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -4291,7 +4155,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4304,7 +4167,6 @@
       "title": "Extend expiring flag AndroidAnimatedProgressBarInBrowser",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/a343e49a6d03dcec730a2366e1f10bad9dd50222^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/a343e49a6d03dcec730a2366e1f10bad9dd50222",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4334,7 +4196,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4347,7 +4208,6 @@
       "title": "Extend expiry of GiC experiment flags",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/44a51eaefdba77caa5140a31052bc50a36616e10^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/44a51eaefdba77caa5140a31052bc50a36616e10",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4379,7 +4239,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4392,7 +4251,6 @@
       "title": "[Extensions] Remove `enable-extensions-menu-teardown-fix` flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/0f8654a82ab23e1bbace6126b53bed8514deb144^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/0f8654a82ab23e1bbace6126b53bed8514deb144",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -4473,7 +4331,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4486,7 +4343,6 @@
       "title": "Clean up kLaunchQueueStopSendingOnReload feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/cf664a9ad8ec006e20ad234c68abeda9b73f1dac^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/cf664a9ad8ec006e20ad234c68abeda9b73f1dac",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -4567,7 +4423,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4580,7 +4435,6 @@
       "title": "Extend hub history pane flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/f0316ec70472f74bef85e0d763131582fe98e2db^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/f0316ec70472f74bef85e0d763131582fe98e2db",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4610,7 +4464,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4623,7 +4476,6 @@
       "title": "[Media Indicator] Clean up feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/057e5e5fe9c14a8e94aafb413d2f2f970da379f4^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/057e5e5fe9c14a8e94aafb413d2f2f970da379f4",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -4722,7 +4574,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4735,7 +4586,6 @@
       "title": "[omnibox] Update expiry_milestone for \"ML URL Scoring\" feature flags.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/0ef2a42182889f09b95396eb25c38894ae17e5d2^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/0ef2a42182889f09b95396eb25c38894ae17e5d2",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4768,7 +4618,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4781,7 +4630,6 @@
       "title": "[NTP] Extend ntp-composebox and ntp-next-features expiry",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/e7bf8374f4c11044eefe1a75d9c5d13c2125e759^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/e7bf8374f4c11044eefe1a75d9c5d13c2125e759",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4834,7 +4682,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4847,7 +4694,6 @@
       "title": "[Extensions] Remove kExtensionManifestV2Unsupported feature",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/dd11f12d82d243ff834a6949a9346392820f2a0a^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/dd11f12d82d243ff834a6949a9346392820f2a0a",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -4928,7 +4774,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4941,7 +4786,6 @@
       "title": "[Tab Groups] Extend expiration date for tab group entry points",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/9670e697423d88cc1e3aa8bb47812df2607e8599^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/9670e697423d88cc1e3aa8bb47812df2607e8599",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -4973,7 +4817,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -4986,7 +4829,6 @@
       "title": "Update expiry date for chrome://flags entries",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/1f7f5310ecdf15ed33001a216511cd8ede3badd4^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/1f7f5310ecdf15ed33001a216511cd8ede3badd4",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -5038,7 +4880,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5051,7 +4892,6 @@
       "title": "[AF] Feature flag for AI card recommendation feature",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/47116f375b8457054a37a4ca48634bc942c00111^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/47116f375b8457054a37a4ca48634bc942c00111",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5138,7 +4978,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5151,7 +4990,6 @@
       "title": "Extend expiration of browser-initiated-automatic-picture-in-picture flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/97c6e4c34b5ed41fbef6d35eb910c8906b43acc9^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/97c6e4c34b5ed41fbef6d35eb910c8906b43acc9",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -5181,7 +5019,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5194,7 +5031,6 @@
       "title": "Introduce CrossDeviceThemeTracker feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/3b00237934e5515d7f3c27ca444cf58558e59a91^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/3b00237934e5515d7f3c27ca444cf58558e59a91",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5281,7 +5117,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5294,7 +5129,6 @@
       "title": "[contextual_tasks] Add flag to fulfill searchbox queries in AI mode",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/6a5eef881ada459f8a1a39be89185180051b7748^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/6a5eef881ada459f8a1a39be89185180051b7748",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5353,7 +5187,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5366,7 +5199,6 @@
       "title": "Extend expiry of GiC in toolbar for HTS experiment flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/8957cd10b575a4d347196c26069485279b9f5a2f^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/8957cd10b575a4d347196c26069485279b9f5a2f",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -5395,7 +5227,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5408,7 +5239,6 @@
       "title": "[UIA] Remove ui-automation-provider feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/f0668ddabe1fe01b574932fab25adc11b722d0d2^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/f0668ddabe1fe01b574932fab25adc11b722d0d2",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5491,7 +5321,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5504,7 +5333,6 @@
       "title": "[Infobar] Add kInfoBarInlineLinks to chrome://flags",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/3154d3403ac0c0ec3e8fe3e668e2c8e1985a52d9^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/3154d3403ac0c0ec3e8fe3e668e2c8e1985a52d9",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5581,7 +5409,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5594,7 +5421,6 @@
       "title": "Support OS icon variants on Mac and update fieldtrial config",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/9955226f9fb6cc914dfc1eee5164f487f7096fa1^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/9955226f9fb6cc914dfc1eee5164f487f7096fa1",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5692,7 +5518,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5705,7 +5530,6 @@
       "title": "[GlicZoom] Extend glic-client-zoom-control chrome flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/0273119437ff10b1606c33e27d9719f88361ab15^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/0273119437ff10b1606c33e27d9719f88361ab15",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -5735,7 +5559,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5748,7 +5571,6 @@
       "title": "Extend expiry for inline-pdf-v2 flag.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/fd9812e83fd4c91be19865f6f4043aed76a2a667^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/fd9812e83fd4c91be19865f6f4043aed76a2a667",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -5778,7 +5600,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5791,7 +5612,6 @@
       "title": "extend chromebox flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/21f534f2f220ebdd87371e9d897a739f83dc85df^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/21f534f2f220ebdd87371e9d897a739f83dc85df",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -5821,7 +5641,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5834,7 +5653,6 @@
       "title": "[BNPL] Add feature flag for globalization",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/6aba51dff54b37e2c8382b4f80ad674165d7dd35^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/6aba51dff54b37e2c8382b4f80ad674165d7dd35",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -5940,7 +5758,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -5953,7 +5770,6 @@
       "title": "Remove OmniboxImprovementForLFF flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/6febc2ecafe6f21e85d074a98584f4c3543bf9a3^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/6febc2ecafe6f21e85d074a98584f4c3543bf9a3",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6072,7 +5888,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6085,7 +5900,6 @@
       "title": "[Drag] Collapse tab group during drag while in vertical tabs.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/4784cc5db44a2699bc25250ed1b786d504da15d7^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/4784cc5db44a2699bc25250ed1b786d504da15d7",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6169,7 +5983,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6182,7 +5995,6 @@
       "title": "Remove expired enable-task-manager-clank flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/806d70458ecd769a87bc32e872f748385b3d18c2^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/806d70458ecd769a87bc32e872f748385b3d18c2",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6265,7 +6077,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6278,7 +6089,6 @@
       "title": "Remove AndroidCaretBrowsing feature flag.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/402a9eb2541f15a97781112ebe7da78fc4c46294^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/402a9eb2541f15a97781112ebe7da78fc4c46294",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6362,7 +6172,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6375,7 +6184,6 @@
       "title": "Extend expiry of credential-management-unified-ui flag to M155.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/1632814b33c3a07849ab9d72cd9a03b8a4c10f40^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/1632814b33c3a07849ab9d72cd9a03b8a4c10f40",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -6404,7 +6212,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6417,7 +6224,6 @@
       "title": "[iOS] Add a user setting to control the Start Surface",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/35f0e3a73a3f6db50b33c151a3d447232ea413a7^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/35f0e3a73a3f6db50b33c151a3d447232ea413a7",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -6453,7 +6259,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6466,7 +6271,6 @@
       "title": "[tips] Add a new feature flag for tips self service",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/f76944c19c77191160266b59ce497c637384e197^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/f76944c19c77191160266b59ce497c637384e197",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6544,7 +6348,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6557,7 +6360,6 @@
       "title": "Add feature flag for using p-links in HelpAndFeedbackLauncher.",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/8f45fc478e8ae138aeee829f4a4ccc4e1b3445b5^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/8f45fc478e8ae138aeee829f4a4ccc4e1b3445b5",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6637,7 +6439,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6650,7 +6451,6 @@
       "title": "Disable chrome://privacy-sandbox-internals page and remove flags",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/9af8e5451c764bd97ba4734c5f580342752fc654^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/9af8e5451c764bd97ba4734c5f580342752fc654",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6733,7 +6533,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6746,7 +6545,6 @@
       "title": "Revert \"[contextual_tasks] Add flag to fulfill searchbox queries in AI mode\"",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/bdff84d062f87996cb05584bae2d340514df84cf^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/bdff84d062f87996cb05584bae2d340514df84cf",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6805,7 +6603,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6818,7 +6615,6 @@
       "title": "[DevTools] Expose kDevToolsPlusButton in chrome://flags",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/107008951309b4285de9c4573137d163dffedf38^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/107008951309b4285de9c4573137d163dffedf38",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -6897,7 +6693,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6910,7 +6705,6 @@
       "title": "[Cobrowse] Remove AIM Cobrowse debug entry point",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/125eef2816edb1c297820553045fc47029385206^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/125eef2816edb1c297820553045fc47029385206",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -6943,7 +6737,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -6956,7 +6749,6 @@
       "title": "Remove expired flag enable-smart-card-web-api",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/22ef6cf7733af11fa7b39042c6aa89d0e57335a8^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/22ef6cf7733af11fa7b39042c6aa89d0e57335a8",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -7034,7 +6826,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7047,7 +6838,6 @@
       "title": "[iOS] Implement Gemini Live dormant reasons feature flag, generalized snackbar and fix dormant snackbar offset",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/6d6eefc3bac4a4f522cd155429f13f1031ac8973^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/6d6eefc3bac4a4f522cd155429f13f1031ac8973",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -7083,7 +6873,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7096,7 +6885,6 @@
       "title": "[PWA_Install_Dialog] Create WebAppInstallDialogWinPin flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/552396a013bcbdc34d183d3b981f65853f339fac^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/552396a013bcbdc34d183d3b981f65853f339fac",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -7201,7 +6989,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7214,7 +7001,6 @@
       "title": "Remove expired flag autofill-enable-card-info-runtime-retrieval",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/cc4aa8c907e544371c0f477799838b7225bc7442^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/cc4aa8c907e544371c0f477799838b7225bc7442",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -7297,7 +7083,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7310,7 +7095,6 @@
       "title": "[TopBottomSplits] Add chrome://flags entry",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/99379627490e8b73b6c81ba1884138c43068bc62^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/99379627490e8b73b6c81ba1884138c43068bc62",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -7408,7 +7192,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7421,7 +7204,6 @@
       "title": "[reader mode] Remove expired reader-mode-improvements feature flag",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/508cfeae4c744931dc617d9dd1a01e87fba72d04^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/508cfeae4c744931dc617d9dd1a01e87fba72d04",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -7538,7 +7320,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7551,7 +7332,6 @@
       "title": "Extend pwas-tab-strip flags to a higher milestone",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/336744cef71e7ab99740fcbe407dcb3ffd40587d^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/336744cef71e7ab99740fcbe407dcb3ffd40587d",
-      "access_method": "canonical_gitiles_diff",
       "files": [
         {
           "path": "chrome/browser/flag-metadata.json",
@@ -7587,7 +7367,6 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
@@ -7600,7 +7379,6 @@
       "title": "[reader mode] Remove reader-mode-distill-in-app from chrome://flags",
       "diff_url": "https://chromium.googlesource.com/chromium/src/+/68aec9e08ed1dc828b63fd3840eb0b5815cd8365^!",
       "mirror_url": "https://github.com/chromium/chromium/commit/68aec9e08ed1dc828b63fd3840eb0b5815cd8365",
-      "access_method": "official_github_mirror_rest",
       "files": [
         {
           "path": "chrome/browser/about_flags.cc",
@@ -7689,26 +7467,15 @@
       "version": null,
       "channel": null,
       "installed_availability": "unknown",
-      "historical_backfill": true,
       "selection_status": "excluded",
       "selection_reason": "Historical metadata archive; not a new release event.",
       "selection_rule_version": "pm-selection-v2"
     }
   ],
   "limitations": [
-    "No installed builds or behavior tested; version/channel and actual availability unknown.",
-    "Source OS masks are not verified platform availability.",
-    "All changed lines and full relevant patches retained, including maintenance. Context flag IDs are not claimed as changed IDs unless direct entry replay proves change.",
-    "Metadata historical extraction retains exact patches but does not reconstruct full metadata snapshots; owner/expiry multiline context may require manual mapping.",
-    "Successor flag_descriptions.h only latest touched-file history collected; its full history remains incomplete.",
-    "REST API hit HTTP403 unauthenticated rate limit; remaining public diffs recovered from canonical Gitiles, no credentials used.",
-    "Stored patches redact public source email addresses; original_patch_sha256 identifies pre-redaction retrieved patch. SHA256 of official snapshots remains unsanitized byte-content hash. Line-count validation performed before sanitization (line structure unchanged)."
-  ],
-  "validation": {
-    "all_relevant_patch_hunks_count": 203,
-    "hunk_declared_line_counts_match": true,
-    "new_unique_commits": 8,
-    "historical_metadata_commits": 81,
-    "missing_requested_diffs": 0
-  }
+    "Source registration, removal, expiry and OS guards do not establish product release, withdrawal or installed availability.",
+    "Version/channel, region, language and account conditions need product-specific evidence; source observations are not device or behavioral test results.",
+    "Context identifiers and description symbols are not necessarily one-to-one canonical product feature IDs. Historical source changes are not new product announcements.",
+    "Revisions, source URLs and hashes identify the source evidence. Quoted source fragments may omit contact details and are not complete source snapshots."
+  ]
 }

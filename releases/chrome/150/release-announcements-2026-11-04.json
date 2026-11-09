@@ -2,7 +2,6 @@
   "schema_version": 1,
   "source_url": "https://chromereleases.googleblog.com/feeds/posts/default?alt=json&max-results=100&published-min=2026-10-27T00:00:00Z",
   "observed_at": "2026-11-03T23:22:11.137211+00:00",
-  "coverage": "10/27 00:00 UTC 이후 공식 공지 20개 전체 content 본문을 확인. 신규 4개(157 Desktop/Android/iOS Stable, 156 Extended Stable), 기존 14개 본문 hash 동일, 기존 보안 공지 2개 HTML hash 변경. 연결 Git log·개별 CVE 본문은 전수 확인하지 않음.",
   "count": 1,
   "items": [
     {
@@ -19,12 +18,11 @@
       ],
       "channel": "Long Term Support",
       "kind": "security",
-      "summary": "직전 수집과 같은 공식 빌드 공지 본문 재확인.",
+      "summary": "공식 빌드 공지; 개별 신규 기능을 뜻하지 않음.",
       "selection_status": "excluded",
-      "selection_reason": "같은 공지 ID와 본문 hash. 반복 배포·보안 공지를 재알림하지 않음.",
+      "selection_reason": "같은 공식 공지 ID와 본문 hash이며 새로운 기능 출시 근거가 아님.",
       "revisit_trigger": "개별 기능·기본 동작 또는 지원 범위 변화의 명시적 공식 근거",
       "body_sha256": "8bcb7ac981b687e2e42e6ac3234e5bcd4144cd72eef46f23f777e584cbedc0ce",
-      "body_matches_previous": true,
       "security_identifiers": [
         "CVE-2026-103629",
         "CVE-2026-110166",

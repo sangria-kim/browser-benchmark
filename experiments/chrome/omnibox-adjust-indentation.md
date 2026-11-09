@@ -2,12 +2,12 @@
 
 검증 상태: 소스 관찰만 완료. 설치본 노출·동작·버전은 미확인입니다.
 
-## 2026-10-31 수집 — 8bc404f155c2
+## 2026-10-31 소스 관찰 — 8bc404f155c2
 
 - 소스 commit: 2026-10-30T17:11:01Z
 - 등록부 사건: removed
 - OS mask: kOsDesktop → 없음
-- [공식 diff](https://chromium.googlesource.com/chromium/src/+/8bc404f155c2a1853b910c02bb9a7175b7fc056c^!) · [전체 수집](monthly/2026-10-source-index-2026-10-31.json)
+- [공식 diff](https://chromium.googlesource.com/chromium/src/+/8bc404f155c2a1853b910c02bb9a7175b7fc056c^!) · [소스 근거](monthly/2026-10-source-index-2026-10-31.json)
 - 소스 변경은 출시·철회를 증명하지 않습니다. PM: excluded.
 
 - 요약: [omnibox] Remove omnibox-adjust-indentation flag

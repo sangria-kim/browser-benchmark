@@ -1,54 +1,167 @@
 {
   "schema_version": 1,
   "browser": "opera",
-  "report_date": "2026-11-06",
-  "rule_commit": "d1b38c7d605bff79d5526cfcc01729fc71d1bab5",
-  "selection_rule_version": "pm-selection-v2",
-  "observed_at": "2026-11-05T22:53:14.091Z",
-  "coverage": {
-    "sources": [
-      {
-        "coverage_status": "success",
-        "body_read": true,
-        "observed_at": "2026-11-05T22:53:14.091Z",
-        "cadence": "weekly_auxiliary",
-        "coverage_start_date": "2026-10-29",
-        "coverage_end_date": "2026-11-05",
-        "scope": "주간 주요 공식 발표와 연결된 변경 기록. 브라우저 모든 변경 수집 아님.",
-        "source_id": "opera-desktop",
-        "url": "https://blogs.opera.com/desktop/",
-        "coverage": "첫 페이지가 기간 경계를 덮고 11/4 Stable .38 및 11/3 Developer .0 본문·연결 changelog 13+18항목 확인."
-      },
-      {
-        "coverage_status": "success",
-        "body_read": true,
-        "observed_at": "2026-11-05T22:53:14.091Z",
-        "cadence": "weekly_auxiliary",
-        "coverage_start_date": "2026-10-29",
-        "coverage_end_date": "2026-11-05",
-        "scope": "주간 주요 공식 발표와 연결된 변경 기록. 브라우저 모든 변경 수집 아님.",
-        "source_id": "opera-news",
-        "url": "https://blogs.opera.com/news/",
-        "coverage": "11/5 사용자 수 발표 및 10/29 GX 중복 공지 본문 확인. 목록이 10/29 이전을 덮음. GX·일반 Opera 분리."
-      },
-      {
-        "source_id": "opera-mobile",
-        "url": "https://blogs.opera.com/mobile/",
-        "coverage_status": "not_due",
-        "observed_at": null,
-        "body_read": false,
-        "cadence": "weekly_auxiliary",
-        "coverage": "정규 주간 기한 전. 미점검을 성공 또는 변화 없음으로 처리하지 않음."
-      }
-    ],
-    "scope": "weekly_auxiliary",
-    "limitations": [
-      "정규 Opera Mobile 점검은 예정 전.",
-      "Browser Connector/Operator flag의 권한·사용 조건은 검증 대기.",
-      "설치본·한국 제공 시험 미실행."
-    ]
-  },
+  "evidence_level": "Official publication references; product conditions and novelty must be read per item. Not installed-build test results.",
   "items": [
+    {
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.15",
+      "channel": "stable_with_early_preview_feature",
+      "announced_at": "2026-10-27",
+      "effective_at": "2026-10-27",
+      "event_type": "release_inclusion",
+      "summary": "Opera 139 Stable notes explicitly include WebAI; feature remains opt-in early preview using local models and browser APIs.",
+      "selection_status": "selected",
+      "priority": "P2",
+      "benchmark_readiness": "conditional",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-139-stable/",
+        "https://blogs.opera.com/news/2026/10/webai-local-ai-for-the-web-now-in-opera/",
+        "https://next.opera.com/blog/web-ai-local-ai/",
+        "https://next.opera.com/web-ai/"
+      ],
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "effective_at": null,
+        "real_test": "미실행",
+        "basis": "Feature-specific article and playground do not state Korea or Korean. Cloud Opera AI FAQ is not evidence for local WebAI."
+      },
+      "item_id": "opera-20261030-1",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조."
+    },
+    {
+      "browser": "opera",
+      "product": "Opera GX",
+      "version": null,
+      "channel": "unknown",
+      "announced_at": "2026-10-29",
+      "effective_at": null,
+      "event_type": "reference_pending_delta",
+      "summary": "Announcement describes tab content search and restoring closed tabs with browsing history and original workspace/island context.",
+      "selection_status": "watch",
+      "priority": "P2",
+      "reason": "Content/title search already documented in official GX September 2021 article. Exact new restore/context delta not established; do not present search as newly introduced.",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
+        "https://blogs.opera.com/desktop/2021/09/opera-gx-pinboards/",
+        "https://press.opera.com/2020/05/19/opera-gx-instagram-workspaces-press-release/"
+      ],
+      "item_id": "opera-20261030-2",
+      "selection_reason": "Content/title search already documented in official GX September 2021 article. Exact new restore/context delta not established; do not present search as newly introduced."
+    },
+    {
+      "browser": "opera",
+      "product": "Opera GX",
+      "version": null,
+      "channel": "unknown",
+      "announced_at": "2026-10-29",
+      "effective_at": null,
+      "event_type": "announcement",
+      "summary": "GX article describes tab-specific volume up to 500% and eight EQ presets in tooltip/sidebar player.",
+      "selection_status": "watch",
+      "reason": "GX-specific rollout version and prior state not fully resolved. General Opera 130 already documented 500% booster in April; do not infer identical GX timing.",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
+        "https://blogs.opera.com/desktop/changelog-for-130/"
+      ],
+      "item_id": "opera-20261030-3",
+      "selection_reason": "GX-specific rollout version and prior state not fully resolved. General Opera 130 already documented 500% booster in April; do not infer identical GX timing."
+    },
+    {
+      "browser": "opera",
+      "product": "Opera GX",
+      "version": null,
+      "channel": "early_bird",
+      "announced_at": "2026-10-29",
+      "effective_at": null,
+      "event_type": "announcement",
+      "summary": "Up to four pages and visual drop zones; article instructs Early Bird for ongoing split-screen work.",
+      "selection_status": "watch",
+      "reason": "Exact delta and rollout scope need verification.",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/"
+      ],
+      "item_id": "opera-20261030-4",
+      "selection_reason": "Exact delta and rollout scope need verification."
+    },
+    {
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.15",
+      "channel": "early_bird",
+      "announced_at": "2026-10-27",
+      "effective_at": "2026-10-27",
+      "event_type": "experiment",
+      "summary": "HTML-in-Canvas preview via canvas-draw-element; same-origin limitation, One first and GX/Neon follow.",
+      "selection_status": "watch",
+      "sources": [
+        "https://blogs.opera.com/news/2026/10/opera-brings-html-in-canvas-to-the-browser/",
+        "https://blogs.opera.com/desktop/changelog-for-139/"
+      ],
+      "item_id": "opera-20261030-5",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조."
+    },
+    {
+      "browser": "opera",
+      "product": "Opera One",
+      "version": "139.0.6053.15",
+      "channel": "stable",
+      "announced_at": "2026-10-27",
+      "event_type": "rollout_expansion",
+      "summary": "Personalization start-page widget enabled across streams with theme-gallery and welcome/hover changes.",
+      "selection_status": "watch",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-139-stable/"
+      ],
+      "item_id": "opera-20261030-6",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조."
+    },
+    {
+      "browser": "opera",
+      "version": "139.0.6053.15",
+      "channel": "stable",
+      "announced_at": "2026-10-27",
+      "event_type": "fix",
+      "summary": "Side-panel, tabs, Linux bookmark dragging, account sync, H.264/Paramount+ and crash fixes; Chromium 155.0.8059.85.",
+      "selection_status": "excluded",
+      "sources": [
+        "https://blogs.opera.com/desktop/changelog-for-139/"
+      ],
+      "item_id": "opera-20261030-7",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조."
+    },
+    {
+      "browser": "opera",
+      "version": "140.0.6066.0",
+      "channel": "developer",
+      "announced_at": "2026-10-28",
+      "event_type": "feature_and_fix",
+      "summary": "Related-sites tooltip five lines with scroll; vertical tabs, installers, wallpaper, connector onboarding, permission removal and crash fixes.",
+      "selection_status": "watch",
+      "reason": "Tooltip can be tracked; routine fixes excluded from alert.",
+      "sources": [
+        "https://blogs.opera.com/desktop/2026/10/opera-140-0-6066-0-developer-update/",
+        "https://blogs.opera.com/desktop/changelog-for-140/"
+      ],
+      "item_id": "opera-20261030-8",
+      "selection_reason": "Tooltip can be tracked; routine fixes excluded from alert."
+    },
+    {
+      "browser": "opera",
+      "product": "Opera Mini",
+      "version": null,
+      "announced_at": "2026-10-22",
+      "event_type": "unknown",
+      "summary": "Nigeria free-data article in official mobile index; body unavailable.",
+      "selection_status": "pending_verification",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/10/5538-tb-later-why-free-data-still-matters-in-nigeria/"
+      ],
+      "item_id": "opera-20261030-9",
+      "selection_reason": "공식 항목 색인. 상세 선별과 제공 조건은 연결된 보고서 및 기능 기록을 참조."
+    },
     {
       "item_id": "opera-139.0.6053.38-dna-126115",
       "browser": "opera",
@@ -64,13 +177,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "DNA-126115",
-      "source_item_number": 1,
       "summary": "Windows 권한 승인 충돌",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -88,13 +198,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-3898",
-      "source_item_number": 2,
       "summary": "투명 테마 사이드바 중복",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -112,13 +219,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-4474",
-      "source_item_number": 3,
       "summary": "설치 화면 이미지 누락",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -136,13 +240,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5090",
-      "source_item_number": 4,
       "summary": "설치 프로그램 리브랜딩",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -160,13 +261,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5092",
-      "source_item_number": 5,
       "summary": "Opera One 리브랜딩",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -184,13 +282,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5258",
-      "source_item_number": 6,
       "summary": "브라우저 커넥터 flag 확대",
       "event_type": "flag_rollout",
       "selection_status": "pending_verification",
       "selection_reason": "flag 활성화만으로 에이전트 권한·배포·사용 조건 확정 불가.",
-      "revisit_trigger": "공식 사용 조건·설치본 검증",
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -208,13 +303,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5372",
-      "source_item_number": 7,
       "summary": "커넥터와 오퍼레이터 flag 확대",
       "event_type": "flag_rollout",
       "selection_status": "pending_verification",
       "selection_reason": "flag 활성화만으로 에이전트 권한·배포·사용 조건 확정 불가.",
-      "revisit_trigger": "공식 사용 조건·설치본 검증",
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -232,13 +324,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5196",
-      "source_item_number": 8,
       "summary": "비공개 분할화면 충돌",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -256,13 +345,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5198",
-      "source_item_number": 9,
       "summary": "접힌 세로 탭 너비",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -280,13 +366,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5340",
-      "source_item_number": 10,
       "summary": "초기 탭 가져오기 UI",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -304,13 +387,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5373",
-      "source_item_number": 11,
       "summary": "대비 테마 위젯 표시",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -328,13 +408,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5392",
-      "source_item_number": 12,
       "summary": "창별 세로 탭 접힘 기억",
       "event_type": "improvement",
       "selection_status": "selected",
       "selection_reason": "세로 탭 접힘 상태를 창별로 기억하는 사용자 동작 변화 명시.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/",
       "event_id": "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104",
       "feature_id": "opera-vertical-tabs",
@@ -355,13 +432,10 @@
         "pc"
       ],
       "announced_at": "2026-11-04",
-      "source_issue_id": "RNA-5443",
-      "source_item_number": 13,
       "summary": "Early Bird 관련 사이트 툴팁",
       "event_type": "rollout_expansion",
       "selection_status": "watch",
       "selection_reason": "기존 Developer 툴팁의 Early Bird 확대. 새 기능 최초 도입 아님.",
-      "revisit_trigger": "공식 사용 조건·설치본 검증",
       "source_url": "https://blogs.opera.com/desktop/changelog-for-139/"
     },
     {
@@ -379,13 +453,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "DNA-126115",
-      "source_item_number": 1,
       "summary": "Windows 권한 승인 충돌",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -403,13 +474,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-2584",
-      "source_item_number": 2,
       "summary": "분할화면 평가 팝업 위치",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -427,13 +495,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-3630",
-      "source_item_number": 3,
       "summary": "Linux 탭 툴팁 테두리",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -451,13 +516,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-3859",
-      "source_item_number": 4,
       "summary": "Linux 개발자도구 상단바",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -475,13 +537,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-3898",
-      "source_item_number": 5,
       "summary": "투명 테마 사이드바 중복",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -499,13 +558,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-4474",
-      "source_item_number": 6,
       "summary": "설치 화면 이미지 누락",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -523,13 +579,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-4997",
-      "source_item_number": 7,
       "summary": "Wayland 창간 끌기",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -547,13 +600,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5171",
-      "source_item_number": 8,
       "summary": "선택 탭 묶음 끌기",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -571,13 +621,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5179",
-      "source_item_number": 9,
       "summary": "Windows 200% 배율 체크박스",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -595,13 +642,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5187",
-      "source_item_number": 10,
       "summary": "페이지 정보 열린 뒤로가기 충돌",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -619,13 +663,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5196",
-      "source_item_number": 11,
       "summary": "비공개 분할화면 충돌",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -643,13 +684,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5280",
-      "source_item_number": 12,
       "summary": "세로 탭 자동숨김 대기시간",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -667,13 +705,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5283",
-      "source_item_number": 13,
       "summary": "시작화면 탭 추가 메뉴",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -691,13 +726,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5329",
-      "source_item_number": 14,
       "summary": "사이드바 위 탭바 겹침",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -715,13 +747,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5340",
-      "source_item_number": 15,
       "summary": "초기 탭 가져오기 UI",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -739,13 +768,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5367",
-      "source_item_number": 16,
       "summary": "첫 탭 위치 드롭",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -763,13 +789,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5373",
-      "source_item_number": 17,
       "summary": "대비 테마 위젯 표시",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -787,13 +810,10 @@
         "pc"
       ],
       "announced_at": "2026-11-03",
-      "source_issue_id": "RNA-5395",
-      "source_item_number": 18,
       "summary": "자동숨김 애니메이션 조정",
       "event_type": "fix",
       "selection_status": "excluded",
       "selection_reason": "일반 수정·외관 조정이며 새 사용자 과제의 근거 부족.",
-      "revisit_trigger": null,
       "source_url": "https://blogs.opera.com/desktop/changelog-for-140/"
     },
     {
@@ -814,11 +834,167 @@
       "summary": "GX 오디오·탭 검색·분할화면 기존 공지 재확인",
       "selection_status": "excluded",
       "selection_reason": "10/30 색인의 watch 3건과 같은 본문. 일반 Opera와 혼합하지 않음. 신규 알림 제외.",
-      "source_url": "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
-      "existing_index": "releases/opera/collection-2026-10-30.json"
+      "source_url": "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/"
+    },
+    {
+      "item_id": "opera-android-travel-travel-esim-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "summary": "브라우저 내 여행 eSIM. 전 기기 데이터, 호환·통신사 잠금해제 Android 조건.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "opera-android-travel-vpn-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "summary": "계정·구독 없는 브라우징 범위 VPN 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "opera-android-travel-data-saver-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "summary": "데이터 압축·광고 차단 사용 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "opera-android-travel-offline-pages-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "summary": "오프라인 페이지 저장·열기 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "opera-android-travel-download-player-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "summary": "다운로드 관리·내장 미디어 플레이어 사용 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "opera-android-travel-flow-20261103",
+      "browser": "opera",
+      "product": "Opera for Android",
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "summary": "기기간 QR 연결과 파일·메모 공유, 24시간 임시 보관 안내.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/11/opera-for-android-the-ultimate-mobile-browser-for-travelers/"
+      ],
+      "announced_at": "2026-11-03",
+      "observed_at": "2026-11-06T22:55:04.825670+00:00",
+      "event_type": "repeat_mention",
+      "selection_status": "excluded",
+      "selection_reason": "여행 과제 중심 기존 기능 안내. 신규 출시·동작변경 명시 없음. eSIM은9/29 기존 발표와 대조.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown"
+    },
+    {
+      "item_id": "opera-mini-nigeria-free-data-retrospective-20261022",
+      "browser": "opera",
+      "product": "Opera Mini",
+      "version": null,
+      "channel": null,
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-10-22",
+      "effective_at": null,
+      "event_type": "retrospective",
+      "summary": "Nigeria partner-network users get 50 MB daily, up to 1.5 GB monthly, with no form, subscription or promo code. Jan–Sep2026 free data total 5,538 TB; 30bn page loads, 2.9bn searches, 378m news reads. Article discusses affordability and existing server-side compression (claimed up to 90%), compatibility with low-resource/slow-network devices, education/business/entertainment/community uses, and intent to continue expansion. It explicitly says free data has existed for years; no new country/network/date/version expansion established.",
+      "sources": [
+        "https://blogs.opera.com/mobile/2026/10/5538-tb-later-why-free-data-still-matters-in-nigeria/"
+      ],
+      "selection_status": "excluded",
+      "selection_reason": "Retrospective/usage-statistics article, not a new feature or rollout.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea": {
+        "availability": "미확인",
+        "korean_language": "미확인",
+        "scope": "Article specifically Nigeria partner networks; not evidence of Korean offer.",
+        "effective_at": null,
+        "real_test": "미실행"
+      }
     }
-  ],
-  "selected_events": [
-    "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104"
   ]
 }
