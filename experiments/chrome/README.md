@@ -966,3 +966,25 @@
 ## 2026-11-08 소스 근거
 
 [다섯 commit의 flag 정리·유지보수·등록](monthly/2026-11-source-index-2026-11-08.json)을 기능별 이력과 연결합니다. 신규 제품 출시로 선정한 사건은 없습니다. 기존 flag 삭제와 underlying 기능의 유지·구현 변경을 구분합니다.
+
+## 2026-11-09 소스 변경
+
+[등록·설명·옵션 변경 근거](monthly/2026-11-source-index-2026-11-10.json). 제품 출시와 구분합니다.
+
+- [autofill-reshow-save-prompt-on-tab-return](autofill-reshow-save-prompt-on-tab-return.md)
+- [cct-tab-switcher-enabled-for-chrome-experiment](cct-tab-switcher-enabled-for-chrome-experiment.md)
+- [cct-tab-switcher-enabled-for-embedder-experiment](cct-tab-switcher-enabled-for-embedder-experiment.md)
+- [ephemeral-bottom-sheet](ephemeral-bottom-sheet.md)
+- [history-page-refresh](history-page-refresh.md)
+- [identity-awareness](identity-awareness.md)
+- [organizer-panel](organizer-panel.md)
+- [read-anything-line-focus](read-anything-line-focus.md)
+- [reader-mode-blur-transition-animation](reader-mode-blur-transition-animation.md)
+- [reader-mode-delay-bottomsheet-peek](reader-mode-delay-bottomsheet-peek.md)
+- [reader-mode-toggle-links](reader-mode-toggle-links.md)
+- [send-tab-to-self-no-target-device-qr-code](send-tab-to-self-no-target-device-qr-code.md)
+- [tabbed-cct-if-allowed-by-embedder](tabbed-cct-if-allowed-by-embedder.md)
+- [tabbed-cct-if-enabled-by-embedder](tabbed-cct-if-enabled-by-embedder.md)
+- [your-saved-info-settings-page-ios](your-saved-info-settings-page-ios.md)
+
+추가 소스 근거: [7월 설명 변경](monthly/2026-07-source-changes-2026-11-10.json) · [8월 metadata 변경](monthly/2026-08-source-changes-2026-11-10.json). 날짜는 commit 날짜이며 신규 출시일이 아닙니다.

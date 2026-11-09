@@ -34,3 +34,20 @@ Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 �
   - 준비도: conditional. 5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인
 
 [공식 한국어](https://notice.naver.com/notices/whalehomepage/35247) · [공식 영어](https://notice.naver.com/notices/whalehomepage/35248) · [운영팀](https://forum.whale.naver.com/topic/63213/)
+
+## 화면 공유 대상 선택과 공유 탭 이동 설명
+
+Desktop 5.41.429.3 Stable/Beta의 공식 한국어·영어 공지와 운영팀 본문은 다음 두 동작을 설명합니다.
+
+- 화면 공유 버튼에서 현재 창이나 다른 창·화면을 선택합니다.
+- 다른 사람이 공유 중인 탭으로 바로 이동합니다.
+
+[공식 도움말](https://help.whale.naver.com/ko/desktop/multiplay/)은 이미 화면 공유 버튼에서 화면·창을 고르는 절차와, 공유 화면을 맨 앞 탭에 표시하는 동작을 설명합니다. 따라서 화면 공유 자체의 신규 도입으로 해석하지 않습니다. 현재 창 선택·공유 탭 이동의 정확한 UI 차이와 최초 제공 시점은 미확인입니다.
+
+공지 본문의 2026-11-06은 버전 배포 표기입니다. 공지 수정일이나 2026-11-10 근거 확인일을 기능 출시일로 사용하지 않습니다. 개별 기능의 적용일, OS·국가·언어·계정·구독·단계 배포 범위는 미확인입니다. 한국어 문서가 있다는 사실만으로 한국 제공·한국어 지원을 확정하지 않습니다. 직접 동작 검증은 미실행입니다.
+
+- 판정: pending_verification. 기능 설명은 공식 확인됐지만 기존 기능과의 차이·최초 제공 시점은 미확인입니다.
+- 비교 질문: 공동 탐색 중 공유할 대상을 잘못 고르거나 상대의 공유 탭을 찾는 부담을 줄이는가?
+- 재검토: 같은 OS의 이전·현재 빌드에서 메뉴 위치·선택 단계·공유 탭 이동을 비교하거나 공식 최초 도입 설명을 확인합니다. 실제 공유에는 별도 허용된 시험 참가자와 공개 시험 페이지만 사용합니다.
+
+[기능 근거](../../releases/whale/5.41.429.3/items-multiplay-evidence-2026-11-10.json) · [공식 한국어](https://notice.naver.com/notices/whalehomepage/35247) · [공식 영어](https://notice.naver.com/notices/whalehomepage/35248) · [운영팀](https://forum.whale.naver.com/topic/63213/)

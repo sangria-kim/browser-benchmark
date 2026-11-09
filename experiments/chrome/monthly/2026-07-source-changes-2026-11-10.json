@@ -1,0 +1,400 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-09T22:49:32.574934+00:00",
+  "scope": "Historical Chromium metadata or description changes. These are source evidence, not newly released products.",
+  "events": [
+    {
+      "event_id": "chrome-source-7742855ed7a91b9e2abbd18272bd51c58b130f85",
+      "source_revision": "7742855ed7a91b9e2abbd18272bd51c58b130f85",
+      "committed_at": "2026-07-21T01:43:25Z",
+      "source_url": "https://github.com/chromium/chromium/commit/7742855ed7a91b9e2abbd18272bd51c58b130f85",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/7742855ed7a91b9e2abbd18272bd51c58b130f85.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "65c5da29e31e643d06224d2ec615e603a1c70f820eab9935c0eeb416d98b6f79",
+          "description_changes": [
+            {
+              "symbol": "kGlicSparkSettingsAccessibleLabelsDescription",
+              "before": null,
+              "after": "Enables screen reader accessible labels for links in the Gemini Spark settings page.",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kGlicSparkSettingsAccessibleLabelsName",
+              "before": null,
+              "after": "Glic Spark Settings Accessible Labels",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-19fc0a1888061159262f21152517e7a8cdfce250",
+      "source_revision": "19fc0a1888061159262f21152517e7a8cdfce250",
+      "committed_at": "2026-07-21T02:30:16Z",
+      "source_url": "https://github.com/chromium/chromium/commit/19fc0a1888061159262f21152517e7a8cdfce250",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/19fc0a1888061159262f21152517e7a8cdfce250",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "f16082220954cee03f0598f1f55eeb73deff89db89254ddbdfb055a9a880af74",
+          "description_changes": [
+            {
+              "symbol": "kExperimentalAccessibilityLanguageDetectionDynamicName",
+              "before": "Experimental accessibility language detection for dynamic content",
+              "after": null,
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-0e1cdcf3f32e0b0e6f074a1a1cda859633389def",
+      "source_revision": "0e1cdcf3f32e0b0e6f074a1a1cda859633389def",
+      "committed_at": "2026-07-21T06:19:58Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0e1cdcf3f32e0b0e6f074a1a1cda859633389def",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/0e1cdcf3f32e0b0e6f074a1a1cda859633389def.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "77ba7c7c3786ca362dc3f2135bddb8ed8bf20727239f696ea7518b3b269a67d1",
+          "description_changes": [
+            {
+              "symbol": "kGlicOptInDialogLinkA11yFixDescription",
+              "before": null,
+              "after": "Ensures that screen reader users hear proper context for links in the Glic opt-in dialog.",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kGlicOptInDialogLinkA11yFixName",
+              "before": null,
+              "after": "Glic Opt-in Dialog Link accessibility context fix",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-b167f1091db7477e3fd78ac693e9a95677e2d55a",
+      "source_revision": "b167f1091db7477e3fd78ac693e9a95677e2d55a",
+      "committed_at": "2026-07-21T13:33:03Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b167f1091db7477e3fd78ac693e9a95677e2d55a",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/b167f1091db7477e3fd78ac693e9a95677e2d55a",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "eb69d12de6ebc9762ccc20847230e2fc1ab85bfa475a2fe15de06ce4171b1947",
+          "description_changes": [
+            {
+              "symbol": "kDiceLinkedAccountsDescription",
+              "before": null,
+              "after": "Enables Linked Accounts and DICE version 2 protocol header.",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kDiceLinkedAccountsName",
+              "before": null,
+              "after": "Linked Accounts",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-af53b80a2f4237f6345dddf609ca1504f27c9ca7",
+      "source_revision": "af53b80a2f4237f6345dddf609ca1504f27c9ca7",
+      "committed_at": "2026-07-21T16:47:45Z",
+      "source_url": "https://github.com/chromium/chromium/commit/af53b80a2f4237f6345dddf609ca1504f27c9ca7",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/af53b80a2f4237f6345dddf609ca1504f27c9ca7.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "93e3b27df4f5e6105434da0c877b9aa8947b41639edb3bc7e1b984ea12df32bf",
+          "description_changes": [
+            {
+              "symbol": "kIsolatedWebAppInlineUpdateDescription",
+              "before": null,
+              "after": "Enables the inline manual update flow for Isolated Web Apps in Settings.",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kIsolatedWebAppInlineUpdateName",
+              "before": null,
+              "after": "Isolated Web App Inline Update",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-c728c7fa6da65842ed6c72803fa4fc18173c1c89",
+      "source_revision": "c728c7fa6da65842ed6c72803fa4fc18173c1c89",
+      "committed_at": "2026-07-21T17:23:55Z",
+      "source_url": "https://github.com/chromium/chromium/commit/c728c7fa6da65842ed6c72803fa4fc18173c1c89",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/c728c7fa6da65842ed6c72803fa4fc18173c1c89.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "04785f56d92bfb64e3db9665ffce9355224b718cbdcdf38c8b40d0f3d44b46e8",
+          "description_changes": [
+            {
+              "symbol": "kCCTAuthTabDisableAllExternalIntentsDescription",
+              "before": "Disables all external intents in Auth Tab",
+              "after": null,
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kCCTAuthTabDisableAllExternalIntentsName",
+              "before": "Disable all external intents in Auth Tab",
+              "after": null,
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-d4e9d1e3378384ff7efedf0bed0953d5730c7ff0",
+      "source_revision": "d4e9d1e3378384ff7efedf0bed0953d5730c7ff0",
+      "committed_at": "2026-07-21T19:14:27Z",
+      "source_url": "https://github.com/chromium/chromium/commit/d4e9d1e3378384ff7efedf0bed0953d5730c7ff0",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/d4e9d1e3378384ff7efedf0bed0953d5730c7ff0",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "02a3218bd32a81a338a284bb21a391d461f2246fab70839c9373d685c75e8ca9",
+          "description_changes": [
+            {
+              "symbol": "kWebUiOmniboxAskGAboutThisPageDescription",
+              "before": null,
+              "after": "If enabled, the 'Ask Google about this page' action will route to cobrowse.",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kWebUiOmniboxAskGAboutThisPageName",
+              "before": null,
+              "after": "WebUI Omnibox Ask G About This Page",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-ee39aa9a00591d3434e7e72db2718757625fe7ac",
+      "source_revision": "ee39aa9a00591d3434e7e72db2718757625fe7ac",
+      "committed_at": "2026-07-21T21:33:40Z",
+      "source_url": "https://github.com/chromium/chromium/commit/ee39aa9a00591d3434e7e72db2718757625fe7ac",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/ee39aa9a00591d3434e7e72db2718757625fe7ac.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "d8e4888e71fb4d0560dd28afacdca73f9f56a08f56ed06c509231786a400ce43",
+          "description_changes": [
+            {
+              "symbol": "kAndroidDesktopZoomScalingDescription",
+              "before": "When enabled, this feature will scale the Desktop Android web content up by some percentage, transparent to the user.",
+              "after": null,
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kAndroidDesktopZoomScalingName",
+              "before": "Android Desktop Zoom Scaling",
+              "after": null,
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-b2795784417a8bb86a287f9b918fb95cdc614092",
+      "source_revision": "b2795784417a8bb86a287f9b918fb95cdc614092",
+      "committed_at": "2026-07-21T23:09:58Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b2795784417a8bb86a287f9b918fb95cdc614092",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/b2795784417a8bb86a287f9b918fb95cdc614092.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "c6219fbdd76dc518e5e8d99de0f8ff71b7a8480604138b2f46bc9e0134dac5fc",
+          "description_changes": [
+            {
+              "symbol": "kChromeNativeUrlOverridingDescription",
+              "before": null,
+              "after": "Allows for URL overriding for chrome-native:// pages",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            },
+            {
+              "symbol": "kChromeNativeUrlOverridingName",
+              "before": null,
+              "after": "Chrome Native Url Overriding",
+              "flag_id": null,
+              "mapping_status": "not_established"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    }
+  ],
+  "limitations": [
+    "Source-only evidence. No installed build or product rollout inference.",
+    "Header symbol-to-flag mapping remains unknown unless independently established."
+  ]
+}

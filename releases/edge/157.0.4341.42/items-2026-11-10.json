@@ -1,0 +1,159 @@
+{
+  "browser": "edge",
+  "items": [
+    {
+      "item_id": "edge-mobile-157-general-maintenance",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "Android",
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "일반 버그·성능 수정 및 Chromium 보안 반영",
+      "item_type": "security_and_fix",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "excluded",
+      "selection_reason": "일반 유지보수·보안 갱신"
+    },
+    {
+      "item_id": "edge-mobile-157-intune-sdk-22-1-1",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "Intune SDK 22.1.1 갱신",
+      "item_type": "maintenance",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "excluded",
+      "selection_reason": "일반 유지보수·보안 갱신"
+    },
+    {
+      "item_id": "edge-mobile-157-oneauth-sdk-12-0-1",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "Android",
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "OneAuth SDK 12.0.1 갱신",
+      "item_type": "maintenance",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "excluded",
+      "selection_reason": "일반 유지보수·보안 갱신"
+    },
+    {
+      "item_id": "edge-mobile-157-entra-passkey-sync",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "Android",
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "Entra ID 사용자의 패스키 동기화 Stable 확대",
+      "item_type": "channel_expansion",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "selected",
+      "selection_reason": "Stable 채널 확대"
+    },
+    {
+      "item_id": "edge-mobile-157-work-signin-entry-fix",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "업무 계정 로그인 진입점의 로그인 실패 수정",
+      "item_type": "fix",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "watch",
+      "selection_reason": "기업 환경의 특정 수정·관리 항목, 선행 Beta와 중복되는 변경; 상세 분석은 범위·재현 확보 후 재검토"
+    },
+    {
+      "item_id": "edge-mobile-157-signout-background-fix",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "로그아웃할 때 Edge가 백그라운드로 전환되는 문제 수정",
+      "item_type": "fix",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "watch",
+      "selection_reason": "기업 환경의 특정 수정·관리 항목, 선행 Beta와 중복되는 변경; 상세 분석은 범위·재현 확보 후 재검토"
+    },
+    {
+      "item_id": "edge-mobile-157-organization-link-warning-fix",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "Android"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "링크 열기 중 조직 금지 메시지가 반복되는 문제 수정",
+      "item_type": "fix",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "watch",
+      "selection_reason": "기업 환경의 특정 수정·관리 항목, 선행 Beta와 중복되는 변경; 상세 분석은 범위·재현 확보 후 재검토"
+    },
+    {
+      "item_id": "edge-mobile-157-pac-download",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "PAC 프록시 환경 파일 다운로드 개선",
+      "item_type": "fix",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "watch",
+      "selection_reason": "기업 환경의 특정 수정·관리 항목, 선행 Beta와 중복되는 변경; 상세 분석은 범위·재현 확보 후 재검토"
+    },
+    {
+      "item_id": "edge-mobile-157-mam-tunnel-auth",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "인증 토큰 만료 시 대화형 인증으로 MAM Tunnel 연결 개선",
+      "item_type": "fix",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "watch",
+      "selection_reason": "기업 환경의 특정 수정·관리 항목, 선행 Beta와 중복되는 변경; 상세 분석은 범위·재현 확보 후 재검토"
+    },
+    {
+      "item_id": "edge-mobile-157-mam-compliance-action",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "channel": "stable",
+      "platform": [
+        "Android",
+        "iOS"
+      ],
+      "announced_at": "2026-11-09",
+      "summary": "efb-internals Actions에 Intune MAM 규정 준수 교정 작업 추가",
+      "item_type": "admin_feature",
+      "source_url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "selection_status": "watch",
+      "selection_reason": "기업 환경의 특정 수정·관리 항목, 선행 Beta와 중복되는 변경; 상세 분석은 범위·재현 확보 후 재검토"
+    }
+  ]
+}
