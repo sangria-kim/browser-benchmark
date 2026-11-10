@@ -54,3 +54,17 @@
 - [1.99.55 · items-observed-2026-11-06](1.99.55/items-observed-2026-11-06.json)
 
 - [공식 기능 참고 자료](feature-references.json)
+
+- [1.99.56 공식 기능 근거](1.99.56/items.json)
+
+- [1.101.39 공식 기능 근거](1.101.39/items.json)
+
+- [1.101.42 공식 기능 근거](1.101.42/items.json)
+
+- [1.99.55 공식 기능 근거](1.99.55/android-feature-references.json)
+
+- [1.101.41 공식 기능 근거](1.101.41/items.json)
+
+- [1.101.40 공식 기능 근거](1.101.40/items.json)
+
+- [1.100.52 공식 기능 근거](1.100.52/items.json)

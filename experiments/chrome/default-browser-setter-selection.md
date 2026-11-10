@@ -15,3 +15,13 @@
 [공식 diff](https://chromium.googlesource.com/chromium/src/+/b15c57b8d29d899032cc36c0de9cfde74aaf1512^!) · [전체 소스 색인](monthly/2026-11-source-index-2026-11-07.json) · [사건](../../data/events/chrome-annotated-default-browser-setter-20261106.json) · [기능 이력](../../features/chrome/default-browser-setter-selection.md)
 
 검증: 직전 성공 snapshot부터 현재 3개 경로 patch를 순차 재생하여 공식 종료 snapshot과 byte-identical임을 확인. 관련 setter·unit test 소스 검토 완료. 빌드·단위 테스트 실행·설치본·한국 지원·실기 검증은 하지 않았다.
+
+## 2026-11-10 소스 변경
+
+- 2026-11-10T19:00:10Z · [cc2e28d87f63](https://github.com/chromium/chromium/commit/cc2e28d87f63d1ebe988ad265b8066b5757f1bc6)
+  - 기본 브라우저 설정의 시각 안내 옵션을 Windows 11로 명시하고, 지원하지 않는 OS에서 shell integration 방식으로 돌아가도록 소스 guard를 통일합니다. 기존 실험의 조건 보완이며 새 출시가 아닙니다.
+  - 판정: watch. Windows 11 안내와 다른 OS의 대체 흐름을 동일 조건으로 확인하면 재검토합니다.
+
+소스 플랫폼: Windows; 실제 제품·설치본 지원 범위는 별도 확인이 필요합니다. 한국 제공·한국어 지원은 미확인, 실기 검증은 미실행입니다.
+
+[관련 소스 사건](monthly/2026-11-source-index-2026-11-11.json) · [실험 색인](README.md)

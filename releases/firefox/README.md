@@ -19,3 +19,11 @@
 - [공식 기능 참고 자료](feature-references.json)
 
 - [160 · render-blocking 실험](../../features/firefox/render-blocking.md) · 기본 비활성 pref, watch. Stable 지원 확인이 아닙니다.
+
+- [160.0 Stable](160.0/README.md) · 2026-11-10 Release 제공 안내.
+
+- [160.0-android Stable](160.0-android/README.md) · 2026-11-10 Release 제공 안내.
+
+- [160.0-android 공식 기능 근거](160.0-android/items.json)
+
+- [160.0 공식 기능 근거](160.0/items.json)

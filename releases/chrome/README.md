@@ -89,3 +89,9 @@
 
 - [157 보안·수정](157.0.8103.50/items-2026-11-10.json) · [156 Extended Stable](156.0.8078.96/items-2026-11-10.json)
 - 공식 계획: [156 iOS stage](156/planned-items-2026-11-10.json), [159](159/planned-items-2026-11-10.json), [160](160/planned-items-2026-11-10.json). 실제 출시 확인과 구분합니다.
+
+- [157.0.8103.50 공식 기능 근거](157.0.8103.50/release-reference.json)
+
+- [158.0.8127.24 공식 기능 근거](158.0.8127.24/release-reference.json)
+
+- [158.0.8127.32 공식 기능 근거](158.0.8127.32/release-reference.json)

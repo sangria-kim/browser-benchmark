@@ -988,3 +988,27 @@
 - [your-saved-info-settings-page-ios](your-saved-info-settings-page-ios.md)
 
 추가 소스 근거: [7월 설명 변경](monthly/2026-07-source-changes-2026-11-10.json) · [8월 metadata 변경](monthly/2026-08-source-changes-2026-11-10.json). 날짜는 commit 날짜이며 신규 출시일이 아닙니다.
+
+## 2026-11-10 소스 변경
+
+[등록·설명·옵션·만료 변경 근거](monthly/2026-11-source-index-2026-11-11.json). 실제 제품 출시와 구분합니다.
+
+- [android-unified-keyboard-shortcuts](android-unified-keyboard-shortcuts.md)
+- [api-contextual-tasks-private-aba](api-contextual-tasks-private-aba.md)
+- [autofill-ambient-autofill](autofill-ambient-autofill.md)
+- [cast-streaming-exponential-video-bitrate-algorithm](cast-streaming-exponential-video-bitrate-algorithm.md)
+- [default-browser-changed-os-notification](default-browser-changed-os-notification.md)
+- [default-browser-prompt-surfaces](default-browser-prompt-surfaces.md)
+- [default-browser-setter-selection](default-browser-setter-selection.md)
+- [desktop-android-file-picker-for-media](desktop-android-file-picker-for-media.md)
+- [enable-android-enterprise-screenshot-protection](enable-android-enterprise-screenshot-protection.md)
+- [geic-actuation](geic-actuation.md)
+- [geic-fre](geic-fre.md)
+- [mac-catap-loopback-audio-for-cast](mac-catap-loopback-audio-for-cast.md)
+- [prerender-activation-by-form-submission](prerender-activation-by-form-submission.md)
+- [safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest](safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest.md)
+- [send-tab-to-self-no-target-device-qr-code](send-tab-to-self-no-target-device-qr-code.md)
+- [settings-ia-reorganization](settings-ia-reorganization.md)
+- [symphonia-audio-decoding](symphonia-audio-decoding.md)
+- [tab-android-graceful-shutdown](tab-android-graceful-shutdown.md)
+- [tab-group-ribbon](tab-group-ribbon.md)

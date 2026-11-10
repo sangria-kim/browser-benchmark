@@ -131,3 +131,21 @@
 | [whale-desktop-webapp-multimonitor-5-41-429-3-20261106](whale-desktop-webapp-multimonitor-5-41-429-3-20261106.json) | selected / P2 | [whale-webapp-multimonitor](../../features/whale/webapp-multimonitor.md) |
 
 - [Edge Entra Mobile Stable 157 확대](edge-entra-passkey-sync-mobile-stable-157-20261109.json) · selected / P1.
+
+- [firefox-mini-window-stable-160-20261110](firefox-mini-window-stable-160-20261110.json) · selected / P2.
+
+- [firefox-local-network-permissions-stable-160-20261110](firefox-local-network-permissions-stable-160-20261110.json) · selected / P1.
+
+- [firefox-protocol-handler-never-allow-stable-160-20261110](firefox-protocol-handler-never-allow-stable-160-20261110.json) · selected / P1.
+
+- [firefox-pdf-mathml-accessibility-stable-160-20261110](firefox-pdf-mathml-accessibility-stable-160-20261110.json) · selected / P2.
+
+- [firefox-on-device-speech-recognition-stable-160-20261110](firefox-on-device-speech-recognition-stable-160-20261110.json) · selected / P1.
+
+- [firefox-pip-playback-speed-stable-160-20261110](firefox-pip-playback-speed-stable-160-20261110.json) · selected / P2.
+
+- [edge-contextual-product-comparison-rollout-20261109](edge-contextual-product-comparison-rollout-20261109.json) · selected / P2.
+
+- [edge-checkout-savings-rollout-20261109](edge-checkout-savings-rollout-20261109.json) · pending_verification / 미지정.
+
+- [whale-macos-13-minimum-support-announcement-20261110](whale-macos-13-minimum-support-announcement-20261110.json) · watch / 미지정.
