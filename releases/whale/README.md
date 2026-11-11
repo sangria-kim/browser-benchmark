@@ -13,3 +13,5 @@
 - [5.41.429.3 · items-desktop-assessment-2026-11-07](5.41.429.3/items-desktop-assessment-2026-11-07.json)
 
 - [공식 기능 참고 자료](feature-references.json)
+
+- [5.41.429.5 공식 기능 근거](5.41.429.5/items-2026-11-11.json)

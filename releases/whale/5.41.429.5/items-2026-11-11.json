@@ -1,0 +1,44 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.5",
+  "channel": "stable/beta",
+  "items": [
+    {
+      "item_id": "whale-5414295-macos13",
+      "browser": "whale",
+      "version": "5.41.429.5",
+      "channel": "stable",
+      "announced_at": "2026-11-11",
+      "summary": "macOS13 이상·macOS12 마지막 버전5.39 명시",
+      "item_type": "support_scope_change",
+      "selection_status": "selected",
+      "selection_reason": "이전 시행 버전 미공개 예고와 달리 5.41.429.5 노트가 지원 경계를 명시했고, 운영팀은 지원 종료 OS의 잘못된 자동 업데이트와 이전 버전 재설치를 안내한다. 업데이트 지속·실행 복구라는 구체적인 사용자 과제가 확인돼 상세 분석한다. 전체 장치 적용과 오류 발생일은 주장하지 않는다.",
+      "source_url": "https://notice.naver.com/notices/whalehomepage/35247"
+    },
+    {
+      "item_id": "whale-5414295-security",
+      "browser": "whale",
+      "version": "5.41.429.5",
+      "channel": "stable",
+      "announced_at": "2026-11-11",
+      "summary": "Chromium 보안 패치",
+      "item_type": "security",
+      "selection_status": "excluded",
+      "selection_reason": "일반 보안 갱신",
+      "source_url": "https://notice.naver.com/notices/whalehomepage/35247"
+    },
+    {
+      "item_id": "whale-5414295-incognito-dark-fix",
+      "browser": "whale",
+      "version": "5.41.429.5",
+      "channel": "stable",
+      "announced_at": "2026-11-11",
+      "summary": "시크릿 창 다크 모드 표시 수정",
+      "item_type": "fix",
+      "selection_status": "excluded",
+      "selection_reason": "시각적 표시 수정, 보안 격리 변경 아님",
+      "source_url": "https://notice.naver.com/notices/whalehomepage/35247"
+    }
+  ],
+  "source_notes": "기존 동일 URL의 5.41.429.3 대비 추가 항목만 기재. 반복된 기능을 신규 출시로 표시하지 않음."
+}

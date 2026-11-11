@@ -18,3 +18,5 @@
 - [2026-11-08 — Edge Performance detector 종료 계획](../2026-11-08.md) · `edge-performance-detector-retirement-plan-164-20261106`. 예고 1건, 실기 미실행.
 
 - [2026-11-11 — Firefox 160 Stable 확대 · Edge 상품 비교 제안](../2026-11-11.md) · 같은 사건의 중복 노출은 한 번만 집계.
+
+- [2026-11-12 · Firefox 161 Beta · Whale 지원 경계와 복구](../2026-11-12.md) · 업무별 중복 노출은 같은 사건으로 집계.

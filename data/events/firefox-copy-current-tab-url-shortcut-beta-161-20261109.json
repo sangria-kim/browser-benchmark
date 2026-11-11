@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "event_id": "firefox-copy-current-tab-url-shortcut-beta-161-20261109",
+  "feature_id": "firefox-copy-current-tab-url-shortcut",
+  "browser": "firefox",
+  "event_type": "beta_feature_change",
+  "version": "161.0beta",
+  "channel": "beta",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korean_language_detail": "한국어 URL의 존재만으로 기능의 한국어 지원을 단정하지 않음.",
+    "korea_effective_at": null,
+    "device_test": "미실행",
+    "conditions": "Beta 안내이며 정식 출시 보장 없음. 반복 공유 작업의 주소창 선택 단계를 줄일 수 있다. 단축키를 직접 지정해야 한다.",
+    "date_caveat": "11월9일은161 Beta 최초 제공일이다. 수시 갱신되는 개별 항목의 최초 발표·활성화일은 미확인."
+  },
+  "observed_at": "2026-11-11T22:36:10.391458+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/#note-792450",
+      "section": "현재 탭 URL 복사용 사용자 지정 단축키 추가. 기본 키는 미지정.",
+      "observed_at": "2026-11-11T22:36:10.391458+00:00",
+      "sha256": "4394c885fb8318fcb1ac4aef979b0d8ab76953dedec94f42f5e7e7cdd95bcd03"
+    }
+  ],
+  "summary": "현재 탭 URL 복사 단축키의 Beta 도입",
+  "delta": "반복 공유 작업의 주소창 선택 단계를 줄일 수 있다. 단축키를 직접 지정해야 한다.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "반복 공유 작업의 주소창 선택 단계를 줄일 수 있다. 단축키를 직접 지정해야 한다. 구체적인 동일 조건 비교 과제를 정의할 수 있어 Beta 관찰 사건으로 선정.",
+  "priority": "P2",
+  "priority_reason": "특정 입력·공유·전환 작업의 개선을 탐색적으로 비교.",
+  "comparison_question": "삼성 브라우저에서 현재 URL을 키보드만으로 복사할 때 단계와 충돌 방지는 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Beta 설치본 노출·동일 시험 조건 확보 또는 Stable 확대",
+  "assessed_at": "2026-11-11T22:38:45.023058+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "benchmark_candidate": {
+    "task": "현재 탭 URL 복사 단축키의 Beta 도입",
+    "conditions": "승인된 테스트 프로필·합성 데이터·동일 OS와 기기·언어·계정 조건. 비교 브라우저의 기능 존재는 먼저 확인. 권한·확장 설치·외부 문서 변경은 별도 승인된 시험 환경에서만 실행.",
+    "steps": [
+      "기본 키가 미지정인지 확인",
+      "사용자 키 지정 후 여러 탭에서 URL 복사",
+      "입력란 포커스·예약 키 충돌·설정 해제 뒤 동작 비교"
+    ],
+    "metrics": [
+      "조작 수",
+      "잘못 복사한 URL 수",
+      "단축키 충돌"
+    ],
+    "completion": "각 흐름 3회 재현하고 성공·실패·제약을 기록. 아직 미실행.",
+    "executed": false
+  },
+  "source_release_first_offered_at": "2026-11-09"
+}
