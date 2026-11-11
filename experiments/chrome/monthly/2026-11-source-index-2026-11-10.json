@@ -1,0 +1,892 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-09T22:49:32.574934+00:00",
+  "scope": "Chromium source registrations, removals, options and descriptions; not product releases.",
+  "events": [
+    {
+      "event_id": "chrome-source-5a4c3f9d3f0cc32be459557e7a0835f5b6a83472",
+      "source_revision": "5a4c3f9d3f0cc32be459557e7a0835f5b6a83472",
+      "committed_at": "2026-11-09T09:44:43Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/5a4c3f9d3f0cc32be459557e7a0835f5b6a83472",
+      "title": "[HoT][Bling] Clean up after launch - feature flag removal",
+      "summary": "iOS 자동완성·비밀번호 설정 개편의 your-saved-info-settings-page-ios flag와 guard를 출시 후 정리합니다. commit은 이미 출시된 기능이라고 설명하며 정확한 최초 배포일·한국 제공을 새로 입증하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "iOS 자동완성·비밀번호 설정 개편의 your-saved-info-settings-page-ios flag와 guard를 출시 후 정리합니다. commit은 이미 출시된 기능이라고 설명하며 정확한 최초 배포일·한국 제공을 새로 입증하지 않습니다.",
+      "revisit_trigger": "새 설정 사용자 흐름이나 지역 확대가 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "iOS"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/5a4c3f9d3f0cc32be459557e7a0835f5b6a83472",
+          "patch_sha256": "1b517877b19d057ff9e2cc65b602e7c0b561dca9c80e8ef2acff3d9369c5ff45",
+          "metadata_changes": [
+            {
+              "flag_id": "your-saved-info-settings-page-ios",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "your-saved-info-settings-page-ios"
+      ],
+      "platform_evidence": "The same official commit removes the matching flags_ui::kOsIos entry in ios/chrome/browser/flags/about_flags.mm."
+    },
+    {
+      "event_id": "chrome-source-84c5a918ba80c212e52a19eea41db53cad8ef6a2",
+      "source_revision": "84c5a918ba80c212e52a19eea41db53cad8ef6a2",
+      "committed_at": "2026-11-09T12:54:12Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/84c5a918ba80c212e52a19eea41db53cad8ef6a2",
+      "title": "[History] Adding feature flag for history glow up",
+      "summary": "방문 기록 페이지의 시각적 개편을 위한 history-page-refresh flag를 Desktop에 등록합니다. 소스 기본값은 비활성이며 (DesktopGlowUp 또는 WebuiRefresh2026)와 HistoryPageRefresh가 함께 켜져야 합니다. 구체적인 화면·배포 버전·효과는 이 등록으로 확인되지 않습니다.",
+      "selection_status": "watch",
+      "selection_reason": "방문 기록 페이지의 시각적 개편을 위한 history-page-refresh flag를 Desktop에 등록합니다. 소스 기본값은 비활성이며 (DesktopGlowUp 또는 WebuiRefresh2026)와 HistoryPageRefresh가 함께 켜져야 합니다. 구체적인 화면·배포 버전·효과는 이 등록으로 확인되지 않습니다.",
+      "revisit_trigger": "새 화면과 실제 탐색·재방문 과제 변화가 확인되면 비교합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://github.com/chromium/chromium/commit/84c5a918ba80c212e52a19eea41db53cad8ef6a2.diff",
+          "patch_sha256": "5cbf3aaab372bd15506866f2c1bd082a864f5ed61ad1b3c44b2d43b19cd50041",
+          "direct_entry_changes": [
+            {
+              "flag_id": "history-page-refresh",
+              "action": "added",
+              "source_os_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kHistoryPageRefresh"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/84c5a918ba80c212e52a19eea41db53cad8ef6a2.diff",
+          "patch_sha256": "e041cd8a8aa080b2f2a8ffadf75ade5b081c02a64a948b14ece64ef2735ce5d7",
+          "metadata_changes": [
+            {
+              "flag_id": "history-page-refresh",
+              "before_expiry": null,
+              "after_expiry": 165,
+              "action": "added"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://github.com/chromium/chromium/commit/84c5a918ba80c212e52a19eea41db53cad8ef6a2.diff",
+          "patch_sha256": "a59c35e44a8573d0aa9654bc999410c3a8aa8c122f2986d857bdbc01d8a2e769",
+          "description_changes": [
+            {
+              "symbol": "kHistoryPageRefreshDescription",
+              "before": null,
+              "after": "Enables a visual refresh on the chrome://history page on Desktop.",
+              "flag_id": "history-page-refresh",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kHistoryPageRefreshName",
+              "before": null,
+              "after": "History Page Refresh",
+              "flag_id": "history-page-refresh",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "history-page-refresh"
+      ]
+    },
+    {
+      "event_id": "chrome-source-edd45d5ad919368b5fc8d4ea99bca2ffca7046ff",
+      "source_revision": "edd45d5ad919368b5fc8d4ea99bca2ffca7046ff",
+      "committed_at": "2026-11-09T15:28:10Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/edd45d5ad919368b5fc8d4ea99bca2ffca7046ff",
+      "title": "Add kAutofillReshowSavePromptOnTabReturn feature flag",
+      "summary": "iOS에서 다른 탭이나 외부 안내 링크를 본 뒤 원래 탭으로 돌아오면 보류 중인 Autofill AI 저장·카드 저장 안내를 다시 표시하려는 기본 비활성 flag를 등록합니다. 이 commit은 flag·설명·시험 설정이며 실제 동작 구현·설치본 노출·배포는 별도 확인이 필요합니다.",
+      "selection_status": "watch",
+      "selection_reason": "iOS에서 다른 탭이나 외부 안내 링크를 본 뒤 원래 탭으로 돌아오면 보류 중인 Autofill AI 저장·카드 저장 안내를 다시 표시하려는 기본 비활성 flag를 등록합니다. 이 commit은 flag·설명·시험 설정이며 실제 동작 구현·설치본 노출·배포는 별도 확인이 필요합니다.",
+      "revisit_trigger": "실제 구현과 시험 가능한 빌드가 확인되면 중단 후 저장 흐름을 비교합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "iOS"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": true,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/edd45d5ad919368b5fc8d4ea99bca2ffca7046ff.diff",
+          "patch_sha256": "35ff6effa60a9971d97a5b452dd7e5aa79eaf1b66cb0384bfe13abee635cc1f4",
+          "metadata_changes": [
+            {
+              "flag_id": "autofill-reshow-save-prompt-on-tab-return",
+              "before_expiry": null,
+              "after_expiry": 165,
+              "action": "added"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "autofill-reshow-save-prompt-on-tab-return"
+      ],
+      "related_feature_ids": [
+        "kAutofillReshowSavePromptOnTabReturn"
+      ],
+      "platform_evidence": "ios/chrome/browser/flags/about_flags.mm uses flags_ui::kOsIos in the same official commit."
+    },
+    {
+      "event_id": "chrome-source-2142731c7936302d6d030973584b673e0340264e",
+      "source_revision": "2142731c7936302d6d030973584b673e0340264e",
+      "committed_at": "2026-11-09T15:41:26Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/2142731c7936302d6d030973584b673e0340264e",
+      "title": "[iOS] Remove kIdentityAwareness feature flag",
+      "summary": "iOS overflow 메뉴의 로그인·계정 버튼 관련 identity-awareness flag와 guard를 제거합니다. 공식 commit은 100% 기본 출시 상태라고 설명합니다. 이번 commit 날짜를 최초 출시일로 보거나 계정 버튼 삭제로 해석하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "iOS overflow 메뉴의 로그인·계정 버튼 관련 identity-awareness flag와 guard를 제거합니다. 공식 commit은 100% 기본 출시 상태라고 설명합니다. 이번 commit 날짜를 최초 출시일로 보거나 계정 버튼 삭제로 해석하지 않습니다.",
+      "revisit_trigger": "계정 진입 흐름이나 지원 범위에 새로운 변화가 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "iOS"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/2142731c7936302d6d030973584b673e0340264e",
+          "patch_sha256": "68bd36b1ee0f6a9c6d69cbdafae671c3c76deab053339e7944221b9a03092827",
+          "metadata_changes": [
+            {
+              "flag_id": "identity-awareness",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "identity-awareness"
+      ],
+      "platform_evidence": "The same official commit removes the matching flags_ui::kOsIos entry in ios/chrome/browser/flags/about_flags.mm."
+    },
+    {
+      "event_id": "chrome-source-19a89b3745125a62a5839ec7fcce34ab40229b7a",
+      "source_revision": "19a89b3745125a62a5839ec7fcce34ab40229b7a",
+      "committed_at": "2026-11-09T18:06:12Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/19a89b3745125a62a5839ec7fcce34ab40229b7a",
+      "title": "[iOS] Add kEphemeralBottomSheet feature flag",
+      "summary": "iOS ephemeral-bottom-sheet를 기본 비활성 flag로 등록합니다. source helper는 AimCobrowse와 해당 flag를 함께 확인합니다. 설명이 포괄적이라 구체적 사용자 과제나 동작을 아직 단정할 수 없습니다.",
+      "selection_status": "pending_verification",
+      "selection_reason": "iOS ephemeral-bottom-sheet를 기본 비활성 flag로 등록합니다. source helper는 AimCobrowse와 해당 flag를 함께 확인합니다. 설명이 포괄적이라 구체적 사용자 과제나 동작을 아직 단정할 수 없습니다.",
+      "revisit_trigger": "구체적인 UI·동작·제공 조건을 설명하는 공식 근거가 필요합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "iOS"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/19a89b3745125a62a5839ec7fcce34ab40229b7a",
+          "patch_sha256": "6a40af7eaa8e90a07f7d0f2c60b9032622eadb13a1c57ed9cb760c5e941fbc06",
+          "metadata_changes": [
+            {
+              "flag_id": "ephemeral-bottom-sheet",
+              "before_expiry": null,
+              "after_expiry": 164,
+              "action": "added"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "ephemeral-bottom-sheet"
+      ],
+      "related_feature_ids": [
+        "kEphemeralBottomSheet"
+      ],
+      "platform_evidence": "ios/chrome/browser/flags/about_flags.mm uses flags_ui::kOsIos in the same official commit."
+    },
+    {
+      "event_id": "chrome-source-2bf5e7bda0748ae80c4d0f6a300599a9ae289512",
+      "source_revision": "2bf5e7bda0748ae80c4d0f6a300599a9ae289512",
+      "committed_at": "2026-11-09T20:44:07Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/2bf5e7bda0748ae80c4d0f6a300599a9ae289512",
+      "title": "[TabbeCct] Rename feature flags",
+      "summary": "Android Custom Tabs 실험 flag 두 개의 이름과 설명을 바꿉니다. Chrome 주도 실험은 tabbed-cct-if-allowed-by-embedder, embedder 주도 실험은 tabbed-cct-if-enabled-by-embedder로 이어집니다. 이름 변경을 새 사용자 기능 도입으로 세지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "Android Custom Tabs 실험 flag 두 개의 이름과 설명을 바꿉니다. Chrome 주도 실험은 tabbed-cct-if-allowed-by-embedder, embedder 주도 실험은 tabbed-cct-if-enabled-by-embedder로 이어집니다. 이름 변경을 새 사용자 기능 도입으로 세지 않습니다.",
+      "revisit_trigger": "호출 앱 조건 또는 설치본 동작이 실질적으로 바뀐 공식 근거를 확인할 때 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/2bf5e7bda0748ae80c4d0f6a300599a9ae289512",
+          "patch_sha256": "02b9ea4099294b40205207f543398e165af207da6a9be1a18247edadd73fdbf6",
+          "direct_entry_changes": [
+            {
+              "flag_id": "cct-tab-switcher-enabled-for-chrome-experiment",
+              "action": "removed",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kCCTTabSwitcherEnabledForChromeExperiment"
+              ]
+            },
+            {
+              "flag_id": "cct-tab-switcher-enabled-for-embedder-experiment",
+              "action": "removed",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kCCTTabSwitcherEnabledForEmbedderExperiment"
+              ]
+            },
+            {
+              "flag_id": "tabbed-cct-if-allowed-by-embedder",
+              "action": "added",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kTabbedCctIfAllowedByEmbedder"
+              ]
+            },
+            {
+              "flag_id": "tabbed-cct-if-enabled-by-embedder",
+              "action": "added",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kTabbedCctIfEnabledByEmbedder"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/2bf5e7bda0748ae80c4d0f6a300599a9ae289512",
+          "patch_sha256": "e3cdfa0b187cc54e06ea065f24a684654dd0aacdc5914ee15181e3eb0d4c9cc0",
+          "metadata_changes": [
+            {
+              "flag_id": "cct-tab-switcher-enabled-for-chrome-experiment",
+              "before_expiry": 180,
+              "after_expiry": null,
+              "action": "removed"
+            },
+            {
+              "flag_id": "cct-tab-switcher-enabled-for-embedder-experiment",
+              "before_expiry": 180,
+              "after_expiry": null,
+              "action": "removed"
+            },
+            {
+              "flag_id": "tabbed-cct-if-allowed-by-embedder",
+              "before_expiry": null,
+              "after_expiry": 180,
+              "action": "added"
+            },
+            {
+              "flag_id": "tabbed-cct-if-enabled-by-embedder",
+              "before_expiry": null,
+              "after_expiry": 180,
+              "action": "added"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/2bf5e7bda0748ae80c4d0f6a300599a9ae289512",
+          "patch_sha256": "61e2851eb762a2ba9cd5775c468f808e5875b67c834d02e53db77f1e674d91cd",
+          "description_changes": [
+            {
+              "symbol": "kCCTTabSwitcherEnabledForChromeExperimentDescription",
+              "before": "Enable the Custom Tabs tab switcher for Chrome-initiated experiments.",
+              "after": null,
+              "flag_id": "cct-tab-switcher-enabled-for-chrome-experiment",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kCCTTabSwitcherEnabledForChromeExperimentName",
+              "before": "CCT Tab Switcher Enabled For Chrome Experiment",
+              "after": null,
+              "flag_id": "cct-tab-switcher-enabled-for-chrome-experiment",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kCCTTabSwitcherEnabledForEmbedderExperimentDescription",
+              "before": "Enable the Custom Tabs tab switcher when enabled for embedder experiments.",
+              "after": null,
+              "flag_id": "cct-tab-switcher-enabled-for-embedder-experiment",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kCCTTabSwitcherEnabledForEmbedderExperimentName",
+              "before": "CCT Tab Switcher Enabled For Embedder Experiment",
+              "after": null,
+              "flag_id": "cct-tab-switcher-enabled-for-embedder-experiment",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kTabbedCctIfAllowedByEmbedderDescription",
+              "before": null,
+              "after": "Enable Tabbed CCT for Chrome-driven experiments.",
+              "flag_id": "tabbed-cct-if-allowed-by-embedder",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kTabbedCctIfAllowedByEmbedderName",
+              "before": null,
+              "after": "Tabbed CCT if allowed by Embedder",
+              "flag_id": "tabbed-cct-if-allowed-by-embedder",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kTabbedCctIfEnabledByEmbedderDescription",
+              "before": null,
+              "after": "Enable Tabbed CCT for embedder-driven experiments.",
+              "flag_id": "tabbed-cct-if-enabled-by-embedder",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kTabbedCctIfEnabledByEmbedderName",
+              "before": null,
+              "after": "Tabbed CCT if enabled by Embedder",
+              "flag_id": "tabbed-cct-if-enabled-by-embedder",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "cct-tab-switcher-enabled-for-chrome-experiment",
+        "cct-tab-switcher-enabled-for-embedder-experiment",
+        "tabbed-cct-if-allowed-by-embedder",
+        "tabbed-cct-if-enabled-by-embedder"
+      ]
+    },
+    {
+      "event_id": "chrome-source-758f7bb88233116c9f3c969a39c6e4bf7509a1c9",
+      "source_revision": "758f7bb88233116c9f3c969a39c6e4bf7509a1c9",
+      "committed_at": "2026-11-09T20:50:22Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/758f7bb88233116c9f3c969a39c6e4bf7509a1c9",
+      "title": "[RM Line Focus] Remove the line focus flag",
+      "summary": "Reading mode line focus의 flag·설명·metadata와 기능 guard를 정리합니다. 공식 commit은 M156부터 기본 활성이라고 설명합니다. 이번 삭제를 읽기 기능 철회나 새 배포일로 해석하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "Reading mode line focus의 flag·설명·metadata와 기능 guard를 정리합니다. 공식 commit은 M156부터 기본 활성이라고 설명합니다. 이번 삭제를 읽기 기능 철회나 새 배포일로 해석하지 않습니다.",
+      "revisit_trigger": "사용자 동작·배포 범위에 새 변화가 공식적으로 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/758f7bb88233116c9f3c969a39c6e4bf7509a1c9",
+          "patch_sha256": "6b8272edd9e007f61ba9217df030c0b5c36b1f828584cd4023470ed2f0d80c9f",
+          "direct_entry_changes": [
+            {
+              "flag_id": "read-anything-line-focus",
+              "action": "removed",
+              "source_os_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kReadAnythingLineFocus"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/758f7bb88233116c9f3c969a39c6e4bf7509a1c9",
+          "patch_sha256": "891e8cb3c6060c6bb7216607361a24d1bb6ee9101024f54448ca28fd37b0d14e",
+          "metadata_changes": [
+            {
+              "flag_id": "read-anything-line-focus",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/758f7bb88233116c9f3c969a39c6e4bf7509a1c9",
+          "patch_sha256": "d8016882d4404e304ad8c6a67390084bcc563ab681540f9c5870173490c03275",
+          "description_changes": [
+            {
+              "symbol": "kReadAnythingLineFocusDescription",
+              "before": "Enables the experimental line focus mode for Reading mode.",
+              "after": null,
+              "flag_id": "read-anything-line-focus",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kReadAnythingLineFocusName",
+              "before": "Reading Mode Line Focus",
+              "after": null,
+              "flag_id": "read-anything-line-focus",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "read-anything-line-focus"
+      ]
+    },
+    {
+      "event_id": "chrome-source-69a03519802e67112945dcc4c7c88633e17e5845",
+      "source_revision": "69a03519802e67112945dcc4c7c88633e17e5845",
+      "committed_at": "2026-11-09T21:25:52Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/69a03519802e67112945dcc4c7c88633e17e5845",
+      "title": "[SendTabToSelf] Use kCrossDeviceSigninFromDesktopFollowup for QR promo",
+      "summary": "대상 기기가 없는 Send Tab to Self의 QR promo를 CrossDeviceSigninFromDesktopFollowup으로 연결하며 기존 flag를 제거했으나 같은 날 146b65cf에서 되돌렸습니다. 이 일시적 소스 변경은 출시·철회 근거가 아닙니다.",
+      "selection_status": "excluded",
+      "selection_reason": "대상 기기가 없는 Send Tab to Self의 QR promo를 CrossDeviceSigninFromDesktopFollowup으로 연결하며 기존 flag를 제거했으나 같은 날 146b65cf에서 되돌렸습니다. 이 일시적 소스 변경은 출시·철회 근거가 아닙니다.",
+      "revisit_trigger": "후속 확정 구현과 제품 배포 근거가 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/69a03519802e67112945dcc4c7c88633e17e5845",
+          "patch_sha256": "8eb5c01022fe4c1975a07ded216058cf23a94815bab4df19d4fa563bd2fbed0f",
+          "direct_entry_changes": [
+            {
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "action": "removed",
+              "source_os_masks": [
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "related_feature_ids": [
+                "kSendTabToSelfNoTargetDeviceQrCode"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/69a03519802e67112945dcc4c7c88633e17e5845",
+          "patch_sha256": "2d219bc5c1ef8f90a0992bf039254c575e375b8abf6c9bb61881ccf60b4cefa7",
+          "metadata_changes": [
+            {
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "before_expiry": 163,
+              "after_expiry": null,
+              "action": "removed"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/69a03519802e67112945dcc4c7c88633e17e5845",
+          "patch_sha256": "9963ac8c21fa1bdbaa8d68c29defacb9cedc0081dfe4023a23e452a6c38dac8f",
+          "description_changes": [
+            {
+              "symbol": "kSendTabToSelfNoTargetDeviceQrCodeDescription",
+              "before": "Shows a QR code to download and sign in to Chrome on mobile when no target devices are found in Send Tab to Self.",
+              "after": null,
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kSendTabToSelfNoTargetDeviceQrCodeName",
+              "before": "Send Tab to Self No Target Device QR Code",
+              "after": null,
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "send-tab-to-self-no-target-device-qr-code"
+      ]
+    },
+    {
+      "event_id": "chrome-source-146b65cf049e947806e91fa9832b2b0f4f9d4ad4",
+      "source_revision": "146b65cf049e947806e91fa9832b2b0f4f9d4ad4",
+      "committed_at": "2026-11-09T21:43:00Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/146b65cf049e947806e91fa9832b2b0f4f9d4ad4",
+      "title": "Revert \"[SendTabToSelf] Use kCrossDeviceSigninFromDesktopFollowup for QR promo\"",
+      "summary": "앞선 69a03519 변경을 되돌려 send-tab-to-self-no-target-device-qr-code 등록·설명·만료 정보를 복구합니다. 재등록이며 최초 도입이나 새 배포로 세지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "앞선 69a03519 변경을 되돌려 send-tab-to-self-no-target-device-qr-code 등록·설명·만료 정보를 복구합니다. 재등록이며 최초 도입이나 새 배포로 세지 않습니다.",
+      "revisit_trigger": "후속 확정 구현과 제품 배포 근거가 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/146b65cf049e947806e91fa9832b2b0f4f9d4ad4",
+          "patch_sha256": "75895761d92be575103d5b97f3d53517dd3c030676314d3cff09dda16266ba26",
+          "direct_entry_changes": [
+            {
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "action": "added",
+              "source_os_masks": [
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "related_feature_ids": [
+                "kSendTabToSelfNoTargetDeviceQrCode"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/146b65cf049e947806e91fa9832b2b0f4f9d4ad4",
+          "patch_sha256": "069b641247dbc4d19fa9d021afd545d743b2a06859f51527f1b7e98f44835a18",
+          "metadata_changes": [
+            {
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "before_expiry": null,
+              "after_expiry": 163,
+              "action": "added"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/146b65cf049e947806e91fa9832b2b0f4f9d4ad4",
+          "patch_sha256": "f41806f62aebd38f6d6d7feab52ee2b6694d94d01029427d7351fd4ef5911195",
+          "description_changes": [
+            {
+              "symbol": "kSendTabToSelfNoTargetDeviceQrCodeDescription",
+              "before": null,
+              "after": "Shows a QR code to download and sign in to Chrome on mobile when no target devices are found in Send Tab to Self.",
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kSendTabToSelfNoTargetDeviceQrCodeName",
+              "before": null,
+              "after": "Send Tab to Self No Target Device QR Code",
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "send-tab-to-self-no-target-device-qr-code"
+      ],
+      "previous_event_id": "chrome-source-69a03519802e67112945dcc4c7c88633e17e5845"
+    },
+    {
+      "event_id": "chrome-source-96b124d3586a647cdaacd64f6d34fa5cb70d988d",
+      "source_revision": "96b124d3586a647cdaacd64f6d34fa5cb70d988d",
+      "committed_at": "2026-11-09T22:05:41Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/96b124d3586a647cdaacd64f6d34fa5cb70d988d",
+      "title": "[Organizer] Remove segmented control that was abandoned",
+      "summary": "Organizer panel의 segmentation control on/off 옵션을 제거하고 일반 feature 토글로 바꿉니다. 공식 commit은 해당 control이 중단된 설계라고 설명합니다. Organizer 기능 전체 철회나 출시를 뜻하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "Organizer panel의 segmentation control on/off 옵션을 제거하고 일반 feature 토글로 바꿉니다. 공식 commit은 해당 control이 중단된 설계라고 설명합니다. Organizer 기능 전체 철회나 출시를 뜻하지 않습니다.",
+      "revisit_trigger": "실제 Organizer 사용자 흐름 또는 제공 범위 변경이 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/96b124d3586a647cdaacd64f6d34fa5cb70d988d",
+          "patch_sha256": "6509d83eea92a14949eba6aa918a4e77747ebda85b15e2ff0c07c2a921d5c9fe",
+          "direct_entry_changes": [
+            {
+              "flag_id": "organizer-panel",
+              "action": "modified",
+              "source_os_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kOrganizerPanel"
+              ]
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "organizer-panel"
+      ]
+    },
+    {
+      "event_id": "chrome-source-7b480bb69dee2ec6307019f781c0e7dddf262a9f",
+      "source_revision": "7b480bb69dee2ec6307019f781c0e7dddf262a9f",
+      "committed_at": "2026-11-09T22:29:02Z",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "source_url": "https://github.com/chromium/chromium/commit/7b480bb69dee2ec6307019f781c0e7dddf262a9f",
+      "title": "[WebDistiller] Rename components/dom_distiller to web_distiller",
+      "summary": "dom_distiller를 web_distiller로 바꾸는 namespace·컴포넌트 이름 정리입니다. 세 Android 읽기모드 flag ID는 유지됩니다. 이름 정리만으로 사용자 동작 변화나 성능 향상을 주장하지 않습니다.",
+      "selection_status": "excluded",
+      "selection_reason": "dom_distiller를 web_distiller로 바꾸는 namespace·컴포넌트 이름 정리입니다. 세 Android 읽기모드 flag ID는 유지됩니다. 이름 정리만으로 사용자 동작 변화나 성능 향상을 주장하지 않습니다.",
+      "revisit_trigger": "별도 사용자 동작 변화가 확인되면 재검토합니다.",
+      "priority": null,
+      "priority_reason": null,
+      "benchmark_readiness": "unknown",
+      "selection_rule_version": "pm-selection-v2",
+      "verification_status": "source_verified_not_device_tested",
+      "platform": [
+        "Android"
+      ],
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": false,
+      "version": null,
+      "channel": "source-main",
+      "announced_at": null,
+      "effective_at": null,
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/7b480bb69dee2ec6307019f781c0e7dddf262a9f",
+          "patch_sha256": "f5914652bb26033e2b6b2eef19c4834565cde7fd8ed915aa5682b6f543a51bd8",
+          "direct_entry_changes": [
+            {
+              "flag_id": "reader-mode-blur-transition-animation",
+              "action": "modified",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kReaderModeBlurTransitionAnimation"
+              ]
+            },
+            {
+              "flag_id": "reader-mode-delay-bottomsheet-peek",
+              "action": "modified",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kReaderModeDelayBottomSheetPeek"
+              ]
+            },
+            {
+              "flag_id": "reader-mode-toggle-links",
+              "action": "modified",
+              "source_os_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kReaderModeToggleLinks"
+              ]
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "reader-mode-blur-transition-animation",
+        "reader-mode-delay-bottomsheet-peek",
+        "reader-mode-toggle-links"
+      ]
+    }
+  ],
+  "limitations": [
+    "Source registration is not installed exposure or release evidence.",
+    "Flag removal and expiry are not proof of product withdrawal.",
+    "Related feature identifiers and source platform masks are not a one-to-one feature or rollout guarantee."
+  ]
+}

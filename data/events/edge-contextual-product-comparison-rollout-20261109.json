@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "event_id": "edge-contextual-product-comparison-rollout-20261109",
+  "feature_id": "edge-contextual-product-comparison",
+  "browser": "edge",
+  "version": null,
+  "channel": "unknown",
+  "platform": [
+    "Windows",
+    "macOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "event_type": "behavior_change",
+  "observed_at": "2026-11-10T23:18:05.982921+00:00",
+  "announced_at": "2026-11-09",
+  "effective_at": null,
+  "source_revision": null,
+  "previous_event_id": null,
+  "summary": "유사 상품 탭에서 Copilot 비교를 제안",
+  "delta": "사용자가 먼저 Copilot에 탭 비교를 질문하는 기존 흐름에서, 비슷한 상품 탭을 감지해 비교를 제안하는 흐름으로 확장. 비교 선택 후 페이지 전체를 읽고 요약하며 후속 질문에 맥락을 사용한다.",
+  "verification_status": "official_bodies_verified_not_device_tested",
+  "selection_status": "selected",
+  "selection_reason": "기존 질문형 여러 탭 비교와 달리 유사 상품 탐색 맥락에서 비교 진입을 제안한다. 진입 조작·동의·비교 정확도 검토 과제가 명확하다.",
+  "priority": "P2",
+  "priority_reason": "쇼핑 중 여러 탭 비교의 탐색 부담과 제안/읽기 동의 경계를 비교할 수 있는 제한적 사용자 흐름 변화.",
+  "comparison_question": "삼성 브라우저에서 여러 상품 탭을 비교할 때 비교 대상을 어떻게 선택하며, 페이지 읽기 동의·결과 확인·제안 끄기를 어디서 하는가? 지원 여부는 별도 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 빌드의 노출·끄기·계정 조건과 한국 제공 근거 확보 후 실기 비교",
+  "assessed_at": "2026-11-10T23:18:05.982921+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": {
+      "account": "한국어 쇼핑 FAQ는 개인 Microsoft 계정 로그인을 안내. 기능별 예외·업무 계정·구독 조건 미확인.",
+      "settings": "쇼핑 설정과 Copilot 문맥 단서 읽기 설정 각각 관리",
+      "region_language": "비교는 Copilot 지원 시장. Checkout Savings는 en-US만. 웹사이트별 기능 차이. 기능별 한국 제공·한국어·계정·구독 세부 조건 미확인.",
+      "rollout": "11/9 공식 새 경험 발표. 세부 버전과 개인별 활성화일 미공개."
+    }
+  },
+  "sources": [
+    {
+      "url": "https://blogs.windows.com/msedgedev/2026/11/09/shop-faster-and-save-money-with-built-in-tools-in-microsoft-edge/",
+      "section": "What’s new in Edge this holiday; footnotes",
+      "observed_at": "2026-11-10T23:18:05.982921+00:00"
+    },
+    {
+      "url": "https://blogs.windows.com/msedgedev/2026/05/13/new-updates-to-edge-across-desktop-and-mobile/",
+      "section": "Prior browser behavior",
+      "observed_at": "2026-11-10T23:18:05.982921+00:00"
+    },
+    {
+      "url": "https://explore.microsoft.com/ko-kr/edge/features/shopping?form=MT0160",
+      "section": "쇼핑 기능과 설정 FAQ",
+      "observed_at": "2026-11-10T23:18:05.982921+00:00"
+    }
+  ],
+  "benchmark_candidate": {
+    "task": "유사 상품 탭에서 Copilot 비교를 제안",
+    "conditions": "같은 기기·OS·계정 유형·언어·지역·웹사이트 조건. Edge 기능 노출과 비교 브라우저 지원 여부를 먼저 확인한다.",
+    "steps": [
+      "동일 카테고리 상품 3개를 별도 탭으로 연다",
+      "비교 제안의 노출과 읽기 동의 시점을 기록한다",
+      "비교 결과를 원문 사양·가격과 대조하고 후속 질문한다",
+      "기능을 끈 뒤 제안이 없어지는지 관찰한다"
+    ],
+    "metrics": [
+      "제안 노출 조건",
+      "비교 완료 시간·탭 전환 수",
+      "사양·가격 오류 수",
+      "동의 전후 페이지 접근 설명",
+      "끄기 경로"
+    ],
+    "completion": "지원 조건을 기록하고 각 흐름을 3회 반복하여 성공·실패와 차이를 근거 화면으로 설명할 수 있을 때 완료",
+    "executed": false
+  },
+  "novelty_basis": "2026-05-13 공식 글은 사용자가 Copilot에 질문해 여러 탭 정보를 비교하는 흐름을 설명한다. 2026-11-09 글은 유사 상품 탭을 인식해 비교를 먼저 제안한다고 명시한다. 다중 탭 추론·상품 비교 자체의 최초 도입이 아니다."
+}

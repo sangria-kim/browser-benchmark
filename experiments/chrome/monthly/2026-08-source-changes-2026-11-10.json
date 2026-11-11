@@ -1,0 +1,664 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-09T22:49:32.574934+00:00",
+  "scope": "Historical Chromium metadata or description changes. These are source evidence, not newly released products.",
+  "events": [
+    {
+      "event_id": "chrome-source-206225cd64c59a3e3f12439143bbc45c9aae74e8",
+      "source_revision": "206225cd64c59a3e3f12439143bbc45c9aae74e8",
+      "committed_at": "2026-08-04T03:21:13Z",
+      "source_url": "https://github.com/chromium/chromium/commit/206225cd64c59a3e3f12439143bbc45c9aae74e8",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/206225cd64c59a3e3f12439143bbc45c9aae74e8",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "86b175b4bfc719a8f74604da5c5cda81ca277e82e7b6c9e1cdbf38d96aa13282",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-peripheral-customization",
+              "before_expiry": 140,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-646db23337c2c5b9420c8f90d57501fa1ec1b000",
+      "source_revision": "646db23337c2c5b9420c8f90d57501fa1ec1b000",
+      "committed_at": "2026-08-04T04:10:03Z",
+      "source_url": "https://github.com/chromium/chromium/commit/646db23337c2c5b9420c8f90d57501fa1ec1b000",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/646db23337c2c5b9420c8f90d57501fa1ec1b000.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "e77b9349616dfdbad17b4f303610a11a55e2ce6dc3df4a6bf33f34f7aa7fe178",
+          "metadata_changes": [
+            {
+              "flag_id": "omnibox-dui-prerendering",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-03368ada2d0b5310890e3dd983dd83d2e1e80a8e",
+      "source_revision": "03368ada2d0b5310890e3dd983dd83d2e1e80a8e",
+      "committed_at": "2026-08-04T05:57:07Z",
+      "source_url": "https://github.com/chromium/chromium/commit/03368ada2d0b5310890e3dd983dd83d2e1e80a8e",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/03368ada2d0b5310890e3dd983dd83d2e1e80a8e",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "e1656bd5a521539867afa2f1ed01afe8bba512cfa51e055f4fb3fff22c7c6c72",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-peripheral-customization",
+              "before_expiry": null,
+              "after_expiry": 140,
+              "action": "added",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-161ad0a976d76a0d613db2dacca5eefeda0d6bbd",
+      "source_revision": "161ad0a976d76a0d613db2dacca5eefeda0d6bbd",
+      "committed_at": "2026-08-04T09:00:55Z",
+      "source_url": "https://github.com/chromium/chromium/commit/161ad0a976d76a0d613db2dacca5eefeda0d6bbd",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/161ad0a976d76a0d613db2dacca5eefeda0d6bbd",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "7f214a53fe014dea59295846636f2b3f741475931845f56b00507436b1b6beaf",
+          "metadata_changes": [
+            {
+              "flag_id": "prerender-new-tab-page-trigger",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-7bf0eb37bec61ed50e2aa3b76f8e6f8bb5398d97",
+      "source_revision": "7bf0eb37bec61ed50e2aa3b76f8e6f8bb5398d97",
+      "committed_at": "2026-08-04T12:35:58Z",
+      "source_url": "https://github.com/chromium/chromium/commit/7bf0eb37bec61ed50e2aa3b76f8e6f8bb5398d97",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/7bf0eb37bec61ed50e2aa3b76f8e6f8bb5398d97",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "d93b8ca01941091ff13305a8778f80cf6a01563a096874a18f873bbbb85954a7",
+          "metadata_changes": [
+            {
+              "flag_id": "file-handling-icons",
+              "before_expiry": 110,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-4cf6aaa589bb5d3f70e7ff766d8779e020ec9ea2",
+      "source_revision": "4cf6aaa589bb5d3f70e7ff766d8779e020ec9ea2",
+      "committed_at": "2026-08-04T14:06:58Z",
+      "source_url": "https://github.com/chromium/chromium/commit/4cf6aaa589bb5d3f70e7ff766d8779e020ec9ea2",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/4cf6aaa589bb5d3f70e7ff766d8779e020ec9ea2.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "7a07278a2131ceb22dac8755d028fd80a9308e4ddf6f6b8a3c0eeacbdf9a5325",
+          "metadata_changes": [
+            {
+              "flag_id": "gemini-screen-context-migration",
+              "before_expiry": 153,
+              "after_expiry": 156,
+              "action": "modified"
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-d0c2f404964df28f522f9fcf20647bc7411c158f",
+      "source_revision": "d0c2f404964df28f522f9fcf20647bc7411c158f",
+      "committed_at": "2026-08-04T14:34:46Z",
+      "source_url": "https://github.com/chromium/chromium/commit/d0c2f404964df28f522f9fcf20647bc7411c158f",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/d0c2f404964df28f522f9fcf20647bc7411c158f",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "d056b4620bde276a476d2989d0a2911aa63c1fca15fddf024fd986a0aa8a11ad",
+          "metadata_changes": [
+            {
+              "flag_id": "gemini-visual-rich-fre",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-3a0b66ed58d4164b095bdfa6adf7f1e0725708ce",
+      "source_revision": "3a0b66ed58d4164b095bdfa6adf7f1e0725708ce",
+      "committed_at": "2026-08-04T16:31:50Z",
+      "source_url": "https://github.com/chromium/chromium/commit/3a0b66ed58d4164b095bdfa6adf7f1e0725708ce",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/3a0b66ed58d4164b095bdfa6adf7f1e0725708ce.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "932d55b1e447baaedf60195a3666c32a7aeca3bb3e6ad2cd7d4124b9abdd103a",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-escape-handling-for-secondary-activities",
+              "before_expiry": 150,
+              "after_expiry": 150,
+              "action": "modified",
+              "metadata_fields_changed": [
+                "owners"
+              ]
+            },
+            {
+              "flag_id": "enable-gesture-user-education-back-swipe",
+              "before_expiry": 150,
+              "after_expiry": 150,
+              "action": "modified",
+              "metadata_fields_changed": [
+                "owners"
+              ]
+            },
+            {
+              "flag_id": "enable-three-dot-menu-back-button",
+              "before_expiry": 150,
+              "after_expiry": 150,
+              "action": "modified",
+              "metadata_fields_changed": [
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-f4920aee7dc76a960490f0d959086cf4dfac6306",
+      "source_revision": "f4920aee7dc76a960490f0d959086cf4dfac6306",
+      "committed_at": "2026-08-04T18:41:22Z",
+      "source_url": "https://github.com/chromium/chromium/commit/f4920aee7dc76a960490f0d959086cf4dfac6306",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/f4920aee7dc76a960490f0d959086cf4dfac6306.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "973df1ab5803112944a0988e364ccfacbda00169a51db41f96c8b81f9238e102",
+          "metadata_changes": [
+            {
+              "flag_id": "vertical-tabs-grab-handle-removal",
+              "before_expiry": 155,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-c1c5e7cbb1a855e8697570750b8be547039ff056",
+      "source_revision": "c1c5e7cbb1a855e8697570750b8be547039ff056",
+      "committed_at": "2026-08-04T18:46:54Z",
+      "source_url": "https://github.com/chromium/chromium/commit/c1c5e7cbb1a855e8697570750b8be547039ff056",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/c1c5e7cbb1a855e8697570750b8be547039ff056",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "346fb480978789217a483f773a6b54d263781167fc148c538c6b0008cb9daac4",
+          "metadata_changes": [
+            {
+              "flag_id": "logo-view-refactor",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-af86f43d883d78871c17bd9fe8e7e0f4f03a2a3f",
+      "source_revision": "af86f43d883d78871c17bd9fe8e7e0f4f03a2a3f",
+      "committed_at": "2026-08-04T19:01:28Z",
+      "source_url": "https://github.com/chromium/chromium/commit/af86f43d883d78871c17bd9fe8e7e0f4f03a2a3f",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://github.com/chromium/chromium/commit/af86f43d883d78871c17bd9fe8e7e0f4f03a2a3f.diff",
+          "source_method": "GitHub public diff",
+          "patch_sha256": "deb1915846591f58aa3edd43c7e1fa71cf03ed2621c2e5afabcec6493a5e50b4",
+          "metadata_changes": [
+            {
+              "flag_id": "persist-tab-context-rich-extraction",
+              "before_expiry": 153,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-5f87f259ccc32fa68bd2aeaba755f16d5b5f5262",
+      "source_revision": "5f87f259ccc32fa68bd2aeaba755f16d5b5f5262",
+      "committed_at": "2026-08-04T21:22:42Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5f87f259ccc32fa68bd2aeaba755f16d5b5f5262",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/5f87f259ccc32fa68bd2aeaba755f16d5b5f5262",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "7454ac207e3c33636b1933e56f7f210618322cc245fd83143b20d7b0101ca958",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-rusty-ico",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-bb84fca13c2020187b4930355f8327bef81e6668",
+      "source_revision": "bb84fca13c2020187b4930355f8327bef81e6668",
+      "committed_at": "2026-08-04T21:43:06Z",
+      "source_url": "https://github.com/chromium/chromium/commit/bb84fca13c2020187b4930355f8327bef81e6668",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/bb84fca13c2020187b4930355f8327bef81e6668",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "16666c662f9d92564c4fb273ab20d8e25b5f6e2b01dbbbd04cdcbd0b9ca7e841",
+          "metadata_changes": [
+            {
+              "flag_id": "new-tab-page-padding-update",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-3ec1b280741ea8cc95d3fdd771ba2fab24c3ff26",
+      "source_revision": "3ec1b280741ea8cc95d3fdd771ba2fab24c3ff26",
+      "committed_at": "2026-08-04T21:45:51Z",
+      "source_url": "https://github.com/chromium/chromium/commit/3ec1b280741ea8cc95d3fdd771ba2fab24c3ff26",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/3ec1b280741ea8cc95d3fdd771ba2fab24c3ff26",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "f10752ea2faeaa4fd0ee6c22ded058bf256e0236f3466b1cfca5cfb1190fea17",
+          "metadata_changes": [
+            {
+              "flag_id": "partition-alloc-with-advanced-checks",
+              "before_expiry": 156,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    },
+    {
+      "event_id": "chrome-source-b3a67749c444b79dd4015c4745ef66f2b26cd9ec",
+      "source_revision": "b3a67749c444b79dd4015c4745ef66f2b26cd9ec",
+      "committed_at": "2026-08-04T22:49:21Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b3a67749c444b79dd4015c4745ef66f2b26cd9ec",
+      "observed_at": "2026-11-09T22:49:32.574934+00:00",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "source_url": "https://api.github.com/repos/chromium/chromium/commits/b3a67749c444b79dd4015c4745ef66f2b26cd9ec",
+          "source_method": "GitHub official public commit API",
+          "patch_sha256": "3c114a88348d12d405481b833fe6b732ebac8356cf949f145c1d5d0d9255946f",
+          "metadata_changes": [
+            {
+              "flag_id": "omnibox-resizing-prioritization",
+              "before_expiry": 155,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            },
+            {
+              "flag_id": "toolbar-app-menu-label-resizing",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            },
+            {
+              "flag_id": "toolbar-glic-button-resizing",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            },
+            {
+              "flag_id": "toolbar-profile-chip-resizing",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            },
+            {
+              "flag_id": "vertical-tabs",
+              "before_expiry": 155,
+              "after_expiry": null,
+              "action": "removed",
+              "metadata_fields_changed": [
+                "registration_or_expiry",
+                "owners"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": "unknown",
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "pending_verification",
+      "selection_reason": "소스 metadata 또는 설명 변경은 확인됐지만 실제 제품 동작·제공 조건과 사용자 과제는 별도 근거가 필요합니다.",
+      "revisit_trigger": "직접 등록부 연결 또는 실제 제품 변화의 공식 근거 확보.",
+      "selection_rule_version": "pm-selection-v2",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run"
+    }
+  ],
+  "limitations": [
+    "Source-only evidence. No installed build or product rollout inference.",
+    "Header symbol-to-flag mapping remains unknown unless independently established."
+  ]
+}

@@ -1,0 +1,4384 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-10T23:17:12.385738+00:00",
+  "scope": "Chromium source registrations, descriptions, options and expiry changes, not product release evidence.",
+  "events": [
+    {
+      "event_id": "chrome-source-01100185efe069f82a555e18d63250a169913cbd",
+      "source_revision": "01100185efe069f82a555e18d63250a169913cbd",
+      "committed_at": "2026-11-09T23:08:06Z",
+      "source_url": "https://github.com/chromium/chromium/commit/01100185efe069f82a555e18d63250a169913cbd",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry for web-app-short-edges-cutout-mode",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "a64f5552ff899e954cc19c55385fe793925e81f3fd47f72a06a216f7a0807e5c",
+          "source_url": "https://github.com/chromium/chromium/commit/01100185efe069f82a555e18d63250a169913cbd.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "web-app-short-edges-cutout-mode",
+              "before_expiry": 158,
+              "after_expiry": 163,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "web-app-short-edges-cutout-mode"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-0b3c6855987784cd1257f7e0855915cad30e1fea",
+      "source_revision": "0b3c6855987784cd1257f7e0855915cad30e1fea",
+      "committed_at": "2026-11-09T23:14:26Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0b3c6855987784cd1257f7e0855915cad30e1fea",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[picture-in-picture] Extend document-picture-in-picture-animate-resize",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "9a3ebf850bca962cc4ea294ce7af3e01dfd47d933584c33ef12b3e0a232d1439",
+          "source_url": "https://github.com/chromium/chromium/commit/0b3c6855987784cd1257f7e0855915cad30e1fea.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "document-picture-in-picture-animate-resize",
+              "before_expiry": 150,
+              "after_expiry": 171,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "document-picture-in-picture-animate-resize"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-20edaa832b9b8107c13e288d9edc31ce27a46c13",
+      "source_revision": "20edaa832b9b8107c13e288d9edc31ce27a46c13",
+      "committed_at": "2026-11-10T00:25:31Z",
+      "source_url": "https://github.com/chromium/chromium/commit/20edaa832b9b8107c13e288d9edc31ce27a46c13",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Cast Mirroring] Only reduce bandwidth on congestion, and recover quickly",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "b0f12d54ac3cd48e44a8f512b0821a19511f62f480f6d5f741e03d2f4a6c1ee2",
+          "source_url": "https://github.com/chromium/chromium/commit/20edaa832b9b8107c13e288d9edc31ce27a46c13.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kCastStreamingExponentialVideoBitrateAlgorithmDescription",
+              "before": "Enables the exponential video bitrate algorithm for Cast Streaming. This algorithm uses an exponential increase and decrease factor to adjust the bitrate based on network conditions.",
+              "after": null,
+              "flag_id": "cast-streaming-exponential-video-bitrate-algorithm",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kCastStreamingExponentialVideoBitrateAlgorithmName",
+              "before": "Cast Streaming Exponential Video Bitrate Algorithm",
+              "after": null,
+              "flag_id": "cast-streaming-exponential-video-bitrate-algorithm",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "3a3ac57f1642bc81f2fa18ca2578d3fa81b41f16dca56e964044a256824cf671",
+          "source_url": "https://github.com/chromium/chromium/commit/20edaa832b9b8107c13e288d9edc31ce27a46c13.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "cast-streaming-exponential-video-bitrate-algorithm",
+              "action": "removed",
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kCastStreamingExponentialVideoBitrateAlgorithm",
+                "kCastStreamingExponentialVideoBitrateAlgorithmName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "4f60987355559a390ff4ee9602f23c89a42c8c2791bf86d2ca9ae33de0b7db91",
+          "source_url": "https://github.com/chromium/chromium/commit/20edaa832b9b8107c13e288d9edc31ce27a46c13.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "cast-streaming-exponential-video-bitrate-algorithm",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "watch",
+      "selection_reason": "Cast Streaming 지수형 비트레이트 알고리즘 flag와 실험 옵션을 제거하면서 새 점진적 대역폭 감소 feature를 소스 기본 활성화로 추가합니다. 실제 품질 향상이나 제품 배포를 검증한 결과가 아닙니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "cast-streaming-exponential-video-bitrate-algorithm"
+      ],
+      "summary": "Cast Streaming 지수형 비트레이트 알고리즘 flag와 실험 옵션을 제거하면서 새 점진적 대역폭 감소 feature를 소스 기본 활성화로 추가합니다. 실제 품질 향상이나 제품 배포를 검증한 결과가 아닙니다.",
+      "revisit_trigger": "동일 네트워크에서 혼잡 전후 비트레이트·회복 시간·영상 품질을 검증할 빌드가 확인되면 비교합니다."
+    },
+    {
+      "event_id": "chrome-source-0baa6e36b4773d4260831977143b9c544f80fcb2",
+      "source_revision": "0baa6e36b4773d4260831977143b9c544f80fcb2",
+      "committed_at": "2026-11-10T01:17:15Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0baa6e36b4773d4260831977143b9c544f80fcb2",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[contextual-tasks] Add chrome://flags for ApiContextualTasksPrivateAba",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "39de99a6573d07b3f645183d3b613f201d1b790db6e9d2ada73ec3dca409231b",
+          "source_url": "https://github.com/chromium/chromium/commit/0baa6e36b4773d4260831977143b9c544f80fcb2.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kApiContextualTasksPrivateAbaDescription",
+              "before": null,
+              "after": "Loads the contextual tasks component extension and enables contextualTasksPrivate.registerAimThreadForPromo, which ABA search journeys need to restore an AI Overview in the side panel. Use with #aba-search-journeys.",
+              "flag_id": "api-contextual-tasks-private-aba",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kApiContextualTasksPrivateAbaName",
+              "before": null,
+              "after": "Extensions Contextual Tasks API for ABA search journeys",
+              "flag_id": "api-contextual-tasks-private-aba",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "3229ac394483080d6d7306a070948916c5055e90b30a5f76e10bd12b15af7f85",
+          "source_url": "https://github.com/chromium/chromium/commit/0baa6e36b4773d4260831977143b9c544f80fcb2.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "api-contextual-tasks-private-aba",
+              "action": "added",
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kApiContextualTasksPrivateAba",
+                "kApiContextualTasksPrivateAbaDescription",
+                "kApiContextualTasksPrivateAbaName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "611258d28092732153e4be59c1eec4593e59e94eea19906fa7d3e5703745eaff",
+          "source_url": "https://github.com/chromium/chromium/commit/0baa6e36b4773d4260831977143b9c544f80fcb2.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "api-contextual-tasks-private-aba",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "watch",
+      "selection_reason": "Desktop에 api-contextual-tasks-private-aba flag를 추가합니다. 설명은 ABA 검색 흐름에서 AI Overview를 사이드 패널에 복원하는 API·component extension을 켜며 aba-search-journeys와 함께 사용하도록 안내합니다. 일반 사용자 출시 근거는 아닙니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "api-contextual-tasks-private-aba"
+      ],
+      "summary": "Desktop에 api-contextual-tasks-private-aba flag를 추가합니다. 설명은 ABA 검색 흐름에서 AI Overview를 사이드 패널에 복원하는 API·component extension을 켜며 aba-search-journeys와 함께 사용하도록 안내합니다. 일반 사용자 출시 근거는 아닙니다.",
+      "revisit_trigger": "연결 검색 흐름의 실제 진입·복원 UI와 제공 조건이 확인되면 탐색 연속성을 비교합니다."
+    },
+    {
+      "event_id": "chrome-source-f9a90bc985878ce6651e0dd9b148a32800ea8f4b",
+      "source_revision": "f9a90bc985878ce6651e0dd9b148a32800ea8f4b",
+      "committed_at": "2026-11-10T03:22:17Z",
+      "source_url": "https://github.com/chromium/chromium/commit/f9a90bc985878ce6651e0dd9b148a32800ea8f4b",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Prerender: Remove PrerenderActivationByFormSubmission flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "ee8ddd921d24e675de160b7124cd2b752fbc103ed689deef52d40acabc645592",
+          "source_url": "https://github.com/chromium/chromium/commit/f9a90bc985878ce6651e0dd9b148a32800ea8f4b.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kPrerenderActivationByFormSubmissionDescription",
+              "before": "Allow Prerender activations by form submission.",
+              "after": null,
+              "flag_id": "prerender-activation-by-form-submission",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kPrerenderActivationByFormSubmissionName",
+              "before": "Prerender Activation By Form Submission",
+              "after": null,
+              "flag_id": "prerender-activation-by-form-submission",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "b0b17622457c1b6336694c1fd6ff48bf8469fcc47ecb47c8852cc89ec54ac83f",
+          "source_url": "https://github.com/chromium/chromium/commit/f9a90bc985878ce6651e0dd9b148a32800ea8f4b.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "prerender-activation-by-form-submission",
+              "action": "removed",
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "related_feature_ids": [
+                "kPrerenderActivationByFormSubmission",
+                "kPrerenderActivationByFormSubmissionDescription",
+                "kPrerenderActivationByFormSubmissionName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "4956256f587b979823079baddefbadc1394925d0544dbc38a37c4bc1595f4e5c",
+          "source_url": "https://github.com/chromium/chromium/commit/f9a90bc985878ce6651e0dd9b148a32800ea8f4b.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "prerender-activation-by-form-submission",
+              "before_expiry": 150,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "prerender-activation-by-form-submission"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-f400b5489f079b68684bb7bed0944fdc7d0d59a3",
+      "source_revision": "f400b5489f079b68684bb7bed0944fdc7d0d59a3",
+      "committed_at": "2026-11-10T11:30:04Z",
+      "source_url": "https://github.com/chromium/chromium/commit/f400b5489f079b68684bb7bed0944fdc7d0d59a3",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Add flag for attaching variations header via a WebExtension",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "0ccac330b18a42c5dd89f196da4e865e5707be4b57ec1560392d79e5b7d0d967",
+          "source_url": "https://github.com/chromium/chromium/commit/f400b5489f079b68684bb7bed0944fdc7d0d59a3.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "variations-header-web-extension",
+              "before_expiry": null,
+              "after_expiry": 164,
+              "action": "added",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "variations-header-web-extension"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-a86bdcec8b1d6c1bcf50cad064dfa62cf483ddbb",
+      "source_revision": "a86bdcec8b1d6c1bcf50cad064dfa62cf483ddbb",
+      "committed_at": "2026-11-10T12:00:00Z",
+      "source_url": "https://github.com/chromium/chromium/commit/a86bdcec8b1d6c1bcf50cad064dfa62cf483ddbb",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Reland \"[SendTabToSelf] Use kCrossDeviceSigninFromDesktopFollowup\"",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "a9c306326a4e5fd16376cc43b8de6490cb014c84e6a6641ec03a363d7c487942",
+          "source_url": "https://github.com/chromium/chromium/commit/a86bdcec8b1d6c1bcf50cad064dfa62cf483ddbb.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kSendTabToSelfNoTargetDeviceQrCodeDescription",
+              "before": "Shows a QR code to download and sign in to Chrome on mobile when no target devices are found in Send Tab to Self.",
+              "after": null,
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kSendTabToSelfNoTargetDeviceQrCodeName",
+              "before": "Send Tab to Self No Target Device QR Code",
+              "after": null,
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "719ce177c11d1fc63487328664e892ef9102c12ba93aed88ebfea7f506be939e",
+          "source_url": "https://github.com/chromium/chromium/commit/a86bdcec8b1d6c1bcf50cad064dfa62cf483ddbb.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "action": "removed",
+              "platform_masks": [
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "related_feature_ids": [
+                "kSendTabToSelfNoTargetDeviceQrCode",
+                "kSendTabToSelfNoTargetDeviceQrCodeDescription",
+                "kSendTabToSelfNoTargetDeviceQrCodeName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "b32c9bb71ee19d7505311492132cc3a4ae9765c2eb272f5193031e9655bfc754",
+          "source_url": "https://github.com/chromium/chromium/commit/a86bdcec8b1d6c1bcf50cad064dfa62cf483ddbb.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "send-tab-to-self-no-target-device-qr-code",
+              "before_expiry": 163,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Linux",
+        "macOS",
+        "Windows"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "이전 변경·되돌림 뒤 Send Tab to Self의 전용 QR code flag 제거 변경을 재적용합니다. QR 안내 기능 폐지나 최초 출시로 해석하지 않습니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "send-tab-to-self-no-target-device-qr-code"
+      ],
+      "summary": "이전 변경·되돌림 뒤 Send Tab to Self의 전용 QR code flag 제거 변경을 재적용합니다. QR 안내 기능 폐지나 최초 출시로 해석하지 않습니다.",
+      "revisit_trigger": "사용자 흐름이나 지원 범위가 실제로 달라진 근거가 있을 때 재검토합니다.",
+      "previous_event_id": "chrome-source-146b65cf049e947806e91fa9832b2b0f4f9d4ad4"
+    },
+    {
+      "event_id": "chrome-source-767e3a69e482908537deabc2ef27da53aa47a1c1",
+      "source_revision": "767e3a69e482908537deabc2ef27da53aa47a1c1",
+      "committed_at": "2026-11-10T14:58:56Z",
+      "source_url": "https://github.com/chromium/chromium/commit/767e3a69e482908537deabc2ef27da53aa47a1c1",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Remove MacCatapLoopbackAudioForCast feature",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "e9a415a594885a29cd73905de9c5d6e135072e6740f4af7a23a00b9d3381dae3",
+          "source_url": "https://github.com/chromium/chromium/commit/767e3a69e482908537deabc2ef27da53aa47a1c1.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kMacCatapLoopbackAudioForCastDescription",
+              "before": "Enable system audio loopback capture for Cast using the macOS CoreAudio tap API on macOS 14.2+.",
+              "after": null,
+              "flag_id": "mac-catap-loopback-audio-for-cast",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kMacCatapLoopbackAudioForCastName",
+              "before": "Mac Core Audio Tap System Loopback Capture for Cast",
+              "after": null,
+              "flag_id": "mac-catap-loopback-audio-for-cast",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "e364d52a07b83c08810c23038f42aac654f12a347d26011a90bab249a7378c76",
+          "source_url": "https://github.com/chromium/chromium/commit/767e3a69e482908537deabc2ef27da53aa47a1c1.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "mac-catap-loopback-audio-for-cast",
+              "action": "removed",
+              "platform_masks": [
+                "kOsMac"
+              ],
+              "related_feature_ids": [
+                "kMacCatapLoopbackAudioForCast",
+                "kMacCatapLoopbackAudioForCastDescription",
+                "kMacCatapLoopbackAudioForCastName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "9b3245ce44d771b1d3b39ccfb0e157016639c0c8f42473501784a4c50463d14a",
+          "source_url": "https://github.com/chromium/chromium/commit/767e3a69e482908537deabc2ef27da53aa47a1c1.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "mac-catap-loopback-audio-for-cast",
+              "before_expiry": 161,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "macOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "mac-catap-loopback-audio-for-cast"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-9bca75dc629f2fce0131d4b2235078f38a43a057",
+      "source_revision": "9bca75dc629f2fce0131d4b2235078f38a43a057",
+      "committed_at": "2026-11-10T15:00:33Z",
+      "source_url": "https://github.com/chromium/chromium/commit/9bca75dc629f2fce0131d4b2235078f38a43a057",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Android] Clean up TabAndroidGracefulShutdown flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "58cc0623d6cdb0b51702d128753ec25840ae76ccaa62f97d250c6ebf3b9b078f",
+          "source_url": "https://github.com/chromium/chromium/commit/9bca75dc629f2fce0131d4b2235078f38a43a057.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kTabAndroidGracefulShutdownDescription",
+              "before": "Enables Graceful Shutdown of WebContents on Android to allow pagehide and keepalive fetches to complete.",
+              "after": null,
+              "flag_id": "tab-android-graceful-shutdown",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kTabAndroidGracefulShutdownName",
+              "before": "Tab Android Graceful Shutdown",
+              "after": null,
+              "flag_id": "tab-android-graceful-shutdown",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "0347fd37aa104822ec402883a98362ffb73397407c5ab3a3010faa9a307dbd6b",
+          "source_url": "https://github.com/chromium/chromium/commit/9bca75dc629f2fce0131d4b2235078f38a43a057.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "tab-android-graceful-shutdown",
+              "action": "removed",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kTabAndroidGracefulShutdown",
+                "kTabAndroidGracefulShutdownDescription",
+                "kTabAndroidGracefulShutdownName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "0997d47ef990c2e8b840814df99a733fd8024bd2a5882836ae05e74333771a40",
+          "source_url": "https://github.com/chromium/chromium/commit/9bca75dc629f2fce0131d4b2235078f38a43a057.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "tab-android-graceful-shutdown",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "tab-android-graceful-shutdown"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-b48626b919bbe3811154ad91e240bab76b156e92",
+      "source_revision": "b48626b919bbe3811154ad91e240bab76b156e92",
+      "committed_at": "2026-11-10T15:33:31Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b48626b919bbe3811154ad91e240bab76b156e92",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[GEiC] Add chrome://flags/#geic-actuation entry",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "d2dac858df7479da10f2635811afcb9524dae002c87eda63b370f90f69fa0f14",
+          "source_url": "https://github.com/chromium/chromium/commit/b48626b919bbe3811154ad91e240bab76b156e92.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kGeicActuationDescription",
+              "before": null,
+              "after": "Enables web actuation in the Gemini Enterprise in Chrome (GEiC) side panel.",
+              "flag_id": "geic-actuation",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kGeicActuationName",
+              "before": null,
+              "after": "GEiC web actuation",
+              "flag_id": "geic-actuation",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "86aede87c00f167f4241e226e429810e5dc009af9c180088832b99def9b7482a",
+          "source_url": "https://github.com/chromium/chromium/commit/b48626b919bbe3811154ad91e240bab76b156e92.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "geic-actuation",
+              "action": "added",
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kGeicActuation",
+                "kGeicActuationDescription",
+                "kGeicActuationName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "772e2d1a2a55f1f6338a1cd5178bb42cfe1e6e0159602f086e22cf2e1019b9d6",
+          "source_url": "https://github.com/chromium/chromium/commit/b48626b919bbe3811154ad91e240bab76b156e92.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "geic-actuation",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "action": "added",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "watch",
+      "selection_reason": "Gemini Enterprise in Chrome 사이드 패널의 웹 실행을 켜는 geic-actuation flag를 Desktop 소스에 등록합니다. 실제 UI·대상 기업 계정·배포 버전·실행 권한 조건은 이 등록만으로 확인되지 않습니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "geic-actuation"
+      ],
+      "summary": "Gemini Enterprise in Chrome 사이드 패널의 웹 실행을 켜는 geic-actuation flag를 Desktop 소스에 등록합니다. 실제 UI·대상 기업 계정·배포 버전·실행 권한 조건은 이 등록만으로 확인되지 않습니다.",
+      "revisit_trigger": "관리형 계정의 제공 조건·실행 전 확인과 중단 방식 및 시험 가능한 빌드가 확인되면 비교합니다."
+    },
+    {
+      "event_id": "chrome-source-6e2e6c422b890d80feb49dda7a8ee1f5056ee971",
+      "source_revision": "6e2e6c422b890d80feb49dda7a8ee1f5056ee971",
+      "committed_at": "2026-11-10T17:24:04Z",
+      "source_url": "https://github.com/chromium/chromium/commit/6e2e6c422b890d80feb49dda7a8ee1f5056ee971",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Default Browser] Remove launched flags and extend experiment flag expiry",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "9ef47dc014938cea1ea3c962d83bf65f6503c6a17a9dd36c51ae4f7c5c4e3ec1",
+          "source_url": "https://github.com/chromium/chromium/commit/6e2e6c422b890d80feb49dda7a8ee1f5056ee971.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kDefaultBrowserChangedOsNotificationDescription",
+              "before": "Enables the framework to show OS Notification when Chrome is no longer the default browser.",
+              "after": null,
+              "flag_id": "default-browser-changed-os-notification",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kDefaultBrowserChangedOsNotificationName",
+              "before": "Default Browser Changed OS Notification",
+              "after": null,
+              "flag_id": "default-browser-changed-os-notification",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kDefaultBrowserPromptSurfacesDescription",
+              "before": "Enables using various default browser prompt surfaces.",
+              "after": null,
+              "flag_id": "default-browser-prompt-surfaces",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kDefaultBrowserPromptSurfacesName",
+              "before": "Default Browser Prompt Surfaces",
+              "after": null,
+              "flag_id": "default-browser-prompt-surfaces",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kDefaultBrowserStickyModalDescription",
+              "before": "Enables the sticky modal dialog for the default browser prompt. Requires #default-browser-prompt-surfaces to be set to a modal dialog variation.",
+              "after": "Enables the sticky modal dialog for the default browser prompt. Only applies when the default browser prompt uses a modal dialog surface.",
+              "flag_id": null,
+              "mapping_status": "Symbol-to-flag mapping not established here."
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "e63596929dd317e77222b911cf4a33af8e6a13514f69cbf3088039df7ca237b4",
+          "source_url": "https://github.com/chromium/chromium/commit/6e2e6c422b890d80feb49dda7a8ee1f5056ee971.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "default-browser-changed-os-notification",
+              "action": "removed",
+              "platform_masks": [
+                "kOsWin"
+              ],
+              "related_feature_ids": [
+                "kDefaultBrowserChangedOsNotification",
+                "kDefaultBrowserChangedOsNotificationDescription",
+                "kDefaultBrowserChangedOsNotificationName"
+              ]
+            },
+            {
+              "flag_id": "default-browser-prompt-surfaces",
+              "action": "removed",
+              "platform_masks": [
+                "kOsWin"
+              ],
+              "related_feature_ids": [
+                "kDefaultBrowserPromptSurfaces",
+                "kDefaultBrowserPromptSurfacesDescription",
+                "kDefaultBrowserPromptSurfacesName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "bd966a21b3742e875a32790e480a7878cf62e25322c3e366a8f503a679056094",
+          "source_url": "https://github.com/chromium/chromium/commit/6e2e6c422b890d80feb49dda7a8ee1f5056ee971.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "default-browser-changed-os-notification",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            },
+            {
+              "flag_id": "default-browser-prompt-surfaces",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            },
+            {
+              "flag_id": "default-browser-setter-selection",
+              "before_expiry": 160,
+              "after_expiry": 166,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "default-browser-sticky-modal",
+              "before_expiry": 160,
+              "after_expiry": 166,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "visual-guided-setter-docking",
+              "before_expiry": 160,
+              "after_expiry": 166,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Windows"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "default-browser-changed-os-notification",
+        "default-browser-prompt-surfaces",
+        "default-browser-setter-selection",
+        "default-browser-sticky-modal",
+        "visual-guided-setter-docking"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-598dd4a5bbfd52301a24cb2083ca46c1d0e2c7cd",
+      "source_revision": "598dd4a5bbfd52301a24cb2083ca46c1d0e2c7cd",
+      "committed_at": "2026-11-10T17:28:16Z",
+      "source_url": "https://github.com/chromium/chromium/commit/598dd4a5bbfd52301a24cb2083ca46c1d0e2c7cd",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Extend fullscreen and SceneViewController flag expiry to 163",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "5f09da85aaf69d57142578c824322f8764c6de68a716a3234186ee460462d876",
+          "source_url": "https://github.com/chromium/chromium/commit/598dd4a5bbfd52301a24cb2083ca46c1d0e2c7cd.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "fullscreen-eased-transitions",
+              "before_expiry": 160,
+              "after_expiry": 163,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "fullscreen-refactoring",
+              "before_expiry": 160,
+              "after_expiry": 163,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "use-scene-view-controller",
+              "before_expiry": 160,
+              "after_expiry": 163,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "fullscreen-eased-transitions",
+        "fullscreen-refactoring",
+        "use-scene-view-controller"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-71e0b8260df567fb48ab84200fd3c6069b788df3",
+      "source_revision": "71e0b8260df567fb48ab84200fd3c6069b788df3",
+      "committed_at": "2026-11-10T17:30:36Z",
+      "source_url": "https://github.com/chromium/chromium/commit/71e0b8260df567fb48ab84200fd3c6069b788df3",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[NTP Customization] Extend NewTabPageCustomizationV2 flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "0f096b2030c8d4ecb66dab154cccfbd13388f906b81604b98d1145d5098cd204",
+          "source_url": "https://github.com/chromium/chromium/commit/71e0b8260df567fb48ab84200fd3c6069b788df3.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "new-tab-page-customization-v2",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "new-tab-page-customization-v2"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-5ef46347862590a8764a99537e7c4f6c3d07aa98",
+      "source_revision": "5ef46347862590a8764a99537e7c4f6c3d07aa98",
+      "committed_at": "2026-11-10T17:34:30Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5ef46347862590a8764a99537e7c4f6c3d07aa98",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend android-context-menu-disabled-menu-items expiry milestone to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "ccafd141edbf525c10a72b89423bb2fdb2c2dea91b724a13d7d6e266aff14bcf",
+          "source_url": "https://github.com/chromium/chromium/commit/5ef46347862590a8764a99537e7c4f6c3d07aa98.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-context-menu-disabled-menu-items",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-context-menu-disabled-menu-items"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-7560c5b9d5462bc8d59f278fe079b43a1e3a78a9",
+      "source_revision": "7560c5b9d5462bc8d59f278fe079b43a1e3a78a9",
+      "committed_at": "2026-11-10T17:37:55Z",
+      "source_url": "https://github.com/chromium/chromium/commit/7560c5b9d5462bc8d59f278fe079b43a1e3a78a9",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend android-before-unload-support flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "aa2bd8f9757d78d733c866df5acd3b50eed5a29662c5e1207b251fa7452354df",
+          "source_url": "https://github.com/chromium/chromium/commit/7560c5b9d5462bc8d59f278fe079b43a1e3a78a9.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-before-unload-support",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-before-unload-support"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-ea111e98dd1f0f668bb2e40919aaacf023985fac",
+      "source_revision": "ea111e98dd1f0f668bb2e40919aaacf023985fac",
+      "committed_at": "2026-11-10T17:38:10Z",
+      "source_url": "https://github.com/chromium/chromium/commit/ea111e98dd1f0f668bb2e40919aaacf023985fac",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend android-zoom-immersive expiry to milestone 170.",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "1dbb8ca6ec2b4fbb34754e7cbb1533caa43206793e81a3a90894fd2d29ad12e5",
+          "source_url": "https://github.com/chromium/chromium/commit/ea111e98dd1f0f668bb2e40919aaacf023985fac.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-zoom-immersive",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-zoom-immersive"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-5c4d1c36cb398a917d1f97dfc6a32aa7c2a4a850",
+      "source_revision": "5c4d1c36cb398a917d1f97dfc6a32aa7c2a4a850",
+      "committed_at": "2026-11-10T17:44:31Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5c4d1c36cb398a917d1f97dfc6a32aa7c2a4a850",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry of android-tab-declutter-archive-on-desktop flag to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "adb8fd8ba204f9a6624f7546523fc10325719dd77b7e6bd5368331b0a665d097",
+          "source_url": "https://github.com/chromium/chromium/commit/5c4d1c36cb398a917d1f97dfc6a32aa7c2a4a850.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-tab-declutter-archive-on-desktop",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-tab-declutter-archive-on-desktop"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-bd30c83a617c3c34dd904cae7595f0e78d95e6f2",
+      "source_revision": "bd30c83a617c3c34dd904cae7595f0e78d95e6f2",
+      "committed_at": "2026-11-10T17:45:48Z",
+      "source_url": "https://github.com/chromium/chromium/commit/bd30c83a617c3c34dd904cae7595f0e78d95e6f2",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend flag send-tab-to-self-enhanced-handoff",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "3ae5972f97282bda2401016c68e9e1920c30b554f02eef77e8464dfa3f66e2eb",
+          "source_url": "https://github.com/chromium/chromium/commit/bd30c83a617c3c34dd904cae7595f0e78d95e6f2.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "send-tab-to-self-enhanced-handoff",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "send-tab-to-self-enhanced-handoff"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-248d1a051716894a88f70e054fb6577744fd0a3b",
+      "source_revision": "248d1a051716894a88f70e054fb6577744fd0a3b",
+      "committed_at": "2026-11-10T17:48:25Z",
+      "source_url": "https://github.com/chromium/chromium/commit/248d1a051716894a88f70e054fb6577744fd0a3b",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[x-plat promos] Extend mobile-promo-on-desktop flags",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "dc4fbda5995affe8e56e2e729a6d794d8f3f732804ba44f2d4e35c80b215710a",
+          "source_url": "https://github.com/chromium/chromium/commit/248d1a051716894a88f70e054fb6577744fd0a3b.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "mobile-promo-on-desktop-data-collection",
+              "before_expiry": 160,
+              "after_expiry": 172,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "mobile-promo-on-desktop-force-promo-type",
+              "before_expiry": 160,
+              "after_expiry": 172,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "mobile-promo-on-desktop-with-qr-code",
+              "before_expiry": 160,
+              "after_expiry": 172,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "mobile-promo-on-desktop-with-qr-code-wave-1",
+              "before_expiry": 160,
+              "after_expiry": 172,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "mobile-promo-on-desktop-with-reminder",
+              "before_expiry": 160,
+              "after_expiry": 172,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "mobile-promo-on-desktop-with-reminder-wave-1",
+              "before_expiry": 160,
+              "after_expiry": 172,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "mobile-promo-on-desktop-data-collection",
+        "mobile-promo-on-desktop-force-promo-type",
+        "mobile-promo-on-desktop-with-qr-code",
+        "mobile-promo-on-desktop-with-qr-code-wave-1",
+        "mobile-promo-on-desktop-with-reminder",
+        "mobile-promo-on-desktop-with-reminder-wave-1"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-1a77eb479343208e2318ef6039c2ca0f19779a5d",
+      "source_revision": "1a77eb479343208e2318ef6039c2ca0f19779a5d",
+      "committed_at": "2026-11-10T17:49:24Z",
+      "source_url": "https://github.com/chromium/chromium/commit/1a77eb479343208e2318ef6039c2ca0f19779a5d",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry of disable-grid-tab-switcher flag to M175",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "d56bd6bd30eb13272aa514ec6cf41fbd9a34722f8ee4250da4f466a006876262",
+          "source_url": "https://github.com/chromium/chromium/commit/1a77eb479343208e2318ef6039c2ca0f19779a5d.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "disable-grid-tab-switcher",
+              "before_expiry": 160,
+              "after_expiry": 175,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "disable-grid-tab-switcher"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-99d1290c1d7aa6adf8ef9d37c10bfa43befb107b",
+      "source_revision": "99d1290c1d7aa6adf8ef9d37c10bfa43befb107b",
+      "committed_at": "2026-11-10T17:50:23Z",
+      "source_url": "https://github.com/chromium/chromium/commit/99d1290c1d7aa6adf8ef9d37c10bfa43befb107b",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend tab-bottom-sheet to M175",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "68b87d63d8263b32b9119c341f4da6a5e550be2710e7ca8a77eeada0c2782ce1",
+          "source_url": "https://github.com/chromium/chromium/commit/99d1290c1d7aa6adf8ef9d37c10bfa43befb107b.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "tab-bottom-sheet",
+              "before_expiry": 160,
+              "after_expiry": 175,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "tab-bottom-sheet"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-b59b7112f85fe0cac783b17d8729ef6776853796",
+      "source_revision": "b59b7112f85fe0cac783b17d8729ef6776853796",
+      "committed_at": "2026-11-10T17:50:42Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b59b7112f85fe0cac783b17d8729ef6776853796",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry of undoable-tab-closure-rework to M175",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "1f3ee5f98525489e47f63907e367cdbca3431def3780287ce2bbc90f69736907",
+          "source_url": "https://github.com/chromium/chromium/commit/b59b7112f85fe0cac783b17d8729ef6776853796.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "undoable-tab-closure-rework",
+              "before_expiry": 160,
+              "after_expiry": 175,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "undoable-tab-closure-rework"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-bf497759cd7801c4cf70506c7255350d0fc79ddf",
+      "source_revision": "bf497759cd7801c4cf70506c7255350d0fc79ddf",
+      "committed_at": "2026-11-10T17:52:53Z",
+      "source_url": "https://github.com/chromium/chromium/commit/bf497759cd7801c4cf70506c7255350d0fc79ddf",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend update-tab-group-colors expiry milestone to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "c1e4f684caa3fef2f9bf3717c8b56d5929d90fc841817509a0cb27b9d17c7a04",
+          "source_url": "https://github.com/chromium/chromium/commit/bf497759cd7801c4cf70506c7255350d0fc79ddf.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "update-tab-group-colors",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "update-tab-group-colors"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-f3905cabd83a64a41f82f625756f33cd62a74f22",
+      "source_revision": "f3905cabd83a64a41f82f625756f33cd62a74f22",
+      "committed_at": "2026-11-10T18:04:10Z",
+      "source_url": "https://github.com/chromium/chromium/commit/f3905cabd83a64a41f82f625756f33cd62a74f22",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry of tab-closure-committed-method-refactor flag to M170.",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "589d17ae94e40167344e9bce49e6e0367c02a6efa3f72f079383d7c787485e8d",
+          "source_url": "https://github.com/chromium/chromium/commit/f3905cabd83a64a41f82f625756f33cd62a74f22.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "tab-closure-committed-method-refactor",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "tab-closure-committed-method-refactor"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-c6abbac8754eb5b9f7c98f35c939d89469938cdb",
+      "source_revision": "c6abbac8754eb5b9f7c98f35c939d89469938cdb",
+      "committed_at": "2026-11-10T18:09:27Z",
+      "source_url": "https://github.com/chromium/chromium/commit/c6abbac8754eb5b9f7c98f35c939d89469938cdb",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[CSD] Extend scam detection desktop server model flag expiry",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "d6de9d1c0dc37e45e043f0c4d786773c2a148b2add92e438170a1f5aa6e4a139",
+          "source_url": "https://github.com/chromium/chromium/commit/c6abbac8754eb5b9f7c98f35c939d89469938cdb.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "client-side-detection-server-model-for-scam-detection-desktop",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "client-side-detection-server-model-for-scam-detection-desktop"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-98992c010391160f092bbf09b95d42a9b980deac",
+      "source_revision": "98992c010391160f092bbf09b95d42a9b980deac",
+      "committed_at": "2026-11-10T18:19:33Z",
+      "source_url": "https://github.com/chromium/chromium/commit/98992c010391160f092bbf09b95d42a9b980deac",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Extend new-tab-page-ui-cleanup flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "473f005a3f18eb0e88139e87d0835d41724f171198158b85fbbf419d5d4d08f0",
+          "source_url": "https://github.com/chromium/chromium/commit/98992c010391160f092bbf09b95d42a9b980deac.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "new-tab-page-ui-cleanup",
+              "before_expiry": 160,
+              "after_expiry": 166,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "new-tab-page-ui-cleanup"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-b60910f30b73058599a027591ae3b7d6078a7e97",
+      "source_revision": "b60910f30b73058599a027591ae3b7d6078a7e97",
+      "committed_at": "2026-11-10T18:20:46Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b60910f30b73058599a027591ae3b7d6078a7e97",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend enable-mac-pwas-notification-attribution flag to M165",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "9669cd1b731441b543c1a2a6ef3ec237d27a448b1460b92099eb99dd821e1959",
+          "source_url": "https://github.com/chromium/chromium/commit/b60910f30b73058599a027591ae3b7d6078a7e97.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-mac-pwas-notification-attribution",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "enable-mac-pwas-notification-attribution"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-f9bbe21bda2afb4faa5cc5142a4f30d64a1604f5",
+      "source_revision": "f9bbe21bda2afb4faa5cc5142a4f30d64a1604f5",
+      "committed_at": "2026-11-10T18:21:57Z",
+      "source_url": "https://github.com/chromium/chromium/commit/f9bbe21bda2afb4faa5cc5142a4f30d64a1604f5",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Extend bulk data entry flag expiry to 165",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "350c0d44ff7deb0a2317c46b0cb89d5891a18c4e160694f43bef410bff256811",
+          "source_url": "https://github.com/chromium/chromium/commit/f9bbe21bda2afb4faa5cc5142a4f30d64a1604f5.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-bulk-data-entry-connector-ios",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "enable-bulk-data-entry-connector-ios"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-e0a79ccad0c587e582a01f4cfa7be79069a69235",
+      "source_revision": "e0a79ccad0c587e582a01f4cfa7be79069a69235",
+      "committed_at": "2026-11-10T18:25:42Z",
+      "source_url": "https://github.com/chromium/chromium/commit/e0a79ccad0c587e582a01f4cfa7be79069a69235",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry of 4 Clank flags from M160 to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2733e99f40ec38eaf4d6a5160406b4e4c92ca0ea1b710da25f9a82ef21fb1c9f",
+          "source_url": "https://github.com/chromium/chromium/commit/e0a79ccad0c587e582a01f4cfa7be79069a69235.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-app-rating-prompt",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "android-tab-ui-refactor",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "android-vertical-tabs",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "tab-ui-data-virtualization",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-app-rating-prompt",
+        "android-tab-ui-refactor",
+        "android-vertical-tabs",
+        "tab-ui-data-virtualization"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-fb4099be247b0a90bea82806d6a1b12bf6c63f97",
+      "source_revision": "fb4099be247b0a90bea82806d6a1b12bf6c63f97",
+      "committed_at": "2026-11-10T18:32:49Z",
+      "source_url": "https://github.com/chromium/chromium/commit/fb4099be247b0a90bea82806d6a1b12bf6c63f97",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[LinkedAcc] Extend linked-accounts flag expiry milestone to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "0035d335b37c70d9cb63ad532603d25bc3ecb7a984252d3a7e5aa4c1e0e58b52",
+          "source_url": "https://github.com/chromium/chromium/commit/fb4099be247b0a90bea82806d6a1b12bf6c63f97.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "linked-accounts",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "linked-accounts"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-faeeae12134002c77556ce66565afa46417ab0b2",
+      "source_revision": "faeeae12134002c77556ce66565afa46417ab0b2",
+      "committed_at": "2026-11-10T18:41:04Z",
+      "source_url": "https://github.com/chromium/chromium/commit/faeeae12134002c77556ce66565afa46417ab0b2",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[MagiChrome] Extend magichrome-passkey-signin flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "dba22289ae98a3a6c73c8a3398c8902f7225dc5398c5c6e497425499bfa97e4a",
+          "source_url": "https://github.com/chromium/chromium/commit/faeeae12134002c77556ce66565afa46417ab0b2.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "magichrome-passkey-signin",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "magichrome-passkey-signin"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-0d78a63e7a57ab468d6eb022fe44fa2eed8edf1c",
+      "source_revision": "0d78a63e7a57ab468d6eb022fe44fa2eed8edf1c",
+      "committed_at": "2026-11-10T18:41:33Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0d78a63e7a57ab468d6eb022fe44fa2eed8edf1c",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[rust jpeg] Extend enable-rusty-jpeg flag expiry",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "fde23925ef28c1a7a5c4a24f88ad6fdb170c3c01e9ceef288fcd08b6bd7f6ba2",
+          "source_url": "https://github.com/chromium/chromium/commit/0d78a63e7a57ab468d6eb022fe44fa2eed8edf1c.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-rusty-jpeg",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "enable-rusty-jpeg"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-2d53b24277e2f4ea9dfb82b6e8daac354955de14",
+      "source_revision": "2d53b24277e2f4ea9dfb82b6e8daac354955de14",
+      "committed_at": "2026-11-10T18:42:48Z",
+      "source_url": "https://github.com/chromium/chromium/commit/2d53b24277e2f4ea9dfb82b6e8daac354955de14",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend flag expiry milestones to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "fe0c6473376f09b633434fa29d8122e0487bdf46a77e3eb367b74a24a6b7492b",
+          "source_url": "https://github.com/chromium/chromium/commit/2d53b24277e2f4ea9dfb82b6e8daac354955de14.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "bookmarks-bar-ntp",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "enable-smart-zoom",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "toolbar-snapshot-refactor",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "bookmarks-bar-ntp",
+        "enable-smart-zoom",
+        "toolbar-snapshot-refactor"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-c4c8fd0692d2aae13ad049a4f8b41fa43a7ccd8f",
+      "source_revision": "c4c8fd0692d2aae13ad049a4f8b41fa43a7ccd8f",
+      "committed_at": "2026-11-10T18:53:24Z",
+      "source_url": "https://github.com/chromium/chromium/commit/c4c8fd0692d2aae13ad049a4f8b41fa43a7ccd8f",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS][Gemini] Extend ios-gemini-bottom-sheet-migration expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "c6190f6ef0ebe9fc376e32e65f2226da9512dd48d89ff7f9b4941f1f3a5e49b9",
+          "source_url": "https://github.com/chromium/chromium/commit/c4c8fd0692d2aae13ad049a4f8b41fa43a7ccd8f.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "ios-gemini-bottom-sheet-migration",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "ios-gemini-bottom-sheet-migration"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-a39a3f5b5ec8f1b0b539e38b7ea933df087d202d",
+      "source_revision": "a39a3f5b5ec8f1b0b539e38b7ea933df087d202d",
+      "committed_at": "2026-11-10T18:54:41Z",
+      "source_url": "https://github.com/chromium/chromium/commit/a39a3f5b5ec8f1b0b539e38b7ea933df087d202d",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Remove DesktopAndroidFilePickerForMedia feature flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "1984389a6eedbbf453aa91cc21b6873fb3f23638aa93a70489540d158d45469a",
+          "source_url": "https://github.com/chromium/chromium/commit/a39a3f5b5ec8f1b0b539e38b7ea933df087d202d.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kDesktopAndroidFilePickerForMediaDescription",
+              "before": "Show the desktop Files app instead of the mobile photo picker for media file inputs on Android desktop.",
+              "after": null,
+              "flag_id": "desktop-android-file-picker-for-media",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kDesktopAndroidFilePickerForMediaName",
+              "before": "Desktop Android File Picker For Media",
+              "after": null,
+              "flag_id": "desktop-android-file-picker-for-media",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "44a06b93017b14c7a93cf9239910eeaff5a246e168cfea2aa6430eb3935fd4c2",
+          "source_url": "https://github.com/chromium/chromium/commit/a39a3f5b5ec8f1b0b539e38b7ea933df087d202d.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "desktop-android-file-picker-for-media",
+              "action": "removed",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kDesktopAndroidFilePickerForMedia",
+                "kDesktopAndroidFilePickerForMediaDescription",
+                "kDesktopAndroidFilePickerForMediaName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "bab7430e68242a3e020a38b61bfb5434fd5ca1033258bc4b6db6cf1660f3acfa",
+          "source_url": "https://github.com/chromium/chromium/commit/a39a3f5b5ec8f1b0b539e38b7ea933df087d202d.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "desktop-android-file-picker-for-media",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "desktop-android-file-picker-for-media"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-6c89fa6d0e90add7bfbab73f72c4e7e72cb979f2",
+      "source_revision": "6c89fa6d0e90add7bfbab73f72c4e7e72cb979f2",
+      "committed_at": "2026-11-10T18:55:18Z",
+      "source_url": "https://github.com/chromium/chromium/commit/6c89fa6d0e90add7bfbab73f72c4e7e72cb979f2",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Passwords] Extend password-save-in-context-error-resolution to M165",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "40cb6aa2f90140e5323d9c0d7ad7c8dc53aa912c9c31a10ced64c0f71322906a",
+          "source_url": "https://github.com/chromium/chromium/commit/6c89fa6d0e90add7bfbab73f72c4e7e72cb979f2.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "password-save-in-context-error-resolution",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "password-save-in-context-error-resolution"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-6a7cd002ff09efdd71f48f356bdd821cb52f20b0",
+      "source_revision": "6a7cd002ff09efdd71f48f356bdd821cb52f20b0",
+      "committed_at": "2026-11-10T18:59:31Z",
+      "source_url": "https://github.com/chromium/chromium/commit/6a7cd002ff09efdd71f48f356bdd821cb52f20b0",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend cpe-passkey-largeblob-support flag expiry",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "ff79b20938c1a99ae7aa2f908babdb79424fe67c0e866c18c568df25144e4694",
+          "source_url": "https://github.com/chromium/chromium/commit/6a7cd002ff09efdd71f48f356bdd821cb52f20b0.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "cpe-passkey-largeblob-support",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "cpe-passkey-largeblob-support"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-cc2e28d87f63d1ebe988ad265b8066b5757f1bc6",
+      "source_revision": "cc2e28d87f63d1ebe988ad265b8066b5757f1bc6",
+      "committed_at": "2026-11-10T19:00:10Z",
+      "source_url": "https://github.com/chromium/chromium/commit/cc2e28d87f63d1ebe988ad265b8066b5757f1bc6",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[ASI] Gate the visual guide and annotated setters consistently",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "71a57c00a492046f3160778231d8b7b222fbafbb6932fb2b771dea348c7a71d9",
+          "source_url": "https://github.com/chromium/chromium/commit/cc2e28d87f63d1ebe988ad265b8066b5757f1bc6.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kDefaultBrowserSetterSelectionDescription",
+              "before": "Enables selecting a default browser setter (e.g. shell integration, visual guide, or on Windows 11 shell integration annotated with a bubble pointing at the Settings \\\"Set default\\\" button).",
+              "after": "Enables selecting a default browser setter: shell integration, or on Windows 11 the visual guide or shell integration annotated with a bubble pointing at the Settings \\\"Set default\\\" button. Elsewhere, the Windows 11 setters fall back to shell integration.",
+              "flag_id": null,
+              "mapping_status": "Symbol-to-flag mapping not established here."
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "f05b5db0506888530cd76136d06978ac7a65f449c5c602e95c547b645c217b57",
+          "source_url": "https://github.com/chromium/chromium/commit/cc2e28d87f63d1ebe988ad265b8066b5757f1bc6.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": []
+        }
+      ],
+      "platform": [
+        "Windows"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "watch",
+      "selection_reason": "기본 브라우저 설정의 시각 안내 옵션을 Windows 11로 명시하고, 지원하지 않는 OS에서 shell integration 방식으로 돌아가도록 소스 guard를 통일합니다. 기존 실험의 조건 보완이며 새 출시가 아닙니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "default-browser-setter-selection"
+      ],
+      "summary": "기본 브라우저 설정의 시각 안내 옵션을 Windows 11로 명시하고, 지원하지 않는 OS에서 shell integration 방식으로 돌아가도록 소스 guard를 통일합니다. 기존 실험의 조건 보완이며 새 출시가 아닙니다.",
+      "revisit_trigger": "Windows 11 안내와 다른 OS의 대체 흐름을 동일 조건으로 확인하면 재검토합니다.",
+      "platform_note": "Visual Guide and annotated setter require Windows 11; other OS use shell integration fallback."
+    },
+    {
+      "event_id": "chrome-source-fb8f18491373926a24f8150b3fa5b40815cdac79",
+      "source_revision": "fb8f18491373926a24f8150b3fa5b40815cdac79",
+      "committed_at": "2026-11-10T19:03:24Z",
+      "source_url": "https://github.com/chromium/chromium/commit/fb8f18491373926a24f8150b3fa5b40815cdac79",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Extend AutoDeletion Flags Expiration",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "56d4ea2fd4ba6e7a423869fa2545d1e6f9033970b915780ee4c2e293f4f86670",
+          "source_url": "https://github.com/chromium/chromium/commit/fb8f18491373926a24f8150b3fa5b40815cdac79.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "download-auto-deletion",
+              "before_expiry": 160,
+              "after_expiry": 168,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "download-auto-deletion-clear-files-on-every-startup",
+              "before_expiry": 160,
+              "after_expiry": 168,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "download-auto-deletion",
+        "download-auto-deletion-clear-files-on-every-startup"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-0e21d47ca0b807bc515d96e62ada759bf49afe0a",
+      "source_revision": "0e21d47ca0b807bc515d96e62ada759bf49afe0a",
+      "committed_at": "2026-11-10T19:03:59Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0e21d47ca0b807bc515d96e62ada759bf49afe0a",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend actor-silence-notifications-after-first-working to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "4765560d5f382180cc4cbe717ac6b9fb134015fbe949b5ef9fdef7820ba5ab4d",
+          "source_url": "https://github.com/chromium/chromium/commit/0e21d47ca0b807bc515d96e62ada759bf49afe0a.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "actor-silence-notifications-after-first-working",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "actor-silence-notifications-after-first-working"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-bb451ee77228f0c1f24067a2da7c9b6468e6302f",
+      "source_revision": "bb451ee77228f0c1f24067a2da7c9b6468e6302f",
+      "committed_at": "2026-11-10T19:05:52Z",
+      "source_url": "https://github.com/chromium/chromium/commit/bb451ee77228f0c1f24067a2da7c9b6468e6302f",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend actor-live-notification expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "76e45ad7d964895ad40cd1d6d779a993a8dc8d27e93c1502b394d613af6b5b16",
+          "source_url": "https://github.com/chromium/chromium/commit/bb451ee77228f0c1f24067a2da7c9b6468e6302f.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "actor-live-notification",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "actor-live-notification"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-26b001742ef867cfe85adc92f7b6ef71ca12b686",
+      "source_revision": "26b001742ef867cfe85adc92f7b6ef71ca12b686",
+      "committed_at": "2026-11-10T19:06:33Z",
+      "source_url": "https://github.com/chromium/chromium/commit/26b001742ef867cfe85adc92f7b6ef71ca12b686",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend actor-step-progress-notification expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "db99daa6b886136813f38c987290cc481446538b4bc4e926d691b096d411ab64",
+          "source_url": "https://github.com/chromium/chromium/commit/26b001742ef867cfe85adc92f7b6ef71ca12b686.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "actor-step-progress-notification",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "actor-step-progress-notification"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-da436b7f8f8871dc4b6ad4a3aaaeb2e4da3536da",
+      "source_revision": "da436b7f8f8871dc4b6ad4a3aaaeb2e4da3536da",
+      "committed_at": "2026-11-10T19:07:02Z",
+      "source_url": "https://github.com/chromium/chromium/commit/da436b7f8f8871dc4b6ad4a3aaaeb2e4da3536da",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend actor-notification-intent-routing expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "e50bf11a03fb3da967b1eaf20909cc54b3dbebd715ccb606a4a02a419cfaabea",
+          "source_url": "https://github.com/chromium/chromium/commit/da436b7f8f8871dc4b6ad4a3aaaeb2e4da3536da.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "actor-notification-intent-routing",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "actor-notification-intent-routing"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-2288cc27e68d71ea01dd6dfadd9839e5795ec065",
+      "source_revision": "2288cc27e68d71ea01dd6dfadd9839e5795ec065",
+      "committed_at": "2026-11-10T19:07:45Z",
+      "source_url": "https://github.com/chromium/chromium/commit/2288cc27e68d71ea01dd6dfadd9839e5795ec065",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend glic-background-actuation-tab-group-sync expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "37938b7f4023ff77ad4110428b30cd6c2f383cf6c326a0e27be57514256d0bb9",
+          "source_url": "https://github.com/chromium/chromium/commit/2288cc27e68d71ea01dd6dfadd9839e5795ec065.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "glic-background-actuation-tab-group-sync",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "glic-background-actuation-tab-group-sync"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-58319e48bc9cd9e8793a19386cc010da300918c1",
+      "source_revision": "58319e48bc9cd9e8793a19386cc010da300918c1",
+      "committed_at": "2026-11-10T19:08:56Z",
+      "source_url": "https://github.com/chromium/chromium/commit/58319e48bc9cd9e8793a19386cc010da300918c1",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend fetch-device-authorization-keys flag expiry",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "6c9b3765998bddbee45a9183f9e5bd5769a9d07c32e3c382bf4c385ff8b46d67",
+          "source_url": "https://github.com/chromium/chromium/commit/58319e48bc9cd9e8793a19386cc010da300918c1.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "fetch-device-authorization-keys",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "fetch-device-authorization-keys"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-b9579b44692cbc125a48ad9a6e55e6b25f45bc13",
+      "source_revision": "b9579b44692cbc125a48ad9a6e55e6b25f45bc13",
+      "committed_at": "2026-11-10T19:11:26Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b9579b44692cbc125a48ad9a6e55e6b25f45bc13",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Remove context-menu-preview-downsample-image flag from chrome://flags",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "b1905e46da69108ccd1073238ac0253d475d982d2c67a069627c46d491ce3257",
+          "source_url": "https://github.com/chromium/chromium/commit/b9579b44692cbc125a48ad9a6e55e6b25f45bc13.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "context-menu-preview-downsample-image",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "context-menu-preview-downsample-image"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-4b3dfe9063ac893aafc7dcffdabe0a0a0e6daf02",
+      "source_revision": "4b3dfe9063ac893aafc7dcffdabe0a0a0e6daf02",
+      "committed_at": "2026-11-10T19:13:55Z",
+      "source_url": "https://github.com/chromium/chromium/commit/4b3dfe9063ac893aafc7dcffdabe0a0a0e6daf02",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Add chrome://flags for kHashPrefixRealTimeLookupsOnIncognitoAndGuest",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "527f8e6e101809cbebe721685c88b9b509e46693d3e2b029640e77c4baa37506",
+          "source_url": "https://github.com/chromium/chromium/commit/4b3dfe9063ac893aafc7dcffdabe0a0a0e6daf02.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kSafeBrowsingHashPrefixRealTimeLookupsOnIncognitoAndGuestDescription",
+              "before": null,
+              "after": "Enable checking URLs through Safe Browsing hash-prefix real-time lookups on Incognito and Guest mode.",
+              "flag_id": "safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kSafeBrowsingHashPrefixRealTimeLookupsOnIncognitoAndGuestName",
+              "before": null,
+              "after": "Safe Browsing Hash Prefix Real Time Lookups on Incognito and Guest",
+              "flag_id": "safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "4163cba4588470f6fc7d66d1c1ef87da24ce942e53cff70b863352bafcd312b7",
+          "source_url": "https://github.com/chromium/chromium/commit/4b3dfe9063ac893aafc7dcffdabe0a0a0e6daf02.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest",
+              "action": "added",
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "related_feature_ids": [
+                "kHashPrefixRealTimeLookupsOnIncognitoAndGuest"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "85bde50fa2a0add467834ca7dbd2e522896e0b44ec99f8d09677ba8b24908c71",
+          "source_url": "https://github.com/chromium/chromium/commit/4b3dfe9063ac893aafc7dcffdabe0a0a0e6daf02.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest",
+              "before_expiry": null,
+              "after_expiry": 162,
+              "action": "added",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "watch",
+      "selection_reason": "시크릿·게스트 모드에서 URL을 Safe Browsing 해시 접두사 실시간 조회로 검사하는 flag를 등록합니다. 같은 commit의 iOS 항목은 시크릿 모드만 명시합니다. 실제 출시·기본 활성화·각 플랫폼 게스트 지원을 뜻하지 않습니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest"
+      ],
+      "summary": "시크릿·게스트 모드에서 URL을 Safe Browsing 해시 접두사 실시간 조회로 검사하는 flag를 등록합니다. 같은 commit의 iOS 항목은 시크릿 모드만 명시합니다. 실제 출시·기본 활성화·각 플랫폼 게스트 지원을 뜻하지 않습니다.",
+      "revisit_trigger": "네트워크 전송·프라이버시 안내·모드별 정책과 설치본 지원 근거를 확인하면 비교합니다.",
+      "ios_related_flag": "safe-browsing-hash-prefix-real-time-lookups-on-incognito",
+      "platform_note": "kOsAll is the Chromium registration mask, not all product availability; same commit has separate iOS incognito-only entry."
+    },
+    {
+      "event_id": "chrome-source-ef1ebf1f0ee710950b19b82c9cf93a9df03e96fd",
+      "source_revision": "ef1ebf1f0ee710950b19b82c9cf93a9df03e96fd",
+      "committed_at": "2026-11-10T19:19:22Z",
+      "source_url": "https://github.com/chromium/chromium/commit/ef1ebf1f0ee710950b19b82c9cf93a9df03e96fd",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend glass-frame and menu-simplification flag expiration",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "b90bf88fc93f34e94e3f27b9ec6b417907c3ac081e957dadf500ab9e1a4e886f",
+          "source_url": "https://github.com/chromium/chromium/commit/ef1ebf1f0ee710950b19b82c9cf93a9df03e96fd.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "glass-frame",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "menu-simplification",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "glass-frame",
+        "menu-simplification"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-b5faf54908f88ea9ea77625faeebf72de29b8f7a",
+      "source_revision": "b5faf54908f88ea9ea77625faeebf72de29b8f7a",
+      "committed_at": "2026-11-10T19:23:43Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b5faf54908f88ea9ea77625faeebf72de29b8f7a",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[SharedHighlighting] Enable TextHighlightFullLink and extend to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "30b737012e34a44c81e90e41ada338d804537ddb9661ee99971cff155baece94",
+          "source_url": "https://github.com/chromium/chromium/commit/b5faf54908f88ea9ea77625faeebf72de29b8f7a.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "text-highlight-full-link",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "text-highlight-full-link"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-23b25b417df0f5cb04ad9324187c80c62dad5acd",
+      "source_revision": "23b25b417df0f5cb04ad9324187c80c62dad5acd",
+      "committed_at": "2026-11-10T19:25:42Z",
+      "source_url": "https://github.com/chromium/chromium/commit/23b25b417df0f5cb04ad9324187c80c62dad5acd",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Unified tabstrip] Update flag expiration milestones",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2f3a73b4b49db7729c71489950bc2d2bb939e269c07d6fe011b47bc6400c8f9a",
+          "source_url": "https://github.com/chromium/chromium/commit/23b25b417df0f5cb04ad9324187c80c62dad5acd.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "new-horizontal-pinned-tab-styling",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "tab-strip-unification",
+              "before_expiry": 160,
+              "after_expiry": 165,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "new-horizontal-pinned-tab-styling",
+        "tab-strip-unification"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-01fd799d282491c76ab3d508b8b1e31f548cd4e5",
+      "source_revision": "01fd799d282491c76ab3d508b8b1e31f548cd4e5",
+      "committed_at": "2026-11-10T19:29:22Z",
+      "source_url": "https://github.com/chromium/chromium/commit/01fd799d282491c76ab3d508b8b1e31f548cd4e5",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[LongScreenshot] Extend flag expirations to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "edd04c7e9340540d3d24bbe202dae4b3509c342f4b41de33e1774c7a16e64378",
+          "source_url": "https://github.com/chromium/chromium/commit/01fd799d282491c76ab3d508b8b1e31f548cd4e5.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "long-screenshots-lenient-memory-check",
+              "before_expiry": 150,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "long-screenshots-no-memory-check",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "long-screenshots-lenient-memory-check",
+        "long-screenshots-no-memory-check"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-d8b694f8d53c244305a1221a7950350ebed39aeb",
+      "source_revision": "d8b694f8d53c244305a1221a7950350ebed39aeb",
+      "committed_at": "2026-11-10T19:31:32Z",
+      "source_url": "https://github.com/chromium/chromium/commit/d8b694f8d53c244305a1221a7950350ebed39aeb",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[GEiC] Extend geic-enabled and geic-guest-url flags to M162",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "4d74c1ca27a19dc1c0584c2821ff98cf2fcd02284dbc040a411ead5ab5f3b0bd",
+          "source_url": "https://github.com/chromium/chromium/commit/d8b694f8d53c244305a1221a7950350ebed39aeb.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "geic-enabled",
+              "before_expiry": 160,
+              "after_expiry": 162,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "geic-guest-url",
+              "before_expiry": 160,
+              "after_expiry": 162,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "geic-enabled",
+        "geic-guest-url"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-f0a16d79a74f3ed138667c2c4bcd465b99e04005",
+      "source_revision": "f0a16d79a74f3ed138667c2c4bcd465b99e04005",
+      "committed_at": "2026-11-10T19:34:46Z",
+      "source_url": "https://github.com/chromium/chromium/commit/f0a16d79a74f3ed138667c2c4bcd465b99e04005",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[MultipleMediaNotifs] Extend flag expiration to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "cc81240c3fa7e7fec68c8bda56f898dc8612774077dbfde1f079304349de05b2",
+          "source_url": "https://github.com/chromium/chromium/commit/f0a16d79a74f3ed138667c2c4bcd465b99e04005.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "allow-multiple-media-notifications",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "allow-multiple-media-notifications"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-8f330dfd354ad83d188077ca3285cb8bcf497fb6",
+      "source_revision": "8f330dfd354ad83d188077ca3285cb8bcf497fb6",
+      "committed_at": "2026-11-10T19:38:20Z",
+      "source_url": "https://github.com/chromium/chromium/commit/8f330dfd354ad83d188077ca3285cb8bcf497fb6",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Flags] Bump tab-switcher-drag-drop expiry to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "c35e6e73b1b3e087d44b959b1456cda9bccb6daa3de01a1b55729e4c69a62b04",
+          "source_url": "https://github.com/chromium/chromium/commit/8f330dfd354ad83d188077ca3285cb8bcf497fb6.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "tab-switcher-drag-drop",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "tab-switcher-drag-drop"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-83bbc4a1b42685210bf3bd4125b6c0b57b573969",
+      "source_revision": "83bbc4a1b42685210bf3bd4125b6c0b57b573969",
+      "committed_at": "2026-11-10T19:43:00Z",
+      "source_url": "https://github.com/chromium/chromium/commit/83bbc4a1b42685210bf3bd4125b6c0b57b573969",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[AutofillAi] Remove autofill-ambient-autofill chrome://flags entry",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "eb82beb39ceda7eefacaa1e4dbddb426311e6f3e5c064c941716bf9d03d55fea",
+          "source_url": "https://github.com/chromium/chromium/commit/83bbc4a1b42685210bf3bd4125b6c0b57b573969.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kAutofillAmbientAutofillDescription",
+              "before": "Enables Ambient Autofill.",
+              "after": null,
+              "flag_id": "autofill-ambient-autofill",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kAutofillAmbientAutofillName",
+              "before": "Autofill Ambient Autofill",
+              "after": null,
+              "flag_id": "autofill-ambient-autofill",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "61340841c7ee3b00eada8de71e4848984bedacfede3e6f4063862126de03c8ed",
+          "source_url": "https://github.com/chromium/chromium/commit/83bbc4a1b42685210bf3bd4125b6c0b57b573969.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "autofill-ambient-autofill",
+              "action": "removed",
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "related_feature_ids": [
+                "kAutofillAmbientAutofill",
+                "kAutofillAmbientAutofillDescription",
+                "kAutofillAmbientAutofillName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "52e0e5c7ffe4b5a615f6f40128d13e1eb8d923c3f1ff4efcca6962658a2910f2",
+          "source_url": "https://github.com/chromium/chromium/commit/83bbc4a1b42685210bf3bd4125b6c0b57b573969.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "autofill-ambient-autofill",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "autofill-ambient-autofill"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-5de2b92d7edeecedc3ebd5faa6d7ef4640ea98e0",
+      "source_revision": "5de2b92d7edeecedc3ebd5faa6d7ef4640ea98e0",
+      "committed_at": "2026-11-10T19:48:03Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5de2b92d7edeecedc3ebd5faa6d7ef4640ea98e0",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Android] Extend use-new-etc1-decoder flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "56f7f0521835dc488c2c5f67690524b1e8f15c8489605d42227771b452b23c21",
+          "source_url": "https://github.com/chromium/chromium/commit/5de2b92d7edeecedc3ebd5faa6d7ef4640ea98e0.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "use-new-etc1-decoder",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "use-new-etc1-decoder"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-dea654955655f5c694dda731501913d367487057",
+      "source_revision": "dea654955655f5c694dda731501913d367487057",
+      "committed_at": "2026-11-10T19:49:20Z",
+      "source_url": "https://github.com/chromium/chromium/commit/dea654955655f5c694dda731501913d367487057",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Android] Bump load-all-tabs-at-startup expiry milestone to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2b1cea4a5cec71befb9f4c35c1db968f55a67ad1b8249f168ace171e46d1f6a7",
+          "source_url": "https://github.com/chromium/chromium/commit/dea654955655f5c694dda731501913d367487057.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "load-all-tabs-at-startup",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "load-all-tabs-at-startup"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-b77a68b4f52911a533c297f8163a4cf6af9f05ef",
+      "source_revision": "b77a68b4f52911a533c297f8163a4cf6af9f05ef",
+      "committed_at": "2026-11-10T19:49:37Z",
+      "source_url": "https://github.com/chromium/chromium/commit/b77a68b4f52911a533c297f8163a4cf6af9f05ef",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[PaintPreview] Extend paint-preview-demo flag expiry by 30 milestones",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "16a8900059dd0f354d57bc71bb68df569cf6802189ded9fc5b54b29e2b98f9c3",
+          "source_url": "https://github.com/chromium/chromium/commit/b77a68b4f52911a533c297f8163a4cf6af9f05ef.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "paint-preview-demo",
+              "before_expiry": 160,
+              "after_expiry": 190,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "paint-preview-demo"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-0bf492a1f6a8a7c2c5650e53f980000f7bc5e752",
+      "source_revision": "0bf492a1f6a8a7c2c5650e53f980000f7bc5e752",
+      "committed_at": "2026-11-10T19:51:45Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0bf492a1f6a8a7c2c5650e53f980000f7bc5e752",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS][Composebox] Remove kComposeboxServerSideState feature flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "55139ec06f904757b7ad0df172dbf9612cb6f4f3d0b9757d3e49baa351c70f39",
+          "source_url": "https://github.com/chromium/chromium/commit/0bf492a1f6a8a7c2c5650e53f980000f7bc5e752.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "composebox-server-side-state",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "composebox-server-side-state"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-3dc0184f28aec3e558ec356121f625fc7f85a842",
+      "source_revision": "3dc0184f28aec3e558ec356121f625fc7f85a842",
+      "committed_at": "2026-11-10T20:12:46Z",
+      "source_url": "https://github.com/chromium/chromium/commit/3dc0184f28aec3e558ec356121f625fc7f85a842",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Created the IOSSupportMediaCapturePolicies Feature Flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "701a13c9686ce08b54b4939768618103015108440f3e81ccb0db3ab956d32134",
+          "source_url": "https://github.com/chromium/chromium/commit/3dc0184f28aec3e558ec356121f625fc7f85a842.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "ios-support-media-capture-policies",
+              "before_expiry": null,
+              "after_expiry": 163,
+              "action": "added",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "ios-support-media-capture-policies"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-a1ee9b148464b4fc1c2faa9bc4b6e9d9b818958c",
+      "source_revision": "a1ee9b148464b4fc1c2faa9bc4b6e9d9b818958c",
+      "committed_at": "2026-11-10T20:17:52Z",
+      "source_url": "https://github.com/chromium/chromium/commit/a1ee9b148464b4fc1c2faa9bc4b6e9d9b818958c",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extend expiry milestone for glic flags to M180",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "17d07e18efeeeb734ec40befc17bdfe02991b45cd4337ab9d14abacb0c2f2dbd",
+          "source_url": "https://github.com/chromium/chromium/commit/a1ee9b148464b4fc1c2faa9bc4b6e9d9b818958c.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "glic",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "glic-caa-guest-error",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "glic",
+        "glic-caa-guest-error"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-8d464bfb681ad2bf5490ee4502da33af8073432f",
+      "source_revision": "8d464bfb681ad2bf5490ee4502da33af8073432f",
+      "committed_at": "2026-11-10T20:23:33Z",
+      "source_url": "https://github.com/chromium/chromium/commit/8d464bfb681ad2bf5490ee4502da33af8073432f",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[NTP Customization Sync] Extend theme sync flag expiry to M166",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2385164d60410e86cf74390cb7982b4b4b1216445e3f068dfa418c193428051a",
+          "source_url": "https://github.com/chromium/chromium/commit/8d464bfb681ad2bf5490ee4502da33af8073432f.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "new-tab-page-customization-theme-sync",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "new-tab-page-customization-theme-sync"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-d131b601466bbbb39486b2a146d69512a475b33d",
+      "source_revision": "d131b601466bbbb39486b2a146d69512a475b33d",
+      "committed_at": "2026-11-10T20:32:41Z",
+      "source_url": "https://github.com/chromium/chromium/commit/d131b601466bbbb39486b2a146d69512a475b33d",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS][Composebox] Remove launched client tool feature flags",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "7fff763dd04a61f4825a0a37b1b45a360f952b8f287084685d574a954a7f6eee",
+          "source_url": "https://github.com/chromium/chromium/commit/d131b601466bbbb39486b2a146d69512a475b33d.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "composebox-additional-advanced-tools",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            },
+            {
+              "flag_id": "composebox-deep-search",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "composebox-additional-advanced-tools",
+        "composebox-deep-search"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-65833a436dc6e8f256efa3acc45db959fd97e80a",
+      "source_revision": "65833a436dc6e8f256efa3acc45db959fd97e80a",
+      "committed_at": "2026-11-10T20:33:11Z",
+      "source_url": "https://github.com/chromium/chromium/commit/65833a436dc6e8f256efa3acc45db959fd97e80a",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Extensions] Extend extensions-menu-access-control flag expiry to M168",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "0b812a4cf93765cd6986d9dced1f2b549e6bdd6b5a7c03ad077f1dfef1caaa1b",
+          "source_url": "https://github.com/chromium/chromium/commit/65833a436dc6e8f256efa3acc45db959fd97e80a.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "extensions-menu-access-control",
+              "before_expiry": 160,
+              "after_expiry": 168,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "extensions-menu-access-control"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-dd66b9abfc33a256de00a07d7638492766e964e0",
+      "source_revision": "dd66b9abfc33a256de00a07d7638492766e964e0",
+      "committed_at": "2026-11-10T20:40:01Z",
+      "source_url": "https://github.com/chromium/chromium/commit/dd66b9abfc33a256de00a07d7638492766e964e0",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[3P DSE NTP on AL] Extend 3P DSE NTP flag from M160 to M164",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "3d3bcda2ac4cfb4685eb4f76a0d36c3449d3417421e7cf02c538af866949c22d",
+          "source_url": "https://github.com/chromium/chromium/commit/dd66b9abfc33a256de00a07d7638492766e964e0.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "ntp-enable-instant-api-android",
+              "before_expiry": 160,
+              "after_expiry": 164,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "use-webui-ntp-3p-dse",
+              "before_expiry": 160,
+              "after_expiry": 164,
+              "action": "modified",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "ntp-enable-instant-api-android",
+        "use-webui-ntp-3p-dse"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-31da7b7767ea8b9aa6a69773ca9ef12f8e3cce1d",
+      "source_revision": "31da7b7767ea8b9aa6a69773ca9ef12f8e3cce1d",
+      "committed_at": "2026-11-10T20:45:00Z",
+      "source_url": "https://github.com/chromium/chromium/commit/31da7b7767ea8b9aa6a69773ca9ef12f8e3cce1d",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[SafeBrowsing][iOS] Extend Client-Side Detection flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "fcc35dc417850f9e97a05916df3add90fc764fdaab1f669840b804d0b652f38e",
+          "source_url": "https://github.com/chromium/chromium/commit/31da7b7767ea8b9aa6a69773ca9ef12f8e3cce1d.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "client-side-detection-ios",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "client-side-detection-server-model-for-scam-detection-ios",
+              "before_expiry": 165,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "client-side-detection-ios",
+        "client-side-detection-server-model-for-scam-detection-ios"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-7a9bd3cb650bf44dba24a3d7436f13d0171b8af0",
+      "source_revision": "7a9bd3cb650bf44dba24a3d7436f13d0171b8af0",
+      "committed_at": "2026-11-10T20:49:54Z",
+      "source_url": "https://github.com/chromium/chromium/commit/7a9bd3cb650bf44dba24a3d7436f13d0171b8af0",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Enterprise] Clean up kEnableAndroidEnterpriseScreenshotProtection flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "dea9cc619e26907fc8e8fd61a72cfbbed5542f8e1d9d0aba8bce96806deb4fa1",
+          "source_url": "https://github.com/chromium/chromium/commit/7a9bd3cb650bf44dba24a3d7436f13d0171b8af0.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kAndroidEnterpriseScreenshotProtectionDescription",
+              "before": "Enables a new screenshot protection controller that replaces the incognito-only controller. Enterprise enrolled devices can also have normal pages protected when determined by their admin.",
+              "after": null,
+              "flag_id": "enable-android-enterprise-screenshot-protection",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kAndroidEnterpriseScreenshotProtectionName",
+              "before": "Enable unified screenshot protection controller on Android",
+              "after": null,
+              "flag_id": "enable-android-enterprise-screenshot-protection",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "a8d09bd8845976a9ba7ae974cff891a2d447a3e3682a8900061e3df27f839e46",
+          "source_url": "https://github.com/chromium/chromium/commit/7a9bd3cb650bf44dba24a3d7436f13d0171b8af0.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "enable-android-enterprise-screenshot-protection",
+              "action": "removed",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kAndroidEnterpriseScreenshotProtectionDescription",
+                "kAndroidEnterpriseScreenshotProtectionName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "7c103b51f531a0875b92df7aadc69ffd2653e8da713e548820cbe4191d4b5d3a",
+          "source_url": "https://github.com/chromium/chromium/commit/7a9bd3cb650bf44dba24a3d7436f13d0171b8af0.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-android-enterprise-screenshot-protection",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "enable-android-enterprise-screenshot-protection"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-5199f217b4939190c6e23b094b08a45fef9dc0db",
+      "source_revision": "5199f217b4939190c6e23b094b08a45fef9dc0db",
+      "committed_at": "2026-11-10T20:55:37Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5199f217b4939190c6e23b094b08a45fef9dc0db",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[symphonia] Remove launched decoding flags and restrict FFmpeg decoder",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "46584889251e70384a245eb6c46aa485b4b3ae7e62cde438125c24cbbe3de32b",
+          "source_url": "https://github.com/chromium/chromium/commit/5199f217b4939190c6e23b094b08a45fef9dc0db.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kSymphoniaAudioDecodingDescription",
+              "before": "Enables using the experimental Symphonia audio decoder instead of using FFMPEG for decoding audio.",
+              "after": null,
+              "flag_id": "symphonia-audio-decoding",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kSymphoniaAudioDecodingName",
+              "before": "Symphonia Audio Decoding",
+              "after": null,
+              "flag_id": "symphonia-audio-decoding",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "fd101c201a1941b154a653472a9c803cd508882dbeaec2b97dcb978960478563",
+          "source_url": "https://github.com/chromium/chromium/commit/5199f217b4939190c6e23b094b08a45fef9dc0db.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "symphonia-audio-decoding",
+              "action": "removed",
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "related_feature_ids": [
+                "kSymphoniaAudioDecodingDescription",
+                "kSymphoniaAudioDecodingName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "1d78b464a6c3b1aad6f8ea004c3643db1b04461f5e8fb5ed4943bd77508c2407",
+          "source_url": "https://github.com/chromium/chromium/commit/5199f217b4939190c6e23b094b08a45fef9dc0db.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "symphonia-audio-decoding",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android",
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "symphonia-audio-decoding"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-af4888972b16c1dbee497bb184f496c9540668cc",
+      "source_revision": "af4888972b16c1dbee497bb184f496c9540668cc",
+      "committed_at": "2026-11-10T21:01:13Z",
+      "source_url": "https://github.com/chromium/chromium/commit/af4888972b16c1dbee497bb184f496c9540668cc",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[GEiC] Remove the expired geic-fre flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "00e085c59eecf386a55819878c9b5f504fa3a15d61cdfc1ae54ab1a43dc46a18",
+          "source_url": "https://github.com/chromium/chromium/commit/af4888972b16c1dbee497bb184f496c9540668cc.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kGeicFreDescription",
+              "before": "Enables the Gemini Enterprise in Chrome (GEiC) first-run experience. Requires GEiC to be enabled.",
+              "after": null,
+              "flag_id": "geic-fre",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kGeicFreName",
+              "before": "GEiC first-run experience",
+              "after": null,
+              "flag_id": "geic-fre",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "48a6e9862acb3a2cb672985fc77d71c4f36b9f45f1f485cc1b761327b6f949a2",
+          "source_url": "https://github.com/chromium/chromium/commit/af4888972b16c1dbee497bb184f496c9540668cc.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "geic-fre",
+              "action": "removed",
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kGeicFre",
+                "kGeicFreDescription",
+                "kGeicFreName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "c70c0150948c042de2e387e103dc820ac90bdaa24aabd334a8e9dad0cd662546",
+          "source_url": "https://github.com/chromium/chromium/commit/af4888972b16c1dbee497bb184f496c9540668cc.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "geic-fre",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "geic-fre"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-62d3c48ba7a7c9aab36c6ce6e267c0c1e56c2a90",
+      "source_revision": "62d3c48ba7a7c9aab36c6ce6e267c0c1e56c2a90",
+      "committed_at": "2026-11-10T21:09:36Z",
+      "source_url": "https://github.com/chromium/chromium/commit/62d3c48ba7a7c9aab36c6ce6e267c0c1e56c2a90",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Built-In AI] Extend active chrome://flags expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "731197d1434d030bcb9a07eaa60b473c6ef3760428648c35eda68039c7053f07",
+          "source_url": "https://github.com/chromium/chromium/commit/62d3c48ba7a7c9aab36c6ce6e267c0c1e56c2a90.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "decisions-api",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "gemma4-for-built-in-ai",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "prompt-api-sampling-mode",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "prompt-api-tool-use",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "proofreader-api",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "rewriter-api",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "summarizer-api-performance-preference",
+              "before_expiry": 159,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "writer-api",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "decisions-api",
+        "gemma4-for-built-in-ai",
+        "prompt-api-sampling-mode",
+        "prompt-api-tool-use",
+        "proofreader-api",
+        "rewriter-api",
+        "summarizer-api-performance-preference",
+        "writer-api"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-3bd9257158457e8342509d3d92fe248f6d594bb3",
+      "source_revision": "3bd9257158457e8342509d3d92fe248f6d594bb3",
+      "committed_at": "2026-11-10T21:24:48Z",
+      "source_url": "https://github.com/chromium/chromium/commit/3bd9257158457e8342509d3d92fe248f6d594bb3",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[SettingsIA] Add experiment arms to SettingsIaReorganization",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "f9f6403ca14feefcf9bd9e9cbb8e04a3026513b603fdb0e8585315f82388544c",
+          "source_url": "https://github.com/chromium/chromium/commit/3bd9257158457e8342509d3d92fe248f6d594bb3.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "settings-ia-reorganization",
+              "action": "modified",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kSettingsIaReorganization",
+                "kSettingsIaReorganizationDescription",
+                "kSettingsIaReorganizationName"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "watch",
+      "selection_reason": "Android settings-ia-reorganization을 단일 켜기/끄기 flag에서 Direction 1·2·3 실험 옵션으로 변경합니다. arm 값은 direction_1·direction_2·direction_3이며 각 화면 배치와 출시 여부는 미확인입니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "settings-ia-reorganization"
+      ],
+      "summary": "Android settings-ia-reorganization을 단일 켜기/끄기 flag에서 Direction 1·2·3 실험 옵션으로 변경합니다. arm 값은 direction_1·direction_2·direction_3이며 각 화면 배치와 출시 여부는 미확인입니다.",
+      "revisit_trigger": "세 옵션의 실제 화면과 설정 탐색 단계·오류 차이를 비교할 환경을 확보하면 재검토합니다.",
+      "options": [
+        {
+          "label": "Direction 1",
+          "arm": "direction_1"
+        },
+        {
+          "label": "Direction 2",
+          "arm": "direction_2"
+        },
+        {
+          "label": "Direction 3",
+          "arm": "direction_3"
+        }
+      ]
+    },
+    {
+      "event_id": "chrome-source-53bbe418408cd232544259786b479a6e93ab936c",
+      "source_revision": "53bbe418408cd232544259786b479a6e93ab936c",
+      "committed_at": "2026-11-10T21:28:06Z",
+      "source_url": "https://github.com/chromium/chromium/commit/53bbe418408cd232544259786b479a6e93ab936c",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[ribbon] Remove expired tab-group-ribbon flag",
+      "files": [
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "472d7db84138987aff232084ff175176179374a07146ef56eefdfe71266a1461",
+          "source_url": "https://github.com/chromium/chromium/commit/53bbe418408cd232544259786b479a6e93ab936c.diff",
+          "source_method": "GitHub official public commit diff",
+          "description_changes": [
+            {
+              "symbol": "kTabGroupRibbonDescription",
+              "before": "Displays a vertical ribbon on the left side of the browser window for quickly switching between tab groups.",
+              "after": null,
+              "flag_id": "tab-group-ribbon",
+              "mapping_status": "direct_same_revision_entry"
+            },
+            {
+              "symbol": "kTabGroupRibbonName",
+              "before": "Tab Group Ribbon",
+              "after": null,
+              "flag_id": "tab-group-ribbon",
+              "mapping_status": "direct_same_revision_entry"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "70d0cb35537f20d2a4e09b7fb732337dd8ec5352fdc15bf3efac7c1b9435e8a2",
+          "source_url": "https://github.com/chromium/chromium/commit/53bbe418408cd232544259786b479a6e93ab936c.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "tab-group-ribbon",
+              "action": "removed",
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "related_feature_ids": [
+                "kTabGroupRibbon",
+                "kTabGroupRibbonDescription",
+                "kTabGroupRibbonName"
+              ]
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "5297ef00ca19596c7bbd14e42d4c4c0da4cb422c279f176a61d21f0655f3e776",
+          "source_url": "https://github.com/chromium/chromium/commit/53bbe418408cd232544259786b479a6e93ab936c.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "tab-group-ribbon",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "action": "removed",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "ChromeOS"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "tab-group-ribbon"
+      ],
+      "summary": "등록·설명 flag를 정리합니다. 삭제가 실제 기능 폐지·정식 출시를 뜻하지는 않습니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-9b7922bee3b35606609b8632908c3e3ad0081409",
+      "source_revision": "9b7922bee3b35606609b8632908c3e3ad0081409",
+      "committed_at": "2026-11-10T21:28:46Z",
+      "source_url": "https://github.com/chromium/chromium/commit/9b7922bee3b35606609b8632908c3e3ad0081409",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Reading Mode] Update experiment flag expiration",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "7c656175a3a4d19646915038bdeb8f1f9b09fc1a2140a29e94e91298dff784dc",
+          "source_url": "https://github.com/chromium/chromium/commit/9b7922bee3b35606609b8632908c3e3ad0081409.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "read-anything-improved-ui",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "read-anything-read-aloud-experimental-playback-ui",
+              "before_expiry": 160,
+              "after_expiry": 180,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "read-anything-improved-ui",
+        "read-anything-read-aloud-experimental-playback-ui"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-5e3be1f034602ce81e7cadef64b18f4469e449be",
+      "source_revision": "5e3be1f034602ce81e7cadef64b18f4469e449be",
+      "committed_at": "2026-11-10T21:33:27Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5e3be1f034602ce81e7cadef64b18f4469e449be",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "IDB: extend expiry of SQLite about:flag entry",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "cec5f399c6050c778d1beba55784e6d4970c0e59d7318cf13fd0cae0aff71b27",
+          "source_url": "https://github.com/chromium/chromium/commit/5e3be1f034602ce81e7cadef64b18f4469e449be.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "idb-sqlite-backing-store",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "idb-sqlite-backing-store"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-441a419a399d6b72dbd8158a22e6d22534a34166",
+      "source_revision": "441a419a399d6b72dbd8158a22e6d22534a34166",
+      "committed_at": "2026-11-10T22:35:32Z",
+      "source_url": "https://github.com/chromium/chromium/commit/441a419a399d6b72dbd8158a22e6d22534a34166",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[DOMStorage] Extend SQLite flag expiry to M173",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "3ad3a3829695b9624a714a39e0b0adb1318192c641f062dcfdd75ac4f4bf2e8a",
+          "source_url": "https://github.com/chromium/chromium/commit/441a419a399d6b72dbd8158a22e6d22534a34166.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "dom-storage-sqlite",
+              "before_expiry": 160,
+              "after_expiry": 173,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "dom-storage-sqlite"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-17b528c5c82ab1c92dfa752dfb4b9c120b07cd3c",
+      "source_revision": "17b528c5c82ab1c92dfa752dfb4b9c120b07cd3c",
+      "committed_at": "2026-11-10T22:42:40Z",
+      "source_url": "https://github.com/chromium/chromium/commit/17b528c5c82ab1c92dfa752dfb4b9c120b07cd3c",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[flags] Extend expiry and update ownership for AI Hub, Ask Gemini, and location flags",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "84483f63280f85be26a4f8384f90fea0645c424a0f492aba668b025925042590",
+          "source_url": "https://github.com/chromium/chromium/commit/17b528c5c82ab1c92dfa752dfb4b9c120b07cd3c.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "ai-hub-new-badge",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": true
+            },
+            {
+              "flag_id": "ask-gemini-chip-ignore-criteria",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": true
+            },
+            {
+              "flag_id": "bwg-precise-location",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": true
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "ai-hub-new-badge",
+        "ask-gemini-chip-ignore-criteria",
+        "bwg-precise-location"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-58791e9d31bb244e9df9584a1f6951c430041267",
+      "source_revision": "58791e9d31bb244e9df9584a1f6951c430041267",
+      "committed_at": "2026-11-10T22:52:43Z",
+      "source_url": "https://github.com/chromium/chromium/commit/58791e9d31bb244e9df9584a1f6951c430041267",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Extend ios-level-up flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2e1029c2a4de93552645ba1b53ed9a0f5658f23c33337fb35e67d3811aa60db9",
+          "source_url": "https://github.com/chromium/chromium/commit/58791e9d31bb244e9df9584a1f6951c430041267.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "ios-level-up",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "ios-level-up"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-719f89df6cfa45aa8557f56d7753aace6807c24b",
+      "source_revision": "719f89df6cfa45aa8557f56d7753aace6807c24b",
+      "committed_at": "2026-11-10T22:53:54Z",
+      "source_url": "https://github.com/chromium/chromium/commit/719f89df6cfa45aa8557f56d7753aace6807c24b",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[Keyboard Shortcuts] Move AndroidUnifiedKeyboardShortcuts to ui/android",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "eb3dee565ebd0cf85ff41acc2621f286039ececcef22bcb6773f04bde21f6267",
+          "source_url": "https://github.com/chromium/chromium/commit/719f89df6cfa45aa8557f56d7753aace6807c24b.diff",
+          "source_method": "GitHub official public commit diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "android-unified-keyboard-shortcuts",
+              "action": "modified",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "related_feature_ids": [
+                "kAndroidUnifiedKeyboardShortcuts",
+                "kAndroidUnifiedKeyboardShortcutsDescription",
+                "kAndroidUnifiedKeyboardShortcutsName"
+              ]
+            }
+          ]
+        }
+      ],
+      "platform": [
+        "Android"
+      ],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "Android 통합 키보드 단축키의 관련 feature namespace를 chrome::android에서 ui로 이동합니다. 등록 ID는 유지되며 이번 소스 이동만으로 사용자 동작 변경을 주장하지 않습니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-unified-keyboard-shortcuts"
+      ],
+      "summary": "Android 통합 키보드 단축키의 관련 feature namespace를 chrome::android에서 ui로 이동합니다. 등록 ID는 유지되며 이번 소스 이동만으로 사용자 동작 변경을 주장하지 않습니다.",
+      "revisit_trigger": "키보드 동작·지원 범위 변경의 별도 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-5716c7cf0d2d746b8f42044f11bcc012ce898e25",
+      "source_revision": "5716c7cf0d2d746b8f42044f11bcc012ce898e25",
+      "committed_at": "2026-11-10T22:54:30Z",
+      "source_url": "https://github.com/chromium/chromium/commit/5716c7cf0d2d746b8f42044f11bcc012ce898e25",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "Extends multiple flags.",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "9ef9059efc17def5776ca1e08418d9bc5a218b08d9b13fd7249fad870a4d5bb8",
+          "source_url": "https://github.com/chromium/chromium/commit/5716c7cf0d2d746b8f42044f11bcc012ce898e25.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-app-integration-module",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "android-app-integration-multi-data-source",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "android-multiprofile-startup-data",
+              "before_expiry": 165,
+              "after_expiry": 175,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "disable-partner-homepage-android",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "enable-segmentation-platform-android-home-module-ranker-v2",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "ntp-aurora-v2",
+              "before_expiry": 161,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            },
+            {
+              "flag_id": "ntp-mvc-refactor",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "android-app-integration-module",
+        "android-app-integration-multi-data-source",
+        "android-multiprofile-startup-data",
+        "disable-partner-homepage-android",
+        "enable-segmentation-platform-android-home-module-ranker-v2",
+        "ntp-aurora-v2",
+        "ntp-mvc-refactor"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    },
+    {
+      "event_id": "chrome-source-ea1acbc5852d45be80f553f9012036dafe90585f",
+      "source_revision": "ea1acbc5852d45be80f553f9012036dafe90585f",
+      "committed_at": "2026-11-10T22:59:47Z",
+      "source_url": "https://github.com/chromium/chromium/commit/ea1acbc5852d45be80f553f9012036dafe90585f",
+      "observed_at": "2026-11-10T23:17:12.385738+00:00",
+      "title": "[iOS] Extend start-surface-user-setting flag expiry to M170",
+      "files": [
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "e8930666be7773dfa61dc1f59c6ce4e0b7de0bd9b6f5e71bff600e588b3d1044",
+          "source_url": "https://github.com/chromium/chromium/commit/ea1acbc5852d45be80f553f9012036dafe90585f.diff",
+          "source_method": "GitHub official public commit diff",
+          "metadata_changes": [
+            {
+              "flag_id": "start-surface-user-setting",
+              "before_expiry": 160,
+              "after_expiry": 170,
+              "action": "modified",
+              "owners_changed": false
+            }
+          ]
+        }
+      ],
+      "platform": [],
+      "version": null,
+      "channel": "source-main",
+      "verification_status": "source_verified_not_device_tested",
+      "selection_status": "excluded",
+      "selection_reason": "만료·등록 정리 또는 소스 유지보수. 실제 새 사용자 동작·출시는 별도 근거가 필요합니다.",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "device_test": "not_run",
+      "flag_ids": [
+        "start-surface-user-setting"
+      ],
+      "summary": "flag 만료 milestone·관리 metadata를 변경합니다. 기능 출시나 지원 확대가 아닙니다.",
+      "revisit_trigger": "사용자 동작이나 배포 조건 변경의 공식 근거가 있으면 재검토합니다."
+    }
+  ],
+  "limitations": [
+    "No device testing or rollout confirmation.",
+    "Flag removal is not feature removal.",
+    "Metadata-only platform and feature mapping remain unverified."
+  ]
+}

@@ -12,3 +12,13 @@
 - 한국 제공·한국어 지원: 미확인. 설치본 노출·동작 시험: 미실행.
 - 재검토: 공개 빌드 노출 또는 공식 배포·지원 조건이 확인될 때.
 - [공식 diff](https://github.com/chromium/chromium/commit/1ab53bc5148b29d0c6bf96a42e229986b4147fb2) · [사건 JSON](../../data/events/chrome-android-unified-keyboard-shortcuts-registration-1ab53bc5148b.json)
+
+## 2026-11-10 소스 변경
+
+- 2026-11-10T22:53:54Z · [719f89df6cfa](https://github.com/chromium/chromium/commit/719f89df6cfa45aa8557f56d7753aace6807c24b)
+  - Android 통합 키보드 단축키의 관련 feature namespace를 chrome::android에서 ui로 이동합니다. 등록 ID는 유지되며 이번 소스 이동만으로 사용자 동작 변경을 주장하지 않습니다.
+  - 판정: excluded. 키보드 동작·지원 범위 변경의 별도 근거가 있으면 재검토합니다.
+
+소스 플랫폼: Android; 실제 제품·설치본 지원 범위는 별도 확인이 필요합니다. 한국 제공·한국어 지원은 미확인, 실기 검증은 미실행입니다.
+
+[관련 소스 사건](monthly/2026-11-source-index-2026-11-11.json) · [실험 색인](README.md)

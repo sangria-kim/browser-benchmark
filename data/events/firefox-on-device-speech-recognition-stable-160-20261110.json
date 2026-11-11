@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "event_id": "firefox-on-device-speech-recognition-stable-160-20261110",
+  "feature_id": "firefox-on-device-speech-recognition",
+  "browser": "firefox",
+  "version": "160.0",
+  "channel": "stable",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "event_type": "channel_expansion",
+  "observed_at": "2026-11-10T23:16:21.389826+00:00",
+  "announced_at": "2026-11-10",
+  "effective_at": "2026-11-10",
+  "source_revision": null,
+  "previous_event_id": null,
+  "summary": "Desktop 온디바이스 음성인식 API의 Stable 확대",
+  "delta": "기존 160 Beta에서 설명한 기능이 11/10 Release 노트에 수록됐다. 기능 전체 최초 도입이 아니라 Stable 확대 사건이다.",
+  "novelty_basis": "저장된 160-beta 항목과 10/29 보고를 대조. 160.0 Stable은 기존 공개 사건에 없음.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "selection_status": "selected",
+  "selection_reason": "지원 웹사이트가 음성을 기기 안에서 실시간 텍스트로 바꿀 수 있다. 음성인식이 브라우저 전체의 음성 비서나 Android 지원을 뜻하지 않으며, 서버에 음성을 보내는 경로와 구분된다. 기존 Beta와 달리 11/10 Stable Release 수록이 확인되어 비교 대상 채널이 확대됐다.",
+  "priority": "P1",
+  "priority_reason": "음성의 처리 위치와 사용자 동의가 개인정보 경계에 직접 연결되므로 모델·언어 조건과 권한 안내를 우선 검증한다.",
+  "comparison_question": "삼성 브라우저의 음성 입력은 웹 API·브라우저 UI·키보드 중 어느 경로이며 처리 위치와 동의가 드러나는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "실제 Stable 노출과 동일 조건 비교 환경 확보",
+  "assessed_at": "2026-11-10T23:16:21.389826+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "Desktop 40개 언어. Android 음성인식과 클라우드 원격 인식은 지원하지 않는다고 MDN 명시. 지원 언어 전체 목록·한국어·모델 다운로드 조건 미확인."
+  },
+  "sources": [
+    {
+      "url": "https://www.firefox.com/en-US/firefox/160.0/releasenotes/#note-792492",
+      "section": "The SpeechRecognition interface of the Web Speech API is now supported, providing on-device, real-time speech-to-text in 40 languages.",
+      "observed_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "url": "https://www.firefox.com/en-US/firefox/160.0beta/releasenotes/#note-792376",
+      "section": "160 Beta 선행 항목 792376. 이전 본문·저장 항목과 대조.",
+      "observed_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/160",
+      "section": "APIs / On-device speech recognition",
+      "observed_at": "2026-11-10T23:16:21.389826+00:00"
+    }
+  ],
+  "benchmark_candidate": {
+    "task": "Desktop 온디바이스 음성인식 API의 Stable 확대",
+    "conditions": "동일 기기·OS·언어·지역·합성 데이터. 비교 브라우저 기능의 실제 존재를 먼저 확인. 설치·권한 변경은 승인된 시험 환경에서만 수행.",
+    "steps": [
+      "승인된 합성 음성·동일 마이크 조건의 테스트 페이지 준비",
+      "지원 언어·모델 설치 필요 여부와 권한 안내 확인",
+      "네트워크 연결/단절 및 지원하지 않는 언어 오류 비교"
+    ],
+    "metrics": [
+      "처리 위치 안내",
+      "초기 준비 단계",
+      "인식 완료시간",
+      "합성 문장 오류율"
+    ],
+    "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
+    "executed": false
+  },
+  "user_impact": "지원 웹사이트가 음성을 기기 안에서 실시간 텍스트로 바꿀 수 있다. 음성인식이 브라우저 전체의 음성 비서나 Android 지원을 뜻하지 않으며, 서버에 음성을 보내는 경로와 구분된다."
+}

@@ -15,3 +15,7 @@
 - [2026-11-07 — Whale Stable 확대 · Edge 로그인·메모리 안내 · Chrome 실험](2026-11-07.md) · 15개 고유 사건. 전체 selected 15건, 실기 미실행.
 
 - [2026-11-08 — Edge Performance detector 종료 계획](2026-11-08.md) · selected 1건, P1 / conditional. Edge 164 종료 예고이며 실제 제거 확인은 아닙니다.
+
+- [2026-11-10 — Edge Entra 패스키의 Mobile Stable 확대](2026-11-10.md) · selected 1건, P1.
+
+- [2026-11-11 — Firefox 160 Stable 확대 · Edge 상품 비교 제안](2026-11-11.md) · 공식 기능 변화, 직접 시험 미실행.

@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "feature_id": "whale-macos-minimum-version",
+  "event_id": "whale-macos-13-minimum-support-announcement-20261110",
+  "event_type": "deprecation_announcement",
+  "summary": "macOS 최소 지원 12에서 13으로 변경 예정",
+  "version": null,
+  "platform": [
+    "macOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "channel": "unknown",
+  "announced_at": "2026-11-10",
+  "effective_at": null,
+  "observed_at": "2026-11-10T23:18:05.982921+00:00",
+  "source_revision": null,
+  "previous_event_id": null,
+  "delta": "macOS12 이하의 기존 설치본은 계속 사용할 수 있으나 신규 기능·보안 업데이트를 받지 못할 예정. 시행 버전과 날짜는 공지에 없음.",
+  "verification_status": "official_body_verified_not_device_tested",
+  "selection_status": "watch",
+  "selection_reason": "업데이트 지원 종료 예고는 중요하지만 시행일·대상 버전 미공개. Windows·Android 우선 비교와 구분해 관찰한다.",
+  "priority": null,
+  "priority_reason": null,
+  "benchmark_readiness": "conditional",
+  "comparison_question": "지원 종료 안내에서 기존 사용 지속과 보안 업데이트 종료를 얼마나 명확히 구분하는가?",
+  "revisit_trigger": "시행 날짜·버전 또는 설치본 안내 공개",
+  "assessed_at": "2026-11-10T23:18:05.982921+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "한영 공식 안내가 일치. 한국어 공지 존재만으로 국내 배포일 확정 불가."
+  },
+  "sources": [
+    {
+      "url": "https://notice.naver.com/notices/whalehomepage/35390",
+      "section": "최소 macOS 요구사항 변경",
+      "observed_at": "2026-11-10T23:18:05.982921+00:00"
+    },
+    {
+      "url": "https://notice.naver.com/notices/whalehomepage/35391",
+      "section": "최소 macOS 요구사항 변경",
+      "observed_at": "2026-11-10T23:18:05.982921+00:00"
+    }
+  ]
+}

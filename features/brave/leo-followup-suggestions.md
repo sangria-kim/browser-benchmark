@@ -38,3 +38,9 @@
 - [근거 3](https://github.com/brave/brave-browser/issues/59650)
 - [근거 4](https://github.com/brave/brave-browser/issues/59650#issuecomment-6623643598)
 - [근거 5](https://support.brave.app/hc/en-us/articles/20958609786637-How-do-I-use-Brave-Leo)
+
+## Android 정식 노트 근거 보완
+
+2026-11-11 확인한 1.99.55 공식 릴리스의 Android 절과 Android changelog에도 이 기능이 명시된다. 기존 Desktop 범위 원문은 당시 근거로 보존한다. 새 노트 추가를 11/11 모바일 출시로 해석하지 않으며 최초 적용일·한국 조건은 미확인이다.
+
+[Android 공식 항목](../../releases/brave/1.99.55/android-feature-references.json)

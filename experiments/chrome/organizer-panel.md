@@ -16,3 +16,13 @@
 | 2026-10-15 | modified | kOsDesktop | [0b1792ad415b](https://github.com/chromium/chromium/commit/0b1792ad415b91b06634f0fc46dde0b936b14d85) |
 
 [전체 목록](README.md)
+
+## 2026-11-09 소스 변경
+
+- 2026-11-09T22:05:41Z · [96b124d3586a](https://github.com/chromium/chromium/commit/96b124d3586a647cdaacd64f6d34fa5cb70d988d)
+  - Organizer panel의 segmentation control on/off 옵션을 제거하고 일반 feature 토글로 바꿉니다. 공식 commit은 해당 control이 중단된 설계라고 설명합니다. Organizer 기능 전체 철회나 출시를 뜻하지 않습니다.
+  - 판정: excluded · 실제 Organizer 사용자 흐름 또는 제공 범위 변경이 확인되면 재검토합니다.
+
+플랫폼 근거: ChromeOS, Linux, Windows, macOS. 소스 조건이며 실제 설치본 지원을 보장하지 않습니다. 한국 제공·한국어 지원·최소 버전은 미확인, 실기 검증은 미실행입니다.
+
+[관련 소스 사건](monthly/2026-11-source-index-2026-11-10.json) · [실험 색인](README.md)
