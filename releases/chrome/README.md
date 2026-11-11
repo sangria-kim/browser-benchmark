@@ -95,3 +95,9 @@
 - [158.0.8127.24 공식 기능 근거](158.0.8127.24/release-reference.json)
 
 - [158.0.8127.32 공식 기능 근거](158.0.8127.32/release-reference.json)
+
+- [156.0.8078.100 공식 기능 근거](156.0.8078.100/release-reference.json)
+
+- [157.0.8103.78 공식 기능 근거](157.0.8103.78/release-reference.json)
+
+- [2026-11-12 기능 근거 보완](feature-references-2026-11-12.json)

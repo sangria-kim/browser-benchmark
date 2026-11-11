@@ -19,3 +19,5 @@
 - [2026-11-10 — Edge Entra 패스키의 Mobile Stable 확대](2026-11-10.md) · selected 1건, P1.
 
 - [2026-11-11 — Firefox 160 Stable 확대 · Edge 상품 비교 제안](2026-11-11.md) · 공식 기능 변화, 직접 시험 미실행.
+
+- [2026-11-12 · Firefox 161 Beta · Whale 지원 경계와 복구](2026-11-12.md) · selected 5건, 공식 문헌 분석·실기 미실행.

@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "browser": "chrome",
+  "items": [
+    {
+      "browser": "chrome",
+      "canonical_feature_key": "global-privacy-control",
+      "source_url": "https://chromestatus.com/feature/6241909885501440",
+      "summary": "기존 GPC 기능은 11/3에 milestone157 목록 누락을 기록했다. 현재 Enterprise157에는 다른 소스 ID 6241909885501440의 GPC 설명이 보인다. eligible users의 Sec-GPC:1·navigator.globalPrivacyControl=true 설정을 설명하지만 구조화 상태는 Proposed다. 목록 재등장이나 다른 ID만으로 최초 출시·배포 확대를 판단하지 않는다.",
+      "selection_status": "pending_verification",
+      "selection_reason": "기존 GPC 누락 이력과 연결하되 두 소스 ID의 관계·eligible 범위·OS·국가 및 실제 제공 상태를 더 확인해야 한다.",
+      "revisit_trigger": "eligible 범위와 지역·OS별 공식 지원 조건 확인",
+      "korea_availability": "미확인",
+      "korean_language": "미확인",
+      "device_test": "미실행",
+      "announced_at": null,
+      "effective_at": null,
+      "observed_at": "2026-11-11T22:38:45.023058+00:00",
+      "feature_id": "chrome-5095781286674432",
+      "source_feature_id": "6241909885501440",
+      "related_previous_event_id": "chrome-gpc-list-omission-20261103"
+    },
+    {
+      "browser": "chrome",
+      "canonical_feature_key": "ios-level-up",
+      "source_url": "https://chromestatus.com/feature/5131679546081280",
+      "summary": "iOS Level up 도입 안내가 157에서 159로 변경됐다. 관리자의 프로모션 화면 제어는 이르면160 안내. 목표 수정이며 실제 출시나 철회로 단정하지 않는다.",
+      "selection_status": "watch",
+      "selection_reason": "기존 계획 수정이며 Windows·Android 우선 분석에서는 제한적 관련성.",
+      "observed_at": "2026-11-11T22:38:45.023058+00:00"
+    }
+  ]
+}

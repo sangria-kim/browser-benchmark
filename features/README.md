@@ -100,3 +100,17 @@
 - [contextual-product-comparison](edge/contextual-product-comparison.md)
 
 - [checkout-savings](edge/checkout-savings.md)
+
+- [Android 확장 업데이트 동의 안내 강화](firefox/android-extension-update-consent-prominence.md)
+
+- [Canva Docs 한국어 IME 중단 수정의 Beta 수록](firefox/canva-docs-ime-continuity.md)
+
+- [Chrome 방문 횟수를 보존하는 Firefox 가져오기](firefox/chrome-history-import-visit-frequency.md)
+
+- [현재 탭 URL 복사 단축키의 Beta 도입](firefox/copy-current-tab-url-shortcut.md)
+
+- [Brave Search 결과 링크 URL cloaking 도입 예고](brave/search-result-url-cloaking.md)
+
+- [Edge·WebView2의 잔여 eMudhra 루트 기본 신뢰 제거 예고](edge/emudhra-root-trust-removal.md)
+
+- [macOS 최소 지원 버전 변경 예고](whale/macos-minimum-version.md)

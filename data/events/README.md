@@ -149,3 +149,17 @@
 - [edge-checkout-savings-rollout-20261109](edge-checkout-savings-rollout-20261109.json) · pending_verification / 미지정.
 
 - [whale-macos-13-minimum-support-announcement-20261110](whale-macos-13-minimum-support-announcement-20261110.json) · watch / 미지정.
+
+- [firefox-android-extension-update-consent-prominence-beta-161-20261109](firefox-android-extension-update-consent-prominence-beta-161-20261109.json) · selected / P1.
+
+- [firefox-canva-docs-ime-continuity-beta-161-20261109](firefox-canva-docs-ime-continuity-beta-161-20261109.json) · selected / P2.
+
+- [firefox-chrome-history-import-visit-frequency-beta-161-20261109](firefox-chrome-history-import-visit-frequency-beta-161-20261109.json) · selected / P2.
+
+- [firefox-copy-current-tab-url-shortcut-beta-161-20261109](firefox-copy-current-tab-url-shortcut-beta-161-20261109.json) · selected / P2.
+
+- [brave-search-url-cloaking-announcement-20261111](brave-search-url-cloaking-announcement-20261111.json) · watch / 미지정.
+
+- [edge-emudhra-remaining-roots-announcement-20261110](edge-emudhra-remaining-roots-announcement-20261110.json) · watch / 미지정.
+
+- [whale-macos13-5414295-support-evidence-20261111](whale-macos13-5414295-support-evidence-20261111.json) · selected / P1.
