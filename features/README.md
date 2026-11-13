@@ -114,3 +114,14 @@
 - [Edge·WebView2의 잔여 eMudhra 루트 기본 신뢰 제거 예고](edge/emudhra-root-trust-removal.md)
 
 - [macOS 최소 지원 버전 변경 예고](whale/macos-minimum-version.md)
+
+## 추가 기능 이력
+
+- [Chrome Android 기업 파일 업로드 검사 설정 실험](chrome/android-enterprise-file-upload-analysis.md)
+- [Chrome Contextual Tasks의 Android 기기 형태 조건 변경](chrome/contextual-tasks-form-factor-scope.md)
+- [Chrome Composebox 검색·AI Mode 라우팅 설정 실험](chrome/dynamic-aim-fulfillment.md)
+- [Firefox 웹 사용자 지정 클립보드 형식](firefox/web-custom-clipboard-formats.md)
+- [Opera 140에서 허용 사이트 권한 삭제 복구](opera/site-permission-removal.md)
+- [Opera 141 Developer에서 세로 탭 자동 숨김 기본 켜짐](opera/vertical-tabs-autohide.md)
+- [Vivaldi 8.3에서 영상 종료 시 브라우저 전체화면 유지 수정](vivaldi/browser-fullscreen-retention.md)
+- [Whale 5.41의 D3D9 설정 전환과 영상 CPU 부담 복구 안내](whale/angle-d3d9-removal-recovery.md)

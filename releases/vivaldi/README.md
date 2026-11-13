@@ -6,3 +6,7 @@
 - [8.3 · items-desktop-2026-11-06](8.3/items-desktop-2026-11-06.json)
 
 - [공식 기능 참고 자료](feature-references.json)
+
+## 2026-11-13 기능 근거
+
+- [items-observed-2026-11-13.json](items-observed-2026-11-13.json)

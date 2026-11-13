@@ -1,0 +1,220 @@
+{
+  "schema_version": 1,
+  "browser": "vivaldi",
+  "evidence_level": "공식 기능 문서의 항목 요약. 출시일과 확인일을 구분하며 설치본 동작 검증은 아니다.",
+  "items": [
+    {
+      "item_id": "vivaldi83-security",
+      "browser": "vivaldi",
+      "version": "8.3",
+      "announced_at": "2026-11-10",
+      "item_type": "security",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "8.3 두 번째 minor의 Chromium ESR 보안 갱신",
+      "selection_reason": "CVE-2026-125350 수정은 보존하되 기능 상세 분석에서는 제외한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/desktop/minor-update-two-8-3/",
+          "observed_at": "2026-11-12T23:18:01.122013+00:00",
+          "content_sha256": "3b3a3233cc684ef24e6d5919adc78e438f09b5827846aaa458b7735ff85c11b7"
+        }
+      ],
+      "release_label": "Desktop minor update 2"
+    },
+    {
+      "item_id": "vivaldi83-old-version-warning",
+      "browser": "vivaldi",
+      "version": "8.3",
+      "announced_at": "2026-11-10",
+      "item_type": "feature",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "아주 오래된 버전 사용자에게 경고",
+      "selection_reason": "경고 기준과 조치 흐름이 미공개여서 조건 확인 후 비교한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/desktop/minor-update-two-8-3/",
+          "observed_at": "2026-11-12T23:18:01.122013+00:00",
+          "content_sha256": "3b3a3233cc684ef24e6d5919adc78e438f09b5827846aaa458b7735ff85c11b7"
+        }
+      ],
+      "release_label": "Desktop minor update 2"
+    },
+    {
+      "item_id": "vivaldi83-theme-extension-fixes",
+      "browser": "vivaldi",
+      "version": "8.3",
+      "announced_at": "2026-11-06",
+      "item_type": "fix",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "테마 설정 유실, 암호 확장 드롭다운, Feeds 및 입력 수정",
+      "selection_reason": "개인설정 유지와 입력 완료에 영향이 있다. 상세 재현 조건을 확인해야 한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/desktop/minor-update-8-3/",
+          "observed_at": "2026-11-12T23:18:01.122685+00:00",
+          "content_sha256": "673ab554dce34742b8557946f1b0ced621ae73b64bf37ce824b1612677b44837"
+        }
+      ],
+      "release_label": "Desktop minor update 1"
+    },
+    {
+      "item_id": "vivaldi84-snapshot-workspace",
+      "browser": "vivaldi",
+      "version": "8.4.4226.3",
+      "announced_at": "2026-11-09",
+      "item_type": "preview_fix",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "닫힌 탭을 현재 Workspace로 복귀하고 스택 복구 개선",
+      "selection_reason": "멀티태스킹 복귀 맥락의 수정이다. 8.4 snapshot이며 Stable 출시를 주장하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/on-to-the-next-one-8-4-begins-vivaldi-browser-snapshot-4226-3/",
+          "observed_at": "2026-11-12T23:18:04.053983+00:00",
+          "content_sha256": "87f3e37edc3198ab00e104525445ff64c2418b526efabe2e694246f6d527c358"
+        }
+      ]
+    },
+    {
+      "item_id": "vivaldi84-snapshot-other",
+      "browser": "vivaldi",
+      "version": "8.4.4226.3",
+      "announced_at": "2026-11-09",
+      "item_type": "preview_feature_fix",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "macOS 부드러운 스크롤 기본값, 확장 API, 패널·Mail 수정",
+      "selection_reason": "기본 스크롤 및 도구 접근은 관찰한다. 나머지 일반 표시 수정은 유지보수로 구분한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/on-to-the-next-one-8-4-begins-vivaldi-browser-snapshot-4226-3/",
+          "observed_at": "2026-11-12T23:18:04.053983+00:00",
+          "content_sha256": "87f3e37edc3198ab00e104525445ff64c2418b526efabe2e694246f6d527c358"
+        }
+      ]
+    },
+    {
+      "item_id": "vivaldi83-stable-repeated",
+      "browser": "vivaldi",
+      "version": "8.3",
+      "announced_at": "2026-11-05",
+      "item_type": "feature_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "8.3의 차단기, 탭, 미디어, 앱 열기 및 VPN",
+      "selection_reason": "기존 11월 5일 사건과 중복된다. 새로운 한국 지원 변경은 확인되지 않았다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/vivaldi-on-desktop-8-3/",
+          "observed_at": "2026-11-12T23:18:06.259192+00:00",
+          "content_sha256": "81b98ce61e0cc257c0f1941877f6007d2b6ad126ee13e3801a2adb79b3f150b9"
+        },
+        {
+          "url": "https://vivaldi.com/blog/vivaldi-on-mobile-8-3/",
+          "observed_at": "2026-11-12T23:18:06.154388+00:00",
+          "content_sha256": "e6aa25b109e41abad23739fdf507f98c00df18e874c6fb0d78c5aaa78d472785"
+        }
+      ]
+    },
+    {
+      "item_id": "vivaldi83-rc-overlap",
+      "browser": "vivaldi",
+      "version": null,
+      "announced_at": "2026-10-30 / 2026-11-02~04",
+      "item_type": "preview_fix_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "8.3 RC 및 10월 30일 snapshot 수정",
+      "selection_reason": "이후 Stable과 구분되는 기존 사전 배포 자료다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/desktop/8-3-rc-1/",
+          "observed_at": "2026-11-12T23:18:05.909551+00:00",
+          "content_sha256": "d96a6f7ce86c590bad8b9e98b44c2491e63839c13a4163bc57624e60a05eca74"
+        },
+        {
+          "url": "https://vivaldi.com/blog/desktop/8-3-rc-2/",
+          "observed_at": "2026-11-12T23:18:05.764507+00:00",
+          "content_sha256": "5635358a447007caa61f06da819b1ba8dd3e640715ed222439b3252f6efa81d2"
+        },
+        {
+          "url": "https://vivaldi.com/blog/desktop/8-3-rc-3/",
+          "observed_at": "2026-11-12T23:18:04.887955+00:00",
+          "content_sha256": "3663c8531e1fdee6c5daa8e6633871c05497cbcfb6ef93482f85233773ebf7f2"
+        },
+        {
+          "url": "https://vivaldi.com/blog/desktop/weekend-fixes-vivaldi-desktop-snapshot-4191-10/",
+          "observed_at": "2026-11-12T23:18:05.975201+00:00",
+          "content_sha256": "56f9a8113696c63379a0e86d68fd12162f224e503264742ca61e66a0c4e1d35e"
+        }
+      ]
+    },
+    {
+      "item_id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+      "browser": "vivaldi",
+      "version": "8.3",
+      "announced_at": "2026-11-10",
+      "item_type": "bug_fix",
+      "selection_status": "selected",
+      "priority": "P2",
+      "benchmark_readiness": "conditional",
+      "summary": "Vivaldi 8.3에서 영상 종료 시 브라우저 전체화면 유지 수정",
+      "selection_reason": "영상과 페이지를 오갈 때 기존 창 모드를 유지하는 구체적인 작업 복구 차이가 있다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "동일 OS와 영상 플레이어에서 실제 설치 버전 및 키와 버튼별 재현",
+      "sources": [
+        {
+          "url": "https://vivaldi.com/blog/desktop/minor-update-two-8-3/",
+          "observed_at": "2026-11-12T23:18:01.122013+00:00",
+          "content_sha256": "3b3a3233cc684ef24e6d5919adc78e438f09b5827846aaa458b7735ff85c11b7"
+        },
+        {
+          "url": "https://vivaldi.com/blog/on-to-the-next-one-8-4-begins-vivaldi-browser-snapshot-4226-3/",
+          "observed_at": "2026-11-12T23:18:04.053983+00:00",
+          "content_sha256": "87f3e37edc3198ab00e104525445ff64c2418b526efabe2e694246f6d527c358"
+        }
+      ],
+      "event_id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+      "feature_id": "vivaldi-browser-fullscreen-retention",
+      "channel": "stable",
+      "platform": [
+        "unknown"
+      ],
+      "priority_reason": "영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+      "comparison_question": "삼성 브라우저와 비교할 때, 영상 전체화면만 끝냈을 때 원래 브라우저 창의 전체화면 상태와 작업 맥락을 유지하는가?",
+      "release_label": "Desktop minor update 2"
+    }
+  ]
+}

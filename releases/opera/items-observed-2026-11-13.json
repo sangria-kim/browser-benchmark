@@ -1,0 +1,321 @@
+{
+  "schema_version": 1,
+  "browser": "opera",
+  "evidence_level": "공식 기능 문서의 항목 요약. 출시일과 확인일을 구분하며 설치본 동작 검증은 아니다.",
+  "items": [
+    {
+      "item_id": "opera140-security-general",
+      "browser": "opera",
+      "version": "140.0.6074.17",
+      "announced_at": "2026-11-10",
+      "item_type": "security_fix",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Opera 140의 엔진·보안·충돌·아이콘 및 설치 UI 수정",
+      "selection_reason": "일반 유지보수는 제외하고 권한 삭제 복구는 별도 선정한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-140-stable/",
+          "observed_at": "2026-11-12T23:18:01.113046+00:00",
+          "content_sha256": "cc3d1176b80ea054919724d72014219cdd04fe8e09d81f7127c26d31cacb661a"
+        },
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+          "observed_at": "2026-11-12T23:19:04.183717+00:00",
+          "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+        }
+      ]
+    },
+    {
+      "item_id": "opera140-safari-import",
+      "browser": "opera",
+      "version": "140.0.6074.17",
+      "announced_at": "2026-11-10",
+      "item_type": "fix",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "Safari 가져오기 취소 후 무한 대기 복구",
+      "selection_reason": "작업 완료 영향은 있으나 다른 가져오기 문제와 재현 조건을 구분해야 한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-140-stable/",
+          "observed_at": "2026-11-12T23:18:01.113046+00:00",
+          "content_sha256": "cc3d1176b80ea054919724d72014219cdd04fe8e09d81f7127c26d31cacb661a"
+        },
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+          "observed_at": "2026-11-12T23:19:04.183717+00:00",
+          "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+        }
+      ]
+    },
+    {
+      "item_id": "opera140-multitasking",
+      "browser": "opera",
+      "version": "140.0.6074.17",
+      "announced_at": "2026-11-10",
+      "item_type": "fix",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "Linux 드래그, 탭 이동, 분할 종료 순서 및 패널 재열림 수정",
+      "selection_reason": "작업 연속성의 구체적 수정이다. 전후 빌드와 재현 환경을 확보하면 비교한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+          "observed_at": "2026-11-12T23:19:04.183717+00:00",
+          "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+        }
+      ]
+    },
+    {
+      "item_id": "opera140-flags",
+      "browser": "opera",
+      "version": "140.0.6074.17",
+      "announced_at": "2026-11-10",
+      "item_type": "preview_policy_reference",
+      "selection_status": "pending_verification",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Connector·operator·popup·market monitor의 flag 변경",
+      "selection_reason": "all-streams, Early Bird 또는 Poland 표기만으로 실제 출시와 지원 범위를 확정하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+          "observed_at": "2026-11-12T23:19:04.183717+00:00",
+          "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+        }
+      ]
+    },
+    {
+      "item_id": "opera140-search-click-fix",
+      "browser": "opera",
+      "version": "140.0.6074.18",
+      "announced_at": "2026-11-11",
+      "item_type": "fix",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "시작페이지 검색 버튼 무반응 수정",
+      "selection_reason": "검색 실행 실패의 복구다. 구체적인 설정과 전후 재현 조건을 확인하면 비교한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+          "observed_at": "2026-11-12T23:19:04.183717+00:00",
+          "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+        }
+      ]
+    },
+    {
+      "item_id": "opera141-general",
+      "browser": "opera",
+      "version": "141.0.6079.0",
+      "announced_at": "2026-11-09",
+      "item_type": "preview_fix",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "141 Developer의 아이콘, 패널, 탭 순서 및 충돌 수정",
+      "selection_reason": "자동 숨김 기본값은 별도 선정한다. 다른 항목은 일반 수정 또는 140 Stable과 중복된다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-141-developer/",
+          "observed_at": "2026-11-12T23:18:01.114265+00:00",
+          "content_sha256": "648b0e52a0e1808323311d227ae4e8deed97eeaadd175e415e1cd8c1de369f9b"
+        },
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-141/",
+          "observed_at": "2026-11-12T23:19:04.184521+00:00",
+          "content_sha256": "be65101917bc703eba4a134e6bed8a3ced0e36710c97cb8ddcf8a4d61912965c"
+        }
+      ]
+    },
+    {
+      "item_id": "opera13938-repeat",
+      "browser": "opera",
+      "version": "139.0.6053.38",
+      "announced_at": "2026-11-04",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "139.0.6053.38의 창별 세로 탭 접힘 및 수정",
+      "selection_reason": "기존 기능 사건과 중복된다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-139-0-6053-38-stable-update/",
+          "observed_at": "2026-11-12T23:18:01.115334+00:00",
+          "content_sha256": "724744fc6f865164a1d5c57982785906b7adf785262fa3919594812bf99f27eb"
+        }
+      ]
+    },
+    {
+      "item_id": "opera140-dev-repeat",
+      "browser": "opera",
+      "version": "140.0.6072.0",
+      "announced_at": "2026-11-03",
+      "item_type": "preview_fix_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "140 Developer의 자동 숨김 타이밍, 가져오기 UI 및 충돌 수정",
+      "selection_reason": "기존 개발 단계 수정이며 Stable 포함과 141의 기본값 변경을 구분한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-140-0-6072-0-developer-update/",
+          "observed_at": "2026-11-12T23:18:01.116439+00:00",
+          "content_sha256": "8ff8985b98263ed19cce5e7b26ef41ca97a8e938958f35f1987f6bc2dcc25826"
+        }
+      ]
+    },
+    {
+      "item_id": "opera-news-marketing",
+      "browser": "opera",
+      "version": null,
+      "announced_at": "2026-11-10 / 2026-11-05",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Red Dot 수상 및 Desktop 사용자 1억 명 발표",
+      "selection_reason": "수상과 사용자 규모 발표는 구체적인 새로운 브라우저 동작이 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/news/2026/11/opera-receives-a-red-dot-best-of-the-best-award/",
+          "observed_at": "2026-11-12T23:18:01.118631+00:00",
+          "content_sha256": "b185e5a6dc86e79b88f998adfd2b5603dae6bd37117dbefb74265223388624d6"
+        },
+        {
+          "url": "https://blogs.opera.com/news/2026/11/opera-breaks-through-100-million-users-on-desktop/",
+          "observed_at": "2026-11-12T23:18:01.120746+00:00",
+          "content_sha256": "4543152034355895ab88a93ca87851d6b6fd1fed007f8073a6a25027b3beb033"
+        }
+      ]
+    },
+    {
+      "item_id": "opera-gx-booster-old",
+      "browser": "opera",
+      "version": null,
+      "announced_at": "2026-10-29",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "GX의 볼륨, 이퀄라이저, 분할 및 탭 검색 설명",
+      "selection_reason": "10월 29일 기존 발표다. Opera One 140의 기능과 혼합하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/news/2026/10/opera-gx-browser-booster/",
+          "observed_at": "2026-11-12T23:18:01.121472+00:00",
+          "content_sha256": "6b846b81cccb1ba0f1c9f6fa8254fb187ff9faea7fc5f41feee37ce25d1a5319"
+        }
+      ]
+    },
+    {
+      "item_id": "opera-site-permission-removal-restored-stable-140-20261110",
+      "browser": "opera",
+      "version": "140.0.6074.17",
+      "announced_at": "2026-11-10",
+      "item_type": "bug_fix",
+      "selection_status": "selected",
+      "priority": "P1",
+      "benchmark_readiness": "conditional",
+      "summary": "Opera 140에서 허용 사이트 권한 삭제 복구",
+      "selection_reason": "사이트에 준 권한을 회수하는 개인정보 통제의 실패를 복구하므로 일반 시각적 수정과 구분한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "동일 권한 종류, 사이트 및 관리 정책 조건에서 Stable 재현",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-140-stable/",
+          "observed_at": "2026-11-12T23:18:01.113046+00:00",
+          "content_sha256": "cc3d1176b80ea054919724d72014219cdd04fe8e09d81f7127c26d31cacb661a"
+        },
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+          "observed_at": "2026-11-12T23:19:04.183717+00:00",
+          "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+        }
+      ],
+      "event_id": "opera-site-permission-removal-restored-stable-140-20261110",
+      "feature_id": "opera-site-permission-removal",
+      "channel": "stable",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "priority_reason": "기존 개인정보 통제 실패의 복구를 우선 검증한다.",
+      "comparison_question": "삼성 브라우저와 비교할 때, 허용 사이트 권한을 설정에서 지운 뒤 실제 사이트 접근과 다음 권한 요청이 일치하는가?"
+    },
+    {
+      "item_id": "opera-vertical-tabs-autohide-default-developer-141-20261109",
+      "browser": "opera",
+      "version": "141.0.6079.0",
+      "announced_at": "2026-11-09",
+      "item_type": "default_change",
+      "selection_status": "selected",
+      "priority": "P2",
+      "benchmark_readiness": "conditional",
+      "summary": "Opera 141 Developer에서 세로 탭 자동 숨김 기본 켜짐",
+      "selection_reason": "세로 탭으로 작업을 전환할 때 콘텐츠 공간, 발견성 및 포인터 이동이 달라지는 기본 동작이다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "동일 Developer 빌드 실기 확인 또는 Stable 확대 근거",
+      "sources": [
+        {
+          "url": "https://blogs.opera.com/desktop/2026/11/opera-141-developer/",
+          "observed_at": "2026-11-12T23:18:01.114265+00:00",
+          "content_sha256": "648b0e52a0e1808323311d227ae4e8deed97eeaadd175e415e1cd8c1de369f9b"
+        },
+        {
+          "url": "https://blogs.opera.com/desktop/changelog-for-141/",
+          "observed_at": "2026-11-12T23:19:04.184521+00:00",
+          "content_sha256": "be65101917bc703eba4a134e6bed8a3ced0e36710c97cb8ddcf8a4d61912965c"
+        }
+      ],
+      "event_id": "opera-vertical-tabs-autohide-default-developer-141-20261109",
+      "feature_id": "opera-vertical-tabs-autohide",
+      "channel": "developer",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "priority_reason": "영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+      "comparison_question": "삼성 브라우저와 비교할 때, 세로 탭 자동 숨김이 콘텐츠 공간과 탭 재진입 및 드래그 오류에 어떤 영향을 주는가?"
+    }
+  ]
+}

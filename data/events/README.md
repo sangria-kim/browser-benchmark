@@ -163,3 +163,15 @@
 - [edge-emudhra-remaining-roots-announcement-20261110](edge-emudhra-remaining-roots-announcement-20261110.json) · watch / 미지정.
 
 - [whale-macos13-5414295-support-evidence-20261111](whale-macos13-5414295-support-evidence-20261111.json) · selected / P1.
+
+## 2026-11-13 기능 사건
+- [chrome-android-enterprise-file-upload-analysis-source-20261112](chrome-android-enterprise-file-upload-analysis-source-20261112.json) · selected / P1
+- [chrome-contextual-tasks-form-factor-scope-source-20261112](chrome-contextual-tasks-form-factor-scope-source-20261112.json) · selected / P2
+- [chrome-dynamic-aim-fulfillment-source-20261112](chrome-dynamic-aim-fulfillment-source-20261112.json) · selected / P2
+- [edge-agent-profile-policy-document-omission-20261112](edge-agent-profile-policy-document-omission-20261112.json) · pending_verification
+- [edge-commercial-journeys-policy-document-omission-20261112](edge-commercial-journeys-policy-document-omission-20261112.json) · pending_verification
+- [firefox-web-custom-clipboard-formats-beta-161-observed-20261113](firefox-web-custom-clipboard-formats-beta-161-observed-20261113.json) · selected / P2
+- [opera-site-permission-removal-restored-stable-140-20261110](opera-site-permission-removal-restored-stable-140-20261110.json) · selected / P1
+- [opera-vertical-tabs-autohide-default-developer-141-20261109](opera-vertical-tabs-autohide-default-developer-141-20261109.json) · selected / P2
+- [vivaldi-browser-fullscreen-retention-fix-stable-83-20261110](vivaldi-browser-fullscreen-retention-fix-stable-83-20261110.json) · selected / P2
+- [whale-angle-d3d9-removal-recovery-notice-20261112](whale-angle-d3d9-removal-recovery-notice-20261112.json) · selected / P2

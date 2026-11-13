@@ -31,3 +31,7 @@
 - [161.0beta 공식 기능 근거](161.0beta/items.json)
 
 - [161.0beta 공식 기능 근거](161.0beta/mdn-reference.json)
+
+## 2026-11-13 기능 근거
+
+- [161.0beta/items-observed-2026-11-13.json](161.0beta/items-observed-2026-11-13.json)

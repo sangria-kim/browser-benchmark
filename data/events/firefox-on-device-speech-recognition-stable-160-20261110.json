@@ -35,10 +35,11 @@
   "selection_rule_version": "pm-selection-v2",
   "scope": {
     "korea_availability": "미확인",
-    "korean_language": "미확인",
+    "korean_language": "지원",
+    "korean_language_detail": "공식 도움말의 다국어 모델 지원 목록에 한국어 명시; 직접 인식 시험 미실행",
     "korea_effective_at": null,
     "real_test": "미실행",
-    "conditions": "Desktop 40개 언어. Android 음성인식과 클라우드 원격 인식은 지원하지 않는다고 MDN 명시. 지원 언어 전체 목록·한국어·모델 다운로드 조건 미확인."
+    "conditions": "Desktop 온디바이스 Web Speech API 음성인식. 공식 도움말은 다국어 모델에 한국어를 명시한다. 영어 모델은 약 140 MB, 기타 지원 언어 모델은 약 785 MB. 필요한 모델이 없으면 다운로드 전에 사용자 허용을 요청한다. 모델 설치 후 오프라인 인식이 가능하다. AI Controls에서 차단하면 설치 모델을 제거한다. MDN의 Android 음성인식·클라우드 원격 인식 미지원 범위는 유지한다. 한국 지역 제공·설치본 노출은 미확인. 음성 입력에는 사이트의 마이크 사용 권한도 별도로 필요하다."
   },
   "sources": [
     {
@@ -55,6 +56,16 @@
       "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/160",
       "section": "APIs / On-device speech recognition",
       "observed_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "url": "https://support.mozilla.org/en-US/kb/speech-recognition-firefox",
+      "section": "Allow a website to use speech recognition; Supported languages; Turn speech recognition on or off",
+      "observed_at": "2026-11-12T23:20:29.603776+00:00",
+      "source_revision": {
+        "response_sha256": "e81cce0deff0d4c72f05fc29139e760c6520fc9097f7f204718432e3a0b64e46",
+        "body_sha256": "e44c7847e8994b176ad2d5eb8e7f364f470de212c4ae156e165bb3862f8cf96b",
+        "body_hash_method": "lxml first wiki-article/article/main/role-main; scripts/styles/nav/footer/header removed; deduplicated p/li/h1-h4/td whitespace normalized"
+      }
     }
   ],
   "benchmark_candidate": {
@@ -74,5 +85,30 @@
     "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
     "executed": false
   },
-  "user_impact": "지원 웹사이트가 음성을 기기 안에서 실시간 텍스트로 바꿀 수 있다. 음성인식이 브라우저 전체의 음성 비서나 Android 지원을 뜻하지 않으며, 서버에 음성을 보내는 경로와 구분된다."
+  "user_impact": "지원 웹사이트가 음성을 기기 안에서 실시간 텍스트로 바꿀 수 있다. 음성인식이 브라우저 전체의 음성 비서나 Android 지원을 뜻하지 않으며, 서버에 음성을 보내는 경로와 구분된다.",
+  "support_evidence_history": [
+    {
+      "observed_at": "2026-11-12T23:20:29.603776+00:00",
+      "kind": "support_evidence_clarification_not_new_rollout",
+      "previous_assessed_at": "2026-11-10T23:16:21.389826+00:00",
+      "previous_scope": {
+        "korea_availability": "미확인",
+        "korean_language": "미확인",
+        "korea_effective_at": null,
+        "real_test": "미실행",
+        "conditions": "Desktop 40개 언어. Android 음성인식과 클라우드 원격 인식은 지원하지 않는다고 MDN 명시. 지원 언어 전체 목록·한국어·모델 다운로드 조건 미확인."
+      },
+      "reason": "기존 2026-11-10 근거는 40개 언어만 명시하여 한국어·모델 다운로드 조건을 미확인으로 기록했다. 이번 공식 도움말은 한국어와 모델별 용량·다운로드 허용 조건을 명시한다. 과거 미지원 또는 이번 한국 신규 출시를 뜻하지 않는다.",
+      "source": {
+        "url": "https://support.mozilla.org/en-US/kb/speech-recognition-firefox",
+        "section": "Allow a website to use speech recognition; Supported languages; Turn speech recognition on or off",
+        "observed_at": "2026-11-12T23:20:29.603776+00:00",
+        "source_revision": {
+          "response_sha256": "e81cce0deff0d4c72f05fc29139e760c6520fc9097f7f204718432e3a0b64e46",
+          "body_sha256": "e44c7847e8994b176ad2d5eb8e7f364f470de212c4ae156e165bb3862f8cf96b",
+          "body_hash_method": "lxml first wiki-article/article/main/role-main; scripts/styles/nav/footer/header removed; deduplicated p/li/h1-h4/td whitespace normalized"
+        }
+      }
+    }
+  ]
 }

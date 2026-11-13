@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "browser": "firefox",
+  "version": "161.0beta",
+  "channel": "beta",
+  "items": [
+    {
+      "browser": "firefox",
+      "version": "161.0beta",
+      "channel": "beta",
+      "note_id": "note-792525",
+      "source_url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/#note-792525",
+      "source_note_sha256": "30544c314cf41e9816aae89f22f6a4c6b28fa7cc7c6666664c07ddd4baeba1a6",
+      "source_response_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
+      "observed_at": "2026-11-12T23:16:53.079475+00:00",
+      "summary": "CSS 값을 문자열 대신 typed JavaScript 객체로 읽고 쓰는 Typed OM 지원 안내. Color 값은 미지원.",
+      "announced_at": null,
+      "effective_at": null,
+      "selection_status": "excluded",
+      "selection_reason": "CSS 값을 typed 객체로 다루는 API 안내이나 구체적인 사용자 과제 변화와 비교 우선순위 근거가 부족하여 상세 선정에서 제외.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·출시 단계·적용 조건의 새로운 근거",
+      "assessed_at": "2026-11-12T23:22:48.539256+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "source_release_first_offered_at": "2026-11-09"
+    },
+    {
+      "browser": "firefox",
+      "version": "161.0beta",
+      "channel": "beta",
+      "note_id": "note-792535",
+      "source_url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/#note-792535",
+      "source_note_sha256": "c19927e0918eafca7bd1f601e6023f01b0719b92288c84802bc5642c708f5779",
+      "source_response_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
+      "observed_at": "2026-11-12T23:16:53.079475+00:00",
+      "summary": "Async Clipboard API의 웹 사용자 지정 데이터 형식을 동일 출처 페이지 사이에서 복사·붙여넣기하도록 지원.",
+      "announced_at": null,
+      "effective_at": null,
+      "selection_status": "selected",
+      "selection_reason": "편집 웹앱의 구조·메타데이터 보존 및 같은 출처 제약을 합성 데이터로 재현하고 비교할 수 있어 Beta 기능 관찰로 선정했다.",
+      "priority": "P2",
+      "priority_reason": "웹앱 제작자가 사용자 지정 형식을 사용하는 제한된 작업 흐름에 유용한 탐색적 비교.",
+      "comparison_question": "동일 OS에서 삼성 브라우저와 Firefox는 동일 출처의 합성 웹앱 데이터를 복사·붙여넣을 때 사용자 지정 형식과 값을 보존하며 어떤 권한·출처 제약을 적용하는가?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": "161 Beta 설치본·승인된 시험 페이지 확보 또는 Stable 확대",
+      "assessed_at": "2026-11-12T23:22:48.539256+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "feature_id": "firefox-web-custom-clipboard-formats",
+      "event_id": "firefox-web-custom-clipboard-formats-beta-161-observed-20261113",
+      "source_release_first_offered_at": "2026-11-09",
+      "platform": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ]
+    }
+  ]
+}

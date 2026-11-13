@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "event_id": "firefox-web-custom-clipboard-formats-beta-161-observed-20261113",
+  "feature_id": "firefox-web-custom-clipboard-formats",
+  "browser": "firefox",
+  "event_type": "beta_feature_observation",
+  "version": "161.0beta",
+  "channel": "beta",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "device_test": "미실행",
+    "conditions": "동일 출처 웹페이지의 Async Clipboard read/write에 사용자 지정 데이터 형식 지원을 안내. Android 적용·권한별 동작·실제 설치본 노출은 미확인.",
+    "date_caveat": "11월 9일은 161 Beta 최초 제공일이다. 개별 노트의 최초 발표·활성화 시각은 미확인이며 11월 13일은 관찰일이다."
+  },
+  "observed_at": "2026-11-12T23:16:53.079475+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/#note-792535",
+      "section": "Web Platform / note-792535",
+      "observed_at": "2026-11-12T23:16:53.079475+00:00",
+      "sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
+      "note_sha256": "c19927e0918eafca7bd1f601e6023f01b0719b92288c84802bc5642c708f5779"
+    }
+  ],
+  "summary": "같은 출처 웹앱 사이의 사용자 지정 데이터 복사·붙여넣기 Beta 안내",
+  "delta": "161 Beta 릴리스 노트는 같은 출처의 웹페이지 사이에서 Async Clipboard API로 사용자 지정 데이터 형식을 복사·붙여넣도록 지원한다고 명시한다. 최초 구현일과 개별 기능 활성화일은 공개하지 않았다.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "편집 웹앱의 구조·메타데이터 보존 및 같은 출처 제약을 합성 데이터로 재현하고 비교할 수 있어 Beta 기능 관찰로 선정했다.",
+  "priority": "P2",
+  "priority_reason": "웹앱 제작자가 사용자 지정 형식을 사용하는 제한된 작업 흐름에 유용한 탐색적 비교.",
+  "comparison_question": "동일 OS에서 삼성 브라우저와 Firefox는 동일 출처의 합성 웹앱 데이터를 복사·붙여넣을 때 사용자 지정 형식과 값을 보존하며 어떤 권한·출처 제약을 적용하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "161 Beta 설치본·승인된 시험 페이지 확보 또는 Stable 확대",
+  "assessed_at": "2026-11-12T23:22:48.539256+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "source_release_first_offered_at": "2026-11-09",
+  "benchmark_candidate": {
+    "task": "같은 출처의 두 편집 페이지 사이 구조화 데이터 왕복",
+    "conditions": "동일 OS·키보드·클립보드 권한과 합성 데이터. 실제 기능 노출을 먼저 확인. 승인된 시험 환경 사용. 사용자 개인 클립보드는 사용하지 않음.",
+    "steps": [
+      "동일 출처의 두 시험 페이지에 합성 사용자 지정 형식과 plain-text 대체값 준비",
+      "사용자 동작으로 쓰기·읽기를 수행하고 형식·내용 왕복 비교",
+      "다른 출처의 시험 페이지를 대조군으로 두고 차단·오류·권한 UI 관찰",
+      "브라우저별 각 흐름 3회 반복"
+    ],
+    "metrics": [
+      "사용자 지정 형식 보존 여부",
+      "payload 값 일치율",
+      "권한 프롬프트와 조작 수",
+      "출처 경계에서 읽기 성공/차단"
+    ],
+    "completion": "각 흐름 3회 결과·권한·노출 조건을 기록. 실패·미지원도 구분. 아직 미실행.",
+    "executed": false
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "browser": "brave",
+  "evidence_level": "공식 기능 문서의 항목 요약. 출시일과 확인일을 구분하며 설치본 동작 검증은 아니다.",
+  "items": [
+    {
+      "item_id": "brave-release19957",
+      "browser": "brave",
+      "version": "1.99.57",
+      "announced_at": "2026-11-12",
+      "item_type": "security",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Desktop·Android 1.99.57의 Chromium 157.0.8103.79 갱신",
+      "selection_reason": "엔진 갱신만 기재되어 기능 상세 분석에서 제외한다. Android 웹 카드와 GitHub 노트의 버전 차이를 구분한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://brave.com/latest/",
+          "observed_at": "2026-11-12T23:16:43.631457+00:00",
+          "content_sha256": "7056bfea0615e3ce52b7a377dc8ca1599313455592c0260740d46c743148defd"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md",
+          "observed_at": "2026-11-12T23:16:47.115583+00:00",
+          "content_sha256": "20dae7b17d8d8c41dc9d025ffeb2679562e9ce00775339f35677b7aa9a225129"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_ANDROID.md",
+          "observed_at": "2026-11-12T23:16:47.115976+00:00",
+          "content_sha256": "eae1d5d8db64323c5649f229711bfb35dcf3248c194951805c5caec66b80067c"
+        },
+        {
+          "url": "https://api.github.com/repos/brave/brave-browser/releases?per_page=10&page=1",
+          "observed_at": "2026-11-12T23:16:55.659853+00:00",
+          "content_sha256": "e07b7f8ad72cc66e870f7257a974a07c9b93bcde8e0b64c094ca88848163e606"
+        }
+      ]
+    },
+    {
+      "item_id": "brave-19956-android-date",
+      "browser": "brave",
+      "version": "1.99.56",
+      "announced_at": "2026-11-11",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Android 1.99.56의 웹 카드 날짜는 11월 11일",
+      "selection_reason": "GitHub의 11월 10일 게시와 Android 웹 카드 날짜를 구분한다. 새 기능은 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://brave.com/latest/",
+          "observed_at": "2026-11-12T23:16:43.631457+00:00",
+          "content_sha256": "7056bfea0615e3ce52b7a377dc8ca1599313455592c0260740d46c743148defd"
+        }
+      ]
+    },
+    {
+      "item_id": "brave-meta-existing",
+      "browser": "brave",
+      "version": "1.98 / 1.98.60",
+      "announced_at": "2026-11-12",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Desktop 1.98의 FBMD 사진 식별자 제거 상세 설명",
+      "selection_reason": "기존 1.98.60 changelog에 수록된 기능이다. 다운로드 및 업로드 사본 처리 설명을 11월 12일 신규 출시로 분류하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://brave.com/privacy-updates/40-remove-tracking-metadata/",
+          "observed_at": "2026-11-12T23:18:06.260580+00:00",
+          "content_sha256": "0544f313a685d8fff0b4cb4d37ad21a1d96362416c3f5d1a0800e0fee8d992cb"
+        },
+        {
+          "url": "https://raw.githubusercontent.com/brave/brave-browser/master/CHANGELOG_DESKTOP.md",
+          "observed_at": "2026-11-12T23:16:47.115583+00:00",
+          "content_sha256": "20dae7b17d8d8c41dc9d025ffeb2679562e9ce00775339f35677b7aa9a225129"
+        },
+        {
+          "url": "https://api.github.com/repos/brave/brave-browser/issues/5238",
+          "observed_at": "2026-11-12T23:19:04.184948+00:00",
+          "content_sha256": "eefc68322fb46413cfcc71c997e51ab0dc27d76846467cb1fa31ec09a1f0832d"
+        }
+      ]
+    },
+    {
+      "item_id": "brave-meta-mobile-plan",
+      "browser": "brave",
+      "version": null,
+      "announced_at": "2026-11-12",
+      "item_type": "preview",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "사진 추적 식별자 제거의 Android·iOS 확대 계획",
+      "selection_reason": "모바일 계획은 명시되지만 버전과 일정은 없다. 위치정보 등 모든 메타데이터 제거가 현재 제공되는 것은 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://brave.com/privacy-updates/40-remove-tracking-metadata/",
+          "observed_at": "2026-11-12T23:18:06.260580+00:00",
+          "content_sha256": "0544f313a685d8fff0b4cb4d37ad21a1d96362416c3f5d1a0800e0fee8d992cb"
+        }
+      ]
+    },
+    {
+      "item_id": "brave-search-cloaking-repeated",
+      "browser": "brave",
+      "version": null,
+      "announced_at": "2026-11-11",
+      "item_type": "preview",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "Brave Search 결과 URL cloaking 예고",
+      "selection_reason": "Brave Search 웹 서비스의 기존 예고이며 Brave 브라우저 Stable 출시가 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://brave.com/blog/google-goto-anti-scraping/",
+          "observed_at": "2026-11-12T23:16:47.413801+00:00",
+          "content_sha256": "23455c7b19ed80e4513e063c88f732343058f27b3c0a225df18a9a3556ae2fd2"
+        }
+      ]
+    },
+    {
+      "item_id": "brave-search-x402",
+      "browser": "brave",
+      "version": null,
+      "announced_at": "2026-11-12",
+      "item_type": "feature",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Brave Search API의 USDC x402 요청별 결제",
+      "selection_reason": "개발자 API의 결제 경로다. 소비자 브라우저 흐름에 통합됐다는 근거는 없어 상세 분석에서 제외한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://brave.com/blog/search-api-agentic-payments/",
+          "observed_at": "2026-11-12T23:18:01.112601+00:00",
+          "content_sha256": "a20422547512b0b6fddfdedc16717479c62f2103903046c590be4cc1a0eb5ff6"
+        }
+      ]
+    }
+  ]
+}

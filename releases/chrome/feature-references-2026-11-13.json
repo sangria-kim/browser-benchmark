@@ -1,0 +1,88 @@
+{
+  "schema_version": 1,
+  "browser": "chrome",
+  "items": [
+    {
+      "browser": "chrome",
+      "feature_id": "chrome-5754395122860032",
+      "source_feature_id": 5754395122860032,
+      "title": "Deprecate and stop firing events during subframe removal",
+      "source_url": "https://chromestatus.com/feature/5754395122860032",
+      "source_list": 156,
+      "source_group": "In developer trial (Behind a flag)",
+      "source_updated_at": "2026-11-12 08:12:58.649132",
+      "source_summary_sha256": "1182ce27a990e9a17f9c157f6168e743e965f8f17b983372c5e29d341af8ef89",
+      "observed_at": "2026-11-12T23:17:00.289498+00:00",
+      "summary": "서브프레임 제거 이벤트 실험 목표 기간 수정. Beta/Stable 1% Finch 실험 설명 유지.",
+      "source_response_sha256": "e43689f54845e589d5f0167706b62c20ad19e92fb4fe4a73ab9fb7a6e15e840a",
+      "chrome_status": {
+        "text": "In developer trial (Behind a flag)",
+        "val": 4
+      },
+      "announced_at": null,
+      "effective_at": null,
+      "selection_status": "watch",
+      "selection_reason": "기존 서브프레임 제거 이벤트 실험의 stage 450 목표가 156–158에서 160–162로 변경. 출시·철회가 아닌 계획 수정.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·출시 단계·적용 조건의 새로운 근거",
+      "assessed_at": "2026-11-12T23:22:48.539256+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "previous_trial_range": [
+        156,
+        158
+      ],
+      "current_trial_range": [
+        160,
+        162
+      ],
+      "sources": [
+        {
+          "url": "https://chromestatus.com/api/v0/features/5754395122860032",
+          "observed_at": "2026-11-12T23:18:20.857741+00:00",
+          "sha256": "63f07459d38337ffc60b9860e574e5766cf38b021869d37fb484ea2072bde5ee",
+          "section": "summary; browsers.chrome; stages"
+        }
+      ]
+    },
+    {
+      "browser": "chrome",
+      "feature_id": "chrome-5124748525830144",
+      "source_feature_id": 5124748525830144,
+      "title": "ServiceWorker Static Routing: Distinct TypeError message for cancelled race-network-and-fetch-handler fetch() requests",
+      "source_url": "https://chromestatus.com/feature/5124748525830144",
+      "source_list": 159,
+      "source_group": "Enabled by default",
+      "source_updated_at": "2026-11-12 19:32:30.980854",
+      "source_summary_sha256": "69aa3272c6705c051e5da7b55853b012e6cce34046d848ac581a9be107f652cb",
+      "observed_at": "2026-11-12T23:17:00.520426+00:00",
+      "summary": "Static Routing 경합에서 취소를 별도 오류 메시지로 구분해 잘못된 오프라인 폴백·오류 집계를 줄이려는 계획.",
+      "source_response_sha256": "86a19fee714dee266161d0035a32fef1a0a701facd4771faa01349c21a93253e",
+      "chrome_status": {
+        "text": "Proposed",
+        "val": 2
+      },
+      "announced_at": null,
+      "effective_at": null,
+      "selection_status": "watch",
+      "selection_reason": "취소된 Static Routing 요청의 TypeError를 실제 네트워크 실패와 구분하려는 159 목표가 확인되나 상태는 Proposed. 구현·설치본 제공은 미검증.",
+      "priority": null,
+      "priority_reason": null,
+      "comparison_question": null,
+      "benchmark_readiness": "unknown",
+      "revisit_trigger": "공식 기능·출시 단계·적용 조건의 새로운 근거",
+      "assessed_at": "2026-11-12T23:22:48.539256+00:00",
+      "selection_rule_version": "pm-selection-v2",
+      "sources": [
+        {
+          "url": "https://chromestatus.com/api/v0/features/5124748525830144",
+          "observed_at": "2026-11-12T23:18:23.574295+00:00",
+          "sha256": "055c0c540f8988107bded79ee28a44dc20aa541e41bd987a6d33b280a21ca1d1",
+          "section": "summary; browsers.chrome; stages"
+        }
+      ]
+    }
+  ]
+}

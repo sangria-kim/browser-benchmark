@@ -1,0 +1,311 @@
+{
+  "schema_version": 1,
+  "browser": "edge",
+  "evidence_level": "공식 기능 문서의 항목 요약. 출시일과 확인일을 구분하며 설치본 동작 검증은 아니다.",
+  "items": [
+    {
+      "item_id": "edge-mobile15753",
+      "browser": "edge",
+      "version": "157.0.4341.53",
+      "announced_at": "2026-11-11",
+      "item_type": "security",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Android 157.0.4341.53 일반 수정 및 CVE-2026-125350 보안 수정",
+      "selection_reason": "보안 중요성은 기록하되 새로운 사용자 흐름이 명시되지 않아 기능 상세 분석에서 제외한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+          "observed_at": "2026-11-12T23:16:43.620995+00:00",
+          "content_sha256": "618af57d8f4c38106e27fb4c04393d7fa51a1ec516cb5b2dfa819198363cdb08"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security",
+          "observed_at": "2026-11-12T23:16:43.624394+00:00",
+          "content_sha256": "5b549218525d4a483d2a7c004fe91036e36b2e1a82964cc9f214d9a3e59ba74f"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-stable157-existing",
+      "browser": "edge",
+      "version": "157.0.4341.42",
+      "announced_at": "2026-11-05",
+      "item_type": "feature_policy_fix_removal_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Stable 157의 로그인, Copilot, 탭, 시작 옵션, XSLT 및 정책 변경",
+      "selection_reason": "기존 공식 설명과 기능 사건이다. 반복 발표를 새로운 출시로 분류하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+          "observed_at": "2026-11-12T23:16:43.619743+00:00",
+          "content_sha256": "ffbfb631116afb041b20809358819ca59a3ce4a12f232d8b621518fc6990d3d9"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-beta158-maintenance",
+      "browser": "edge",
+      "version": "158.0.4370.16 / .12",
+      "announced_at": "2026-11-10",
+      "item_type": "fix",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "158 Beta의 11월 10일 일반 수정",
+      "selection_reason": "구체적인 사용자 동작 변화가 기재되지 않았다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+          "observed_at": "2026-11-12T23:16:43.625749+00:00",
+          "content_sha256": "77f0e6ca84fc81df60649991fece5f21a714b967ec4e5e7e82296730cba48e70"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-site-impact-existing",
+      "browser": "edge",
+      "version": null,
+      "announced_at": null,
+      "item_type": "removal_preview_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "XSLT 159 및 WebView2 호환성 변경, 향후 다운로드 경고",
+      "selection_reason": "기존 예고다. 문서의 항목 생략을 제품 철회로 해석하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/microsoft-edge/web-platform/site-impacting-changes",
+          "observed_at": "2026-11-12T23:16:43.622795+00:00",
+          "content_sha256": "847578833344747b4c74820b2daa182a30afb098ca4a7c3b5b676de68c559af2"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-emudhra-retained",
+      "browser": "edge",
+      "version": null,
+      "announced_at": "2026-11-10",
+      "item_type": "policy_security_preview",
+      "selection_status": "watch",
+      "priority": null,
+      "benchmark_readiness": "conditional",
+      "summary": "11월 16일 잔여 eMudhra 루트의 기본 신뢰 제거 예정",
+      "selection_reason": "11월 10일의 기존 예고다. 한국어 번역은 별도 지역 출시 근거가 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+          "observed_at": "2026-11-12T23:16:43.619743+00:00",
+          "content_sha256": "ffbfb631116afb041b20809358819ca59a3ce4a12f232d8b621518fc6990d3d9"
+        },
+        {
+          "url": "https://learn.microsoft.com/ko-kr/deployedge/microsoft-edge-relnote-stable-channel",
+          "observed_at": "2026-11-12T23:16:43.626646+00:00",
+          "content_sha256": "56652076d85a952ea0b4e5bf249fe1a7fbd8972a630abfea98fb2384a2403ab6"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-shopping-repeated",
+      "browser": "edge",
+      "version": null,
+      "announced_at": "2026-11-09",
+      "item_type": "feature_reference",
+      "selection_status": "pending_verification",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "문맥 제품 비교 및 Checkout Savings 설명",
+      "selection_reason": "제품 비교는 기존 사건이다. Checkout Savings의 신규성 검증 대기는 유지하며 en-US 조건을 보존한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.windows.com/msedgedev/2026/11/09/shop-faster-and-save-money-with-built-in-tools-in-microsoft-edge/",
+          "observed_at": "2026-11-12T23:18:01.112041+00:00",
+          "content_sha256": "a17c1584f2d56f87fdc4a5ba6bf99b3ccbab2d232f3c0d8606efb92eae2b70de"
+        },
+        {
+          "url": "https://explore.microsoft.com/ko-kr/edge/features/shopping?form=MT0160",
+          "observed_at": "2026-11-12T23:16:54.913821+00:00",
+          "content_sha256": "8835dcf66b16318e19587ac595da82ece10a52aa7004e802ddd6222e5e0e9528"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-notification-repeated",
+      "browser": "edge",
+      "version": null,
+      "announced_at": "2026-11-02",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "11월 2일 알림 차단·신고 안내와 기존 자동 권한 회수",
+      "selection_reason": "자동 권한 회수를 Edge 156 최초 도입으로 분류하지 않는다. 일반 관리 도움말도 새 출시 근거가 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://blogs.windows.com/msedgedev/2026/11/02/client-side-threat-detection-how-scareware-blocker-uncovered-malicious-notification-abuse/",
+          "observed_at": "2026-11-12T23:16:51.088443+00:00",
+          "content_sha256": "a92e3862cdac8740eb55e55d79b4a694478635a3a0781611dbb240678469abc8"
+        },
+        {
+          "url": "https://support.microsoft.com/en-us/edge/manage-website-notifications-in-microsoft-edge",
+          "observed_at": "2026-11-12T23:16:51.142248+00:00",
+          "content_sha256": "97871240234a63d89aa23b2957bd80e7d284e9de147479ad18a90aab06294b25"
+        }
+      ]
+    },
+    {
+      "item_id": "microsoft-korea-current",
+      "browser": "edge",
+      "version": null,
+      "announced_at": "2026-11-12 / 2026-11-11",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "한국 공식 뉴스의 Ignite 예고 및 KT 에이전트 사례",
+      "selection_reason": "Edge 기능 출시나 한국어 지원 변경의 근거는 아니다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://news.microsoft.com/source/asia/2026/11/12/%eb%a7%88%ec%9d%b4%ed%81%ac%eb%a1%9c%ec%86%8c%ed%94%84%ed%8a%b8-%ec%9d%b4%ea%b7%b8%eb%82%98%ec%9d%b4%ed%8a%b8-2026-%ec%9d%b4%eb%8b%ac-17%ec%9d%bc-%ea%b0%9c%eb%a7%89%ed%94%84%eb%a1%a0/?lang=ko",
+          "observed_at": "2026-11-12T23:20:03.269831+00:00",
+          "content_sha256": "29e3bab00bf22a27b4f56a76c487977e4a2a490ad2ff5c2b542c21fde02581e1"
+        },
+        {
+          "url": "https://news.microsoft.com/source/asia/2026/11/11/kt-%eb%a7%88%ec%9d%b4%ec%8a%a4%ed%84%b0%ec%99%80-%eb%a7%88%ec%9d%b4%ed%81%ac%eb%a1%9c%ec%86%8c%ed%94%84%ed%8a%b8-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%ea%b0%80-%ed%95%a8%ea%bb%98/?lang=ko",
+          "observed_at": "2026-11-12T23:20:03.270701+00:00",
+          "content_sha256": "7e9615fe04d43bb072bf44c065f2d63cf616d1a82022537550222fb40fc74d8a"
+        }
+      ]
+    },
+    {
+      "item_id": "microsoft-korea-featured-old",
+      "browser": "edge",
+      "version": null,
+      "announced_at": "2026-04",
+      "item_type": "reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "한국 공식 뉴스의 AI 보안 및 Copilot Cowork 참고글",
+      "selection_reason": "본문은 4월 발표다. 홈페이지의 추천 표기를 11월 출시일로 사용하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://news.microsoft.com/source/asia/features/ai%eb%a1%9c-%ec%a6%9d%ed%8f%ad%eb%90%98%eb%8a%94-%ec%9c%84%ed%98%91-%ed%99%98%ea%b2%bd%ec%97%90-%eb%8c%80%ec%9d%91%ed%95%98%eb%8a%94-ai-%ea%b8%b0%eb%b0%98-%eb%b3%b4%ec%95%88-%ec%b2%b4%ea%b3%84/?lang=ko",
+          "observed_at": "2026-11-12T23:20:03.271175+00:00",
+          "content_sha256": "edc912ab02d170c960fc1f8452b2f12c8cb6009d010a9e26fbd1406d2baa5a6f"
+        },
+        {
+          "url": "https://news.microsoft.com/source/asia/features/%ec%a0%84-%ec%84%b8%ea%b3%84%ec%a0%81-%ec%86%8c%ed%94%84%ed%8a%b8%ec%9b%a8%ec%96%b4-%eb%b3%b4%ec%95%88-%ea%b0%95%ed%99%94-ai%ec%99%80-%ed%95%a8%ea%bb%98-%ec%a7%84%ed%99%94%ed%95%98%eb%8a%94-%eb%a7%88/?lang=ko",
+          "observed_at": "2026-11-12T23:20:03.271619+00:00",
+          "content_sha256": "160b4a57f9ead5fe4f25e9cd0a8775bdd220699f45127574eb0f8d8de1208d07"
+        },
+        {
+          "url": "https://news.microsoft.com/source/asia/features/%ec%bd%94%ed%8c%8c%ec%9d%bc%eb%9f%bf-%ec%bd%94%ec%9b%8c%ed%81%accopilot-cowork-%ed%94%84%eb%a1%a0%ed%8b%b0%ec%96%b4frontier%ec%97%90%ec%84%9c-%ec%a0%9c%ea%b3%b5/?lang=ko",
+          "observed_at": "2026-11-12T23:20:03.272053+00:00",
+          "content_sha256": "6bc6c5cd0b419943a3b980489097043373a8aed51fbac7bc58714c4c800f6ee1"
+        }
+      ]
+    },
+    {
+      "item_id": "edge-agent-profile-policy-document-omission-20261112",
+      "browser": "edge",
+      "version": "158",
+      "announced_at": null,
+      "item_type": "verification_pending",
+      "selection_status": "pending_verification",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Edge 에이전트 격리 프로필 정책의 현재 문서 근거 검증 대기",
+      "selection_reason": "과거 watch 판단의 문서 근거가 현재 목록에 없지만 제품 상태는 확정할 수 없다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "문서 복구 또는 명시적인 공식 정책 변경 설명",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+          "observed_at": "2026-11-12T23:16:43.625749+00:00",
+          "content_sha256": "77f0e6ca84fc81df60649991fece5f21a714b967ec4e5e7e82296730cba48e70"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies",
+          "observed_at": "2026-11-12T23:19:04.185825+00:00",
+          "content_sha256": "a02a8a6522c396abc7463b3d971616ca5f9174b70e51b2f6eeb171d32b1783ac"
+        }
+      ],
+      "event_id": "edge-agent-profile-policy-document-omission-20261112",
+      "feature_id": "edge-agent-isolated-profiles",
+      "channel": "beta",
+      "platform": [
+        "Windows"
+      ],
+      "priority_reason": null,
+      "comparison_question": "공식 상태가 확정되면 에이전트의 격리, 허용 범위 및 사용자 통제 조건은 어떻게 달라지는가?"
+    },
+    {
+      "item_id": "edge-commercial-journeys-policy-document-omission-20261112",
+      "browser": "edge",
+      "version": "158",
+      "announced_at": null,
+      "item_type": "verification_pending",
+      "selection_status": "pending_verification",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Edge Commercial Journeys 정책의 현재 문서 근거 검증 대기",
+      "selection_reason": "과거 watch 판단의 문서 근거가 현재 목록에 없지만 제품 상태는 확정할 수 없다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "문서 복구 또는 명시적인 공식 정책 변경 설명",
+      "sources": [
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+          "observed_at": "2026-11-12T23:16:43.625749+00:00",
+          "content_sha256": "77f0e6ca84fc81df60649991fece5f21a714b967ec4e5e7e82296730cba48e70"
+        },
+        {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies",
+          "observed_at": "2026-11-12T23:19:04.185825+00:00",
+          "content_sha256": "a02a8a6522c396abc7463b3d971616ca5f9174b70e51b2f6eeb171d32b1783ac"
+        }
+      ],
+      "event_id": "edge-commercial-journeys-policy-document-omission-20261112",
+      "feature_id": "edge-commercial-journeys",
+      "channel": "beta",
+      "platform": [
+        "Windows",
+        "macOS"
+      ],
+      "priority_reason": null,
+      "comparison_question": "삼성 브라우저와 비교할 때, 업무 과제 제안과 guided flow에서 허용되는 행동 범위, 사용자 승인과 중단, 작업 기록 확인 및 로컬 데이터 보관은 어떻게 다른가?"
+    }
+  ]
+}

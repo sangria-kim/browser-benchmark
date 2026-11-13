@@ -101,3 +101,7 @@
 - [157.0.8103.78 공식 기능 근거](157.0.8103.78/release-reference.json)
 
 - [2026-11-12 기능 근거 보완](feature-references-2026-11-12.json)
+
+## 2026-11-13 기능 근거
+
+- [feature-references-2026-11-13.json](feature-references-2026-11-13.json)

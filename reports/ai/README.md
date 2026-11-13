@@ -16,3 +16,5 @@
 - [2026-11-07 — Whale Stable 확대 · Edge 로그인·메모리 안내 · Chrome 실험](../2026-11-07.md) · 2개 고유 사건. event_id: whale-desktop-address-bar-ai-query-5-41-429-3-20261106, whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106.
 
 - [2026-11-11 — Firefox 160 Stable 확대 · Edge 상품 비교 제안](../2026-11-11.md) · 같은 사건의 중복 노출은 한 번만 집계.
+
+- [2026-11-13 · Chrome 검색·AI Mode · Contextual Tasks 소스 실험](../2026-11-13.md) · 동일 사건의 여러 색인 노출은 중복 집계하지 않습니다.
