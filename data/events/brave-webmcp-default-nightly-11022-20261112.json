@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "event_id": "brave-webmcp-default-nightly-11022-20261112",
+  "feature_id": "brave-leo-website-tools",
+  "browser": "brave",
+  "event_type": "default_change",
+  "version": "1.102.2",
+  "channel": "nightly",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "공식 도움말의 Desktop 범위와 PR에 연결된 Nightly 빌드를 대상으로 한다. HTTPS·도구 제공 페이지·도구 지원 모델·사용자가 대화에 연결한 탭이 필요하다. 평소 로그인한 프로필에서 동작하므로 별도 격리 프로필의 AI browsing과 다르다. Android/iOS 실제 제공과 Stable 기본 활성화는 이 근거로 확정하지 않는다.",
+    "documentation_conflict": "현재 도움말은 Brave 1.96+ 및 #enable-webmcp-testing 수동 활성화를 요구한다. Nov12 병합 소스는 기본 활성화로 바뀌었다. 버전별 문서 정합성·설치본 상태 미확인."
+  },
+  "observed_at": "2026-11-13T22:48:46.168388+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "749fabdd527323d15e94ea1204be9eae1dfb27fe",
+  "sources": [
+    {
+      "url": "https://github.com/brave/brave-core/pull/40616",
+      "section": "PR #40616, merged 2026-11-12T02:52:49Z, build bot v1.102.2",
+      "observed_at": "2026-11-13T22:45:14.381964+00:00",
+      "content_sha256": "3d7ac39d5e4171a3ad906a8e2a2509a2905bb6435d43fbc77f4162f9e4aac1cc"
+    },
+    {
+      "url": "https://github.com/brave/brave-core/pull/40616.patch",
+      "section": "WebMCP runtime status and base-feature override",
+      "observed_at": "2026-11-13T22:45:14.382646+00:00",
+      "content_sha256": "a016fbb6ad9dbbc8b7a1b69d772d78cdde741e537329c6102bd75620ef397148"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brave/brave-core/v1.102.2/rewrite/third_party/blink/renderer/platform/runtime_enabled_features.json5.yaml",
+      "section": "v1.102.2 tag: enabled base feature and stable runtime rewrite",
+      "observed_at": "2026-11-13T22:47:27.539125+00:00",
+      "content_sha256": "2ff35fdbcb4b4ec8c5b29308037dd00923cc62ddd893f7547193554688af758e"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brave/brave-core/v1.102.2/app/feature_defaults_unittest.cc",
+      "section": "v1.102.2 tag: enabled kWebMCP expectation",
+      "observed_at": "2026-11-13T22:47:27.539853+00:00",
+      "content_sha256": "6a4138a3e921ffdad55f7596f3696cb149a974d8f7aa31ea6903d46885c7c05c"
+    },
+    {
+      "url": "https://support.brave.com/hc/en-us/articles/50132604817165-How-do-I-use-Website-Tools-in-Brave-Leo",
+      "section": "Requirements; Security & Privacy; permission controls",
+      "observed_at": "2026-11-13T22:43:29.582225+00:00",
+      "content_sha256": "20b8ab144ab7d1b6abf5c060cabc201579d3f878ab6d8c94477b641f9a208890"
+    },
+    {
+      "url": "https://github.com/brave/brave-browser/issues/55232",
+      "section": "Prior experimental support and later default change",
+      "observed_at": "2026-11-13T22:45:14.380924+00:00",
+      "content_sha256": "fdd079017a091ceadc6b374b1af193bcb001e2b6bf6b1ed3d933ba7b5b704bca"
+    },
+    {
+      "url": "https://github.com/brave/brave-browser/releases/tag/v1.102.2",
+      "section": "Nightly title and published_at 2026-11-12T13:23:36Z",
+      "observed_at": "2026-11-13T22:42:40.051482+00:00"
+    }
+  ],
+  "summary": "Brave 사이트 도구용 WebMCP API 기본 활성화: Nightly 소스",
+  "delta": "기존 WebMCP 도구 실험은 이미 존재했다. Nov12 병합 PR은 Blink WebMCP runtime을 experimental에서 stable로 바꾸고 base-feature override 및 기본 활성화 테스트를 연결한다. 빌드 봇은 Nightly 1.102.2를 지목한다. 소스의 stable 문자열은 Brave Stable 채널 출시를 뜻하지 않는다. API/runtime 기본값 변경은 모든 Leo UI의 노출이나 도구 자동 승인 근거가 아니다.",
+  "verification_status": "official_source_and_document_observation_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "사이트 도구 기반 API/runtime의 기본값 변경을 확인했다. 실제 Leo 연결 UI와 승인 동작은 도움말에 설명된 별도 검증 대상이다. 일반 프로필의 허용·거절·세션 유지 경계를 비교할 수 있다.",
+  "priority": "P2",
+  "priority_reason": "사이트 도구와 모델 지원에 제한된 Nightly 비교 과제이며 Stable 확대와 실제 설치본 노출은 확인이 필요하다.",
+  "comparison_question": "삼성 브라우저에서 유사한 사이트 도구 실행을 검토할 때, 연결 사이트·전송 인자·일회/세션 승인·도구 제거를 사용자가 얼마나 명확히 통제할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Nightly 설치본에서 기본값과 도움말 차이 확인; Stable 릴리스 및 한국 지원 조건의 공식 명시",
+  "assessed_at": "2026-11-13T22:48:46.168388+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

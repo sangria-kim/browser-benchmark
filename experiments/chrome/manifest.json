@@ -35,6 +35,25 @@
       "flag_ids": [
         "enable-file-attached-enterprise-scan-on-clank"
       ]
+    },
+    {
+      "feature_id": "chrome-fedcm-idp-links",
+      "event_id": "chrome-fedcm-passive-signup-modal-source-20261113",
+      "event_path": "data/events/chrome-fedcm-passive-signup-modal-source-20261113.json",
+      "feature_path": "features/chrome/fedcm-idp-links.md",
+      "flag_ids": [
+        "fedcm-idp-links",
+        "fedcm-active-mode-multiple-identity-providers"
+      ]
+    },
+    {
+      "feature_id": "chrome-android-accessibility-note-class",
+      "event_id": "chrome-android-accessibility-note-class-source-20261113",
+      "event_path": "data/events/chrome-android-accessibility-note-class-source-20261113.json",
+      "feature_path": "features/chrome/android-accessibility-note-class.md",
+      "flag_ids": [
+        "enable-accessibility-map-to-new-class-names"
+      ]
     }
   ],
   "source_evidence_catalog": [
@@ -51,6 +70,21 @@
     {
       "month": "2026-08",
       "path": "experiments/chrome/monthly/2026-08-source-evidence-2026-11-13.json",
+      "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
+    },
+    {
+      "month": "2026-07",
+      "path": "experiments/chrome/monthly/2026-07-source-evidence-2026-11-14.json",
+      "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
+    },
+    {
+      "month": "2026-08",
+      "path": "experiments/chrome/monthly/2026-08-source-evidence-2026-11-14.json",
+      "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
+    },
+    {
+      "month": "2026-11",
+      "path": "experiments/chrome/monthly/2026-11-source-evidence-2026-11-14.json",
       "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
     }
   ]

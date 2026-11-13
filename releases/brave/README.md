@@ -73,3 +73,8 @@
 
 - [build-references-2026-11-13.json](build-references-2026-11-13.json)
 - [items-observed-2026-11-13.json](items-observed-2026-11-13.json)
+
+## 2026-11-14 기능 근거
+
+- [1.102.2/items.json](1.102.2/items.json)
+- [1.99.57/items-android.json](1.99.57/items-android.json)

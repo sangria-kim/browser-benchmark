@@ -105,3 +105,7 @@
 ## 2026-11-13 기능 근거
 
 - [feature-references-2026-11-13.json](feature-references-2026-11-13.json)
+
+## 2026-11-14 기능 근거
+
+- [feature-references-2026-11-14.json](feature-references-2026-11-14.json)

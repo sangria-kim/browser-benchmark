@@ -1058,3 +1058,13 @@
 - [dynamic-aim-fulfillment-realbox](dynamic-aim-fulfillment-realbox.md)
 - [dynamic-aim-fulfillment](dynamic-aim-fulfillment.md)
 - [enable-file-attached-enterprise-scan-on-clank](enable-file-attached-enterprise-scan-on-clank.md)
+
+## 추가 소스 근거
+
+- [2026-07 등록·설명·메타데이터 근거](monthly/2026-07-source-evidence-2026-11-14.json)
+- [2026-08 등록·설명·메타데이터 근거](monthly/2026-08-source-evidence-2026-11-14.json)
+- [2026-11 등록·설명·메타데이터 근거](monthly/2026-11-source-evidence-2026-11-14.json)
+
+- [enable-accessibility-map-to-new-class-names](enable-accessibility-map-to-new-class-names.md)
+- [fedcm-active-mode-multiple-identity-providers](fedcm-active-mode-multiple-identity-providers.md)
+- [fedcm-idp-links](fedcm-idp-links.md)
