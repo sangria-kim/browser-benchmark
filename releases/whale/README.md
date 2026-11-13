@@ -15,3 +15,7 @@
 - [공식 기능 참고 자료](feature-references.json)
 
 - [5.41.429.5 공식 기능 근거](5.41.429.5/items-2026-11-11.json)
+
+## 2026-11-13 기능 근거
+
+- [items-observed-2026-11-13.json](items-observed-2026-11-13.json)

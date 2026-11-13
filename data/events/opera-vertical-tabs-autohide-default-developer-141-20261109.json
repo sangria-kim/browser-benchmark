@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "event_id": "opera-vertical-tabs-autohide-default-developer-141-20261109",
+  "feature_id": "opera-vertical-tabs-autohide",
+  "browser": "opera",
+  "event_type": "default_change",
+  "version": "141.0.6079.0",
+  "channel": "developer",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "Developer 채널의 명시적 기본값 변경이다. 공식 설치 링크는 Windows, macOS, Linux를 제공한다. 새 프로필과 기존 프로필의 설정 승계, OS별 노출 및 한국 조건은 미확인이다.",
+    "benchmark_repetitions": 3
+  },
+  "observed_at": "2026-11-12T23:24:54.740586+00:00",
+  "announced_at": "2026-11-09",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://blogs.opera.com/desktop/2026/11/opera-141-developer/",
+      "section": "Key highlights",
+      "observed_at": "2026-11-12T23:18:01.114265+00:00",
+      "content_sha256": "648b0e52a0e1808323311d227ae4e8deed97eeaadd175e415e1cd8c1de369f9b"
+    },
+    {
+      "url": "https://blogs.opera.com/desktop/changelog-for-141/",
+      "section": "141.0.6079.0 / RNA-5563",
+      "observed_at": "2026-11-12T23:19:04.184521+00:00",
+      "content_sha256": "be65101917bc703eba4a134e6bed8a3ced0e36710c97cb8ddcf8a4d61912965c"
+    }
+  ],
+  "summary": "Opera 141 Developer에서 세로 탭 자동 숨김 기본 켜짐",
+  "delta": "Developer 블로그가 기본 켜짐을 명시하고 changelog의 RNA-5563이 대응한다. 140의 타이밍 및 겹침 수정과 구분하며, Stable의 기본값 변경은 주장하지 않는다.",
+  "verification_status": "official_document_observation_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "세로 탭으로 작업을 전환할 때 콘텐츠 공간, 발견성 및 포인터 이동이 달라지는 기본 동작이다.",
+  "priority": "P2",
+  "priority_reason": "영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+  "comparison_question": "삼성 브라우저와 비교할 때, 세로 탭 자동 숨김이 콘텐츠 공간과 탭 재진입 및 드래그 오류에 어떤 영향을 주는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 Developer 빌드 실기 확인 또는 Stable 확대 근거",
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

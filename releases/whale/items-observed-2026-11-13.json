@@ -1,0 +1,118 @@
+{
+  "schema_version": 1,
+  "browser": "whale",
+  "evidence_level": "공식 기능 문서의 항목 요약. 출시일과 확인일을 구분하며 설치본 동작 검증은 아니다.",
+  "items": [
+    {
+      "item_id": "whale5414295-repeated",
+      "browser": "whale",
+      "version": "5.41.429.5",
+      "announced_at": "2026-11-11",
+      "item_type": "support_security_fix_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "5.41.429.5의 macOS 지원 경계, 보안 및 다크모드 수정",
+      "selection_reason": "macOS 13 최소 지원과 업데이트 복구는 기존 사건이다. 공지 등록일과 본문 릴리스일을 구분한다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35247",
+          "observed_at": "2026-11-12T23:16:55.824585+00:00",
+          "content_sha256": "93e48ec422931dfd892cacf38fc0d933fb6edb7a55df8cefd1b290774231116f"
+        },
+        {
+          "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35248",
+          "observed_at": "2026-11-12T23:16:56.693730+00:00",
+          "content_sha256": "52804ed65fdf4f5cb7ef77ddf7bb5aabd76144557994b38463fdc76d597210be"
+        },
+        {
+          "url": "https://forum.whale.naver.com/topic/63268/",
+          "observed_at": "2026-11-12T23:16:48.777441+00:00",
+          "content_sha256": "7274878ff928e6147e8fbb9ddd997793ba7e5cf3e581e5d16c8b643d0dcd039a"
+        }
+      ]
+    },
+    {
+      "item_id": "whale5414293-repeated",
+      "browser": "whale",
+      "version": "5.41.429.3 / .5",
+      "announced_at": "2026-11-06",
+      "item_type": "feature_fix_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "5.41의 주소창 AI, 브리핑, 메모, 로그인, 탭 및 캡처",
+      "selection_reason": "기존 Stable 확대와 기능 이력이다. 영상 향상 실험을 기본 활성화로 일반화하지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35247",
+          "observed_at": "2026-11-12T23:16:55.824585+00:00",
+          "content_sha256": "93e48ec422931dfd892cacf38fc0d933fb6edb7a55df8cefd1b290774231116f"
+        }
+      ]
+    },
+    {
+      "item_id": "whale-android41-repeated",
+      "browser": "whale",
+      "version": "4.1",
+      "announced_at": "2026-10-29",
+      "item_type": "feature_fix_reference",
+      "selection_status": "excluded",
+      "priority": null,
+      "benchmark_readiness": "unknown",
+      "summary": "Android 4.1의 설정 검색, 시크릿 캡처 및 오류 수정",
+      "selection_reason": "본문 릴리스일은 10월 29일이다. 11월 2일 공지 등록을 신규 출시로 세지 않는다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "구체적인 동작, 배포 또는 지원 조건의 공식 근거를 확인하면 재검토한다.",
+      "sources": [
+        {
+          "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35236",
+          "observed_at": "2026-11-12T23:16:58.010684+00:00",
+          "content_sha256": "52ac97d508e7061aa9122191b4642c3f26a3c34cf6c806796723c8df120adf24"
+        },
+        {
+          "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35237",
+          "observed_at": "2026-11-12T23:16:58.742494+00:00",
+          "content_sha256": "42220bc5cc45b87b0bd6d8f8b361c91d05df227f9ec196c061565fa7020ea32f"
+        }
+      ]
+    },
+    {
+      "item_id": "whale-angle-d3d9-removal-recovery-notice-20261112",
+      "browser": "whale",
+      "version": "5.41",
+      "announced_at": "2026-11-12T06:20:41Z",
+      "item_type": "removal",
+      "selection_status": "selected",
+      "priority": "P2",
+      "benchmark_readiness": "conditional",
+      "summary": "Whale 5.41의 D3D9 설정 전환과 영상 CPU 부담 복구 안내",
+      "selection_reason": "영상 재생 성능 회귀의 구체적인 발생 조건과 사용자 복구 경로가 공식 확인되어 비교할 수 있다.",
+      "effective_at": null,
+      "real_test": "미실행",
+      "revisit_trigger": "정확한 영향 빌드, 기존 설정이 남은 안전한 시험 환경 및 실기 확인",
+      "sources": [
+        {
+          "url": "https://forum.whale.naver.com/topic/63292/",
+          "observed_at": "2026-11-12T23:18:01.111289+00:00",
+          "content_sha256": "a3c09236653b12176b88e40876c6248a2e0dbba75b5c531dce07e560a4e25073"
+        }
+      ],
+      "event_id": "whale-angle-d3d9-removal-recovery-notice-20261112",
+      "feature_id": "whale-angle-d3d9-removal-recovery",
+      "channel": "unknown",
+      "platform": [
+        "Windows"
+      ],
+      "priority_reason": "영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+      "comparison_question": "삼성 브라우저와 비교할 때, 구버전 그래픽 설정이 사라질 때 기본값 복구, 안내, 영상 재생 자원 사용은 어떻게 달라지는가?"
+    }
+  ]
+}

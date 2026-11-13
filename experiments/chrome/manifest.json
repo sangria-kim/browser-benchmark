@@ -5,5 +5,53 @@
   "end_revision": "3a520e41da378388a3e9b4a87f3c2f9e4d311ba9",
   "baseline_sha256": "429a947baf09ebb828a4d6c5078d12519d0b1bd84918d9532ac3ecc27867d871",
   "end_sha256": "019011f498d4e7b3fc8729811939d61e81f4c7f16d0974de424a08decae7202b",
-  "evidence_level": "Source registration changes only; not proof of product availability, first introduction, or installed-build behavior."
+  "evidence_level": "Source registration changes only; not proof of product availability, first introduction, or installed-build behavior.",
+  "feature_catalog": [
+    {
+      "feature_id": "chrome-dynamic-aim-fulfillment",
+      "event_id": "chrome-dynamic-aim-fulfillment-source-20261112",
+      "event_path": "data/events/chrome-dynamic-aim-fulfillment-source-20261112.json",
+      "feature_path": "features/chrome/dynamic-aim-fulfillment.md",
+      "flag_ids": [
+        "dynamic-aim-fulfillment",
+        "dynamic-aim-fulfillment-omnibox",
+        "dynamic-aim-fulfillment-realbox"
+      ]
+    },
+    {
+      "feature_id": "chrome-contextual-tasks-form-factor-scope",
+      "event_id": "chrome-contextual-tasks-form-factor-scope-source-20261112",
+      "event_path": "data/events/chrome-contextual-tasks-form-factor-scope-source-20261112.json",
+      "feature_path": "features/chrome/contextual-tasks-form-factor-scope.md",
+      "flag_ids": [
+        "contextual-tasks-override-show-bottom-sheet-on-large-screen"
+      ]
+    },
+    {
+      "feature_id": "chrome-android-enterprise-file-upload-analysis",
+      "event_id": "chrome-android-enterprise-file-upload-analysis-source-20261112",
+      "event_path": "data/events/chrome-android-enterprise-file-upload-analysis-source-20261112.json",
+      "feature_path": "features/chrome/android-enterprise-file-upload-analysis.md",
+      "flag_ids": [
+        "enable-file-attached-enterprise-scan-on-clank"
+      ]
+    }
+  ],
+  "source_evidence_catalog": [
+    {
+      "month": "2026-11",
+      "path": "experiments/chrome/monthly/2026-11-source-evidence-2026-11-13.json",
+      "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
+    },
+    {
+      "month": "2026-07",
+      "path": "experiments/chrome/monthly/2026-07-source-evidence-2026-11-13.json",
+      "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
+    },
+    {
+      "month": "2026-08",
+      "path": "experiments/chrome/monthly/2026-08-source-evidence-2026-11-13.json",
+      "evidence_level": "Source registration, metadata and description changes; not installed-build availability."
+    }
+  ]
 }

@@ -12,3 +12,7 @@
 | 2026-07-10 | modified | kOsAndroid, kOsDesktop | [ea6f03bed9fd](https://github.com/chromium/chromium/commit/ea6f03bed9fd6c22ce1076b00b374900d2fe1b57) |
 
 [전체 목록](README.md)
+
+## Android 기기 형태 조건
+
+[2026-11-12 소스 변경](../../features/chrome/contextual-tasks-form-factor-scope.md)은 Android desktop form factor 조건을 추가합니다. phone·tablet의 기존 정식 기능 철회를 입증하지 않으며 설치본 동작은 미확인입니다.

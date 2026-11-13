@@ -68,3 +68,8 @@
 - [1.101.40 공식 기능 근거](1.101.40/items.json)
 
 - [1.100.52 공식 기능 근거](1.100.52/items.json)
+
+## 2026-11-13 기능 근거
+
+- [build-references-2026-11-13.json](build-references-2026-11-13.json)
+- [items-observed-2026-11-13.json](items-observed-2026-11-13.json)
