@@ -53,3 +53,10 @@
 ## 2026-11-13 기능 근거
 
 - [items-observed-2026-11-13.json](items-observed-2026-11-13.json)
+
+## 2026-11-14 기능 근거
+
+- [156.0.4314.84/items.json](156.0.4314.84/items.json)
+- [157.0.4341.46/items.json](157.0.4341.46/items.json)
+- [157.0.4341.57/items.json](157.0.4341.57/items.json)
+- [158.0.4370.21/items.json](158.0.4370.21/items.json)

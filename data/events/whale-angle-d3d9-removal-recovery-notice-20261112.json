@@ -18,7 +18,7 @@
     "korean_language": "미확인",
     "korea_effective_at": null,
     "real_test": "미실행",
-    "conditions": "Windows에서 과거 #use-angle=D3D9를 직접 설정한 사용자에게 해당한다. 새 설치, 모든 사용자 또는 다른 브라우저의 동일 현상으로 일반화하지 않는다. 정확한 5.41 하위 빌드와 최초 제거일은 미공개다. 공지는 5.41을 통칭하며 Stable과 Beta의 개별 적용 범위는 명시하지 않는다.",
+    "conditions": "Windows에서 과거 #use-angle=D3D9를 직접 지정했거나 하드웨어 가속을 꺼 둔 사용자에게 해당한다. whale://gpu의 Display type이 ANGLE_D3D11_WARP인지 먼저 확인한다. 다른 원인의 CPU 증가나 모든 사용자에게 일반화하지 않는다. 정확한 5.41 하위 빌드·채널별 범위·최초 제거일은 미확인이다.",
     "benchmark_repetitions": 3
   },
   "observed_at": "2026-11-12T23:24:54.740586+00:00",
@@ -31,10 +31,16 @@
       "section": "운영팀 최초 본문의 대상, 원인, 해결 방법",
       "observed_at": "2026-11-12T23:18:01.111289+00:00",
       "content_sha256": "a3c09236653b12176b88e40876c6248a2e0dbba75b5c531dce07e560a4e25073"
+    },
+    {
+      "url": "https://forum.whale.naver.com/topic/63292/",
+      "section": "운영팀 보완 본문: 대상·해결 방법",
+      "observed_at": "2026-11-13T22:43:29.587887+00:00",
+      "content_sha256": "ad8f596b26545996572aaa761d19b0de4f2d5c5467e44adc6a677afe3ad37e7f"
     }
   ],
   "summary": "Whale 5.41의 D3D9 설정 전환과 영상 CPU 부담 복구 안내",
-  "delta": "운영팀은 과거 ANGLE을 D3D9로 강제 설정한 Windows 설치가 5.41 업데이트 후 D3D11 WARP로 전환된다고 설명한다. GPU 대신 CPU 렌더링을 사용해 부담이 커지며, Default 복귀와 재시작 후 GPU 상태 확인을 안내한다. 전일의 macOS 지원 종료 및 업데이트 복구 사건과는 다르다.",
+  "delta": "운영팀은 과거 ANGLE을 D3D9로 강제 설정한 Windows 설치가 5.41 업데이트 후 D3D11 WARP로 전환된다고 설명한다. GPU 대신 CPU 렌더링을 사용해 부담이 커지며, Default 복귀와 재시작 후 GPU 상태 확인을 안내한다. 전일의 macOS 지원 종료 및 업데이트 복구 사건과는 다르다. 이후 공식 본문은 하드웨어 가속 비활성화도 대상에 포함하고, 가속 재활성화 및 재시작을 먼저 확인하도록 해결 순서를 보완했다.",
   "verification_status": "official_document_observation_not_device_tested",
   "previous_event_id": null,
   "selection_status": "selected",
@@ -45,5 +51,20 @@
   "benchmark_readiness": "conditional",
   "revisit_trigger": "정확한 영향 빌드, 기존 설정이 남은 안전한 시험 환경 및 실기 확인",
   "assessed_at": "2026-11-12T23:24:54.740586+00:00",
-  "selection_rule_version": "pm-selection-v2"
+  "selection_rule_version": "pm-selection-v2",
+  "corrections": [
+    {
+      "recorded_at": "2026-11-13T22:48:46.168388+00:00",
+      "reason": "공식 운영팀 본문이 영향 대상과 해결 순서를 보완했다. 문서 확인일을 새 기능 출시일로 사용하지 않는다.",
+      "previous_conditions": "Windows에서 과거 #use-angle=D3D9를 직접 설정한 사용자에게 해당한다. 새 설치, 모든 사용자 또는 다른 브라우저의 동일 현상으로 일반화하지 않는다. 정확한 5.41 하위 빌드와 최초 제거일은 미공개다. 공지는 5.41을 통칭하며 Stable과 Beta의 개별 적용 범위는 명시하지 않는다.",
+      "previous_delta": "운영팀은 과거 ANGLE을 D3D9로 강제 설정한 Windows 설치가 5.41 업데이트 후 D3D11 WARP로 전환된다고 설명한다. GPU 대신 CPU 렌더링을 사용해 부담이 커지며, Default 복귀와 재시작 후 GPU 상태 확인을 안내한다. 전일의 macOS 지원 종료 및 업데이트 복구 사건과는 다르다.",
+      "source": {
+        "url": "https://forum.whale.naver.com/topic/63292/",
+        "section": "운영팀 보완 본문: 대상·해결 방법",
+        "observed_at": "2026-11-13T22:43:29.587887+00:00",
+        "content_sha256": "ad8f596b26545996572aaa761d19b0de4f2d5c5467e44adc6a677afe3ad37e7f"
+      },
+      "change": "하드웨어 가속을 꺼 둔 Windows 사용자도 대상이다. whale://gpu의 ANGLE_D3D11_WARP 여부를 먼저 확인하고, whale://settings/performance에서 하드웨어 가속을 켜서 재시작한 뒤에도 WARP이면 #use-angle을 Default로 복구한다."
+    }
+  ]
 }

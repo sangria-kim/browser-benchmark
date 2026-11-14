@@ -125,3 +125,10 @@
 - [Opera 141 Developer에서 세로 탭 자동 숨김 기본 켜짐](opera/vertical-tabs-autohide.md)
 - [Vivaldi 8.3에서 영상 종료 시 브라우저 전체화면 유지 수정](vivaldi/browser-fullscreen-retention.md)
 - [Whale 5.41의 D3D9 설정 전환과 영상 CPU 부담 복구 안내](whale/angle-d3d9-removal-recovery.md)
+
+## 추가 기능 이력
+
+- [Brave Leo Website Tools](brave/leo-website-tools.md)
+- [Chrome Android 웹 주석 역할의 접근성 매핑 실험](chrome/android-accessibility-note-class.md)
+- [Chrome FedCM 신규 계정 동의를 modal로 이동하는 실험](chrome/fedcm-idp-links.md)
+- [Opera One iOS · Data Saver](opera/ios-data-saver.md)

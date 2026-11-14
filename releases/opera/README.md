@@ -12,3 +12,7 @@
 - [140.0.6074.17/items-observed-2026-11-13.json](140.0.6074.17/items-observed-2026-11-13.json)
 - [141.0.6079.0/items-observed-2026-11-13.json](141.0.6079.0/items-observed-2026-11-13.json)
 - [items-observed-2026-11-13.json](items-observed-2026-11-13.json)
+
+## 2026-11-14 기능 근거
+
+- [6.8.0/items-ios.json](6.8.0/items-ios.json)

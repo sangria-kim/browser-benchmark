@@ -1,0 +1,1986 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-13T22:57:51Z",
+  "evidence_level": "Source-only. Registration, descriptions, expiry, source defaults and code changes do not prove installed availability, release or withdrawal.",
+  "events": [
+    {
+      "event_id": "chrome-about-flags-8a2531bca07054f5080d457dfdd03f210be4a841",
+      "source_revision": "8a2531bca07054f5080d457dfdd03f210be4a841",
+      "committed_at": "2026-07-29T06:49:17Z",
+      "source_url": "https://github.com/chromium/chromium/commit/8a2531bca07054f5080d457dfdd03f210be4a841",
+      "title": "Omnibox: Clean up OmniboxListMenuContextMenu feature flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "0602c0c32ad3b2183067c116eff5cf1759da874b7e4f4d395bdb570200abf33b",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/8a2531bca07054f5080d457dfdd03f210be4a841.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "omnibox-list-menu-context-menu",
+              "action": "removed",
+              "before": "{\"omnibox-list-menu-context-menu\",\n     flag_descriptions::kOmniboxListMenuContextMenuName,\n     flag_descriptions::kOmniboxListMenuContextMenuDescription, kOsAndroid,\n     FEATURE_VALUE_TYPE(omnibox::kOmniboxListMenuContextMenu)}",
+              "after": null,
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kOmniboxListMenuContextMenuDescription",
+                "flag_descriptions::kOmniboxListMenuContextMenuName",
+                "omnibox::kOmniboxListMenuContextMenu"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "10aba9ae26aca35f64e4a7cb4fc86a4f844bfbd2386b739f8f656dd55917a9b4",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/8a2531bca07054f5080d457dfdd03f210be4a841.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "omnibox-list-menu-context-menu",
+              "action": "removed",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "4a571a6b8fe4aabb1456d290b001ca349c4fafa7d871c8eaa771f4db12ffddb5",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/8a2531bca07054f5080d457dfdd03f210be4a841.diff",
+          "description_changes": [
+            {
+              "symbol": "kOmniboxListMenuContextMenuDescription",
+              "before": "Enables the use of Chromium ListMenu for the Omnibox context menu.",
+              "after": null,
+              "flag_id": "omnibox-list-menu-context-menu",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kOmniboxListMenuContextMenuName",
+              "before": "Omnibox ListMenu Context Menu",
+              "after": null,
+              "flag_id": "omnibox-list-menu-context-menu",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "omnibox-list-menu-context-menu"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "Omnibox: Clean up OmniboxListMenuContextMenu feature flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-fdc03baeb294039192930e0592aa2dbe30387a34",
+      "source_revision": "fdc03baeb294039192930e0592aa2dbe30387a34",
+      "committed_at": "2026-07-29T08:23:54Z",
+      "source_url": "https://github.com/chromium/chromium/commit/fdc03baeb294039192930e0592aa2dbe30387a34",
+      "title": "[DBSC] Add flag for Device Bound Session Credentials pre-warmer.",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "5ac32e22520f74bfcbbe81b9244d30c0ef7bb8e8495996935fc1767baa7fccbd",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/fdc03baeb294039192930e0592aa2dbe30387a34.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "enable-device-bound-sessions-dse-prewarmer",
+              "action": "added",
+              "before": null,
+              "after": "{\"enable-device-bound-sessions-dse-prewarmer\",\n     flag_descriptions::kEnableDeviceBoundSessionsDsePrewarmerName,\n     flag_descriptions::kEnableDeviceBoundSessionsDsePrewarmerDescription,\n     kOsMac | kOsWin | kOsLinux,\n     FEATURE_VALUE_TYPE(features::kDeviceBoundSessionsDsePrewarmer)}",
+              "platform_masks": [
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "feature_symbols": [
+                "features::kDeviceBoundSessionsDsePrewarmer",
+                "flag_descriptions::kEnableDeviceBoundSessionsDsePrewarmerDescription",
+                "flag_descriptions::kEnableDeviceBoundSessionsDsePrewarmerName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "c01896c6ab07d8bba9dd1b90c427fddd349a64293012cd07fef441cc7eead860",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/fdc03baeb294039192930e0592aa2dbe30387a34.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-device-bound-sessions-dse-prewarmer",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 156,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "c7b8f46cc416c0fe2206bdc2c9967bba5c57c496a94b30ab5cb379fec163be94",
+          "additions": 6,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/fdc03baeb294039192930e0592aa2dbe30387a34.diff",
+          "description_changes": [
+            {
+              "symbol": "kEnableDeviceBoundSessionsDsePrewarmerDescription",
+              "before": null,
+              "after": "Enables preemptive refreshes for sessions registered in the same site as the default search engine when the user is not actively navigating.",
+              "flag_id": "enable-device-bound-sessions-dse-prewarmer",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kEnableDeviceBoundSessionsDsePrewarmerName",
+              "before": null,
+              "after": "Enable Device Bound Session Credentials Prewarmer for Default Search Engine",
+              "flag_id": "enable-device-bound-sessions-dse-prewarmer",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "enable-device-bound-sessions-dse-prewarmer"
+      ],
+      "platform": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[DBSC] Add flag for Device Bound Session Credentials pre-warmer.. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsLinux",
+        "kOsMac",
+        "kOsWin"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-3506f28d6e7710b56d62c3a451b1c8359023c5c4",
+      "source_revision": "3506f28d6e7710b56d62c3a451b1c8359023c5c4",
+      "committed_at": "2026-07-29T14:34:25Z",
+      "source_url": "https://github.com/chromium/chromium/commit/3506f28d6e7710b56d62c3a451b1c8359023c5c4",
+      "title": "Clean up SplitViewLinkOpen flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "1bfa86bc5fa5a2893492b5127b6a9b1a88e25bf567742097566f71633f296af3",
+          "additions": 0,
+          "deletions": 3,
+          "source_url": "https://github.com/chromium/chromium/commit/3506f28d6e7710b56d62c3a451b1c8359023c5c4.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "split-view-link-open",
+              "action": "removed",
+              "before": "{\"split-view-link-open\", flag_descriptions::kSplitViewLinkOpenShortcutName,\n     flag_descriptions::kSplitViewLinkOpenShortcutDescription, kOsDesktop,\n     FEATURE_VALUE_TYPE(features::kSplitViewLinkOpen)}",
+              "after": null,
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "feature_symbols": [
+                "features::kSplitViewLinkOpen",
+                "flag_descriptions::kSplitViewLinkOpenShortcutDescription",
+                "flag_descriptions::kSplitViewLinkOpenShortcutName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "7a11febe96e8a437679b454023dfb2f8a04291f0dd7f0124fa159d2e0aff493b",
+          "additions": 1,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/3506f28d6e7710b56d62c3a451b1c8359023c5c4.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "split-view-link-open",
+              "action": "removed",
+              "before_expiry": 152,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "9c874f1f4fa58d1a9a6c76c689d62446653bc463c85601054aeaba2bcd9e53d9",
+          "additions": 0,
+          "deletions": 6,
+          "source_url": "https://github.com/chromium/chromium/commit/3506f28d6e7710b56d62c3a451b1c8359023c5c4.diff",
+          "description_changes": [
+            {
+              "symbol": "kSplitViewLinkOpenShortcutDescription",
+              "before": "When enabled, adds a Ctrl+Alt+Click (Cmd+Alt+Click on macOS) shortcut to open a link in split view alongside the current tab.",
+              "after": null,
+              "flag_id": "split-view-link-open",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kSplitViewLinkOpenShortcutName",
+              "before": "Enable split view link opening shortcut",
+              "after": null,
+              "flag_id": "split-view-link-open",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "split-view-link-open"
+      ],
+      "platform": [
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "Clean up SplitViewLinkOpen flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsDesktop"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-2bdf96d501ba63a2b799b39025a38863c1d19360",
+      "source_revision": "2bdf96d501ba63a2b799b39025a38863c1d19360",
+      "committed_at": "2026-07-29T14:53:07Z",
+      "source_url": "https://github.com/chromium/chromium/commit/2bdf96d501ba63a2b799b39025a38863c1d19360",
+      "title": "Clean up expired flag chrome://flags#tabs-from-other-devices-side-panel",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "9983d7d9137dd663fb0e1d2a67424ed06266081a04219b775d16d943eef6a57e",
+          "additions": 0,
+          "deletions": 14,
+          "source_url": "https://github.com/chromium/chromium/commit/2bdf96d501ba63a2b799b39025a38863c1d19360.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "tabs-from-other-devices-side-panel",
+              "action": "removed",
+              "before": "{\"tabs-from-other-devices-side-panel\",\n     flag_descriptions::kTabsFromOtherDevicesSidePanelName,\n     flag_descriptions::kTabsFromOtherDevicesSidePanelDescription, kOsAll,\n     MULTI_VALUE_TYPE(kTabsFromOtherDevicesSidePanelChoices)}",
+              "after": null,
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kTabsFromOtherDevicesSidePanelDescription",
+                "flag_descriptions::kTabsFromOtherDevicesSidePanelName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "07a26dd9d91b5c0e777a5614b32f569eab8a0484769a55b122903a06795e1e9c",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/2bdf96d501ba63a2b799b39025a38863c1d19360.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "tabs-from-other-devices-side-panel",
+              "action": "removed",
+              "before_expiry": 153,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "dfd9b0185c321d251747c55cfbcdd1048bc499b8a674b1c27ba8615ea242b0f2",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/2bdf96d501ba63a2b799b39025a38863c1d19360.diff",
+          "description_changes": [
+            {
+              "symbol": "kTabsFromOtherDevicesSidePanelDescription",
+              "before": "Enables the tabs from other devices side panel.",
+              "after": null,
+              "flag_id": "tabs-from-other-devices-side-panel",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kTabsFromOtherDevicesSidePanelName",
+              "before": "Tabs from other devices side panel",
+              "after": null,
+              "flag_id": "tabs-from-other-devices-side-panel",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "tabs-from-other-devices-side-panel"
+      ],
+      "platform": [
+        "Android",
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "Clean up expired flag chrome://flags#tabs-from-other-devices-side-panel. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAll"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-062a002cca0bbf39d296fa6b2d1e6840eb4611fb",
+      "source_revision": "062a002cca0bbf39d296fa6b2d1e6840eb4611fb",
+      "committed_at": "2026-07-29T15:41:00Z",
+      "source_url": "https://github.com/chromium/chromium/commit/062a002cca0bbf39d296fa6b2d1e6840eb4611fb",
+      "title": "Clean up stale flag declaration for enable-generic-oidc-auth-profile-management (logic using this flag already seems to have been removed from the codebase)",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "e81f63e6ee3bf335615301321cbf9529b64a3c489b8c8c506f1f0371a1153ae8",
+          "additions": 0,
+          "deletions": 9,
+          "source_url": "https://github.com/chromium/chromium/commit/062a002cca0bbf39d296fa6b2d1e6840eb4611fb.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "enable-generic-oidc-auth-profile-management",
+              "action": "removed",
+              "before": "{\"enable-generic-oidc-auth-profile-management\",\n     flag_descriptions::kEnableGenericOidcAuthProfileManagementName,\n     flag_descriptions::kEnableGenericOidcAuthProfileManagementDescription,\n     kOsLinux | kOsMac | kOsWin,\n     FEATURE_VALUE_TYPE(profile_management::features::\n                            kEnableGenericOidcAuthProfileManagement)}",
+              "after": null,
+              "platform_masks": [
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kEnableGenericOidcAuthProfileManagementDescription",
+                "flag_descriptions::kEnableGenericOidcAuthProfileManagementName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "828a16cef67557e62a888df5df4c9f831a0ae0e19c8d3ef54e01278974ce70ce",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/062a002cca0bbf39d296fa6b2d1e6840eb4611fb.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-generic-oidc-auth-profile-management",
+              "action": "removed",
+              "before_expiry": 137,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "12f152edb904e1b75062ca02b1804c8c5545f57a5b87235a5bc7261032d7f23f",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/062a002cca0bbf39d296fa6b2d1e6840eb4611fb.diff",
+          "description_changes": [
+            {
+              "symbol": "kEnableGenericOidcAuthProfileManagementDescription",
+              "before": "Enables profile management triggered by generic OIDC authentications.",
+              "after": null,
+              "flag_id": "enable-generic-oidc-auth-profile-management",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kEnableGenericOidcAuthProfileManagementName",
+              "before": "Enable generic OIDC profile management",
+              "after": null,
+              "flag_id": "enable-generic-oidc-auth-profile-management",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "enable-generic-oidc-auth-profile-management"
+      ],
+      "platform": [
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "Clean up stale flag declaration for enable-generic-oidc-auth-profile-management (logic using this flag already seems to have been removed from the codebase). 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsLinux",
+        "kOsMac",
+        "kOsWin"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-43a2070f29890447ce05ded7b4acf8bd5add1146",
+      "source_revision": "43a2070f29890447ce05ded7b4acf8bd5add1146",
+      "committed_at": "2026-07-29T17:35:30Z",
+      "source_url": "https://github.com/chromium/chromium/commit/43a2070f29890447ce05ded7b4acf8bd5add1146",
+      "title": "Remove kPageActionsMigration feature flag and associated checks",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "9af4319b533ab9a4bb75c5b314c4f8a442421a7f3e917b96f23fe839a547d4a6",
+          "additions": 0,
+          "deletions": 13,
+          "source_url": "https://github.com/chromium/chromium/commit/43a2070f29890447ce05ded7b4acf8bd5add1146.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "page-actions-migration",
+              "action": "removed",
+              "before": "{\"page-actions-migration\", flag_descriptions::kPageActionsMigrationName,\n     flag_descriptions::kPageActionsMigrationDescription, kOsDesktop,\n     FEATURE_WITH_PARAMS_VALUE_TYPE(features::kPageActionsMigration,\n                                    kPageActionsMigrationVariations,\n                                    \"PageActionsMigration\")}",
+              "after": null,
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "feature_symbols": [
+                "features::kPageActionsMigration",
+                "flag_descriptions::kPageActionsMigrationDescription",
+                "flag_descriptions::kPageActionsMigrationName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "31dbd472c4048242165809da71332989cc3e6f005411d6a9dafb0fd02b33dd7d",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/43a2070f29890447ce05ded7b4acf8bd5add1146.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "page-actions-migration",
+              "action": "removed",
+              "before_expiry": 152,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "cb445d82ad1bfb3d198a5e3bcac080595b273788be7299ea2f30d245ca746072",
+          "additions": 0,
+          "deletions": 4,
+          "source_url": "https://github.com/chromium/chromium/commit/43a2070f29890447ce05ded7b4acf8bd5add1146.diff",
+          "description_changes": [
+            {
+              "symbol": "kPageActionsMigrationDescription",
+              "before": "Enables a new internal framework for driving page actions behavior.",
+              "after": null,
+              "flag_id": "page-actions-migration",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kPageActionsMigrationName",
+              "before": "Page actions migration",
+              "after": null,
+              "flag_id": "page-actions-migration",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "page-actions-migration"
+      ],
+      "platform": [
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "Remove kPageActionsMigration feature flag and associated checks. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsDesktop"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-00756e7b9affbfe03db49e28fbfdd54fef042ed7",
+      "source_revision": "00756e7b9affbfe03db49e28fbfdd54fef042ed7",
+      "committed_at": "2026-07-29T17:49:29Z",
+      "source_url": "https://github.com/chromium/chromium/commit/00756e7b9affbfe03db49e28fbfdd54fef042ed7",
+      "title": "[PDT] Add kAutofillEnableWalletReminderNotice feature flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "ded5f0349cea08de80535184cf51aa1f4ed55077d72a0004bf4fa835b772800f",
+          "additions": 6,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/00756e7b9affbfe03db49e28fbfdd54fef042ed7.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "autofill-enable-wallet-reminder-notice",
+              "action": "added",
+              "before": null,
+              "after": "{\"autofill-enable-wallet-reminder-notice\",\n     flag_descriptions::kAutofillEnableWalletReminderNoticeName,\n     flag_descriptions::kAutofillEnableWalletReminderNoticeDescription, kOsAll,\n     FEATURE_VALUE_TYPE(\n         autofill::features::kAutofillEnableWalletReminderNotice)}",
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "feature_symbols": [
+                "autofill::features::kAutofillEnableWalletReminderNotice",
+                "flag_descriptions::kAutofillEnableWalletReminderNoticeDescription",
+                "flag_descriptions::kAutofillEnableWalletReminderNoticeName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "d857fbc813bb43f33dce9f64ab5377dd27022022ae55cf97dc64c65ddb4700cc",
+          "additions": 9,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/00756e7b9affbfe03db49e28fbfdd54fef042ed7.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "autofill-enable-wallet-reminder-notice",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "753492d0bd3dd003b8672d05326090f2f63ad000443b178552c313438438f2d0",
+          "additions": 6,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/00756e7b9affbfe03db49e28fbfdd54fef042ed7.diff",
+          "description_changes": [
+            {
+              "symbol": "kAutofillEnableWalletReminderNoticeDescription",
+              "before": null,
+              "after": "When enabled, shows the Wallet Reminder Notice prompt or bottom sheet after the payment form submission.",
+              "flag_id": "autofill-enable-wallet-reminder-notice",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kAutofillEnableWalletReminderNoticeName",
+              "before": null,
+              "after": "Enable Wallet Reminder Notice",
+              "flag_id": "autofill-enable-wallet-reminder-notice",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "autofill-enable-wallet-reminder-notice"
+      ],
+      "platform": [
+        "Android",
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[PDT] Add kAutofillEnableWalletReminderNotice feature flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAll"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-3ae07adc6dce9c8c358759791cc3edb079149ab4",
+      "source_revision": "3ae07adc6dce9c8c358759791cc3edb079149ab4",
+      "committed_at": "2026-07-29T20:21:03Z",
+      "source_url": "https://github.com/chromium/chromium/commit/3ae07adc6dce9c8c358759791cc3edb079149ab4",
+      "title": "Add chrome://flags entry for C2PA bypass",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "926344b1603a3f87239640cdf6bdc4e13fff3eda7626f7844eb7de048c41f8d2",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/3ae07adc6dce9c8c358759791cc3edb079149ab4.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "lens-bypass-compression-for-c2pa",
+              "action": "added",
+              "before": null,
+              "after": "{\"lens-bypass-compression-for-c2pa\",\n     flag_descriptions::kLensBypassCompressionForC2paName,\n     flag_descriptions::kLensBypassCompressionForC2paDescription, kOsAll,\n     FEATURE_VALUE_TYPE(lens::features::kLensBypassCompressionForC2pa)}",
+              "platform_masks": [
+                "kOsAll"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kLensBypassCompressionForC2paDescription",
+                "flag_descriptions::kLensBypassCompressionForC2paName",
+                "lens::features::kLensBypassCompressionForC2pa"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "fe5b262e35052420f84cf9e83ad3e02437f1526ce0df5890d06bd9b9edd7fa53",
+          "additions": 7,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/3ae07adc6dce9c8c358759791cc3edb079149ab4.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "lens-bypass-compression-for-c2pa",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 154,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "95063eabf1930daa4a1403d2cc6de5bf88ba83e6cdf652308a6cc00ee3245354",
+          "additions": 6,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/3ae07adc6dce9c8c358759791cc3edb079149ab4.diff",
+          "description_changes": [
+            {
+              "symbol": "kLensBypassCompressionForC2paDescription",
+              "before": null,
+              "after": "Bypasses image downscaling and compression if a C2PA metadata urn is detected, ensuring provenance is preserved during upload. Works across all surfaces.",
+              "flag_id": "lens-bypass-compression-for-c2pa",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kLensBypassCompressionForC2paName",
+              "before": null,
+              "after": "Lens Bypass Compression for C2PA",
+              "flag_id": "lens-bypass-compression-for-c2pa",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "lens-bypass-compression-for-c2pa"
+      ],
+      "platform": [
+        "Android",
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "Add chrome://flags entry for C2PA bypass. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAll"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-379482a7a76df1e8febebd654af3511293344c91",
+      "source_revision": "379482a7a76df1e8febebd654af3511293344c91",
+      "committed_at": "2026-07-29T21:33:17Z",
+      "source_url": "https://github.com/chromium/chromium/commit/379482a7a76df1e8febebd654af3511293344c91",
+      "title": "[android] Enforce even coordinates for YUV overlays",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "1160bdf5aaea1ffd5092f0be27d537b257cafde9c53a53308f23a35ee2f6e33f",
+          "additions": 7,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/379482a7a76df1e8febebd654af3511293344c91.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "android-yuv-overlay-even-alignment",
+              "action": "added",
+              "before": null,
+              "after": "{\"android-yuv-overlay-even-alignment\",\n     flag_descriptions::kAndroidYuvOverlayEvenAlignmentName,\n     flag_descriptions::kAndroidYuvOverlayEvenAlignmentDescription, kOsAndroid,\n     FEATURE_VALUE_TYPE(features::kAndroidYuvOverlayEvenAlignment)}",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "features::kAndroidYuvOverlayEvenAlignment",
+                "flag_descriptions::kAndroidYuvOverlayEvenAlignmentDescription",
+                "flag_descriptions::kAndroidYuvOverlayEvenAlignmentName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2012e333a4bf31c54c28945a152862225a7acd00bb04e21dd098091889e79c9c",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/379482a7a76df1e8febebd654af3511293344c91.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-yuv-overlay-even-alignment",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 170,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "ae06bab56e99d687c18652150f2f198c58ee7e004d3a5b7484866f2215473123",
+          "additions": 6,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/379482a7a76df1e8febebd654af3511293344c91.diff",
+          "description_changes": [
+            {
+              "symbol": "kAndroidYuvOverlayEvenAlignmentDescription",
+              "before": null,
+              "after": "Enforces 2-pixel even boundary alignment for YUV hardware video overlays in SurfaceControl to prevent odd-coordinate display scaling rejections.",
+              "flag_id": "android-yuv-overlay-even-alignment",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kAndroidYuvOverlayEvenAlignmentName",
+              "before": null,
+              "after": "Android YUV Overlay Even Alignment",
+              "flag_id": "android-yuv-overlay-even-alignment",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "android-yuv-overlay-even-alignment"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[android] Enforce even coordinates for YUV overlays. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-76974e4871069440c13aaf4717b4c0287b40e70a",
+      "source_revision": "76974e4871069440c13aaf4717b4c0287b40e70a",
+      "committed_at": "2026-07-29T22:36:45Z",
+      "source_url": "https://github.com/chromium/chromium/commit/76974e4871069440c13aaf4717b4c0287b40e70a",
+      "title": "[SidePanel] Put SP top hairline behind a feature flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "e590c7b814b22b1803a898ae068ec9bc999e773591bf213bab726ce0963d9c12",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/76974e4871069440c13aaf4717b4c0287b40e70a.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "side-panel-top-hairline-refactor-android",
+              "action": "added",
+              "before": null,
+              "after": "{\"side-panel-top-hairline-refactor-android\",\n     flag_descriptions::kSidePanelTopHairlineRefactorAndroidName,\n     flag_descriptions::kSidePanelTopHairlineRefactorAndroidDescription,\n     kOsAndroid,\n     FEATURE_VALUE_TYPE(chrome::android::kSidePanelTopHairlineRefactorAndroid)}",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "chrome::android::kSidePanelTopHairlineRefactorAndroid",
+                "flag_descriptions::kSidePanelTopHairlineRefactorAndroidDescription",
+                "flag_descriptions::kSidePanelTopHairlineRefactorAndroidName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "fb57c5399d5e2313979d5489b2a0c7fc350f44b3887550aff2304e021a4df023",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/76974e4871069440c13aaf4717b4c0287b40e70a.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "side-panel-top-hairline-refactor-android",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "b351d2189bf6809aba0b10d36057e0255acee05fb292b2705fac4da7b35f6b9e",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/76974e4871069440c13aaf4717b4c0287b40e70a.diff",
+          "description_changes": [
+            {
+              "symbol": "kSidePanelTopHairlineRefactorAndroidDescription",
+              "before": null,
+              "after": "Enables the Side Panel top hairline refactor on Android.",
+              "flag_id": "side-panel-top-hairline-refactor-android",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kSidePanelTopHairlineRefactorAndroidName",
+              "before": null,
+              "after": "Side Panel Top Hairline Refactor Android",
+              "flag_id": "side-panel-top-hairline-refactor-android",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "side-panel-top-hairline-refactor-android"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[SidePanel] Put SP top hairline behind a feature flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-e85263697df104158fbb2235f9fb95957da9df4e",
+      "source_revision": "e85263697df104158fbb2235f9fb95957da9df4e",
+      "committed_at": "2026-07-30T10:49:36Z",
+      "source_url": "https://github.com/chromium/chromium/commit/e85263697df104158fbb2235f9fb95957da9df4e",
+      "title": "Remove `devtools-project-settings` and `DevToolsWellKnown`.",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "e3cafb33975b215619316034368286c2c7d94ab03c22a5beac14c39348bb278b",
+          "additions": 0,
+          "deletions": 7,
+          "source_url": "https://github.com/chromium/chromium/commit/e85263697df104158fbb2235f9fb95957da9df4e.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "devtools-project-settings",
+              "action": "removed",
+              "before": "{\"devtools-project-settings\",\n     flag_descriptions::kDevToolsProjectSettingsName,\n     flag_descriptions::kDevToolsProjectSettingsDescription, kOsDesktop,\n     FEATURE_VALUE_TYPE(features::kDevToolsWellKnown)}",
+              "after": null,
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "feature_symbols": [
+                "features::kDevToolsWellKnown",
+                "flag_descriptions::kDevToolsProjectSettingsDescription",
+                "flag_descriptions::kDevToolsProjectSettingsName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "903fb91ef6322bb76c9e47c0b6ed54f2e66f2296a84c881363c7b6a61c47e277",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/e85263697df104158fbb2235f9fb95957da9df4e.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "devtools-project-settings",
+              "action": "removed",
+              "before_expiry": 150,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "fb3ce41d50dea6be12c6bdd953fea800869eba71d030417d902418290ffbc959",
+          "additions": 0,
+          "deletions": 7,
+          "source_url": "https://github.com/chromium/chromium/commit/e85263697df104158fbb2235f9fb95957da9df4e.diff",
+          "description_changes": [
+            {
+              "symbol": "kDevToolsProjectSettingsDescription",
+              "before": "If enabled, DevTools will try to fetch project settings in the form of a `com.chrome.devtools.json` file from a well-known URI on local debugging targets.",
+              "after": null,
+              "flag_id": "devtools-project-settings",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kDevToolsProjectSettingsName",
+              "before": "DevTools Project Settings",
+              "after": null,
+              "flag_id": "devtools-project-settings",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "devtools-project-settings"
+      ],
+      "platform": [
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "Remove `devtools-project-settings` and `DevToolsWellKnown`.. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsDesktop"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-0bd217af2525d83a7835e2698b5a7545bf0cffd1",
+      "source_revision": "0bd217af2525d83a7835e2698b5a7545bf0cffd1",
+      "committed_at": "2026-07-30T16:58:12Z",
+      "source_url": "https://github.com/chromium/chromium/commit/0bd217af2525d83a7835e2698b5a7545bf0cffd1",
+      "title": "[Toolbar] Don't capture on desktop",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "16bb34f1ff6ba5601dfe7ee687d6b4dfdaf58ad08bb9c2da215add7b5559ba74",
+          "additions": 8,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/0bd217af2525d83a7835e2698b5a7545bf0cffd1.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "android-no-capture-when-scrolling-disabled-on-desktop",
+              "action": "added",
+              "before": null,
+              "after": "{\"android-no-capture-when-scrolling-disabled-on-desktop\",\n     flag_descriptions::kAndroidNoCaptureWhenScrollingDisabledOnDesktopName,\n     flag_descriptions::\n         kAndroidNoCaptureWhenScrollingDisabledOnDesktopDescription,\n     kOsAndroid,\n     FEATURE_VALUE_TYPE(\n         chrome::android::kAndroidNoCaptureWhenScrollingDisabledOnDesktop)}",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "chrome::android::kAndroidNoCaptureWhenScrollingDisabledOnDesktop",
+                "flag_descriptions::kAndroidNoCaptureWhenScrollingDisabledOnDesktopName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "23c914091a885482f8a2b4b1997c78dec5b43fe4c0f45cab8e547e5301806d5b",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/0bd217af2525d83a7835e2698b5a7545bf0cffd1.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-no-capture-when-scrolling-disabled-on-desktop",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "56274a8159a48c3354165979560909f26304400c14088868bd83a8eead67d685",
+          "additions": 7,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/0bd217af2525d83a7835e2698b5a7545bf0cffd1.diff",
+          "description_changes": [
+            {
+              "symbol": "kAndroidNoCaptureWhenScrollingDisabledOnDesktopDescription",
+              "before": null,
+              "after": "Disables toolbar bitmap capture when scrolling is disabled for top controls on Android desktop.",
+              "flag_id": "android-no-capture-when-scrolling-disabled-on-desktop",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kAndroidNoCaptureWhenScrollingDisabledOnDesktopName",
+              "before": null,
+              "after": "Toolbar capture on desktop",
+              "flag_id": "android-no-capture-when-scrolling-disabled-on-desktop",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "android-no-capture-when-scrolling-disabled-on-desktop"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[Toolbar] Don't capture on desktop. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-8810d2d9ee50c674e37565e86d10edff5f1a1d17",
+      "source_revision": "8810d2d9ee50c674e37565e86d10edff5f1a1d17",
+      "committed_at": "2026-07-30T18:01:34Z",
+      "source_url": "https://github.com/chromium/chromium/commit/8810d2d9ee50c674e37565e86d10edff5f1a1d17",
+      "title": "contacts: Gate READ_CONTACTS permission and remove feature flag.",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "a4399102a3c993fea34c863a50a2974a0b68625a0a9859138fbbe5ceed8ad3c6",
+          "additions": 0,
+          "deletions": 5,
+          "source_url": "https://github.com/chromium/chromium/commit/8810d2d9ee50c674e37565e86d10edff5f1a1d17.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "android-system-contacts-picker",
+              "action": "removed",
+              "before": "{\"android-system-contacts-picker\",\n     flag_descriptions::kAndroidSystemContactsPickerName,\n     flag_descriptions::kAndroidSystemContactsPickerDescription, kOsAndroid,\n     FEATURE_VALUE_TYPE(browser_ui::kAndroidSystemContactsPicker)}",
+              "after": null,
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "browser_ui::kAndroidSystemContactsPicker",
+                "flag_descriptions::kAndroidSystemContactsPickerDescription",
+                "flag_descriptions::kAndroidSystemContactsPickerName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "86ed10861a34df4ff626829e3cff41b956373d32543104ca393ef2d6d9e1ac7e",
+          "additions": 0,
+          "deletions": 6,
+          "source_url": "https://github.com/chromium/chromium/commit/8810d2d9ee50c674e37565e86d10edff5f1a1d17.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "android-system-contacts-picker",
+              "action": "removed",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "684b1f5d2a91f5041edf2cd0a86baba101f689583e8b205145c2a3c0d6e1d5ec",
+          "additions": 0,
+          "deletions": 6,
+          "source_url": "https://github.com/chromium/chromium/commit/8810d2d9ee50c674e37565e86d10edff5f1a1d17.diff",
+          "description_changes": [
+            {
+              "symbol": "kAndroidSystemContactsPickerDescription",
+              "before": "Enables the new Android System Contacts Picker (ACTION_PICK_CONTACTS) on supported Android versions.",
+              "after": null,
+              "flag_id": "android-system-contacts-picker",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kAndroidSystemContactsPickerName",
+              "before": "Android System Contacts Picker",
+              "after": null,
+              "flag_id": "android-system-contacts-picker",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "android-system-contacts-picker"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_removed"
+      ],
+      "summary": "contacts: Gate READ_CONTACTS permission and remove feature flag.. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-fedfbbdee4b250a76b8e3040baa4d76f2d8a6ba1",
+      "source_revision": "fedfbbdee4b250a76b8e3040baa4d76f2d8a6ba1",
+      "committed_at": "2026-07-30T23:37:15Z",
+      "source_url": "https://github.com/chromium/chromium/commit/fedfbbdee4b250a76b8e3040baa4d76f2d8a6ba1",
+      "title": "settings: Add Url Navigation Feature Flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "c2670fce8a7ee4cbcdda43abbc2b82262bdc5b757e44192bdf7881e98d69d1f7",
+          "additions": 9,
+          "deletions": 1,
+          "source_url": "https://github.com/chromium/chromium/commit/fedfbbdee4b250a76b8e3040baa4d76f2d8a6ba1.diff",
+          "direct_entry_changes": []
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "0e0c6e5b771678e669bcc5283b0cc60ff64b31223212354b2c61c10e58172d84",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/fedfbbdee4b250a76b8e3040baa4d76f2d8a6ba1.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "settings-in-tab-url-nav",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 170,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "a3cdad871e5e97ec13e41f8cc8ca3564d6d6926d04a934ffde712816012cde34",
+          "additions": 7,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/fedfbbdee4b250a76b8e3040baa4d76f2d8a6ba1.diff",
+          "description_changes": [
+            {
+              "symbol": "kSettingsInTabUrlNavDescription",
+              "before": null,
+              "after": "Transitions Settings-in-Tab to use the browser's navigation stack instead of the Android navigation stack, as well as maps settings pages to distinct URLs. Requires SettingsInTab to be enabled.",
+              "flag_id": null,
+              "mapping_status": "unknown unless exact same-commit registration reference is recorded"
+            },
+            {
+              "symbol": "kSettingsInTabUrlNavName",
+              "before": null,
+              "after": "Settings in Tab: Url Navigation",
+              "flag_id": null,
+              "mapping_status": "unknown unless exact same-commit registration reference is recorded"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "settings-in-tab-url-nav"
+      ],
+      "platform": [
+        "unknown"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "options_or_implementation_change"
+      ],
+      "summary": "settings: Add Url Navigation Feature Flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [],
+      "ai_related": "unknown",
+      "source_os_masks": [],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-09c274a022b66d9d3369271645ba054d3844c97b",
+      "source_revision": "09c274a022b66d9d3369271645ba054d3844c97b",
+      "committed_at": "2026-07-31T00:39:51Z",
+      "source_url": "https://github.com/chromium/chromium/commit/09c274a022b66d9d3369271645ba054d3844c97b",
+      "title": "[block-model] Add kMediaCodecBlockModelOutput flag and about:flags",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "495dd9029242f1c3b34d61b7a8d28b67ce2139fce0c21c274b302c9a6c07f4b4",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/09c274a022b66d9d3369271645ba054d3844c97b.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "media-codec-block-model-output",
+              "action": "added",
+              "before": null,
+              "after": "{\"media-codec-block-model-output\",\n     flag_descriptions::kMediaCodecBlockModelOutputName,\n     flag_descriptions::kMediaCodecBlockModelOutputDescription, kOsAndroid,\n     FEATURE_VALUE_TYPE(media::kMediaCodecBlockModelOutput)}",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kMediaCodecBlockModelOutputDescription",
+                "flag_descriptions::kMediaCodecBlockModelOutputName",
+                "media::kMediaCodecBlockModelOutput"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "2d51fde864afa62a44de079052ca58c5b45b70a55d3983df675cc9d146b90caf",
+          "additions": 8,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/09c274a022b66d9d3369271645ba054d3844c97b.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "media-codec-block-model-output",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 175,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "a669c1865fe00e6959003612e3560414e602634e2bd217e15fe46835beada7f0",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/09c274a022b66d9d3369271645ba054d3844c97b.diff",
+          "description_changes": [
+            {
+              "symbol": "kMediaCodecBlockModelOutputDescription",
+              "before": null,
+              "after": "Enables Block Model Output (OutputFrame) for MediaCodec on Android.",
+              "flag_id": "media-codec-block-model-output",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kMediaCodecBlockModelOutputName",
+              "before": null,
+              "after": "MediaCodec Block Model Output",
+              "flag_id": "media-codec-block-model-output",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "media-codec-block-model-output"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[block-model] Add kMediaCodecBlockModelOutput flag and about:flags. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-e386c982729da05e62fd02c79c9ea53e5dafce99",
+      "source_revision": "e386c982729da05e62fd02c79c9ea53e5dafce99",
+      "committed_at": "2026-07-31T00:42:43Z",
+      "source_url": "https://github.com/chromium/chromium/commit/e386c982729da05e62fd02c79c9ea53e5dafce99",
+      "title": "[WebUI NTP on AL] Rename WebUI Android Theming Feature Flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "01d38a8006cf42996f3d8a32e90d8d1cf9f3d381bb237a543ef0dd2b27669624",
+          "additions": 3,
+          "deletions": 4,
+          "source_url": "https://github.com/chromium/chromium/commit/e386c982729da05e62fd02c79c9ea53e5dafce99.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "webui-android-theming",
+              "action": "added",
+              "before": null,
+              "after": "{\"webui-android-theming\", flag_descriptions::kWebUiAndroidThemingName,\n     flag_descriptions::kWebUiAndroidThemingDescription, kOsAndroid,\n     FEATURE_VALUE_TYPE(chrome::android::kWebUiAndroidTheming)}",
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "chrome::android::kWebUiAndroidTheming",
+                "flag_descriptions::kWebUiAndroidThemingDescription",
+                "flag_descriptions::kWebUiAndroidThemingName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            },
+            {
+              "flag_id": "webui-ntp-android-theming",
+              "action": "removed",
+              "before": "{\"webui-ntp-android-theming\",\n     flag_descriptions::kWebUiNtpAndroidThemingName,\n     flag_descriptions::kWebUiNtpAndroidThemingDescription, kOsAndroid,\n     FEATURE_VALUE_TYPE(chrome::android::kWebUiNtpAndroidTheming)}",
+              "after": null,
+              "platform_masks": [
+                "kOsAndroid"
+              ],
+              "feature_symbols": [
+                "chrome::android::kWebUiNtpAndroidTheming",
+                "flag_descriptions::kWebUiNtpAndroidThemingDescription",
+                "flag_descriptions::kWebUiNtpAndroidThemingName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "fcfeee2b1af17b412d7e536c96079cfe173c5c292d08a057d62fd9381e70cd42",
+          "additions": 1,
+          "deletions": 1,
+          "source_url": "https://github.com/chromium/chromium/commit/e386c982729da05e62fd02c79c9ea53e5dafce99.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "webui-android-theming",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "owners_changed": true
+            },
+            {
+              "flag_id": "webui-ntp-android-theming",
+              "action": "removed",
+              "before_expiry": 160,
+              "after_expiry": null,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "e3a4f18cd9692f058b31bfe6c93f56c5f4cce8b47dc7ddedca7a1ccd1375b36b",
+          "additions": 3,
+          "deletions": 3,
+          "source_url": "https://github.com/chromium/chromium/commit/e386c982729da05e62fd02c79c9ea53e5dafce99.diff",
+          "description_changes": [
+            {
+              "symbol": "kWebUiAndroidThemingDescription",
+              "before": null,
+              "after": "When enabled, use Android theming on WebUI pages.",
+              "flag_id": "webui-android-theming",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kWebUiAndroidThemingName",
+              "before": null,
+              "after": "WebUI Android theming",
+              "flag_id": "webui-android-theming",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kWebUiNtpAndroidThemingDescription",
+              "before": "When enabled, use Android theming on the WebUI NTP.",
+              "after": null,
+              "flag_id": "webui-ntp-android-theming",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kWebUiNtpAndroidThemingName",
+              "before": "WebUI NTP Android theming",
+              "after": null,
+              "flag_id": "webui-ntp-android-theming",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "webui-android-theming",
+        "webui-ntp-android-theming"
+      ],
+      "platform": [
+        "Android"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "metadata_removed",
+        "registration_added",
+        "registration_removed"
+      ],
+      "summary": "[WebUI NTP on AL] Rename WebUI Android Theming Feature Flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-dafed6fbe72e122047099f54b8888d411e2a90e2",
+      "source_revision": "dafed6fbe72e122047099f54b8888d411e2a90e2",
+      "committed_at": "2026-07-31T12:27:54Z",
+      "source_url": "https://github.com/chromium/chromium/commit/dafed6fbe72e122047099f54b8888d411e2a90e2",
+      "title": "[profiles]Add chrome flags for AI rings testing",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "b64452ac0da0392d5b236d559bdf6f08f1c67a17b46cb3edfe00dbc51e980097",
+          "additions": 24,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/dafed6fbe72e122047099f54b8888d411e2a90e2.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "enable-ai-subscription-avatar-ring",
+              "action": "added",
+              "before": null,
+              "after": "{\"enable-ai-subscription-avatar-ring\",\n     flag_descriptions::kEnableAiSubscriptionAvatarRingName,\n     flag_descriptions::kEnableAiSubscriptionAvatarRingDescription,\n     kOsMac | kOsWin | kOsLinux | kOsAndroid,\n     FEATURE_VALUE_TYPE(switches::kEnableAiSubscriptionAvatarRing)}",
+              "platform_masks": [
+                "kOsAndroid",
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kEnableAiSubscriptionAvatarRingDescription",
+                "flag_descriptions::kEnableAiSubscriptionAvatarRingName",
+                "switches::kEnableAiSubscriptionAvatarRing"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            },
+            {
+              "flag_id": "force-ai-subscription-tier",
+              "action": "added",
+              "before": null,
+              "after": "{\"force-ai-subscription-tier\",\n     flag_descriptions::kForceAiSubscriptionTierName,\n     flag_descriptions::kForceAiSubscriptionTierDescription,\n     kOsMac | kOsWin | kOsLinux | kOsAndroid,\n     MULTI_VALUE_TYPE(kForceAiSubscriptionTierChoices)}",
+              "platform_masks": [
+                "kOsAndroid",
+                "kOsLinux",
+                "kOsMac",
+                "kOsWin"
+              ],
+              "feature_symbols": [
+                "flag_descriptions::kForceAiSubscriptionTierDescription",
+                "flag_descriptions::kForceAiSubscriptionTierName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "cfc708ae66248ae1388c7e2172df8b4371180ab822a700ac0aa934ff4dd3f784",
+          "additions": 10,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/dafed6fbe72e122047099f54b8888d411e2a90e2.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "enable-ai-subscription-avatar-ring",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 170,
+              "owners_changed": true
+            },
+            {
+              "flag_id": "force-ai-subscription-tier",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 170,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "6faf1e6c218a952e467cfc05ae8a91b401325ecf53962512b72859e9e476cbe0",
+          "additions": 14,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/dafed6fbe72e122047099f54b8888d411e2a90e2.diff",
+          "description_changes": [
+            {
+              "symbol": "kEnableAiSubscriptionAvatarRingDescription",
+              "before": null,
+              "after": "Enables the AI subscription level decorative ring around the user's avatar.",
+              "flag_id": "enable-ai-subscription-avatar-ring",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kEnableAiSubscriptionAvatarRingName",
+              "before": null,
+              "after": "Enable AI Subscription Avatar Ring",
+              "flag_id": "enable-ai-subscription-avatar-ring",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kForceAiSubscriptionTier1",
+              "before": null,
+              "after": "Tier 1",
+              "flag_id": null,
+              "mapping_status": "unknown unless exact same-commit registration reference is recorded"
+            },
+            {
+              "symbol": "kForceAiSubscriptionTier2",
+              "before": null,
+              "after": "Tier 2",
+              "flag_id": null,
+              "mapping_status": "unknown unless exact same-commit registration reference is recorded"
+            },
+            {
+              "symbol": "kForceAiSubscriptionTier3",
+              "before": null,
+              "after": "Tier 3",
+              "flag_id": null,
+              "mapping_status": "unknown unless exact same-commit registration reference is recorded"
+            },
+            {
+              "symbol": "kForceAiSubscriptionTierDescription",
+              "before": null,
+              "after": "Overrides the AI subscription tier for the profile to a specific tier.",
+              "flag_id": "force-ai-subscription-tier",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kForceAiSubscriptionTierName",
+              "before": null,
+              "after": "Force AI Subscription Tier",
+              "flag_id": "force-ai-subscription-tier",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "enable-ai-subscription-avatar-ring",
+        "force-ai-subscription-tier"
+      ],
+      "platform": [
+        "Android",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[profiles]Add chrome flags for AI rings testing. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc",
+        "mobile"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsAndroid",
+        "kOsLinux",
+        "kOsMac",
+        "kOsWin"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    },
+    {
+      "event_id": "chrome-about-flags-95eee45403244453247b690830a04d1da7cd7dc5",
+      "source_revision": "95eee45403244453247b690830a04d1da7cd7dc5",
+      "committed_at": "2026-07-31T21:12:20Z",
+      "source_url": "https://github.com/chromium/chromium/commit/95eee45403244453247b690830a04d1da7cd7dc5",
+      "title": "[glic] Add kGlicContextMenuBelowSearch feature flag",
+      "files": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "patch_sha256": "fcd60343aa2d295036e344e9a13a3d036b7af9f6a3590c0d0ff5fe3bc678b3b2",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/95eee45403244453247b690830a04d1da7cd7dc5.diff",
+          "direct_entry_changes": [
+            {
+              "flag_id": "glic-context-menu-below-search",
+              "action": "added",
+              "before": null,
+              "after": "{\"glic-context-menu-below-search\",\n     flag_descriptions::kGlicContextMenuBelowSearchName,\n     flag_descriptions::kGlicContextMenuBelowSearchDescription, kOsDesktop,\n     FEATURE_VALUE_TYPE(features::kGlicContextMenuBelowSearch)}",
+              "platform_masks": [
+                "kOsDesktop"
+              ],
+              "feature_symbols": [
+                "features::kGlicContextMenuBelowSearch",
+                "flag_descriptions::kGlicContextMenuBelowSearchDescription",
+                "flag_descriptions::kGlicContextMenuBelowSearchName"
+              ],
+              "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag-metadata.json",
+          "patch_sha256": "9fbc7aff608ed6253d603c2bf69eb0dfe1b197d4b16962daa4a8219d112ebcfd",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/95eee45403244453247b690830a04d1da7cd7dc5.diff",
+          "metadata_changes": [
+            {
+              "flag_id": "glic-context-menu-below-search",
+              "action": "added",
+              "before_expiry": null,
+              "after_expiry": 160,
+              "owners_changed": true
+            }
+          ]
+        },
+        {
+          "path": "chrome/browser/flag_descriptions.h",
+          "patch_sha256": "075d0bc82d4c16cdd3777e72a6635b2681b5e535b6bb5e678acf701e3dd9475e",
+          "additions": 5,
+          "deletions": 0,
+          "source_url": "https://github.com/chromium/chromium/commit/95eee45403244453247b690830a04d1da7cd7dc5.diff",
+          "description_changes": [
+            {
+              "symbol": "kGlicContextMenuBelowSearchDescription",
+              "before": null,
+              "after": "Places the Glic (Ask Gemini) context menu entry point below the Search option.",
+              "flag_id": "glic-context-menu-below-search",
+              "mapping_status": "exact same-commit registration reference"
+            },
+            {
+              "symbol": "kGlicContextMenuBelowSearchName",
+              "before": null,
+              "after": "Glic Context Menu Below Search",
+              "flag_id": "glic-context-menu-below-search",
+              "mapping_status": "exact same-commit registration reference"
+            }
+          ]
+        }
+      ],
+      "flag_ids": [
+        "glic-context-menu-below-search"
+      ],
+      "platform": [
+        "ChromeOS",
+        "Linux",
+        "Windows",
+        "macOS"
+      ],
+      "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+      "channel": "source-main",
+      "version": null,
+      "verification_status": "source_verified_not_device_tested",
+      "device_test": "not_run",
+      "korea_availability": "unknown",
+      "korean_language_support": "unknown",
+      "revisit_trigger": "공식 사용자 동작·제공 범위·시험 접근 조건이 새로 확인되면 재검토합니다.",
+      "observed_at": "2026-11-13T22:57:51Z",
+      "change_types": [
+        "description_changed",
+        "metadata_added",
+        "metadata_ownership_changed",
+        "registration_added"
+      ],
+      "summary": "[glic] Add kGlicContextMenuBelowSearch feature flag. 독립된 설명·metadata의 소스 변경 근거이며 제품 출시·현재 제공 여부를 입증하지 않습니다.",
+      "workstreams": [
+        "pc"
+      ],
+      "ai_related": "unknown",
+      "source_os_masks": [
+        "kOsDesktop"
+      ],
+      "same_event_source_evidence": true,
+      "assessment_note": "Additional source evidence for the same canonical event. Prior assessment is retained in the original event record."
+    }
+  ]
+}

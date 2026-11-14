@@ -1,0 +1,56 @@
+# Chrome Android 웹 주석 역할의 접근성 매핑 실험
+
+- Feature ID: `chrome-android-accessibility-note-class` · Event ID: `chrome-android-accessibility-note-class-source-20261113`
+- Chrome source-main · Android · P2 · conditional
+- 소스 변경: 2026-11-13T20:18:24Z · 근거 검증: 2026-11-13T22:57:51Z
+- 공식 발표일·제품 효력일·버전: 미확인. 설치본 노출·실기 시험: 미실행.
+
+## 변경 전후와 사용자 영향
+
+ARIA role="note"를 일반 View 대신 android.accessibility.role.Note로 매핑하고, 활성 상태에서 별도 roleDescription을 빈 값으로 바꿉니다. TalkBack이 note 문자열에 의존하지 않도록 하는 기본 비활성 실험입니다.
+
+이전에는 note 역할이 일반 View className과 roleDescription에 의존했습니다. 활성화하면 새 className과 빈 roleDescription을 반환합니다. 역할 매핑·트리 기대값 소스와 테스트 변경을 확인했으나 실제 TalkBack 발화와 한국어 인식은 시험하지 않았습니다.
+
+## PM 선별과 비교 질문
+
+웹 콘텐츠의 주석 의미를 보조기술이 전달하는지, 중복·누락 안내가 있는지 비교할 구체적인 접근성 과제입니다.
+
+우선순위 이유: 주석 역할 인식의 접근성 비교 가치가 있으나 적용 대상과 접근성 서비스 조합에 따라 효과가 제한됩니다.
+
+같은 Android·TalkBack·언어·웹 페이지에서 삼성 브라우저와 Chrome이 note 역할을 어떻게 읽고 탐색하게 하는가?
+
+## 벤치마크
+
+1. 합성 웹 페이지에 note·일반 문단·중첩 주석과 링크를 준비합니다.
+2. 같은 Android/TalkBack 버전·한국어 또는 영어 음성·포커스 순서를 고정합니다.
+3. 지원 시험 빌드에서 flag on/off의 접근성 트리 className·roleDescription과 실제 발화를 별도로 확인합니다.
+4. 삼성 브라우저에서 같은 페이지의 탐색·역할 안내 과제를 반복하되 동일 flag가 있다고 가정하지 않습니다.
+
+지표: note 역할 전달 여부 · 중복·누락 발화 횟수 · 포커스 순서 및 링크 진입 성공률 · 한국어/영어 차이
+
+완료 기준: 각 언어·flag 조건을 3회 반복해 트리와 실제 발화를 따로 기록합니다. 시험할 수 없는 조합은 미실행으로 유지합니다.
+
+## 제공 조건과 미확인 사항
+
+- region: unknown
+- language: unknown
+- account: unknown
+- korea_availability: unknown
+- korean_language_support: unknown
+- device_test: not_run
+- installed_build_exposure: unknown
+- default: kAccessibilityMapToNewClassNames is FEATURE_DISABLED_BY_DEFAULT
+- feature_symbol: features::kAccessibilityMapToNewClassNames
+- aria_role: note
+- before_class: android.view.View
+- after_class: android.accessibility.role.Note
+- after_role_description: empty string while enabled
+- platform_evidence: kOsAndroid registration and Android implementation paths; no installed device tested
+
+한국 제공·한국어 지원은 미확인입니다. 지역·계정·제품 배포 여부를 소스 등록에서 추정하지 않습니다. 소스 변경, 설치본 노출, 직접 동작 확인은 별개입니다. 재검토: 공식 시험 빌드와 동일 조건에서 노출·동작을 확인하거나 공식 배포 범위가 확인되면 갱신합니다.
+
+## 공식 근거
+
+- [[WAAM] Implement role="note" className mapping](https://github.com/chromium/chromium/commit/f2e94debbdceb2cd8d83c7e255f54486b8eb16a2)
+
+[구조화 사건](../../data/events/chrome-android-accessibility-note-class-source-20261113.json) · 판정 기준 pm-selection-v2

@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "event_id": "opera-ios-data-saver-nov12-announcement-20261112",
+  "feature_id": "opera-ios-data-saver",
+  "browser": "opera",
+  "event_type": "announcement",
+  "version": null,
+  "channel": "stable",
+  "platform": [
+    "iOS"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-13T22:56:25.833823+00:00",
+  "announced_at": "2026-11-12",
+  "effective_at": null,
+  "summary": "Opera One iOS Data Saver 공식 소개: 기존 6.8 버전 기록과 구분",
+  "delta": "Nov12 블로그는 기본 꺼짐인 Data Saver를 메인 메뉴 또는 Settings에서 켜며 이미지와 텍스트를 Opera 서버에서 압축한다고 설명한다. App Store 버전 이력은 6.8.0 Oct28, 6.8.1 Oct29, 6.8.2 Nov3에도 Data Saver를 수록한다. Nov12를 첫 도입일로 취급하지 않는다.",
+  "scope": {
+    "conditions": "Opera One for iOS. Opera Mini/Android의 기존 압축 이력과 별도 제품 기능이다. 공식 블로그의 최신 버전에는 정확한 빌드가 없다. up to80%는 공급사 주장으로 실측이 아니다. 동영상 압축·전체 트래픽 프록시·HTTPS 예외·보존 정책은 이 본문으로 확정하지 않는다.",
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "real_test": "미실행"
+  },
+  "sources": [
+    {
+      "url": "https://blogs.opera.com/mobile/2026/11/data-saver-arrives-on-opera-one-for-ios-as-our-iphone-community-continues-to-grow/",
+      "observed_at": "2026-11-13T22:54:33.064357+00:00",
+      "content_sha256": "353821146590dda4a2a5e89fc3ebeb3b038a08f1ff1e8bdfd0a78f4c3f6a0d37"
+    },
+    {
+      "url": "https://apps.apple.com/us/app/opera-browser-with-vpn/id1411869974",
+      "observed_at": "2026-11-13T22:56:25.832828+00:00",
+      "content_sha256": "5922a1ee40db02cdf362c3cc9a251039dc6765710c43a1d793a2479a26bec85c"
+    },
+    {
+      "url": "https://press.opera.com/2026/11/12/opera-one-for-ios-grows-20-globally/",
+      "observed_at": "2026-11-13T22:56:25.833823+00:00",
+      "content_sha256": "b9b234319f450e42c8ba0be64d09df04820f5f084c59c307180a08312e6d38ce"
+    }
+  ],
+  "selection_status": "excluded",
+  "selection_reason": "동일 기능이 앞선 공식 버전 이력에 존재하므로 Nov12를 신규 출시로 보고하지 않는다. 본문 설명과 이력은 기능 자료로 보존한다.",
+  "priority": null,
+  "verification_status": "official_documents_not_device_tested",
+  "previous_event_id": null,
+  "revisit_trigger": "한국 출시 조건 또는 실제 기본값 변경, 별도 기능 확대에 관한 공식 근거",
+  "assessed_at": "2026-11-13T22:56:25.833823+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "source_revision": null,
+  "priority_reason": null,
+  "benchmark_readiness": "unknown",
+  "comparison_question": null
+}

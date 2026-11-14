@@ -175,3 +175,10 @@
 - [opera-vertical-tabs-autohide-default-developer-141-20261109](opera-vertical-tabs-autohide-default-developer-141-20261109.json) · selected / P2
 - [vivaldi-browser-fullscreen-retention-fix-stable-83-20261110](vivaldi-browser-fullscreen-retention-fix-stable-83-20261110.json) · selected / P2
 - [whale-angle-d3d9-removal-recovery-notice-20261112](whale-angle-d3d9-removal-recovery-notice-20261112.json) · selected / P2
+
+## 2026-11-14 기능 사건
+
+- [brave-webmcp-default-nightly-11022-20261112](brave-webmcp-default-nightly-11022-20261112.json) · selected / P2
+- [chrome-android-accessibility-note-class-source-20261113](chrome-android-accessibility-note-class-source-20261113.json) · selected / P2
+- [chrome-fedcm-passive-signup-modal-source-20261113](chrome-fedcm-passive-signup-modal-source-20261113.json) · selected / P1
+- [opera-ios-data-saver-nov12-announcement-20261112](opera-ios-data-saver-nov12-announcement-20261112.json) · excluded
