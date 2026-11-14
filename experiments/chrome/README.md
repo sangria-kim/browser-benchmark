@@ -1068,3 +1068,5 @@
 - [enable-accessibility-map-to-new-class-names](enable-accessibility-map-to-new-class-names.md)
 - [fedcm-active-mode-multiple-identity-providers](fedcm-active-mode-multiple-identity-providers.md)
 - [fedcm-idp-links](fedcm-idp-links.md)
+
+- [pause-media-on-headphone-unplug](pause-media-on-headphone-unplug.md): Desktop Android 미디어 연결 해제 시 일시정지 소스 변경.

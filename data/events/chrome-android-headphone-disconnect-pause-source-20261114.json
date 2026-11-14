@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-android-headphone-disconnect-pause-source-20261114",
+  "feature_id": "chrome-android-headphone-disconnect-pause",
+  "browser": "chrome",
+  "event_type": "source_behavior_change",
+  "version": null,
+  "channel": "source-main",
+  "platform": [
+    "Android"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": false,
+  "scope": {
+    "region": "unknown",
+    "language": "unknown",
+    "account": "unknown",
+    "korea_availability": "unknown",
+    "korean_language_support": "unknown",
+    "device_test": "not_run",
+    "installed_build_exposure": "unknown",
+    "default": "kPauseMediaOnHeadphoneUnplug is FEATURE_ENABLED_BY_DEFAULT in source",
+    "platform_evidence": "BUILDFLAG(IS_ANDROID), kOsAndroid; behavioral delta is Desktop Android, not Windows/macOS desktop Chrome",
+    "dependency": "Commit message states dependency on prior audio-focus fix preventing automatic resume; installed inclusion not verified",
+    "expiry_milestone": 180
+  },
+  "observed_at": "2026-11-14T22:40:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "29a376fd8407a03555e63beee6b2e1485756bee9",
+  "source_revisions": [
+    "29a376fd8407a03555e63beee6b2e1485756bee9"
+  ],
+  "committed_at": "2026-11-14T01:45:20Z",
+  "sources": [
+    {
+      "url": "https://github.com/chromium/chromium/commit/29a376fd8407a03555e63beee6b2e1485756bee9",
+      "title": "[media] Pause media on headphone unplug on Desktop Android",
+      "checked_at": "2026-11-14T22:40:00Z"
+    }
+  ],
+  "summary": "Desktop Android에서 이어폰이나 외부 오디오 연결이 끊기면 미디어를 멈추도록 소스 기본 동작을 변경합니다.",
+  "delta": "이전 코드는 Desktop Android에서 연결 해제에 따른 일시정지를 건너뛰었습니다. 새 코드는 기기 형태 대신 기본 활성화된 PauseMediaOnHeadphoneUnplug를 확인합니다. 기존 부정형 no-pause flag는 제거하고 pause-media-on-headphone-unplug로 교체합니다. 일반 Android의 최초 일시정지 도입이나 제품 출시가 아닙니다.",
+  "verification_status": "source_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "스피커로 소리가 갑자기 나오는 상황과 여러 탭의 재생 상태를 구체적으로 비교할 수 있습니다.",
+  "priority": "P2",
+  "priority_reason": "외부 오디오 연결 해제라는 한정된 미디어 과제의 비교 가치가 있습니다.",
+  "comparison_question": "같은 Android 장치에서 이어폰·Bluetooth·HDMI 연결이 끊길 때 삼성 브라우저와 Chrome의 재생 중단 및 재개 방식은 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 시험 빌드와 동일 조건에서 노출·동작을 확인하거나 공식 배포 범위가 확인되면 갱신합니다.",
+  "assessed_at": "2026-11-14T22:40:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "flag_ids": [
+    "pause-media-on-headphone-unplug",
+    "no-pause-media-on-headphone-unplug"
+  ],
+  "benchmark_steps": [
+    "같은 Android 장치·OS·시험 빌드·오디오 출력 장치와 합성 미디어 페이지를 준비합니다. Desktop Android 여부를 기록합니다.",
+    "한 탭과 여러 탭 재생을 나누고 유선 이어폰·Bluetooth·HDMI 연결을 각각 해제합니다.",
+    "지원 빌드에서 flag 기본값·활성·비활성 조건을 구분하고 소리 출력과 각 탭의 재생 상태를 기록합니다.",
+    "재연결·오디오 포커스 복귀 후 자동 재생 여부와 수동 재개 성공을 확인합니다. 삼성 브라우저에서도 같은 과제로 비교하되 같은 flag가 있다고 가정하지 않습니다."
+  ],
+  "metrics": [
+    "연결 해제부터 정지까지 시간",
+    "스피커 출력 지속 여부",
+    "여러 탭 중 정지한 탭 비율",
+    "재연결·포커스 복귀 후 예상 밖 자동 재개",
+    "수동 재개 성공률"
+  ],
+  "completion_criteria": "지원되는 출력 장치·기기 형태·flag 조건마다 3회 반복해 정지와 재개를 따로 기록합니다. 미노출·미실행은 실패와 구분합니다.",
+  "source_commit_ids": [
+    "chrome-source-29a376fd8407a03555e63beee6b2e1485756bee9"
+  ],
+  "device_test": "not_run",
+  "novelty_basis": "기존 no-pause flag는 2026-06-15 소스 등록 이력이 있습니다. 이번 사건은 새 정방향 flag와 Desktop Android 동작 변경으로 기존 실험에 연결하며 최초 기능 출시로 보지 않습니다."
+}

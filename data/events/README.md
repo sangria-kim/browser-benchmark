@@ -182,3 +182,5 @@
 - [chrome-android-accessibility-note-class-source-20261113](chrome-android-accessibility-note-class-source-20261113.json) · selected / P2
 - [chrome-fedcm-passive-signup-modal-source-20261113](chrome-fedcm-passive-signup-modal-source-20261113.json) · selected / P1
 - [opera-ios-data-saver-nov12-announcement-20261112](opera-ios-data-saver-nov12-announcement-20261112.json) · excluded
+
+- [chrome-android-headphone-disconnect-pause-source-20261114](chrome-android-headphone-disconnect-pause-source-20261114.json) · selected / P2 · [기능](../../features/chrome/android-headphone-disconnect-pause.md)

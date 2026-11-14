@@ -12,3 +12,7 @@
 | 2026-06-15 | added | kOsAndroid | [157e636452a9](https://github.com/chromium/chromium/commit/157e636452a9ed1fb0f53e00b87b86a94aa2e28d) |
 
 [전체 목록](README.md)
+
+## 2026-11-14 · 정방향 flag로 교체
+
+[공식 diff](https://github.com/chromium/chromium/commit/29a376fd8407a03555e63beee6b2e1485756bee9)에서 기존 flag를 제거하고 pause-media-on-headphone-unplug를 추가했습니다. Desktop Android의 연결 해제 시 정지 동작도 변경합니다. 과거 등록 이력은 유지하며 제거를 기능 철회로 해석하지 않습니다. [후속 기능](../../features/chrome/android-headphone-disconnect-pause.md).

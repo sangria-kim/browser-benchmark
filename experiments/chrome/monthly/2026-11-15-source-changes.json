@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "browser": "chrome",
+  "verification_status": "source_verified_not_device_tested",
+  "events": [
+    {
+      "revision": "7031337d1963d63770d94db582071499d430fda5",
+      "committed_at": "2026-11-14T04:36:20Z",
+      "url": "https://github.com/chromium/chromium/commit/7031337d1963d63770d94db582071499d430fda5",
+      "title": "[Android] Remove --disable-default-browser-promo and its expired flag",
+      "summary": "이미 만료된 Android 기본 브라우저 프로모션 시험 flag와 명령행 억제 스위치 제거. 제품 프로모션 최초 도입/철회 아님."
+    },
+    {
+      "revision": "b46539f550ab60b696fe12f019179c744651a8ec",
+      "committed_at": "2026-11-14T03:56:34Z",
+      "url": "https://github.com/chromium/chromium/commit/b46539f550ab60b696fe12f019179c744651a8ec",
+      "title": "[Default Browser] Remove UserValueDefaultBrowserStrings flag",
+      "summary": "기본 브라우저 설정 문구 flag 정리. commit은 이미 기본 활성이라고 설명하며 실제 출시일은 확정하지 않음."
+    },
+    {
+      "revision": "29a376fd8407a03555e63beee6b2e1485756bee9",
+      "committed_at": "2026-11-14T01:45:20Z",
+      "url": "https://github.com/chromium/chromium/commit/29a376fd8407a03555e63beee6b2e1485756bee9",
+      "title": "[media] Pause media on headphone unplug on Desktop Android",
+      "summary": "Desktop Android의 외부 오디오 해제 시 정지 동작과 정방향 flag 도입. 정식 출시 아님."
+    },
+    {
+      "revision": "8bdfa1760283abb679998d04c5aec319e5805d30",
+      "committed_at": "2026-11-13T23:19:34Z",
+      "url": "https://github.com/chromium/chromium/commit/8bdfa1760283abb679998d04c5aec319e5805d30",
+      "title": "[iOS] Extend `enable-enterprise-watermarking-ios ` to M167.",
+      "summary": "iOS 기업 워터마크 flag 만료160→167. 제공 범위·제품 출시 변화 증거 아님."
+    },
+    {
+      "revision": "9e3cbcce9450ea0548745459538837fa66dad0db",
+      "committed_at": "2026-11-13T23:15:05Z",
+      "url": "https://github.com/chromium/chromium/commit/9e3cbcce9450ea0548745459538837fa66dad0db",
+      "title": "Extend api-mime-handler flag expiry to M174",
+      "summary": "api-mime-handler 만료160→174. 미해결 버그 중 로컬 비활성화 수단 유지. 제품 출시 변화 증거 아님."
+    }
+  ]
+}

@@ -132,3 +132,5 @@
 - [Chrome Android 웹 주석 역할의 접근성 매핑 실험](chrome/android-accessibility-note-class.md)
 - [Chrome FedCM 신규 계정 동의를 modal로 이동하는 실험](chrome/fedcm-idp-links.md)
 - [Opera One iOS · Data Saver](opera/ios-data-saver.md)
+
+- Chrome: [Android 오디오 연결 해제 시 일시정지](chrome/android-headphone-disconnect-pause.md) · 소스 실험.
