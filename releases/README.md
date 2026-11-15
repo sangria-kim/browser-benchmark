@@ -7,3 +7,5 @@
 - [opera](opera/README.md)
 - [vivaldi](vivaldi/README.md)
 - [whale](whale/README.md)
+
+- [safari](safari/README.md)

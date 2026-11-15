@@ -18,3 +18,12 @@
 - https://vivaldi.com/blog/android/releases/
 - https://vivaldi.com/blog/desktop/
 - https://whale.naver.com/
+
+## Safari
+
+- https://developer.apple.com/documentation/safari-release-notes
+- https://developer.apple.com/news/releases/
+- https://support.apple.com/en-us/100100
+- https://webkit.org/blog/
+
+Safari 정식, Safari 베타 및 Safari Technology Preview를 구분합니다. macOS·iOS·iPadOS의 제품 조건을 따로 읽습니다. OS 출시일을 개별 Safari 기능 적용일로 사용하지 않습니다. Apple 문서가 제공하는 Markdown 본문도 공식 근거로 사용할 수 있습니다.

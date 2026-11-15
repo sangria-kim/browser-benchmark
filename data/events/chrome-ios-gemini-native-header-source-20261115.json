@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-ios-gemini-native-header-source-20261115",
+  "feature_id": "chrome-gemini-native-header",
+  "browser": "chrome",
+  "event_type": "flag_registration",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "iOS"
+  ],
+  "workstreams": [
+    "mobile"
+  ],
+  "ai_related": true,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "iOS 소스 실험. kGeminiNativeHeader는 기본 비활성화이며 kIOSGeminiBottomSheetMigration도 켜져야 한다. 실제 header 연결 UI·설치본·지역·계정 제공 조건 미확인."
+  },
+  "observed_at": "2026-11-15T22:57:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "1368f12a08d00d1f84876bbdef3ef291853c25a3",
+  "sources": [
+    {
+      "url": "https://github.com/chromium/chromium/commit/1368f12a08d00d1f84876bbdef3ef291853c25a3",
+      "section": "iOS flags and intelligence feature declarations",
+      "observed_at": "2026-11-15T22:57:00Z"
+    }
+  ],
+  "summary": "Chrome iOS Gemini 네이티브 헤더 실험 flag",
+  "delta": "Gemini SDK 헤더를 Chrome 네이티브 헤더로 교체하는 iOS 실험 flag 등록. iOS Gemini Bottom Sheet Migration이 함께 활성화되어야 함.",
+  "verification_status": "source_observed_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "UI 변경 목적과 의존성은 공식 소스로 확인되지만 이 commit은 flag·설명·판정 helper만 추가한다. 실제 header 렌더링 변경·설치본 노출·사용자 영향은 미확인.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "Gemini 대화에서 Chrome 네이티브 헤더가 이동·닫기·되돌리기 조작과 브라우저/AI 구분에 어떤 차이를 만드는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "실제 UI 연결 구현 또는 설치본 노출·공식 배포 근거 확보",
+  "assessed_at": "2026-11-15T22:57:00Z",
+  "selection_rule_version": "pm-selection-v2"
+}

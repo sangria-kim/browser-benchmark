@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-context-menu-gemini-search-order-source-20261113",
+  "feature_id": "chrome-context-menu-gemini-search-order",
+  "browser": "chrome",
+  "event_type": "options_modified",
+  "version": null,
+  "channel": "experiment_source_main",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "ChromeOS"
+  ],
+  "workstreams": [
+    "pc",
+    "ai"
+  ],
+  "ai_related": true,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "kOsDesktop flag 등록. MenuSimplification과 MenuSimplificationGlicSearchAboveSaveAndPrint 기본 비활성화. 텍스트 미선택·비편집 페이지 조건. Gemini/Search 항목은 별도 제품 자격·정책에 따라 없을 수 있다. 플랫폼 목록은 소스 mask이며 실제 제공 보증이 아니다."
+  },
+  "observed_at": "2026-11-15T22:58:00Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "547fe3d4765d6d9821019bdb0101fbeea01a0452",
+  "sources": [
+    {
+      "url": "https://github.com/chromium/chromium/commit/547fe3d4765d6d9821019bdb0101fbeea01a0452",
+      "section": "about_flags.cc; render_view_context_menu.cc; ui_features.cc; unit test",
+      "observed_at": "2026-11-15T22:58:00Z"
+    }
+  ],
+  "summary": "Chrome 페이지 메뉴에서 Gemini·검색을 저장·인쇄보다 위에 배치하는 실험",
+  "delta": "기존 menu-simplification에 glic section above save 옵션을 추가한다. 텍스트 미선택·비편집 페이지 메뉴에서 Gemini·검색 구역을 저장·인쇄 구역 위로 옮긴다. 기능과 새 매개변수의 기본값은 비활성화다.",
+  "verification_status": "source_observed_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "기존 만료 연장과 달리 메뉴 구성 코드의 순서 변경이 확인된다. AI/검색 발견성과 기존 저장·인쇄 과제의 조작 비용을 동일 조건으로 비교할 수 있는 소스 실험이다.",
+  "priority": "P2",
+  "priority_reason": "메뉴 순서의 제한된 탐색적 비교이며 실제 배포·설치본 노출은 확인되지 않았다.",
+  "comparison_question": "페이지 메뉴의 Gemini·검색 우선 배치가 AI 진입 발견성과 저장·인쇄 탐색 시간·오선택률을 어떻게 바꾸는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "설치본 옵션 노출 또는 공식 배포·기본값 변경 근거 확보",
+  "assessed_at": "2026-11-15T22:58:00Z",
+  "selection_rule_version": "pm-selection-v2"
+}

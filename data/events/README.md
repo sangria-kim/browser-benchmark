@@ -184,3 +184,11 @@
 - [opera-ios-data-saver-nov12-announcement-20261112](opera-ios-data-saver-nov12-announcement-20261112.json) · excluded
 
 - [chrome-android-headphone-disconnect-pause-source-20261114](chrome-android-headphone-disconnect-pause-source-20261114.json) · selected / P2 · [기능](../../features/chrome/android-headphone-disconnect-pause.md)
+
+- [safari-vertical-tabs-beta-273-20261103](safari-vertical-tabs-beta-273-20261103.json)
+
+- [safari-adaptive-dark-mode-beta-273-20261103](safari-adaptive-dark-mode-beta-273-20261103.json)
+
+- [chrome-ios-gemini-native-header-source-20261115](chrome-ios-gemini-native-header-source-20261115.json)
+
+- [chrome-context-menu-gemini-search-order-source-20261113](chrome-context-menu-gemini-search-order-source-20261113.json)

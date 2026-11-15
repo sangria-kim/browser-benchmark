@@ -134,3 +134,11 @@
 - [Opera One iOS · Data Saver](opera/ios-data-saver.md)
 
 - Chrome: [Android 오디오 연결 해제 시 일시정지](chrome/android-headphone-disconnect-pause.md) · 소스 실험.
+
+- [Safari · 세로 탭](safari/vertical-tabs.md)
+
+- [Safari · Adaptive Dark Mode](safari/adaptive-dark-mode.md)
+
+- [Chrome iOS · Gemini 네이티브 헤더](chrome/gemini-native-header.md)
+
+- [Chrome · 페이지 메뉴의 Gemini·검색 위치](chrome/context-menu-gemini-search-order.md)
