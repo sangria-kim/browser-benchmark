@@ -43,7 +43,7 @@ test('resolves explicit source ref and downloads exactly the recorded SHA',async
 function appContext(events){
  const nodes=new Map();
  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',value:'',checked:false,hidden:false,disabled:false,dataset:{},setAttribute(){}});return nodes.get(id);};
- const context=vm.createContext({URL,URLSearchParams,Intl,Date,console,location:{search:'?browser=safari',pathname:'/'},history:{replaceState(){}},document:{getElementById:node,querySelector:node},setInterval(){}});
+ const context=vm.createContext({URL,URLSearchParams,Intl,Date,console,location:{search:'?browser=safari',pathname:'/'},history:{replaceState(){}},document:{getElementById:node,querySelector:node},setInterval(){},setTimeout(){}});
  let app=fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,'');
  vm.runInContext(app,context);
  context.input={events,flags:[],catalog:{events:{}}};
@@ -79,7 +79,8 @@ test('refresh keeps verified data on errors and rejects older snapshots',async()
  state.context.fetch=()=>{};
  state.context.WebtoonFeed={merge:feed.merge,load:async()=>{if(response instanceof Error)throw response;return response;}};
  vm.runInContext('startWebtoonSync()',state.context);
- await new Promise(setImmediate);
+ assert.match(state.node('sync-state').textContent,/자동 확인 대기/);
+ await state.node('sync-refresh').onclick();
  assert.equal(state.node('sync-state').dataset.state,'stale');
  response={sha:'b'.repeat(40),feed:sample({'safari-example':{status:'done',url:result}})};
  await state.node('sync-refresh').onclick();
@@ -93,4 +94,16 @@ test('refresh keeps verified data on errors and rejects older snapshots',async()
  await state.node('sync-refresh').onclick();
  assert.equal(vm.runInContext("wt(data.events[0]).status",state.context),'done');
  assert.equal(state.node('sync-refresh').disabled,false);
+});
+
+
+test('automatic status checks are scheduled only for 09:00 and 10:00 KST',()=>{
+ const {context}=appContext([]);
+ for(const [now,expected] of [
+  ['2026-11-16T08:59:00+09:00','2026-11-16T00:00:00.000Z'],
+  ['2026-11-16T09:00:00+09:00','2026-11-16T01:00:00.000Z'],
+  ['2026-11-16T09:59:00+09:00','2026-11-16T01:00:00.000Z'],
+  ['2026-11-16T10:00:00+09:00','2026-11-17T00:00:00.000Z'],
+  ['2026-12-31T23:59:00+09:00','2027-01-01T00:00:00.000Z']
+ ])assert.equal(vm.runInContext(`nextWebtoonCheck(new Date('${now}')).toISOString()`,context),expected);
 });

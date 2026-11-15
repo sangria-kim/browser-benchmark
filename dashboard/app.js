@@ -137,12 +137,19 @@ async function init(){try{
  render();
  startWebtoonSync();
 }catch(error){$('updated').textContent='자료 로드 실패';$('table-body').innerHTML=`<tr><td>자료를 불러오지 못했습니다. 잠시 후 새로고침해 주세요. ${esc(error.message)}</td></tr>`;}}
+function nextWebtoonCheck(now=new Date()){
+ const kst=new Date(now.getTime()+9*60*60*1000);
+ for(const hour of [9,10]){
+  const at=new Date(Date.UTC(kst.getUTCFullYear(),kst.getUTCMonth(),kst.getUTCDate(),hour-9));
+  if(at>now)return at;
+ }
+ return new Date(Date.UTC(kst.getUTCFullYear(),kst.getUTCMonth(),kst.getUTCDate()+1,0));
+}
 function startWebtoonSync(){
  const baseline=structuredClone(data.catalog);
  let lastSha='', lastChecked=baseline.checked_at;
  const source='work/browser-benchmark';
  async function refresh(){
-  if(document.hidden)return;
   $('sync-refresh').disabled=true;
   try{
    const result=await WebtoonFeed.load(fetch);
@@ -160,7 +167,15 @@ function startWebtoonSync(){
   }finally{$('sync-refresh').disabled=false;}
  }
  $('sync-refresh').onclick=refresh;
- refresh();
- setInterval(refresh,5*60*1000);
+ $('sync-state').textContent=`웹툰 대조 ${baseline.checked_at} · 자동 확인 대기`;
+ function schedule(){
+  const at=nextWebtoonCheck();
+  setTimeout(async()=>{
+   // A suspended browser must not replay a missed check later in the day.
+   if(Date.now()-at.getTime()<60*1000)await refresh();
+   schedule();
+  },at.getTime()-Date.now());
+ }
+ schedule();
 }
 init();
