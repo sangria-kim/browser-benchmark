@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "event_id": "safari-adaptive-dark-mode-beta-273-20261103",
+  "feature_id": "safari-adaptive-dark-mode",
+  "browser": "safari",
+  "event_type": "beta_feature_observation",
+  "version": "27.3",
+  "channel": "beta",
+  "platform": [
+    "unknown"
+  ],
+  "workstreams": [
+    "pc",
+    "mobile"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "자체 다크 모드를 선언한 사이트는 바꾸지 않으며 대부분 이미지와 canvas는 원본을 유지한다. beta 1은 light only의 only 키워드를 지원하지 않는다. JavaScript에는 변환 전 CSS 색상을 반환한다. 정식 반영·지역·계정 조건과 기능별 설치본 노출은 미확인. workstreams는 비교 관점이며 OS별 제공을 입증하지 않는다."
+  },
+  "observed_at": "2026-11-15T22:54:43Z",
+  "announced_at": "2026-11-03",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://webkit.org/blog/18541/introducing-adaptive-dark-mode/",
+      "section": "Introducing Adaptive Dark Mode",
+      "observed_at": "2026-11-15T22:54:43Z"
+    }
+  ],
+  "summary": "Safari 27.3 beta Adaptive Dark Mode",
+  "delta": "사용자가 켜면 밝은 웹사이트를 어둡게 변환한다. 시스템 다크 모드에서 미리보기와 Try를 제공한다.",
+  "verification_status": "official_body_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "베타 기능의 공식 설명을 확인했다. OS별 기능 노출과 실제 동작 조건이 부족하여 관찰 대상으로 유지한다.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동일한 밝은 페이지에서 글자·로고·canvas의 가독성과 원래 색상 보존, 사용자가 되돌리는 경로는 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "기능별 OS 지원·정식 확대 또는 재현 환경 확인",
+  "assessed_at": "2026-11-15T22:54:43Z",
+  "selection_rule_version": "pm-selection-v2"
+}

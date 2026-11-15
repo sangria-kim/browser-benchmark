@@ -33,6 +33,9 @@ def build(output):
         for d in events:
             if d['event_id'] + '.json' in body:
                 d['feature_url'] = base + path.relative_to(ROOT).as_posix()
+                heading = re.search(r'^# (.+)$', body, re.MULTILINE)
+                if heading:
+                    d['feature_title'] = heading.group(1)
     for path in (ROOT / 'reports').glob('????-??-??.md'):
         body = path.read_text()
         for d in events:
@@ -73,7 +76,7 @@ def build(output):
             if media['type'] not in ('image', 'video', 'link') or not media['url'].startswith('https://'):
                 raise ValueError('Invalid media')
     output.mkdir(parents=True, exist_ok=True)
-    for name in ('index.html', 'style.css', 'app.js'):
+    for name in ('index.html', 'style.css', 'app.js', 'webtoon-feed.js'):
         shutil.copy2(ROOT / 'dashboard' / name, output / name)
     payload = {'events': events, 'flags': flags, 'catalog': extras, 'source': {'ref': ref, 'sha': sha},
                'built_at': datetime.now(timezone.utc).isoformat(),

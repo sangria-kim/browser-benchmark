@@ -1070,3 +1070,7 @@
 - [fedcm-idp-links](fedcm-idp-links.md)
 
 - [pause-media-on-headphone-unplug](pause-media-on-headphone-unplug.md): Desktop Android 미디어 연결 해제 시 일시정지 소스 변경.
+
+- [gemini-native-header](gemini-native-header.md)
+
+- [menu-simplification](menu-simplification.md)

@@ -1,6 +1,6 @@
 # Browser Benchmark
 
-Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 공개 브라우저 기능, 동작 변경 및 소스 실험을 정리합니다. Windows와 Android를 중심으로 기능 설명·공식 출처·버전·제품 조건·비교 과제를 제공합니다.
+Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi·Safari의 공개 브라우저 기능, 동작 변경 및 소스 실험을 정리합니다. Windows와 Android를 중심으로 기능 설명·공식 출처·버전·제품 조건·비교 과제를 제공합니다.
 
 ## 기능 자료
 
