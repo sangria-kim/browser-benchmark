@@ -11,3 +11,5 @@
 
 @media(min-width:1201px) and (max-width:1400px){.browser-cards{grid-template-columns:repeat(5,1fr)}}
 .card-title{word-break:keep-all;overflow-wrap:anywhere}
+
+.browser-filters{margin:0 0 18px}.filter-label{display:block;font-size:11px;color:var(--muted);margin-bottom:10px}.browser-filter-boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(125px,1fr));gap:8px}.browser-filter-box{display:flex;align-items:center;gap:7px;padding:12px 10px;text-align:left;font-size:11px;min-width:0}.browser-filter-box .browser-icon{width:20px;height:20px;flex-shrink:0}.filter-count{margin-left:auto;color:var(--muted);font:10px 'IBM Plex Mono',monospace}.browser-filter-box[aria-pressed=true]{border-color:var(--accent);background:#292634;box-shadow:inset 0 0 0 1px var(--accent)}.browser-filter-box[aria-pressed=true] .filter-count{color:var(--accent)}@media(max-width:650px){.browser-filter-boxes{grid-template-columns:repeat(2,minmax(0,1fr))}}
