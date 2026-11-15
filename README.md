@@ -4,6 +4,8 @@ Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi의 공개 브라우저 기�
 
 ## 기능 자료
 
+- [시각화 대시보드 실행·배포 안내](dashboard/README.md) · 브라우저 필터, 기능 변화, 공식 예시, 웹툰 연결, Chrome flags 실험실
+
 - [브라우저별 릴리스](releases/README.md)
 - [기능별 이력](features/README.md) · [구조화 사건](data/events/README.md)
 - [날짜별 기능 분석](reports/README.md)
