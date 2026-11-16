@@ -488,21 +488,19 @@ def activate(package, managed, private_dir, *, expected_commit, expected_manifes
             if snapshot.exists() or snapshot.is_symlink():
                 verify(snapshot, expected_commit=expected_commit, expected_manifest=expected_manifest)
             else:
-                # The unreferenced destination may be incomplete after power loss. It
-                # is never active until fully copied, verified and fsynced.
-                try:
-                    shutil.copytree(stage, snapshot)
-                    verify(snapshot, expected_commit=expected_commit, expected_manifest=expected_manifest)
-                    for path in regular_files(snapshot).values():
+                # The final digest name only ever names a verified, durable copy.
+                # Staging can be on another filesystem; publication cannot be.
+                with tempfile.TemporaryDirectory(prefix='.snapshot-', dir=snapshot.parent) as directory:
+                    candidate = Path(directory) / 'package'
+                    shutil.copytree(stage, candidate)
+                    verify(candidate, expected_commit=expected_commit, expected_manifest=expected_manifest)
+                    for path in regular_files(candidate).values():
                         with open(path, 'rb') as stream:
                             os.fsync(stream.fileno())
-                    for current_dir, _, _ in os.walk(snapshot, topdown=False):
+                    for current_dir, _, _ in os.walk(candidate, topdown=False):
                         fsync_directory(Path(current_dir))
+                    os.rename(candidate, snapshot)
                     fsync_directory(snapshot.parent)
-                except BaseException:
-                    if snapshot.is_dir() and not snapshot.is_symlink():
-                        shutil.rmtree(snapshot)
-                    raise
             # Single same-filesystem pointer replacement is the activation boundary.
             descriptor, temporary = tempfile.mkstemp(prefix='.current-', dir=root)
             try:

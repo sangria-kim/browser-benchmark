@@ -62,6 +62,24 @@ A factual correction keeps its event ID and increments `revision`. Preserve the 
 
 `published_at` or `announced_at` is the source publication date. `effective_at` is a separately supported product date. `observed_at` is a timezone-aware evidence observation timestamp. These fields are not interchangeable. `content_sha256` hashes the evidence input bytes before parsing. Source revision may be null for a web page, but the hash is required. For legacy imports with unavailable original bytes, hash the retained evidence and keep `record_status: legacy`; do not claim an original page hash.
 
+Browser collectors also store optional `item_content_sha256`. It hashes the full
+item section and text before excerpt truncation. PM inputs use this digest instead
+of the whole-document `evidence.content_sha256`; sibling edits and HTML comments
+must not change an unchanged item's judgment. Raw document hashes remain evidence
+integrity and provenance fields. Records without the item digest retain their
+existing hash semantics, including Chromium item-level hashes. Adding a digest to
+an older record can require one conservative reassessment because its old public
+excerpt may be truncated.
+
+New browser revisions freeze version, channel, platform, item type, parse status,
+lifecycle and item digest with the existing text and evidence. These fields are
+optional for historical records. Before replacing an older head, the collector
+appends a complete snapshot of that head; existing revisions remain unchanged.
+Its `restores_revision_id` identifies the original evidence revision. This snapshot
+restores facts only and cannot replace a frozen report's evidence observation.
+Assessment fingerprints use `semantic-v2-sha256:` for this distinction. Readers
+retain `semantic-sha256:` verification for old immutable assessments and reports.
+
 Source-only evidence cannot prove installed availability. A product channel requires an explicit product revision. Default state and expiry milestone must not imply rollout. Preserve unresolved syntax as an `unparsed` source item with location and hash. Keep exception text, retries and parser diagnostics private.
 
 Assessment `subject_kind` is `source_item`, `feature_event` or `experiment_event`. Every judgment has an input hash, rule version, reasons and source references. The input hash covers normalized factual inputs and evidence revisions, excluding observation timestamps that do not change evidence. Model assessments also need model and prompt versions. Treat source instructions as data.

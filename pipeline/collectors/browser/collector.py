@@ -267,6 +267,9 @@ class BrowserCollector:
                   'evidence': evidence, 'record_status': 'parsed' if parsed else 'unparsed',
                   'origin': self.origin, 'lifecycle': 'unknown', 'revisions': [],
                   'experiment_kind': None, 'source_location': url + '#' + key, 'source_symbol': None}
+        # Hash the full item, not its truncated public excerpt or sibling document bytes.
+        if parsed:
+            record['item_content_sha256'] = digest(canonical([unit['section'], unit['text']]))
         old = self.records.get(ident)
         if old:
             if (old['item_key'], old['source_id'], old['evidence']['url']) != (key, self.source['source_id'], url):
@@ -274,19 +277,33 @@ class BrowserCollector:
             # A temporarily unresolved parser never erases valid facts.
             if not parsed and old['record_status'] == 'parsed':
                 return
-            comparison = ['title', 'summary', 'published_at', 'record_status', 'channel', 'platform', 'version']
-            if (all(old[k] == record[k] for k in comparison) and
+            comparison = ['title', 'summary', 'published_at', 'record_status', 'channel', 'platform', 'version', 'item_type', 'item_content_sha256']
+            if (all(old.get(k) == record.get(k) for k in comparison) and
                     old['evidence']['content_sha256'] == content_hash and old['evidence']['source_revision'] == revision):
                 self.state['processed' if parsed else 'unparsed'] -= 1
                 self.state['duplicate'] += 1
                 return
             record['revisions'] = copy.deepcopy(old['revisions'])
             record['origin'] = old['origin']
-        snapshot = {k: copy.deepcopy(record[k]) for k in ('title', 'summary', 'evidence', 'published_at', 'observed_at')}
-        revision_id = identity('sr', [ident, content_hash, revision])
+            # Older revisions did not freeze product metadata. Preserve the last
+            # complete head before changing it; never edit existing snapshots.
+            if any(k not in old['revisions'][-1] for k in ('channel', 'platform', 'version', 'item_type', 'record_status', 'lifecycle')):
+                prior = copy.deepcopy(old['revisions'][-1])
+                for field in ('channel', 'platform', 'version', 'item_type', 'record_status', 'lifecycle', 'item_content_sha256'):
+                    if field in old:
+                        prior[field] = copy.deepcopy(old[field])
+                prior['restores_revision_id'] = prior['revision_id']
+                prior['revision_id'] = identity('sr', [ident, 'complete-head', prior])
+                record['revisions'].append(prior)
+        snapshot = {k: copy.deepcopy(record[k]) for k in ('title', 'summary', 'evidence', 'published_at', 'observed_at',
+                    'channel', 'platform', 'version', 'item_type', 'record_status', 'lifecycle',
+                    'item_content_sha256') if k in record}
+        revision_facts = {k: v for k, v in snapshot.items() if k != 'observed_at'}
+        revision_facts['evidence'] = {k: v for k, v in evidence.items() if k != 'observed_at'}
+        revision_id = identity('sr', [ident, revision_facts])
         if any(r['revision_id'] == revision_id for r in record['revisions']):
             # A->B->A is another occurrence of the same upstream content.
-            revision_id = identity('sr', [ident, content_hash, revision, record['revisions'][-1]['revision_id']])
+            revision_id = identity('sr', [ident, revision_facts, record['revisions'][-1]['revision_id']])
         snapshot.update(revision_id=revision_id, content_sha256=content_hash, source_revision=revision)
         record['revisions'].append(snapshot)
         validate_record('source_item', record)

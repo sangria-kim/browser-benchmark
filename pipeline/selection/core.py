@@ -25,12 +25,18 @@ def digest(value):
                                      separators=(',', ':')).encode()).hexdigest()
 
 
-def semantic(value):
+def semantic(value, *, legacy=False):
     """Keep evidence text and actual facts; drop capture/provenance-only changes."""
     if isinstance(value, dict):
-        return {k: semantic(v) for k, v in value.items() if k not in NOISE}
+        result = {k: semantic(v, legacy=legacy) for k, v in value.items()
+                  if k not in NOISE and not (legacy and k == 'item_content_sha256')}
+        if not legacy and value.get('source_item_id') and value.get('item_content_sha256'):
+            # Only browser items with a complete item digest can separate their
+            # raw document integrity hash from semantic evaluation input.
+            result['evidence'].pop('content_sha256', None)
+        return result
     if isinstance(value, list):
-        return [semantic(v) for v in value]
+        return [semantic(v, legacy=legacy) for v in value]
     if isinstance(value, str):
         # Pinned Chromium URLs are provenance. Their file path remains semantic.
         return re.sub(r'(?<=/)[0-9a-f]{40}(?=/|$)', '<revision>', value)
@@ -484,7 +490,7 @@ def run(repository, private_dir, *, assessed_at, rules=None, provider=None, mode
             else:
                 result = evaluate(context, rules)
             assessment = make_assessment(context, rules, result, assessed_at, previous,
-                                         model_id, token, revision='semantic-sha256:' + digest(semantic(context['subject'])))
+                                         model_id, token, revision='semantic-v2-sha256:' + digest(semantic(context['subject'])))
             if previous and timestamp(assessment['assessed_at']) < timestamp(previous['assessed_at']):
                 raise ContractError('Assessment time precedes the previous judgment')
             assessments.append(assessment)

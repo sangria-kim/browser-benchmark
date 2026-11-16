@@ -185,8 +185,9 @@ request, or scan every old snapshot as current data. `resolve` validates the poi
 and the complete active package before returning the snapshot path.
 
 The importer validates the incoming package, stages a private copy and validates
-that copy again. It writes and verifies the new snapshot, flushes its files and
-directories, then atomically replaces the single `current.json` file on the same
+that copy again. It copies into a unique temporary directory under `snapshots/`,
+verifies and flushes its files and directories, then atomically renames the package
+to its final digest name. It then atomically replaces `current.json` on the same
 filesystem. This one replacement is activation. Two directory renames are not a
 single atomic transaction. Existing snapshots remain available to readers that
 already resolved them. A failed verification or failed pointer replacement leaves
@@ -195,11 +196,15 @@ package returns without changing the pointer. An unused verified snapshot from a
 failed activation can be reused on retry.
 
 A process or machine crash before pointer replacement cannot expose a partial new
-dataset through the old pointer. A crash can leave an unreferenced incomplete
-snapshot. Verification rejects it on retry; an operator may remove only that
-unreferenced digest directory after checking `current.json`, then retry. Never
-remove an active snapshot. Filesystem corruption, failed durability guarantees and
-writers using different locks are outside this local-filesystem guarantee. A
+dataset through the old pointer. A crash during the copy can leave an unreferenced
+`.snapshot-*` temporary directory. Retry uses a new temporary directory and does
+not depend on that incomplete copy. A final digest directory is published only
+after verification and flushing. Existing final directories are always verified;
+invalid or partial final directories from older importers fail closed and require
+operator inspection. Never remove an active snapshot. Unreferenced temporary
+directories may be removed under the same import lock. Filesystem corruption,
+failed durability guarantees and writers using different locks are outside this
+local-filesystem guarantee. A
 failure after the atomic pointer replacement may require inspecting the pointer to
 establish whether activation completed.
 
@@ -207,6 +212,7 @@ Deleted source files disappear only from the new active snapshot. Old snapshots
 remain for audit and rollback. Tombstones remain ordinary source data. The importer
 does not delete or edit company files, workflows, dashboard code or any sibling of
 the marked subtree. Snapshot garbage collection is a separate company retention
-operation. Lock files, copied staging candidates and export results stay private;
+operation. Lock files, initial staging candidates and export results stay private;
+the final copy uses a transient `.snapshot-*` directory in the managed subtree;
 the transient pointer file is removed after success or a handled failure. Do not
 commit a failed transaction's temporary files.

@@ -71,9 +71,10 @@ def timing(subject, assessment, day):
 def judged_subject(root, subject, assessment, path):
     """Resolve the assessed facts, including an archived corrected event."""
     revision = assessment.get('input_revision') or ''
-    if revision.startswith('semantic-sha256:'):
+    if revision.startswith(('semantic-sha256:', 'semantic-v2-sha256:')):
+        legacy = revision.startswith('semantic-sha256:')
         expected = revision.split(':', 1)[1]
-        if digest(semantic(subject)) == expected:
+        if digest(semantic(subject, legacy=legacy)) == expected:
             return subject, path
         candidates = []
         if assessment['subject_kind'].endswith('_event'):
@@ -83,9 +84,11 @@ def judged_subject(root, subject, assessment, path):
             for snapshot in subject.get('revisions', []):
                 candidate = copy.deepcopy(subject)
                 candidate.update({k: v for k, v in snapshot.items() if k in candidate})
+                if 'item_content_sha256' not in snapshot:
+                    candidate.pop('item_content_sha256', None)
                 candidates.append((candidate, path))
         for candidate, candidate_path in candidates:
-            if digest(semantic(candidate)) == expected:
+            if digest(semantic(candidate, legacy=legacy)) == expected:
                 return candidate, candidate_path
         raise ContractError('Assessed facts are unavailable; retain the last report and restore the fact archive')
     if assessment.get('evaluator') == 'legacy' and ':sha256:' in revision:
@@ -112,7 +115,7 @@ def make_item(change, kind, dataset, paths, day, cutoff, documentation, root):
     # Freeze evidence available at the judgment time, not a later mutable source head.
     for ident in sorted(assessment['evidence_source_item_ids']):
         source = sources[ident]
-        revisions = [r for r in source['revisions'] if instant(r['observed_at']) <= instant(cutoff)]
+        revisions = [r for r in source['revisions'] if not r.get('restores_revision_id') and instant(r['observed_at']) <= instant(cutoff)]
         if not revisions:
             raise ContractError('No source evidence exists at the requested cutoff: ' + ident)
         judgment_revisions = [r for r in revisions if instant(r['observed_at']) <= instant(assessment['assessed_at'])]

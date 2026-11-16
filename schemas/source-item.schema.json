@@ -292,6 +292,32 @@
           "observed_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "channel": {
+            "$ref": "#/properties/channel"
+          },
+          "platform": {
+            "$ref": "#/properties/platform"
+          },
+          "version": {
+            "$ref": "#/properties/version"
+          },
+          "item_type": {
+            "$ref": "#/properties/item_type"
+          },
+          "record_status": {
+            "$ref": "#/properties/record_status"
+          },
+          "lifecycle": {
+            "$ref": "#/properties/lifecycle"
+          },
+          "item_content_sha256": {
+            "$ref": "#/properties/item_content_sha256"
+          },
+          "restores_revision_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$",
+            "description": "Existing evidence revision whose complete old-head facts this append-only snapshot restores. This is not a new observation."
           }
         },
         "required": [
@@ -344,6 +370,11 @@
           "type": "null"
         }
       ]
+    },
+    "item_content_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$",
+      "description": "Hash of the complete parsed browser item text and section, before public excerpt truncation. The evidence hash still identifies the raw document."
     }
   },
   "required": [

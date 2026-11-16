@@ -3,6 +3,7 @@ import copy
 import json
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -156,6 +157,92 @@ class ExportTests(unittest.TestCase):
             self.activate(second, package, replace=fail)
         self.assertEqual(before, (self.managed / 'current.json').read_bytes())
         self.assertTrue(self.activate(second, package)['activated'])
+
+    def test_abrupt_exit_during_snapshot_copy_retries_without_touching_active(self):
+        first = self.export()
+        self.activate(first)
+        pointer = (self.managed / 'current.json').read_bytes()
+        active = exporter.resolve(self.managed)
+        old_files = {p.relative_to(active): p.read_bytes() for p in active.rglob('*') if p.is_file()}
+        self.write('reports/2026-11-16.md', '# Next revision\n')
+        self.commit()
+        package = self.base / 'second'
+        second = self.export(package)
+        # A subprocess exits inside real copytree file copying. No finally block
+        # or TemporaryDirectory cleanup can run after os._exit.
+        script = """
+import os, sys
+from scripts import export_dataset as exporter
+original = exporter.shutil.copytree
+copy_file = exporter.shutil.copy2
+copied = 0
+def interrupted_copy(source, target):
+    global copied
+    result = copy_file(source, target)
+    copied += 1
+    if copied == 2:
+        os._exit(73)
+    return result
+exporter.shutil.copytree = lambda source, target, *args, **kwargs: original(source, target, copy_function=interrupted_copy)
+exporter.activate(sys.argv[1], sys.argv[2], sys.argv[3], expected_commit=sys.argv[4], expected_manifest=sys.argv[5])
+"""
+        child = subprocess.run([sys.executable, '-c', script, str(package), str(self.managed), str(self.private), second['source_commit'], second['manifest_sha256']], cwd=ROOT, capture_output=True)
+        self.assertEqual(73, child.returncode, child.stderr.decode())
+        self.assertEqual(pointer, (self.managed / 'current.json').read_bytes())
+        self.assertEqual(active, exporter.resolve(self.managed))
+        self.assertFalse((self.managed / 'snapshots' / second['manifest_sha256']).exists())
+        self.assertTrue(list((self.managed / 'snapshots').glob('.snapshot-*')))
+        self.assertTrue(self.activate(second, package)['activated'])
+        self.assertEqual(old_files, {p.relative_to(active): p.read_bytes() for p in active.rglob('*') if p.is_file()})
+        self.assertEqual(second['manifest_sha256'], exporter.resolve(self.managed).name)
+
+    def test_existing_invalid_final_snapshots_fail_closed(self):
+        first = self.export()
+        self.activate(first)
+        pointer = (self.managed / 'current.json').read_bytes()
+        self.write('reports/2026-11-16.md', '# Next revision\n')
+        self.commit()
+        package = self.base / 'second'
+        second = self.export(package)
+        target = self.managed / 'snapshots' / second['manifest_sha256']
+        for mode in ('partial', 'wrong-manifest', 'tampered'):
+            with self.subTest(mode=mode):
+                if mode == 'partial':
+                    target.mkdir()
+                    (target / 'partial').write_text('incomplete')
+                else:
+                    shutil.copytree(self.package if mode == 'wrong-manifest' else package, target)
+                    if mode == 'tampered':
+                        (target / 'reports/2026-11-16.md').write_text('tampered')
+                before = {p.relative_to(target): p.read_bytes() for p in target.rglob('*') if p.is_file()}
+                with self.assertRaises(ContractError):
+                    self.activate(second, package)
+                self.assertEqual(pointer, (self.managed / 'current.json').read_bytes())
+                self.assertEqual(before, {p.relative_to(target): p.read_bytes() for p in target.rglob('*') if p.is_file()})
+                shutil.rmtree(target)
+        # An invalid currently referenced snapshot must never be repaired or
+        # bypassed by activating a different package.
+        active = exporter.resolve(self.managed)
+        (active / 'manifest.json').unlink()
+        with self.assertRaises(ContractError):
+            self.activate(second, package)
+        self.assertEqual(pointer, (self.managed / 'current.json').read_bytes())
+        self.assertFalse((active / 'manifest.json').exists())
+
+    def test_same_filesystem_candidate_is_verified_before_rename(self):
+        from unittest.mock import patch
+        result = self.export()
+        original = exporter.shutil.copytree
+        def tamper(source, target, *args, **kwargs):
+            copied = original(source, target, *args, **kwargs)
+            if Path(target).parent.name.startswith('.snapshot-'):
+                (Path(target) / 'reports/2026-11-16.md').write_text('tampered final copy')
+            return copied
+        with patch.object(exporter.shutil, 'copytree', side_effect=tamper):
+            with self.assertRaises(ContractError):
+                self.activate(result)
+        self.assertFalse((self.managed / 'current.json').exists())
+        self.assertFalse((self.managed / 'snapshots' / result['manifest_sha256']).exists())
 
     def test_missing_and_excluded_relative_links_reject_export(self):
         for target in ('../missing.md', '../dashboard/app.js', '../../../../escape'):

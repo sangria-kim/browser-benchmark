@@ -57,9 +57,17 @@ def validate_record(kind, record):
         ids = [r['revision_id'] for r in record['revisions']]
         if len(ids) != len(set(ids)):
             raise ContractError('Duplicate source revision IDs')
+        prior_ids = set()
+        for revision in record['revisions']:
+            if revision.get('restores_revision_id') and revision['restores_revision_id'] not in prior_ids:
+                raise ContractError('Fact restoration must reference an earlier source revision')
+            prior_ids.add(revision['revision_id'])
         latest = record['revisions'][-1]
         for field in ('title', 'summary', 'evidence', 'observed_at', 'published_at'):
             if latest[field] != record[field]:
+                raise ContractError('Latest source revision differs: ' + field)
+        for field in ('channel', 'platform', 'version', 'item_type', 'record_status', 'lifecycle', 'item_content_sha256'):
+            if field in latest and latest[field] != record.get(field):
                 raise ContractError('Latest source revision differs: ' + field)
         if latest['content_sha256'] != record['evidence']['content_sha256']:
             raise ContractError('Source evidence hash differs from revision')
