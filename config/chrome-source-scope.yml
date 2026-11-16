@@ -12,10 +12,10 @@
   ],
   "baseline": {
     "mode": "full_tree_at_pinned_revision",
-    "historical_backfill_since": "2026-06-01",
+    "historical_backfill_since": "2026-01-01",
     "historical_backfill_until": "baseline_cutoff",
     "legacy_scope": "Existing experiments/chrome/monthly artifacts cover about_flags.cc changes only. They do not prove complete base_feature, switch, iOS or metadata history.",
-    "new_definition_history": "Start with pinned baseline. Earlier definitions remain unknown unless existing public evidence supports them."
+    "new_definition_history": "Focus on currently existing definitions added or changed since 2026-01-01. Preserve older definitions as context. Deleted/transient-only definition history is outside this collection request. Pin current and boundary revisions; do not infer a definition change from a whole-file edit."
   },
   "required_paths": [
     "chrome/browser/about_flags.cc",

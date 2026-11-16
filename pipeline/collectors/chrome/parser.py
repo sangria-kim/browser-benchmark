@@ -25,6 +25,31 @@ def masked(text):
 def matching(text, start):
     pairs = {'(': ')', '{': '}', '[': ']'}
     clean = masked(text)
+    if text[start] == '{':
+        # A namespace/initializer brace span must not be truncated by mutually
+        # exclusive preprocessor arms that each close a surrounding macro call.
+        depth, branches = 0, []
+        tokens = re.compile(r'^[ \t]*#[ \t]*(if|ifdef|ifndef|elif|else|endif)\b(?:[^\n\\]|\\\n)*|[{}]', re.M)
+        for token in tokens.finditer(clean, start):
+            kind = token[1]
+            if kind in {'if', 'ifdef', 'ifndef'}:
+                branches.append({'start': depth, 'ends': [], 'else': False})
+            elif kind in {'elif', 'else'} and branches:
+                branch = branches[-1]
+                branch['ends'].append(depth)
+                depth = branch['start']
+                branch['else'] |= kind == 'else'
+            elif kind == 'endif' and branches:
+                branch = branches.pop()
+                ends = branch['ends'] + [depth] + ([] if branch['else'] else [branch['start']])
+                if len(set(ends)) != 1:
+                    return None
+                depth = ends[0]
+            elif not kind:
+                depth += 1 if token[0] == '{' else -1
+            if depth == 0 and not branches:
+                return token.end() - 1
+        return None
     stack = []
     for pos in range(start, len(text)):
         ch = clean[pos]
@@ -55,12 +80,75 @@ def arguments(text):
 
 def literal(value):
     value = value.strip()
+    raw = re.fullmatch(r'R"([^ ()\\\t\r\n]{0,16})\((.*)\)\1"', value, re.S)
+    if raw:
+        return raw[2]
     if re.fullmatch(r'(?:L?"(?:\\.|[^"\\])*"\s*)+', value):
         try:
             return ''.join(json.loads(s) for s in re.findall(r'"(?:\\.|[^"\\])*"', value))
         except ValueError:
             return None
     return None
+
+
+def conditional_end(text, start, end):
+    """Include the other arms when a declaration closes inside an #if arm."""
+    depth = 0
+    for m in re.finditer(r'^\s*#\s*(if|ifdef|ifndef|endif)\b[^\n]*', text[start:end + 1], re.M):
+        depth += -1 if m[1] == 'endif' else 1
+    if depth > 0:
+        for m in re.finditer(r'^\s*#\s*(if|ifdef|ifndef|endif)\b[^\n]*', text[end + 1:], re.M):
+            depth += -1 if m[1] == 'endif' else 1
+            if depth == 0:
+                return end + 1 + m.end() - 1
+    return end
+
+
+def conditional_variants(text):
+    """Expand only directives inside one declaration, retaining each condition.
+
+    This does not evaluate build flags or generate a translation-unit cross
+    product. Every arm in the source declaration remains a separate candidate.
+    """
+    lines = text.replace('\\\n', ' ').splitlines(keepends=True)
+    def section(index, stop=False):
+        variants = [('', [])]
+        while index < len(lines):
+            directive = re.match(r'\s*#\s*(if|ifdef|ifndef|elif|else|endif)\b(.*)', lines[index])
+            if directive and directive[1] in {'elif', 'else', 'endif'}:
+                return variants, index
+            if directive:
+                kind, expression = directive[1], directive[2].strip()
+                expression = expression if kind == 'if' else ('!' if kind == 'ifndef' else '') + 'defined(' + expression + ')'
+                arms, prior, has_else = [], [], False
+                while True:
+                    branch, ending = section(index + 1, True)
+                    condition = ('!(' + ' || '.join('(' + p + ')' for p in prior) + ')' if prior else '')
+                    if expression:
+                        condition += (' && ' if condition else '') + '(' + expression + ')'
+                    arms.extend((body, [condition] + conditions) for body, conditions in branch)
+                    prior.append(expression)
+                    if ending >= len(lines):
+                        raise ValueError('Unterminated conditional declaration')
+                    end = re.match(r'\s*#\s*(elif|else|endif)\b(.*)', lines[ending])
+                    if end[1] == 'endif':
+                        if not has_else:
+                            # Preprocessing keeps the surrounding declaration
+                            # when no condition matches, even without an explicit
+                            # else. Preserve that empty arm and its condition.
+                            arms.append(('', ['!(' + ' || '.join('(' + p + ')' for p in prior) + ')']))
+                        index = ending + 1
+                        break
+                    has_else |= end[1] == 'else'
+                    index, expression = ending, end[2].strip() if end[1] == 'elif' else ''
+                variants = [(left + right, a + b) for left, a in variants for right, b in arms]
+                if len(variants) > 256:
+                    raise ValueError('Conditional declaration expansion limit')
+            else:
+                variants = [(body + lines[index], conditions) for body, conditions in variants]
+                index += 1
+        return variants, index
+    return section(0)[0]
 
 
 def safe_excerpt(text, size=1000):
@@ -71,7 +159,7 @@ def safe_excerpt(text, size=1000):
 
 def conditions_at(text, offset):
     stack = []
-    for line in text[:offset].splitlines():
+    for line in text[:offset].replace('\\\n', ' ').splitlines():
         m = re.match(r'\s*#\s*(if|ifdef|ifndef|elif|else|endif)\b(.*)', line)
         if not m:
             continue
@@ -125,6 +213,8 @@ class Candidate:
 
 
 def parse(path, original):
+    if not any(marker in original for marker in ('BASE_FEATURE', 'BASE_DECLARE_FEATURE', 'base::Feature', 'kFeatureEntries', 'kFeatureEntry', 'switches')) and 'switch' not in path.lower():
+        return [], [], []
     text = strip_comments(original)
     candidates, declarations, covered, diagnostics = [], [], [], []
     namespace_spans = []
@@ -156,24 +246,42 @@ def parse(path, original):
             continue
         start = text.index('(', m.start())
         end = matching(text, start)
-        end = end + 1 if end is not None else text.find('\n', start)
+        end = conditional_end(text, start, end) + 1 if end is not None else text.find('\n', start)
         if end < start:
             end = len(text)
-        args = arguments(text[start + 1:end - 1])
-        symbol = args[0] if args and re.fullmatch(IDENT, args[0]) else 'unresolved-line-' + str(text.count('\n', 0, m.start()) + 1)
         if m[1] == 'BASE_DECLARE_FEATURE':
             declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'feature_declaration'})
             covered.append((m.start(), end))
             continue
-        default = args[-1] if len(args) in (2, 3) and re.fullmatch(r'(?:base::)?FEATURE_(?:ENABLED|DISABLED)_BY_DEFAULT', args[-1]) else None
-        value = literal(args[1]) if len(args) == 3 else (symbol[1:] if len(args) == 2 and symbol.startswith('k') else None)
-        add('base_feature', symbol, m.start(), end, parsed=default is not None and value is not None,
-            value=value, default=default)
+        try:
+            variants = conditional_variants(text[m.start():end])
+        except ValueError:
+            variants = [(text[m.start():end], [])]
+        for expression, conditions in variants:
+            opening = expression.index('(')
+            closing = matching(expression, opening)
+            args = arguments(expression[opening + 1:closing]) if closing is not None else []
+            if args:
+                args[0] = re.sub(r'\s*::\s*', '::', args[0])
+            symbol = args[0] if args and re.fullmatch(IDENT, args[0]) else 'unresolved-line-' + str(text.count('\n', 0, m.start()) + 1)
+            # A source default can be a symbolic constant, function or ternary.
+            # Preserve its expression; it is not an evaluated runtime state.
+            default = args[-1] if len(args) in (2, 3) and '#' not in args[-1] else None
+            value = literal(args[1]) if len(args) == 3 else (symbol[1:] if len(args) == 2 and symbol.startswith('k') else symbol)
+            valid_name = len(args) == 2 or len(args) == 3 and (value is not None or re.fullmatch(IDENT, args[1]))
+            candidate = add('base_feature', symbol, m.start(), end,
+                            parsed=bool(default and valid_name and not symbol.startswith('unresolved-')),
+                            value=value, default=default)
+            candidate.conditions.extend(conditions)
 
     # Direct definitions and aliases; exclude extern declarations and type uses.
     direct = r'\bbase::Feature\s*(&?)\s+(' + IDENT + r')\s*([={;(])'
     for m in re.finditer(direct, masked(text)):
         if any(a <= m.start() < b for a, b in covered):
+            continue
+        if any(a <= m.start() < b for a, b in preprocess):
+            declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'macro_template'})
+            covered.append((m.start(), m.end()))
             continue
         end = text.find(';', m.end())
         end = len(text) if end < 0 else end + 1
@@ -184,11 +292,32 @@ def parse(path, original):
             continue
         body = text[m.end() - 1:end].strip().rstrip(';').strip().lstrip('=').strip()
         alias = body if m[1] and re.fullmatch(IDENT, body) else None
+        if m[1] and alias is None:
+            declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'feature_reference_use'})
+            covered.append((m.start(), end))
+            continue
         args = arguments(body[1:-1]) if body.startswith(('{', '(')) else []
         default = args[-1] if len(args) == 2 and re.fullmatch(r'(?:base::)?FEATURE_(?:ENABLED|DISABLED)_BY_DEFAULT', args[-1]) else None
         value = literal(args[0]) if args else None
         add('base_feature', m[2], m.start(), end, parsed=bool(alias or (default and value)), value=value,
             default=default, alias=alias, refs=[alias] if alias else [])
+
+    def add_flag(args, pos, end, conditions):
+        symbol = (literal(args[0]) or (args[0] if re.fullmatch(IDENT, args[0]) else None)) if args else None
+        symbol = symbol or 'unresolved-line-' + str(text.count('\n', 0, pos) + 1)
+        body = ', '.join(args[4:])
+        refs = re.findall(r'\b(?:[A-Za-z_]\w*::)*k[A-Z]\w*\b', masked(body))
+        macro = re.match(r'([A-Z_]+)\s*\(', body)
+        supported = {'FEATURE_VALUE_TYPE', 'FEATURE_WITH_PARAMS_VALUE_TYPE', 'SINGLE_VALUE_TYPE',
+                     'SINGLE_DISABLE_VALUE_TYPE', 'SINGLE_VALUE_TYPE_AND_VALUE', 'MULTI_VALUE_TYPE',
+                     'ENABLE_DISABLE_VALUE_TYPE', 'ENABLE_DISABLE_VALUE_TYPE_AND_VALUE',
+                     'ORIGIN_LIST_VALUE_TYPE', 'STRING_VALUE_TYPE', 'PLATFORM_FEATURE_NAME_TYPE',
+                     'PLATFORM_FEATURE_NAME_WITH_PARAMS_VALUE_TYPE', 'PLATFORM_FEATURE_WITH_PARAMS_VALUE_TYPE'}
+        c = add('flag_entry', symbol, pos, end + 1, parsed=len(args) >= 5 and not symbol.startswith('unresolved-') and bool(macro and macro[1] in supported),
+                value=literal(args[0]) if args else None, refs=refs, platforms=list(dict.fromkeys(re.findall(r'kOs\w+', args[3]))) if len(args) > 3 else [],
+                title_ref=args[1] if len(args) > 1 else None, description_ref=args[2] if len(args) > 2 else None,
+                options=[safe_excerpt(body)] if body else [])
+        c.conditions.extend(conditions)
 
     # Named flag table initializer: inspect every top-level row, even unknown ones.
     for m in re.finditer(r'\b(?:kFeatureEntries|kFeatureEntry)\s*(?:\[\s*\])?\s*=\s*(?:std::to_array<[^>]+>\s*\(\s*)?\{', masked(text)):
@@ -201,7 +330,7 @@ def parse(path, original):
         pos = start + 1
         while pos < finish:
             # Directives between rows are retained through conditions_at.
-            skip = re.match(r'\s*(?:#[^\n]*\n|,)', text[pos:finish])
+            skip = re.match(r'\s*(?:#(?:[^\n\\]|\\\n)*\n|,)', text[pos:finish])
             if skip:
                 pos += skip.end()
                 continue
@@ -212,43 +341,38 @@ def parse(path, original):
                 end = matching(text, pos)
                 if end is None:
                     end = finish - 1
-                args = arguments(text[pos + 1:end])
-                symbol = (literal(args[0]) or (args[0] if re.fullmatch(IDENT, args[0]) else None)) if args else None
-                symbol = symbol or 'unresolved-line-' + str(text.count('\n', 0, pos) + 1)
-                body = ', '.join(args[4:])
-                refs = re.findall(r'\b(?:[A-Za-z_]\w*::)*k[A-Z]\w*\b', body)
-                macro = re.match(r'([A-Z_]+)\s*\(', body)
-                supported = {'FEATURE_VALUE_TYPE', 'FEATURE_WITH_PARAMS_VALUE_TYPE', 'SINGLE_VALUE_TYPE',
-                             'SINGLE_DISABLE_VALUE_TYPE', 'SINGLE_VALUE_TYPE_AND_VALUE', 'MULTI_VALUE_TYPE',
-                             'ENABLE_DISABLE_VALUE_TYPE', 'ENABLE_DISABLE_VALUE_TYPE_AND_VALUE',
-                             'ORIGIN_LIST_VALUE_TYPE', 'STRING_VALUE_TYPE', 'PLATFORM_FEATURE_NAME_TYPE',
-                             'PLATFORM_FEATURE_NAME_WITH_PARAMS_VALUE_TYPE'}
-                c = add('flag_entry', symbol, pos, end + 1, parsed=len(args) >= 5 and not symbol.startswith('unresolved-') and bool(macro and macro[1] in supported),
-                        value=literal(args[0]) if args else None, refs=refs, platforms=list(dict.fromkeys(re.findall(r'kOs\w+', args[3]))) if len(args) > 3 else [],
-                        title_ref=args[1] if len(args) > 1 else None, description_ref=args[2] if len(args) > 2 else None,
-                        options=[safe_excerpt(body)] if body else [])
+                end = conditional_end(text, pos, end)
+                variants = conditional_variants(text[pos:end + 1])
+                for expression, conditions in variants:
+                    closing = matching(expression, expression.index('{'))
+                    args = arguments(expression[expression.index('{') + 1:closing]) if closing is not None else []
+                    add_flag(args, pos, end, conditions)
                 pos = end + 1
             else:
                 end = text.find('\n', pos, finish)
                 end = finish if end < 0 else end
                 add('flag_entry', 'unresolved-line-' + str(text.count('\n', 0, pos) + 1), pos, end)
                 pos = end + 1
-
     # Switches have no central registry. Inspect string definitions in switch
     # paths or a switches namespace. Other string constants are not switches.
-    for m in re.finditer(r'\b(?:const|constexpr)\s+(?:char|wchar_t)\s+(' + IDENT + r')\s*\[\s*\]\s*([=;])', masked(text)):
+    for m in re.finditer(r'\b(?:const|constexpr)\s+(?:char|wchar_t)(?:\s*\*\s*(?:const\s+)?(' + IDENT + r')|\s+(' + IDENT + r')\s*\[\s*\])\s*([=;])', masked(text)):
         ns = namespace(m.start())
         if 'switch' not in path.lower() and 'switches' not in ns.split('::'):
             continue
-        if m[2] == ';':
+        if m[3] == ';':
             declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'switch_declaration'})
             continue
-        end = text.find(';', m.end())
+        end = masked(text).find(';', m.end())
         end = len(text) if end < 0 else end + 1
         rhs = text[m.end():end].rstrip(';').strip()
         value = literal(rhs)
         alias = rhs if re.fullmatch(IDENT, rhs) else None
-        add('command_switch', m[1], m.start(), end, parsed=value is not None or alias is not None,
+        symbol = m[1] or m[2]
+        if m[1] and value is None and alias is None and not symbol.startswith('k'):
+            declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'runtime_string_use'})
+            covered.append((m.start(), end))
+            continue
+        add('command_switch', symbol, m.start(), end, parsed=value is not None or alias is not None,
             value=value, alias=alias, refs=[alias] if alias else [])
 
     # Preserve unsupported string-definition syntax in the switch scope too.
@@ -262,6 +386,13 @@ def parse(path, original):
         end = text.find(';', m.end())
         end = len(text) if end < 0 else end + 1
         expression = text[m.start():end]
+        tail = text[m.end():end]
+        if re.match(r'\s*\*\s*(?:const\s*)?[>&]', tail) or re.match(r'\s*\*\s*(?:const\s+)?\w+\s*[,)>]', tail):
+            declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'string_type_use'})
+            continue
+        if re.match(r'\s*\*\s*(?:const\s+)?\w+\s*\[', tail):
+            declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'string_collection'})
+            continue
         if '=' not in expression:
             continue  # Forward declarations do not define a switch.
         symbol_match = re.search(r'\b(k[A-Z]\w*)\b', expression)
@@ -274,7 +405,9 @@ def parse(path, original):
         if any(a <= m.start() < b for a, b in covered):
             continue
         tail = text[m.end():text.find('\n', m.end()) if '\n' in text[m.end():] else len(text)]
-        if re.match(r'\s*(?:[>*]|::|[&*]?\s*[,)>])', tail):
+        if any(a <= m.start() < b for a, b in preprocess):
+            declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'macro_template'})
+        elif re.match(r'\s*(?:[>*;]|::|[&*]?\s*[,)>]|[&*]\s*\{|[&*]\s*\w+\s*[,)>]|(?:constexpr|const)\s*\*)', tail) or re.fullmatch(r'\s*(?:[A-Z_]+\s+)?\w+\s*;?\s*', tail):
             declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'feature_type_use'})
         else:
             end = text.find('\n', m.end())

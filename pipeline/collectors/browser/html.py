@@ -20,10 +20,10 @@ class Node:
             if isinstance(child, Node):
                 yield from child.walk()
 
-    def text(self):
-        if self.tag in SKIP:
+    def text(self, excluded=()):
+        if self.tag in SKIP or id(self) in excluded:
             return ''
-        return ' '.join(' '.join(c.text() if isinstance(c, Node) else c for c in self.children).split())
+        return ' '.join(' '.join(c.text(excluded) if isinstance(c, Node) else c for c in self.children).split())
 
     def has_class(self, name):
         return name in self.attrs.get('class', '').split()
@@ -36,6 +36,10 @@ class Node:
 
 
 class UnresolvedChromeSignoff(Node):
+    pass
+
+
+class ReviewedChromeSignoff(Node):
     pass
 
 
@@ -68,18 +72,22 @@ class Tree(HTMLParser):
 
 
 def date_value(value):
-    match = re.search(r'\b(20\d{2}-\d{2}-\d{2})\b', value or '')
+    match = re.search(r'\b(20\d{2}-\d{2}-\d{2})(?!\d)', value or '')
     if match:
         try:
             return datetime.strptime(match[1], '%Y-%m-%d').date().isoformat()
         except ValueError:
             pass
-    match = re.search(r'([A-Z][a-z]+ \d{1,2}, 20\d{2})', value or '')
-    if match:
-        try:
-            return datetime.strptime(match[1], '%B %d, %Y').date().isoformat()
-        except ValueError:
-            pass
+    for expression, formats in [
+            (r'([A-Z][a-z]+ \d{1,2}, 20\d{2})', ('%B %d, %Y', '%b %d, %Y')),
+            (r'(\d{1,2} [A-Z][a-z]+ 20\d{2})', ('%d %B %Y', '%d %b %Y'))]:
+        match = re.search(expression, value or '')
+        if match:
+            for format in formats:
+                try:
+                    return datetime.strptime(match[1], format).date().isoformat()
+                except ValueError:
+                    pass
     return None
 
 
@@ -90,8 +98,17 @@ def published(tree, source_id=None):
             found = date_value(n.attrs.get('content'))
             if found:
                 return found
+        if source_id == 'firefox-security' and n.tag == 'dt' and n.text() == 'Announced':
+            siblings = n.parent.children
+            following = next((v for v in siblings[siblings.index(n)+1:] if isinstance(v, Node)), None)
+            if following and following.tag == 'dd':
+                return date_value(following.text())
+        if source_id == 'safari-technology-preview' and n.has_class('date'):
+            found = date_value(n.text())
+            if found:
+                return found
         if n.tag == 'time' or n.has_class('c-release-date'):
-            found = date_value(n.attrs.get('datetime', n.text()))
+            found = date_value(n.attrs.get('datetime')) or date_value(n.text())
             if found:
                 return found
         if (source_id == 'chrome-releases' and n.has_class('publishdate') and
@@ -103,7 +120,7 @@ def published(tree, source_id=None):
     return None
 
 
-def remove_chrome_post_signoff(fragment):
+def remove_chrome_post_signoff(fragment, reviewed_signoffs=()):
     # Blogger places the unmarked byline on its own line before the publisher
     # label, in adjacent paragraphs or on opposite sides of a line break.
     lines = [[]]
@@ -137,10 +154,11 @@ def remove_chrome_post_signoff(fragment):
         node, index, text = lines[-2][0]
         if len(text) <= 64 and not any(a.tag in {'li', 'a'} for a in (node, *node.ancestors())):
             node.children[index] = ''
-            fragment.children.append(UnresolvedChromeSignoff('document', parent=fragment))
+            marker = ReviewedChromeSignoff if hashlib.sha256(text.encode()).hexdigest() in reviewed_signoffs else UnresolvedChromeSignoff
+            fragment.children.append(marker('document', parent=fragment))
 
 
-def expand_chrome_post_templates(body):
+def expand_chrome_post_templates(body, reviewed_signoffs=()):
     # Chrome Releases stores the article markup in an inert Blogger template.
     # Its noscript copy remains excluded by SKIP.
     for content in body.children:
@@ -158,22 +176,22 @@ def expand_chrome_post_templates(body):
                 if is_author or node.tag == 'header':
                     node.parent.children.remove(node)
             if has_author_metadata:
-                remove_chrome_post_signoff(fragment)
+                remove_chrome_post_signoff(fragment, reviewed_signoffs)
             fragment.parent = content
             content.children[index] = fragment
 
 
-def boundary(tree, source_id):
+def boundary(tree, source_id, reviewed_signoffs=()):
     nodes = list(tree.walk())
     # Select the publisher's product body, never navigation, replies or author cards.
     selectors = {
         'chrome-releases': [('class', 'post-body')],
-        'chrome-enterprise': [('class', 'article-content'), ('class', 'answer')],
-        'chrome-blog': [('class', 'article-body'), ('class', 'uni-article__body')],
+        'chrome-enterprise': [('class', 'article-content'), ('class', 'answer'), ('class', 'article-content-container')],
+        'chrome-blog': [('class', 'article-body'), ('class', 'uni-article__body'), ('class', 'article-container')],
         'firefox': [('class', 'c-release-notes')],
         'firefox-security': [('id', 'main-content'), ('tag', 'main')],
         'edge': [('class', 'content')],
-        'safari-technology-preview': [('class', 'body'), ('class', 'entry-content')],
+        'safari-technology-preview': [('class', 'body'), ('class', 'entry-content'), ('class', 'bodycopy')],
         'safari-security': [('id', 'article-body'), ('class', 'main')],
         'brave-blog': [('class', 'prose'), ('tag', 'article')],
         'whale-notices': [('attr', ('data-role', 'commentContent'))],
@@ -191,7 +209,7 @@ def boundary(tree, source_id):
                 matches.append(n)
         if matches:
             if key == 'chrome-releases':
-                expand_chrome_post_templates(matches[0])
+                expand_chrome_post_templates(matches[0], reviewed_signoffs)
             # Learn has a title-only .content before its complete article body.
             return max(matches, key=lambda n: len(n.text())) if key == 'edge' else matches[0]
     return None
@@ -232,6 +250,8 @@ def next_links(tree, base, chrome_releases_since=None):
         if n.tag not in {'a', 'link'} or not n.attrs.get('href'):
             continue
         attrs = n.attrs
+        if attrs.get('aria-disabled') == 'true' or 'disabled' in attrs or any(a.has_class('ipsPagination_inactive') or a.attrs.get('aria-disabled') == 'true' for a in n.ancestors()):
+            continue
         label = (n.text() + ' ' + attrs.get('aria-label', '') + ' ' + attrs.get('title', '')).lower()
         if ('next' in attrs.get('rel', '').split() or n.has_class('next') or
                 n.has_class('blog-pager-older-link') or attrs.get('id') == 'Blog1_blog-pager-older-link' or
@@ -285,9 +305,28 @@ def blocks(body):
     is deliberately local to a section, and is not a semantic deduplication key.
     """
     result, counters, section, headings = [], {}, 'document', {}
-    covered = set()
+    suppressed = set()
+    # Explicit author/reporter fields are outside the public product record.
     for n in body.walk():
-        if any(id(a) in covered or a.tag in SKIP for a in n.ancestors()):
+        if 'author' in (n.attrs.get('itemprop') or '').split() or 'author' in (n.attrs.get('rel') or '').split():
+            suppressed.add(id(n))
+        if n.tag == 'time' and (n.attrs.get('itemprop') == 'datePublished' or date_value(n.text())):
+            suppressed.add(id(n))
+    for n in body.walk():
+        if n.tag == 'dt' and n.text(suppressed).lower() in {'reporter', 'reported by', 'author'}:
+            suppressed.add(id(n))
+            siblings = n.parent.children
+            following = next((v for v in siblings[siblings.index(n)+1:] if isinstance(v, Node)), None)
+            if following and following.tag == 'dd':
+                suppressed.add(id(following))
+    covered = set(suppressed)
+    for n in body.walk():
+        within = []
+        for ancestor in n.ancestors():
+            if ancestor is body.parent:
+                break
+            within.append(ancestor)
+        if id(n) in covered or any(id(a) in covered or a.tag in SKIP for a in within):
             continue
         if n.tag in SKIP:
             covered.add(id(n))
@@ -296,7 +335,13 @@ def blocks(body):
             result.append({'key': 'chrome-post-signoff', 'text': '',
                            'section': 'post sign-off', 'parsed': False})
             continue
-        text = n.text()
+        if isinstance(n, ReviewedChromeSignoff):
+            result.append({'key': 'chrome-post-signoff', 'text': 'Publisher attribution omitted.',
+                           'section': 'post sign-off', 'parsed': True})
+            continue
+        # Suppression must also apply to ancestor aggregates and headings, not
+        # only to the traversal of the author/reporter node itself.
+        text = n.text(suppressed)
         if re.fullmatch(r'h[1-6]', n.tag):
             level = int(n.tag[1])
             headings = {k: v for k, v in headings.items() if k < level}
@@ -304,7 +349,8 @@ def blocks(body):
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
             continue
-        if n.tag in {'p', 'li', 'tr', 'pre', 'blockquote', 'dt', 'dd'} and (text or (n.tag in {'li', 'tr'} and any(c.tag in {'img', 'iframe', 'object'} for c in n.walk()))):
+        inline_container = n.tag in {'div', 'span'} and all(c is n or c.tag in {'a', 'span', 'strong', 'b', 'em', 'i', 'u', 'code', 'br', 'small', 'sup', 'sub', 'font'} for c in n.walk())
+        if (n.tag in {'p', 'li', 'tr', 'pre', 'blockquote', 'dt', 'dd'} or inline_container) and (text or (n.tag in {'li', 'tr'} and any(c.tag in {'img', 'iframe', 'object'} for c in n.walk()))):
             # Parent list entries own their complete nested definition.
             key = n.attrs.get('id')
             issue = re.search(r'\b(?:CVE-\d{4}-\d+|VB-\d+|DNA-\d+)\b|\((\d{7,})\)', text)
@@ -321,6 +367,7 @@ def blocks(body):
             if direct:
                 prefix = section + ':unparsed'
                 counters[prefix] = counters.get(prefix, 0) + 1
+                ordinary = n.tag in {'div', 'span', 'a', 'strong', 'b', 'em', 'i', 'u', 'code', 'small', 'font', 'document'}
                 result.append({'key': n.attrs.get('id') or prefix + ':' + str(counters[prefix]),
-                               'text': '', 'section': section, 'parsed': False})
+                               'text': direct if ordinary else '', 'section': section, 'parsed': ordinary})
     return unique_unit_keys(result)

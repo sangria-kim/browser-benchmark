@@ -15,7 +15,7 @@ class Response:
 
 
 class HTTPTransport:
-    def __init__(self, timeout=30, max_bytes=16000000):
+    def __init__(self, timeout=30, max_bytes=64000000):
         self.timeout, self.max_bytes = timeout, max_bytes
 
     def __call__(self, url):

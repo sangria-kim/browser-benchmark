@@ -90,12 +90,97 @@ class ParserTests(unittest.TestCase):
         text = 'constexpr auto kFeatureEntries = std::to_array<flags_ui::FeatureEntry>({\n{"conditional", "C", "C", kOsAll,\n#if WIN\nFEATURE_VALUE_TYPE(features::kA)},\n#else\nFEATURE_VALUE_TYPE(features::kB)},\n#endif\n{"after", "A", "A", kOsAll, FEATURE_VALUE_TYPE(features::kAfter)},\n});'
         cs, _, _ = parse('ios/chrome/browser/flags/about_flags.mm', text)
         self.assertTrue(any(c.symbol == 'after' and c.parsed for c in cs))
-        self.assertTrue(any(not c.parsed for c in cs))
+        self.assertTrue(all(c.parsed for c in cs))
+        arms = [c for c in cs if c.symbol == 'conditional']
+        self.assertEqual(2, len(arms))
+        self.assertNotEqual(arms[0].conditions, arms[1].conditions)
+        self.assertEqual({'features::kA', 'features::kB'}, {c.refs[0] for c in arms})
 
-    def test_unsupported_switch_pointer_is_preserved(self):
+    def test_switch_pointer_definition_is_parsed(self):
         cs, _, _ = parse('demo_switches.cc', 'const char* kPointer = "pointer";')
         self.assertEqual(len(cs), 1)
-        self.assertFalse(cs[0].parsed)
+        self.assertTrue(cs[0].parsed)
+        self.assertEqual('pointer', cs[0].value)
+
+    def test_conditional_defaults_symbolic_defaults_and_type_uses(self):
+        text = '''
+namespace features {
+BASE_FEATURE(kConditional,
+#if WINDOWS
+base::FEATURE_ENABLED_BY_DEFAULT);
+#else
+base::FEATURE_DISABLED_BY_DEFAULT);
+#endif
+BASE_FEATURE(kRuntime, ChooseDefault());
+BASE_FEATURE(Owner::
+ kQualified, "Qualified", base::FEATURE_DISABLED_BY_DEFAULT);
+void Use(const base::Feature& feature);
+auto fn = []() -> const base::Feature& { return features::kRuntime; };
+}
+'''
+        rows, declarations, errors = parse('features.cc', text)
+        self.assertFalse(errors)
+        self.assertTrue(all(r.parsed for r in rows))
+        self.assertEqual(4, len(rows))
+        self.assertEqual('ChooseDefault()', next(r.default for r in rows if r.symbol == 'kRuntime'))
+        self.assertEqual({'base::FEATURE_ENABLED_BY_DEFAULT', 'base::FEATURE_DISABLED_BY_DEFAULT'}, {r.default for r in rows if r.symbol == 'kConditional'})
+        self.assertEqual(2, len(declarations))
+
+    def test_namespace_survives_alternative_brace_and_macro_closures(self):
+        text = '''namespace features {
+#if WIN
+void helper() {
+#else
+void helper(int argument) {
+#endif
+}
+BASE_FEATURE(kConditional,
+#if WIN
+base::FEATURE_ENABLED_BY_DEFAULT);
+#else
+base::FEATURE_DISABLED_BY_DEFAULT);
+#endif
+BASE_FEATURE(kAfter, base::FEATURE_DISABLED_BY_DEFAULT);
+}'''
+        rows, _, errors = parse('features.cc', text)
+        self.assertFalse(errors)
+        self.assertEqual(3, len(rows))
+        self.assertTrue(all(r.namespace == 'features' for r in rows))
+
+    def test_internal_conditional_without_else_preserves_false_default(self):
+        text = '''BASE_FEATURE(kExample, "Example",
+#if BUILDFLAG(IS_WIN)
+Override() ? base::FEATURE_ENABLED_BY_DEFAULT :
+#endif
+base::FEATURE_DISABLED_BY_DEFAULT);'''
+        rows, _, errors = parse('example.cc', text)
+        self.assertFalse(errors)
+        self.assertEqual(2, len(rows))
+        self.assertTrue(all(r.parsed for r in rows))
+        disabled = next(r for r in rows if r.default == 'base::FEATURE_DISABLED_BY_DEFAULT')
+        self.assertEqual(['!((BUILDFLAG(IS_WIN)))'], disabled.conditions)
+        conditional = next(r for r in rows if 'Override()' in r.default)
+        self.assertEqual(['(BUILDFLAG(IS_WIN))'], conditional.conditions)
+
+    def test_elif_and_nested_implicit_else_arms_remain_present(self):
+        text = '''BASE_FEATURE(kExample, "Example",
+#if WINDOWS
+WinOverride() ? base::FEATURE_ENABLED_BY_DEFAULT :
+#elif MAC
+#if ARM
+MacOverride() ? base::FEATURE_ENABLED_BY_DEFAULT :
+#endif
+#endif
+base::FEATURE_DISABLED_BY_DEFAULT);'''
+        rows, _, errors = parse('example.cc', text)
+        self.assertFalse(errors)
+        self.assertEqual(4, len(rows))
+        self.assertTrue(all(r.parsed for r in rows))
+        by_conditions = {tuple(r.conditions): r.default for r in rows}
+        self.assertIn('WinOverride()', by_conditions[('(WINDOWS)',)])
+        self.assertIn('MacOverride()', by_conditions[('!((WINDOWS)) && (MAC)', '(ARM)')])
+        self.assertEqual('base::FEATURE_DISABLED_BY_DEFAULT', by_conditions[('!((WINDOWS)) && (MAC)', '!((ARM))')])
+        self.assertEqual('base::FEATURE_DISABLED_BY_DEFAULT', by_conditions[('!((WINDOWS) || (MAC))',)])
 
     def test_comment_and_string_macros_do_not_become_candidates(self):
         text = '// BASE_FEATURE(kFalse, "False", base::FEATURE_ENABLED_BY_DEFAULT);\nconst char kText[]="BASE_FEATURE(kFalse)";'
@@ -421,6 +506,10 @@ class ProviderTests(unittest.TestCase):
             self.assertEqual(provider.pin(), git('rev-parse', 'HEAD'))
             self.assertEqual(provider.enumerate(temp)['paths'], ['features.cc'])
             self.assertIn(b'kLocal', provider.read('features.cc'))
+            Path(temp, 'features.cc').write_text('BASE_FEATURE(kChanged, base::FEATURE_DISABLED_BY_DEFAULT);')
+            with self.assertRaisesRegex(ValueError, 'pinned revision'):
+                provider.read('features.cc')
+            git('checkout', '--', 'features.cc')
             Path(temp, 'untracked.cc').write_text('dirty')
             with self.assertRaises(ValueError):
                 provider.pin()

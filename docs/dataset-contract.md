@@ -6,9 +6,17 @@ The canonical JSON records use `schema_version: 2`. The source registry retains 
 
 [The source registry](../config/sources.yml) defines official sources for Chrome, Edge, Firefox, Safari, Brave, Whale, Opera and Vivaldi. It is JSON-compatible YAML. Load it with `json.load`; no YAML dependency is needed. The registry lists source bounds, parser names, discovery patterns and pagination. Channel and platform lists are not a cross product. Each item needs its own evidence. Unsupported scopes are explicit.
 
-The initial browser baseline includes the current official index or document plus dated documents from **2026-10-28** through the pinned baseline cutoff. This is the date of the first daily report artifact. Undated current documents are included. Older existing evidence remains `legacy`; it is not a complete historical inventory. The seven-day overlap is a daily refresh policy, not the historical baseline. Reconcile registered sources at least every 30 days. A page/document limit is a circuit breaker. Hitting it leaves private coverage partial, not complete.
+The requested browser period starts on **2026-01-01** and ends at the pinned cutoff. Use official item publication or change evidence. A whole-page update does not date every item on that page. Undated current facts and older accepted records remain context; they do not prove an in-period change. Date-only publications keep the publisher's printed day without an invented time or timezone. The seven-day overlap is a daily refresh policy, not the historical baseline. Reconcile registered sources at least every 30 days. A page/document limit is a circuit breaker. Hitting it leaves private coverage partial, not complete.
 
 [The Chromium scope](../config/chrome-source-scope.yml) starts from one pinned public main commit. Enumerate the tracked source tree from a local checkout or Gitiles. A required-file sample cannot establish full-tree coverage. Keep the file list, parsing counts and coverage state private. Public records retain their own paths, hashes and revisions.
+
+The requested experiment projection focuses on currently existing definitions with
+an added or changed state since **2026-01-01T00:00:00+09:00**
+(2025-12-31T15:00:00Z). Compare canonical definition semantics at the verified
+boundary and current commits. Whole-file edits, line moves and parser corrections
+are not product changes. A current source scan alone does not establish this
+temporal comparison. Endpoint comparison excludes deleted/transient-only items
+and exact A→B→A reversions; it is not a complete intervening edit history.
 
 Keep these experiment kinds separate:
 

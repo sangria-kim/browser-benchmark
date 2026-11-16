@@ -48,10 +48,12 @@ def safe_path(path):
 
 class LocalCheckout:
     """Read the entire tracked tree from an unchanged, clean checkout at HEAD."""
+    pinned_local = True
     def __init__(self, path, revision='HEAD'):
         self.path = Path(path).resolve()
         self.ref = revision
         self.revision = None
+        self.blob_ids = {}
 
     def git(self, *args):
         return subprocess.check_output(['git', '-C', str(self.path)] + list(args), stderr=subprocess.PIPE)
@@ -77,6 +79,7 @@ class LocalCheckout:
             path = safe_path(raw_path.decode('utf-8'))
             if kind == 'blob' and mode != '120000':
                 entries.append(path)
+                self.blob_ids[path] = oid
             else:
                 unsupported.append(path)
         return {'paths': sorted(entries), 'complete': True, 'unsupported': unsupported}
@@ -84,7 +87,18 @@ class LocalCheckout:
     def read(self, path):
         if not self.revision:
             raise ValueError('Pin before read')
-        return self.git('show', self.revision + ':' + safe_path(path))
+        path = safe_path(path)
+        # Sparse checkouts may omit unrelated files. A materialized source is
+        # accepted only when its Git blob ID matches the pinned tracked tree.
+        # This avoids a subprocess for every one of >100,000 source files.
+        local = self.path / path
+        if path in self.blob_ids and local.is_file() and not local.is_symlink():
+            raw = local.read_bytes()
+            oid = hashlib.sha1(b'blob ' + str(len(raw)).encode() + b'\0' + raw).hexdigest()
+            if oid != self.blob_ids[path]:
+                raise ValueError('Checkout blob differs from pinned revision: ' + path)
+            return raw
+        return self.git('show', self.revision + ':' + path)
 
 
 class Gitiles:

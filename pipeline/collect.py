@@ -13,7 +13,7 @@ from schemas.validate import load_config, validate_record
 from pipeline.collectors.browser import BrowserCollector
 
 
-def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, transport=None, origin='baseline', resume=False):
+def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, transport=None, origin='baseline', resume=False, reviewed_attributions=None):
     repository = Path(repository)
     registry = load_config(repository / 'config/sources.yml')
     validate_record('sources_config', registry)
@@ -25,7 +25,7 @@ def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, tran
     cutoff = cutoff or datetime.now(timezone.utc).isoformat()
     if datetime.fromisoformat(cutoff.replace('Z', '+00:00')).tzinfo is None:
         raise ValueError('Cutoff needs a timezone')
-    collector = BrowserCollector(repository, private_dir, transport, resume=resume)
+    collector = BrowserCollector(repository, private_dir, transport, resume=resume, reviewed_attributions=reviewed_attributions)
     return [collector.collect(s, cutoff, registry['baseline']['backfill_since'], origin)
             for s in registry['sources'] if s['enabled'] and (not source_ids or s['source_id'] in source_ids)]
 
@@ -33,7 +33,7 @@ def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, tran
 
 def collect_sources(repository, private_dir, *, kind='browser', source_ids=None, cutoff=None,
                     transport=None, origin='baseline', resume=False, chrome_provider=None,
-                    chrome_bundle=None, previous_bundle=None, sample_paths=None, max_files=None, max_trees=None):
+                    chrome_bundle=None, previous_bundle=None, sample_paths=None, max_files=None, max_trees=None, reviewed_attributions=None):
     """Collect into a private candidate, normalize, then validate/publish once.
 
     The original collectors retain their public APIs. This shared entry point
@@ -59,12 +59,12 @@ def collect_sources(repository, private_dir, *, kind='browser', source_ids=None,
             if (repository / name).exists():
                 shutil.copytree(repository / name, stage / name)
         if kind in ('browser', 'all'):
-            result['browser'] = collect_browsers(stage, private_dir / 'browser', source_ids, cutoff, transport, origin, resume)
+            result['browser'] = collect_browsers(stage, private_dir / 'browser', source_ids, cutoff, transport, origin, resume, reviewed_attributions)
         if kind in ('chrome', 'all'):
             if chrome_bundle is None:
                 config = load_config(repository / 'config/chrome-source-scope.yml')
                 provider = chrome_provider or Gitiles(config['repository_url'], config['baseline_ref'])
-                chrome_bundle = collect_chrome(config, provider, private_dir / 'chrome', observed_at=cutoff,
+                chrome_bundle = collect_chrome(config, provider, private_dir / 'chrome',
                     origin=origin, sample_paths=sample_paths, max_files=max_files, max_trees=max_trees, previous=previous_bundle)
             result['chrome'] = chrome_bundle['coverage']
         changes = prepare(stage, chrome_bundle if kind in ('chrome', 'all') else None, cutoff)

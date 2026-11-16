@@ -5,14 +5,35 @@ from datetime import datetime, timezone
 import json
 from pathlib import Path
 import re
+from collections.abc import Mapping
 
 from schemas.validate import validate_record, validate_transition
-from .parser import parse, auxiliary_definitions, strip_comments, safe_excerpt, literal, Candidate
+from .parser import parse, auxiliary_definitions, strip_comments, safe_excerpt, literal, masked, Candidate
 from .providers import atomic_json, canonical, digest, private_directory, safe_path
 
 
 PARSER_VERSION = 'chromium-lexical-v1'
 REGISTRIES = {'chrome/browser/about_flags.cc', 'ios/chrome/browser/flags/about_flags.mm'}
+
+
+class SourceTexts(Mapping):
+    """Keep the pinned manifest in memory, not the entire Chromium text tree."""
+    def __init__(self, hashes, read):
+        self.hashes, self.read = hashes, read
+
+    def __iter__(self):
+        return iter(self.hashes)
+
+    def __len__(self):
+        return len(self.hashes)
+
+    def __getitem__(self, path):
+        if path not in self.hashes:
+            raise KeyError(path)
+        raw = self.read(path)
+        if digest(raw) != self.hashes[path]:
+            raise ValueError('Source changed after manifest: ' + path)
+        return raw.decode('utf-8')
 
 
 def identity(prefix, value):
@@ -29,7 +50,10 @@ def in_scope(path, config):
 
 def read_metadata(files):
     metadata, never, expired, errors = {}, set(), {}, []
-    for path, text in files.items():
+    for path in files:
+        if not path.endswith(('/flag-metadata.json', '/flag-never-expire-list.json', '/expired_flags_list.h')):
+            continue
+        text = files[path]
         try:
             if path.endswith('/flag-metadata.json'):
                 for item in json.loads(strip_comments(text)):
@@ -74,7 +98,7 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
     if saved and revision != saved['revision']:
         raise ValueError('Resume revision changed; use a new state directory')
     atomic_json(checkpoint, {'revision': revision, 'scope_sha256': digest(canonical(config)), 'parser_version': PARSER_VERSION})
-    errors, files, hashes = [], {}, {}
+    errors, hashes = [], {}
     if sample_paths is not None:
         listing = {'paths': sorted(set(map(safe_path, sample_paths))), 'complete': False, 'unsupported': []}
     else:
@@ -91,10 +115,15 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
     pending = []
     downloaded = 0
     cache = state_dir / 'blobs' / revision
+    local = getattr(provider, 'pinned_local', False)
+    def read_source(path):
+        return provider.read(path) if local else (cache / path).read_bytes()
     for path in selected:
         cached = cache / path
         try:
-            if cached.exists():
+            if local:
+                raw = provider.read(path)
+            elif cached.exists():
                 raw = cached.read_bytes()
             else:
                 if max_files is not None and downloaded >= max_files:
@@ -106,10 +135,11 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
                 temp = cached.with_name(cached.name + '.tmp')
                 temp.write_bytes(raw)
                 temp.replace(cached)
-            files[path] = raw.decode('utf-8')
+            raw.decode('utf-8')
             hashes[path] = digest(raw)
         except Exception as exc:
             errors.append({'path': path, 'reason': str(exc)})
+    files = SourceTexts(hashes, read_source)
     candidates, declaration_count, auxiliary = [], 0, {}
     for path, text in files.items():
         if Path(path).suffix not in config['discovery']['extensions']:
@@ -176,7 +206,14 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         matches = symbol_index.get(qualified, [])
         local = [(c, eid) for c, eid in matches if c.path == candidate.path]
         matches = local or matches
-        return matches[0][1] if len(matches) == 1 else None
+        if len(matches) == 1:
+            return [matches[0][1]]
+        # Separate conditional arms in one definition file are a known symbol
+        # family. Keep every target and its own build conditions. Cross-file
+        # ambiguity remains unresolved rather than selecting an arbitrary arm.
+        if matches and len({c.path for c, _ in matches}) == 1 and len({tuple(c.conditions) for c, _ in matches}) == len(matches):
+            return [eid for _, eid in matches]
+        return []
 
     def expand(refs, path, namespace, seen=None):
         seen = set() if seen is None else seen
@@ -226,12 +263,13 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         refs = list(c.refs)
         options = expand(refs, c.path, c.namespace)
         for option in options:
-            refs.extend(re.findall(r'\b(?:[A-Za-z_]\w*::)*k[A-Z]\w*\b', option['expression']))
+            refs.extend(re.findall(r'\b(?:[A-Za-z_]\w*::)*k[A-Z]\w*\b', masked(option['expression'])))
         references, unresolved = [], []
         for ref in sorted(set(refs)):
-            target = resolve(ref, c)
-            if target and target != eid:
-                references.append({'kind': 'alias_of' if ref == c.alias else 'controls', 'target_id': target})
+            targets = resolve(ref, c)
+            if targets:
+                references.extend({'kind': 'alias_of' if ref == c.alias else 'controls', 'target_id': target}
+                                  for target in targets if target != eid)
             elif ref not in {v['symbol'] for v in options}:
                 unresolved.append(ref)
         references = list({(r['kind'], r['target_id']): r for r in references}.values())
