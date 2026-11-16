@@ -1,5 +1,7 @@
 # Internal data import contract 1.1
 
+한국어 작업 지침: [사내 자료 반입 지침](internal-import-instructions.md).
+
 Import public data into a dedicated subtree of the company repository. Write a new
 commit on the company's own history. Do not mirror public commits or branches.
 The package contains no workflow or dashboard execution code. This avoids changing
