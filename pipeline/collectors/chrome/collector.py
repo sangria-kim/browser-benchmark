@@ -9,7 +9,7 @@ from collections.abc import Mapping
 
 from schemas.validate import validate_record, validate_transition
 from .parser import parse, auxiliary_definitions, strip_comments, safe_excerpt, literal, masked, Candidate, references as expression_references
-from .parser import feature_state_definitions, conditions_at, impossible_conditions, arguments, IDENT
+from .parser import feature_state_definitions, conditions_at, impossible_conditions, arguments, IDENT, conventional_include_guard
 from .providers import atomic_json, canonical, digest, private_directory, safe_path
 from .generated import blink_features, PATHS as BLINK_PATHS, INPUT as BLINK_INPUT
 from .generated import network_switches, NETWORK_LIST, NETWORK_DEFINITION
@@ -254,7 +254,14 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
                 result.extend(expand(value['refs'], value['path'], value['namespace'], seen))
         return result
 
-    state_definitions, condition_cache, local_macros = {}, {}, {}
+    state_definitions, condition_cache, local_macros, include_guards = {}, {}, {}, {}
+
+    def semantic_conditions(path, conditions):
+        if path not in include_guards:
+            include_guards[path] = (conventional_include_guard(files[path])
+                if path.endswith(('.h', '.hh', '.hpp', '.hxx')) else None)
+        guard = include_guards[path]
+        return [c for c in conditions if c != '!defined(' + guard + ')'] if guard else list(conditions)
 
     def macro_names(path):
         if path not in local_macros:
@@ -266,6 +273,7 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         # BUILDFLAG platform predicates stay symbolic. A locally defined bare
         # condition macro can change meaning without changing the guard text;
         # do not claim that its unevaluated condition is unchanged.
+        conditions = semantic_conditions(path, conditions)
         if not conditions:
             return []
         tokens = set(re.findall(r'\b[A-Za-z_]\w*\b', re.sub(r'BUILDFLAG\s*\(\s*\w+\s*\)', '', ' '.join(conditions))))
@@ -276,7 +284,7 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         if key not in condition_cache:
             text = strip_comments(files[value['path']])
             offset = sum(len(line) for line in text.splitlines(keepends=True)[:value['path_line'] - 1])
-            condition_cache[key] = conditions_at(text, offset)
+            condition_cache[key] = semantic_conditions(value['path'], conditions_at(text, offset))
         return condition_cache[key]
 
     def initializer(expression, path, namespace, conditions, kind='state', seen=(), line=None):
@@ -372,11 +380,11 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
             refs.extend((ref, context) for ref in expression_references(option['expression']))
         references, unresolved = [], condition_macros(c.path, c.conditions)
         if c.kind == 'base_feature' and c.path != BLINK_INPUT and c.default:
-            defaults, missing_defaults = initializer(c.default, c.path, c.namespace, c.conditions, line=c.line)
+            defaults, missing_defaults = initializer(c.default, c.path, c.namespace, semantic_conditions(c.path, c.conditions), line=c.line)
             options.extend(defaults)
             unresolved.extend(missing_defaults)
         if c.value_ref:
-            values, missing_values = initializer(c.value_ref, c.path, c.namespace, c.conditions, 'name', line=c.line)
+            values, missing_values = initializer(c.value_ref, c.path, c.namespace, semantic_conditions(c.path, c.conditions), 'name', line=c.line)
             options.extend(values)
             unresolved.extend(missing_values)
         seen_refs = set()
@@ -446,7 +454,7 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         title = safe_excerpt(description(c.title_ref) or c.value or c.symbol)
         summary = description(c.description_ref)
         semantic = {'kind': c.kind, 'symbol': c.qualified_symbol, 'definition': c.expression,
-                    'conditions': c.conditions, 'default': definition_default, 'value': c.value,
+                    'conditions': semantic_conditions(c.path, c.conditions), 'default': definition_default, 'value': c.value,
                     'platforms': c.platforms, 'expiry_milestone': exp, 'never_expire': never_expire,
                     'lifecycle': lifecycle, 'references': references, 'unresolved_references': unresolved,
                     'options': options, 'registered': c.registered, 'title': title, 'description': summary, 'parsed': c.parsed}
@@ -476,7 +484,7 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
                       'title': title, 'description': summary, 'source_item_ids': [sid], 'event_ids': [],
                       'source_locations': [{'path': c.path, 'revision': revision, 'line_start': c.line,
                                             'line_end': c.end_line, 'content_sha256': hashes[c.path]}],
-                      'build_conditions': c.conditions, 'platform': c.platforms or ['unknown'],
+                      'build_conditions': semantic_conditions(c.path, c.conditions), 'platform': c.platforms or ['unknown'],
                       'default_state': definition_default, 'expiry_milestone': exp, 'never_expire': never_expire,
                       'ui_exposure': 'registered' if c.registered else 'unknown',
                       'product_channel': None, 'product_revision': None, 'installed_availability': 'unknown',

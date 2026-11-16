@@ -8,7 +8,7 @@ import shutil
 from pipeline.temporal import dated_scope, scope_semantics
 from pipeline.collectors.chrome import collect
 from pipeline.collectors.chrome.temporal import compare
-from pipeline.collectors.chrome.parser import parse, semantic_expression, literal, auxiliary_definitions, references
+from pipeline.collectors.chrome.parser import parse, semantic_expression, literal, auxiliary_definitions, references, conventional_include_guard
 from pipeline.collectors.chrome.generated import blink_features, INPUT, GENERATOR, TEMPLATE
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.normalize.corrections import parser_aliases
@@ -58,6 +58,22 @@ class TemporalTests(unittest.TestCase):
         array = auxiliary_definitions('const FeatureEntry::FeatureParam kParams[]{ {"x", "true"} };')
         self.assertEqual(1, len(array['kParams']))
         self.assertEqual([], array['kParams'][0]['refs'])
+
+    def test_equality_uses_do_not_create_auxiliary_initializers(self):
+        text = ('namespace metrics {\nconstexpr base::FeatureState kDefault = base::FEATURE_ENABLED_BY_DEFAULT;\n'
+                'bool Check() { return kDefault == base::FEATURE_ENABLED_BY_DEFAULT; }\n'
+                'bool Other() { return metrics::kDefault == base::FEATURE_DISABLED_BY_DEFAULT; }\n'
+                'BASE_FEATURE(kDemo, kDefault);\n}')
+        definitions = auxiliary_definitions(text)
+        self.assertEqual(1, len(definitions['kDefault']))
+        self.assertEqual('base::FEATURE_ENABLED_BY_DEFAULT', definitions['kDefault'][0]['expression'])
+        a, b = self.bundles(text, text.replace('kDefault = base::FEATURE_ENABLED_BY_DEFAULT',
+                                              'kDefault = base::FEATURE_DISABLED_BY_DEFAULT'))
+        feature = next(e for e in self.project(a, b)['experiments'] if e['symbol'] == 'metrics::kDemo')
+        self.assertEqual('changed', feature['temporal_scope']['change'])
+        a, b = self.bundles(text, text.replace('return kDefault ==', 'return kDefault !='))
+        feature = next(e for e in self.project(a, b)['experiments'] if e['symbol'] == 'metrics::kDemo')
+        self.assertEqual('unchanged', feature['temporal_scope']['status'])
 
     def test_http_rate_limit_respects_retry_after(self):
         from unittest.mock import patch
@@ -211,6 +227,73 @@ class TemporalTests(unittest.TestCase):
         a, b = self.bundles('#if BUILDFLAG(IS_ANDROID)\nBASE_FEATURE(kDemo, base::FEATURE_ENABLED_BY_DEFAULT);\n#endif',
                             '#if BUILDFLAG(IS_IOS)\nBASE_FEATURE(kDemo, base::FEATURE_ENABLED_BY_DEFAULT);\n#endif')
         self.assertEqual('changed', next(e for e in self.project(a, b)['experiments'] if e['symbol'] == 'kDemo')['temporal_scope']['change'])
+
+    def test_whole_header_guard_is_structural_but_other_macro_conditions_remain_unknown(self):
+        header = ('// Header comment\n#ifndef DEMO_H_\n#define DEMO_H_\n'
+                  '#if BUILDFLAG(IS_WIN)\nconstexpr auto kState = base::FEATURE_ENABLED_BY_DEFAULT;\n'
+                  '#else\nconstexpr auto kState = base::FEATURE_DISABLED_BY_DEFAULT;\n#endif\n'
+                  'namespace switches { const char kDemo[] = "demo"; }\n#endif // DEMO_H_\n')
+        self.assertEqual('DEMO_H_', conventional_include_guard(header))
+        invalid = [header.replace('#define DEMO_H_', '#define DEMO_H_ 1'),
+                   header + 'int outside;\n', 'int before;\n' + header,
+                   header.replace('#endif // DEMO_H_', '#else\nint other;\n#endif'),
+                   header.replace('namespace switches', '#undef DEMO_H_\nnamespace switches'),
+                   header.replace('namespace switches', '#if defined(DEMO_H_)\n#endif\nnamespace switches'),
+                   header.replace('#endif // DEMO_H_', '')]
+        self.assertTrue(all(conventional_include_guard(value) is None for value in invalid))
+        bundles = []
+        for revision, guard, state in [('a', 'DEMO_H_', 'ENABLED'), ('b', 'RENAMED_H_', 'DISABLED')]:
+            files = fixture_files(False)
+            files['components/demo.h'] = header.replace('DEMO_H_', guard).replace('FEATURE_ENABLED_BY_DEFAULT', 'FEATURE_' + state + '_BY_DEFAULT')
+            files['components/demo.cc'] = 'BASE_FEATURE(kGuarded, kState);'
+            with tempfile.TemporaryDirectory() as tmp:
+                bundles.append(collect(load_config(ROOT / 'config/chrome-source-scope.yml'), MemoryProvider(files, revision * 40), tmp,
+                                       observed_at='2026-11-16T00:00:00Z'))
+        projected = self.project(*bundles)
+        switch = next(e for e in projected['experiments'] if e['symbol'] == 'switches::kDemo')
+        feature = next(e for e in projected['experiments'] if e['symbol'] == 'kGuarded')
+        self.assertEqual('unchanged', switch['temporal_scope']['status'])
+        self.assertEqual([], switch['build_conditions'])
+        self.assertEqual('changed', feature['temporal_scope']['change'])
+        fact = next(f for f in bundles[1]['facts'] if f['experiment_id'] == feature['experiment_id'])
+        self.assertEqual([], fact['semantic']['unresolved_references'])
+        self.assertEqual(2, len(fact['semantic']['options']))
+        self.assertTrue(all('H_' not in str(o['conditions']) for o in fact['semantic']['options']))
+        # Invalid guard-like files retain the existing conservative behavior.
+        for value in invalid[:1] + invalid[4:6]:
+            files['components/demo.h'] = value
+            with tempfile.TemporaryDirectory() as tmp:
+                unknown = collect(load_config(ROOT / 'config/chrome-source-scope.yml'), MemoryProvider(files, 'c' * 40), tmp,
+                                  observed_at='2026-11-16T00:00:00Z')
+            item = next(e for e in self.project(bundles[0], unknown)['experiments'] if e['symbol'] == 'switches::kDemo')
+            self.assertEqual('unknown', item['temporal_scope']['status'])
+
+    def test_guard_literals_are_tokens_but_raw_string_directives_are_not(self):
+        header = ('#ifndef DEMO_H_\n#define DEMO_H_\n'
+                  'BASE_FEATURE(kDemo, base::FEATURE_ENABLED_BY_DEFAULT);\n#endif\n')
+        literals = ('"not-empty"', "'x'", 'R"(not-empty)"', '""')
+        invalid = [header.replace('#define DEMO_H_', '#define DEMO_H_ ' + literal) for literal in literals]
+        invalid += [literal + '\n' + header for literal in literals]
+        invalid += [header + literal + '\n' for literal in literals]
+        invalid += [header.replace('#endif', '#endif ' + literal) for literal in literals]
+        for value in invalid:
+            with self.subTest(value=value):
+                self.assertIsNone(conventional_include_guard(value))
+                files = fixture_files(False)
+                files['components/demo.h'] = value
+                bundles = []
+                for revision in ('a', 'b'):
+                    with tempfile.TemporaryDirectory() as tmp:
+                        bundles.append(collect(load_config(ROOT / 'config/chrome-source-scope.yml'),
+                                               MemoryProvider(files, revision * 40), tmp,
+                                               observed_at='2026-11-16T00:00:00Z'))
+                item = next(e for e in self.project(*bundles)['experiments'] if e['symbol'] == 'kDemo')
+                self.assertEqual('unknown', item['temporal_scope']['status'])
+                self.assertIn('!defined(DEMO_H_)', item['build_conditions'])
+        # Raw-string contents must neither end the wrapper nor count as macro
+        # uses. They are real tokens inside the wrapper, not CPP directives.
+        raw_body = 'constexpr char kText[] = R"(\n#endif\n#else\n#define DEMO_H_\n)";\n'
+        self.assertEqual('DEMO_H_', conventional_include_guard(header.replace('BASE_FEATURE', raw_body + 'BASE_FEATURE')))
 
     def test_symbolic_default_conditions_survive_normalization_contract(self):
         from pipeline.normalize.core import normalize_chrome

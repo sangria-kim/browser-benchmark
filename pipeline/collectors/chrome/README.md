@@ -125,6 +125,12 @@ Feature wrappers preserve object-macro names for this resolver. They do not sele
 the last macro definition. Macro redefinitions, `undef`, macro/constant collisions,
 and locally defined macros used in build guards remain unknown when their meaning
 cannot be proved. `BUILDFLAG(IS_*)` platform predicates remain symbolic conditions.
+An empty `#ifndef` / `#define` wrapper around a whole header is structural when
+the macro has no other use, redefinition, or outer alternative. Only this proven
+include guard is removed from semantic conditions. Original identity keys keep
+the source guard for compatibility. Header constants can then cover all of a
+feature's conditions without a false unresolved guard. Other local macros remain
+unknown. Guard removal does not prove installed feature availability.
 An unsupported conditional initializer can yield multiple unresolved fragments;
 these fragments prevent full coverage and remain available for parser repair.
 Arbitrary generated macro families and non-string switch representations are

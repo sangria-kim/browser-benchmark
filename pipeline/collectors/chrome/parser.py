@@ -180,6 +180,37 @@ def conditions_at(text, offset):
     return list(dict.fromkeys(s['active'] for s in stack))
 
 
+def conventional_include_guard(text):
+    """Recognize only a whole-file, empty, otherwise unused include guard.
+
+    This is structural evidence, not general macro evaluation. Any other use,
+    redefinition, outer alternative, or text outside the wrapper fails closed.
+    """
+    uncommented = strip_comments(text)
+    clean = masked(text)
+    start = re.match(r'\s*#\s*ifndef[ \t]+([A-Za-z_]\w*)[ \t]*\n'
+                     r'\s*#\s*define[ \t]+\1[ \t]*(?:\n|$)', uncommented)
+    if not start:
+        return None
+    name = start[1]
+    if len(re.findall(r'\b' + re.escape(name) + r'\b', clean)) != 2:
+        return None
+    depth = 1
+    for directive in re.finditer(r'^[ \t]*#[ \t]*(if|ifdef|ifndef|elif|else|endif)\b[^\n]*', clean[start.end():], re.M):
+        kind = directive[1]
+        if kind in {'if', 'ifdef', 'ifndef'}:
+            depth += 1
+        elif kind in {'else', 'elif'} and depth == 1:
+            return None
+        elif kind == 'endif':
+            depth -= 1
+            if depth == 0:
+                closing = uncommented[start.end() + directive.start():start.end() + directive.end()]
+                return name if (re.fullmatch(r'[ \t]*#[ \t]*endif[ \t]*', closing)
+                                and not uncommented[start.end() + directive.end():].strip()) else None
+    return None
+
+
 def impossible_conditions(conditions):
     """Reject only provably unreachable Boolean preprocessor arms."""
     return _impossible_conditions(tuple(conditions))
@@ -545,7 +576,7 @@ def auxiliary_definitions(text):
         result.setdefault(symbol, []).append({'namespace': namespace, 'expression': safe_excerpt(expr, None), 'value': literal(expr),
             'refs': references(expr) if refs is None else refs, 'path_line': text.count('\n', 0, offset) + 1})
 
-    for m in re.finditer(r'\b((?:[A-Za-z_]\w*\s*::\s*)*k[A-Z]\w*)\s*(?:\[[^\]]*\])?\s*(?==|\{)', masked(text)):
+    for m in re.finditer(r'\b((?:[A-Za-z_]\w*\s*::\s*)*k[A-Z]\w*)\s*(?:\[[^\]]*\])?\s*(?==(?!=)|\{)', masked(text)):
         if any(start < m.start() < end for _, start, end in enums):
             continue  # Enumerators end at commas, not the enum's final semicolon.
         start = m.end()

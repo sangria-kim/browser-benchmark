@@ -15,8 +15,8 @@ from urllib.parse import unquote, urlsplit
 from pipeline.temporal import instant
 
 REPOSITORY = 'brave/brave-browser'
-QUERY = '''query($cursor:String){repository(owner:"brave",name:"brave-browser"){
- nameWithOwner isPrivate releases(first:100,after:$cursor,orderBy:{field:CREATED_AT,direction:DESC}){
+QUERY = '''query($cursor:String,$direction:OrderDirection!){repository(owner:"brave",name:"brave-browser"){
+ nameWithOwner isPrivate releases(first:100,after:$cursor,orderBy:{field:CREATED_AT,direction:$direction}){
  totalCount pageInfo{hasNextPage endCursor} nodes{databaseId tagName url createdAt publishedAt isDraft}
  }}}'''
 FIELDS = {'id', 'tag_name', 'url', 'created_at', 'published_at', 'is_draft'}
@@ -31,8 +31,8 @@ def stamp():
 
 
 def validate(bundle, cutoff, *, now=None):
-    required = {'version', 'repository', 'cutoff', 'started_at', 'observed_at', 'complete', 'pages', 'first_page_recheck'}
-    if not isinstance(bundle, dict) or set(bundle) != required or bundle['version'] != 1 or bundle['repository'] != REPOSITORY or bundle['complete'] is not True:
+    required = {'version', 'repository', 'cutoff', 'started_at', 'observed_at', 'complete', 'pages', 'first_page_recheck', 'oldest_page_check'}
+    if not isinstance(bundle, dict) or set(bundle) != required or bundle['version'] != 2 or bundle['repository'] != REPOSITORY or bundle['complete'] is not True:
         raise ValueError('Incomplete or unsupported Brave metadata bundle')
     if instant(bundle['cutoff']) != instant(cutoff):
         raise ValueError('Brave metadata cutoff differs from the frozen collection window')
@@ -78,14 +78,41 @@ def validate(bundle, cutoff, *, now=None):
         ends.add(end)
     if len(ids) != total:
         raise ValueError('Brave metadata unique count differs from totalCount')
+    created = [instant(row['created_at']) for row in result]
+    if created != sorted(created, reverse=True):
+        raise ValueError('Brave metadata creation order is inconsistent')
+    # A single endpoint can report a self-consistent but truncated count.
+    # Verify the opposite end of the inventory with a separately ordered query.
+    # Tied creation times have no documented identity order, so compare their
+    # timestamp multiset and full record membership instead of assuming a tie sort.
+    oldest_check = bundle['oldest_page_check']
+    if (not isinstance(oldest_check, dict) or set(oldest_check) != {'page', 'observed_at'}
+            or not start <= instant(oldest_check['observed_at']) <= observed):
+        raise ValueError('Missing Brave oldest endpoint evidence')
+    oldest = oldest_check['page']
+    if (not isinstance(oldest, dict) or set(oldest) != set(bundle['pages'][0])
+            or oldest['sha256'] != digest({k: v for k, v in oldest.items() if k != 'sha256'})
+            or oldest['cursor'] is not None or type(oldest['total_count']) is not int or oldest['total_count'] != total
+            or type(oldest['has_next_page']) is not bool or oldest['has_next_page'] != (total > 100)
+            or not isinstance(oldest['records'], list) or len(oldest['records']) != min(100, total)):
+        raise ValueError('Brave opposite-order inventory count or pagination differs')
+    by_id = {row['id']: row for row in result}
+    if (any(not isinstance(row, dict) or type(row.get('id')) is not int or row != by_id.get(row['id']) for row in oldest['records'])
+            or len({row['id'] for row in oldest['records']}) != len(oldest['records'])
+            or [instant(row['created_at']) for row in oldest['records']] != sorted(created)[:100]
+            or (total and (not isinstance(oldest['end_cursor'], str) or not oldest['end_cursor']))
+            or (not total and oldest['end_cursor'] is not None)):
+        raise ValueError('Brave opposite-order endpoint is absent or inconsistent')
     check = bundle['first_page_recheck']
     if not isinstance(check, dict) or set(check) != {'sha256', 'observed_at'} or check['sha256'] != bundle['pages'][0]['sha256'] or not start <= instant(check['observed_at']) <= observed:
         raise ValueError('Brave metadata first page changed during enumeration')
     return result
 
 
-def request_page(cursor, runner=subprocess.run):
-    response = runner(['gh', 'api', 'graphql', '--input', '-'], input=json.dumps({'query': QUERY, 'variables': {'cursor': cursor}}),
+def request_page(cursor, runner=subprocess.run, *, direction='DESC'):
+    if direction not in {'ASC', 'DESC'}:
+        raise ValueError('Unsupported metadata order')
+    response = runner(['gh', 'api', 'graphql', '--input', '-'], input=json.dumps({'query': QUERY, 'variables': {'cursor': cursor, 'direction': direction}}),
                       text=True, capture_output=True, check=False, shell=False)
     if response.returncode:
         # gh stderr can contain account/environment details. Never copy it.
@@ -121,8 +148,10 @@ def capture(cutoff, *, request=request_page, max_pages=2000):
         cursors.add(cursor)
     else:
         raise ValueError('Brave metadata page budget reached; no complete bundle was written')
+    oldest = {'page': request(None, direction='ASC'), 'observed_at': stamp()}
     first = request(None)
-    result = dict(version=1, repository=REPOSITORY, cutoff=cutoff, started_at=started, observed_at=stamp(), complete=True,
+    result = dict(version=2, repository=REPOSITORY, cutoff=cutoff, started_at=started, observed_at=stamp(), complete=True,
+                  oldest_page_check=oldest,
                   pages=pages, first_page_recheck={'sha256': first['sha256'], 'observed_at': stamp()})
     result['observed_at'] = stamp()
     validate(result, cutoff)

@@ -27,8 +27,11 @@ def page(rows, cursor=None, end='A', more=False, total=None):
 
 
 def bundle(pages):
-    return dict(version=1, repository=REPOSITORY, cutoff=CUTOFF, started_at='2026-11-16T13:00:00Z',
+    rows = sorted([r for p in pages for r in p['records']], key=lambda r: r['created_at'])
+    oldest = page(rows[:100], more=len(rows) > 100, total=len(rows))
+    return dict(version=2, repository=REPOSITORY, cutoff=CUTOFF, started_at='2026-11-16T13:00:00Z',
                 observed_at='2026-11-16T13:01:00Z', complete=True, pages=pages,
+                oldest_page_check={'page': oldest, 'observed_at': '2026-11-16T13:00:58Z'},
                 first_page_recheck={'sha256': pages[0]['sha256'], 'observed_at': '2026-11-16T13:00:59Z'})
 
 
@@ -52,12 +55,12 @@ class BraveMetadataTests(unittest.TestCase):
     def test_complete_cursor_inventory_and_first_page_recheck(self):
         pages = [page([row()], more=True, total=2), page([row(2)], cursor='A', end='B', total=2)]
         self.assertEqual(2, len(validate(bundle(pages), CUTOFF)))
-        replies, calls = iter(pages + [pages[0]]), []
-        def request(cursor):
-            calls.append(cursor)
+        replies, calls = iter(pages + [bundle(pages)['oldest_page_check']['page'], pages[0]]), []
+        def request(cursor, direction='DESC'):
+            calls.append((cursor, direction))
             return next(replies)
         result = capture(CUTOFF, request=request)
-        self.assertEqual([None, 'A', None], calls)
+        self.assertEqual([(None, 'DESC'), ('A', 'DESC'), (None, 'ASC'), (None, 'DESC')], calls)
         self.assertEqual(2, len(validate(result, CUTOFF)))
         with self.assertRaises(ValueError):
             capture(CUTOFF, request=lambda cursor: pages[0], max_pages=1)
@@ -81,6 +84,19 @@ class BraveMetadataTests(unittest.TestCase):
         for value in cases:
             with self.subTest(value=value), self.assertRaises((ValueError, TypeError)):
                 validate(value, CUTOFF)
+
+    def test_capped_self_consistent_inventory_needs_opposite_endpoint_agreement(self):
+        original = bundle([page([row()])])
+        for change in ('count', 'missing', 'different_record', 'duplicate', 'version'):
+            value = copy.deepcopy(original)
+            oldest = value['oldest_page_check']['page']
+            if change == 'count': oldest['total_count'] = 1001
+            elif change == 'missing': oldest['records'] = []
+            elif change == 'different_record': oldest['records'][0] = row(999)
+            elif change == 'duplicate': oldest['records'] *= 2
+            else: value['version'] = 1
+            oldest['sha256'] = digest({k: v for k, v in oldest.items() if k != 'sha256'})
+            with self.subTest(change=change), self.assertRaises(ValueError): validate(value, CUTOFF)
 
     def test_gh_boundary_uses_shell_false_and_minimizes_response(self):
         calls = []
