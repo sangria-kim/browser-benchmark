@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "event_id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+  "feature_id": "vivaldi-browser-fullscreen-retention",
+  "browser": "vivaldi",
+  "event_type": "bug_fix",
+  "version": "8.3",
+  "channel": "stable",
+  "platform": [
+    "unknown"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "Desktop 8.3 두 번째 minor 업데이트다. 해당 수정의 영향 OS, 플레이어별 상세 조건 및 정확한 패치 빌드는 본문에 명시되지 않았다. 개별 설치본은 확인하지 않았다.",
+    "release_label": "Desktop minor update 2",
+    "benchmark_repetitions": 3
+  },
+  "observed_at": "2026-11-12T23:24:54.740586+00:00",
+  "announced_at": "2026-11-10",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://vivaldi.com/blog/desktop/minor-update-two-8-3/",
+      "section": "improvements / VB-132228",
+      "observed_at": "2026-11-12T23:18:01.122013+00:00",
+      "content_sha256": "3b3a3233cc684ef24e6d5919adc78e438f09b5827846aaa458b7735ff85c11b7"
+    },
+    {
+      "url": "https://vivaldi.com/blog/on-to-the-next-one-8-4-begins-vivaldi-browser-snapshot-4226-3/",
+      "section": "Changelog / VB-132228",
+      "observed_at": "2026-11-12T23:18:04.053983+00:00",
+      "content_sha256": "87f3e37edc3198ab00e104525445ff64c2418b526efabe2e694246f6d527c358"
+    }
+  ],
+  "summary": "Vivaldi 8.3에서 영상 종료 시 브라우저 전체화면 유지 수정",
+  "delta": "VB-132228은 HTML5 영상 전체화면을 종료할 때 브라우저 창 전체화면도 함께 종료되는 문제다. 이 수정이 11월 9일 8.4 snapshot에 이어 11월 10일 8.3 Stable 두 번째 minor 노트에 포함됐다. 이 본문은 전체 패치 버전을 명시하지 않는다.",
+  "verification_status": "official_document_observation_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "영상과 페이지를 오갈 때 기존 창 모드를 유지하는 구체적인 작업 복구 차이가 있다.",
+  "priority": "P2",
+  "priority_reason": "영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+  "comparison_question": "삼성 브라우저와 비교할 때, 영상 전체화면만 끝냈을 때 원래 브라우저 창의 전체화면 상태와 작업 맥락을 유지하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 OS와 영상 플레이어에서 실제 설치 버전 및 키와 버튼별 재현",
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "release_label": "Desktop minor update 2"
+}

@@ -1,0 +1,50 @@
+{
+  "schema_version": 1,
+  "event_id": "brave-search-url-cloaking-announcement-20261111",
+  "feature_id": "brave-search-result-url-cloaking",
+  "browser": "brave",
+  "event_type": "announcement",
+  "version": null,
+  "channel": "unknown",
+  "platform": [
+    "unknown"
+  ],
+  "workstreams": [
+    "pc",
+    "mobile"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "Brave Search 웹 서비스, 브라우저 버전 미지정. 플랫폼 목록은 웹 사용 비교 대상이며 각 OS에서 출시를 확인한 뜻이 아니다. 계정·지역·한국어별 제공 조건 미명시.",
+    "product": "Brave Search web service, not Brave browser release"
+  },
+  "observed_at": "2026-11-11T22:39:34.161576+00:00",
+  "announced_at": "2026-11-11",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://brave.com/blog/google-goto-anti-scraping/",
+      "section": "What this means for users",
+      "observed_at": "2026-11-11T22:35:56.161016+00:00",
+      "content_sha256": "d3ae7e65c287b83294633cece5080224e65b3b80f622da4a903b597fac63bacd"
+    }
+  ],
+  "summary": "Brave Search 결과 링크 URL cloaking 도입 예고",
+  "delta": "향후 며칠 내 검색 결과 링크를 암호화된 중계 주소로 바꿀 예정. 복사한 주소는 원래 목적지가 아니며 만료될 수 있다. JavaScript가 켜진 경우 POPRF로 클릭 목적지를 숨긴다고 설명하지만 JS 비활성화 시 일반 리디렉션으로 서버가 목적지를 볼 수 있다.",
+  "verification_status": "official_body_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "링크 복사·장기 저장·JavaScript 조건의 개인정보 차이는 비교 가치가 있다. 다만 Brave Search 서비스 예고이며 Brave 브라우저 릴리스가 아니고 실제 배포·OS별 지원·한국 조건 미확인으로 watch.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동일 검색 결과의 주소 복사·공유·북마크 과제에서 원래 URL 보존과 만료 안내, JS 설정별 프라이버시 설명은 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Official rollout or reproducible test environment",
+  "assessed_at": "2026-11-11T22:39:34.161576+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

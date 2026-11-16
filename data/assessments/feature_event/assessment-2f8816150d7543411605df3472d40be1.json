@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "기존 질문형 여러 탭 비교와 달리 유사 상품 탐색 맥락에서 비교 진입을 제안한다. 진입 조작·동의·비교 정확도 검토 과제가 명확하다.",
+    "Original priority reason: 쇼핑 중 여러 탭 비교의 탐색 부담과 제안/읽기 동의 경계를 비교할 수 있는 제한적 사용자 흐름 변화.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-contextual-product-comparison-rollout-20261109/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저에서 여러 상품 탭을 비교할 때 비교 대상을 어떻게 선택하며, 페이지 읽기 동의·결과 확인·제안 끄기를 어디서 하는가? 지원 여부는 별도 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 빌드의 노출·끄기·계정 조건과 한국 제공 근거 확보 후 실기 비교",
+  "schema_version": 2,
+  "assessment_id": "assessment-2f8816150d7543411605df3472d40be1",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-contextual-product-comparison-rollout-20261109",
+  "input_hash": "3cc3678d36ae040d5948d46475c4de82a9f1ddbd95e1661e415586826aceac81",
+  "input_revision": "data/event-revisions/edge-contextual-product-comparison-rollout-20261109/schema-v1.json:sha256:6014da5289efd7eab95aa22c39ad94134b6244f888b26fd8db727b4ebe908022",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-10T23:18:05.982921+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-6a2010cb57517e62e22b2a97",
+    "src-legacy-0be3cf7a8649368fdf49c9e2",
+    "src-legacy-219b214e0a2e8cc2356a07cb"
+  ]
+}

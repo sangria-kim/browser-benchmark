@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-fd03c14e80b268069b9390aa: Source baseline: Enable Autofill Cardholder Name Fix Flow A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e1df7fea179ef086e5a66bc67486c6a4",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-fd03c14e80b268069b9390aa",
+  "input_hash": "449659c1f7b06cd95feb8ee0c4d0b7c8b3b48fe8c19db7f1803f02a0af636bc3",
+  "input_revision": "semantic-sha256:b16f2e008b0ff0befa0eb85718f360dbcbf011c9f0e33e12452fd7c414653f3d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-4a81f6bc317ca80089a565b1",
+    "src-legacy-f432663eb878e3022814de1f"
+  ]
+}

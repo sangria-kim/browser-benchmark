@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "observed_at": "2026-11-05T22:52:24.712Z",
   "announced_at": "2026-11-05",
   "effective_at": null,
@@ -62,5 +62,16 @@
   "priority_reason": "두 문서를 나란히 보는 반복 과제의 직접 조작 경로가 바뀌어 P2 비교 과제로 선정한다. 기존 기능 복귀이며 대규모 새 범주 도입은 아니다.",
   "comparison_question": "동일한 두 문서 비교 과제에서 가장자리 드래그와 메뉴 기반 분할 방식은 조작 수·오작동·소요 시간에 어떤 차이가 있는가?",
   "benchmark_plan": "Windows 정식 1.99.55에서 설정 노출·초기값 기록→좌우 가장자리 각각 드래그→끄기/켜기→가로·세로 탭에서 반복. 탭 그룹 분리 후 충돌 유무를 관찰하되 이전 취약 버전을 설치하지 않는다.",
-  "revisit_trigger": "정식 설치본의 설정 노출·초기값·좌우 드래그 동작과 한국 환경 제공 여부 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토."
+  "revisit_trigger": "정식 설치본의 설정 노출·초기값·좌우 드래그 동작과 한국 환경 제공 여부 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토.",
+  "source_item_ids": [
+    "src-legacy-1e2e11584860e6a16bfa847f",
+    "src-legacy-2493dd6b530900c474f777a1",
+    "src-legacy-d5c532253764560b18acb4b0",
+    "src-legacy-f3d7269b66ebf6574397a77b"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4d7ff6f63573080da291d779: Fixed an issue in WebGPU where inlining three or more calls to a function operating on a large struct could silently miscompile on some devices, producing incorrect results. (186804865) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7b09ca2b5f1a64d0f35866733beedd0d",
+  "subject_kind": "source_item",
+  "subject_id": "src-4d7ff6f63573080da291d779",
+  "input_hash": "b79d7799657966cf7c0ebdfc8ffbc9b7e2fb79be8ddb926d404d8b3a87752a32",
+  "input_revision": "semantic-sha256:a9685a829aaab3d73419cf5c975d6ee97ea412c59d06aaa34fb70938022a8560",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4d7ff6f63573080da291d779"
+  ]
+}

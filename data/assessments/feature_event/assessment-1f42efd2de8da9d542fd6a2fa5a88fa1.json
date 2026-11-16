@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "공식 현재 제공 발표와 과거 요청 UI를 대조한 구체적인 새 신고 진입 경로다. 개별 버전이 명시되지 않아 156을 추정하지 않는다.",
+    "Original priority reason: 사기 신고 상황에 한정된 추가 흐름이며 개별 버전·OS 조건은 검증이 필요하다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-notification-block-report-announced-20261102/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "단순 차단과 차단 후 신고에서 조작 수·정보 전송 고지·취소 가능성은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "한국 단말·OS·계정 조건에서 실제 노출과 통제된 재현 시험, 공식 지원 조건 보완",
+  "schema_version": 2,
+  "assessment_id": "assessment-1f42efd2de8da9d542fd6a2fa5a88fa1",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-notification-block-report-announced-20261102",
+  "input_hash": "b40ec27ce4c6e9ba2702783ad3a9e1f7531d0c9c444bb2da306acba9df771492",
+  "input_revision": "data/event-revisions/edge-notification-block-report-announced-20261102/schema-v1.json:sha256:8b943f609b5b1645499abe241d3433a087233b5ec9c645f38a92c67c832e54b9",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-03T23:29:07.543849+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-41590ca0a0adca837a587be6",
+    "src-legacy-4b79d7cc313379dc49ac4b64",
+    "src-legacy-b8df405a642393d460124dd2"
+  ]
+}

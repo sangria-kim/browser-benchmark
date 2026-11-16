@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a55d525bef50c71bf46c4886: Source baseline: Overlay Scrollbars A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b460c5966cb3d89db5aac89bf5add002",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a55d525bef50c71bf46c4886",
+  "input_hash": "7f77a0766efbf3e04ad77d34e05250a0cec118bd0bebc38e062d3a794cd40379",
+  "input_revision": "semantic-sha256:b08a74ec6a1dcb49c4f9cca9c8822558314e7b319ac73c65e17d193d23de2617",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ba1538e18fe4e6e3ef1d5650",
+    "src-legacy-d91abe5365f2aa010462694e"
+  ]
+}

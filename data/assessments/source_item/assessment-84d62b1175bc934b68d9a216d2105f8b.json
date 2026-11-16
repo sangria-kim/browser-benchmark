@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a26838188b6665b288de3bac: Fixed tearing down SMIL animation correctly even if its target element or its attribute name changes in a reentrant code. (189708246) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-84d62b1175bc934b68d9a216d2105f8b",
+  "subject_kind": "source_item",
+  "subject_id": "src-a26838188b6665b288de3bac",
+  "input_hash": "3061928380128464a8bd697f23fa703b5b2408a284fdf53abc0f1432c1f14bd2",
+  "input_revision": "semantic-sha256:39c8382ce3a805ff0b72e5e6797a86d3ba609df2a531b3f05b407000cba27d80",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a26838188b6665b288de3bac"
+  ]
+}

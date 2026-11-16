@@ -1,0 +1,27 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "158 목록에서 빠졌으나 개별 공식 기능 API는 존재하며 deleted=false, Chrome Proposed 및 모든 shipping milestone null. 목록 누락만으로 출시 취소·철회·다른 버전 이동을 단정할 수 없음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-svg-textpath-side-list-omission-20261102/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "공식 지원 상태가 확인되면 동일 SVG 텍스트 경로의 렌더링 호환성을 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 기능 상태/일정 변경의 명시적 근거 또는 목록 복구",
+  "schema_version": 2,
+  "assessment_id": "assessment-923b6990c695fd912aed52ceded3d93c",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-svg-textpath-side-list-omission-20261102",
+  "input_hash": "0fbec2b1597402f1c19fc56de1bd3fa313a66c23909ba03cb767ba1d36d9eafa",
+  "input_revision": "data/event-revisions/chrome-svg-textpath-side-list-omission-20261102/schema-v1.json:sha256:2810d57f4f3ac343bcf367858deb56b2d890a927b942143762768b07ba501761",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-01T22:58:47Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-f9b5a9f13568fc02351a8c14",
+    "src-legacy-369025cfd5c1154ad17ea600"
+  ]
+}

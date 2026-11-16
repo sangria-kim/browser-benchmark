@@ -1,0 +1,848 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "feature-event",
+  "oneOf": [
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "feature-event",
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "feature_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "browser": {
+          "enum": [
+            "chrome",
+            "edge",
+            "firefox",
+            "safari",
+            "brave",
+            "whale",
+            "opera",
+            "vivaldi"
+          ]
+        },
+        "event_type": {
+          "enum": [
+            "added",
+            "announced",
+            "announcement",
+            "behavior_change",
+            "behavior_fix",
+            "beta_feature_change",
+            "beta_feature_observation",
+            "bug_fix",
+            "changed",
+            "channel_change",
+            "channel_expansion",
+            "correction",
+            "default_change",
+            "deprecated",
+            "deprecation_announcement",
+            "experiment_observation",
+            "experiment_observed",
+            "experimental_observation",
+            "expiry_extension",
+            "feature_rollout",
+            "fix",
+            "flag_registration",
+            "general_fix",
+            "improvement",
+            "introduced",
+            "modified",
+            "options_modified",
+            "pending_verification",
+            "planned_milestone_change",
+            "planned_milestone_confirmation",
+            "planned_retirement",
+            "planned_scope_expansion",
+            "platform_change",
+            "policy_observation",
+            "registration",
+            "registration_with_options",
+            "release_inclusion",
+            "removal",
+            "removed",
+            "rollout",
+            "rollout_expansion",
+            "security_fix",
+            "source_behavior_change",
+            "source_change",
+            "source_registration",
+            "source_scope_change",
+            "stable_adoption",
+            "stable_introduction",
+            "stable_release_inclusion",
+            "support_change",
+            "support_scope_change",
+            "unknown",
+            "verification_pending"
+          ]
+        },
+        "version": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "channel": {
+          "type": "string",
+          "minLength": 1
+        },
+        "platform": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "announced_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effective_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://[^\\s]+$"
+              },
+              "section": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_revision": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "source_item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 1
+        },
+        "before": {},
+        "after": {},
+        "verification_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "origin": {
+          "enum": [
+            "baseline",
+            "backfill",
+            "daily"
+          ]
+        },
+        "correction_of": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "workstreams": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "ai_related": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "object"
+        },
+        "delta": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "previous_event_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selection_status": {
+          "enum": [
+            "selected",
+            "watch",
+            "pending_verification",
+            "excluded"
+          ]
+        },
+        "selection_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "priority": {
+          "enum": [
+            "P1",
+            "P2",
+            null
+          ]
+        },
+        "priority_reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "comparison_question": {
+          "type": "string",
+          "minLength": 1
+        },
+        "benchmark_readiness": {
+          "enum": [
+            "ready",
+            "conditional",
+            "unknown"
+          ]
+        },
+        "revisit_trigger": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "assessed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "selection_rule_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "assessment_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "feature_id",
+        "browser",
+        "event_type",
+        "version",
+        "channel",
+        "platform",
+        "observed_at",
+        "announced_at",
+        "effective_at",
+        "sources",
+        "source_item_ids",
+        "summary",
+        "before",
+        "after",
+        "verification_status",
+        "origin",
+        "correction_of",
+        "revision"
+      ],
+      "additionalProperties": false
+    },
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "title": "feature-event",
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "const": 2
+        },
+        "event_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "feature_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "browser": {
+          "enum": [
+            "chrome",
+            "edge",
+            "firefox",
+            "safari",
+            "brave",
+            "whale",
+            "opera",
+            "vivaldi"
+          ]
+        },
+        "event_type": {
+          "enum": [
+            "added",
+            "announced",
+            "announcement",
+            "behavior_change",
+            "behavior_fix",
+            "beta_feature_change",
+            "beta_feature_observation",
+            "bug_fix",
+            "changed",
+            "channel_change",
+            "channel_expansion",
+            "correction",
+            "default_change",
+            "deprecated",
+            "deprecation_announcement",
+            "experiment_observation",
+            "experiment_observed",
+            "experimental_observation",
+            "expiry_extension",
+            "feature_rollout",
+            "fix",
+            "flag_registration",
+            "general_fix",
+            "improvement",
+            "introduced",
+            "modified",
+            "options_modified",
+            "pending_verification",
+            "planned_milestone_change",
+            "planned_milestone_confirmation",
+            "planned_retirement",
+            "planned_scope_expansion",
+            "platform_change",
+            "policy_observation",
+            "registration",
+            "registration_with_options",
+            "release_inclusion",
+            "removal",
+            "removed",
+            "rollout",
+            "rollout_expansion",
+            "security_fix",
+            "source_behavior_change",
+            "source_change",
+            "source_registration",
+            "source_scope_change",
+            "stable_adoption",
+            "stable_introduction",
+            "stable_release_inclusion",
+            "support_change",
+            "support_scope_change",
+            "unknown",
+            "verification_pending"
+          ]
+        },
+        "version": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "channel": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "platform": {
+          "type": "array"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "announced_at": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "effective_at": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "sources": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "anyOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "url": {
+                    "type": "string",
+                    "format": "uri",
+                    "pattern": "^https://[^\\s]+$"
+                  },
+                  "section": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "source_revision": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "minLength": 1
+                      },
+                      {
+                        "type": "null"
+                      },
+                      {
+                        "type": "object"
+                      }
+                    ]
+                  },
+                  "content_sha256": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "observed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "verified_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "checked_at": {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  "sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "note_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "response_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                  },
+                  "title": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "url"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://[^\\s]+$"
+              }
+            ]
+          }
+        },
+        "source_item_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "summary": {
+          "type": "string"
+        },
+        "before": {},
+        "after": {},
+        "verification_status": {
+          "type": "string"
+        },
+        "origin": {
+          "const": "legacy"
+        },
+        "correction_of": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revision": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "workstreams": {
+          "type": "array"
+        },
+        "ai_related": {
+          "type": [
+            "boolean",
+            "string"
+          ]
+        },
+        "scope": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "delta": {
+          "type": [
+            "object",
+            "string"
+          ]
+        },
+        "source_revision": {
+          "type": [
+            "null",
+            "object",
+            "string"
+          ]
+        },
+        "previous_event_id": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "selection_status": {
+          "enum": [
+            "selected",
+            "watch",
+            "pending_verification",
+            "excluded"
+          ]
+        },
+        "selection_reason": {
+          "type": "string"
+        },
+        "priority": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "priority_reason": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "comparison_question": {
+          "type": [
+            "null",
+            "string"
+          ]
+        },
+        "benchmark_readiness": {
+          "type": "string"
+        },
+        "revisit_trigger": {
+          "type": "string"
+        },
+        "assessed_at": {
+          "type": "string"
+        },
+        "selection_rule_version": {
+          "type": "string"
+        },
+        "assessment_id": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "device_test": {
+          "type": "string"
+        },
+        "source_evidence": {
+          "type": "array"
+        },
+        "previous_comparison": {
+          "type": "object"
+        },
+        "flag_ids": {
+          "type": "array"
+        },
+        "supporting_files": {
+          "type": "array"
+        },
+        "source_commit_ids": {
+          "type": "array"
+        },
+        "title": {
+          "type": "string"
+        },
+        "user_impact": {
+          "type": "string"
+        },
+        "srp_input_mode": {
+          "type": "array"
+        },
+        "korea_availability": {
+          "type": "string"
+        },
+        "source_event_id": {
+          "type": "string"
+        },
+        "source_commit_id": {
+          "type": "string"
+        },
+        "source_url": {
+          "type": "string"
+        },
+        "related_feature_symbols": {
+          "type": "array"
+        },
+        "benchmark_plan": {
+          "type": "string"
+        },
+        "conditions": {
+          "type": "object"
+        },
+        "feature_mapping": {
+          "type": "string"
+        },
+        "product": {
+          "type": "string"
+        },
+        "committed_at": {
+          "type": "string"
+        },
+        "source_revisions": {
+          "type": "array"
+        },
+        "novelty_basis": {
+          "type": "string"
+        },
+        "benchmark_candidate": {
+          "type": "object"
+        },
+        "behavioral_verification": {
+          "type": "string"
+        },
+        "release_label": {
+          "type": "string"
+        },
+        "source_release_first_offered_at": {
+          "type": "string"
+        },
+        "benchmark": {
+          "type": "object"
+        },
+        "benchmark_steps": {
+          "type": "array"
+        },
+        "files": {
+          "type": "array"
+        },
+        "metrics": {
+          "type": "array"
+        },
+        "korean_language_support": {
+          "type": "string"
+        },
+        "comparison_targets": {
+          "type": "array"
+        },
+        "korea": {
+          "type": "object"
+        },
+        "change_types": {
+          "type": "array"
+        },
+        "corrections": {
+          "type": "array"
+        },
+        "report_date": {
+          "type": "string"
+        },
+        "support_evidence_history": {
+          "type": "array"
+        },
+        "correction_history": {
+          "type": "array"
+        },
+        "installed_build_verification": {
+          "type": "string"
+        },
+        "completion_criteria": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "event_id",
+        "feature_id",
+        "browser",
+        "event_type",
+        "version",
+        "channel",
+        "platform",
+        "observed_at",
+        "announced_at",
+        "effective_at",
+        "sources",
+        "source_item_ids",
+        "summary",
+        "before",
+        "after",
+        "verification_status",
+        "origin",
+        "correction_of",
+        "revision"
+      ],
+      "additionalProperties": false
+    }
+  ]
+}

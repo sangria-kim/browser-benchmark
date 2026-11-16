@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3b8be231b51ffc1bee1e8bf7: Source baseline: NewTabPagePrerender2 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4f5925095b5cfaafd78c6898c0a52b37",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3b8be231b51ffc1bee1e8bf7",
+  "input_hash": "4cddfb8c21d47ea552c6a4b77b06592310654423fb3d02e75da13a8532cd667e",
+  "input_revision": "semantic-sha256:bbfc8158aba6db59c8c8d3516646143968c8f9428454d4e2aea64558f4f76552",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-29daafebcc25ba99a2d72994",
+    "src-legacy-d70addf7c2db1f6eaa5245fe"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-10fd548ffd3481b3a69bf180: Source baseline: FlushFileBuffersOnSyncFlush A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fd3680716682c1e0721f068bdf0a3379",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-10fd548ffd3481b3a69bf180",
+  "input_hash": "d4aa8c23ba9f97022a68cad854901fa86a3093ccf39a072c78ebc09a7690e597",
+  "input_revision": "semantic-sha256:272d935ad14586c8dd5ac69311aaee748884398ca2fe5031dc4b125d9f2b2534",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-1e130d036229f2f9c2514a81"
+  ]
+}

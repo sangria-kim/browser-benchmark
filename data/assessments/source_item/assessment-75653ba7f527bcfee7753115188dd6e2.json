@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f6c3adc566ca2f3b5a7322bf: Firefox now supports nested arbitrary substitution functions in the primary parameters of var() , attr() , and env() ; for example, var(attr(data-theme-prop type(<custom-ident>))) and env(var(--safe-area-block-start)) . A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-75653ba7f527bcfee7753115188dd6e2",
+  "subject_kind": "source_item",
+  "subject_id": "src-f6c3adc566ca2f3b5a7322bf",
+  "input_hash": "5c4492ea5165ff0694faf4f3dd5d109aa76a96d6747ee32bdc8b1fed9fb2dc6d",
+  "input_revision": "semantic-sha256:9eb506c6b67c05757baf2af75db10a6855f92bd9e43945bf3eb2520865a3956f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f6c3adc566ca2f3b5a7322bf"
+  ]
+}

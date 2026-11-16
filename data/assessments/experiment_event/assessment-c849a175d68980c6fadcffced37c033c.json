@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c8a601c6fe3d796f4babde77: Source baseline: Debian version for new Crostini containers A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c849a175d68980c6fadcffced37c033c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c8a601c6fe3d796f4babde77",
+  "input_hash": "b79c6ecfd5ebd613587093abfbda5c0bf321705adc33c8f1e90ae49d57065a3d",
+  "input_revision": "semantic-sha256:a79c7cb154289de32c6fc02c559581e47b49f8423f74aac93d49fad263433d9c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-a0514e5718f3c72a8cfafdf3"
+  ]
+}

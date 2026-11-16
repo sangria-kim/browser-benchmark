@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-602c9191ab06355b263d5762: Fixed an issue where the TypedArray constructor could produce incorrect results when copying Array content whose element access has side effects. (186227333) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f6c4cd269ee25f95b6764f57115a18de",
+  "subject_kind": "source_item",
+  "subject_id": "src-602c9191ab06355b263d5762",
+  "input_hash": "a2fa5b13bfbc0ddde9840f99436d5ac653684e547d55a2ced2038f08930916da",
+  "input_revision": "semantic-sha256:fa7ebed369d844f98e539549718fc949e5d60d29d13f49360a146d9c50fa4d89",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-602c9191ab06355b263d5762"
+  ]
+}

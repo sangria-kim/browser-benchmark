@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "일반 보안 패치와 달리 기존 사이트 인증서 호환성에 영향을 주는 후속 신뢰 변경. 미래 적용과 안전한 비교 환경 미확보로 watch.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-emudhra-remaining-roots-announcement-20261110/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "동일 인증서 체인에서 브라우저별 차단·설명 UX와 사이트 운영자 이관 안내는 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "11월16일 이후 구성요소 적용 근거와 안전한 인증서 시험 환경",
+  "schema_version": 2,
+  "assessment_id": "assessment-3fb770b89b7352718a25cbab7f88ddb9",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-emudhra-remaining-roots-announcement-20261110",
+  "input_hash": "6127d13113bd914d510b37dfd58fab90a673c46721091182caae6e3b801e299d",
+  "input_revision": "data/event-revisions/edge-emudhra-remaining-roots-announcement-20261110/schema-v1.json:sha256:b7276f47de26414d696e9bf4b0d8473f425fdd4c2f9c2159121c2c868f2e87c1",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-11T22:39:34.161576+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-c20d4506e2574b1c05d7b10a",
+    "src-legacy-56c29387261d51d84e62c41f"
+  ]
+}

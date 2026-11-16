@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3f163466f127a897bc720697: Source baseline: enable-contextual-tasks-pin-button-in-toolbar A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a409616dc62e179dd5273531bc62e159",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3f163466f127a897bc720697",
+  "input_hash": "09f4b01ffab98661c00a89cf25f88fe86f59716863e78c66e67fb9533a627563",
+  "input_revision": "semantic-sha256:685537ad8b8747505a8f30ff37b29edda54dd5795132569b21a65c28a9403dfd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-edcb853d4355135a288cff7e",
+    "src-legacy-2b2506c4e398ed9647bce855"
+  ]
+}

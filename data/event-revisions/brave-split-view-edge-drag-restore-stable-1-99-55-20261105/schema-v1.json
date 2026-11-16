@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-05T22:52:24.712Z",
+  "announced_at": "2026-11-05",
+  "effective_at": null,
+  "verification_status": "official_sources_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "priority": "P2",
+  "benchmark_readiness": "conditional",
+  "assessed_at": "2026-11-05T22:52:24.712Z",
+  "selection_rule_version": "pm-selection-v2",
+  "event_id": "brave-split-view-edge-drag-restore-stable-1-99-55-20261105",
+  "feature_id": "brave-split-view-edge-drag",
+  "browser": "brave",
+  "event_type": "behavior_change",
+  "version": "1.99.55",
+  "channel": "stable",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "product": "Brave browser",
+    "other_edition": "동일 항목이 Brave Origin 노트에도 있으며 일반 Brave와 별도 제품 범위로 보존.",
+    "platform_note": "공식 latest의 Desktop 절. GitHub의 Android/iOS 설치 artifact 안내 및 QA label을 Stable 모바일 출시 근거로 사용하지 않는다.",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "checked_at": "2026-11-05T22:52:24.712Z",
+      "effective_at": null,
+      "real_test": "미실행",
+      "conditions": "국가·언어·계정 조건 미명시. Windows 10+ 및 macOS 12+ 설치 요건. 정식 설치본 기본값 미검증."
+    },
+    "account": null,
+    "subscription": null,
+    "age": null
+  },
+  "source_revision": "desktop_changelog_blob:982f9510d3fedbe2e8e19cdb4f0b1ce43bc2e04d",
+  "sources": [
+    "https://brave.com/latest/",
+    "https://github.com/brave/brave-browser/releases/tag/v1.99.55",
+    "https://github.com/brave/brave-browser/issues/49752",
+    "https://github.com/brave/brave-browser/issues/49752#issuecomment-6327706408"
+  ],
+  "summary": "창 좌우 가장자리 드래그로 분할 보기를 여는 설정이 Desktop 1.99.55에서 복귀",
+  "delta": {
+    "before": "충돌 이슈로 해당 설정이 숨김·기본 비활성 상태였으며 Windows 1.99.48 Beta에서 복귀 QA가 선행했다.",
+    "after": "1.99.55 정식 노트에 설정 재활성화가 명시됐다. 공개 Beta QA는 기본 켜짐과 탭 드래그·가로/세로 탭 동작을 확인했으며, 정식 설치본 기본값은 직접 확인하지 않았다.",
+    "novelty_basis": "11/4 artifact-only 1.99.55 prerelease=true와 비교해 11/5에 prerelease=false 및 기능별 정식 노트가 확인됨. Beta 선행 기록과 구분하며 최초 발명이라 표현하지 않는다.",
+    "api_published_at": "2026-11-04T18:56:17Z",
+    "api_updated_at": "2026-11-05T17:13:17Z",
+    "stable_notes_date": "2026-11-05",
+    "date_note": "API 생성·수정일, 공식 노트 날짜와 실제 개별 사용자 활성화일을 구분한다."
+  },
+  "selection_reason": "탭을 창 가장자리로 끌어 두 페이지를 나란히 보는 직접 조작 경로가 정식 채널에 돌아온다.",
+  "priority_reason": "두 문서를 나란히 보는 반복 과제의 직접 조작 경로가 바뀌어 P2 비교 과제로 선정한다. 기존 기능 복귀이며 대규모 새 범주 도입은 아니다.",
+  "comparison_question": "동일한 두 문서 비교 과제에서 가장자리 드래그와 메뉴 기반 분할 방식은 조작 수·오작동·소요 시간에 어떤 차이가 있는가?",
+  "benchmark_plan": "Windows 정식 1.99.55에서 설정 노출·초기값 기록→좌우 가장자리 각각 드래그→끄기/켜기→가로·세로 탭에서 반복. 탭 그룹 분리 후 충돌 유무를 관찰하되 이전 취약 버전을 설치하지 않는다.",
+  "revisit_trigger": "정식 설치본의 설정 노출·초기값·좌우 드래그 동작과 한국 환경 제공 여부 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토."
+}

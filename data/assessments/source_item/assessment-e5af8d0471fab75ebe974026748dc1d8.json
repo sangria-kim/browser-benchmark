@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0dc757789ecc0a60d7f2f81a: Fixed Promise.try() to resolve its result with PromiseResolve , so a promise returned by the callback is no longer wrapped in an extra promise. (185064567) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e5af8d0471fab75ebe974026748dc1d8",
+  "subject_kind": "source_item",
+  "subject_id": "src-0dc757789ecc0a60d7f2f81a",
+  "input_hash": "dd4bc45dd8ba04c2941d95fbb7e9573f86ff77dcc8e7f0809b65cb685cc3ee24",
+  "input_revision": "semantic-sha256:b41b68b3f532add5c16bd97d89ee764ea10d78f3949146a3ce1c3c03bf0ede03",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0dc757789ecc0a60d7f2f81a"
+  ]
+}

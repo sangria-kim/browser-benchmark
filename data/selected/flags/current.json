@@ -1,0 +1,59 @@
+{
+  "schema_version": 2,
+  "selection_kind": "flags",
+  "as_of": "2026-11-16T03:05:09Z",
+  "input_hash": "4872fb5a7253492ba8c29ea52afeec5647d79ab8400d80bbdcd51b5c09b32296",
+  "rule_version": "pm-selection-v3.0.0",
+  "current": [
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-fd7d947d568ffafd39ff292e751905ae",
+      "catalog_id": "exp-chromium-020c9a0390955bd679839457",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "experiment_kind": "flag_entry"
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-8dd2099c32c619c966da0a22",
+      "assessment_id": "assessment-73c19a5d939f58e2984883a794dc796a",
+      "catalog_id": "exp-chromium-681d22ecc3663c3ea87d9d73",
+      "event_ids": [
+        "event-8dd2099c32c619c966da0a22"
+      ],
+      "experiment_kind": "flag_entry"
+    }
+  ],
+  "history": [
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-8dd2099c32c619c966da0a22",
+      "assessment_id": "assessment-73c19a5d939f58e2984883a794dc796a",
+      "catalog_id": "exp-chromium-681d22ecc3663c3ea87d9d73",
+      "event_ids": [
+        "event-8dd2099c32c619c966da0a22"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-387d5eeb7aa6dcee03b142ec6d932799",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-16T03:05:09Z"
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-fd7d947d568ffafd39ff292e751905ae",
+      "catalog_id": "exp-chromium-020c9a0390955bd679839457",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-7017fffa21cbb1da40f7a657fdbdc32a",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-16T03:05:09Z"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.2",
+  "channel": "beta",
+  "platform": [],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-03T23:26:47Z",
+  "announced_at": "2026-11-03",
+  "effective_at": "2026-11-02",
+  "summary": "창별 세로 탭 목록 너비 유지",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "기존 세로 탭과 별개로 창 단위 레이아웃 상태 저장 범위가 명시됨.",
+  "priority": "P2",
+  "priority_reason": "다중 창의 작업 배치를 유지하는 반복 조작 감소 후보.",
+  "comparison_question": "크기가 다른 여러 창을 번갈아 쓰면서 탭 목록을 다시 맞추는 조작이 줄어드는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "여러 창의 너비 독립성 및 재시작 보존 범위 확인",
+  "assessed_at": "2026-11-03T23:30:00Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102",
+  "feature_id": "whale-vertical-tabs",
+  "event_type": "improvement",
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35247",
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/",
+    "https://help.whale.naver.com/ko/desktop/etc/verticaltab/"
+  ],
+  "delta": "기존 도움말은 세로 목록과 접기·펼치기를 설명하며 과거 공지는 관련 크래시 수정이었다. 이번은 창 단위 너비 보존이다. 브라우저 재시작까지 보존된다고 단정하지 않는다.",
+  "previous_event_id": null,
+  "scope": {
+    "product": "Whale Desktop",
+    "source_item_numbers": [
+      9
+    ],
+    "release_stage": "beta",
+    "channel_basis": "홈페이지 한국어·영문 공지와 연구소 제목·한국어 본문은 Beta. 연구소 영문 본문의 Stable, Beta 표기는 상충하며 Stable 제공은 미확인.",
+    "platform_basis": "Desktop 공지. 기능별 OS 범위 미공개로 platform=[]를 유지. Windows는 우선 시험 후보일 뿐 이 기능의 지원 확인값이 아님.",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "Desktop Beta 5.41.429.2. 항목별 OS·국가·언어·구독·연령·단계 배포 조건은 미공개. 한국어 공지 존재만으로 한국 제공·한국어 기능 지원을 확정하지 않음.",
+      "checked_at": "2026-11-03T23:26:47Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "actual_device_validation": "미실행",
+    "registered_date": "2026-11-03",
+    "registered_time": null,
+    "effective_at_basis": "공식 본문의 2026-11-02 날짜; 개별 설치본 업데이트·활성화 확인값은 아님.",
+    "novelty_basis": "버전별 명시적 변경과 이전 5.39.412.57 본문·기존 공개 아카이브·공식 도움말의 사용자 동작을 대조. 최초 제공일 또는 전체 과거 이력 완결로 확대하지 않음."
+  }
+}

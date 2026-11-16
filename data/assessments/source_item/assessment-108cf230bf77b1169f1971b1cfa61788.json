@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4b70f66ab6f8485959e47751: Fixed an issue where the identity and translation fast path of a transformation matrix ignored the w component when mapping a 4-component point. (187297446) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-108cf230bf77b1169f1971b1cfa61788",
+  "subject_kind": "source_item",
+  "subject_id": "src-4b70f66ab6f8485959e47751",
+  "input_hash": "adefe530233e9904242c4820866dd5bef972dddc0af0a40e7362cb053c58f93e",
+  "input_revision": "semantic-sha256:33d82590c7ce63100b0416c0b134ecaf69ce399c11437c70203b317954f26348",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4b70f66ab6f8485959e47751"
+  ]
+}

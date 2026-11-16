@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed creating a <select> triggering a Content Security Policy style-src violation. (190641471)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-68ed770406e4efe3f2b36a815a3ae7a5",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a3c9a5ea1b13ad0dae0909f",
+  "input_hash": "3776c13066e438d6dbd5886803b0c573d6884af8f99bfabd9da5251ace4069e6",
+  "input_revision": "semantic-sha256:d6bcf82a2d2c7b7c1d36eb2948220f14db9a96ae734164a6b4d3610e7e4853d9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2a3c9a5ea1b13ad0dae0909f"
+  ]
+}

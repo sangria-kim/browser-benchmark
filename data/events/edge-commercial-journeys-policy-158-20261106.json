@@ -19,7 +19,7 @@
   "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
   "assessed_at": "2026-11-07T23:12:38.066677+00:00",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-commercial-journeys-policy-158-20261106",
   "feature_id": "edge-commercial-journeys",
   "event_type": "policy_observation",
@@ -53,5 +53,14 @@
       "observed_at": "2026-11-07T23:12:38.066677+00:00"
     }
   ],
-  "delta": "업무 Get things done의 조건부 정책 수록"
+  "delta": "업무 Get things done의 조건부 정책 수록",
+  "source_item_ids": [
+    "src-legacy-daad6e4cd6b8b5ba77786ddf",
+    "src-legacy-6d8bc3ec2088e469590fd738"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

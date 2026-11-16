@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "등록뿐 아니라 구현·단위 테스트 변경이 확인되어 알림 소음 감소와 개입 요청 인지의 상충을 비교할 수 있다.",
+    "Original priority reason: 실험적으로 시작한 AI 작업의 알림 방해와 개입 요청 인지를 함께 비교할 가치가 있다. 전체 알림 정책이 아닌 특정 작업 흐름의 사용성 개선이므로 P2로 둔다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-actor-notification-silencing-flag-20261105/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "Android에서 AI 작업의 소리·진동 알림 수를 줄이면서 사용자 입력 요청·경고를 놓치지 않도록 하는 방식은 무엇인가? 동일한 작업과 알림 설정으로 비교할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함한 설치본·계정·지역 조건을 확보하면 flag 노출과 과제 동작을 확인한다.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4c90c350845ee55bf7de433ebfcc0994",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-actor-notification-silencing-flag-20261105",
+  "input_hash": "64ac07e1a316d715cb72bf2ae2da841b3b01ee2ec18dec355ea0881ae5bb5e3c",
+  "input_revision": "data/event-revisions/chrome-actor-notification-silencing-flag-20261105/schema-v1.json:sha256:ab1afbc41179e5e4b2247cd041afafea5d4dded289d79f758d06f327fbcfa0b0",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:53:24Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-c3cc221d8a3d76d023352b03",
+    "src-legacy-9f94dfafd1c4369b6a452ce6"
+  ]
+}

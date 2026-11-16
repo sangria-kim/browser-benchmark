@@ -1,0 +1,251 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sources-config",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "const": "1.0"
+    },
+    "encoding": {
+      "type": "string",
+      "minLength": 1
+    },
+    "browsers": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "chrome",
+          "edge",
+          "firefox",
+          "safari",
+          "brave",
+          "whale",
+          "opera",
+          "vivaldi"
+        ]
+      },
+      "minItems": 8,
+      "uniqueItems": true
+    },
+    "baseline": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "const": "current_index_and_bounded_backfill"
+        },
+        "backfill_since": {
+          "type": "string",
+          "format": "date"
+        },
+        "backfill_until": {
+          "const": "baseline_cutoff"
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "include_undated_current_documents": {
+          "const": true
+        },
+        "overlap_days": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "full_reconcile_days": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "legacy_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "mode",
+        "backfill_since",
+        "backfill_until",
+        "reason",
+        "include_undated_current_documents",
+        "overlap_days",
+        "full_reconcile_days",
+        "legacy_policy"
+      ],
+      "additionalProperties": false
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "source_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "browser": {
+            "enum": [
+              "chrome",
+              "edge",
+              "firefox",
+              "safari",
+              "brave",
+              "whale",
+              "opera",
+              "vivaldi"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://[^\\s]+$"
+          },
+          "parser": {
+            "enum": [
+              "html_document",
+              "html_index",
+              "chromestatus",
+              "apple_documentation",
+              "github_releases",
+              "github_markdown"
+            ]
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "platforms": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "language": {
+            "type": "string",
+            "minLength": 1
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "discovery": {
+            "type": "object",
+            "properties": {
+              "include_url_pattern": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "pagination": {
+                "enum": [
+                  "none",
+                  "next_link",
+                  "link_header",
+                  "api_total"
+                ]
+              },
+              "max_pages": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "max_documents": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "follow_related_documents": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "include_url_pattern",
+              "pagination",
+              "max_pages",
+              "max_documents",
+              "follow_related_documents"
+            ],
+            "additionalProperties": false
+          },
+          "item_policy": {
+            "const": "all_sections_including_security_and_fixes"
+          },
+          "scope_note": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "source_id",
+          "browser",
+          "url",
+          "parser",
+          "channels",
+          "platforms",
+          "language",
+          "enabled",
+          "discovery",
+          "item_policy",
+          "scope_note"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 8,
+      "uniqueItems": true
+    },
+    "unsupported_scopes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "browser": {
+            "enum": [
+              "chrome",
+              "edge",
+              "firefox",
+              "safari",
+              "brave",
+              "whale",
+              "opera",
+              "vivaldi"
+            ]
+          },
+          "scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "browser",
+          "scope",
+          "reason"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 8,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "contract_version",
+    "encoding",
+    "browsers",
+    "baseline",
+    "sources",
+    "unsupported_scopes"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "Windows 웹 앱 최대화가 인접 모니터를 침범하는 오류를 바로잡아 다중 화면 작업영역 경계를 회복한다.",
+    "Original priority reason: 캡처 결과 또는 다중 모니터 작업 배치의 구체 실패 회복.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/whale-desktop-webapp-multimonitor-5-41-429-3-20261106/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "서로 다른 배율의 모니터에서 웹 앱 최대화 경계는 정확한가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
+  "schema_version": 2,
+  "assessment_id": "assessment-acccf8597cfdeae796f6ae6b25361ff9",
+  "subject_kind": "feature_event",
+  "subject_id": "whale-desktop-webapp-multimonitor-5-41-429-3-20261106",
+  "input_hash": "2a56afaf659b5a7f3ffc279922fa05e8d41b15adb3f67249c702ae6814c25877",
+  "input_revision": "data/event-revisions/whale-desktop-webapp-multimonitor-5-41-429-3-20261106/schema-v1.json:sha256:a3b8eaa8e6783ee5455896f008563da3a56d50b140841fa0c1a669d032fb17ec",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-06T22:54:23Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-9086c070e43bac78cfabcdc2",
+    "src-legacy-c3e25715d1e05904b93a84ac",
+    "src-legacy-9eb8681d6bfc8a436548a7a7"
+  ]
+}

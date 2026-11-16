@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d95b11238ff02c1e5ec3000c: Fixed an issue where WKWebView.magnification reported the pre-gesture scale for a few moments after a pinch-to-zoom gesture ended, instead of the scale about to commit. (185381317) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-04f3e7401a555b3f59c4c4f503dcb5cb",
+  "subject_kind": "source_item",
+  "subject_id": "src-d95b11238ff02c1e5ec3000c",
+  "input_hash": "11b14e719a51efb25ea473239ee65eb9bf98476a8f219323725dc9e8c8530d75",
+  "input_revision": "semantic-sha256:7bcff712f31f04f74ca3490f550bc96d6a3d94b20cf23cf6cb9c8060233f4c62",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d95b11238ff02c1e5ec3000c"
+  ]
+}

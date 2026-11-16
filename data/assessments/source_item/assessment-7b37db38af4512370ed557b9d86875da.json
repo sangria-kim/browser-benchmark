@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0bbcef92a4d9b3945978b68a: Fixed the HTML parser building invalid DOM trees when script moved elements into another document, a shadow root, or a <template> while the page was still being parsed. (183256491) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7b37db38af4512370ed557b9d86875da",
+  "subject_kind": "source_item",
+  "subject_id": "src-0bbcef92a4d9b3945978b68a",
+  "input_hash": "3d3b83b3ce23de793bf22f4335aa1b68d1a50de00168f3a4c11a1ea39dab6b89",
+  "input_revision": "semantic-sha256:4953d87ca1edd2f6601233881156137fe3b3a760ccbf861bcc98592393349c12",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0bbcef92a4d9b3945978b68a"
+  ]
+}

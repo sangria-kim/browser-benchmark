@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e5fe6f3ea5d6927365ac546d: Source baseline: Glic Android Tablet A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c79a84df6f9fe0a65aa4cdd96d1773f2",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e5fe6f3ea5d6927365ac546d",
+  "input_hash": "c001fd44cc3e5e9aa09b810b11d1c6445de048bd760faafea3d26d994bcf6f30",
+  "input_revision": "semantic-sha256:44b0e11b1192dbb276cf591b549ead2237f4144ec4859a2d2a751a7da1beacb7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8865083dee357b809babddc4",
+    "src-legacy-cd9a0f3784aa7f1cc6d4bb5c"
+  ]
+}

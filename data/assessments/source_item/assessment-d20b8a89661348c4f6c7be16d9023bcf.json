@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-927eec06de887b3d9b661b9a: Fixed an issue where content changing inside an element with a blur() filter did not properly repaint, leaving stale pixels around the edge of the filtered region. (186278957) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d20b8a89661348c4f6c7be16d9023bcf",
+  "subject_kind": "source_item",
+  "subject_id": "src-927eec06de887b3d9b661b9a",
+  "input_hash": "24302336b2848f39c6e120f7de0068db552f62b3b8eda94e216219dfbb55c205",
+  "input_revision": "semantic-sha256:4f81bc7d83fcc5c20f8f903381c60c79a3f6fa1ff76a6d0a6fef61bad1bae947",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-927eec06de887b3d9b661b9a"
+  ]
+}

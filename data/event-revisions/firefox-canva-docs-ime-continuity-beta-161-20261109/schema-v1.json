@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "event_id": "firefox-canva-docs-ime-continuity-beta-161-20261109",
+  "feature_id": "firefox-canva-docs-ime-continuity",
+  "browser": "firefox",
+  "event_type": "behavior_fix",
+  "version": "161.0beta",
+  "channel": "beta",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "부분 지원",
+    "korean_language_detail": "공식 노트는 한국어 IME 관련 수정을 명시한다. UI 전체 한국어 지원을 뜻하지 않음.",
+    "korea_effective_at": null,
+    "device_test": "미실행",
+    "conditions": "Beta 안내이며 정식 출시 보장 없음. 한국어 조합 입력이 첫 글자 뒤 멈추던 특정 편집기 호환 문제를 수정한다고 안내한다. 모든 IME·사이트 개선은 아니다.",
+    "date_caveat": "11월9일은161 Beta 최초 제공일이다. 수시 갱신되는 개별 항목의 최초 발표·활성화일은 미확인."
+  },
+  "observed_at": "2026-11-11T22:36:10.391458+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/#note-792461",
+      "section": "Canva Docs에서 한국어·일본어 등 IME 입력이 첫 글자 뒤 중단되는 문제 수정.",
+      "observed_at": "2026-11-11T22:36:10.391458+00:00",
+      "sha256": "4394c885fb8318fcb1ac4aef979b0d8ab76953dedec94f42f5e7e7cdd95bcd03"
+    }
+  ],
+  "summary": "Canva Docs 한국어 IME 중단 수정의 Beta 수록",
+  "delta": "한국어 조합 입력이 첫 글자 뒤 멈추던 특정 편집기 호환 문제를 수정한다고 안내한다. 모든 IME·사이트 개선은 아니다.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "한국어 조합 입력이 첫 글자 뒤 멈추던 특정 편집기 호환 문제를 수정한다고 안내한다. 모든 IME·사이트 개선은 아니다. 구체적인 동일 조건 비교 과제를 정의할 수 있어 Beta 관찰 사건으로 선정.",
+  "priority": "P2",
+  "priority_reason": "특정 입력·공유·전환 작업의 개선을 탐색적으로 비교.",
+  "comparison_question": "동일 OS·한국어 IME에서 삼성 브라우저와 Firefox의 긴 문장 조합·수정이 끊기지 않는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Beta 설치본 노출·동일 시험 조건 확보 또는 Stable 확대",
+  "assessed_at": "2026-11-11T22:38:45.023058+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "benchmark_candidate": {
+    "task": "Canva Docs 한국어 IME 중단 수정의 Beta 수록",
+    "conditions": "승인된 테스트 프로필·합성 데이터·동일 OS와 기기·언어·계정 조건. 비교 브라우저의 기능 존재는 먼저 확인. 권한·확장 설치·외부 문서 변경은 별도 승인된 시험 환경에서만 실행.",
+    "steps": [
+      "승인된 시험 문서와 동일 한국어 IME 준비",
+      "문장 입력·수정·선택 영역 교체 반복",
+      "첫 글자 뒤 중단·조합 누락과 복구 조작 기록"
+    ],
+    "metrics": [
+      "입력 중단률",
+      "조합 누락",
+      "복구 단계"
+    ],
+    "completion": "각 흐름 3회 재현하고 성공·실패·제약을 기록. 아직 미실행.",
+    "executed": false
+  },
+  "source_release_first_offered_at": "2026-11-09"
+}

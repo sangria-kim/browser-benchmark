@@ -1,0 +1,26 @@
+{
+  "status": "watch",
+  "reasons": [
+    "베타 기능의 공식 설명을 확인했다. OS별 기능 노출과 실제 동작 조건이 부족하여 관찰 대상으로 유지한다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/safari-vertical-tabs-beta-273-20261103/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "세로 탭과 가로 탭에서 같은 수의 탭을 찾고 전환할 때 제목 식별과 콘텐츠 공간은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "기능별 OS 지원·정식 확대 또는 재현 환경 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-d846ef01e6ae84a84c4de32a934f6bf9",
+  "subject_kind": "feature_event",
+  "subject_id": "safari-vertical-tabs-beta-273-20261103",
+  "input_hash": "42d4bd84209e9f36d5842469817acad7f56f9a550f91b293bfecc352b3b4e358",
+  "input_revision": "data/event-revisions/safari-vertical-tabs-beta-273-20261103/schema-v1.json:sha256:ed08a81887be2c1a521b16c86625b306ecdf7756cb0af9142c0ca75cfbb8928d",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-15T22:54:43Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-f690c6caf7cc98ce51b62656"
+  ]
+}

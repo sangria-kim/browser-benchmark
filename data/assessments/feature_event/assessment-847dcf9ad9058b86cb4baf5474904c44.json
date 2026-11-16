@@ -1,0 +1,31 @@
+{
+  "status": "selected",
+  "reasons": [
+    "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+    "Original priority reason: 개인정보 제어와 공유 내용에 직접 영향.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-android-proton-vpn-8-3-stable-20261105/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "브라우저 전용 보호 범위와 연결 초기 상태를 사용자가 정확히 이해할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-847dcf9ad9058b86cb4baf5474904c44",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-android-proton-vpn-8-3-stable-20261105",
+  "input_hash": "148134392260e49dd7a626cf9252d1fabaac328b3d132faa087eb4b686a18300",
+  "input_revision": "data/event-revisions/vivaldi-android-proton-vpn-8-3-stable-20261105/schema-v1.json:sha256:3315e99b14502fc319203617e7f70dc68660120c4605f0cc1967ec57ce8ec4bc",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-da519bdab1465fb902c9a2ea",
+    "src-legacy-bed483395afa4d43304a8814",
+    "src-legacy-8d002ab8ba18a7f184816b47",
+    "src-legacy-14576bafbe17b0815fb83a64",
+    "src-legacy-2c29f4d8f1f1b3aba5b3e98e"
+  ]
+}

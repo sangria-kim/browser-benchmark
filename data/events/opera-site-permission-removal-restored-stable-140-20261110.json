@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "opera-site-permission-removal-restored-stable-140-20261110",
   "feature_id": "opera-site-permission-removal",
   "browser": "opera",
@@ -53,5 +53,14 @@
   "benchmark_readiness": "conditional",
   "revisit_trigger": "동일 권한 종류, 사이트 및 관리 정책 조건에서 Stable 재현",
   "assessed_at": "2026-11-12T23:24:54.740586+00:00",
-  "selection_rule_version": "pm-selection-v2"
+  "selection_rule_version": "pm-selection-v2",
+  "source_item_ids": [
+    "src-legacy-fc610196e7d1bc14595856e9",
+    "src-legacy-c8ea51ef1c796ce9670f7b55"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

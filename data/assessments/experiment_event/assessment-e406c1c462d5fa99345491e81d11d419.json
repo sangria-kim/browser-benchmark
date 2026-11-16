@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e93d992efcde9bc4d0cca03b: Source baseline: Enable Autofill settings enterprise policy A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e406c1c462d5fa99345491e81d11d419",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e93d992efcde9bc4d0cca03b",
+  "input_hash": "c21e83cdc5c6086983b9bbd903b7741daa4677165051116ccf0e954bf2ed432e",
+  "input_revision": "semantic-sha256:d053021ae0b465e9b0bace867a8a80d0325969a1c9c5f5c790ce8d7abc5015ea",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-2377f6e8d6b2575299feb1be",
+    "src-legacy-2984898db451417ceb3d4206"
+  ]
+}

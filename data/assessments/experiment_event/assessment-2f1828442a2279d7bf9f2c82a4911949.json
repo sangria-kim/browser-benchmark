@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-62a01b13253d41f16981dc6a: Source baseline: Hardware Secure Decryption A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2f1828442a2279d7bf9f2c82a4911949",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-62a01b13253d41f16981dc6a",
+  "input_hash": "5e4fcc1c17c35e22a2f30fb70d100969bb15c4ef2521efe2360fc1ac03ad5bf0",
+  "input_revision": "semantic-sha256:093d5c56f3ef615a791d7d9350409d4c694a61999268c28310015ea760f1a3f8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-840f37c1fb866da1cc38c044"
+  ]
+}

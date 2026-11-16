@@ -23,7 +23,7 @@
   "revisit_trigger": "공식 세부 동작·출시범위·설치본 조건 변경 확인",
   "assessed_at": "2026-11-06T22:58:32.221765+00:00",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-oneauth-migration-completed-stable-157-20261105",
   "feature_id": "edge-oneauth-signin-migration",
   "event_type": "behavior_change",
@@ -58,5 +58,15 @@
   ],
   "delta": "155/156 예고 → 157 direct-WAM 종료 및 OneAuth 전환 완료 명시. WAM 자체는 계속 사용.",
   "verification_status": "official_document_verified_not_device_tested",
-  "previous_event_id": null
+  "previous_event_id": null,
+  "source_item_ids": [
+    "src-legacy-7a55e992bf6923e8f42ae8e3",
+    "src-legacy-174237c371c8b5aa867a863d",
+    "src-legacy-bff96314e255fda414e2d2aa"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -1,0 +1,27 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "Existing ToT-enabled omnibox behavior cleanup; no newly confirmed release-stage transition.",
+    "Original priority reason: 사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-webui-omnibox-hide-aim-url-removal-54315355e9a1/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2b2a365941ff7428a8bd105e749a5cd3",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-webui-omnibox-hide-aim-url-removal-54315355e9a1",
+  "input_hash": "85c7ce8834b5133f07648e2e5bd490e1d7a5a0fcc8edb23f6a35d14d0165bd79",
+  "input_revision": "data/event-revisions/chrome-webui-omnibox-hide-aim-url-removal-54315355e9a1/schema-v1.json:sha256:a7c48036981966117aee14af8251629205df0157d237adcda1891429b7eba0e9",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-72c837c32775639788bb2c50"
+  ]
+}

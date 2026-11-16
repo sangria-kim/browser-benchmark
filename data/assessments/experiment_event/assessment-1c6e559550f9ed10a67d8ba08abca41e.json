@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-7fb5c115f4764367f2556c90: Source baseline: enable-contextual-tasks-pin-button-on-srp A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1c6e559550f9ed10a67d8ba08abca41e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-7fb5c115f4764367f2556c90",
+  "input_hash": "c75e7985204ec2fed6dfdcc5dbf18275b81d2eb1eb798dfd94366715e2cc22df",
+  "input_revision": "semantic-sha256:f4c46b19158adb6e06b36368b21e9ab88ad800936f10b4d46c26258164cd6cf6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-619341c2051b9f4ae9dcec69",
+    "src-legacy-e8ed974f8e80e82cc2247e03"
+  ]
+}

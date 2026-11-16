@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "지원 OS 업데이트에서 새 배포 단계가 확인되고 링크·시작 메뉴의 대기 시간을 동일 조건으로 비교할 수 있습니다.",
+    "Original priority reason: 빈번한 진입 과제이나 warm state와 선택적 OS 업데이트 조건에 한정됩니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-accelerated-app-launch-windows-kb5127936-20261028/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저 Windows판은 해당 OS 가속 등록을 지원하는가? 미지원이더라도 같은 warm launch 과제에서 지연과 프로세스 비용은 어떤가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "26H1 패키지 및 국내 테스트 환경, 다음 보안 업데이트 포함 여부가 공식 확인될 때.",
+  "schema_version": 2,
+  "assessment_id": "assessment-23bd1e955751d48c4a32fa22a7757b3a",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
+  "input_hash": "51ddef7b1b0ce69237dada1aca696ef29c7d55e82f08c6b97ab5ff6ad3b90509",
+  "input_revision": "data/event-revisions/edge-accelerated-app-launch-windows-kb5127936-20261028/schema-v1.json:sha256:42f59e134628dff1f0e5e2f15112fff0e1f5c736511579ba005ea3451eb0b460",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-2186cd291dce9e05feaeb61a",
+    "src-legacy-c6042d31850add17a4766b2d",
+    "src-legacy-47baf1ae4a33d6c39620354f"
+  ]
+}

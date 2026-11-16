@@ -1,0 +1,33 @@
+{
+  "status": "selected",
+  "reasons": [
+    "사이트 도구 기반 API/runtime의 기본값 변경을 확인했다. 실제 Leo 연결 UI와 승인 동작은 도움말에 설명된 별도 검증 대상이다. 일반 프로필의 허용·거절·세션 유지 경계를 비교할 수 있다.",
+    "Original priority reason: 사이트 도구와 모델 지원에 제한된 Nightly 비교 과제이며 Stable 확대와 실제 설치본 노출은 확인이 필요하다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/brave-webmcp-default-nightly-11022-20261112/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저에서 유사한 사이트 도구 실행을 검토할 때, 연결 사이트·전송 인자·일회/세션 승인·도구 제거를 사용자가 얼마나 명확히 통제할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Nightly 설치본에서 기본값과 도움말 차이 확인; Stable 릴리스 및 한국 지원 조건의 공식 명시",
+  "schema_version": 2,
+  "assessment_id": "assessment-1d0fc0dbe5b81d5926ece6eb5cdb41ee",
+  "subject_kind": "feature_event",
+  "subject_id": "brave-webmcp-default-nightly-11022-20261112",
+  "input_hash": "cecdeffcad7862dbbdcdadf918d58a06d01d03cee9a5cd1b5447029dd6c8fb78",
+  "input_revision": "data/event-revisions/brave-webmcp-default-nightly-11022-20261112/schema-v1.json:sha256:713af55db5b461c0dda0381b888ad31bc3bfe871d082f6c3ac179a38fae3d15a",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-13T22:48:46.168388+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-f2c1610593b536196e723a1f",
+    "src-legacy-29cf87e99400d890ed455387",
+    "src-legacy-e2dd55f518f5dc712c0f56c3",
+    "src-legacy-804ea7e9e49ab14db72f007c",
+    "src-legacy-d76b1ddbb4bd45ffdecb0df9",
+    "src-legacy-51fe6a1335dee6f88264ad86",
+    "src-legacy-3127e992080cac90ce1a593e"
+  ]
+}

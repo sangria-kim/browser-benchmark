@@ -14,7 +14,7 @@
   "revisit_trigger": "Explicit product behavior/release evidence beyond cleanup or expiry maintenance.",
   "assessed_at": "2026-10-30T22:49:00Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-management-promotion-banner-flag-removed-e0277c2bcd9b",
   "feature_id": "chrome-management-promotion-banner-flag",
   "browser": "chrome",
@@ -55,5 +55,14 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/e0277c2bcd9ba86fb0cec666cee66da742e6b0c7^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-6aece1606f43f3c34329ba82",
+    "src-legacy-b025dbd49e65da387f7650bb"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

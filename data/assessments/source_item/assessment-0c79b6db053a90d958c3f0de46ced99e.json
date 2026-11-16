@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6855f4ecccef65ae99fbe79a: Fixed an issue where additive color animations in SVG lost precision due to per-layer 8-bit rounding. (186223510) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0c79b6db053a90d958c3f0de46ced99e",
+  "subject_kind": "source_item",
+  "subject_id": "src-6855f4ecccef65ae99fbe79a",
+  "input_hash": "d0265564591246377e6dba2e21ecd782f60c1e19bee55492977306f08367c79b",
+  "input_revision": "semantic-sha256:413ef263742f3e2881e2aaebe508d325c7e0731bc7acee57d8e40edae525ac9d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6855f4ecccef65ae99fbe79a"
+  ]
+}

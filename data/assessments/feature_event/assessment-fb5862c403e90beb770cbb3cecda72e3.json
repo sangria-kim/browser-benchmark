@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "MDN 160의 실험 항목이며 dom.element.blocking.enabled는 기본 비활성이다. 문서 편집일을 출시일로 삼지 않으며 Stable 지원·설치본 동작은 미확인이다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/firefox-render-blocking-pref-160-20261108/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "동적 스타일·스크립트 로드 중 비스타일 화면 노출과 첫 렌더링 지연은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 적용 시점·빌드·지원 범위와 변경 전후 비교 조건 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-fb5862c403e90beb770cbb3cecda72e3",
+  "subject_kind": "feature_event",
+  "subject_id": "firefox-render-blocking-pref-160-20261108",
+  "input_hash": "792bbe88ffcfa9a3b3ce36bf27ecc034129182d4c909efa4aaef399ffd34f480",
+  "input_revision": "data/event-revisions/firefox-render-blocking-pref-160-20261108/schema-v1.json:sha256:65b366ac931eb57135d3460111628694a8cbcca8e6b245213ddaec99050da836",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-07T23:12:38.066677+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-573f74212f567547e9c0495c",
+    "src-legacy-48516e65083e45018b4532cd"
+  ]
+}

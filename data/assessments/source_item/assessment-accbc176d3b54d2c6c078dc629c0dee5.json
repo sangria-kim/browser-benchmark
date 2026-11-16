@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-89070091f3dc4b4e8d1a5ba4: Fixed an issue where GPUDevice.createBindGroup() ’s fast path failed to reuse bind groups containing a GPUBuffer entry alongside an external texture, forcing an unnecessary full rebuild. (186379208) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-accbc176d3b54d2c6c078dc629c0dee5",
+  "subject_kind": "source_item",
+  "subject_id": "src-89070091f3dc4b4e8d1a5ba4",
+  "input_hash": "beeded5341fdd4b29c4c26b4b756b8a540df1d799098ed24f62c339c78c85199",
+  "input_revision": "semantic-sha256:749badb689b3dacb67a1b31ee7913f7d850db9eb8c810bb8941d7f40340402bc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-89070091f3dc4b4e8d1a5ba4"
+  ]
+}

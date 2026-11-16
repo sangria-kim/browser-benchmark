@@ -1,0 +1,26 @@
+{
+  "status": "watch",
+  "reasons": [
+    "UI 변경 목적과 의존성은 공식 소스로 확인되지만 이 commit은 flag·설명·판정 helper만 추가한다. 실제 header 렌더링 변경·설치본 노출·사용자 영향은 미확인.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-ios-gemini-native-header-source-20261115/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "Gemini 대화에서 Chrome 네이티브 헤더가 이동·닫기·되돌리기 조작과 브라우저/AI 구분에 어떤 차이를 만드는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "실제 UI 연결 구현 또는 설치본 노출·공식 배포 근거 확보",
+  "schema_version": 2,
+  "assessment_id": "assessment-8690cf47dca87c685bed4aac6403a2bb",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-ios-gemini-native-header-source-20261115",
+  "input_hash": "3d774b066a2979615d0573cb94d815f4d1ca50901d7498bcc2cd56b46050348e",
+  "input_revision": "data/event-revisions/chrome-ios-gemini-native-header-source-20261115/schema-v1.json:sha256:8ae798b802c4dd2d11256a063200acf5755f0b15829fc738f34c751970adcd22",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-15T22:57:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-0e54c2a16f8b955be56acdcc"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5fcd6d62e3051c55e1ffc137: Source baseline: omnibox-truncate-search-url A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fd4555be90d8ead6cbebbdcd93898c5b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5fcd6d62e3051c55e1ffc137",
+  "input_hash": "8451f52c7b5acbf80d3b611f6a0dacd551c9c757a81abf2da374969c0ec2b22a",
+  "input_revision": "semantic-sha256:d7b456f0b76bd310585e86b6f70de99c2717f054f8581a00022e1e1c5b13f872",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-64845455a611af0e2439839d",
+    "src-legacy-cbd0ff86a15f9db29f495af6"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-seccomp-filter-gpu-sandbox-registration-bbc7faad4959",
   "feature_id": "chrome-seccomp-filter-gpu-sandbox",
   "browser": "chrome",
@@ -56,5 +56,13 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/bbc7faad495945a3dd1d60dc2b41d03ea2e90171^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-e5dcb6e8fe39395df29d31ff"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

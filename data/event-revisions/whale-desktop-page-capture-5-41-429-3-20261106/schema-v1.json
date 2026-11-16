@@ -1,0 +1,63 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.3",
+  "channel": "stable_and_beta",
+  "platform": [],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-06T22:54:23Z",
+  "announced_at": "2026-11-06",
+  "effective_at": "2026-11-06",
+  "summary": "사이트별 검은 캡처·스크롤 캡처 실패 수정",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "특정 사이트에서 검은 출력·스크롤 캡처 실패를 바로잡아 페이지 증거 저장 과제의 완료를 회복한다.",
+  "priority": "P2",
+  "priority_reason": "캡처 결과 또는 다중 모니터 작업 배치의 구체 실패 회복.",
+  "comparison_question": "동일 사이트 캡처의 출력 성공률·완결성은?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
+  "assessed_at": "2026-11-06T22:54:23Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-desktop-page-capture-5-41-429-3-20261106",
+  "feature_id": "whale-page-capture",
+  "event_type": "behavior_change",
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35247",
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/"
+  ],
+  "delta": "이전 .2의 2개 수정에는 없고 .3에서 추가된 구체 동작 수정. 모든 사이트·모니터 구성이 해결되었다고 일반화하지 않음.",
+  "previous_event_id": null,
+  "scope": {
+    "product": "Whale Desktop",
+    "source_item_numbers": [
+      8
+    ],
+    "release_stage": "Stable/Beta",
+    "registration_date": "2026-11-03",
+    "body_release_date": "2026-11-06",
+    "actual_device_validation": "미실행",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "5.41.429.3 Stable/Beta. 한국별 제공 미확인. 실기 미실행.",
+      "checked_at": "2026-11-06T22:54:23Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "platform_basis": "Desktop 공지. Windows 명시 수정 외 OS별 적용은 미공개.",
+    "effective_at_basis": "공식 본문 배포 날짜이며 전체 설치본 배포 완료 아님.",
+    "benchmark_plan": {
+      "procedure": "동일 Desktop OS에서 고정 헤더·긴 문단·스크롤 컨테이너를 포함한 비민감 테스트 페이지를 준비한다. 전체 스크롤/선택 영역 캡처를 각각 3회 반복하고 화면 기준과 대조한다. 영향 사이트가 알려지면 같은 절차로 추가한다.",
+      "metrics": "검은 결과 수/6회, 누락·중복 구간, 캡처 높이, 완료 시간",
+      "execution": "미실행",
+      "comparison_limit": "삼성 브라우저의 동등 기능·차이는 미확인. 같은 OS·조건에서만 비교.",
+      "completion_criteria": "6회 모두 읽을 수 있는 출력이며 지정 영역이 누락·중복 없이 저장되는지 확인. 공식 영향 사이트 미공개로 광범위 해결 단정 금지."
+    }
+  }
+}

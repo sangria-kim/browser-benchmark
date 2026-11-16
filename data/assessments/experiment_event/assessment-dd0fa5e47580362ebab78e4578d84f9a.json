@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5f9c3f268c33b75c2858e024: Source baseline: Improved screen reader MathML Support on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-dd0fa5e47580362ebab78e4578d84f9a",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5f9c3f268c33b75c2858e024",
+  "input_hash": "06ca2c132e4e25b9d550dd8b5c5483717f7799960a5ec628fe15ad21a488456c",
+  "input_revision": "semantic-sha256:27a6fc6a1b3f21c73040c024147d35ff43a5d4dedb915146193ed95f8018a1f7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-73232f13ba1ee6bedbd2739f",
+    "src-legacy-d9805ee9ed5639ad60c36ae6"
+  ]
+}

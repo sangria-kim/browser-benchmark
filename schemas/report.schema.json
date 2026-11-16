@@ -1,0 +1,629 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "report",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "report_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "date": {
+      "type": "string",
+      "format": "date"
+    },
+    "timezone": {
+      "const": "Asia/Seoul"
+    },
+    "cutoff": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supersedes_revision": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "markdown_path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject_kind": {
+            "enum": [
+              "source_item",
+              "feature_event",
+              "experiment_event"
+            ]
+          },
+          "subject_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "assessment_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "event_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "change_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "timing": {
+            "enum": [
+              "current",
+              "late_observation",
+              "backfill",
+              "correction",
+              "reclassification"
+            ]
+          },
+          "announced_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "source_urls": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uri",
+              "pattern": "^https://[^\\s]+$"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "selection_kind": {
+            "enum": [
+              "features",
+              "flags"
+            ]
+          },
+          "action": {
+            "enum": [
+              "selected",
+              "changed",
+              "deselected",
+              "reselected"
+            ]
+          },
+          "discovered_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "effective_at": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "source_item_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+                },
+                "revision_id": {
+                  "type": "string"
+                },
+                "content_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "source_revision": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "pattern": "^https://[^\\s]+$"
+                },
+                "observed_at": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "section": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "excerpt": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "record_path": {
+                  "type": "string",
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+                }
+              },
+              "required": [
+                "source_item_id",
+                "revision_id",
+                "content_sha256",
+                "source_revision",
+                "url",
+                "observed_at",
+                "section",
+                "excerpt",
+                "record_path"
+              ],
+              "additionalProperties": false
+            },
+            "uniqueItems": true
+          },
+          "details": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "summary": {
+                "type": "string"
+              },
+              "browser": {
+                "type": "string"
+              },
+              "channel": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "platform": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "workstreams": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "ai_related": {
+                "type": [
+                  "boolean",
+                  "null"
+                ]
+              },
+              "event_type": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "subject_revision": {
+                "type": [
+                  "integer",
+                  "null"
+                ]
+              },
+              "status": {
+                "type": "string"
+              },
+              "priority": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "assessment_rule_version": {
+                "type": "string"
+              },
+              "reasons": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "uniqueItems": true
+              },
+              "comparison_question": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "benchmark_readiness": {
+                "type": "string"
+              },
+              "benchmark": {
+                "type": [
+                  "object",
+                  "null"
+                ]
+              },
+              "subject_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "assessment_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "selection_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "documentation_paths": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "title",
+              "summary",
+              "browser",
+              "channel",
+              "platform",
+              "workstreams",
+              "ai_related",
+              "event_type",
+              "subject_revision",
+              "status",
+              "priority",
+              "assessment_rule_version",
+              "reasons",
+              "comparison_question",
+              "benchmark_readiness",
+              "benchmark",
+              "subject_path",
+              "assessment_path",
+              "selection_path"
+            ],
+            "additionalProperties": false
+          },
+          "related_change_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "subject_kind",
+          "subject_id",
+          "assessment_id",
+          "event_ids",
+          "change_id",
+          "timing",
+          "announced_at",
+          "observed_at",
+          "source_urls"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "previous_cutoff": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "generator_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "completeness": {
+      "type": "object",
+      "properties": {
+        "collection": {
+          "enum": [
+            "complete",
+            "partial",
+            "failed",
+            "unknown"
+          ]
+        },
+        "evaluation": {
+          "enum": [
+            "complete",
+            "partial",
+            "failed",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "collection",
+        "evaluation"
+      ],
+      "additionalProperties": false
+    },
+    "outcome": {
+      "enum": [
+        "changes",
+        "no_changes",
+        "incomplete"
+      ]
+    },
+    "selection_snapshot_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^data/selected/history/[A-Za-z0-9./-]+\\.json$"
+      },
+      "uniqueItems": true
+    },
+    "catalog_transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "transition_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "kind": {
+            "const": "catalog_subject_replaced"
+          },
+          "catalog_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "previous": {
+            "type": "object",
+            "properties": {
+              "subject_kind": {
+                "enum": [
+                  "source_item",
+                  "feature_event",
+                  "experiment_event"
+                ]
+              },
+              "subject_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              "assessment_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              "catalog_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "event_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+                },
+                "minItems": 0,
+                "uniqueItems": true
+              },
+              "experiment_kind": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "flag_entry",
+                      "base_feature",
+                      "command_switch"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "enum": [
+                  "selected",
+                  "watch",
+                  "pending_verification",
+                  "excluded"
+                ]
+              },
+              "assessed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "subject_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "assessment_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              }
+            },
+            "required": [
+              "subject_kind",
+              "subject_id",
+              "assessment_id",
+              "catalog_id",
+              "event_ids",
+              "experiment_kind",
+              "status",
+              "assessed_at"
+            ],
+            "additionalProperties": false
+          },
+          "current": {
+            "type": "object",
+            "properties": {
+              "subject_kind": {
+                "enum": [
+                  "source_item",
+                  "feature_event",
+                  "experiment_event"
+                ]
+              },
+              "subject_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              "assessment_id": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              "catalog_id": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "event_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+                },
+                "minItems": 0,
+                "uniqueItems": true
+              },
+              "experiment_kind": {
+                "anyOf": [
+                  {
+                    "enum": [
+                      "flag_entry",
+                      "base_feature",
+                      "command_switch"
+                    ]
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "status": {
+                "enum": [
+                  "selected",
+                  "watch",
+                  "pending_verification",
+                  "excluded"
+                ]
+              },
+              "assessed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "subject_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "assessment_path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              }
+            },
+            "required": [
+              "subject_kind",
+              "subject_id",
+              "assessment_id",
+              "catalog_id",
+              "event_ids",
+              "experiment_kind",
+              "status",
+              "assessed_at"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "transition_id",
+          "kind",
+          "catalog_id",
+          "previous",
+          "current"
+        ],
+        "additionalProperties": false
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "report_id",
+    "date",
+    "timezone",
+    "cutoff",
+    "revision",
+    "input_hash",
+    "rule_version",
+    "supersedes_revision",
+    "markdown_path",
+    "items"
+  ],
+  "additionalProperties": false,
+  "dependentRequired": {
+    "outcome": [
+      "completeness"
+    ],
+    "completeness": [
+      "outcome"
+    ]
+  }
+}

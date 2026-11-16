@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "창마다 다른 레이아웃을 유지하는 명시적 동작 변화.",
+    "Original priority reason: 다중 창 배치에서 반복 조작 감소를 확인할 수 있음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "한 창은 접고 다른 창은 펼친 상태가 창 이동 후에도 독립적으로 유지되는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "설치본에서 상태 독립성과 재시작 범위 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-6070816ae95df5594b37ab9a10053067",
+  "subject_kind": "feature_event",
+  "subject_id": "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104",
+  "input_hash": "f8f40103fd39323a3dd1ccda7ec08c5778d07b5a01eba3e0992db1e5d4793f93",
+  "input_revision": "data/event-revisions/opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104/schema-v1.json:sha256:832e3e64846caff83fc43e8beaf25a496c246edbbe36d1f43b0558d0aba76b26",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-bb5bc62c6d281d5ac3a84d02",
+    "src-legacy-2f359d06bb417e504eb4db01",
+    "src-legacy-6a2a78d20728b9585dd522ba"
+  ]
+}

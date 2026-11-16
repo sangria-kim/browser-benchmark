@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3126fef778146c5198bfb6a2: Source baseline: Lens overlay on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3b8d83108e621e628352b5d3e26d4642",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3126fef778146c5198bfb6a2",
+  "input_hash": "ca71810e8520ab6e7d6ebe4bb20a4bed9c7fd8672c84da130759a565f7199964",
+  "input_revision": "semantic-sha256:a8c17284aab091ba1505fd7b6181a37d2f20af11f12c9924722967b33f1d9baa",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-d932448cc1a734cb64d91c72",
+    "src-legacy-8169934e61f06e354fcead1e"
+  ]
+}

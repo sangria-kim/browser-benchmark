@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ce6df3cd0a0bc6e9af0be695: Fixed an issue where ScrollingStateTree::insertNode performed redundant work reordering children on pages with many sibling scrolling nodes. (186143008) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f10f446a4b011fbb41ce527f0e887eb2",
+  "subject_kind": "source_item",
+  "subject_id": "src-ce6df3cd0a0bc6e9af0be695",
+  "input_hash": "3db4bdcf742467fe7248c17cda9cd0b09e72df78eab1b3d2601824b88a15ab5e",
+  "input_revision": "semantic-sha256:aac56185ce62bde258c0893733c52bddf2ef36aa05c9eb90cd51eeb17b751b89",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ce6df3cd0a0bc6e9af0be695"
+  ]
+}

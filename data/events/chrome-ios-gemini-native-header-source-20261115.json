@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-ios-gemini-native-header-source-20261115",
   "feature_id": "chrome-gemini-native-header",
   "browser": "chrome",
@@ -43,5 +43,13 @@
   "benchmark_readiness": "conditional",
   "revisit_trigger": "실제 UI 연결 구현 또는 설치본 노출·공식 배포 근거 확보",
   "assessed_at": "2026-11-15T22:57:00Z",
-  "selection_rule_version": "pm-selection-v2"
+  "selection_rule_version": "pm-selection-v2",
+  "source_item_ids": [
+    "src-legacy-0e54c2a16f8b955be56acdcc"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

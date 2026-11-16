@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "observed_at": "2026-11-05T22:52:24.712Z",
   "announced_at": "2026-11-05",
   "effective_at": null,
@@ -63,5 +63,17 @@
   "priority_reason": "구체적인 탐색·대화·멀티태스킹 조작의 개선으로 P2 비교 과제. AI라는 이유로 P1을 부여하지 않는다.",
   "comparison_question": "동일한 모호한 요청에서 선택지를 통한 의도 확정과 직접 입력이 성공률·추가 입력 횟수에 어떤 차이를 만드는가?",
   "benchmark_plan": "모호한 요약·일정 초안 등 비실행 과제 5개로 선택형 질문 유도→선택/직접입력 각 반복→최종 결과가 의도와 일치하는지 기록. 외부 행동은 수행하지 않는다.",
-  "revisit_trigger": "정식 설치본 노출·동작 및 한국어/모델 조건 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토."
+  "revisit_trigger": "정식 설치본 노출·동작 및 한국어/모델 조건 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토.",
+  "source_item_ids": [
+    "src-legacy-96bd2033ff6767ff54699e55",
+    "src-legacy-757275c32b17b6a41c5113a7",
+    "src-legacy-109a1bf60aef9d1d66ef268a",
+    "src-legacy-2e25c2a543894919544855ae",
+    "src-legacy-7dc327c9366c34f451642d9e"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

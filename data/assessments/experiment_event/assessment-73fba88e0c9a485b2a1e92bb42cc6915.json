@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-91ba093f546b8bb3fd3e15e3: Source baseline: tls1.2 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-73fba88e0c9a485b2a1e92bb42cc6915",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-91ba093f546b8bb3fd3e15e3",
+  "input_hash": "e7a03898744514c5963f920e1949b4e29393b1a209470220765ab54e9cee85a1",
+  "input_revision": "semantic-sha256:4c8d0509523fa5426f4b07ce072d5fd8cff2e9c2c36e1f19f43217edc664430f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-f1b7d6d393bc97f5476d85b9"
+  ]
+}

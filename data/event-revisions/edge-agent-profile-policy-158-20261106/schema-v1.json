@@ -1,0 +1,55 @@
+{
+  "browser": "edge",
+  "version": "158.0.4370.7",
+  "channel": "beta",
+  "platform": [
+    "Windows"
+  ],
+  "observed_at": "2026-11-07T23:12:38.066677+00:00",
+  "announced_at": "2026-11-06",
+  "effective_at": null,
+  "summary": "외부 AI 에이전트별 격리 프로필 정책 수록",
+  "selection_status": "watch",
+  "selection_reason": "공식 정책 본문에서 Windows158+의 에이전트 identity별 browsing data 격리 확인. 비설정 기본값은 버전·rollout에 따라 다르므로 일반 출시·기본 활성으로 단정하지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "에이전트별 쿠키·로그인·기록이 사용자 및 다른 에이전트와 분리되는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
+  "assessed_at": "2026-11-07T23:12:38.066677+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "edge-agent-profile-policy-158-20261106",
+  "feature_id": "edge-agent-isolated-profiles",
+  "event_type": "policy_observation",
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "source_revision": null,
+  "previous_event_id": null,
+  "verification_status": "official_document_verified_not_device_tested",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": {
+      "account_conditions": "플랫폼 정책만 가능, 브라우저 재시작 필요. MSA 프로필 적용 가능. macOS/Android/iOS 미지원.",
+      "default": "미설정이면 버전·배포 상태에 따름"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+      "section": "해당 변경 항목",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/agentprofileenabled",
+      "section": "Supported versions / Description",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    }
+  ],
+  "delta": "외부 AI 에이전트별 격리 프로필 정책 수록"
+}

@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "지침·레시피 등 페이지 일부를 항상 위 창으로 보면서 다른 탭에서 작업할 수 있다. 일반 영상 PiP와 달리 페이지 콘텐츠를 유지하며, 창 가림·포커스와 원본 복귀가 사용성의 핵심이다. 기존 Beta와 달리 11/10 Stable Release 수록이 확인되어 비교 대상 채널이 확대됐다.",
+    "Original priority reason: 참고 내용을 유지하는 제한된 멀티태스킹 과제에서 탭 전환 부담을 비교할 수 있어 P2로 둔다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/firefox-mini-window-stable-160-20261110/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저에서 참고 페이지를 보며 다른 탭 작업할 때 창 전환·가림 문제를 어떻게 해결하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "실제 Stable 노출과 동일 조건 비교 환경 확보",
+  "schema_version": 2,
+  "assessment_id": "assessment-6fa5d4ed393cd39db6189125f0baa714",
+  "subject_kind": "feature_event",
+  "subject_id": "firefox-mini-window-stable-160-20261110",
+  "input_hash": "9cf7f8fb19ad351c156ea5a5c95c011705493ff7bc03ff43bd4d6781b6db3b6c",
+  "input_revision": "data/event-revisions/firefox-mini-window-stable-160-20261110/schema-v1.json:sha256:e0543057558f756db305fb049e6ddf35ac66b5403d5a29eae304f65f49744bf6",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-10T23:16:21.389826+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-b9bf0274c154b726f4e27487",
+    "src-legacy-7767639d059fcdac3c813d63"
+  ]
+}

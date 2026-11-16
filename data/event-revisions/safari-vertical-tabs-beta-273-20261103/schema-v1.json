@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "event_id": "safari-vertical-tabs-beta-273-20261103",
+  "feature_id": "safari-vertical-tabs",
+  "browser": "safari",
+  "event_type": "beta_feature_observation",
+  "version": "27.3",
+  "channel": "beta",
+  "platform": [
+    "unknown"
+  ],
+  "workstreams": [
+    "pc",
+    "mobile"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "기능별 OS 노출 조건은 이 항목에 구분되지 않는다. 전체 릴리스의 지원 OS를 모든 기기의 세로 탭 제공 근거로 사용하지 않는다. 정식 반영·지역·계정 조건과 기능별 설치본 노출은 미확인. workstreams는 비교 관점이며 OS별 제공을 입증하지 않는다."
+  },
+  "observed_at": "2026-11-15T22:54:43Z",
+  "announced_at": "2026-11-03",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://developer.apple.com/documentation/safari-release-notes/safari-27_3-release-notes.md",
+      "section": "Browser / New Features / 188851209",
+      "observed_at": "2026-11-15T22:54:43Z"
+    }
+  ],
+  "summary": "Safari 27.3 beta 세로 탭",
+  "delta": "Safari 27.3 beta 릴리스 노트 Browser 항목은 세로 레이아웃으로 탭을 탐색·관리하는 기능을 명시한다.",
+  "verification_status": "official_body_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "베타 기능의 공식 설명을 확인했다. OS별 기능 노출과 실제 동작 조건이 부족하여 관찰 대상으로 유지한다.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "세로 탭과 가로 탭에서 같은 수의 탭을 찾고 전환할 때 제목 식별과 콘텐츠 공간은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "기능별 OS 지원·정식 확대 또는 재현 환경 확인",
+  "assessed_at": "2026-11-15T22:54:43Z",
+  "selection_rule_version": "pm-selection-v2"
+}

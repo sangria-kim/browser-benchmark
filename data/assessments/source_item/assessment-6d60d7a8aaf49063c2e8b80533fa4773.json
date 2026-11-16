@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b19c073608a34e7d30c8756b: Fixed the HTML parser inserting an element into its own subtree when a custom element’s constructor moved the element’s parent into a shadow root or a <template> during parsing. (185861243) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6d60d7a8aaf49063c2e8b80533fa4773",
+  "subject_kind": "source_item",
+  "subject_id": "src-b19c073608a34e7d30c8756b",
+  "input_hash": "31245f8f5fa875c7b0b0e3dca7f9e1d37d8b02313f704f3ae245a745f9e55eba",
+  "input_revision": "semantic-sha256:4de4437b253ea72cbc10617c53146792f3d436f74b599743f5def8e78488afd5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b19c073608a34e7d30c8756b"
+  ]
+}

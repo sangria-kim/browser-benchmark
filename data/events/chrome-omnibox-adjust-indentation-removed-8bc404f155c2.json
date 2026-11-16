@@ -14,7 +14,7 @@
   "revisit_trigger": "Explicit product behavior/release evidence beyond cleanup or expiry maintenance.",
   "assessed_at": "2026-10-30T22:49:00Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-omnibox-adjust-indentation-removed-8bc404f155c2",
   "feature_id": "chrome-omnibox-adjust-indentation",
   "browser": "chrome",
@@ -55,5 +55,14 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/8bc404f155c2a1853b910c02bb9a7175b7fc056c^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-edb6e456a9ebad56bb42cf35",
+    "src-legacy-5ab60d7299c3a59b58b0069d"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

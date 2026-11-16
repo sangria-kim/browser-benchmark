@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-4860cfd8205b481822a6701a: Source baseline: Instruct Core ML to use GPU or Neural Engine explicitly A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3aca4e58fdf0a241a99cc6810f053239",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-4860cfd8205b481822a6701a",
+  "input_hash": "b6fcc80e0e011b84b4c95fcaa38c8c2b689431a0e9f998dc5e079baf10c819f0",
+  "input_revision": "semantic-sha256:c09857c626e2e4a38e656ae8621f2e4ca9dbe49a59c8a1fc7966d2dfee2e1e6c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ebe077aa60ebe99ca56267f1"
+  ]
+}

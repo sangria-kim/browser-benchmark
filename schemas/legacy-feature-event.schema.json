@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "legacy-feature-event",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "feature_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "browser": {
+      "enum": [
+        "chrome",
+        "edge",
+        "firefox",
+        "safari",
+        "brave",
+        "whale",
+        "opera",
+        "vivaldi"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object"
+          },
+          {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          }
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "selection_status": {
+      "enum": [
+        "selected",
+        "watch",
+        "pending_verification",
+        "excluded"
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "feature_id",
+    "browser",
+    "event_type",
+    "sources",
+    "selection_status",
+    "observed_at"
+  ],
+  "additionalProperties": true
+}

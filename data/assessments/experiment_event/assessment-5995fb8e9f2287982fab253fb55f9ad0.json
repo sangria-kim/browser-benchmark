@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0b4918eb2f28e32c455f1430: Source baseline: GPU rasterization A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5995fb8e9f2287982fab253fb55f9ad0",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0b4918eb2f28e32c455f1430",
+  "input_hash": "a310834ac180ed5877741f36ff4848f3a3ef9ed9dee25520272a2aec73402ac2",
+  "input_revision": "semantic-sha256:c8c70fe52b9167e8fadc48cb160158fae18fdfe9438e5523aeddb86339d8260d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8f0194381b83f3cfb100dd46"
+  ]
+}

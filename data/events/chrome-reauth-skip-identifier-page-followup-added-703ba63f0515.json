@@ -16,7 +16,7 @@
   "revisit_trigger": "Eligible DICE-enabled installed build and supervised test account with reproducible pending reauth state.",
   "assessed_at": "2026-10-30T22:49:00Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-reauth-skip-identifier-page-followup-added-703ba63f0515",
   "feature_id": "chrome-reauth-skip-identifier-page-followup",
   "browser": "chrome",
@@ -62,5 +62,14 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/703ba63f0515cff79d0ce7380df79f12e82a5b95^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-eba11c92c527c1b16c6a387c",
+    "src-legacy-90e38ca8788ee4eb1648abd4"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

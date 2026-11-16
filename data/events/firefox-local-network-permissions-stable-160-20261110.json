@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "firefox-local-network-permissions-stable-160-20261110",
   "feature_id": "firefox-local-network-permissions",
   "browser": "firefox",
@@ -71,5 +71,15 @@
     "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
     "executed": false
   },
-  "user_impact": "사이트가 같은 Wi-Fi 장치나 휴대폰 내부 서비스에 연결하기 전에 사용자가 허용·차단을 선택한다. 방문 자체로 내부 연결에 동의했다고 간주하지 않고, 한 번 허용과 사이트별 기억을 분리할 수 있다."
+  "user_impact": "사이트가 같은 Wi-Fi 장치나 휴대폰 내부 서비스에 연결하기 전에 사용자가 허용·차단을 선택한다. 방문 자체로 내부 연결에 동의했다고 간주하지 않고, 한 번 허용과 사이트별 기억을 분리할 수 있다.",
+  "source_item_ids": [
+    "src-legacy-2492235841bcab4a31d4843c",
+    "src-legacy-bc5b4140f136c0db938bbc79",
+    "src-legacy-a79bd7a415c50eb59e16e0f0"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

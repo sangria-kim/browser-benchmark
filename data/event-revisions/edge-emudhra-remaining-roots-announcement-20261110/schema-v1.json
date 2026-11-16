@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "event_id": "edge-emudhra-remaining-roots-announcement-20261110",
+  "feature_id": "edge-emudhra-root-trust-removal",
+  "browser": "edge",
+  "event_type": "announcement",
+  "version": null,
+  "channel": "unknown",
+  "platform": [
+    "unknown"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "제품별 전달 시점이 다르며 상세 OS별 예외는 명시되지 않았다. 한국·언어 특화 조건 미공개. 11월16일은 발표된 예정일로 현재 적용 완료 아님.",
+    "planned_effective_at": "2026-11-16"
+  },
+  "observed_at": "2026-11-11T22:39:34.161576+00:00",
+  "announced_at": "2026-11-10",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+      "section": "Announcements, Added November10",
+      "observed_at": "2026-11-11T22:34:33.405962+00:00",
+      "content_sha256": "ffbfb631116afb041b20809358819ca59a3ce4a12f232d8b621518fc6990d3d9"
+    },
+    {
+      "url": "https://www.microsoft.com/en-us/msrc/blog/2026/10/microsoft-response-to-compromised-emudhra-certificate-authority-keys",
+      "section": "Update November10, Edge & WebView2",
+      "observed_at": "2026-11-11T22:35:56.161742+00:00",
+      "content_sha256": "034d5aad3418c85a90addbad3ea60adde3009cff2e03abc2f325720d09e60425"
+    }
+  ],
+  "summary": "Edge·WebView2의 잔여 eMudhra 루트 기본 신뢰 제거 예고",
+  "delta": "11월16일부터 PKI Metadata 구성요소로 네 잔여 루트의 기본 신뢰를 제거할 예정. 신규 브라우저 버전 설치와 별개인 구성요소 전달이며 장치 확인 주기는 약10시간 또는 앱 시작 직후. 10월의 중간 인증서 차단·7개 루트 제거와 다른 후속 단계다.",
+  "verification_status": "official_body_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "watch",
+  "selection_reason": "일반 보안 패치와 달리 기존 사이트 인증서 호환성에 영향을 주는 후속 신뢰 변경. 미래 적용과 안전한 비교 환경 미확보로 watch.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동일 인증서 체인에서 브라우저별 차단·설명 UX와 사이트 운영자 이관 안내는 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "11월16일 이후 구성요소 적용 근거와 안전한 인증서 시험 환경",
+  "assessed_at": "2026-11-11T22:39:34.161576+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

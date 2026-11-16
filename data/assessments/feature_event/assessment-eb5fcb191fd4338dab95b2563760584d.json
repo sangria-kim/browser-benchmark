@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "기존 155/156의 예정에서 157의 완료 문구로 단계가 바뀌었다. 미전환 프로필 업데이트와 재로그인 가능성을 검증할 가치가 있다.",
+    "Original priority reason: 미전환 프로필의 인증 연속성과 재로그인 실패를 우선 확인.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-oneauth-migration-completed-stable-157-20261105/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "브라우저 인증 구현 전환 후 기존 프로필·계정 연속성과 복구 안내는 얼마나 유지되는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 세부 동작·출시범위·설치본 조건 변경 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-eb5fcb191fd4338dab95b2563760584d",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-oneauth-migration-completed-stable-157-20261105",
+  "input_hash": "a9c89b83929bfcfad86aa410dff776449f5f58152bd0777777b2e225c0cf79da",
+  "input_revision": "data/event-revisions/edge-oneauth-migration-completed-stable-157-20261105/schema-v1.json:sha256:479979810012eb8c604ca3bcf7db6886735680408908bc511d643d7dd6a1746e",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-06T22:58:32.221765+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-7a55e992bf6923e8f42ae8e3",
+    "src-legacy-174237c371c8b5aa867a863d",
+    "src-legacy-bff96314e255fda414e2d2aa"
+  ]
+}

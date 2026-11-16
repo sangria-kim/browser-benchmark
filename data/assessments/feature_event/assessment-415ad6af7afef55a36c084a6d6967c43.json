@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "사이트에 준 권한을 회수하는 개인정보 통제의 실패를 복구하므로 일반 시각적 수정과 구분한다.",
+    "Original priority reason: 기존 개인정보 통제 실패의 복구를 우선 검증한다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/opera-site-permission-removal-restored-stable-140-20261110/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "삼성 브라우저와 비교할 때, 허용 사이트 권한을 설정에서 지운 뒤 실제 사이트 접근과 다음 권한 요청이 일치하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 권한 종류, 사이트 및 관리 정책 조건에서 Stable 재현",
+  "schema_version": 2,
+  "assessment_id": "assessment-415ad6af7afef55a36c084a6d6967c43",
+  "subject_kind": "feature_event",
+  "subject_id": "opera-site-permission-removal-restored-stable-140-20261110",
+  "input_hash": "0dd153bf333ab0b5fcbde3e39baa48935574c8cc26ed560f3ea609a9c6e710d4",
+  "input_revision": "data/event-revisions/opera-site-permission-removal-restored-stable-140-20261110/schema-v1.json:sha256:b533e03a555f7c3caec95beb4397826adc5ae92f5096b286384b3403f6008e57",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-fc610196e7d1bc14595856e9",
+    "src-legacy-c8ea51ef1c796ce9670f7b55"
+  ]
+}

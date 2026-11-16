@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "experiment-event",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "experiment_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "experiment_kind": {
+      "enum": [
+        "flag_entry",
+        "base_feature",
+        "command_switch"
+      ]
+    },
+    "event_type": {
+      "enum": [
+        "baseline",
+        "added",
+        "changed",
+        "default_change",
+        "expiry_change",
+        "removed",
+        "restored",
+        "correction",
+        "unknown"
+      ]
+    },
+    "source_item_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "source_revision": {
+      "type": "string",
+      "minLength": 1
+    },
+    "previous_source_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "effective_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "before": {},
+    "after": {},
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "verification_status": {
+      "enum": [
+        "source_only",
+        "installed_observation",
+        "behavior_verified"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "baseline",
+        "backfill",
+        "daily",
+        "legacy"
+      ]
+    },
+    "correction_of": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "revision": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "event_id",
+    "experiment_id",
+    "experiment_kind",
+    "event_type",
+    "source_item_ids",
+    "source_revision",
+    "previous_source_revision",
+    "observed_at",
+    "effective_at",
+    "before",
+    "after",
+    "summary",
+    "verification_status",
+    "origin",
+    "correction_of",
+    "revision"
+  ],
+  "additionalProperties": false
+}

@@ -1,0 +1,373 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "source-item",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "source_item_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "source_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "browser": {
+      "enum": [
+        "chrome",
+        "edge",
+        "firefox",
+        "safari",
+        "brave",
+        "whale",
+        "opera",
+        "vivaldi"
+      ]
+    },
+    "item_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "item_type": {
+      "enum": [
+        "feature",
+        "change",
+        "fix",
+        "security",
+        "general",
+        "flag_entry",
+        "base_feature",
+        "command_switch",
+        "unknown"
+      ]
+    },
+    "title": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "summary": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 1200
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "minLength": 1
+    },
+    "platform": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "published_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "format": "date"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "evidence": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://[^\\s]+$"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "source_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "observed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "excerpt": {
+          "type": "string",
+          "maxLength": 1200
+        }
+      },
+      "required": [
+        "url",
+        "section",
+        "source_revision",
+        "content_sha256",
+        "observed_at",
+        "excerpt"
+      ],
+      "additionalProperties": false
+    },
+    "record_status": {
+      "enum": [
+        "parsed",
+        "unparsed",
+        "legacy"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "baseline",
+        "backfill",
+        "daily",
+        "legacy"
+      ]
+    },
+    "lifecycle": {
+      "enum": [
+        "active",
+        "removed",
+        "unknown"
+      ]
+    },
+    "revisions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "revision_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "source_revision": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "summary": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence": {
+            "type": "object",
+            "properties": {
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "pattern": "^https://[^\\s]+$"
+              },
+              "section": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "source_revision": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "content_sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "observed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "excerpt": {
+                "type": "string",
+                "maxLength": 1200
+              }
+            },
+            "required": [
+              "url",
+              "section",
+              "source_revision",
+              "content_sha256",
+              "observed_at",
+              "excerpt"
+            ],
+            "additionalProperties": false
+          },
+          "published_at": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observed_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "required": [
+          "revision_id",
+          "content_sha256",
+          "source_revision",
+          "title",
+          "summary",
+          "evidence",
+          "published_at",
+          "observed_at"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "experiment_kind": {
+      "anyOf": [
+        {
+          "enum": [
+            "flag_entry",
+            "base_feature",
+            "command_switch"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_location": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_symbol": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_item_id",
+    "source_id",
+    "browser",
+    "item_key",
+    "item_type",
+    "title",
+    "summary",
+    "channel",
+    "platform",
+    "version",
+    "published_at",
+    "observed_at",
+    "evidence",
+    "record_status",
+    "origin",
+    "lifecycle",
+    "revisions",
+    "experiment_kind",
+    "source_location",
+    "source_symbol"
+  ],
+  "additionalProperties": false
+}

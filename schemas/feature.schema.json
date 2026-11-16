@@ -1,0 +1,84 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "feature",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "feature_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "browser": {
+      "enum": [
+        "chrome",
+        "edge",
+        "firefox",
+        "safari",
+        "brave",
+        "whale",
+        "opera",
+        "vivaldi"
+      ]
+    },
+    "canonical_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "source_item_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "event_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "lifecycle": {
+      "enum": [
+        "active",
+        "removed",
+        "unknown"
+      ]
+    },
+    "legacy": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "feature_id",
+    "browser",
+    "canonical_key",
+    "title",
+    "aliases",
+    "source_item_ids",
+    "event_ids",
+    "lifecycle",
+    "legacy"
+  ],
+  "additionalProperties": false
+}

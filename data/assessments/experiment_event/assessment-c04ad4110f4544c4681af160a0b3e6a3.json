@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d54cef7609ba12c2726724ff: Source baseline: TLS 1.3 Early Data A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c04ad4110f4544c4681af160a0b3e6a3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d54cef7609ba12c2726724ff",
+  "input_hash": "a1d8aac45c37714bf60857d8e1ba0576ec742a7805875a0e3caaf6151d59af54",
+  "input_revision": "semantic-sha256:b1803457f564ce5deef1eab27eb65f060c28c57967bb9ddead26a240d0da3ee1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-aec50bde26702d68ec48bb1c"
+  ]
+}

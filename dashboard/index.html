@@ -4,7 +4,7 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="브라우저 기능의 변화, 공식 근거, Chrome flags와 모찌·푸딩 웹툰을 한곳에서 탐색합니다.">
   <title>Browser Observatory · 브라우저 벤치마크</title>
-  <link rel="stylesheet" href="style.css"><script src="webtoon-feed.js" defer></script><script src="app.js" defer></script>
+  <link rel="stylesheet" href="style.css"><script src="webtoon-feed.js" defer></script><script src="research-model.js" defer></script><script src="app.js" defer></script>
 </head>
 <body>
 <a class="skip" href="#explorer">본문으로 건너뛰기</a>
@@ -15,11 +15,22 @@
   <p class="sync-schedule">웹툰 자동 확인 · 매일 오전 9시 / 10시 (한국시간) · 화면이 열려 있을 때 실행</p>
   <div class="sync-bar"><span id="sync-state" role="status">웹툰 자동 확인 대기</span><button id="sync-refresh" class="quiet">웹툰 상태 새로고침 ↻</button></div>
   <section id="explorer">
-    <div class="tabs" role="tablist" aria-label="자료 종류"><button id="features-tab" role="tab" aria-controls="results-panel" aria-selected="true" data-view="features">기능 업데이트 <span id="event-count"></span></button><button id="flags-tab" role="tab" aria-controls="results-panel" aria-selected="false" data-view="flags">⚑ Chrome flags 실험실 <span id="flag-count"></span></button></div>
+    <div class="tabs" role="tablist" aria-label="자료 종류"><button id="features-tab" role="tab" aria-controls="results-panel" aria-selected="true" data-view="features">선정 기능 <span id="event-count"></span></button><button id="flags-tab" role="tab" aria-controls="results-panel" aria-selected="false" data-view="flags">선정 Chrome 실험 <span id="flag-count"></span></button><button id="reports-tab" role="tab" aria-controls="results-panel" aria-selected="false" data-view="reports">일일 리포트</button><button id="all-tab" role="tab" aria-controls="results-panel" aria-selected="false" data-view="all">전체 자료 탐색</button></div>
     <div id="results-panel" role="tabpanel" aria-labelledby="features-tab">
       <div class="explorer-head"><div><p class="eyebrow" id="table-eyebrow">FEATURE EXPLORER</p><h2 id="table-title">모든 브라우저의 기능 변화</h2><p id="table-description">카드를 누르면 상세 내용과 이전 이력을 확인할 수 있어요.</p></div><button id="reset" class="quiet">필터 초기화 ↺</button></div>
       <div id="browser-filters" class="browser-filters"><span class="filter-label">브라우저</span><div id="browser-filter-boxes" class="browser-filter-boxes" role="group" aria-label="브라우저 필터"></div></div>
-      <div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="기능명, 버전, 키워드 검색" aria-label="기능 또는 flag 검색"><kbd>/</kbd></label><label>플랫폼<select id="platform"><option value="">전체 플랫폼</option></select></label><label id="status-label">웹툰 상태<select id="status"><option value="">전체 상태</option><option value="todo">작업 전</option><option value="done">작업 완료</option><option value="excluded">작업 대상 아님</option><option value="unlinked">기록 미연결</option></select></label><label id="change-label" hidden>변경 유형<select id="change"><option value="">전체 변경</option></select></label><label>정렬<select id="sort"><option value="new">최근 변경순</option><option value="old">과거 변경순</option><option value="name">이름순</option></select></label></div>
+      <div class="judgment-toolbar" id="judgment-toolbar">
+        <label id="membership-label">선정 목록<select id="membership"><option value="current">현재 선정</option><option value="history">과거 선정 포함</option></select></label>
+        <label id="judgment-date-label">판단 기준일<select id="judgment-date"><option value="">현재</option></select></label>
+        <label id="all-kind-label" hidden>자료 계층<select id="all-kind"><option value="source_item">전체 원천 항목</option><option value="feature">기능 카탈로그</option><option value="experiment">실험 카탈로그</option></select></label>
+        <label id="judgment-status-label" hidden>PM 판단<select id="judgment-status"><option value="">전체 판단</option><option value="selected">분석 선정</option><option value="watch">관찰 중</option><option value="pending_verification">검증 대기</option><option value="excluded">분석 제외</option><option value="unassessed">판단 없음</option></select></label>
+        <label id="kind-label" hidden>실험 종류<select id="kind"><option value="">모든 종류</option><option value="flag_entry">UI flag</option><option value="base_feature">Base feature</option><option value="command_switch">Command switch</option></select></label>
+        <label>확인일 시작<input id="from-date" type="date" aria-label="확인일 시작"></label><label>확인일 끝<input id="to-date" type="date" aria-label="확인일 끝"></label>
+        <label id="build-label" hidden>빌드 조건<input id="build" type="search" placeholder="예: IS_ANDROID"></label>
+      </div>
+      <div id="report-controls" class="judgment-toolbar" hidden><label>리포트 날짜<select id="report-date"></select></label><label>Revision<select id="report-revision"></select></label><label>자료 종류<select id="report-kind"><option value="">전체</option><option value="features">기능</option><option value="flags">실험</option></select></label></div>
+      <div id="report-content" hidden></div>
+      <div class="toolbar"><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="기능명, 키워드 검색" aria-label="기능 또는 flag 검색"><kbd>/</kbd></label><label>플랫폼<select id="platform"><option value="">전체 플랫폼</option></select></label><label id="status-label">웹툰 상태<select id="status"><option value="">전체 상태</option><option value="todo">작업 전</option><option value="done">작업 완료</option><option value="excluded">작업 대상 아님</option></select></label><label id="change-label" hidden>변경 유형<select id="change"><option value="">전체 변경</option></select></label><label>정렬<select id="sort"><option value="new">최근 변경순</option><option value="old">과거 변경순</option><option value="name">이름순</option></select></label></div>
       <div class="results-line"><span id="result-count" role="status" aria-live="polite"></span><label id="ai-label"><input id="ai" type="checkbox"> AI 관련만</label><span id="scope-note"></span></div>
       <div id="feature-grid" class="feature-grid" aria-label="브라우저 기능 카드"></div>
       <div class="table-scroll"><table><caption class="sr-only">브라우저 변화와 상세 정보</caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
@@ -27,7 +38,7 @@
       <nav class="pagination" aria-label="결과 페이지"><span id="page-info"></span><div><button id="prev" aria-label="이전 페이지">← 이전</button><button id="next" aria-label="다음 페이지">다음 →</button></div></nav>
     </div>
   </section>
-  <aside class="reading-note"><strong>자료를 읽는 방법</strong><p>공식 발표 · 소스 관찰 · 설치본 노출 · 실제 동작 검증은 서로 다른 근거입니다. 출시 노트 수록이 모든 사용자에게 제공됨을 뜻하지 않습니다. 미확인 정보는 추정해 채우지 않습니다.</p><p>웹툰: 작업 전 = 후보 통과 · 작업 완료 = 최종 완성본 확인 · 작업 대상 아님 = 현재 후보 제외. 기록 미연결은 제작 상태가 아직 대조되지 않았다는 뜻입니다. 웹툰 링크는 Notion 접근 권한이 필요할 수 있습니다.</p></aside>
+  <aside class="reading-note"><strong>자료를 읽는 방법</strong><p>공식 발표 · 소스 관찰 · 설치본 노출 · 실제 동작 검증은 서로 다른 근거입니다. 출시 노트 수록이 모든 사용자에게 제공됨을 뜻하지 않습니다. 미확인 정보는 추정해 채우지 않습니다.</p><p>웹툰: 작업 전 = 후보 통과 · 작업 완료 = 최종 완성본 확인 · 작업 대상 아님 = 현재 후보 제외. 대응 기록이 없는 경우 상세에서 확인할 수 있습니다. 웹툰 링크는 Notion 접근 권한이 필요할 수 있습니다.</p></aside>
   <footer><span>BROWSER OBSERVATORY <span class="muted">/ 공개 근거를 모으는 관측소</span></span><span id="source-ref"></span></footer>
 </main>
 <dialog id="feature-dialog" class="feature-dialog" aria-label="기능 상세"><div class="dialog-toolbar"><span>FEATURE DETAILS · 기능 자세히 보기</span><button id="detail-close" aria-label="상세 닫기" autofocus>닫기 ✕</button></div><div id="detail-content"></div></dialog>

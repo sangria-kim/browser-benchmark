@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-182879ff8f4a7dd48c9713dd: [iOS] added protApp param to Microsoft Bing Search resource token fetch request, so it will not be blocked by the CA policy, \"requiring app protection.\" This token is needed for Copilot in Edge. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-154db67774d8045096c964cea1db1171",
+  "subject_kind": "source_item",
+  "subject_id": "src-182879ff8f4a7dd48c9713dd",
+  "input_hash": "74941cf9533f8b3a9b1018448c473b8ddff82ede82a62a3b413603439ad1a78c",
+  "input_revision": "semantic-sha256:83d270931b48cf4c939f7d08e44f8fb7823b2078a3896f73a3ca62239b75f90e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-182879ff8f4a7dd48c9713dd"
+  ]
+}

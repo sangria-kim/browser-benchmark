@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-checkout-savings-rollout-20261109",
   "feature_id": "edge-checkout-savings",
   "browser": "edge",
@@ -78,5 +78,15 @@
     "completion": "지원 조건을 기록하고 각 흐름을 3회 반복하여 성공·실패와 차이를 근거 화면으로 설명할 수 있을 때 완료",
     "executed": false
   },
-  "novelty_basis": "2020-11-19 공식 글의 결제시점 쿠폰 제안과 겹친다. 새로운 이름과 문구만으로 신규 사용자 기능으로 세지 않는다."
+  "novelty_basis": "2020-11-19 공식 글의 결제시점 쿠폰 제안과 겹친다. 새로운 이름과 문구만으로 신규 사용자 기능으로 세지 않는다.",
+  "source_item_ids": [
+    "src-legacy-f78e077c9bdd6e08c229c809",
+    "src-legacy-3a8776280c077cd2df8a889b",
+    "src-legacy-ded9f5daf3b4617a99f6ef53"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

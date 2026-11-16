@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
   "feature_id": "edge-accelerated-app-launch",
   "browser": "edge",
@@ -48,5 +48,15 @@
       "https://learn.microsoft.com/en-us/windows/apps/develop/launch/accelerated-launch"
     ],
     "conditions": "Windows 11 25H2/26H2/26H1 with October non-security update or later; the inspected KB package covers 25H2/26H2."
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-2186cd291dce9e05feaeb61a",
+    "src-legacy-c6042d31850add17a4766b2d",
+    "src-legacy-47baf1ae4a33d6c39620354f"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

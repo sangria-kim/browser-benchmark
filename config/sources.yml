@@ -1,0 +1,877 @@
+{
+  "contract_version": "1.0",
+  "encoding": "JSON-compatible YAML; parse with json.load",
+  "browsers": [
+    "chrome",
+    "edge",
+    "firefox",
+    "safari",
+    "brave",
+    "whale",
+    "opera",
+    "vivaldi"
+  ],
+  "baseline": {
+    "mode": "current_index_and_bounded_backfill",
+    "backfill_since": "2026-10-28",
+    "backfill_until": "baseline_cutoff",
+    "reason": "First dated daily report is reports/2026-10-28.md. Preserve older existing artifacts as legacy; this is not a claim of historic completeness.",
+    "include_undated_current_documents": true,
+    "overlap_days": 7,
+    "full_reconcile_days": 30,
+    "legacy_policy": "preserve_all_existing_records_and_ids"
+  },
+  "sources": [
+    {
+      "source_id": "chrome-releases",
+      "browser": "chrome",
+      "url": "https://chromereleases.googleblog.com/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "extended_stable",
+        "beta",
+        "dev"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS",
+        "ChromeOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://chromereleases\\.googleblog\\.com/\\d{4}/\\d{2}/[^/]+\\.html$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "chrome-enterprise",
+      "browser": "chrome",
+      "url": "https://support.google.com/chrome/a/answer/7679408",
+      "parser": "html_document",
+      "channels": [
+        "stable",
+        "beta",
+        "planned"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS",
+        "ChromeOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "chrome-platform-status",
+      "browser": "chrome",
+      "url": "https://chromestatus.com/features",
+      "parser": "chromestatus",
+      "channels": [
+        "stable",
+        "beta",
+        "dev",
+        "planned"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS",
+        "ChromeOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://chromestatus\\.com/feature/\\d+$",
+        "pagination": "api_total",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Use official API links and pagination exposed by the site. Keep all item types; target milestone is not rollout proof."
+    },
+    {
+      "source_id": "chrome-blog",
+      "browser": "chrome",
+      "url": "https://blog.google/products-and-platforms/products/chrome/",
+      "parser": "html_index",
+      "channels": [
+        "announcement"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS",
+        "ChromeOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://blog\\.google/(products|products-and-platforms)/.*chrome/",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-stable",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel",
+      "parser": "html_document",
+      "channels": [
+        "stable",
+        "extended_stable"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-beta",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+      "parser": "html_document",
+      "channels": [
+        "beta"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-mobile-stable",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "parser": "html_document",
+      "channels": [
+        "stable"
+      ],
+      "platforms": [
+        "Android",
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-mobile-beta",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-beta-channel",
+      "parser": "html_document",
+      "channels": [
+        "beta"
+      ],
+      "platforms": [
+        "Android",
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-stable-archive",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-stable-channel",
+      "parser": "html_document",
+      "channels": [
+        "stable",
+        "extended_stable"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-beta-archive",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-archive-beta-channel",
+      "parser": "html_document",
+      "channels": [
+        "beta"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-security",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnotes-security",
+      "parser": "html_document",
+      "channels": [
+        "stable",
+        "extended_stable"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "edge-policies",
+      "browser": "edge",
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "beta",
+        "planned"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS",
+        "ChromeOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://learn\\.microsoft\\.com/en-us/deployedge/microsoft-edge-policies/[^/#]+$",
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "firefox-releases",
+      "browser": "firefox",
+      "url": "https://www.firefox.com/en-US/releases/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "esr"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://www\\.firefox\\.com/en-US/firefox/[0-9.]+(?:esr)?/releasenotes/$",
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "firefox-beta",
+      "browser": "firefox",
+      "url": "https://www.firefox.com/en-US/firefox/beta/notes/",
+      "parser": "html_document",
+      "channels": [
+        "beta"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "firefox-android",
+      "browser": "firefox",
+      "url": "https://www.firefox.com/en-US/firefox/android/notes/",
+      "parser": "html_document",
+      "channels": [
+        "stable"
+      ],
+      "platforms": [
+        "Android"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "firefox-ios",
+      "browser": "firefox",
+      "url": "https://www.firefox.com/en-US/firefox/ios/notes/",
+      "parser": "html_document",
+      "channels": [
+        "stable"
+      ],
+      "platforms": [
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "firefox-security",
+      "browser": "firefox",
+      "url": "https://www.mozilla.org/en-US/security/known-vulnerabilities/firefox/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "esr"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://www\\.mozilla\\.org/en-US/security/advisories/mfsa[^/]+/$",
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "safari-release-notes",
+      "browser": "safari",
+      "url": "https://developer.apple.com/documentation/safari-release-notes",
+      "parser": "apple_documentation",
+      "channels": [
+        "stable",
+        "beta"
+      ],
+      "platforms": [
+        "macOS",
+        "iOS",
+        "iPadOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://developer\\.apple\\.com/documentation/safari-release-notes/safari-[^/]+release[-_]notes(?:\\.md)?$",
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "safari-technology-preview",
+      "browser": "safari",
+      "url": "https://webkit.org/blog/",
+      "parser": "html_index",
+      "channels": [
+        "technology_preview"
+      ],
+      "platforms": [
+        "macOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://webkit\\.org/blog/\\d+/release-notes-for-safari-technology-preview-[^/]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "safari-security",
+      "browser": "safari",
+      "url": "https://support.apple.com/en-us/100100",
+      "parser": "html_index",
+      "channels": [
+        "stable"
+      ],
+      "platforms": [
+        "macOS",
+        "iOS",
+        "iPadOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://support\\.apple\\.com/en-us/\\d+$",
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "brave-releases",
+      "browser": "brave",
+      "url": "https://github.com/brave/brave-browser/releases",
+      "parser": "github_releases",
+      "channels": [
+        "stable",
+        "beta",
+        "nightly"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "link_header",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "brave-android-changelog",
+      "browser": "brave",
+      "url": "https://github.com/brave/brave-browser/blob/master/CHANGELOG_ANDROID.md",
+      "parser": "github_markdown",
+      "channels": [
+        "stable"
+      ],
+      "platforms": [
+        "Android"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": null,
+        "pagination": "none",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "brave-blog",
+      "browser": "brave",
+      "url": "https://brave.com/blog/",
+      "parser": "html_index",
+      "channels": [
+        "announcement"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://brave\\.com/(blog/)?[^/#]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "whale-notices",
+      "browser": "whale",
+      "url": "https://forum.whale.naver.com/forum/26/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "beta"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS"
+      ],
+      "language": "ko",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://forum\\.whale\\.naver\\.com/topic/\\d+/",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Collect official announcement body only. Do not publish community replies, usernames, emails or avatars."
+    },
+    {
+      "source_id": "whale-release-history",
+      "browser": "whale",
+      "url": "https://v1.whale.naver.com/ko/whats_new/notice/",
+      "parser": "html_index",
+      "channels": [
+        "stable"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS"
+      ],
+      "language": "ko",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://v1\\.whale\\.naver\\.com/ko/whats_new/notice/",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": false
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "opera-desktop",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/desktop/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "beta",
+        "developer"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://blogs\\.opera\\.com/desktop/(?:\\d{4}/\\d{2}/[^/]+|changelog-for-[^/]+)/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "opera-mobile",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/mobile/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "beta"
+      ],
+      "platforms": [
+        "Android",
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://blogs\\.opera\\.com/mobile/\\d{4}/\\d{2}/[^/]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "opera-news",
+      "browser": "opera",
+      "url": "https://blogs.opera.com/news/",
+      "parser": "html_index",
+      "channels": [
+        "announcement"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux",
+        "Android",
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://blogs\\.opera\\.com/news/\\d{4}/\\d{2}/[^/]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "vivaldi-desktop",
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/desktop/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "snapshot"
+      ],
+      "platforms": [
+        "Windows",
+        "macOS",
+        "Linux"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://vivaldi\\.com/blog/(?:desktop/)?[^/#]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "vivaldi-android",
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/android/releases/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "snapshot"
+      ],
+      "platforms": [
+        "Android"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://vivaldi\\.com/blog/(?:ios/|android/)?[^/#]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    },
+    {
+      "source_id": "vivaldi-ios",
+      "browser": "vivaldi",
+      "url": "https://vivaldi.com/blog/ios/",
+      "parser": "html_index",
+      "channels": [
+        "stable",
+        "snapshot"
+      ],
+      "platforms": [
+        "iOS"
+      ],
+      "language": "en",
+      "enabled": true,
+      "discovery": {
+        "include_url_pattern": "^https://vivaldi\\.com/blog/(?:ios/|android/)?[^/#]+/$",
+        "pagination": "next_link",
+        "max_pages": 100,
+        "max_documents": 500,
+        "follow_related_documents": true
+      },
+      "item_policy": "all_sections_including_security_and_fixes",
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+    }
+  ],
+  "unsupported_scopes": [
+    {
+      "browser": "chrome",
+      "scope": "Canary product release notes and private Finch configuration",
+      "reason": "No comprehensive registered official item feed; public Chromium source is a separate evidence surface."
+    },
+    {
+      "browser": "edge",
+      "scope": "Dev/Canary and WebView2 full release history",
+      "reason": "Not part of the registered release feeds; do not infer support from Beta."
+    },
+    {
+      "browser": "firefox",
+      "scope": "Nightly full changes and mobile Beta/ESR histories",
+      "reason": "No registered complete item enumerator."
+    },
+    {
+      "browser": "safari",
+      "scope": "Private WebKit branches and unreleased internal experiments",
+      "reason": "Not publicly enumerable."
+    },
+    {
+      "browser": "brave",
+      "scope": "iOS structured release feed",
+      "reason": "Blog announcements alone do not provide a complete iOS release catalog."
+    },
+    {
+      "browser": "whale",
+      "scope": "Unannounced channels and private experiments",
+      "reason": "Only official published announcement bodies are in scope."
+    },
+    {
+      "browser": "opera",
+      "scope": "Opera GX and private server experiments",
+      "reason": "Separate products or unpublished configuration; outside this registry."
+    },
+    {
+      "browser": "vivaldi",
+      "scope": "Unpublished mobile preview channels",
+      "reason": "Only the registered public release and snapshot posts are in scope."
+    }
+  ]
+}

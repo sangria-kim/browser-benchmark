@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d77a1c1495239c74acfc2a66: Source baseline: Semantic Embedder API A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c51963004b062ddd935567b34eefe623",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d77a1c1495239c74acfc2a66",
+  "input_hash": "78f0e7577bc5250a7f199ea259806e27560a266b9872ac91a042a16951b87b35",
+  "input_revision": "semantic-sha256:dba83c33b4e809056a9aaf821584bd1968646ea389532052cae90a8b91f61b5e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-e42f636e94cf680257fb23f8",
+    "src-legacy-2bfc5bf0f00df4ff95720abf"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d820b3637c512a5cea8666cd: Fixed an issue where a SMIL animation of a presentation attribute was never released after the animated element was detached from the document, permanently freezing the animated value. (185452156) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-56918dc80d287d0e5a39b6a10544cab9",
+  "subject_kind": "source_item",
+  "subject_id": "src-d820b3637c512a5cea8666cd",
+  "input_hash": "a60e25d3cdda423774f8c7c76c880021ccd51c02dcf5e7ed85fc646c1d199f7a",
+  "input_revision": "semantic-sha256:138b29938b344cb7826e09dea82d88163442e1f5e2bb551ea61afdaafd30397d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d820b3637c512a5cea8666cd"
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "schema_version": 2,
+  "report_id": "daily-2026-11-16",
+  "date": "2026-11-16",
+  "timezone": "Asia/Seoul",
+  "cutoff": "2026-11-16T03:05:09Z",
+  "previous_cutoff": "2026-11-15T14:59:59.999999Z",
+  "generator_version": "daily-selected-v1",
+  "rule_version": "daily-selected-v1",
+  "items": [
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-context-menu-gemini-search-order-source-20261113",
+      "assessment_id": "assessment-1de91640e3e4ad3a7f613fcf6dd8641d",
+      "event_ids": [
+        "chrome-context-menu-gemini-search-order-source-20261113"
+      ],
+      "change_id": "selection-b96b7e0ec2aa4b8ffa1daacd0d419ac2",
+      "timing": "current",
+      "announced_at": null,
+      "observed_at": "2026-11-15T22:58:00Z",
+      "source_urls": [
+        "https://github.com/chromium/chromium/commit/547fe3d4765d6d9821019bdb0101fbeea01a0452"
+      ],
+      "selection_kind": "features",
+      "action": "selected",
+      "discovered_at": "2026-11-15T22:58:00Z",
+      "effective_at": null,
+      "evidence": [
+        {
+          "source_item_id": "src-legacy-6aee249155b3ce50f5e09d58",
+          "revision_id": "rev-legacy-c4e389f507de2cebddf77dca",
+          "content_sha256": "5c5765ec4f80f13c3d932743ed0a4c54f85dd7a640d0316bfd0f073ddd1f1fda",
+          "source_revision": "547fe3d4765d6d9821019bdb0101fbeea01a0452",
+          "url": "https://github.com/chromium/chromium/commit/547fe3d4765d6d9821019bdb0101fbeea01a0452",
+          "observed_at": "2026-11-15T22:58:00Z",
+          "section": "about_flags.cc; render_view_context_menu.cc; ui_features.cc; unit test",
+          "excerpt": "Chrome 페이지 메뉴에서 Gemini·검색을 저장·인쇄보다 위에 배치하는 실험",
+          "record_path": "data/source-items/chrome/legacy.json"
+        }
+      ],
+      "details": {
+        "title": "Chrome 페이지 메뉴에서 Gemini·검색을 저장·인쇄보다 위에 배치하는 실험",
+        "summary": "기존 menu-simplification에 glic section above save 옵션을 추가한다. 텍스트 미선택·비편집 페이지 메뉴에서 Gemini·검색 구역을 저장·인쇄 구역 위로 옮긴다. 기능과 새 매개변수의 기본값은 비활성화다.",
+        "browser": "chrome",
+        "channel": "experiment_source_main",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux",
+          "ChromeOS"
+        ],
+        "workstreams": [
+          "pc",
+          "ai"
+        ],
+        "ai_related": true,
+        "event_type": "options_modified",
+        "subject_revision": 1,
+        "status": "selected",
+        "priority": "P2",
+        "assessment_rule_version": "pm-selection-v2",
+        "reasons": [
+          "기존 만료 연장과 달리 메뉴 구성 코드의 순서 변경이 확인된다. AI/검색 발견성과 기존 저장·인쇄 과제의 조작 비용을 동일 조건으로 비교할 수 있는 소스 실험이다.",
+          "Original priority reason: 메뉴 순서의 제한된 탐색적 비교이며 실제 배포·설치본 노출은 확인되지 않았다.",
+          "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-context-menu-gemini-search-order-source-20261113/schema-v1.json"
+        ],
+        "comparison_question": "페이지 메뉴의 Gemini·검색 우선 배치가 AI 진입 발견성과 저장·인쇄 탐색 시간·오선택률을 어떻게 바꾸는가?",
+        "benchmark_readiness": "conditional",
+        "benchmark": null,
+        "subject_path": "data/event-revisions/chrome-context-menu-gemini-search-order-source-20261113/schema-v1.json",
+        "assessment_path": "data/assessments/feature_event/assessment-1de91640e3e4ad3a7f613fcf6dd8641d.json",
+        "selection_path": "data/selected/features/current.json",
+        "documentation_paths": [
+          "features/chrome/context-menu-gemini-search-order.md"
+        ]
+      },
+      "related_change_ids": []
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-82284d6c37170a8065617d7d",
+      "assessment_id": "assessment-6362515874962872d64793391b03cf19",
+      "event_ids": [],
+      "change_id": "selection-84e477a9ce915f82001df84ff61fea29",
+      "timing": "backfill",
+      "announced_at": "2026-11-09",
+      "observed_at": "2026-11-16T01:44:11.615283+00:00",
+      "source_urls": [
+        "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/"
+      ],
+      "selection_kind": "features",
+      "action": "selected",
+      "discovered_at": "2026-11-16T03:05:09Z",
+      "effective_at": null,
+      "evidence": [
+        {
+          "source_item_id": "src-82284d6c37170a8065617d7d",
+          "revision_id": "sr-35dbc60c21d4b44960a848ec",
+          "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
+          "source_revision": null,
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "observed_at": "2026-11-16T01:44:11.615283+00:00",
+          "section": "Changed",
+          "excerpt": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+          "record_path": "data/source-items/firefox/firefox-beta.json"
+        }
+      ],
+      "details": {
+        "title": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+        "summary": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+        "browser": "firefox",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "workstreams": [],
+        "ai_related": null,
+        "event_type": null,
+        "subject_revision": null,
+        "status": "selected",
+        "priority": "P2",
+        "assessment_rule_version": "pm-selection-v3.0.0",
+        "reasons": [
+          "Evidence-gated deterministic profile macos-menu-shortcut-override: macOS users can replace browser menu shortcuts with system preferences. This changes keyboard task completion and shortcut conflicts.",
+          "Evidence: On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+          "Material change: The official Beta note says custom shortcuts now replace built-in shortcuts; this is a historical Beta note, not a newly observed launch.",
+          "Benchmark: Confirm browser availability and the stated Beta behavior on the same macOS device → Assign a menu shortcut in System Settings → Invoke both the custom and former shortcuts while a page input has focus → Restore the original setting",
+          "Measure: Successful menu invocations; Unexpected text input or conflicting commands; Setup steps",
+          "Completion: Three repetitions per supported browser; record outcomes and unavailable paths. No execution is claimed.",
+          "Conditions: Beta documentation only; no device test. Confirm both browsers and menu support on macOS first. If Samsung Browser is unavailable on macOS, retain as a design comparison and do not report a cross-product performance result."
+        ],
+        "comparison_question": "On the same macOS version, can a user override a browser menu shortcut through System Settings, and what happens to the former shortcut in Firefox and Samsung Browser if available?",
+        "benchmark_readiness": "conditional",
+        "benchmark": null,
+        "subject_path": "data/source-items/firefox/firefox-beta.json",
+        "assessment_path": "data/assessments/source_item/assessment-6362515874962872d64793391b03cf19.json",
+        "selection_path": "data/selected/features/current.json",
+        "documentation_paths": []
+      },
+      "related_change_ids": []
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-8dd2099c32c619c966da0a22",
+      "assessment_id": "assessment-73c19a5d939f58e2984883a794dc796a",
+      "event_ids": [
+        "event-8dd2099c32c619c966da0a22"
+      ],
+      "change_id": "selection-387d5eeb7aa6dcee03b142ec6d932799",
+      "timing": "backfill",
+      "announced_at": null,
+      "observed_at": "2026-11-16T02:06:29.504381Z",
+      "source_urls": [
+        "https://chromium.googlesource.com/chromium/src/+/33a44a9853b0db5785d9545118999ff764651682/chrome/browser/about_flags.cc#L7690"
+      ],
+      "selection_kind": "flags",
+      "action": "selected",
+      "discovered_at": "2026-11-16T03:05:09Z",
+      "effective_at": null,
+      "evidence": [
+        {
+          "source_item_id": "src-chromium-681d22ecc3663c3ea87d9d73",
+          "revision_id": "rev-32358aa05986b4469e153c34",
+          "content_sha256": "9bb8bb0808b8d173966fabf91a67a749caf06676f52bbc609aedc639a116f288",
+          "source_revision": "33a44a9853b0db5785d9545118999ff764651682",
+          "url": "https://chromium.googlesource.com/chromium/src/+/33a44a9853b0db5785d9545118999ff764651682/chrome/browser/about_flags.cc#L7690",
+          "observed_at": "2026-11-16T02:06:29.504381Z",
+          "section": "chrome/browser/about_flags.cc:7690",
+          "excerpt": "{\"enable-parallel-downloading\", flag_descriptions::kParallelDownloadingName, flag_descriptions::kParallelDownloadingDescription, kOsAll, FEATURE_VALUE_TYPE(download::features::kParallelDownloading)}",
+          "record_path": "data/source-items/chrome-experiments/initial-source-sample.json"
+        }
+      ],
+      "details": {
+        "title": "Source baseline: Parallel downloading",
+        "summary": "Source baseline: Parallel downloading",
+        "browser": "chrome",
+        "channel": "unknown",
+        "platform": [
+          "kOsAll"
+        ],
+        "workstreams": [],
+        "ai_related": null,
+        "event_type": "baseline",
+        "subject_revision": 1,
+        "status": "selected",
+        "priority": "P2",
+        "assessment_rule_version": "pm-selection-v3.0.0",
+        "reasons": [
+          "Evidence-gated deterministic profile enable-parallel-downloading-benchmark: A download can use parallel transfers. Download completion and recovery are concrete tasks; the source description is a claim to test, not proof of acceleration.",
+          "Evidence: Enable parallel downloading to accelerate download speed.",
+          "Material change: An active registration is documented at the pinned source baseline. This selects an existing experiment for research; it does not date its introduction or claim a new product release.",
+          "Benchmark: Confirm the flag exists in an accessible build and document default state → Serve a synthetic file from a server with range requests → Download with the option enabled and disabled under the same network cap → Repeat after one controlled network interruption and compare the same task in an available Samsung Browser build",
+          "Measure: Completion time; Transferred bytes; Recovery success and file hash",
+          "Completion: Three repetitions for each supported condition; record setup and failures. No execution is claimed.",
+          "Conditions: Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment."
+        ],
+        "comparison_question": "For an identical large file and controlled network, how do enabled and disabled parallel downloading affect completion time and recovery, and how does Samsung Browser behave under the same conditions?",
+        "benchmark_readiness": "conditional",
+        "benchmark": null,
+        "subject_path": "data/experiment-events/events.json",
+        "assessment_path": "data/assessments/experiment_event/assessment-73c19a5d939f58e2984883a794dc796a.json",
+        "selection_path": "data/selected/flags/current.json",
+        "documentation_paths": []
+      },
+      "related_change_ids": []
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-fd7d947d568ffafd39ff292e751905ae",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "change_id": "selection-7017fffa21cbb1da40f7a657fdbdc32a",
+      "timing": "backfill",
+      "announced_at": null,
+      "observed_at": "2026-11-16T02:06:29.504381Z",
+      "source_urls": [
+        "https://chromium.googlesource.com/chromium/src/+/33a44a9853b0db5785d9545118999ff764651682/chrome/browser/about_flags.cc#L10850"
+      ],
+      "selection_kind": "flags",
+      "action": "selected",
+      "discovered_at": "2026-11-16T03:05:09Z",
+      "effective_at": null,
+      "evidence": [
+        {
+          "source_item_id": "src-chromium-020c9a0390955bd679839457",
+          "revision_id": "rev-f975af9110315fd2909b3bb9",
+          "content_sha256": "d9922fa5284371453fbce4393b2799cc8ecccfdbb7b5573015764c22ec32b391",
+          "source_revision": "33a44a9853b0db5785d9545118999ff764651682",
+          "url": "https://chromium.googlesource.com/chromium/src/+/33a44a9853b0db5785d9545118999ff764651682/chrome/browser/about_flags.cc#L10850",
+          "observed_at": "2026-11-16T02:06:29.504381Z",
+          "section": "chrome/browser/about_flags.cc:10850",
+          "excerpt": "{\"actor-observe-screenshot-default\", flag_descriptions::kActorObserveScreenshotDefaultName, flag_descriptions::kActorObserveScreenshotDefaultDescription, kOsDesktop, FEATURE_VALUE_TYPE(actor::kActorObserveScreenshotDefault)}",
+          "record_path": "data/source-items/chrome-experiments/initial-source-sample.json"
+        }
+      ],
+      "details": {
+        "title": "Source baseline: Actor observe screenshot default",
+        "summary": "Source baseline: Actor observe screenshot default",
+        "browser": "chrome",
+        "channel": "unknown",
+        "platform": [
+          "kOsDesktop"
+        ],
+        "workstreams": [],
+        "ai_related": null,
+        "event_type": "baseline",
+        "subject_revision": 1,
+        "status": "selected",
+        "priority": "P1",
+        "assessment_rule_version": "pm-selection-v3.0.0",
+        "reasons": [
+          "Evidence-gated deterministic profile actor-observe-screenshot-default-benchmark: An agent framework can capture page screenshots by default when requested. The default capture surface raises a concrete user-control and sensitive-page comparison task.",
+          "Evidence: If enabled, the actor framework will capture screenshots by default when requested.",
+          "Material change: An active registration is documented at the pinned source baseline. This selects an existing experiment for research; it does not date its introduction or claim a new product release.",
+          "Benchmark: Build or obtain an accessible revision with this registration and confirm the actor path is present → Use synthetic pages with visible and off-screen markers → Request observation with the option enabled and disabled → Inspect captured markers and available user controls; compare another browser agent only if it supports the same task",
+          "Measure: Captured marker coverage; Capture events per request; User-visible controls and cancellation outcome",
+          "Completion: Three repetitions for each supported condition; record setup and failures. No execution is claimed.",
+          "Conditions: Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment."
+        ],
+        "comparison_question": "In a controlled browser-agent task, what page content enters a screenshot when observation is requested, and can the user inspect or stop that transfer?",
+        "benchmark_readiness": "conditional",
+        "benchmark": null,
+        "subject_path": "data/experiment-events/events.json",
+        "assessment_path": "data/assessments/experiment_event/assessment-fd7d947d568ffafd39ff292e751905ae.json",
+        "selection_path": "data/selected/flags/current.json",
+        "documentation_paths": []
+      },
+      "related_change_ids": []
+    }
+  ],
+  "catalog_transitions": [],
+  "completeness": {
+    "collection": "partial",
+    "evaluation": "complete"
+  },
+  "outcome": "changes",
+  "selection_snapshot_paths": [
+    "data/selected/history/2026-11-16/features-6de5d9ad5ce3fbd4ab5c230941e10f3a0a55fedea9b8f56edf5e8608520b01d9.json",
+    "data/selected/history/2026-11-16/flags-33d953de6cb7a5e7f9d4800a41995b499f938229236da34128f46d78cdbe99aa.json"
+  ],
+  "revision": 1,
+  "supersedes_revision": null,
+  "input_hash": "279efde5c4054b2102ada01c7b9e90f6ad80887242acf0c4d66e4820b39c64f0",
+  "markdown_path": "reports/generated/2026-11-16/r1.md"
+}

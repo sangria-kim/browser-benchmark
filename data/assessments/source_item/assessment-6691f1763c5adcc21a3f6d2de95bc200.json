@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6082ae3f961b75788fe3d412: Fixed an issue where scrollWidth and clientWidth returned inconsistent values when the page was zoomed in or out due to rounding. (121879134) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6691f1763c5adcc21a3f6d2de95bc200",
+  "subject_kind": "source_item",
+  "subject_id": "src-6082ae3f961b75788fe3d412",
+  "input_hash": "905ccc29dae948c88b5b6fc90317b3ab185edf39d82e8b48055014de81d798ca",
+  "input_revision": "semantic-sha256:c530ed32dc17a48daebd7665631ffda0fa8b78e2411de1a65ed76ac87e5a5270",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6082ae3f961b75788fe3d412"
+  ]
+}

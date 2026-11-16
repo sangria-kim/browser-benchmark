@@ -1,0 +1,27 @@
+{
+  "status": "selected",
+  "reasons": [
+    "한국어 조합 입력이 첫 글자 뒤 멈추던 특정 편집기 호환 문제를 수정한다고 안내한다. 모든 IME·사이트 개선은 아니다. 구체적인 동일 조건 비교 과제를 정의할 수 있어 Beta 관찰 사건으로 선정.",
+    "Original priority reason: 특정 입력·공유·전환 작업의 개선을 탐색적으로 비교.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/firefox-canva-docs-ime-continuity-beta-161-20261109/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "동일 OS·한국어 IME에서 삼성 브라우저와 Firefox의 긴 문장 조합·수정이 끊기지 않는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Beta 설치본 노출·동일 시험 조건 확보 또는 Stable 확대",
+  "schema_version": 2,
+  "assessment_id": "assessment-1ef1f367e4b6862351fa37f7beb682e0",
+  "subject_kind": "feature_event",
+  "subject_id": "firefox-canva-docs-ime-continuity-beta-161-20261109",
+  "input_hash": "6837dfd6a12b6856c80e96096dfcac293d277e6b4c31e8d9010edf2e874686a5",
+  "input_revision": "data/event-revisions/firefox-canva-docs-ime-continuity-beta-161-20261109/schema-v1.json:sha256:ea687602da3e1db81a63b04c5b126a283804174c85359940304f85bff0a8d7b8",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-11T22:38:45.023058+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-6a9167966670f6fa1c9d89c1"
+  ]
+}

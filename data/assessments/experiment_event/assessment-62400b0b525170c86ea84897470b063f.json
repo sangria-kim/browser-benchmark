@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3e4bd7f457b2f02185451c74: Source baseline: Enable Autofill credit card scanning bug fixes A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-62400b0b525170c86ea84897470b063f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3e4bd7f457b2f02185451c74",
+  "input_hash": "378df0d6a1254e9fb1fb37c235f786565e87e34730f3e6dbf0f7509069a0c8be",
+  "input_revision": "semantic-sha256:7ec60a86d57127bea69086563c587f4e382ff5b30860fc7fb1ffa84ccb4e5e64",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-52869590e886b197218eacd3",
+    "src-legacy-ccc70371db3f0ee4717a0981"
+  ]
+}

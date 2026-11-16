@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f443bbe6eebf03cd7fb5d20c: Source baseline: Fix static ip on managed device with two ethernet ports. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-97e38afb2a4b48aba36d600ba5da4638",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f443bbe6eebf03cd7fb5d20c",
+  "input_hash": "14b41aaed17b52570f658974fc428d6205d2e538b146bffca301468fd58b17f9",
+  "input_revision": "semantic-sha256:2b7e61214f03c8d990f4c15de2215d37074be19c7ba3f09924521f752824c0bd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-198a60e65f0221489964e9ac"
+  ]
+}

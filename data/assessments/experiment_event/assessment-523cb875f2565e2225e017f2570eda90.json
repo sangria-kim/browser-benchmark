@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-dc2f412b7638a7a50eb0a0b4: Source baseline: Treat localhost URLs as sensitive A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-523cb875f2565e2225e017f2570eda90",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-dc2f412b7638a7a50eb0a0b4",
+  "input_hash": "3ff0daf70c98efd1631e64767dd88a66e1baff0719340f34132d44f490e533b8",
+  "input_revision": "semantic-sha256:b59c403c7a0148cde98d0700697b551e3bb17d888b47d3f06f7d257b8ff15788",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-1bfd11597434ee4c7db38b67",
+    "src-legacy-2cc67854de99a618e4c8ad27"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1e7d67c8eb3c39ba136ba479: Source baseline: Compositor View Shrink When Keyboard Hidden A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-47e33439bfefac1045875451711d6949",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1e7d67c8eb3c39ba136ba479",
+  "input_hash": "d3de434e84b096e5eab2338bf8edff6f00bf14523b15932861c152338fa0f65e",
+  "input_revision": "semantic-sha256:30ba1bfb8a6567c68b6fdde2d29f1adea0a945645146eb24e3636d4e6172d685",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-4d8ffc9e3028e114b7f6d50a",
+    "src-legacy-cdc62db2f2e65f105ca1cdcf"
+  ]
+}

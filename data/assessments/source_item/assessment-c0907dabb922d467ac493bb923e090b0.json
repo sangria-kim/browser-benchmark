@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2ad20a8c9ff44cd0488b4cd1: Fixed an issue where getUserMedia() requests for audio permanently failed with NotAllowedError after the system audio service was reset. (186939802) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c0907dabb922d467ac493bb923e090b0",
+  "subject_kind": "source_item",
+  "subject_id": "src-2ad20a8c9ff44cd0488b4cd1",
+  "input_hash": "f03a0886184393ce384ae71ef82b27ff2f1a44041b4493e4458ee57bc17100b5",
+  "input_revision": "semantic-sha256:cd91035f40bf20371067fb33681c2fab61c390af16b606454bfd3aae8375c260",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2ad20a8c9ff44cd0488b4cd1"
+  ]
+}

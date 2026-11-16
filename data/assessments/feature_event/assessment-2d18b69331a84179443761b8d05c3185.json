@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "Gate proposes a separate Offers and loyalty cards settings leaf/toggle instead of Payments; this commit contains flag definitions rather than completed settings UI.",
+    "Original priority reason: 사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-autofill-enable-offers-and-loyalty-cards-settings-registration-701fc033a82d/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2d18b69331a84179443761b8d05c3185",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-autofill-enable-offers-and-loyalty-cards-settings-registration-701fc033a82d",
+  "input_hash": "01723380c4caa2049cc9d59d504dafa5de120422197c808cdbcc85179121c438",
+  "input_revision": "data/event-revisions/chrome-autofill-enable-offers-and-loyalty-cards-settings-registration-701fc033a82d/schema-v1.json:sha256:d683d40e63cf403467479423bfa31df8ce54c8fcff5ba5ff7989ed289dedeae1",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-31f9fb93df5ae76fa21883d7"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "browser": "firefox",
+  "version": "160",
+  "channel": "beta",
+  "platform": [],
+  "observed_at": "2026-11-07T23:12:38.066677+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "summary": "link/script/style의 blocking=render 실험 지원 문서 추가",
+  "selection_status": "watch",
+  "selection_reason": "MDN 160의 실험 항목이며 dom.element.blocking.enabled는 기본 비활성이다. 문서 편집일을 출시일로 삼지 않으며 Stable 지원·설치본 동작은 미확인이다.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "동적 스타일·스크립트 로드 중 비스타일 화면 노출과 첫 렌더링 지연은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 적용 시점·빌드·지원 범위와 변경 전후 비교 조건 확인",
+  "assessed_at": "2026-11-07T23:12:38.066677+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "firefox-render-blocking-pref-160-20261108",
+  "feature_id": "firefox-render-blocking",
+  "event_type": "experiment_observation",
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "source_revision": null,
+  "previous_event_id": null,
+  "verification_status": "official_document_verified_not_device_tested",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": {
+      "flag": "dom.element.blocking.enabled"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://developer.mozilla.org/en-US/docs/Mozilla/Firefox/Releases/160",
+      "section": "해당 변경 항목",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    },
+    {
+      "url": "https://bugzilla.mozilla.org/show_bug.cgi?id=1751383",
+      "section": "지원 조건 및 기능 설명",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    }
+  ],
+  "delta": "link/script/style의 blocking=render 실험 지원 문서 추가",
+  "benchmark_candidate": {
+    "conditions": "동일 OS/장치/네트워크에서 Firefox160 시험 빌드와 동일 공개 테스트 페이지; pref false/true 분리",
+    "steps": [
+      "지연 stylesheet와 동적 script/style 삽입 페이지 준비",
+      "pref off/on에서 렌더링 캡처",
+      "첫 렌더링과 비스타일 노출 비교"
+    ],
+    "metrics": [
+      "첫 렌더링 시간",
+      "비스타일 프레임 수",
+      "입력 반응성"
+    ],
+    "completion": "빌드의 pref 지원·기본값 확인 후 반복 비교",
+    "executed": false
+  }
+}

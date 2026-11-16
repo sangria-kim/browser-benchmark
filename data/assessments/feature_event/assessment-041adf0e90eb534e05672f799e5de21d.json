@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "새 옵션·구현·단위 테스트가 함께 확인되어 OS 설정 전환 후 사용자 과제 완료를 비교할 수 있다. 제품 출시나 시험 완료로 보지 않는다.",
+    "Original priority reason: 기본 브라우저 지정이라는 구체적 전환 과제의 이탈·오류를 비교할 수 있으나 Windows 11의 선택적 실험에 한정된다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-annotated-default-browser-setter-20261106/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "Windows 11에서 기본 브라우저 지정 시 OS 설정 창으로 이동한 뒤 안내 버블이 없는 기존 방식보다 완료 시간·잘못된 클릭·미완료 비율이 달라지는가? 삼성 브라우저의 동일 안내 지원은 별도 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함한 설치본에서 실험 노출·조건 및 사용자 과제 동작이 확인될 때 다시 검토한다.",
+  "schema_version": 2,
+  "assessment_id": "assessment-041adf0e90eb534e05672f799e5de21d",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-annotated-default-browser-setter-20261106",
+  "input_hash": "fa96e40be4ed92963f70ceffceb07089848e74a06c97ba562adc1ff5ff0d6e38",
+  "input_revision": "data/event-revisions/chrome-annotated-default-browser-setter-20261106/schema-v1.json:sha256:a8eb708a9b94c632ba84706c8670c8c849e8780ec3b622187806fedaa4bec02a",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-06T22:56:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-82ffffe935e69017d68e7f81",
+    "src-legacy-80ff072e9fc10fbebda35d26"
+  ]
+}

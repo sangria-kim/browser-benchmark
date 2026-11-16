@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-53e28d76bd39f1d15d161f23: Source baseline: Preserve Last-Modified timestamp on downloaded files A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d22ad26e07d0aa1a011699f6c4b1ecce",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-53e28d76bd39f1d15d161f23",
+  "input_hash": "44b32f842039e3b1ea934dd83675bb4c23b0068547dadb447601ae078a647cce",
+  "input_revision": "semantic-sha256:0a20fe65c5b22f55bf031d68233e1e0e9fec1a79237a5fc4f9eed8df21423e99",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-3fbec882c3e3b57bc036832c",
+    "src-legacy-694ecb1894e90a78f1e75c16"
+  ]
+}

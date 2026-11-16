@@ -1,0 +1,50 @@
+[
+  {
+    "kind": "source_item",
+    "field": "evidence.content_sha256",
+    "value": "bad",
+    "reason": "hash must identify evidence"
+  },
+  {
+    "kind": "assessment",
+    "field": "status",
+    "value": "evaluation_failed",
+    "reason": "operation failure is not a public PM judgment"
+  },
+  {
+    "kind": "assessment",
+    "field": "reasons",
+    "value": [],
+    "reason": "judgments require reasons"
+  },
+  {
+    "kind": "experiment",
+    "field": "experiment_kind",
+    "value": "flag",
+    "reason": "three experiment surfaces remain distinct"
+  },
+  {
+    "kind": "feature_event",
+    "field": "source_item_ids",
+    "value": [],
+    "reason": "facts need source items"
+  },
+  {
+    "kind": "source_item",
+    "field": "observed_at",
+    "value": "2026-99-99",
+    "reason": "observation requires a real timezone-aware timestamp"
+  },
+  {
+    "kind": "export_manifest",
+    "field": "files.0.path",
+    "value": "../.github/workflows/a.yml",
+    "reason": "no path traversal"
+  },
+  {
+    "kind": "report",
+    "field": "timezone",
+    "value": "UTC",
+    "reason": "reports use KST business dates"
+  }
+]

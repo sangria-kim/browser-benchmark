@@ -1,0 +1,30 @@
+{
+  "status": "selected",
+  "reasons": [
+    "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+    "Original priority reason: 반복 조작·작업 전환 또는 확장 호환성 비교 가치.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-extension-tab-groups-api-8-3-stable-20261105/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "동일 확장의 그룹 생성·이동·복원 작업이 브라우저에서 일관되게 완료되는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-5e1eb107aa79511de35a6f35fec8ed7d",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-extension-tab-groups-api-8-3-stable-20261105",
+  "input_hash": "0c4328673331c70f898215ecd71bce1d97098427d12bce190976bc60214ca19d",
+  "input_revision": "data/event-revisions/vivaldi-extension-tab-groups-api-8-3-stable-20261105/schema-v1.json:sha256:37a725296c6e128b045be2a76d5628958b0e2e5e2800e3103d10cd47f1b0a29c",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-d1da7ff1feef59bb73065010",
+    "src-legacy-53d6d073d259e6a294e9de52",
+    "src-legacy-5d1ae420d503764cb02b1957",
+    "src-legacy-26e5b46ceefeb7c993e9ad39"
+  ]
+}

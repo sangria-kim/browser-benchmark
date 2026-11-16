@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1006c5b650e4a9aeda767662: Source baseline: Log JS console messages in system logs A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0f5782d4c7fa46f5b4d9adc2427e154a",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1006c5b650e4a9aeda767662",
+  "input_hash": "d32375f5983ae8dceeb7d93bbf7bd8f2f20ada5cdf269e757aa875205f508510",
+  "input_revision": "semantic-sha256:c73663a3db4fec5a8ce5ae03045dbce0076becd4e64a16b1436a4c8d2c030025",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-a3cecb08c2a759ac77faf849"
+  ]
+}

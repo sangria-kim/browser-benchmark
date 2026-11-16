@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-05d77c3198e914e61e991dcc: Fixed font-* properties resolving font-relative units against their own font instead of the parent element’s font metrics. (184336424) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6e19a8dd2ae1192998c9cebffaa75ede",
+  "subject_kind": "source_item",
+  "subject_id": "src-05d77c3198e914e61e991dcc",
+  "input_hash": "4044bf7a092ec7718196858c8612f3255245697c73017411ab8bfade98f27136",
+  "input_revision": "semantic-sha256:68f49ef94b214645a6f5c8858c9d095ad612f2f4b6d60feb449270bbfbd71af4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-05d77c3198e914e61e991dcc"
+  ]
+}

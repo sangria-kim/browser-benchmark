@@ -1,0 +1,207 @@
+{
+  "rule_version": "pm-selection-v3.0.0",
+  "prompt_version": "public-pm-evidence-v1",
+  "method": "deterministic affirmative task-clause gates and explicit public benchmark profiles; no model evaluation, test claim or numeric score",
+  "basis": "pm-selection-v2: user impact, material change, comparison task, benchmarkability, release conditions",
+  "generic_updates": [
+    "Fixed various bugs and performance issues.",
+    "Various bug fixes and improvements.",
+    "Bug fixes and improvements.",
+    "Security fixes",
+    "Developer Information"
+  ],
+  "profiles": [
+    {
+      "id": "macos-menu-shortcut-override",
+      "match": {
+        "field": "source_id",
+        "value": "firefox-beta"
+      },
+      "evidence_field": "summary",
+      "evidence_equals": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+      "status": "selected",
+      "priority": "P2",
+      "impact": "macOS users can replace browser menu shortcuts with system preferences. This changes keyboard task completion and shortcut conflicts.",
+      "material_change": "The official Beta note says custom shortcuts now replace built-in shortcuts; this is a historical Beta note, not a newly observed launch.",
+      "question": "On the same macOS version, can a user override a browser menu shortcut through System Settings, and what happens to the former shortcut in Firefox and Samsung Browser if available?",
+      "steps": [
+        "Confirm browser availability and the stated Beta behavior on the same macOS device",
+        "Assign a menu shortcut in System Settings",
+        "Invoke both the custom and former shortcuts while a page input has focus",
+        "Restore the original setting"
+      ],
+      "metrics": [
+        "Successful menu invocations",
+        "Unexpected text input or conflicting commands",
+        "Setup steps"
+      ],
+      "conditions": "Beta documentation only; no device test. Confirm both browsers and menu support on macOS first. If Samsung Browser is unavailable on macOS, retain as a design comparison and do not report a cross-product performance result.",
+      "completion": "Three repetitions per supported browser; record outcomes and unavailable paths. No execution is claimed."
+    },
+    {
+      "id": "actor-observe-screenshot-default-benchmark",
+      "match": {
+        "field": "flag_id",
+        "value": "actor-observe-screenshot-default"
+      },
+      "evidence_field": "description",
+      "evidence_equals": "If enabled, the actor framework will capture screenshots by default when requested.",
+      "status": "selected",
+      "priority": "P1",
+      "impact": "An agent framework can capture page screenshots by default when requested. The default capture surface raises a concrete user-control and sensitive-page comparison task.",
+      "material_change": "An active registration is documented at the pinned source baseline. This selects an existing experiment for research; it does not date its introduction or claim a new product release.",
+      "question": "In a controlled browser-agent task, what page content enters a screenshot when observation is requested, and can the user inspect or stop that transfer?",
+      "steps": [
+        "Build or obtain an accessible revision with this registration and confirm the actor path is present",
+        "Use synthetic pages with visible and off-screen markers",
+        "Request observation with the option enabled and disabled",
+        "Inspect captured markers and available user controls; compare another browser agent only if it supports the same task"
+      ],
+      "metrics": [
+        "Captured marker coverage",
+        "Capture events per request",
+        "User-visible controls and cancellation outcome"
+      ],
+      "conditions": "Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment.",
+      "completion": "Three repetitions for each supported condition; record setup and failures. No execution is claimed."
+    },
+    {
+      "id": "enable-parallel-downloading-benchmark",
+      "match": {
+        "field": "flag_id",
+        "value": "enable-parallel-downloading"
+      },
+      "evidence_field": "description",
+      "evidence_equals": "Enable parallel downloading to accelerate download speed.",
+      "status": "selected",
+      "priority": "P2",
+      "impact": "A download can use parallel transfers. Download completion and recovery are concrete tasks; the source description is a claim to test, not proof of acceleration.",
+      "material_change": "An active registration is documented at the pinned source baseline. This selects an existing experiment for research; it does not date its introduction or claim a new product release.",
+      "question": "For an identical large file and controlled network, how do enabled and disabled parallel downloading affect completion time and recovery, and how does Samsung Browser behave under the same conditions?",
+      "steps": [
+        "Confirm the flag exists in an accessible build and document default state",
+        "Serve a synthetic file from a server with range requests",
+        "Download with the option enabled and disabled under the same network cap",
+        "Repeat after one controlled network interruption and compare the same task in an available Samsung Browser build"
+      ],
+      "metrics": [
+        "Completion time",
+        "Transferred bytes",
+        "Recovery success and file hash"
+      ],
+      "conditions": "Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment.",
+      "completion": "Three repetitions for each supported condition; record setup and failures. No execution is claimed."
+    }
+  ],
+  "task_profiles": [
+    {
+      "id": "tab-workspace",
+      "announcement_pattern": "\\b(?:you|users?) can now (?:group|organize|save|restore|move|open|create) (?:\\w+ ){0,3}(?:tabs?|tab groups?|workspaces?)\\b",
+      "experiment_pattern": "\\b(?:allows|enables) users to (?:group|organize|save|restore|move|open|create) (?:\\w+ ){0,3}(?:tabs?|tab groups?|workspaces?)\\b",
+      "impact": "Organize and recover a set of pages while completing a multi-page task.",
+      "question": "How many steps and errors occur when organizing and restoring the same six-page task in each browser?",
+      "steps": [
+        "Open six synthetic pages for two tasks",
+        "Perform the documented organization action",
+        "Switch tasks, close and restore the documented grouping if supported"
+      ],
+      "metrics": [
+        "Task switches",
+        "Lost or misplaced pages",
+        "Action count"
+      ],
+      "priority": "P2"
+    },
+    {
+      "id": "permission-consent",
+      "announcement_pattern": "\\b(?:websites?|sites?|the browser|[A-Za-z]+) (?:now (?:ask|asks|require|requires|need|needs|request|requests)|must now (?:ask|request))\\b.{0,80}\\b(?:permission|consent)\\b",
+      "experiment_pattern": "\\b(?:asks|requires|requests)\\b.{0,60}\\b(?:permission|consent) before\\b",
+      "impact": "Understand and control a site request before access is granted.",
+      "question": "For the documented resource request, can a user allow, deny and reverse the choice consistently across browsers?",
+      "steps": [
+        "Use a synthetic site that requests only the documented resource",
+        "Record the prompt, deny access and retry",
+        "Allow access then find and revoke the site permission"
+      ],
+      "metrics": [
+        "Prompt visibility",
+        "Unintended access",
+        "Steps to reverse a choice"
+      ],
+      "priority": "P1"
+    },
+    {
+      "id": "download-recovery",
+      "announcement_pattern": "\\b(?:you|users?) can now (?:pause|resume|retry|recover) (?:interrupted |failed )?downloads?\\b",
+      "experiment_pattern": "\\b(?:allows|enables) users to (?:pause|resume|retry|recover) (?:interrupted |failed )?downloads?\\b",
+      "impact": "Recover an interrupted file transfer without losing the completed work.",
+      "question": "How does each browser recover the same interrupted download under identical server and network conditions?",
+      "steps": [
+        "Serve a synthetic large file with range requests",
+        "Interrupt the transfer at a fixed byte count",
+        "Perform the documented recovery action and verify the downloaded file hash"
+      ],
+      "metrics": [
+        "Recovery success",
+        "Transferred bytes",
+        "Completion time and action count"
+      ],
+      "priority": "P2"
+    },
+    {
+      "id": "password-finding",
+      "announcement_pattern": "\\b(?:you|users?) can now (?:search|filter|sort|find|group) (?:saved )?(?:passwords?|passkeys?|credentials?)\\b",
+      "experiment_pattern": "\\b(?:allows|enables) users to (?:search|filter|sort|find|group) (?:saved )?(?:passwords?|passkeys?|credentials?)\\b",
+      "impact": "Locate the right saved credential in a larger credential list.",
+      "question": "Can a user find the same target credential with fewer wrong selections in each browser?",
+      "steps": [
+        "Create an equal synthetic credential set with similar names",
+        "Use the documented search, filter or sort action",
+        "Find a specified entry and return to the original list"
+      ],
+      "metrics": [
+        "Time to find the target",
+        "Wrong selections",
+        "Action count"
+      ],
+      "priority": "P2"
+    },
+    {
+      "id": "ai-page-task",
+      "announcement_pattern": "\\b(?:you|users?) can now (?:summarize|compare|extract) (?:web )?(?:pages?|tabs?|documents?) (?:with|using) (?:an? )?AI\\b",
+      "experiment_pattern": "\\b(?:allows|enables) users to (?:summarize|compare|extract) (?:web )?(?:pages?|tabs?|documents?) (?:with|using) (?:an? )?AI\\b",
+      "impact": "Complete a page-reading task with assistant output that can be checked against the page.",
+      "question": "For the same synthetic source pages, how accurate and controllable is the documented AI task in each available browser?",
+      "steps": [
+        "Use synthetic pages with a fixed answer key",
+        "Invoke the documented AI action with the same task",
+        "Check statements and citations against the source and inspect available cancellation/data controls"
+      ],
+      "metrics": [
+        "Unsupported statements",
+        "Task completion",
+        "Available controls and source traceability"
+      ],
+      "priority": "P2"
+    },
+    {
+      "id": "copy-url-shortcut",
+      "announcement_pattern": "\\b(?:you|users?) can now copy (?:the )?(?:current )?tab(?:\\x27s)? (?:URL|address) with a keyboard shortcut\\b",
+      "experiment_pattern": "\\b(?:allows|enables) users to copy (?:the )?(?:current )?tab(?:\\x27s)? (?:URL|address) with a keyboard shortcut\\b",
+      "impact": "Copy the current page address without leaving the keyboard task.",
+      "question": "Can a user copy the same page URL while preserving input focus in each browser?",
+      "steps": [
+        "Confirm or assign the documented shortcut",
+        "Focus a synthetic page input and invoke the shortcut",
+        "Paste into a separate synthetic field and verify the exact URL"
+      ],
+      "metrics": [
+        "Key presses",
+        "Focus loss",
+        "Incorrect copied URLs"
+      ],
+      "priority": "P2"
+    }
+  ],
+  "uncertain_pattern": "\\b(?:not|never|no longer|may|might|could|planned|proposed|proposal|intends?|aims?|would|unsupported|will|coming soon|claim(?:s|ed)?)\\b"
+}

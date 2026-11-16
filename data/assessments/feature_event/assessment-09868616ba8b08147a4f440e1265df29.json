@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+    "Original priority reason: 반복 조작·작업 전환 또는 확장 호환성 비교 가치.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-android-media-session-controls-8-3-stable-20261105/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "브라우저 안에서 탭을 찾지 않고 오디오 소스를 전환할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-09868616ba8b08147a4f440e1265df29",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-android-media-session-controls-8-3-stable-20261105",
+  "input_hash": "66479fbd63bcdad454053fc5ccb75f3cfc753db5c05abf900ba0bd0db3afc24b",
+  "input_revision": "data/event-revisions/vivaldi-android-media-session-controls-8-3-stable-20261105/schema-v1.json:sha256:b44355faabdfbdd27e5bdaf382ec0b04ecd20a034351c51bdfaedb70a602185b",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-a0d94253343bebd3d026aaf8",
+    "src-legacy-cbdedde7babbd865be37256d",
+    "src-legacy-3c5d289140cf0bfa7be685ad"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ea8c1959dc9d9b824af025da: Source baseline: Password sign-in in-context Trusted Vault error resolution A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-de728f2e0c8d4c8db96c5037b6e90f55",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ea8c1959dc9d9b824af025da",
+  "input_hash": "07bae4056ca80518a6533aa2e694c97e93744896cdea4a8f9b9f1b1e51ec0c90",
+  "input_revision": "semantic-sha256:02b8d360380bf57cd981a319989949a620cb8b487227df031d881eed6c201a69",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-c46aa53055afe73faf8e242b",
+    "src-legacy-182db8c7f2c94226d866ac87"
+  ]
+}

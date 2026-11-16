@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-agent-profile-policy-document-omission-20261112",
   "feature_id": "edge-agent-isolated-profiles",
   "browser": "edge",
@@ -50,5 +50,14 @@
   "benchmark_readiness": "unknown",
   "revisit_trigger": "문서 복구 또는 명시적인 공식 정책 변경 설명",
   "assessed_at": "2026-11-12T23:24:54.740586+00:00",
-  "selection_rule_version": "pm-selection-v2"
+  "selection_rule_version": "pm-selection-v2",
+  "source_item_ids": [
+    "src-legacy-01d3fce3ab97ffb302dfcdf5",
+    "src-legacy-b72005a6366e586d2398349c"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

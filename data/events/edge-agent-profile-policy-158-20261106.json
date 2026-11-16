@@ -18,7 +18,7 @@
   "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
   "assessed_at": "2026-11-07T23:12:38.066677+00:00",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-agent-profile-policy-158-20261106",
   "feature_id": "edge-agent-isolated-profiles",
   "event_type": "policy_observation",
@@ -51,5 +51,14 @@
       "observed_at": "2026-11-07T23:12:38.066677+00:00"
     }
   ],
-  "delta": "외부 AI 에이전트별 격리 프로필 정책 수록"
+  "delta": "외부 AI 에이전트별 격리 프로필 정책 수록",
+  "source_item_ids": [
+    "src-legacy-b3410dd32929e8960f463ed0",
+    "src-legacy-74dbc3ef63cec7b50a6e1a3a"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

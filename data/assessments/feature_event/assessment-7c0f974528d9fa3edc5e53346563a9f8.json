@@ -1,0 +1,30 @@
+{
+  "status": "selected",
+  "reasons": [
+    "기존 협업 기능의 최초 출시가 아니라 자동 팔로우 종료 규칙이라는 구체적 동작 변화.",
+    "Original priority reason: 협업 화면 따라가기에서 개인 탐색으로 전환하는 제한된 동작 규칙 개선.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/whale-desktop-multiplay-follow-exit-5-41-429-2-20261102/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "공동 탐색 중 스스로 다른 탭을 볼 때 팔로우 상태를 이해하고 통제하기 쉬운가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "두 사용자 환경에서 1회·2회 이탈의 중지/종료 및 재참여 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-7c0f974528d9fa3edc5e53346563a9f8",
+  "subject_kind": "feature_event",
+  "subject_id": "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102",
+  "input_hash": "085423e115bd289dfbb5bc752979c4fc639c6dbc4cef29cd2d7ee471d5385084",
+  "input_revision": "data/event-revisions/whale-desktop-multiplay-follow-exit-5-41-429-2-20261102/schema-v1.json:sha256:32bf2e0fdccdfc356264322b0bdf78501d84bb0a1e1c1d1052aaac6e81cef83d",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-03T23:30:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-70a6595d399893c33ec986b4",
+    "src-legacy-faa093fc0bbf9019517aded7",
+    "src-legacy-649e8bd7b0cd6d2de3b40732",
+    "src-legacy-521cbc1fd87c3fc742d47cd2"
+  ]
+}

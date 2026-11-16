@@ -24,7 +24,7 @@
   "revisit_trigger": "Android 4.1 설치본과 직전 버전의 동일 조건 노출·동작 검증, 국가·언어 조건 추가 공개",
   "assessed_at": "2026-11-02T23:33:28Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "whale-android-incognito-capture-4-1-20261029",
   "feature_id": "whale-incognito-capture",
   "scope": {
@@ -48,5 +48,14 @@
     "https://notice.naver.com/notices/whalehomepage/35237"
   ],
   "delta": "4.1 공지가 시크릿 탭 화면 캡처·녹화를 설정에서 허용할 수 있다고 명시. 과거 차단 범위와 기본값의 실기 검증은 미실행.",
-  "previous_event_id": null
+  "previous_event_id": null,
+  "source_item_ids": [
+    "src-legacy-81f5250092287b973c2dc4bd",
+    "src-legacy-d2a644a996ad0dbffa5a7bf9"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-bb4f6c6e66940488d15c9b66: Source baseline: enable-crash-reporter-for-testing A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0ba1dc1502104cc13ce234c916810008",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-bb4f6c6e66940488d15c9b66",
+  "input_hash": "42aba007a12d9ad80b76f530c7df6347dc13ed4e8f7147e7abb2a443c39f3dfd",
+  "input_revision": "semantic-sha256:27fab6e54ae3a1b26983442e805a8901c80809c0c24578251177b1e937a763d4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-430a4a47c68ce3b21d7a9078"
+  ]
+}

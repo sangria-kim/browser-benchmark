@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0721981073bc16270b2eac11: Source baseline: WebAssembly stack switching A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0c393d5b2fb2837be1cab0b27efed547",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0721981073bc16270b2eac11",
+  "input_hash": "893547114f8f9faf0c94398a2193ed63ee8ebb62b3e3b732041406f85fa5a666",
+  "input_revision": "semantic-sha256:f822ef5b40b1919ede6c7c68ccab99268d93b5635910c3b7063efc4e310e6d6e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-9885bc9cd712f0957c50631e"
+  ]
+}

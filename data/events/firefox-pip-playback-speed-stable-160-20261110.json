@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "firefox-pip-playback-speed-stable-160-20261110",
   "feature_id": "firefox-pip-playback-speed",
   "browser": "firefox",
@@ -68,5 +68,14 @@
     "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
     "executed": false
   },
-  "user_impact": "강의·영상의 속도를 바꾸기 위해 원래 탭으로 돌아가는 단계를 줄인다. 작은 창에서는 메뉴가 보이지 않아 크기에 따른 발견 가능성이 달라진다."
+  "user_impact": "강의·영상의 속도를 바꾸기 위해 원래 탭으로 돌아가는 단계를 줄인다. 작은 창에서는 메뉴가 보이지 않아 크기에 따른 발견 가능성이 달라진다.",
+  "source_item_ids": [
+    "src-legacy-7a96da2856380ee9b6877c5a",
+    "src-legacy-bed206f110d62298c3b0aaea"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d0209cf888e2d1079b521dd5: Source baseline: ShutdownPreNativeThreadPoolAfterStartup A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6121ae7b63bb5c3d949fdc8031cc06d9",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d0209cf888e2d1079b521dd5",
+  "input_hash": "c88c34ae366f9048858a473a93252de51c87c82f4a311d8350a3d0e230f0b4ac",
+  "input_revision": "semantic-sha256:c76ba5ea506f734f6c16f565ba4b740f762fe9bd44ec33f04683d49431f3b94f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-3e18376da72d9b81a2647b7b"
+  ]
+}

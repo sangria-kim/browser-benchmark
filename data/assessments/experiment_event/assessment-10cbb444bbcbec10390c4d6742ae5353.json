@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0d6a537f391f55a1c6967cfb: Source baseline: Camera and Microphone elements A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-10cbb444bbcbec10390c4d6742ae5353",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0d6a537f391f55a1c6967cfb",
+  "input_hash": "6b1c35ea54d7f837db860e65d32ab5ddffb2ec9159ac83fe12fc0450b95079bd",
+  "input_revision": "semantic-sha256:eb4dd7fd37c3fb9b7dd1b8d982b43241d8b81ce4e2b2b1e274703b47cff8e06e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-2f77cdf6b620530da0a44526",
+    "src-legacy-be799cffd315e8ad702b8b71"
+  ]
+}

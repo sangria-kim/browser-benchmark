@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ca0180d5cabc94597e0555ec: Source baseline: Always enable HDCP for external displays A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0fe309d6b4a0109ea8ed17b8d3549042",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ca0180d5cabc94597e0555ec",
+  "input_hash": "a8d39ce7e0965769432bc1f9925d43f207f049df625caab38f3600b2454d25fd",
+  "input_revision": "semantic-sha256:d71e73f04847103fd1848083cca146c7c5853ca251653b2f0a9f283fd0d78e02",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-612b73a002dde906400de765"
+  ]
+}

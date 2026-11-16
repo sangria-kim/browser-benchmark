@@ -1,0 +1,27 @@
+{
+  "status": "selected",
+  "reasons": [
+    "기존 만료 연장과 달리 메뉴 구성 코드의 순서 변경이 확인된다. AI/검색 발견성과 기존 저장·인쇄 과제의 조작 비용을 동일 조건으로 비교할 수 있는 소스 실험이다.",
+    "Original priority reason: 메뉴 순서의 제한된 탐색적 비교이며 실제 배포·설치본 노출은 확인되지 않았다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-context-menu-gemini-search-order-source-20261113/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "페이지 메뉴의 Gemini·검색 우선 배치가 AI 진입 발견성과 저장·인쇄 탐색 시간·오선택률을 어떻게 바꾸는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "설치본 옵션 노출 또는 공식 배포·기본값 변경 근거 확보",
+  "schema_version": 2,
+  "assessment_id": "assessment-1de91640e3e4ad3a7f613fcf6dd8641d",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-context-menu-gemini-search-order-source-20261113",
+  "input_hash": "a30ea287ba77cad3c8cb8b6d1c486a393e6f8771c2ab5b8fe45c1a7c30421882",
+  "input_revision": "data/event-revisions/chrome-context-menu-gemini-search-order-source-20261113/schema-v1.json:sha256:6e0f1af4a7f92a44e755f5bbb3c69a0616c784deef05a6dffefb06380f1598c9",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-15T22:58:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-6aee249155b3ce50f5e09d58"
+  ]
+}

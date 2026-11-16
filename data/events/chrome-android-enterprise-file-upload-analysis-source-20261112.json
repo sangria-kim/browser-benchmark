@@ -142,7 +142,7 @@
     "지원 입력 경로 간 일관성"
   ],
   "completion_criteria": "정책 없는 대조군과 정책 적용군의 허용·차단·지연 결과를 기록하고 비민감 샘플로만 재현한다.",
-  "schema_version": 1,
+  "schema_version": 2,
   "browser": "chrome",
   "announced_at": null,
   "effective_at": null,
@@ -165,5 +165,14 @@
   "comparison_targets": [
     "Chrome",
     "Samsung Browser"
-  ]
+  ],
+  "source_item_ids": [
+    "src-legacy-04ae1fa9aac7b485be942a51",
+    "src-legacy-a214fa79c4f7c9fb3fab628f"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

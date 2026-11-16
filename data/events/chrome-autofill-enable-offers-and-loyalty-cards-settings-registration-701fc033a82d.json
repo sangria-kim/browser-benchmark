@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-autofill-enable-offers-and-loyalty-cards-settings-registration-701fc033a82d",
   "feature_id": "chrome-autofill-enable-offers-and-loyalty-cards-settings",
   "browser": "chrome",
@@ -55,5 +55,13 @@
     "evidence": [
       "https://github.com/chromium/chromium/commit/701fc033a82d424cd2f9741e4dcd3c1e1559847c"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-31f9fb93df5ae76fa21883d7"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

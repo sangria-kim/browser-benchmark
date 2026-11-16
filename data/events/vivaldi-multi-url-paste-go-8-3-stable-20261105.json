@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "vivaldi-multi-url-paste-go-8-3-stable-20261105",
   "feature_id": "vivaldi-multi-url-paste-go",
   "browser": "vivaldi",
@@ -88,5 +88,16 @@
     "repeat_count": 5,
     "fixed_task": "유효 URL 10개 목록을 5회 연다. 잘못된 항목 2개가 섞인 별도 목록도 5회 시험해 오류 처리를 분리한다."
   },
-  "previous_event_id": null
+  "previous_event_id": null,
+  "source_item_ids": [
+    "src-legacy-e014cc2448425e1fe75802fc",
+    "src-legacy-0626436a4bc628c27f8bc200",
+    "src-legacy-fbf45cab95674afba5118a2c",
+    "src-legacy-4690ee00b4e973420f17e891"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

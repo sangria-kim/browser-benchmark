@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-01151f448cbd02837e2f3792: Fixed an issue where drawing to <canvas> computed path bounds unnecessarily when the whole backing store was already marked dirty. (186946552) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6dd2aff57e063e8ca616ddfeb8de27ca",
+  "subject_kind": "source_item",
+  "subject_id": "src-01151f448cbd02837e2f3792",
+  "input_hash": "d4992350f395374e1fd767a3f60d6fe49fa7b5b16369a853a80adfc5ecabdfb3",
+  "input_revision": "semantic-sha256:6ca91dacb166efc6c554577db90a3a3f1b9f7160c6b6b26739e031efb6457cc8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-01151f448cbd02837e2f3792"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "업무용 파일 업로드 시 검사 안내·차단·대기·우회 가능성을 비교할 구체적 과제가 있고 데이터 처리 조건이 중요합니다.",
+    "Original priority reason: 관리되는 파일 업로드의 허용·차단과 데이터 처리 조건에 직접 연결되므로 정책·안내·오류 흐름을 우선 확인할 가치가 있습니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-android-enterprise-file-upload-analysis-source-20261112/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "Chrome과 삼성 브라우저를 같은 플랫폼·조건으로 비교할 때, 동일한 관리 정책 아래 파일 첨부의 검사 상태와 차단 이유를 얼마나 명확히 알리며, 사용자는 어떤 조치로 작업을 완료하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 시험 빌드에서 flag·기기·관리 정책 조건과 실제 동작을 확인할 수 있거나 공식 출시·범위 변경 근거가 나오면 갱신합니다.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fb0c10ce9d8463b77632483a7489e216",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-android-enterprise-file-upload-analysis-source-20261112",
+  "input_hash": "5a0cee2f17fad38c2c48460350936904f5bf7d9b0c84f86e9d6b38cb9c4ea654",
+  "input_revision": "data/event-revisions/chrome-android-enterprise-file-upload-analysis-source-20261112/schema-v1.json:sha256:9bf2878a8a30d2eb9f3c180bc5c65d77856b1618c61e88c64e637f069e10cd47",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-12T23:20:54.577486+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-04ae1fa9aac7b485be942a51",
+    "src-legacy-a214fa79c4f7c9fb3fab628f"
+  ]
+}

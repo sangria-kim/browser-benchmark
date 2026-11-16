@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "whale-angle-d3d9-removal-recovery-notice-20261112",
   "feature_id": "whale-angle-d3d9-removal-recovery",
   "browser": "whale",
@@ -66,5 +66,14 @@
       },
       "change": "하드웨어 가속을 꺼 둔 Windows 사용자도 대상이다. whale://gpu의 ANGLE_D3D11_WARP 여부를 먼저 확인하고, whale://settings/performance에서 하드웨어 가속을 켜서 재시작한 뒤에도 WARP이면 #use-angle을 Default로 복구한다."
     }
-  ]
+  ],
+  "source_item_ids": [
+    "src-legacy-665f2c3cd1ff216e74deb132",
+    "src-legacy-25e87c9f62cf7e027553f78b"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

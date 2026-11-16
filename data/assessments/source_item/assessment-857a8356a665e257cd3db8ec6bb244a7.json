@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-031bd61ab9ff2da9e3f99505: Fixed an issue where ordinary property changes, such as toggling overflow: hidden , could trigger an unnecessary full-layer repaint. (186422878) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-857a8356a665e257cd3db8ec6bb244a7",
+  "subject_kind": "source_item",
+  "subject_id": "src-031bd61ab9ff2da9e3f99505",
+  "input_hash": "82f41c528bbf9f3ec94699bad7305b666284eb9090f59a6e8b6ae5e098d33269",
+  "input_revision": "semantic-sha256:14e142c6f43b61ada8d86f68bd504e563bf40758f770c93e293c8e0db78bc1ae",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-031bd61ab9ff2da9e3f99505"
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "experiment",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "experiment_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "experiment_kind": {
+      "enum": [
+        "flag_entry",
+        "base_feature",
+        "command_switch"
+      ]
+    },
+    "canonical_key": {
+      "type": "string",
+      "minLength": 1
+    },
+    "symbol": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "flag_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "title": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "description": {
+      "anyOf": [
+        {
+          "type": "string",
+          "maxLength": 1200
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "source_item_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "event_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "source_locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+          },
+          "revision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "line_start": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "line_end": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "content_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          }
+        },
+        "required": [
+          "path",
+          "revision",
+          "line_start",
+          "line_end",
+          "content_sha256"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "build_conditions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "platform": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "default_state": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "expiry_milestone": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": -1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "never_expire": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "ui_exposure": {
+      "enum": [
+        "registered",
+        "not_registered",
+        "unknown"
+      ]
+    },
+    "product_channel": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "product_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "installed_availability": {
+      "enum": [
+        "unknown",
+        "observed"
+      ]
+    },
+    "verification_status": {
+      "enum": [
+        "source_only",
+        "installed_observation",
+        "behavior_verified"
+      ]
+    },
+    "lifecycle": {
+      "enum": [
+        "active",
+        "expired",
+        "removed",
+        "unknown"
+      ]
+    },
+    "relationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "kind": {
+            "enum": [
+              "controls",
+              "controlled_by",
+              "alias_of",
+              "related_feature"
+            ]
+          },
+          "target_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          }
+        },
+        "required": [
+          "kind",
+          "target_id"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "aliases": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "legacy": {
+      "type": "boolean"
+    },
+    "source_definition": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "semantic_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "minLength": 1
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "expression": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "symbol",
+              "path",
+              "expression"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "unresolved_references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "version",
+        "semantic_sha256",
+        "expression",
+        "options",
+        "unresolved_references"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "experiment_id",
+    "experiment_kind",
+    "canonical_key",
+    "symbol",
+    "flag_id",
+    "title",
+    "description",
+    "source_item_ids",
+    "event_ids",
+    "source_locations",
+    "build_conditions",
+    "platform",
+    "default_state",
+    "expiry_milestone",
+    "never_expire",
+    "ui_exposure",
+    "product_channel",
+    "product_revision",
+    "installed_availability",
+    "verification_status",
+    "lifecycle",
+    "relationships",
+    "aliases",
+    "legacy"
+  ],
+  "additionalProperties": false
+}

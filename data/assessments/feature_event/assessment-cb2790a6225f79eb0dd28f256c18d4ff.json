@@ -1,0 +1,27 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "Existing ToT-enabled omnibox behavior cleanup; no newly confirmed release-stage transition.",
+    "Original priority reason: 사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-omnibox-ai-mode-space-does-not-activate-removal-54315355e9a1/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cb2790a6225f79eb0dd28f256c18d4ff",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-omnibox-ai-mode-space-does-not-activate-removal-54315355e9a1",
+  "input_hash": "a1aaeabf9e0349b4a1939dd4fd0a5aca7fc87892a55598577bc22d68908ff642",
+  "input_revision": "data/event-revisions/chrome-omnibox-ai-mode-space-does-not-activate-removal-54315355e9a1/schema-v1.json:sha256:a484bfba7c6b45151dd9cf9427bba2e9742e7d81eba97da9b299fae3da88b41b",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-ebef3a2fb892b5b1fd6e5542"
+  ]
+}
