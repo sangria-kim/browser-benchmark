@@ -252,6 +252,7 @@ def worker(stage, root, run_dir, options):
             chrome_bundle=read(run_dir / 'inputs/chrome.json') if (run_dir / 'inputs/chrome.json').exists() else None,
             previous_bundle=read(run_dir / 'inputs/previous.json') if (run_dir / 'inputs/previous.json').exists() else None,
             reviewed_attributions=read(run_dir / 'inputs/attributions.json') if (run_dir / 'inputs/attributions.json').exists() else None,
+            brave_release_metadata=read(run_dir / 'inputs/brave.json') if (run_dir / 'inputs/brave.json').exists() else None,
             sample_paths=options['sample_paths'], max_files=options['max_files'], max_trees=options['max_trees'])
         from schemas.validate import load_config
         enabled = {s['source_id'] for s in load_config(root / 'config/sources.yml')['sources'] if s['enabled']}
@@ -372,7 +373,7 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
             if inventory(root) != initial or git(root, 'rev-parse', 'HEAD') != state['source_commit']:
                 raise RuntimeError('Inputs changed during snapshot')
             for name, source in (input_files or {}).items():
-                if name not in ('responses', 'chrome', 'previous', 'decisions', 'attributions'):
+                if name not in ('responses', 'chrome', 'previous', 'decisions', 'attributions', 'brave'):
                     raise ValueError('Unknown private input')
                 durable(run_dir / 'inputs' / (name + '.json'), Path(source).read_bytes())
             if browser_cache_from:
@@ -460,6 +461,7 @@ def main():
     parser.add_argument('--chrome-bundle', type=Path)
     parser.add_argument('--browser-cache-from', type=Path, help='Checksum-verified raw response carry-forward at the same cutoff; reparse every document')
     parser.add_argument('--reviewed-attributions', type=Path, help='Private human-reviewed document SHA256 to attribution-line SHA256 list; new content remains unresolved')
+    parser.add_argument('--brave-release-metadata', type=Path, help='Private verified full GitHub release metadata; hash-frozen for this new run')
     parser.add_argument('--previous-bundle', type=Path)
     parser.add_argument('--responses', type=Path, help='Private fixture URL map; this is replay, not live collection')
     parser.add_argument('--decisions', type=Path)
@@ -478,7 +480,7 @@ def main():
     state = run(args.repository, args.private_dir, args.run_id, resume=args.resume, publish=args.publish,
         browser_cache_from=args.browser_cache_from,
         retry_collection=args.retry_collection, allow_partial=args.allow_partial, options=options,
-        input_files={k: v for k, v in dict(chrome=args.chrome_bundle, previous=args.previous_bundle, attributions=args.reviewed_attributions,
+        input_files={k: v for k, v in dict(chrome=args.chrome_bundle, previous=args.previous_bundle, attributions=args.reviewed_attributions, brave=args.brave_release_metadata,
                                          responses=args.responses, decisions=args.decisions).items() if v})
     print(json.dumps({k: state[k] for k in ('status', 'published', 'source_commit')}))
     return 0 if state['status'] == 'complete' else 2

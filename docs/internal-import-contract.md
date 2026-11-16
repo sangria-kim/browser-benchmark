@@ -1,4 +1,4 @@
-# Internal data import contract 1.1
+# Internal data import contract 1.2
 
 한국어 작업 지침: [사내 자료 반입 지침](internal-import-instructions.md).
 
@@ -31,7 +31,7 @@ untracked files and later branch movement cannot enter the package. The committe
 allowlist must match the trusted tool's policy. A policy change requires review and
 a matching tool update. No self-referential commit SHA is stored in source data.
 
-`manifest.json` records contract 1.1, source repository, source ref, source SHA,
+`manifest.json` records contract 1.2, source repository, source ref, source SHA,
 link policy, and each file's relative path, kind, SHA-256 and byte length. Its own
 SHA-256 is returned by the exporter, outside the manifest. Retain that digest from
 the trusted export result. A checksum supplied by an untrusted sender is not proof
@@ -39,6 +39,13 @@ of origin. When receiving a package through another channel, reproduce the expor
 from the fetched expected Git commit and compare manifest hashes, or authenticate
 the handoff through a company-approved mechanism. Do not obtain both the expected
 SHA and manifest digest solely from the incoming package.
+
+Contract 1.2 adds optional `temporal_scope` on source/catalog/event records and
+`collection_scope` on selected outputs, reports and manifests. Use a reviewed 1.2
+validator before importing these fields. The trusted importer also accepts 1.1
+archives. Do not treat undated context or unchanged endpoint definitions as 2026
+changes. Keep the complete evidence and history; filter the default selected view
+by the supplied projection. Do not create product-removal events from exclusions.
 
 The source repository URI is provenance text, not authentication. The importing
 operator selects the known public remote. Git commit IDs bind source content;

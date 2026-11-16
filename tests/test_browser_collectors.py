@@ -533,7 +533,7 @@ class CollectorsTest(unittest.TestCase):
         wrappers = {'edge': '<div class="content">%s</div>', 'chrome': '<div class="article-content">%s</div>',
                     'firefox': '<section class="c-release-notes">%s</section>'}
         for s in REGISTRY['sources']:
-            if s['parser'] != 'html_document':
+            if s['parser'] != 'html_document' or s['source_id'] == 'chrome-enterprise':
                 continue
             with self.subTest(source=s['source_id']):
                 html = wrappers[s['browser']] % '<h2>Fixed</h2><ul><li id="note-1">Fixed crash</li><li id="note-2">Security update</li></ul>'

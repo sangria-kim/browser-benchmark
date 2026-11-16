@@ -9,13 +9,16 @@ import hashlib
 import json
 import os
 import re
+import calendar
 from pathlib import Path
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse, urldefrag, urlencode
+from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
+from pipeline.temporal import dated_scope
 
 
 def canonical(value):
@@ -135,7 +138,7 @@ class BrowserCollector:
     data/source-items/<browser>/<source_id>.json. The private checkpoint contains
     pending URLs, reconciliation counts, errors and last successful cutoff.
     """
-    def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None):
+    def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None):
         self.repository = Path(repository).resolve()
         self.private_dir = Path(private_dir).expanduser().resolve()
         if self.private_dir == self.repository or self.repository in self.private_dir.parents:
@@ -143,6 +146,9 @@ class BrowserCollector:
         self.transport = transport or HTTPTransport()
         self.resume = resume
         self.reviewed_attributions = reviewed_attributions or {}
+        self.brave_release_metadata = brave_release_metadata
+        self.brave_metadata_rows = None
+        self.github_covered, self.github_publications = set(), {}
         for content_hash, attributions in self.reviewed_attributions.items():
             if not re.fullmatch('[0-9a-f]{64}', content_hash) or not isinstance(attributions, list) or not all(isinstance(value, str) and re.fullmatch('[0-9a-f]{64}', value) for value in attributions):
                 raise ValueError('Invalid content-bound attribution review')
@@ -173,6 +179,8 @@ class BrowserCollector:
             parser = source['parser']
             if source['source_id'] == 'whale-release-history':
                 self.collect_whale()
+            elif source['source_id'] == 'chrome-enterprise':
+                self.collect_enterprise()
             elif source['source_id'] == 'chrome-blog':
                 self.collect_google_blog()
             elif parser == 'chromestatus':
@@ -198,13 +206,12 @@ class BrowserCollector:
         self.state['stored_records'] = len(candidate)
         temporal = {'in_period': 0, 'before_period': 0, 'after_cutoff': 0, 'date_unknown': 0}
         for ident in self.seen:
-            record = self.records[ident]
-            date = record.get('published_at')
-            if source['source_id'] == 'chrome-platform-status':
-                updated = date_value(record['evidence'].get('source_revision'))
-                date = max(filter(None, (date, updated)), default=None)
-            temporal['date_unknown' if not date else 'before_period' if date < since else
-                     'after_cutoff' if date > cutoff[:10] else 'in_period'] += 1
+            record = self.records.get(ident)
+            if record is None:
+                temporal['date_unknown'] += 1
+                continue
+            status = record.get('temporal_scope', {}).get('status', 'unknown')
+            temporal['date_unknown' if status == 'unknown' else status] += 1
         self.state['temporal_coverage'] = temporal
         self.state['temporal_basis'] = 'Item publication date; ChromeStatus also uses its item updated timestamp. Unknown dates do not establish an in-period change.'
         atomic_json(state_path, self.state)
@@ -261,7 +268,12 @@ class BrowserCollector:
             return False
         return current or not date or date >= self.since
 
-    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None):
+    def allowed_publication(self, value):
+        # Timestamp evidence must reach the shared KST policy before any
+        # calendar-day truncation. Unknown dates remain explicit, not excluded.
+        return dated_scope(self.since, self.cutoff, value, 'publication')['status'] not in ('before_period', 'after_cutoff')
+
+    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None):
         key = unit['key']
         ident = identity('src', [self.source['source_id'], url, key])
         fingerprint = digest(canonical([self.source['source_id'], url, key, unit,
@@ -292,6 +304,12 @@ class BrowserCollector:
                   'evidence': evidence, 'record_status': 'parsed' if parsed else 'unparsed',
                   'origin': self.origin, 'lifecycle': 'unknown', 'revisions': [],
                   'experiment_kind': None, 'source_location': url + '#' + key, 'source_symbol': None}
+        record['temporal_scope'] = dated_scope(self.since, self.cutoff, date_evidence or date, 'publication')
+        if self.source['source_id'] == 'chrome-platform-status' and revision:
+            # This API timestamp belongs to one feature, not its enclosing page.
+            value = revision if re.search(r'(Z|[+-]\d\d:\d\d)$', revision) else date_value(revision)
+            record['temporal_scope'] = dated_scope(self.since, self.cutoff, value, 'item_change',
+                'Official per-feature update; a timestamp without timezone supplies its printed calendar day only.')
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
         if parsed:
             record['item_content_sha256'] = digest(canonical([unit['section'], unit['text']]))
@@ -307,6 +325,9 @@ class BrowserCollector:
                     old['evidence']['content_sha256'] == content_hash and old['evidence']['source_revision'] == revision):
                 self.state['processed' if parsed else 'unparsed'] -= 1
                 self.state['duplicate'] += 1
+                from pipeline.temporal import scope_semantics
+                if scope_semantics(old.get('temporal_scope')) != scope_semantics(record['temporal_scope']):
+                    old['temporal_scope'] = record['temporal_scope']
                 return
             record['revisions'] = copy.deepcopy(old['revisions'])
             record['origin'] = old['origin']
@@ -356,7 +377,10 @@ class BrowserCollector:
         canonical_url = urldefrag(response.url)[0]
         if '<html' in text.lower() and '</html>' not in text.lower():
             self.problem(url, 'Truncated HTML document')
-        date = publication_date or published(root, self.source['source_id'])
+        # Rolling release/policy pages contain independently dated sections.
+        # A page's metadata or first <time> cannot date all of them.
+        multi = self.source['source_id'].startswith('edge-') or self.source['source_id'] == 'chrome-enterprise' or '/changelog-for-' in url
+        date = None if multi else publication_date or published(root, self.source['source_id'])
         if not self.allowed_date(date, current):
             self.state['excluded_by_date'].append(url)
             return root
@@ -373,7 +397,7 @@ class BrowserCollector:
         document_title = ' '.join(n.text() for n in root.walk() if n.tag == 'title')
         for unit in units:
             version_match = re.search(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', unit['section'] + ' ' + document_title, re.I)
-            self.emit(canonical_url, response, unit, date=date_value(unit['section']) or date,
+            self.emit(canonical_url, response, unit, date=unit.get('date') or date_value(unit['section']) or date,
                       version=version_match[1] if version_match else None)
         return root
 
@@ -497,10 +521,43 @@ class BrowserCollector:
                                 document_set.add(related)
                                 documents.append((related, self.cache[url], None))
             except Exception as error:
-                self.problem(url, str(error))
-                self.unresolved(url, discovery_response, key='discovered-document')
+                replacement = self.verified_document_replacement(url, error)
+                if replacement:
+                    if replacement not in done:
+                        self.document(replacement, publication_date='2026-03-23')
+                        self.document_done(replacement)
+                        done.add(replacement)
+                else:
+                    self.problem(url, str(error))
+                    self.unresolved(url, discovery_response, key='discovered-document')
             self.persist_checkpoint(pending_pages + [d[0] for d in documents])
         self.state['pending'] = pending_pages + [d[0] for d in documents]
+
+    def verified_document_replacement(self, url, error):
+        """One reviewed upstream typo, verified again against both official pages."""
+        broken = 'https://blogs.opera.com/desktop/2026/03/opera-130-0-5823-0-developer-update/'
+        replacement = 'https://blogs.opera.com/desktop/2026/03/opera-130-0-5846-0-developer-update/'
+        if self.source['source_id'] != 'opera-desktop' or url != broken or not isinstance(error, HTTPError) or error.code != 404:
+            return None
+        evidence_url = 'https://blogs.opera.com/desktop/changelog-for-130/'
+        try:
+            evidence = self.get(evidence_url)
+            heading = next((n for n in Tree(evidence.text()).root.walk() if n.tag == 'h4'
+                            and re.fullmatch(r'130\.0\.5846\.0\s*[–—-]\s*2026-03-23\s*blog post', n.text().strip())
+                            and any(u == broken for u, _, _ in links(n, evidence_url))), None)
+            if heading is None:
+                return None
+            response = self.get(replacement)
+            root = Tree(response.text()).root
+            title = ' '.join(n.text() for n in root.walk() if n.tag == 'title')
+            if '130.0.5846.0' not in title or date_value(published(root, self.source['source_id'])) != '2026-03-23':
+                return None
+            self.state.setdefault('corrected_links', []).append(dict(original_url=url, original_error=str(error),
+                evidence_url=evidence_url, evidence_sha256=digest(evidence.body), heading=heading.text(),
+                replacement_url=replacement, replacement_sha256=digest(response.body)))
+            return replacement
+        except Exception:
+            return None
 
     def collect_google_blog(self):
         # The current official index renders uni-latest-news-feed. Its public
@@ -565,6 +622,85 @@ class BrowserCollector:
         self.state['pending'] = []
         self.state['api_total'] = total
         self.state['latest_publication_date'] = max(dates, default=None)
+
+    def collect_enterprise(self):
+        """Official dated archive panels plus the publisher's current API."""
+        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        response = self.get(archive)
+        root = Tree(response.text()).root
+        dates = {}
+        for node in root.walk():
+            href = node.attrs.get('href', '')
+            if node.tag == 'a' and '#' in href:
+                anchor = href.rsplit('#', 1)[-1]
+                date = date_value(node.text())
+                if anchor.isdigit() and date:
+                    if anchor in dates and dates[anchor] != date:
+                        raise ValueError('Conflicting enterprise release dates')
+                    dates[anchor] = date
+        panels = 0
+        for node in root.walk():
+            anchor = node.attrs.get('name', '')
+            if node.tag != 'a' or not node.has_class('zippy') or not anchor.isdigit():
+                continue
+            siblings = node.parent.children
+            panel = next((v for v in siblings[siblings.index(node) + 1:] if not isinstance(v, str)), None)
+            if panel is None or panel.tag != 'div':
+                self.problem(archive + '#' + anchor, 'Enterprise release panel is missing')
+                continue
+            day = dates.get(anchor)
+            if day and not self.allowed_date(day):
+                self.state['excluded_by_date'].append(archive + '#' + anchor)
+                continue
+            panels += 1
+            for unit in blocks(panel):
+                unit['key'] = 'release:' + anchor + ':' + unit['key']
+                self.emit(archive, response, unit, date=day, version=anchor)
+        if not panels or not dates:
+            self.problem(archive, 'Enterprise dated archive inventory is not recognized')
+        self.state['documents'] += 1
+        self.document_done(archive)
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        response = self.get(api + '/versions', refresh=True)
+        versions = json_body(response).get('versions')
+        if not isinstance(versions, list) or not versions:
+            raise ValueError('Missing enterprise version inventory')
+        excluded = 0
+        for version in versions:
+            version = version['value']
+            if not re.fullmatch(r'\d+', version):
+                raise ValueError('Invalid enterprise version identity')
+            url = api + '/features?' + urlencode({'version': version, 'lang': 'en'})
+            response = self.get(url, refresh=True)
+            data = json_body(response)
+            rows = data.get('features')
+            if not isinstance(rows, list) or data.get('total_count') != len(rows):
+                raise ValueError('Enterprise API inventory count mismatch')
+            self.state['documents'] += 1
+            for row in rows:
+                # Match the publisher's public UI gates; reject internal-only
+                # flags even if an upstream API happens to return those rows.
+                if (not row.get('is_releasenotes_publish_ready') or not row.get('is_releasenotes_content_reviewed')
+                        or any(row.get(k) for k in ('confidential', 'unlisted', 'deleted'))):
+                    excluded += 1
+                    continue
+                ident, name, summary = row.get('id'), row.get('name'), row.get('summary')
+                if not isinstance(ident, int) or not isinstance(name, str) or not isinstance(summary, str):
+                    self.unresolved(url, response, key='feature:' + str(ident))
+                    continue
+                changed = row.get('updated', {}).get('when')
+                # Match the public ChromeStatus item's full-body hash. The
+                # observed milestone remains in version and the evidence URL.
+                unit = {'key': str(ident), 'section': 'feature', 'text': summary, 'parsed': True}
+                self.emit(url, response, unit, date=date_value(row.get('created', {}).get('when')), revision=changed, title=name, version=version)
+                record_id = identity('src', [self.source['source_id'], url, str(ident)])
+                self.records[record_id]['temporal_scope'] = dated_scope(self.since, self.cutoff, date_value(changed), 'item_change',
+                    'Official public enterprise-feature update; timezone-unspecified API timestamp retains its printed day.')
+            self.document_done(url)
+            self.persist_checkpoint([])
+        self.state['enterprise_publication_excluded'] = excluded
+        self.state['enterprise_archive_panels'] = panels
+        self.state['pagination_exhausted'] = True
 
     def collect_chromestatus(self):
         total, start, seen_ids = None, 0, set()
@@ -675,9 +811,14 @@ class BrowserCollector:
         self.state['pending'] = pending
 
     def collect_github(self):
+        self.github_covered, self.github_publications = set(), {}
+        self.brave_metadata_rows = None
+        if self.source['source_id'] == 'brave-releases' and self.brave_release_metadata is not None:
+            from .brave_metadata import validate
+            self.brave_metadata_rows = validate(self.brave_release_metadata, self.cutoff)
         parts = urlparse(self.source['url']).path.strip('/').split('/')
         url = 'https://api.github.com/repos/%s/%s/releases?per_page=100&page=1' % tuple(parts[:2])
-        visited = set()
+        visited, release_ids = set(), set()
         while url:
             if url in visited:
                 self.problem(url, 'Pagination loop or page limit')
@@ -686,7 +827,13 @@ class BrowserCollector:
             if not self.budget(url, 'pages'):
                 return
             visited.add(url)
-            response = self.get(url)
+            try:
+                response = self.get(url)
+            except HTTPError as error:
+                if error.code != 422 or len(release_ids) < 1000:
+                    raise
+                self.state['github_rest_limit'] = {'status': 422, 'enumerated': len(release_ids), 'url': url}
+                break
             self.state['pages'] += 1
             rows = json_body(response)
             if not isinstance(rows, list):
@@ -696,11 +843,13 @@ class BrowserCollector:
                     self.unresolved(url, response, key='release-row:' + str(row_index))
                     continue
                 document_url = row['html_url']
+                release_ids.add(str(row['id']))
+                self.github_publications[str(row['id'])] = row.get('published_at')
                 if not self.budget(document_url, 'documents'):
                     return
                 self.state['documents'] += 1
                 date = date_value(row.get('published_at'))
-                if not self.allowed_date(date):
+                if not self.allowed_publication(row.get('published_at')):
                     self.state['excluded_by_date'].append(document_url)
                     self.document_done(document_url)
                     continue
@@ -709,7 +858,9 @@ class BrowserCollector:
                     self.unresolved(document_url, response)
                 for unit in units:
                     unit['key'] = str(row['id']) + ':' + unit['key']
-                    self.emit(document_url, response, unit, date=date, revision=row.get('tag_name'), version=row.get('tag_name'))
+                    self.emit(document_url, response, unit, date=date, date_evidence=row.get('published_at'), revision=row.get('tag_name'), version=row.get('tag_name'))
+                if units:
+                    self.github_covered.add(str(row['id']))
                 self.document_done(document_url)
             link = response.headers.get('link', response.headers.get('Link', ''))
             next_urls = re.findall(r'<([^>]+)>;\s*rel="next"', link)
@@ -717,7 +868,164 @@ class BrowserCollector:
             if url and urlparse(url).netloc != 'api.github.com':
                 raise ValueError('Unexpected GitHub pagination host')
             self.persist_checkpoint([url] if url else [])
+        if self.source['source_id'] == 'brave-releases' and len(release_ids) >= 1000:
+            self.collect_github_months(release_ids)
+        else:
+            self.state['pagination_exhausted'] = True
+            if self.brave_metadata_rows is not None:
+                self.collect_github_complement()
+
+    def collect_github_months(self, api_ids):
+        """Reconcile official month partitions beyond GitHub REST's 1,000 cap.
+
+        Search membership is not a publication date. Each unseen release uses
+        the release's own displayed timestamp and ID, never its version number.
+        The live search payload must echo the requested qualifier and page.
+        """
+        base = self.source['url']
+        first = datetime.fromisoformat(self.since)
+        last = datetime.fromisoformat(self.cutoff[:10])
+        year, month = first.year, first.month
+        seen, partitions = set(), []
+        while (year, month) <= (last.year, last.month):
+            start = f'{year:04d}-{month:02d}-01'
+            end = f'{year:04d}-{month:02d}-{calendar.monthrange(year, month)[1]:02d}'
+            query = 'created:' + start + '..' + end
+            url = base + '?' + urlencode({'q': query})
+            visited, count = set(), 0
+            while url:
+                if url in visited:
+                    raise ValueError('GitHub release search pagination loop')
+                if not self.budget(url, 'pages'):
+                    return
+                visited.add(url)
+                response = self.get(url, refresh=True)
+                self.state['pages'] += 1
+                rendered = response.text()
+                routes = []
+                if rendered.lstrip().startswith('{'):
+                    payload = json_body(response).get('payload', {})
+                    route = payload.get('releasesIndexRoute')
+                    rendered = payload.get('releasesIndexRoute.Results', {}).get('value')
+                    if not isinstance(route, dict) or not isinstance(rendered, str):
+                        raise ValueError('Unknown GitHub release search response')
+                    routes.append(route)
+                root = Tree(rendered).root
+                for node in root.walk():
+                    if node.tag == 'script' and node.attrs.get('type') == 'application/json':
+                        try:
+                            value = json.loads(''.join(c for c in node.children if isinstance(c, str)))
+                        except ValueError:
+                            continue
+                        route = value.get('payload', {}).get('releasesIndexRoute')
+                        if route:
+                            routes.append(route)
+                if len(routes) != 1 or routes[0].get('filterPhrase') != query or routes[0].get('page') != len(visited):
+                    raise ValueError('GitHub search did not confirm the requested date partition/page')
+                route = routes[0]
+                if not isinstance(route.get('toc'), list):
+                    raise ValueError('Missing GitHub release search inventory')
+                for entry in route['toc']:
+                    ident = str(entry['id'])
+                    if ident in seen:
+                        raise ValueError('GitHub release appeared twice in date partitions')
+                    seen.add(ident)
+                    count += 1
+                    if ident in api_ids:
+                        continue
+                    sections = [n for n in root.walk() if n.tag == 'section' and n.attrs.get('id') == entry['anchorId']]
+                    if len(sections) != 1:
+                        raise ValueError('Missing GitHub release search body')
+                    section = sections[0]
+                    urls = sorted({urljoin(base, n.attrs['href']) for n in section.walk() if n.tag == 'a' and '/releases/tag/' in n.attrs.get('href', '')})
+                    # The release header's no-wrap time is publication. Commit
+                    # popovers also contain relative-time values; those are not
+                    # release dates and can precede the year boundary.
+                    dates = {n.attrs['datetime'] for n in section.walk() if n.tag == 'relative-time' and n.has_class('no-wrap') and n.attrs.get('datetime')}
+                    bodies = [n for n in section.walk() if n.has_class('markdown-body')]
+                    if len(urls) != 1 or len(dates) != 1 or len(bodies) != 1:
+                        raise ValueError('Ambiguous GitHub release identity/date/body')
+                    document_url, timestamp = urls[0], next(iter(dates))
+                    self.github_publications[ident] = timestamp
+                    if not self.budget(document_url, 'documents'):
+                        return
+                    self.state['documents'] += 1
+                    day = date_value(timestamp)
+                    if self.allowed_publication(timestamp):
+                        version = document_url.rsplit('/', 1)[-1]
+                        units = blocks(bodies[0])
+                        if not units:
+                            self.unresolved(document_url, response, key=ident + ':document')
+                        for unit in units:
+                            unit['key'] = ident + ':html:' + unit['key']
+                            self.emit(document_url, response, unit, date=day, date_evidence=timestamp, revision=version, version=version)
+                        if units:
+                            self.github_covered.add(ident)
+                    else:
+                        self.state['excluded_by_date'].append(document_url)
+                    self.document_done(document_url)
+                following = sorted(set(next_links(root, url)))
+                if len(following) > 1 or any(not u.startswith(base + '?') for u in following):
+                    raise ValueError('Unexpected GitHub release search pagination')
+                url = following[0] if following else None
+                self.persist_checkpoint([url] if url else [])
+            partitions.append({'query': query, 'pages': len(visited), 'releases': count})
+            year, month = (year + 1, 1) if month == 12 else (year, month + 1)
+        self.state['release_search_partitions'] = partitions
+        self.state['release_search_unique'] = len(seen)
         self.state['pagination_exhausted'] = True
+        if self.brave_metadata_rows is not None:
+            self.collect_github_complement()
+        else:
+            self.problem(base, 'Release creation-date partitions do not enumerate older-created releases published in this window; a full published-date metadata inventory is still required.')
+
+    def collect_github_complement(self):
+        from pipeline.temporal import instant
+        inventory_ids = {str(row['id']) for row in self.brave_metadata_rows}
+        absent = [ident for ident, published in self.github_publications.items() if published
+                  and dated_scope(self.since, self.cutoff, published, 'publication')['status'] == 'in_period'
+                  and ident not in inventory_ids]
+        if absent:
+            self.problem(self.source['url'], 'Observed public releases are absent from frozen metadata; capture a new inventory/run')
+        expected = [row for row in self.brave_metadata_rows if not row['is_draft'] and row['published_at']
+                    and dated_scope(self.since, self.cutoff, row['published_at'], 'publication')['status'] == 'in_period']
+        for row in expected:
+            ident = str(row['id'])
+            known = self.github_publications.get(ident)
+            if known and instant(known) != instant(row['published_at']):
+                self.problem(row['url'], 'Release publication changed relative to frozen metadata; capture a new inventory/run')
+                continue
+            if ident in self.github_covered and known:
+                continue
+            url = 'https://api.github.com/repos/brave/brave-browser/releases/' + ident
+            if not self.budget(url, 'documents'):
+                return
+            self.state['documents'] += 1
+            try:
+                response = self.get(url)
+                release = json_body(response)
+                if (release.get('id') != row['id'] or release.get('tag_name') != row['tag_name'] or release.get('html_url') != row['url']
+                        or release.get('draft') is not False or not release.get('published_at')
+                        or instant(release['published_at']) != instant(row['published_at'])):
+                    raise ValueError('Release body identity/publication differs from frozen metadata')
+                units = markdown_items(release.get('body') or '')
+                if not units:
+                    self.unresolved(row['url'], response, key=ident + ':document')
+                for unit in units:
+                    unit['key'] = ident + ':' + unit['key']
+                    self.emit(row['url'], response, unit, date=date_value(row['published_at']), date_evidence=row['published_at'],
+                              revision=row['tag_name'], version=row['tag_name'])
+                if units:
+                    self.github_covered.add(ident)
+                self.document_done(row['url'])
+            except Exception as error:
+                self.problem(url, str(error))
+            self.persist_checkpoint([r['url'] for r in expected if str(r['id']) not in self.github_covered])
+        missing = sorted(str(row['id']) for row in expected if str(row['id']) not in self.github_covered)
+        self.state['brave_metadata'] = {'sha256': digest(canonical(self.brave_release_metadata)), 'inventory_count': len(self.brave_metadata_rows),
+                                      'eligible_count': len(expected), 'missing_release_ids': missing}
+        if missing:
+            self.problem(self.source['url'], 'Frozen metadata still has releases without parsed public bodies')
 
     def collect_markdown(self):
         source_url = self.source['url']
@@ -728,7 +1036,7 @@ class BrowserCollector:
         if not units:
             self.unresolved(source_url, response)
         for unit in units:
-            self.emit(source_url, response, unit)
+            self.emit(source_url, response, unit, date=date_value(unit['section']))
         self.state['pagination_exhausted'] = True
 
     def collect_whale(self):

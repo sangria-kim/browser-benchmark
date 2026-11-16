@@ -73,8 +73,20 @@
         }
       ]
     },
-    "before": {},
-    "after": {},
+    "before": {
+      "properties": {
+        "source_definition": {
+          "$ref": "#/$defs/sourceDefinition"
+        }
+      }
+    },
+    "after": {
+      "properties": {
+        "source_definition": {
+          "$ref": "#/$defs/sourceDefinition"
+        }
+      }
+    },
     "summary": {
       "type": "string",
       "minLength": 1
@@ -108,6 +120,135 @@
     "revision": {
       "type": "integer",
       "minimum": 1
+    },
+    "temporal_scope": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "since": {
+          "type": "string",
+          "format": "date"
+        },
+        "cutoff": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "status": {
+          "enum": [
+            "in_period",
+            "before_period",
+            "after_cutoff",
+            "unchanged",
+            "unknown",
+            "context"
+          ]
+        },
+        "basis": {
+          "enum": [
+            "publication",
+            "item_change",
+            "endpoint_comparison",
+            "legacy_event",
+            "unknown"
+          ]
+        },
+        "evidence_date": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "precision": {
+          "enum": [
+            "day",
+            "timestamp",
+            "interval",
+            "unknown"
+          ]
+        },
+        "baseline_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current_revision": {
+          "anyOf": [
+            {
+              "type": "string",
+              "pattern": "^[0-9a-f]{40}$"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "change": {
+          "enum": [
+            "added",
+            "changed",
+            "unchanged",
+            "unknown",
+            null
+          ]
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "baseline_committed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "current_committed_at": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "since",
+        "cutoff",
+        "status",
+        "basis",
+        "evidence_date",
+        "precision",
+        "baseline_revision",
+        "current_revision",
+        "change",
+        "reason"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [
@@ -129,5 +270,74 @@
     "correction_of",
     "revision"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "sourceDefinition": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": 1
+        },
+        "semantic_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "expression": {
+          "type": "string",
+          "minLength": 1
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "minLength": 1
+              },
+              "path": {
+                "type": "string",
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+              },
+              "expression": {
+                "type": "string",
+                "minLength": 1
+              },
+              "conditions": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "symbol",
+              "path",
+              "expression"
+            ],
+            "additionalProperties": false
+          },
+          "uniqueItems": true
+        },
+        "unresolved_references": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "version",
+        "semantic_sha256",
+        "expression",
+        "options",
+        "unresolved_references"
+      ],
+      "additionalProperties": false
+    }
+  }
 }

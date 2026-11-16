@@ -305,6 +305,7 @@ def blocks(body):
     is deliberately local to a section, and is not a semantic deduplication key.
     """
     result, counters, section, headings = [], {}, 'document', {}
+    heading_dates = {}
     suppressed = set()
     # Explicit author/reporter fields are outside the public product record.
     for n in body.walk():
@@ -345,6 +346,9 @@ def blocks(body):
         if re.fullmatch(r'h[1-6]', n.tag):
             level = int(n.tag[1])
             headings = {k: v for k, v in headings.items() if k < level}
+            heading_dates = {k: v for k, v in heading_dates.items() if k < level}
+            if date_value(text):
+                heading_dates[level] = date_value(text)
             headings[level] = n.attrs.get('id') or text or section
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
@@ -359,7 +363,8 @@ def blocks(body):
             prefix = section + ':' + n.tag
             counters[prefix] = counters.get(prefix, 0) + 1
             key = key or prefix + ':' + str(counters[prefix])
-            result.append({'key': key, 'text': text, 'section': section, 'parsed': bool(text)})
+            result.append({'key': key, 'text': text, 'section': section, 'parsed': bool(text),
+                           'date': heading_dates[max(heading_dates)] if heading_dates else None})
             covered.add(id(n))
         elif any(isinstance(c, str) and c.strip() for c in n.children):
             # Plain text in an unfamiliar div/span is retained, never dropped.
@@ -367,7 +372,8 @@ def blocks(body):
             if direct:
                 prefix = section + ':unparsed'
                 counters[prefix] = counters.get(prefix, 0) + 1
-                ordinary = n.tag in {'div', 'span', 'a', 'strong', 'b', 'em', 'i', 'u', 'code', 'small', 'font', 'document'}
+                ordinary = n.tag in {'div', 'span', 'a', 'strong', 'b', 'em', 'i', 'u', 'code', 'small', 'font', 'document', 'figcaption'}
                 result.append({'key': n.attrs.get('id') or prefix + ':' + str(counters[prefix]),
-                               'text': direct if ordinary else '', 'section': section, 'parsed': ordinary})
+                               'text': direct if ordinary else '', 'section': section, 'parsed': ordinary,
+                               'date': heading_dates[max(heading_dates)] if heading_dates else None})
     return unique_unit_keys(result)

@@ -53,6 +53,26 @@ def validate_record(kind, record):
     if errors:
         error = errors[0]
         raise ContractError('%s:%s: %s' % (kind, '/'.join(map(str, error.path)), error.message))
+    scope = record.get('temporal_scope')
+    if scope:
+        from pipeline.temporal import dated_scope, instant
+        if instant(scope['since'] + 'T00:00:00+09:00') > instant(scope['cutoff']):
+            raise ContractError('Temporal window ends before it starts')
+        if scope['basis'] == 'endpoint_comparison':
+            if not scope['baseline_revision'] or not scope['current_revision'] or scope['precision'] != 'interval' or scope['evidence_date'] is not None:
+                raise ContractError('Endpoint scope needs two revisions and interval precision')
+            if (not scope.get('baseline_committed_at') or not scope.get('current_committed_at')
+                    or instant(scope['baseline_committed_at']) >= instant(scope['since'] + 'T00:00:00+09:00')
+                    or instant(scope['current_committed_at']) < instant(scope['since'] + 'T00:00:00+09:00')
+                    or instant(scope['current_committed_at']) > instant(scope['cutoff'])):
+                raise ContractError('Endpoint commit times do not fit the source window')
+            expected = {'added': 'in_period', 'changed': 'in_period', 'unchanged': 'unchanged', 'unknown': 'unknown'}
+            if scope['status'] != 'context' and expected.get(scope['change']) != scope['status']:
+                raise ContractError('Endpoint change and eligibility differ')
+        elif scope['status'] != 'context':
+            expected = dated_scope(scope['since'], scope['cutoff'], scope['evidence_date'], scope['basis'])
+            if (scope['status'], scope['precision']) != (expected['status'], expected['precision']):
+                raise ContractError('Dated eligibility differs from evidence date')
     if kind == 'source_item':
         ids = [r['revision_id'] for r in record['revisions']]
         if len(ids) != len(set(ids)):

@@ -24,6 +24,7 @@ def build_research(output, legacy, base):
     import hashlib
     sys.path.insert(0, str(ROOT))
     from pipeline.selection.core import build_contexts, latest_assessments, project, load_rules
+    from pipeline.temporal import policy
     from collections import defaultdict, Counter
     from datetime import timedelta
 
@@ -128,12 +129,17 @@ def build_research(output, legacy, base):
             after = {}
         title = fact.get('feature_title') or after.get('title') or fact.get('title') or fact.get('summary') or fact.get('symbol') or k.split(':', 1)[1]
         platforms = fact.get('platform') or after.get('platform') or catalog.get('platform') or []
+        versions = sorted({objects[key('source_item', sid)].get('version') for sid in catalog.get('source_item_ids', [])
+                           if objects[key('source_item', sid)].get('version')})
+        if not versions and fact.get('version'):
+            versions = [fact['version']]
         dates = [fact.get('observed_at')]
         if not k.startswith(('feature_event:', 'experiment_event:')):
             dates += [objects.get(key('source_item', s), {}).get('observed_at') for s in fact.get('source_item_ids', [])]
         return {'key': k, 'id': k.split(':',1)[1], 'subject_kind': k.split(':',1)[0],
                 'title': title, 'browser': fact.get('browser') or catalog.get('browser') or 'chrome',
                 'platform': platforms if isinstance(platforms,list) else [platforms],
+                'versions': versions,
                 'date': max(filter(None, dates), key=stamp, default=''), 'catalog_id': cid,
                 'experiment_kind': fact.get('experiment_kind') or catalog.get('experiment_kind'),
                 'event_type': fact.get('event_type'), 'build_conditions': after.get('build_conditions', fact.get('build_conditions', [])),
@@ -141,6 +147,8 @@ def build_research(output, legacy, base):
                 'status': a['status'] if a else 'unassessed', 'assessment_id': a['assessment_id'] if a else None,
                 'current_status': heads.get(pk, {}).get('status', 'unassessed'),
                 'current_selected': pk in current_keys, 'principal': pk,
+                'temporal_scope': ((catalog.get('temporal_scope') or fact.get('temporal_scope')) if fact.get('experiment_kind')
+                                   else (fact.get('temporal_scope') or catalog.get('temporal_scope'))),
                 'detail': resource(k)}
     projections = {p['selection_kind']: p for p in records('data/selected/*/current.json')}
     actual_keys = {key(r['subject_kind'],r['subject_id']) for p in projections.values() for r in p['current']}
@@ -215,6 +223,8 @@ def build_research(output, legacy, base):
                'experiment_counts':dict(Counter(r['experiment_kind'] for r in groups['experiment'])),
                'assessment_count':len(assessments),
                'indexes':{k:'indexes/'+k+'.json' for k in all_rows}}
+    if policy(dataset):
+        initial['collection_scope'] = policy(dataset)
     write('data.json',initial)
     return initial
 

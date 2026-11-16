@@ -81,7 +81,7 @@
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product. The official page now links to chromeenterprise.google release notes. Follow the dated support archive and its public release-notes API. Exclude unpublished, confidential, unlisted and deleted API rows."
     },
     {
       "source_id": "chrome-platform-status",
@@ -566,12 +566,12 @@
       "discovery": {
         "include_url_pattern": null,
         "pagination": "link_header",
-        "max_pages": 1000,
+        "max_pages": 500,
         "max_documents": 20000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product. REST enumeration can stop at 1,000 releases. Reconcile official monthly creation-date search with release publication dates. Creation-date partitions alone cannot prove publication-window completeness."
     },
     {
       "source_id": "brave-android-changelog",

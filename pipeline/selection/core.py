@@ -10,6 +10,7 @@ from urllib.parse import urlsplit, urlunsplit
 from pipeline.normalize import load_dataset, publish, validate_graph
 from pipeline.normalize.storage import PATHS, records
 from schemas.validate import ContractError, validate_record, validate_transition
+from pipeline.temporal import eligible, context_scope, policy, scope_semantics
 
 ROOT = Path(__file__).resolve().parents[2]
 PM_FIELDS = {'selection_status', 'selection_reason', 'priority', 'priority_reason',
@@ -17,7 +18,7 @@ PM_FIELDS = {'selection_status', 'selection_reason', 'priority', 'priority_reaso
              'assessed_at', 'selection_rule_version'}
 NOISE = PM_FIELDS | {'observed_at', 'source_revision', 'previous_source_revision',
                     'revision_id', 'line_start', 'line_end',
-                    'revisions', 'revision', 'source_locations'}
+                    'revisions', 'revision', 'source_locations', 'temporal_scope'}
 
 
 def digest(value):
@@ -155,6 +156,7 @@ def input_hash(context, rules, model_id=None, revisit=None):
                         ('feature_id', 'experiment_id', 'experiment_kind', 'canonical_key')} if context['catalog'] else None
     return digest({'subject': semantic(subject),
                    'sources': [semantic(s) for s in context['sources']],
+                   **({'temporal_scope': scope_semantics(context_scope(context))} if context_scope(context) else {}),
                    'catalog_identity': catalog_identity, 'rules': rules,
                    'model_id': model_id, 'revisit': revisit})
 
@@ -166,6 +168,9 @@ def decision(status, reason, *, priority=None, question=None, readiness='unknown
 
 
 def evaluate(context, rules):
+    if not eligible(context):
+        scope = context_scope(context)
+        return decision('excluded', 'Outside the confirmed collection projection (%s): %s This is not evidence of product removal.' % (scope['status'], scope['reason']))
     subject = context['subject']
     facts = subject.get('after') or subject
     profiles = rules['profiles']
@@ -441,6 +446,9 @@ def project(dataset, contexts, assessments, rules, at, as_of=None):
         result = {'schema_version': 2, 'selection_kind': selection_kind, 'as_of': as_of or at,
                   'input_hash': digest([current, history]), 'rule_version': rules['rule_version'],
                   'current': current, 'history': history}
+        if policy(dataset, as_of):
+            result['collection_scope'] = policy(dataset, as_of)
+            result['input_hash'] = digest([current, history, result['collection_scope']])
         if previous and previous['input_hash'] == result['input_hash'] and not as_of:
             result = copy.deepcopy(previous)
         validate_record('selected', result)
@@ -480,17 +488,20 @@ def run(repository, private_dir, *, assessed_at, rules=None, provider=None, mode
     for k, context in sorted(contexts.items()):
         previous = heads.get(k)
         token = revisit.get(k[1])
-        ih = input_hash(context, rules, model_id, token)
-        if previous and (previous['input_hash'] == ih or (k in imported_keys and token is None and provider is None)):
+        evaluator_model = model_id if eligible(context) else None
+        ih = input_hash(context, rules, evaluator_model, token)
+        if previous and (previous['input_hash'] == ih or (k in imported_keys and token is None and provider is None and context_scope(context) is None)):
             cached += 1
             continue
         try:
-            if provider:
+            if not eligible(context):
+                result = evaluate(context, rules)
+            elif provider:
                 result = provider_decision(provider(copy.deepcopy(context), copy.deepcopy(rules)), context)
             else:
                 result = evaluate(context, rules)
             assessment = make_assessment(context, rules, result, assessed_at, previous,
-                                         model_id, token, revision='semantic-v2-sha256:' + digest(semantic(context['subject'])))
+                                         evaluator_model, token, revision='semantic-v2-sha256:' + digest(semantic(context['subject'])))
             if previous and timestamp(assessment['assessed_at']) < timestamp(previous['assessed_at']):
                 raise ContractError('Assessment time precedes the previous judgment')
             assessments.append(assessment)

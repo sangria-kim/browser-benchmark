@@ -8,11 +8,17 @@ import re
 from collections.abc import Mapping
 
 from schemas.validate import validate_record, validate_transition
-from .parser import parse, auxiliary_definitions, strip_comments, safe_excerpt, literal, masked, Candidate
+from .parser import parse, auxiliary_definitions, strip_comments, safe_excerpt, literal, masked, Candidate, references as expression_references
+from .parser import feature_state_definitions, conditions_at, impossible_conditions, arguments, IDENT
 from .providers import atomic_json, canonical, digest, private_directory, safe_path
+from .generated import blink_features, PATHS as BLINK_PATHS, INPUT as BLINK_INPUT
+from .generated import network_switches, NETWORK_LIST, NETWORK_DEFINITION
+from .generated import MOJO_GENERATOR, mojo_missing_default_is_disabled
 
 
-PARSER_VERSION = 'chromium-lexical-v1'
+PARSER_VERSION = 'chromium-lexical-v2'
+PARSER_SHA256 = digest(b'\n'.join((Path(__file__).parent / name).read_bytes()
+                                for name in ('collector.py', 'parser.py', 'generated.py')))
 REGISTRIES = {'chrome/browser/about_flags.cc', 'ios/chrome/browser/flags/about_flags.mm'}
 
 
@@ -140,17 +146,25 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         except Exception as exc:
             errors.append({'path': path, 'reason': str(exc)})
     files = SourceTexts(hashes, read_source)
-    candidates, declaration_count, auxiliary = [], 0, {}
+    candidates, declaration_count, auxiliary, imports = [], 0, {}, {}
+    mojo_default_disabled = mojo_missing_default_is_disabled(files)
     for path, text in files.items():
         if Path(path).suffix not in config['discovery']['extensions']:
             continue
-        parsed, declarations, issues = parse(path, text)
+        parsed, declarations, issues = parse(path, text, mojo_default_disabled=mojo_default_disabled)
+        imports[path] = re.findall(r'\busing\s+((?:[A-Za-z_]\w*::)+k[A-Z]\w*)\s*;', masked(text))
         candidates.extend(parsed)
         declaration_count += len(declarations)
         errors.extend({'path': path, 'reason': issue} for issue in issues)
         for symbol, values in auxiliary_definitions(text).items():
             auxiliary.setdefault(symbol, []).extend(dict(v, path=path) for v in values)
     metadata, never, expired, milestone, metadata_errors = read_metadata(files)
+    generated, generator_errors = blink_features(files)
+    candidates.extend(generated)
+    errors.extend({'path': BLINK_INPUT, 'reason': issue} for issue in generator_errors)
+    generated, generator_errors = network_switches(files)
+    candidates.extend(generated)
+    errors.extend({'path': NETWORK_LIST, 'reason': issue} for issue in generator_errors)
     errors.extend(metadata_errors)
     if 'chrome/VERSION' in files and milestone is None:
         errors.append({'path': 'chrome/VERSION', 'reason': 'invalid_version'})
@@ -159,12 +173,23 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         if not any(c.path == path and c.kind == 'flag_entry' for c in candidates):
             errors.append({'path': path, 'reason': 'missing_flag_table'})
 
+    def names(ref, path, namespace):
+        if ref.startswith('::'):
+            return [ref[2:]]
+        imported = [v for v in imports.get(path, []) if v.split('::')[-1] == ref]
+        if imported:
+            return sorted(set(imported))
+        parts = namespace.split('::') if namespace else []
+        return ['::'.join(parts[:i] + [ref]) for i in range(len(parts), -1, -1)]
+
     def auxiliary_values(ref, path, namespace=''):
-        qualified = ref.lstrip(':') if '::' in ref else (namespace + '::' + ref if namespace else ref)
-        values = [v for v in auxiliary.get(ref.split('::')[-1], [])
-                  if (v['namespace'] + '::' if v['namespace'] else '') + ref.split('::')[-1] == qualified]
-        local = [v for v in values if v['path'] == path]
-        return local or values
+        for qualified in names(ref, path, namespace):
+            values = [v for v in auxiliary.get(ref.split('::')[-1], [])
+                      if (v['namespace'] + '::' if v['namespace'] else '') + ref.split('::')[-1] == qualified]
+            local = [v for v in values if v['path'] == path]
+            if values:
+                return local or values
+        return []
 
     # Symbolic registry IDs (for example kEnableBenchmarking) are resolved
     # only from an unambiguous string definition. Unsupported names stay raw.
@@ -202,8 +227,7 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
     def resolve(ref, candidate):
         # Qualified symbols must match their namespace. Bare references are
         # local to the same namespace; ambiguity is kept unresolved.
-        qualified = ref if '::' in ref else (candidate.namespace + '::' + ref if candidate.namespace else ref)
-        matches = symbol_index.get(qualified, [])
+        matches = next((symbol_index[n] for n in names(ref, candidate.path, candidate.namespace) if n in symbol_index), [])
         local = [(c, eid) for c, eid in matches if c.path == candidate.path]
         matches = local or matches
         if len(matches) == 1:
@@ -219,16 +243,91 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
         seen = set() if seen is None else seen
         result = []
         for ref in refs:
-            bare = ref.split('::')[-1]
-            if bare in seen:
+            seen_key = (ref, path, namespace)
+            if seen_key in seen:
                 continue
-            seen.add(bare)
+            seen.add(seen_key)
             values = auxiliary_values(ref, path, namespace)
             if len(values) == 1:
                 value = values[0]
                 result.append({'symbol': ref, 'path': value['path'], 'expression': value['expression']})
                 result.extend(expand(value['refs'], value['path'], value['namespace'], seen))
         return result
+
+    state_definitions, condition_cache, local_macros = {}, {}, {}
+
+    def macro_names(path):
+        if path not in local_macros:
+            text = strip_comments(files[path])
+            local_macros[path] = set(re.findall(r'^\s*#\s*(?:define|undef)[ \t]+([A-Za-z_]\w*)(?!\w|\()', text, re.M))
+        return local_macros[path]
+
+    def condition_macros(path, conditions):
+        # BUILDFLAG platform predicates stay symbolic. A locally defined bare
+        # condition macro can change meaning without changing the guard text;
+        # do not claim that its unevaluated condition is unchanged.
+        if not conditions:
+            return []
+        tokens = set(re.findall(r'\b[A-Za-z_]\w*\b', re.sub(r'BUILDFLAG\s*\(\s*\w+\s*\)', '', ' '.join(conditions))))
+        return ['condition macro: ' + name for name in sorted(tokens & macro_names(path))]
+
+    def initializer_conditions(value):
+        key = value['path'], value['path_line']
+        if key not in condition_cache:
+            text = strip_comments(files[value['path']])
+            offset = sum(len(line) for line in text.splitlines(keepends=True)[:value['path_line'] - 1])
+            condition_cache[key] = conditions_at(text, offset)
+        return condition_cache[key]
+
+    def initializer(expression, path, namespace, conditions, kind='state', seen=(), line=None):
+        expression = expression.strip()
+        terminal = r'(?:(?:base::)?FeatureState::|base::)?FEATURE_(?:ENABLED|DISABLED)_(?:BY_DEFAULT|FOR_COUNTRIES)'
+        if kind == 'name' and literal(expression) is not None or kind == 'state' and re.fullmatch(terminal, expression):
+            return [], []
+        parts = arguments(expression)
+        if kind == 'state' and len(parts) > 1:
+            if not all(literal(part) is not None for part in parts[1:]):
+                return [], [expression]
+            return initializer(parts[0], path, namespace, conditions, kind, seen, line)
+        if not re.fullmatch(IDENT, expression) or (expression, path, namespace) in seen:
+            return [], [expression]
+        if path not in state_definitions:
+            state_definitions[path] = feature_state_definitions(files[path])
+        values = auxiliary_values(expression, path, namespace)
+        macros = [dict(v, path=path) for v in state_definitions[path].get(expression.split('::')[-1], []) if v.get('macro')]
+        if expression.split('::')[-1] in macro_names(path):
+            # No C++ preprocessor implementation is implied. Macro/constant
+            # collisions, undef/redefinition ordering and qualified replacement
+            # are unsupported instead of being silently resolved to one body.
+            if (values or any(not v.get('macro') for v in state_definitions[path].get(expression, []))
+                    or '::' in expression or not macros or re.search(r'^\s*#\s*undef[ \t]+' + re.escape(expression) + r'\b', files[path], re.M)):
+                return [], [expression]
+            values = [v for v in macros if line is None or v['path_line'] < line]
+        elif not values:
+            for qualified in names(expression, path, namespace):
+                values = [dict(v, path=path) for v in state_definitions[path].get(expression.split('::')[-1], [])
+                          if not v.get('macro') and '::'.join(filter(None, (v['namespace'], expression.split('::')[-1]))) == qualified]
+                if values:
+                    break
+        if not values or len({v['path'] for v in values}) != 1:
+            return [], [expression]
+        values = [v for v in values if not impossible_conditions(conditions + initializer_conditions(v))]
+        guards = [initializer_conditions(v) for v in values]
+        # Multiple definitions must be mutually exclusive and cover the
+        # feature's own build conditions. Ambiguous/missing arms stay unknown.
+        if (not values or any(not impossible_conditions(conditions + left + right)
+                              for i, left in enumerate(guards) for right in guards[i + 1:])
+                or not impossible_conditions(conditions + ['!(' + ' || '.join(
+                    '(' + ' && '.join('(' + c + ')' for c in guard) + ')' if guard else '1' for guard in guards) + ')'])):
+            return [], [expression]
+        options, unresolved = [], []
+        for value, guard in zip(values, guards):
+            options.append(dict(symbol=expression, path=value['path'], expression=value['expression'], conditions=guard))
+            unresolved.extend(condition_macros(value['path'], guard))
+            nested, missing = initializer(value['expression'], value['path'], namespace if value.get('macro') else value['namespace'], conditions + guard,
+                                          kind, seen + ((expression, path, namespace),), line if value.get('macro') else value['path_line'])
+            options.extend(nested); unresolved.extend(missing)
+        return options, unresolved
 
     bundle_path = state_dir / 'handoff.json'
     prior = previous if previous is not None else (json.loads(bundle_path.read_text()) if bundle_path.exists() else {})
@@ -260,17 +359,37 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
                 result.update(prior_dependency_paths(target, visited))
         return result
     for c, key, sid, eid in keyed:
-        refs = list(c.refs)
-        options = expand(refs, c.path, c.namespace)
+        refs = [(ref, c) for ref in c.refs]
+        options = expand(c.refs, c.path, c.namespace)
         for option in options:
-            refs.extend(re.findall(r'\b(?:[A-Za-z_]\w*::)*k[A-Z]\w*\b', masked(option['expression'])))
-        references, unresolved = [], []
-        for ref in sorted(set(refs)):
-            targets = resolve(ref, c)
+            # Resolve an initializer's bare names in its own lexical namespace,
+            # not the namespace of the flag that refers to the initializer.
+            values = [v for v in auxiliary.get(option['symbol'].split('::')[-1], [])
+                      if v['path'] == option['path'] and v['expression'] == option['expression']]
+            context = copy.copy(c)
+            context.path = option['path']
+            context.namespace = values[0]['namespace'] if len(values) == 1 else ''
+            refs.extend((ref, context) for ref in expression_references(option['expression']))
+        references, unresolved = [], condition_macros(c.path, c.conditions)
+        if c.kind == 'base_feature' and c.path != BLINK_INPUT and c.default:
+            defaults, missing_defaults = initializer(c.default, c.path, c.namespace, c.conditions, line=c.line)
+            options.extend(defaults)
+            unresolved.extend(missing_defaults)
+        if c.value_ref:
+            values, missing_values = initializer(c.value_ref, c.path, c.namespace, c.conditions, 'name', line=c.line)
+            options.extend(values)
+            unresolved.extend(missing_values)
+        seen_refs = set()
+        for ref, context in refs:
+            ref_key = (ref, context.path, context.namespace)
+            if ref_key in seen_refs:
+                continue
+            seen_refs.add(ref_key)
+            targets = resolve(ref, context)
             if targets:
                 references.extend({'kind': 'alias_of' if ref == c.alias else 'controls', 'target_id': target}
                                   for target in targets if target != eid)
-            elif ref not in {v['symbol'] for v in options}:
+            elif not auxiliary_values(ref, context.path, context.namespace):
                 unresolved.append(ref)
         references = list({(r['kind'], r['target_id']): r for r in references}.values())
         current_unresolved_reference_count += len(unresolved)
@@ -368,6 +487,12 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
                 if evidence_path in hashes and evidence_path != c.path:
                     experiment['source_locations'].append({'path': evidence_path, 'revision': revision, 'line_start': None, 'line_end': None, 'content_sha256': hashes[evidence_path]})
         dependency_paths = {c.path}
+        if c.path == BLINK_INPUT:
+            dependency_paths.update(BLINK_PATHS)
+        if c.path == NETWORK_LIST:
+            dependency_paths.add(NETWORK_DEFINITION)
+        if c.path.endswith('.mojom') and mojo_default_disabled:
+            dependency_paths.add(MOJO_GENERATOR)
         dependency_paths.update(option['path'] for option in options)
         if c.kind == 'flag_entry':
             dependency_paths.update(path for path in config['required_paths'] if path in hashes)
@@ -432,8 +557,10 @@ def collect(config, provider, state_dir, *, observed_at=None, origin='baseline',
                 'tree_complete': listing['complete'], 'tracked_paths': len(paths), 'fetched_files': len(files),
                 'candidate_count': len(candidates), 'parsed_count': len(candidates) - unparsed, 'unparsed_count': unparsed,
                 'unresolved_reference_count': unresolved_reference_count, 'declarations_or_type_uses': declaration_count, 'missing_required_paths': missing,
+                'enumeration_complete': bool(listing['complete'] and not missing and not pending),
+                'parsing_complete': bool(not unparsed and not errors and not pending),
                 'retained_semantic_ids': sorted(preserved_ids), 'pending_paths': pending, 'errors': errors, 'unsupported_tree_entries': listing['unsupported'], 'unsupported_in_scope': unsupported_in_scope}
-    result = {'bundle_version': 1, 'parser_version': PARSER_VERSION, 'revision': revision,
+    result = {'bundle_version': 1, 'parser_version': PARSER_VERSION, 'parser_sha256': PARSER_SHA256, 'revision': revision,
               'scope_sha256': digest(canonical(config)), 'source_items': sorted(source_items, key=lambda x: x['source_item_id']),
               'experiments': sorted(experiments, key=lambda x: x['experiment_id']),
               'facts': sorted(facts, key=lambda x: x['source_item_id']), 'removed_candidates': removed, 'coverage': coverage}

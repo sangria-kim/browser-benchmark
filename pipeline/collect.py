@@ -13,7 +13,7 @@ from schemas.validate import load_config, validate_record
 from pipeline.collectors.browser import BrowserCollector
 
 
-def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, transport=None, origin='baseline', resume=False, reviewed_attributions=None):
+def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, transport=None, origin='baseline', resume=False, reviewed_attributions=None, brave_release_metadata=None):
     repository = Path(repository)
     registry = load_config(repository / 'config/sources.yml')
     validate_record('sources_config', registry)
@@ -25,7 +25,7 @@ def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, tran
     cutoff = cutoff or datetime.now(timezone.utc).isoformat()
     if datetime.fromisoformat(cutoff.replace('Z', '+00:00')).tzinfo is None:
         raise ValueError('Cutoff needs a timezone')
-    collector = BrowserCollector(repository, private_dir, transport, resume=resume, reviewed_attributions=reviewed_attributions)
+    collector = BrowserCollector(repository, private_dir, transport, resume=resume, reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata)
     return [collector.collect(s, cutoff, registry['baseline']['backfill_since'], origin)
             for s in registry['sources'] if s['enabled'] and (not source_ids or s['source_id'] in source_ids)]
 
@@ -33,7 +33,7 @@ def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, tran
 
 def collect_sources(repository, private_dir, *, kind='browser', source_ids=None, cutoff=None,
                     transport=None, origin='baseline', resume=False, chrome_provider=None,
-                    chrome_bundle=None, previous_bundle=None, sample_paths=None, max_files=None, max_trees=None, reviewed_attributions=None):
+                    chrome_bundle=None, previous_bundle=None, sample_paths=None, max_files=None, max_trees=None, reviewed_attributions=None, brave_release_metadata=None):
     """Collect into a private candidate, normalize, then validate/publish once.
 
     The original collectors retain their public APIs. This shared entry point
@@ -59,13 +59,22 @@ def collect_sources(repository, private_dir, *, kind='browser', source_ids=None,
             if (repository / name).exists():
                 shutil.copytree(repository / name, stage / name)
         if kind in ('browser', 'all'):
-            result['browser'] = collect_browsers(stage, private_dir / 'browser', source_ids, cutoff, transport, origin, resume, reviewed_attributions)
+            result['browser'] = collect_browsers(stage, private_dir / 'browser', source_ids, cutoff, transport, origin, resume, reviewed_attributions, brave_release_metadata)
         if kind in ('chrome', 'all'):
             if chrome_bundle is None:
                 config = load_config(repository / 'config/chrome-source-scope.yml')
                 provider = chrome_provider or Gitiles(config['repository_url'], config['baseline_ref'])
                 chrome_bundle = collect_chrome(config, provider, private_dir / 'chrome',
                     origin=origin, sample_paths=sample_paths, max_files=max_files, max_trees=max_trees, previous=previous_bundle)
+            if not chrome_bundle.get('temporal_comparison'):
+                import copy
+                from pipeline.temporal import dated_scope
+                chrome_bundle = copy.deepcopy(chrome_bundle)
+                since = load_config(repository / 'config/chrome-source-scope.yml')['baseline']['historical_backfill_since']
+                for record in chrome_bundle['source_items'] + chrome_bundle['experiments']:
+                    record['temporal_scope'] = dated_scope(since, cutoff, reason='Current source scan has no verified boundary comparison.')
+                chrome_bundle['removed_candidates'] = []
+                chrome_bundle['coverage'].update(complete=False, temporal_complete=False)
             result['chrome'] = chrome_bundle['coverage']
         changes = prepare(stage, chrome_bundle if kind in ('chrome', 'all') else None, cutoff)
         result['counts'] = publish(repository, changes, private_dir / 'publication')
@@ -85,6 +94,7 @@ def main():
     parser.add_argument('--origin', choices=['baseline', 'daily', 'backfill'], default='baseline')
     parser.add_argument('--chrome-bundle', type=Path, help='Replay a durable private handoff instead of fetching')
     parser.add_argument('--previous-bundle', type=Path)
+    parser.add_argument('--brave-release-metadata', type=Path, help='Verified private complete release metadata at this cutoff')
     parser.add_argument('--checkout', type=Path)
     parser.add_argument('--revision')
     parser.add_argument('--sample-path', action='append')
@@ -100,6 +110,7 @@ def main():
         origin=args.origin, resume=args.resume, chrome_provider=provider,
         chrome_bundle=load_config(args.chrome_bundle) if args.chrome_bundle else None,
         previous_bundle=load_config(args.previous_bundle) if args.previous_bundle else None,
+        brave_release_metadata=load_config(args.brave_release_metadata) if args.brave_release_metadata else None,
         sample_paths=args.sample_path, max_files=args.max_files, max_trees=args.max_trees)
     return 0 if results['complete'] else 2
 

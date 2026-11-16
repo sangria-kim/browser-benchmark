@@ -26,7 +26,7 @@ from pipeline.normalize.storage import records
 from pipeline.reporting.core import render, instant
 from schemas.validate import ContractError, validate_dataset, validate_record
 
-VERSION = '1.1'
+VERSION = '1.2'
 MANIFEST = 'manifest.json'
 MARKER = '.browser-benchmark-import.json'
 MARKER_VALUE = {'managed_by': 'browser-benchmark-data-import', 'contract_version': VERSION}
@@ -219,7 +219,10 @@ def validate_contents(root, files):
         snapshot = json.loads(path.read_text())
         validate_dataset(dict(dataset, selected=[snapshot], report=[]))
         expected = hashlib.sha256(json.dumps(snapshot, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
-        projection_hash = hashlib.sha256(json.dumps([snapshot['current'], snapshot['history']], ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        projection = [snapshot['current'], snapshot['history']]
+        if 'collection_scope' in snapshot:
+            projection.append(snapshot['collection_scope'])
+        projection_hash = hashlib.sha256(json.dumps(projection, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
         if not path.stem.endswith(expected) and not (path.stem.endswith(snapshot['input_hash']) and snapshot['input_hash'] == projection_hash):
             raise ContractError('Selection snapshot filename/hash mismatch')
     for path in sorted(root.glob('data/event-revisions/*/*.json')):
@@ -338,7 +341,7 @@ def verify(package, *, expected_commit, expected_manifest=None):
     provenance = urlsplit(manifest['source_repository'])
     if provenance.scheme != 'https' or not provenance.hostname or provenance.username or provenance.password or provenance.query or provenance.fragment:
         raise ContractError('Source repository must be a public HTTPS URL without credentials or query')
-    if manifest['contract_version'] != VERSION:
+    if manifest['contract_version'] not in ('1.1', VERSION):
         raise ContractError('Unsupported import contract version')
     if manifest['source_commit'] != expected_commit:
         raise ContractError('Unexpected source commit')
@@ -357,6 +360,12 @@ def verify(package, *, expected_commit, expected_manifest=None):
     if set(files) != set(inventory) | {MANIFEST}:
         raise ContractError('Package contains unlisted files')
     result = validate_contents(root, inventory)
+    from pipeline.temporal import policy
+    sources = []
+    for path in root.glob('data/source-items/*/*.json'):
+        sources.extend(json.loads(path.read_text()))
+    if manifest.get('collection_scope') != policy({'source_item': sources}):
+        raise ContractError('Manifest collection scope differs from exported evidence')
     result.update(files=len(inventory), bytes=sum(e['bytes'] for e in inventory.values()),
                   manifest_sha256=digest(raw), source_commit=expected_commit)
     return result
@@ -398,6 +407,12 @@ def export(repository, ref, output, *, source_repository, after_pin=None):
             entries.append(dict(path=path, sha256=digest(payload), bytes=len(payload), data_kind=data_kind(path, payload)))
         manifest = dict(contract_version=VERSION, source_repository=source_repository, source_ref=ref,
                         source_commit=sha, files=entries, link_policy=LINK_POLICY)
+        from pipeline.temporal import policy
+        sources = []
+        for path in stage.glob('data/source-items/*/*.json'):
+            sources.extend(json.loads(path.read_text()))
+        if policy({'source_item': sources}):
+            manifest['collection_scope'] = policy({'source_item': sources})
         (stage / MANIFEST).write_bytes(encoded(manifest))
         result = verify(stage, expected_commit=sha)
         os.rename(stage, output)
@@ -426,7 +441,11 @@ def initialize(managed):
 def check_managed(managed):
     root = no_symlink_ancestors(managed)
     marker = root / MARKER
-    if marker.is_symlink() or not marker.is_file() or json.loads(marker.read_text()) != MARKER_VALUE:
+    if marker.is_symlink() or not marker.is_file():
+        raise ContractError('Missing explicit managed-subtree marker')
+    value = json.loads(marker.read_text())
+    if (not isinstance(value, dict) or set(value) != set(MARKER_VALUE)
+            or value['managed_by'] != MARKER_VALUE['managed_by'] or value['contract_version'] not in ('1.1', VERSION)):
         raise ContractError('Missing explicit managed-subtree marker')
     snapshots = root / 'snapshots'
     if snapshots.is_symlink() or not snapshots.is_dir():
@@ -440,7 +459,7 @@ def check_managed(managed):
 def resolve(managed, *, verify_data=True):
     root = check_managed(managed)
     pointer = json_at(root, 'current.json')
-    if not isinstance(pointer, dict) or set(pointer) != {'contract_version', 'source_commit', 'manifest_sha256', 'snapshot'} or pointer['contract_version'] != VERSION:
+    if not isinstance(pointer, dict) or set(pointer) != {'contract_version', 'source_commit', 'manifest_sha256', 'snapshot'} or pointer['contract_version'] not in ('1.1', VERSION):
         raise ContractError('Invalid import pointer')
     sha, package_hash = pointer['source_commit'], pointer['manifest_sha256']
     if not isinstance(sha, str) or not isinstance(package_hash, str) or not re.fullmatch('[0-9a-f]{40}', sha) or not re.fullmatch('[0-9a-f]{64}', package_hash):

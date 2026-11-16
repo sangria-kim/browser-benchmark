@@ -1,6 +1,40 @@
-# Public dataset contract 1.1
+# Public dataset contract 1.2
 
-The canonical JSON records use `schema_version: 2`. The source registry retains its unchanged scope format `contract_version: "1.0"`. New exports use `contract_version: "1.1"`; the manifest validator also accepts 1.0 archives. Version 1.1 adds typed source definitions and a strict legacy-event compatibility branch. Existing event records with version 1 remain readable during migration. Do not relabel a legacy file as version 2 without validation.
+The canonical JSON records use `schema_version: 2`. The source registry retains its unchanged scope format `contract_version: "1.0"`. New exports use `contract_version: "1.2"`. Version 1.2 adds optional temporal projections. Existing records without them remain readable. The manifest schema also reads 1.0 and 1.1; the importer accepts 1.1 and 1.2 packages. Version 1.1 added typed source definitions and a strict legacy-event compatibility branch. Do not relabel a legacy file as version 2 without validation.
+
+## Temporal projection (1.2)
+
+`temporal_scope` is optional on source items, catalogs and current events. It is
+projection metadata, separate from immutable source snapshots and PM judgments.
+Its `since` and `cutoff` identify the evidence window. `status` is `in_period`,
+`before_period`, `after_cutoff`, `unchanged`, `unknown` or `context`.
+Only `in_period` is eligible for the bounded current selection. An old record
+without a reviewed date becomes context or unknown when the projection is applied.
+That does not delete its ID, source snapshots, product events or assessments.
+
+`basis` identifies publication, an item update, an endpoint comparison, a retained
+explicit event date, or unknown evidence. `evidence_date` and `precision` distinguish
+a printed day, a timezone-aware timestamp and a comparison interval. A timestamp
+without timezone retains its printed day; it does not acquire an invented zone.
+The observation time and HTTP document update time never prove a product change.
+
+For Chromium, `baseline_revision`, `current_revision` and `change` identify the
+same-parser endpoint result. `change` is added, changed, unchanged or unknown.
+Unknown syntax, ambiguous correspondence and unresolved dependencies remain unknown.
+A failed or incomplete boundary parse cannot prove that a current definition is new.
+Generated Blink and Mojo definitions cite their public definition inputs. They do
+not claim that a generated build output or installed feature was observed.
+
+Selected outputs, new reports, dashboard data and export manifests carry optional
+`collection_scope`, with the policy version, window and Chromium endpoint pairs.
+`source_windows` lists each source's actual window. The aggregate `cutoff` is the
+latest source cutoff, not a claim that all sources share one snapshot time.
+Endpoint scopes also retain verified commit timestamps. A current commit after
+its declared source cutoff is rejected. Fresh web retries retain their actual
+observation time; they do not recreate a historical web snapshot.
+Older report revisions stay fixed. A scope exclusion creates a new exclusion
+assessment and selection-history entry where needed; it never creates a product
+removal event. Parser identity corrections use evidence-backed alias records.
 
 ## Scope
 
@@ -127,7 +161,10 @@ The contract gate checks shapes, dates, stable-reference integrity, selected sta
 The optional experiment `source_definition` has its own `version: 1`. It stores
 `semantic_sha256`, the normalized definition `expression`, an `options` array,
 and `unresolved_references`. Each option has a `symbol`, source `path`, and full
-normalized initializer `expression`. Choices, variations and parameters retain
+normalized initializer `expression`. An option can include a `conditions` array of
+nonempty strings for a resolved initializer's build branches. The same strict
+source-definition shape applies when present in experiment-event `before` or
+`after` snapshots and archives. Choices, variations and parameters retain
 their C++ expressions and named relationships. An expression is source evidence,
 not an evaluated parameter value. Unresolved names stay explicit. The semantic
 hash covers the collector's full semantic input, including expanded options; it

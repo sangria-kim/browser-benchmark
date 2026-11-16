@@ -295,11 +295,17 @@
           ]
         },
         "priority_reason": {
-          "type": "string",
+          "type": [
+            "string",
+            "null"
+          ],
           "minLength": 1
         },
         "comparison_question": {
-          "type": "string",
+          "type": [
+            "string",
+            "null"
+          ],
           "minLength": 1
         },
         "benchmark_readiness": {
@@ -345,6 +351,135 @@
               "type": "null"
             }
           ]
+        },
+        "temporal_scope": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "since": {
+              "type": "string",
+              "format": "date"
+            },
+            "cutoff": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "status": {
+              "enum": [
+                "in_period",
+                "before_period",
+                "after_cutoff",
+                "unchanged",
+                "unknown",
+                "context"
+              ]
+            },
+            "basis": {
+              "enum": [
+                "publication",
+                "item_change",
+                "endpoint_comparison",
+                "legacy_event",
+                "unknown"
+              ]
+            },
+            "evidence_date": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "precision": {
+              "enum": [
+                "day",
+                "timestamp",
+                "interval",
+                "unknown"
+              ]
+            },
+            "baseline_revision": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "current_revision": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "change": {
+              "enum": [
+                "added",
+                "changed",
+                "unchanged",
+                "unknown",
+                null
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "baseline_committed_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "current_committed_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "version",
+            "since",
+            "cutoff",
+            "status",
+            "basis",
+            "evidence_date",
+            "precision",
+            "baseline_revision",
+            "current_revision",
+            "change",
+            "reason"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [
@@ -680,7 +815,10 @@
           "type": "string"
         },
         "revisit_trigger": {
-          "type": "string"
+          "type": [
+            "string",
+            "null"
+          ]
         },
         "assessed_at": {
           "type": "string"
@@ -818,6 +956,135 @@
         },
         "description": {
           "type": "string"
+        },
+        "temporal_scope": {
+          "type": "object",
+          "properties": {
+            "version": {
+              "const": 1
+            },
+            "since": {
+              "type": "string",
+              "format": "date"
+            },
+            "cutoff": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "status": {
+              "enum": [
+                "in_period",
+                "before_period",
+                "after_cutoff",
+                "unchanged",
+                "unknown",
+                "context"
+              ]
+            },
+            "basis": {
+              "enum": [
+                "publication",
+                "item_change",
+                "endpoint_comparison",
+                "legacy_event",
+                "unknown"
+              ]
+            },
+            "evidence_date": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date"
+                },
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "precision": {
+              "enum": [
+                "day",
+                "timestamp",
+                "interval",
+                "unknown"
+              ]
+            },
+            "baseline_revision": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "current_revision": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{40}$"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "change": {
+              "enum": [
+                "added",
+                "changed",
+                "unchanged",
+                "unknown",
+                null
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "baseline_committed_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "current_committed_at": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "version",
+            "since",
+            "cutoff",
+            "status",
+            "basis",
+            "evidence_date",
+            "precision",
+            "baseline_revision",
+            "current_revision",
+            "change",
+            "reason"
+          ],
+          "additionalProperties": false
         }
       },
       "required": [

@@ -30,7 +30,11 @@
     "chrome/VERSION"
   ],
   "optional_paths": [
-    "chrome/browser/flag_descriptions.cc"
+    "chrome/browser/flag_descriptions.cc",
+    "third_party/blink/renderer/platform/runtime_enabled_features.json5",
+    "third_party/blink/renderer/build/scripts/make_runtime_features.py",
+    "third_party/blink/renderer/build/scripts/templates/features_generated.cc.tmpl",
+    "mojo/public/tools/bindings/generators/mojom_cpp_generator.py"
   ],
   "discovery": {
     "roots": [
@@ -42,7 +46,8 @@
       ".mm",
       ".m",
       ".cpp",
-      ".inc"
+      ".inc",
+      ".mojom"
     ],
     "exclude_path_components": [
       ".git",

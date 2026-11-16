@@ -31,7 +31,7 @@ class BrowserRevisionTests(unittest.TestCase):
         self.day = 16
 
     def collect(self, *, version='150.0', sibling='Sibling text.', suffix='', text='Synthetic test evidence.', channel=None, platform=None):
-        html = f'<title>Chrome {version}</title><div class="content"><h2 id="changes">Changes</h2><p id="one">{text}</p><p id="two">{sibling}</p></div>{suffix}'
+        html = f'<title>Chrome {version}</title><div class="content"><h2 id="changes">Changes — November 1, 2026</h2><p id="one">{text}</p><p id="two">{sibling}</p></div>{suffix}'
         config = copy.deepcopy(self.source)
         if channel: config['channels'] = [channel]
         if platform: config['platforms'] = [platform]
