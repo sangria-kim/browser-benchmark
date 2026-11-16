@@ -1,5 +1,7 @@
 # 보고서
 
+- [자동 생성 선정 변화 리포트](generated/README.md) — KST cutoff, revision, 수집 범위와 고정 근거를 포함합니다. 기존 수동 보고서는 유지합니다.
+
 - [PC](pc/README.md)
 - [Mobile](mobile/README.md)
 - [AI](ai/README.md)

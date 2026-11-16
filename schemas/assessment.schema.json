@@ -1,0 +1,172 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "assessment",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "assessment_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "subject_kind": {
+      "enum": [
+        "source_item",
+        "feature_event",
+        "experiment_event"
+      ]
+    },
+    "subject_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "input_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evaluator": {
+      "enum": [
+        "deterministic",
+        "model",
+        "legacy"
+      ]
+    },
+    "model_id": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "prompt_version": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "status": {
+      "enum": [
+        "selected",
+        "watch",
+        "pending_verification",
+        "excluded"
+      ]
+    },
+    "reasons": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "priority": {
+      "enum": [
+        "P1",
+        "P2",
+        null
+      ]
+    },
+    "comparison_question": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "benchmark_readiness": {
+      "enum": [
+        "ready",
+        "conditional",
+        "unknown"
+      ]
+    },
+    "revisit_trigger": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "assessed_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "supersedes": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "evidence_source_item_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "subject_kind",
+    "subject_id",
+    "input_hash",
+    "input_revision",
+    "rule_version",
+    "evaluator",
+    "model_id",
+    "prompt_version",
+    "status",
+    "reasons",
+    "priority",
+    "comparison_question",
+    "benchmark_readiness",
+    "revisit_trigger",
+    "assessed_at",
+    "supersedes",
+    "evidence_source_item_ids"
+  ],
+  "additionalProperties": false
+}

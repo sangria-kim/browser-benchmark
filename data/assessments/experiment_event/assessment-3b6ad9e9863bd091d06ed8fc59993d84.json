@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-892455a5e717f7fe1aca69d2: Source baseline: Android context menu disabled menu items A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3b6ad9e9863bd091d06ed8fc59993d84",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-892455a5e717f7fe1aca69d2",
+  "input_hash": "06d9b4ff80cfc851e0a579e35bbc641c3fec3a7cf01bcac55b73a18c8765204e",
+  "input_revision": "semantic-sha256:3b67dd8f6d78cd219c2da0c992f01193cdf20b1915b90e5f9533593efca81a47",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-f4be3ce91417394cebdea00d",
+    "src-legacy-cb23ece355412b013464cb26"
+  ]
+}

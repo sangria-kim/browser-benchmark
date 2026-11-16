@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-401b3145c5a6cef8eb954564: Source baseline: disable-crashpad-for-testing A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-373d0f0a86053947436018d7a6c2dbdf",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-401b3145c5a6cef8eb954564",
+  "input_hash": "bc08862a530a47bb4f3d6d3203ff16ca3510b8b25a07a73dc0ad6beb59c91367",
+  "input_revision": "semantic-sha256:f5e9556d26e4db2ec7c7f457f49e9f9400a1b162f0857a5df6068f26f7324c2c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-3dec9645bebb53d03d23b79c"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e64cd25fd76cd715d4d18924: Source baseline: Insecure origins treated as secure A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-53b45da40c8a1494c04d04616ad9c45d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e64cd25fd76cd715d4d18924",
+  "input_hash": "5c9d1560a95b77d2cb1f9f1355401bb8dcad9d7c79cb06fadf0fb1e1e7121482",
+  "input_revision": "semantic-sha256:11a41bdf7a8e17937df61b557be6e7fa479249fc2d5bcc1969972998a5e84eae",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-c2a2796ae5dd7012802b680c"
+  ]
+}

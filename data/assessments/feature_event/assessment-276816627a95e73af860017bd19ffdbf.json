@@ -1,0 +1,27 @@
+{
+  "status": "selected",
+  "reasons": [
+    "스피커로 소리가 갑자기 나오는 상황과 여러 탭의 재생 상태를 구체적으로 비교할 수 있습니다.",
+    "Original priority reason: 외부 오디오 연결 해제라는 한정된 미디어 과제의 비교 가치가 있습니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-android-headphone-disconnect-pause-source-20261114/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "같은 Android 장치에서 이어폰·Bluetooth·HDMI 연결이 끊길 때 삼성 브라우저와 Chrome의 재생 중단 및 재개 방식은 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 시험 빌드와 동일 조건에서 노출·동작을 확인하거나 공식 배포 범위가 확인되면 갱신합니다.",
+  "schema_version": 2,
+  "assessment_id": "assessment-276816627a95e73af860017bd19ffdbf",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-android-headphone-disconnect-pause-source-20261114",
+  "input_hash": "f1fac632558d7746e5a5927068b68df909fad1d2c209602904ec43844c020cb2",
+  "input_revision": "data/event-revisions/chrome-android-headphone-disconnect-pause-source-20261114/schema-v1.json:sha256:314607de22ae8e5573aff65933b8b8623bd269f8fe08d11157506ace40c48d66",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-14T22:40:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-1d88c056a733ab3ec02ad4a6"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "status": "selected",
+  "reasons": [
+    "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+    "Original priority reason: 개인정보 제어와 공유 내용에 직접 영향.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-copy-sanitized-link-8-3-stable-20261105/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "공유 링크에서 추적정보를 줄이면서 목적지와 필수 쿼리를 유지하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-d706d8870506946e2a9af567b935e8aa",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-copy-sanitized-link-8-3-stable-20261105",
+  "input_hash": "f8b73b378ffec1d1b05b6cd7b6ac8535ea3e95c71d58a647cefd139daf5b86e3",
+  "input_revision": "data/event-revisions/vivaldi-copy-sanitized-link-8-3-stable-20261105/schema-v1.json:sha256:6d82efd799a33da2a9a7d66a4b87f655e6a93eee9c11de91bfdb0131e1464e84",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-d552b93c5fdef3a5ef6225e9",
+    "src-legacy-da7f54afc1637aa2771355ff",
+    "src-legacy-f42f1a4b4275d8775d992ffb",
+    "src-legacy-7c190339c92ce3796219480d",
+    "src-legacy-0d410a438edfdd2eeb41c9ce",
+    "src-legacy-cee5a4b37e23140b4db7ce8f",
+    "src-legacy-2909ddcbad47c91604179414"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-preserve-download-last-modified-added-427a86e5cfd8/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "Given a controlled server response with known Last-Modified, does enabling the flag preserve mtime and how does it affect sorting/retrieval compared with download-time timestamps?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Installed build exposes flag and controlled download fixture available; compare enabled/disabled plus missing/invalid header cases.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1516b65c6c617871aafa1a90e7a714a5",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-preserve-download-last-modified-added-427a86e5cfd8",
+  "input_hash": "692a9100a7e8e035e53dadb6434575a3a2b5559cc632c2deda74177055577855",
+  "input_revision": "data/event-revisions/chrome-preserve-download-last-modified-added-427a86e5cfd8/schema-v1.json:sha256:b7d60c85c2ca1a137cd0e13c9eb173e7bf381c7f061db1eadb08854600e5c9ca",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-30T22:49:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-d047de6a4a3392ef79235aad",
+    "src-legacy-3bed879cc64e1cc1d1c16773"
+  ]
+}

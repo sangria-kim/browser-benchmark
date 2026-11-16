@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5c94e3b629801053872aa255: Source baseline: Files app materialized views A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7780027d6574abf0b107cb147116ce08",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5c94e3b629801053872aa255",
+  "input_hash": "92a61f7ccad035396d72191e029ed8ea5a1c4f149770dd0828be07f6996b9ea4",
+  "input_revision": "semantic-sha256:ebbf6361a6a357e0b4b7c7a30e853706f333d3084f89ceb47c1a7082cc8b3750",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-1c95bd77dbb366e192b3f8f3"
+  ]
+}

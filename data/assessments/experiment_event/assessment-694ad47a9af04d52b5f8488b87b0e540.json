@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-7d306fe70a7f784a2be340d5: Source baseline: StackScanMaxFramePointerToStackEndGap A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-694ad47a9af04d52b5f8488b87b0e540",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-7d306fe70a7f784a2be340d5",
+  "input_hash": "9c2c84e3ac56f8e2ae4f7b3538205b5c0502aa726e637717405e04ca7c9704a3",
+  "input_revision": "semantic-sha256:dfff946d54f40e429aac45c42d51d5008059f1a62f8657e337510231d574d560",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8875143386841f24e178e20c"
+  ]
+}

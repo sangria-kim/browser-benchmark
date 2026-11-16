@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1604b95b9b33a85a62b2747d: Fixed 8-bit YUV 4:2:2 VP9 frames from the software decoder being converted with the U and V planes swapped. (189584834) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1fe5ec76a290f0f0236c43db76a6ab47",
+  "subject_kind": "source_item",
+  "subject_id": "src-1604b95b9b33a85a62b2747d",
+  "input_hash": "a79a6c98160629e6ae83794b538940c3d1c940349cf2275c91d8bfbc531ce745",
+  "input_revision": "semantic-sha256:084fd8bc0bb0e88bac472c8e16f9f49b0423094f626eb0df8879a98487a5d418",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1604b95b9b33a85a62b2747d"
+  ]
+}

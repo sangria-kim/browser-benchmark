@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "export-manifest",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "enum": [
+        "1.0",
+        "1.1"
+      ]
+    },
+    "source_repository": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://[^\\s]+$"
+    },
+    "source_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_commit": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "path": {
+            "type": "string",
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9_. /-]+$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "data_kind": {
+            "enum": [
+              "source-items",
+              "features",
+              "feature-events",
+              "experiments",
+              "experiment-events",
+              "assessments",
+              "selected",
+              "reports",
+              "documentation",
+              "schemas",
+              "aliases",
+              "legacy"
+            ]
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes",
+          "data_kind"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "link_policy": {
+      "const": "preserve-relative-allowlisted-or-immutable-source-url"
+    }
+  },
+  "required": [
+    "contract_version",
+    "source_repository",
+    "source_ref",
+    "source_commit",
+    "files",
+    "link_policy"
+  ],
+  "additionalProperties": false
+}

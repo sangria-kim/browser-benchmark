@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b9d2c879613c58528fa8d642: Source baseline: getDisplayMedia() confers transient activation. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7bea2504a06c9434b8443cb1e0f9563d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b9d2c879613c58528fa8d642",
+  "input_hash": "330b589b55cb4bc0637a92b6ea2bdf6e0c2248a8f26fc513354b2d47fcc84ad9",
+  "input_revision": "semantic-sha256:93e1934d7e1ed911f2ced38b3a3b1d8b61b904ec6d9551af4a01be2ee1051cc3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-d94bb224a116e23265a54d56"
+  ]
+}

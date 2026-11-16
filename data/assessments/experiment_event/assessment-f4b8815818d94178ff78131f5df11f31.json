@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d9c6ead3a9e3e72d5a357bd5: Source baseline: Rust-based brotli decoding in the network stack A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f4b8815818d94178ff78131f5df11f31",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d9c6ead3a9e3e72d5a357bd5",
+  "input_hash": "5de020b61cecb3ccd8c3746baa5a8b5b2fe9d205ad6f4182522f86f30b1688aa",
+  "input_revision": "semantic-sha256:a05e513f7a31f40caf2c472d78910601d1fce1929bb7cac026fc4f69f820fc5e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-04de6b3c6ecbd04fc61781ea"
+  ]
+}

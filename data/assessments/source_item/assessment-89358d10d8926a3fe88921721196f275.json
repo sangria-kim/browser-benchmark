@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-5e8b585f6a18c7c688186ea2: Fixed an issue where a JIT fast path for RegExp.prototype.test could skip the required read of lastIndex , silently dropping observable side effects. (186792229) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-89358d10d8926a3fe88921721196f275",
+  "subject_kind": "source_item",
+  "subject_id": "src-5e8b585f6a18c7c688186ea2",
+  "input_hash": "1b1555a2c9043bfe35cc91407e8b81cc3e6fa70ba3e0153f2c8d27931434634f",
+  "input_revision": "semantic-sha256:3464d69b6659c359b82544e63f5c87add6ceea46cda48367d7530eca9193ff1b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5e8b585f6a18c7c688186ea2"
+  ]
+}

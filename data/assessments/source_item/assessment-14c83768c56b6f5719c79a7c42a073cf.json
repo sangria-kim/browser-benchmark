@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6f09bd5021d03d299090a2d6: Fixed readyState not returning to HAVE_METADATA when seeking to an unbuffered range, which paused video while scrubbing. (191310594) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-14c83768c56b6f5719c79a7c42a073cf",
+  "subject_kind": "source_item",
+  "subject_id": "src-6f09bd5021d03d299090a2d6",
+  "input_hash": "7cd45f2cdd9dbc0914fea37e313be466ae47fad3bbf77f2ac7a43cbed3e52459",
+  "input_revision": "semantic-sha256:adb32c846efa3088cadea2d3c1313ed11690002a32668f19cd311bf64afffe75",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6f09bd5021d03d299090a2d6"
+  ]
+}

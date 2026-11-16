@@ -1,0 +1,86 @@
+{
+  "contract_version": "1.0",
+  "source_id": "chromium-source",
+  "browser": "chrome",
+  "repository_url": "https://chromium.googlesource.com/chromium/src",
+  "baseline_ref": "refs/heads/main",
+  "pin_revision_before_enumeration": true,
+  "experiment_kinds": [
+    "flag_entry",
+    "base_feature",
+    "command_switch"
+  ],
+  "baseline": {
+    "mode": "full_tree_at_pinned_revision",
+    "historical_backfill_since": "2026-06-01",
+    "historical_backfill_until": "baseline_cutoff",
+    "legacy_scope": "Existing experiments/chrome/monthly artifacts cover about_flags.cc changes only. They do not prove complete base_feature, switch, iOS or metadata history.",
+    "new_definition_history": "Start with pinned baseline. Earlier definitions remain unknown unless existing public evidence supports them."
+  },
+  "required_paths": [
+    "chrome/browser/about_flags.cc",
+    "chrome/browser/flag_descriptions.h",
+    "chrome/browser/flag-metadata.json",
+    "chrome/browser/flag-never-expire-list.json",
+    "chrome/browser/expired_flags_list.h",
+    "ios/chrome/browser/flags/about_flags.mm",
+    "ios/chrome/browser/flags/ios_chrome_flag_descriptions.h",
+    "tools/flags/generate_expired_list.py",
+    "tools/flags/generate_unexpire_flags.py",
+    "chrome/VERSION"
+  ],
+  "optional_paths": [
+    "chrome/browser/flag_descriptions.cc"
+  ],
+  "discovery": {
+    "roots": [
+      "."
+    ],
+    "extensions": [
+      ".cc",
+      ".h",
+      ".mm",
+      ".m",
+      ".cpp",
+      ".inc"
+    ],
+    "exclude_path_components": [
+      ".git",
+      "out"
+    ],
+    "base_feature_markers": [
+      "BASE_FEATURE",
+      "base::Feature",
+      "BASE_DECLARE_FEATURE"
+    ],
+    "command_switch_markers": [
+      "switches",
+      "switch",
+      "const char",
+      "constexpr char",
+      "const wchar_t"
+    ],
+    "definition_policy": "Inspect all candidate files at the pinned revision, distinguish declarations from definitions and preserve unresolved candidates. Generated outputs absent from the tree are not invented.",
+    "manifest_policy": "Keep sorted file paths and hashes for the fixed revision in private state. Record public per-item source locations.",
+    "related_include_policy": "Follow referenced feature/switch declarations and registration includes inside the pinned repository."
+  },
+  "channel_mapping": {
+    "default_channel": null,
+    "require_product_revision_evidence": true
+  },
+  "privacy": {
+    "exclude_metadata_fields": [
+      "owners",
+      "email",
+      "author",
+      "committer"
+    ],
+    "publish": "Only minimal definition evidence, paths, symbols, conditions, hashes and revision links."
+  },
+  "failure_policy": "A missing required path, truncated tree, unhandled pagination, or unresolved candidate prevents full coverage; preserve minimum source items and private failure details.",
+  "input_modes": {
+    "local_checkout": "Enumerate tracked files from a clean checkout at a verified commit. Do not change the checkout.",
+    "gitiles": "Resolve the ref, paginate the tree and fetch required and candidate files at that commit. A registration-only run is partial."
+  },
+  "coverage_basis": "All tracked source files in discovery.roots with listed extensions at one commit. Runtime enumeration, parsed/unparsed reconciliation and missing-path status stay private. Registry-only sampling does not cover base_feature or command_switch."
+}

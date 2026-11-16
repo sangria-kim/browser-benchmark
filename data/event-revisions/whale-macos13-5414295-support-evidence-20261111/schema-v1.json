@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "event_id": "whale-macos13-5414295-support-evidence-20261111",
+  "feature_id": "whale-macos-minimum-version",
+  "browser": "whale",
+  "event_type": "support_scope_change",
+  "version": "5.41.429.5",
+  "channel": "stable",
+  "platform": [
+    "macOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "Stable/Beta 노트의 명시적 제품 요구사항. 공지 등록일 11월 3일·수정일 11월 11일·본문 릴리스일 11월 11일을 구분. 한국 배포일과 실기 노출은 미확인. 공식 연구소 관리자 본문은 macOS 12 이하의 잘못된 자동 업데이트 발생과 이전 버전 재설치를 안내하며 해당 OS의 자동 업데이트 차단 조치 중이라고 설명한다. 글 최초 작성은 11월 10일이며 정정 삽입 시각은 미공개다.",
+    "release_note_date": "2026-11-11",
+    "exact_source_conflict": "35247/35248의 11월 11일 5.41.429.5 노트: macOS 13 이상 요구, macOS 12 마지막 지원 5.39. 35390/35391 및 연구소 63268: 여전히 미래형 예고. 연구소 63268: 일부 macOS 12 이하에 오류로 자동 업데이트 전달, 이전 버전 재설치 안내·차단 조치 중. 오류 관련 정확한 빌드·발생일·정정 삽입일 미기재."
+  },
+  "observed_at": "2026-11-11T22:39:34.161576+00:00",
+  "announced_at": "2026-11-11",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35247",
+      "section": "지원",
+      "observed_at": "2026-11-11T22:34:49.100908+00:00",
+      "content_sha256": "5fb4da0ba2d1729106e8dce698af29b27c5627995522566ad19aca6b320f1606"
+    },
+    {
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35248",
+      "section": "Support",
+      "observed_at": "2026-11-11T22:34:52.220771+00:00",
+      "content_sha256": "194526526f8090bcfcf07e6b5068758cd1bdbd0a4b00e528961735fc38873132"
+    },
+    {
+      "url": "https://notice.naver.com/api/v1/services/whalehomepage/notices/35390",
+      "section": "최소 사양 예고",
+      "observed_at": "2026-11-11T22:34:53.332487+00:00",
+      "content_sha256": "2242be2297c312ba241bf3a81c76372a0170e7821da8dbbd50d8cf83a2fc3b00"
+    },
+    {
+      "url": "https://forum.whale.naver.com/topic/63268/",
+      "section": "웨일팀 연구소 관리자 공지 본문; 사용자 댓글 아님",
+      "observed_at": "2026-11-11T22:38:32.897013+00:00",
+      "content_sha256": "618cc67ce1e642fcdcb574f2fa67f4ece99532e1d675e9fed2649be53c55e14d"
+    }
+  ],
+  "summary": "Whale 5.41.429.5 릴리스 노트에 macOS 13 최소 요구사항 명시",
+  "delta": "11월 10일 예고 이후, 한영 5.41.429.5 본문은 macOS 13 이상과 macOS 12 마지막 지원 버전 5.39를 명시한다. 기존 설치본 실행 중단을 뜻하지 않는다. 별도 예고 공지는 여전히 미래형으로 남아 있어 실제 장치별 시행은 확인하지 않았다. 연구소 운영팀 본문은 지원 종료 OS에 잘못된 자동 업데이트가 발생했다고 안내한다. 해당 정정의 삽입일은 확인되지 않았다.",
+  "verification_status": "official_body_verified_not_device_tested",
+  "previous_event_id": "whale-macos-13-minimum-support-announcement-20261110",
+  "selection_status": "selected",
+  "selection_reason": "이전 시행 버전 미공개 예고와 달리 5.41.429.5 노트가 지원 경계를 명시했고, 운영팀은 지원 종료 OS의 잘못된 자동 업데이트와 이전 버전 재설치를 안내한다. 업데이트 지속·실행 복구라는 구체적인 사용자 과제가 확인돼 상세 분석한다. 전체 장치 적용과 오류 발생일은 주장하지 않는다.",
+  "priority": "P1",
+  "priority_reason": "지원 종료 OS에서 보안 업데이트 중단 및 잘못된 업데이트 후 재설치가 필요한 복구 경로에 영향. macOS 보조 범위이나 기존 이용 지속에 직접적인 영향을 주므로 우선 검증한다.",
+  "comparison_question": "지원 종료 OS에서 업데이트 차단·안내·이전 버전 복구가 어떻게 동작하며, 프로필 보존 및 보안 업데이트 종료를 얼마나 명확히 설명하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "설치·업데이트 정책 또는 기기별 지원 종료 안내 확인",
+  "assessed_at": "2026-11-11T22:39:34.161576+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

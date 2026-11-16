@@ -16,7 +16,7 @@
   "revisit_trigger": "Compatible installed experimental build and model access; baseline backend and CPU/GPU conditions recorded.",
   "assessed_at": "2026-10-30T22:49:00Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-decisions-api-options_modified-eda174533f4b",
   "feature_id": "chrome-decisions-api",
   "browser": "chrome",
@@ -62,5 +62,14 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/eda174533f4bc781a97165bbd94af438c99184b1^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-0f5dedefd00cf04030d322ec",
+    "src-legacy-f91b51e1e0294aa75e46eed0"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

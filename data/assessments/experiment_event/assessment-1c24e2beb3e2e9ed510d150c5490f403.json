@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6070bd03ada1d043dcd29ae4: Source baseline: CCT Early Init PowerManager A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1c24e2beb3e2e9ed510d150c5490f403",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6070bd03ada1d043dcd29ae4",
+  "input_hash": "28a2e5e00f5bb126cca0d322b5865eb1998aef52a1acedbd40b2bf1f09cfccbe",
+  "input_revision": "semantic-sha256:4e8b33c5b833f59e61e0412e9a2cf0ea6c3d46832832e1d685f19e895e94a687",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-08ac8f10ef26793f27e9b081",
+    "src-legacy-7ad124a737cf4a49f393c644"
+  ]
+}

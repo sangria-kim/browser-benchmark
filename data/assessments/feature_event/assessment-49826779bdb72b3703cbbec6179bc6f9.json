@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "Startup/profile isolation gate, not evidence of shipped multi-profile UX.",
+    "Original priority reason: 사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-android-multiprofile-startup-data-registration-b967e34f97b2/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "schema_version": 2,
+  "assessment_id": "assessment-49826779bdb72b3703cbbec6179bc6f9",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-android-multiprofile-startup-data-registration-b967e34f97b2",
+  "input_hash": "a214f02e5422100b7065041e6197d9d3b13e2d6343c7f058e76f723f409e14f1",
+  "input_revision": "data/event-revisions/chrome-android-multiprofile-startup-data-registration-b967e34f97b2/schema-v1.json:sha256:99b5d0de8d4a46f1f8273410806883d281227cd6ebc7c24c3b82b08e917efb2c",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-a26499eed5c4c96e13bce9d1"
+  ]
+}

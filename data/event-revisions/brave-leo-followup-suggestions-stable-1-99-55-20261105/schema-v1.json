@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "observed_at": "2026-11-05T22:52:24.712Z",
+  "announced_at": "2026-11-05",
+  "effective_at": null,
+  "verification_status": "official_sources_verified_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "priority": "P2",
+  "benchmark_readiness": "conditional",
+  "assessed_at": "2026-11-05T22:52:24.712Z",
+  "selection_rule_version": "pm-selection-v2",
+  "event_id": "brave-leo-followup-suggestions-stable-1-99-55-20261105",
+  "feature_id": "brave-leo-followup-suggestions",
+  "browser": "brave",
+  "event_type": "stable_adoption",
+  "version": "1.99.55",
+  "channel": "stable",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "scope": {
+    "product": "Brave browser",
+    "other_edition": "Leo 항목은 일반 Brave 노트. Origin에 자동 적용하지 않는다.",
+    "platform_note": "공식 latest의 Desktop 절. GitHub의 Android/iOS 설치 artifact 안내 및 QA label을 Stable 모바일 출시 근거로 사용하지 않는다.",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "checked_at": "2026-11-05T22:52:24.712Z",
+      "effective_at": null,
+      "real_test": "미실행",
+      "conditions": "Leo 일반 도움말은 초기 opt-in과 무료 이용 시 계정 불필요를 설명한다. 이 기능별 모델·구독·지역·한국어 조건은 미확인."
+    },
+    "account": "일반 Leo 무료 사용은 계정 불필요; 새 흐름별 조건 미확인",
+    "subscription": null,
+    "age": null
+  },
+  "source_revision": "desktop_changelog_blob:982f9510d3fedbe2e8e19cdb4f0b1ce43bc2e04d",
+  "sources": [
+    "https://brave.com/latest/",
+    "https://github.com/brave/brave-browser/releases/tag/v1.99.55",
+    "https://github.com/brave/brave-browser/issues/59650",
+    "https://github.com/brave/brave-browser/issues/59650#issuecomment-6623643598",
+    "https://support.brave.app/hc/en-us/articles/20958609786637-How-do-I-use-Brave-Leo"
+  ],
+  "summary": "Leo의 문맥 기반 후속 질문 제안을 Desktop 1.99.55 정식 노트에 포함",
+  "delta": {
+    "before": "Android 1.99.53 Beta 및 Windows 1.99.54의 공식 QA 댓글에 선행 동작 기록이 있다.",
+    "after": "정식 Desktop 노트가 후속 제안 개선을 명시한다. 이슈 시험 계획은 응답 뒤 주제 관련 제안과 선택 후 대화 지속을 확인한다.",
+    "novelty_basis": "11/4 artifact-only 1.99.55 prerelease=true와 비교해 11/5에 prerelease=false 및 기능별 정식 노트가 확인됨. Beta 선행 기록과 구분하며 최초 발명이라 표현하지 않는다.",
+    "api_published_at": "2026-11-04T18:56:17Z",
+    "api_updated_at": "2026-11-05T17:13:17Z",
+    "stable_notes_date": "2026-11-05",
+    "date_note": "API 생성·수정일, 공식 노트 날짜와 실제 개별 사용자 활성화일을 구분한다."
+  },
+  "selection_reason": "응답 이후 다음 탐색으로 넘어갈 때 직접 타이핑해야 하는 부담과 제안 품질을 비교할 수 있다.",
+  "priority_reason": "구체적인 탐색·대화·멀티태스킹 조작의 개선으로 P2 비교 과제. AI라는 이유로 P1을 부여하지 않는다.",
+  "comparison_question": "같은 조사 과제에서 후속 제안 선택과 직접 질문 입력의 과제 완료 시간·편집 필요 횟수·관련성이 어떻게 다른가?",
+  "benchmark_plan": "같은 설명 질문 5개로 응답 후 제안 노출·개수·관련성 기록→제안 한 개 선택→맥락 유지·최종 답의 유용성 확인. 제안이 항상 3개라고 단정하지 않는다.",
+  "revisit_trigger": "정식 설치본 노출·동작 및 한국어/모델 조건 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토."
+}

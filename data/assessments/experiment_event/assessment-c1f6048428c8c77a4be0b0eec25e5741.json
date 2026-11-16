@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b7bcc7e13d448389197307f8: Source baseline: Desktop Fling Curve on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c1f6048428c8c77a4be0b0eec25e5741",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b7bcc7e13d448389197307f8",
+  "input_hash": "1497766f2c797cfad35bcc62a07f16cf97112923562f6307990366dfcbd1a486",
+  "input_revision": "semantic-sha256:afa5e8e4c87cdd33631c55e818607a324478a5f81a1e99ed7642819d4890a74b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-812cc77820727eded2557aab",
+    "src-legacy-c9b1b87d49d7534cc40d0752"
+  ]
+}

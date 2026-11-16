@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-795954bd4590832e616741bf: Source baseline: Suppress AppKit Frame Adjustments During Move Loop A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2efcccf2dbddc17c238cf7415a91cfa2",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-795954bd4590832e616741bf",
+  "input_hash": "9ae364b97b07edd1f13ef8297127e7e6643fb7fa5c632607947b954f728159ef",
+  "input_revision": "semantic-sha256:b1c02244420380b061650503e3f25dfebcda461b5cd7915a163bfc2f032c8eef",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-4c23864faa8d2b523de2325a",
+    "src-legacy-1b6529429d7ca9b07171fd72"
+  ]
+}

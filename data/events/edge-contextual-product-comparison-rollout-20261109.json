@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-contextual-product-comparison-rollout-20261109",
   "feature_id": "edge-contextual-product-comparison",
   "browser": "edge",
@@ -79,5 +79,15 @@
     "completion": "지원 조건을 기록하고 각 흐름을 3회 반복하여 성공·실패와 차이를 근거 화면으로 설명할 수 있을 때 완료",
     "executed": false
   },
-  "novelty_basis": "2026-05-13 공식 글은 사용자가 Copilot에 질문해 여러 탭 정보를 비교하는 흐름을 설명한다. 2026-11-09 글은 유사 상품 탭을 인식해 비교를 먼저 제안한다고 명시한다. 다중 탭 추론·상품 비교 자체의 최초 도입이 아니다."
+  "novelty_basis": "2026-05-13 공식 글은 사용자가 Copilot에 질문해 여러 탭 정보를 비교하는 흐름을 설명한다. 2026-11-09 글은 유사 상품 탭을 인식해 비교를 먼저 제안한다고 명시한다. 다중 탭 추론·상품 비교 자체의 최초 도입이 아니다.",
+  "source_item_ids": [
+    "src-legacy-6a2010cb57517e62e22b2a97",
+    "src-legacy-0be3cf7a8649368fdf49c9e2",
+    "src-legacy-219b214e0a2e8cc2356a07cb"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

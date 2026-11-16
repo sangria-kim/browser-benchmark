@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f099ea1b39608f0f48c3b239: Source baseline: Anonymize local IPs exposed by WebRTC. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-520a8f0d230f70f4c01cf6dc84e93da5",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f099ea1b39608f0f48c3b239",
+  "input_hash": "d1dd307f3d7e1a4f6ad6b80c66e8f52e9a3eecb710ac85aff2bf42bd420bdb2b",
+  "input_revision": "semantic-sha256:2b9b15b6dee4032e51aded1d1679adc133d0dbfd2bb9864e203ade4724233242",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-92d914e2320f57ac12e6bd09"
+  ]
+}

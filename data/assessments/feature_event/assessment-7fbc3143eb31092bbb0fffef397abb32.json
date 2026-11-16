@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "공식 commit·등록부·설명·구현의 신규 실험을 확인했고 키보드 접근성·탐색 조작 수의 비교 과제가 구체적임. 제품 출시가 아닌 source-only 실험 후보로 선정.",
+    "Original priority reason: 키보드 탐색·접근성 개선의 비교 과제가 구체적이나 제한된 소스 실험이며 실제 노출 미확인.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "동일 Windows 환경에서 북마크바 구역 단위 Tab 정지와 구역 내 좌우 이동이 목표 북마크·저장 탭 그룹 탐색의 조작 수·완료 시간·오류를 줄이는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함하는 설치본에서 flag 노출 확인 후 비활성/활성 비교. 공식 제품 출시 또는 지원 조건 문서가 공개되면 재검토.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7fbc3143eb31092bbb0fffef397abb32",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
+  "input_hash": "7d76c4cec616eb52f69f34dd3b04fd9fdaf3551ba75983e74fcccaa45709aac6",
+  "input_revision": "data/event-revisions/chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea/schema-v1.json:sha256:d7186f73ef98256037049c43009ba10a49487db039c1cca7f137003bcb6ef672",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-03T23:27:14Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-90ea3868c6b67901a97ea179",
+    "src-legacy-7039a2beefa826d775109968"
+  ]
+}

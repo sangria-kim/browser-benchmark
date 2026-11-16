@@ -14,7 +14,7 @@
   "revisit_trigger": "Installed build exposes flag and controlled download fixture available; compare enabled/disabled plus missing/invalid header cases.",
   "assessed_at": "2026-10-30T22:49:00Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-preserve-download-last-modified-added-427a86e5cfd8",
   "feature_id": "chrome-preserve-download-last-modified",
   "browser": "chrome",
@@ -55,5 +55,14 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/427a86e5cfd867701c768ff75048837891638f2f^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-d047de6a4a3392ef79235aad",
+    "src-legacy-3bed879cc64e1cc1d1c16773"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

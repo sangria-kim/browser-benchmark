@@ -23,7 +23,7 @@
   "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
   "assessed_at": "2026-11-06T22:54:23Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "whale-desktop-webapp-multimonitor-5-41-429-3-20261106",
   "feature_id": "whale-webapp-multimonitor",
   "event_type": "behavior_change",
@@ -61,5 +61,15 @@
       "comparison_limit": "삼성 브라우저의 동등 기능·차이는 미확인. 같은 OS·조건에서만 비교.",
       "completion_criteria": "각 배치·배율의 최대화 영역이 해당 모니터 작업영역 안에 있고 복원 위치가 예측대로 유지됨. 실행 전 현 디스플레이 설정 보존."
     }
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-9086c070e43bac78cfabcdc2",
+    "src-legacy-c3e25715d1e05904b93a84ac",
+    "src-legacy-9eb8681d6bfc8a436548a7a7"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-05608f83c891cfe8ad718a8b: Source baseline: suspicious-site-warnings A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-207de30968f684ddeb0ad0c280ac40c8",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-05608f83c891cfe8ad718a8b",
+  "input_hash": "1be3f49de1aebf507c61c27cab38b7c1c31293f41566d54db25dffbc615cce82",
+  "input_revision": "semantic-sha256:99d9e6850f08e9205bbb305180618f686cf1045096ec84e9ac7c39e69e377968",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8e84238f735982adabffbe99",
+    "src-legacy-3adb674312010cfeb4168986"
+  ]
+}

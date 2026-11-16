@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-9d8e46962d0456aebbdd755d: Source baseline: cipher-suite-blacklist A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-69486292498adcd9d2414081d0447eaf",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-9d8e46962d0456aebbdd755d",
+  "input_hash": "f3e9159d228a1d7bb84c88e1561c4016a8837edc9cb83ff2e334a7746b19c3f1",
+  "input_revision": "semantic-sha256:ed7825899b0afcb46a59f769a2d474c5be7bb88526712aee8f8731451381b3e0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-410383a77caec7258dccea75"
+  ]
+}

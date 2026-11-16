@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-94f1b516346d4b9238959010: Source baseline: autofill-enable-oauth2-token-fix A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d89ca3b8ed2368d3c666664f518102ae",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-94f1b516346d4b9238959010",
+  "input_hash": "3d675b90cdaeddb829beacd8d21422142f03b49b5668248a7e9c7f2ccbc1c758",
+  "input_revision": "semantic-sha256:617c43dc664e99aa6dc123376dd95c0214533956ab8cbfa6f04a0d9ee0744dd3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-2ac755d4e7b116a4fcfe20ad",
+    "src-legacy-7a52775a32446832c2031de2"
+  ]
+}

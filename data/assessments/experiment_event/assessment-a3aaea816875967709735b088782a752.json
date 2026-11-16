@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3fa94c1220937fc655dd1854: Source baseline: UserMediaElementLegacy A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a3aaea816875967709735b088782a752",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3fa94c1220937fc655dd1854",
+  "input_hash": "ae61d6371948871c31641b9cf1e0adf2ee577e5de627f964479d6f477ce31e68",
+  "input_revision": "semantic-sha256:e5861218c084df7072c5bd4cebbabe0c57aa7b542e40b5b44d9b216468c55467",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-fdc45b9d51a56765e07a78b6",
+    "src-legacy-73efdf67c94c230f3f805a0c"
+  ]
+}

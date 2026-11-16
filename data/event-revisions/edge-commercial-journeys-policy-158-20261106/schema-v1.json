@@ -1,0 +1,57 @@
+{
+  "browser": "edge",
+  "version": "158.0.4370.7",
+  "channel": "beta",
+  "platform": [
+    "Windows",
+    "macOS"
+  ],
+  "observed_at": "2026-11-07T23:12:38.066677+00:00",
+  "announced_at": "2026-11-06",
+  "effective_at": null,
+  "summary": "업무 Get things done의 조건부 정책 수록",
+  "selection_status": "watch",
+  "selection_reason": "공식 본문에서 Copilot 새 탭의 업무 과제 제안·guided flow 확인. 기본 꺼짐이며 유료 라이선스·Work IQ tenant 설정 등 시험 조건이 필요하다. 최초 지원 문서 baseline을 전체 출시로 세지 않음.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "업무 제안의 근거·미완료 과제 회수·로컬 보관 및 사용자 통제가 어떻게 드러나는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
+  "assessed_at": "2026-11-07T23:12:38.066677+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "edge-commercial-journeys-policy-158-20261106",
+  "feature_id": "edge-commercial-journeys",
+  "event_type": "policy_observation",
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "source_revision": null,
+  "previous_event_id": null,
+  "verification_status": "official_document_verified_not_device_tested",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": {
+      "account_conditions": "Edge for Business158+, Microsoft365 Copilot Premium 이상, Copilot NTP, Work IQ API 및 사용량 과금·관리자 tenant 설정. MSA 제외.",
+      "data_conditions": "Microsoft365 유래 Work IQ 데이터로 만든 Journey/task-card를 로컬에 최대14일 보관. 정책 활성화로 의존 기능이 자동 활성화되지는 않음.",
+      "default": "꺼짐"
+    }
+  },
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+      "section": "해당 변경 항목",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/commercialjourneysgetthingsdoneenabled",
+      "section": "Supported versions / Description",
+      "observed_at": "2026-11-07T23:12:38.066677+00:00"
+    }
+  ],
+  "delta": "업무 Get things done의 조건부 정책 수록"
+}

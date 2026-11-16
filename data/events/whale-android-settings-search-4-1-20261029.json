@@ -24,7 +24,7 @@
   "revisit_trigger": "Android 4.1 설치본과 직전 버전의 동일 조건 노출·동작 검증, 국가·언어 조건 추가 공개",
   "assessed_at": "2026-11-02T23:33:28Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "whale-android-settings-search-4-1-20261029",
   "feature_id": "whale-settings-search",
   "scope": {
@@ -48,5 +48,14 @@
     "https://notice.naver.com/notices/whalehomepage/35237"
   ],
   "delta": "4.1 공지가 새 개선으로 명시. 설정 검색의 초성·문장 질의 확대.",
-  "previous_event_id": null
+  "previous_event_id": null,
+  "source_item_ids": [
+    "src-legacy-a15693aebc574343088ae659",
+    "src-legacy-894b7a042d9ba062b78fd739"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

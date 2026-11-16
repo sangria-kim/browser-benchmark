@@ -1,0 +1,28 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "공식 목록 이동 자체는 전일 색인과 대조해 확인했다. 그러나 Proposed 상태와 is_released=false가 유지되고 상세 목표 159의 최초 변경 시점·실제 shipping 승인은 미확인이다. 목록의 Enabled by default 표제를 Stable 제공으로 해석하지 않으며 새 기능 출시·배포 확대·철회로 선정하지 않음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-css-corner-shorthand-target-159-20261108/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "지원 단계가 확정되면 동일 플랫폼에서 corner 단축 선언과 기존 border-radius/corner-shape 조합의 렌더링·호환성 및 작성 오류를 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "명시적 shipping 승인 또는 Stable 배포 근거, 상세 단계 이력과 목표 변경 시점, 설치본 지원 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-d36283712f4b2dfbbdd82ea0829ec189",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-css-corner-shorthand-target-159-20261108",
+  "input_hash": "999a6b3cfb16e0f4419af536f7255b86b6b48a65af674d183cdf7bc9388bb28f",
+  "input_revision": "data/event-revisions/chrome-css-corner-shorthand-target-159-20261108/schema-v1.json:sha256:ce82d7a4a469057546a3c04ad3a93d3aa9d721c72926b52ecae4d197a1cd428a",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-07T23:10:44.967536+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-e608cdd6042dc546f8411496",
+    "src-legacy-f4a661b1ffa62ecedbae8500",
+    "src-legacy-f328fefac2a4fcb199f4aa0b"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0a549247cd6fcd5d5fb71e25: Source baseline: Text Detection API A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4b5b1efe5a9de701ffef1edbefec996b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0a549247cd6fcd5d5fb71e25",
+  "input_hash": "a60022aaff9106b0f5a68dad510db27fd12a43171b87e8a8a375817e6109d770",
+  "input_revision": "semantic-sha256:7aba41a8f6dc0ac6662db14569c62f363e1c26c7863f7f6028fc53c62a38475a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-fde9b0bb69a3e2bf52e2330b",
+    "src-legacy-0f15a4ef898a9a476334fc1b"
+  ]
+}

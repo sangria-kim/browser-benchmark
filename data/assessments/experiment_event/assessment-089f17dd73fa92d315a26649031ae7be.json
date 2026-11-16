@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-bf72f9949d7a45af051cf5d4: Source baseline: Android Desktop History Layout A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-089f17dd73fa92d315a26649031ae7be",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-bf72f9949d7a45af051cf5d4",
+  "input_hash": "65d098a80b8bf6664c978a7996e54ccb5b2d02ce97cefb2f93295fdfe93ff89d",
+  "input_revision": "semantic-sha256:5337d32880a55136df680e9a005589c0910ab8bc1baa47b4ff2e9bb73e7d392e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-4bb66500927921aa19b6f7c5",
+    "src-legacy-da5495fc01d2da87c0c24c77"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "새 기능 출시가 아니라 실험 접근 경로 추가로 한정한다. 메뉴 탐색과 검색의 과제 비교를 구체화할 수 있다.",
+    "Original priority reason: 메뉴 명령을 발견하고 실행하는 한정된 탐색 과제에서 클릭 수·검색 정확도·완료 시간을 비교할 가치가 있다. 브라우저 전반의 기본 동작 변경보다 범위가 좁아 P2로 둔다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-chro-menu-search-flag-20261104/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "Windows에서 동일 메뉴 명령을 계층 탐색과 검색으로 찾을 때 입력·클릭 수와 완료 시간은 어떻게 다른가? 삼성 브라우저의 동등 검색 기능 여부는 별도 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함한 설치본·계정·지역 조건을 확보하면 flag 노출과 과제 동작을 확인한다.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8af7df0d77e63911f835d654a74dbdb9",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-chro-menu-search-flag-20261104",
+  "input_hash": "d3486a292b102c9019b3a6ec94181ff2fe4c029ea6200a4ccddd3d942ed62df2",
+  "input_revision": "data/event-revisions/chrome-chro-menu-search-flag-20261104/schema-v1.json:sha256:2c5b693880037a5939fc04ce543a1003ec44ad2c1ea848ca879b5035b40e53b5",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:53:24Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-605bfefa7bcc22c01af7e086",
+    "src-legacy-b01bfe19fcb39dc051558b4e"
+  ]
+}

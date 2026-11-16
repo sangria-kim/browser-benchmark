@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-990a1e38445ca45257bc434e: Source baseline: Android Fre Layout Update A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4406e8ebda05c5e3b56618028bdd109f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-990a1e38445ca45257bc434e",
+  "input_hash": "5477a31431fb4c9e433d37105847490fb36e1c8c60587f1d619c7d45167c2f8a",
+  "input_revision": "semantic-sha256:18a9d8273be9c14d001b87d9e4b6759b44cdf354d322ecbbf1a355abe77c5746",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-fadad049055fa5b770ed0380",
+    "src-legacy-7cabd63d5377c9c90b83ddec"
+  ]
+}

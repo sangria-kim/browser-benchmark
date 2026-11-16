@@ -19,7 +19,7 @@
   "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
   "assessed_at": "2026-11-07T23:12:38.066677+00:00",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-copilot-browser-use-policy-transition-158-20261106",
   "feature_id": "edge-copilot-browser-use-url-policy",
   "event_type": "pending_verification",
@@ -58,5 +58,15 @@
       "observed_at": "2026-11-07T23:12:38.066677+00:00"
     }
   ],
-  "delta": "Copilot browser use URL 허용 정책 수록"
+  "delta": "Copilot browser use URL 허용 정책 수록",
+  "source_item_ids": [
+    "src-legacy-b4dad5336409fdc2392dd563",
+    "src-legacy-b74827437f4c8a5074dc2503",
+    "src-legacy-e777ae0e216de65635a030ed"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

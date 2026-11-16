@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-850f382900b1ff5ce649fff1: Source baseline: Enable libinput to handle touchpad. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ca91c0d01bb7e55e1348858e197beac1",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-850f382900b1ff5ce649fff1",
+  "input_hash": "f40132af0d0c4ea557fcdffc4d6e3e491d67945d5aa92939fd6f3930604806ee",
+  "input_revision": "semantic-sha256:ab1e3d955a0803b6c4a4324ff9aa5c5ef329dda6b8125e55f16d0204f70fa98a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-099fe4746ef11af022990c5a"
+  ]
+}

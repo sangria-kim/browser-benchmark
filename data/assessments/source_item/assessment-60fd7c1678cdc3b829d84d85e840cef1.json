@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d045baa0a96de4d0492d6ffc: Fixed an issue where WebGPU could report the primitive-index feature as available on GPUs that don’t support it, resulting in an uncaptured error. (186690340) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-60fd7c1678cdc3b829d84d85e840cef1",
+  "subject_kind": "source_item",
+  "subject_id": "src-d045baa0a96de4d0492d6ffc",
+  "input_hash": "3a2e82e2cad4a13544b5612add8307c4d67fa8cf848a55bf51f5b8e69ad9cf3d",
+  "input_revision": "semantic-sha256:c0d58ffe2c8a0f438ce3a5fd17f1a5c7a03a76f569c2068482949a4720b5d234",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d045baa0a96de4d0492d6ffc"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-77930ca2ba395023e2a142b2: Fixed cookies being stored as session cookies when their Expires date uses the month-before-day format produced by Date.prototype.toString() . (185840799) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4f37db1734d071642f53ca2174fbec59",
+  "subject_kind": "source_item",
+  "subject_id": "src-77930ca2ba395023e2a142b2",
+  "input_hash": "18ed9b6c4e636af95d6fb6fa8f396b047d670b1cd46de37dc45c7290ea9fd73a",
+  "input_revision": "semantic-sha256:18f659b0ea75178e1bcca764d06011447941e3e3f6bae15c05609f169f16130b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-77930ca2ba395023e2a142b2"
+  ]
+}

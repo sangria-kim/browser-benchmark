@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-45f232feda4855a2a17e02ee: Fixed an issue where transient activation could be incorrectly discarded, causing APIs gated on user activation (such as the Clipboard API) to fail on the first attempt. (187872193) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2cada549c71af3627ba89780fca096e7",
+  "subject_kind": "source_item",
+  "subject_id": "src-45f232feda4855a2a17e02ee",
+  "input_hash": "419fc957ba25ccecd23b7c1bc38f4e56ed3ae439d07ff0412b1922089cfe46c7",
+  "input_revision": "semantic-sha256:1f9f03c72afe7d3b8c223022e07e0c5224b3931197e9731b49477db185decfbb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-45f232feda4855a2a17e02ee"
+  ]
+}

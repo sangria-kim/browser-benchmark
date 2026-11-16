@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e11e750d722a75d3f37b4fe5: Source baseline: autofill-ai-available-by-default A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cdf8fcccee4a0058659e9295d2bec56c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e11e750d722a75d3f37b4fe5",
+  "input_hash": "2e09c5866df89088c015e00acbd893f75924e9bb7fcad94e93370d50dcfd73c5",
+  "input_revision": "semantic-sha256:a62d167fc4da81d65e034b46b753449140f1e2fe0d5b57065bea6bb557aad27b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ae9462df798a23c2b83639dd",
+    "src-legacy-d116c5b092bb5c8be5395b44"
+  ]
+}

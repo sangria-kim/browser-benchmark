@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-android-headphone-disconnect-pause-source-20261114",
   "feature_id": "chrome-android-headphone-disconnect-pause",
   "browser": "chrome",
@@ -76,5 +76,13 @@
     "chrome-source-29a376fd8407a03555e63beee6b2e1485756bee9"
   ],
   "device_test": "not_run",
-  "novelty_basis": "기존 no-pause flag는 2026-06-15 소스 등록 이력이 있습니다. 이번 사건은 새 정방향 flag와 Desktop Android 동작 변경으로 기존 실험에 연결하며 최초 기능 출시로 보지 않습니다."
+  "novelty_basis": "기존 no-pause flag는 2026-06-15 소스 등록 이력이 있습니다. 이번 사건은 새 정방향 flag와 Desktop Android 동작 변경으로 기존 실험에 연결하며 최초 기능 출시로 보지 않습니다.",
+  "source_item_ids": [
+    "src-legacy-1d88c056a733ab3ec02ad4a6"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

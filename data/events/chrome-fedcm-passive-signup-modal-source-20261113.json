@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-fedcm-passive-signup-modal-source-20261113",
   "feature_id": "chrome-fedcm-idp-links",
   "browser": "chrome",
@@ -92,5 +92,15 @@
     "chrome-source-6562990bab15390e8ccca4a00f3ba421e46929c4"
   ],
   "device_test": "not_run",
-  "novelty_basis": "2026-11-11의 기존 사건은 링크 출처를 well-known으로 바로잡은 설명 변경이었다. 이번은 passive 신규 계정의 실제 dialog 전환 코드와 복수 IdP 조건 변경이므로 기존 링크 기능의 최초 도입이 아니라 동작 변경이다."
+  "novelty_basis": "2026-11-11의 기존 사건은 링크 출처를 well-known으로 바로잡은 설명 변경이었다. 이번은 passive 신규 계정의 실제 dialog 전환 코드와 복수 IdP 조건 변경이므로 기존 링크 기능의 최초 도입이 아니라 동작 변경이다.",
+  "source_item_ids": [
+    "src-legacy-861674624156d66be8f229d1",
+    "src-legacy-8275ef206549bf41380c0a66",
+    "src-legacy-fa9abdbd94ffc2e371692253"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-854a8dc5a6271ff6d8498914: Source baseline: partition-alloc-scheduler-loop-quarantine A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5f4ef850585b77209080e7ff0e78db75",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-854a8dc5a6271ff6d8498914",
+  "input_hash": "11573576d70606a635b9df43c40971b69a1cbabeffa8c2418bf177126a399352",
+  "input_revision": "semantic-sha256:cdaf0ea8f4b54e803db00fab18acf8a4434f90849eee7756777b5a0ee1ddc3f4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-3ceefbf46e6bc67c8211c02f"
+  ]
+}

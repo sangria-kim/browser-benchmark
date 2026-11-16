@@ -1,0 +1,30 @@
+{
+  "status": "selected",
+  "reasons": [
+    "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+    "Original priority reason: 반복 조작·작업 전환 또는 확장 호환성 비교 가치.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "자주 쓰는 탭 접근성을 유지하며 긴 탭 목록을 더 많이 볼 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-e16620eaef65c35c2771d59dc4a75cbb",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105",
+  "input_hash": "7f18cc393c092b5e3463e2c03d4a3fc13b0a5801569f7fd8ab4878f36081a62c",
+  "input_revision": "data/event-revisions/vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105/schema-v1.json:sha256:95cc65625bd973709d5942dda7bfacbdf23456a6d0488fab865eeec3081ad707",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-a0ea1da5ab14d36a861bb8c1",
+    "src-legacy-7138dad1bbc47b817d82c22c",
+    "src-legacy-de1c39d6f3d5670a7846fa18",
+    "src-legacy-50b4cc6b96998d8a1c8796b4"
+  ]
+}

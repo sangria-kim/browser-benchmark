@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-25c3a791e8bc2ad18faeafd9: Source baseline: Secure Payment Confirmation Locale Validation A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-92401af74211922473f47d7936aa3637",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-25c3a791e8bc2ad18faeafd9",
+  "input_hash": "232aad3ede0433b08a4d82fe6ded9cb83123993c9cc241c30d8484dd9e57db99",
+  "input_revision": "semantic-sha256:2efb98a11b3c7f97ad10a9c0e1a1dcb8f6038618e764440eb720df61b18a1862",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-dd0919b05d7411644d16d238",
+    "src-legacy-b198517d21b49087dff3f6c5"
+  ]
+}

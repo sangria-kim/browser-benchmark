@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "세로 탭으로 작업을 전환할 때 콘텐츠 공간, 발견성 및 포인터 이동이 달라지는 기본 동작이다.",
+    "Original priority reason: 영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/opera-vertical-tabs-autohide-default-developer-141-20261109/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저와 비교할 때, 세로 탭 자동 숨김이 콘텐츠 공간과 탭 재진입 및 드래그 오류에 어떤 영향을 주는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 Developer 빌드 실기 확인 또는 Stable 확대 근거",
+  "schema_version": 2,
+  "assessment_id": "assessment-f2945895d2f75b95ae6ccddb892d2847",
+  "subject_kind": "feature_event",
+  "subject_id": "opera-vertical-tabs-autohide-default-developer-141-20261109",
+  "input_hash": "9fd9b695ca1463c4153ce625793dc39cc916aae078fd599f10a827feee285be1",
+  "input_revision": "data/event-revisions/opera-vertical-tabs-autohide-default-developer-141-20261109/schema-v1.json:sha256:eb18979e2f3591459bfc04b2559195f5382393643cea86f57fe1231aebbd620b",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-ebd186f60e656840ae23e9c4",
+    "src-legacy-afe124189f7c8a9cca6bad78"
+  ]
+}

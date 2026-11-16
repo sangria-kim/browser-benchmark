@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "firefox-related-origin-passkey-fix-159-0-1",
   "feature_id": "firefox-related-origin-passkey-signin",
   "browser": "firefox",
@@ -62,5 +62,15 @@
     ],
     "evidence_limit": "ko 릴리스 경로는 영문으로 이동한다. 한국어 Mozilla 계정 패스키 도움말은 다른 범위이므로 관련 사이트 수정의 한국 출시 증거로 사용하지 않는다.",
     "account_subscription": "수정 자체에 Mozilla 계정·유료 구독 조건은 명시되지 않았다. 대상 사이트 계정·관련 origin 설정·기기 인증 수단과 기존 패스키가 필요하다."
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-10dcfcf9773d958d05936a13",
+    "src-legacy-ab3a601bda5195ead7f176c8",
+    "src-legacy-a70f3eb696cc2fc7ece53db5"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

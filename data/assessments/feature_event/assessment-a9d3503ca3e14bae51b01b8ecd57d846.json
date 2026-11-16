@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "인증 동의 단계의 링크 발견성·공유 정보 이해·되돌리기·추가 조작 비용을 같은 과제로 비교할 수 있습니다. 출시가 아니라 소스 실험으로 선정합니다.",
+    "Original priority reason: 인증 동의와 정보 공유 안내의 핵심 과제가 달라지므로 우선 비교합니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-fedcm-passive-signup-modal-source-20261113/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "삼성 브라우저와 같은 FedCM 테스트 사이트·계정·플랫폼 조건에서, 새 계정의 공유 정보와 IdP 링크를 확인하고 동의를 취소하거나 계정을 바꾸는 흐름은 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 시험 빌드와 동일 조건에서 노출·동작을 확인하거나 공식 배포 범위가 확인되면 갱신합니다.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a9d3503ca3e14bae51b01b8ecd57d846",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-fedcm-passive-signup-modal-source-20261113",
+  "input_hash": "8a3130826d3e80181a099b3a83525dd14e867d8b587dce32bfd9bcb9365a1236",
+  "input_revision": "data/event-revisions/chrome-fedcm-passive-signup-modal-source-20261113/schema-v1.json:sha256:8b858236e67b9badcaa64f32c23b9f1cb8eed557176036744ebb922edcf22e06",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-13T22:57:51Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-861674624156d66be8f229d1",
+    "src-legacy-8275ef206549bf41380c0a66",
+    "src-legacy-fa9abdbd94ffc2e371692253"
+  ]
+}

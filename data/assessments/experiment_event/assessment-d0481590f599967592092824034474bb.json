@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-4375f85321acbaee8550bc22: Source baseline: Smart Card Context Release A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d0481590f599967592092824034474bb",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-4375f85321acbaee8550bc22",
+  "input_hash": "9136a8bbdd43ac2ae2f283aca1ba9488d610e2a4adda92bed80c126049bdbf11",
+  "input_revision": "semantic-sha256:207ae0e60d6594ed7492a4f22283ed1ed5d22e1e0144b853538ecad783f2d2ff",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8a8b94b87dee23015f142c6c",
+    "src-legacy-22be5659cfd3712f67e023d1"
+  ]
+}

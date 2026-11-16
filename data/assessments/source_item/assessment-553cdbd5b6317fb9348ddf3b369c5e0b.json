@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed PDF byte-range requests being blocked by the connect-src Content Security Policy directive instead of object-src . (184258237)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-553cdbd5b6317fb9348ddf3b369c5e0b",
+  "subject_kind": "source_item",
+  "subject_id": "src-9fcd4dbc668aac43b3d878e9",
+  "input_hash": "604bbcdb83dc3ff6d6a9601e98f130851ea2b7b241772d45eb1280d749704cdd",
+  "input_revision": "semantic-sha256:fbf222483dd26bb618c7b506056828417d7f96ee6ed8553a4e30e0730ac6dec3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9fcd4dbc668aac43b3d878e9"
+  ]
+}

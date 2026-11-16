@@ -1,0 +1,33 @@
+{
+  "schema_version": 2,
+  "event_id": "chrome-source-542d7914a86f0915025d40e699fa2de876d36e7d",
+  "feature_id": "chrome-fedcm-idp-links",
+  "browser": "chrome",
+  "event_type": "source_change",
+  "version": null,
+  "channel": "source-main",
+  "platform": [
+    "ChromeOS",
+    "Linux",
+    "Windows",
+    "macOS"
+  ],
+  "observed_at": "2026-11-11T22:37:46.438154+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "sources": [
+    {
+      "url": "https://github.com/chromium/chromium/commit/542d7914a86f0915025d40e699fa2de876d36e7d"
+    }
+  ],
+  "source_item_ids": [
+    "src-legacy-cee1e6b6960f5ebadb43462e"
+  ],
+  "summary": "FedCM 동의 화면의 IdP 계정 관리·개인정보·약관 링크 출처 설명을 config에서 well-known 파일로 바꿉니다.",
+  "before": null,
+  "after": null,
+  "verification_status": "source_verified_not_device_tested",
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
+}

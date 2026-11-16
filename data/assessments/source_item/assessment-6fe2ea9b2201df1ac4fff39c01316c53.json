@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-51945cf8e1df3959ca7a0260: Fixed an issue where TypedArray setFromTypedArray could not use memmove when the region was intentionally overlapping and the spec algorithm needed to read back the modified result. (186145219) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6fe2ea9b2201df1ac4fff39c01316c53",
+  "subject_kind": "source_item",
+  "subject_id": "src-51945cf8e1df3959ca7a0260",
+  "input_hash": "a3f7a7ab347d7686b5801f5c8fa9f617bc50a86a899c71c2766c0e9daad5ce0f",
+  "input_revision": "semantic-sha256:53f8ba418964a239615b8a13849ed4974e5e5bc7c54de4fc8192b36a09c3e978",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-51945cf8e1df3959ca7a0260"
+  ]
+}

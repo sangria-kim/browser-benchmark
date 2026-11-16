@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+    "Original priority reason: 첫 계정 로그인에서 비밀번호·북마크·설정의 귀속과 작업 연속성을 다루므로 보존·혼입·취소를 우선 검증할 필요가 있음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "로그인 전 환경을 계정에 연결할 때 데이터 보존·선택 명확성·계정 혼입 방지가 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-fbf535e46d0e1f0fd0e469d4047c9f63",
+  "subject_kind": "feature_event",
+  "subject_id": "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106",
+  "input_hash": "abc1a816281eef029d464e738b48309ed0bb86643576dcbd6ef38dc6d010d39a",
+  "input_revision": "data/event-revisions/whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106/schema-v1.json:sha256:9b4f447edcdc1322ee25aa3c268c5fadcb131fc48b9cfa6e455d00b14bc1ad21",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-06T22:54:23Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-4632301db382d7e959a62b65",
+    "src-legacy-b83a9f27dca0db442ceced1c",
+    "src-legacy-b3bb6aa1719ac36e918cb27a"
+  ]
+}

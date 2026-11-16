@@ -16,7 +16,7 @@
   "revisit_trigger": "공식 적용 시점·빌드·지원 범위와 변경 전후 비교 조건 확인",
   "assessed_at": "2026-11-07T23:12:38.066677+00:00",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "firefox-render-blocking-pref-160-20261108",
   "feature_id": "firefox-render-blocking",
   "event_type": "experiment_observation",
@@ -63,5 +63,14 @@
     ],
     "completion": "빌드의 pref 지원·기본값 확인 후 반복 비교",
     "executed": false
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-573f74212f567547e9c0495c",
+    "src-legacy-48516e65083e45018b4532cd"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

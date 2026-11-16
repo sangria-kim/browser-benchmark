@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a3009bc4c2069066ce721359: Source baseline: Omnibox off-main-thread suggestion prefetch A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d4a1ccfcf56ea000f2634e1a5834ec76",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a3009bc4c2069066ce721359",
+  "input_hash": "77b110aed33d64f639083ab0b0604477bc880be133ce9bcec9bff0cb8cafa2ec",
+  "input_revision": "semantic-sha256:8bbe1d4f249481898b67e5493eb8310790c2b571c06064b5b8a2a4392c5cdac0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-680817139167bbf018b67a2e",
+    "src-legacy-c989b6f0d944d7e9f3c4752b"
+  ]
+}

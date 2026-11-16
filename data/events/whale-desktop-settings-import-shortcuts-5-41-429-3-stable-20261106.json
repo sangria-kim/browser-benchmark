@@ -21,7 +21,7 @@
   "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
   "assessed_at": "2026-11-06T22:54:23Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106",
   "feature_id": "whale-settings-import",
   "event_type": "rollout_expansion",
@@ -58,5 +58,15 @@
       "execution": "미실행",
       "comparison_limit": "삼성 브라우저의 동등 기능·차이는 미확인. 같은 OS·조건에서만 비교."
     }
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-b54818b49fd89accdf0ac8e4",
+    "src-legacy-c92b3f76041cb7f0656616ce",
+    "src-legacy-32afe0a6aa2d407f1cfafb6b"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

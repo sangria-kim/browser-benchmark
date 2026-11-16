@@ -1,0 +1,26 @@
+{
+  "status": "watch",
+  "reasons": [
+    "베타 기능의 공식 설명을 확인했다. OS별 기능 노출과 실제 동작 조건이 부족하여 관찰 대상으로 유지한다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/safari-adaptive-dark-mode-beta-273-20261103/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "동일한 밝은 페이지에서 글자·로고·canvas의 가독성과 원래 색상 보존, 사용자가 되돌리는 경로는 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "기능별 OS 지원·정식 확대 또는 재현 환경 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-d84117d5e1e56641ab3ae170f4255d27",
+  "subject_kind": "feature_event",
+  "subject_id": "safari-adaptive-dark-mode-beta-273-20261103",
+  "input_hash": "e88dfe14cbf60ea70f08182b0367e4e4371ca761f2495e64b3c15b56ab6a0710",
+  "input_revision": "data/event-revisions/safari-adaptive-dark-mode-beta-273-20261103/schema-v1.json:sha256:be5f884c56b8137056fd2b0c975000877fac09120785730f9ef124a792a9f7e1",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-15T22:54:43Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-04adeb9049e62659ad528779"
+  ]
+}

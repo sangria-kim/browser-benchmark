@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-34bf5278a31151b364ad0947: Source baseline: Spectre variant 2 mitigation A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3cde8087e6457f2b3685ef8a1c8cea3c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-34bf5278a31151b364ad0947",
+  "input_hash": "753020daa7fbf78d953dcb31572ac35e7497aeb64bc40ec988d4d346a6cad85f",
+  "input_revision": "semantic-sha256:839ab48c551dc08da673ecfe6149ee3181a37d68f5048f386ebaf8f3ec0a371f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8e07a33e956d6a6b1f7f453c"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-042e81221c732a550753e3a9: Source baseline: ssl-version-min A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1af10713208272a2d4bfe80f033b6c56",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-042e81221c732a550753e3a9",
+  "input_hash": "93c2b9afc9aa51cbafe078989f477c18a14eaa65cd00697949ca9c47afa53901",
+  "input_revision": "semantic-sha256:363211eef2a4ff40aed93516d9327a35aba6dcbc0a8f95af7b18bde8647d134c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-19b2b377c3d7aafbc5e41425"
+  ]
+}

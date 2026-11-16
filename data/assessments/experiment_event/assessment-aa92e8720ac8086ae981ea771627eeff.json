@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e70b6acad353e290251cb0a4: Source baseline: contextual-tasks-pinning-v2 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-aa92e8720ac8086ae981ea771627eeff",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e70b6acad353e290251cb0a4",
+  "input_hash": "f286aabfcb53109b89225919794159a3cca2fd7dc5bdb94c9fdaffb56a4020c7",
+  "input_revision": "semantic-sha256:2f4f06e14dc52cb68c1346a619489e337176ec01fcd0034fa2bc32ca7cc86816",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-af7af12c0ae3614fe3ba4738",
+    "src-legacy-321e46c791212e204cf63fb8"
+  ]
+}

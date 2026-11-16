@@ -21,3 +21,13 @@ Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi·Safari의 기능 설명, �
 schema_version, event_id, feature_id, browser, event_type, version, channel, platform, workstreams, ai_related, scope, observed_at, announced_at, effective_at, source_revision, sources, summary, delta, verification_status, previous_event_id, selection_status, selection_reason, priority, priority_reason, comparison_question, benchmark_readiness, revisit_trigger, assessed_at, selection_rule_version.
 
 scope는 제품 적용 조건이며 조사 완료율이 아닙니다. observed_at은 근거를 확인한 시점이며 실행 성공·발송 상태를 의미하지 않습니다. JSON의 null/unknown은 미확인 제품 정보나 증거 수준을 뜻합니다.
+
+## Versioned pipeline boundary
+
+[Dataset contract 1.0](dataset-contract.md) and [the data layout](data-layout.md) define the canonical version 2 records. Keep full source-item coverage within the registered scope before PM selection. Security fixes, general fixes, unselected items and unresolved source definitions remain in the public minimal evidence catalog. Do not publish entire third-party pages, forum replies, email addresses, author/owner identities or raw source metadata that contains personal identifiers. Chromium ownership metadata is not needed for the feature catalog.
+
+Public records contain product facts, official URLs, minimal evidence, hashes and source revisions. Raw pages may be held in a private cache for validation. A source `unparsed` status only states that the definition value is unresolved. Exception text, coverage totals, parser traces, timeouts and recovery state stay in private storage. A private partial run must never become a public claim of complete coverage.
+
+A missing source does not prove product removal. Preserve the last successful records after source or evaluation failure. Keep assessment histories immutable and current selections separate from their source facts. `pending_verification` is a factual-evidence judgment, not an error fallback. Existing selection fields are compatibility projections written from assessments during migration.
+
+The original event fields above describe version 1 compatibility. Version 2 adds source-item references, explicit origin and revision information. Preserve all previous IDs, official URLs and readable report paths. Historical migration does not establish complete historical source coverage.

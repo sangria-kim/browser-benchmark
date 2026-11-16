@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "firefox-pdf-mathml-accessibility-stable-160-20261110",
   "feature_id": "firefox-pdf-mathml-accessibility",
   "browser": "firefox",
@@ -68,5 +68,14 @@
     "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
     "executed": false
   },
-  "user_impact": "웹페이지를 PDF로 보관·공유한 뒤에도 화면읽기 도구가 MathML 수식을 해석할 수 있도록 한다. 보이는 모양만 저장하는 것과 달리 수학 구조의 접근성 유지가 목적이다."
+  "user_impact": "웹페이지를 PDF로 보관·공유한 뒤에도 화면읽기 도구가 MathML 수식을 해석할 수 있도록 한다. 보이는 모양만 저장하는 것과 달리 수학 구조의 접근성 유지가 목적이다.",
+  "source_item_ids": [
+    "src-legacy-39bd634898442b0c203dbd8a",
+    "src-legacy-c6a4c7f70bd313dbcc3c7db6"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

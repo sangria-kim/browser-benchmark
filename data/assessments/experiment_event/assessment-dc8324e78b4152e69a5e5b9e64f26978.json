@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a2ff0a44e0f14caac3e34c33: Source baseline: Android Bricks Native Page A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-dc8324e78b4152e69a5e5b9e64f26978",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a2ff0a44e0f14caac3e34c33",
+  "input_hash": "836c711ef40e93a59a4660ddfcbff268706e738969d345a821bffbc6fa67291e",
+  "input_revision": "semantic-sha256:840953649408c4b16faae415622b79e39eff46a5bf90ededece179945162aa02",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-33d25197caf8af7acf929c5e",
+    "src-legacy-d65e310603564b443aac764d"
+  ]
+}

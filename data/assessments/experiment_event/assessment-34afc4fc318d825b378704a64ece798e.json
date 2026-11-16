@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1862907d78a43c3874850fe3: Source baseline: Enterprise content analysis for file uploads A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-34afc4fc318d825b378704a64ece798e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1862907d78a43c3874850fe3",
+  "input_hash": "e66720e1ad5a692d0637ab6f0e5e22537c0290d25388c40c2da70176db221ef5",
+  "input_revision": "semantic-sha256:e33ae6b8d28df35003d269568e6d186c0d4edfc601e8f43cf3709319f7e68f11",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8acc6daad257d3e45f5d1282",
+    "src-legacy-3825a299eb97e9075a2ba4ec"
+  ]
+}

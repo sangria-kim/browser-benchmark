@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "event_id": "chrome-chro-menu-search-flag-20261104",
+  "feature_id": "chrome-chro-menu-search",
+  "browser": "chrome",
+  "event_type": "experiment_observed",
+  "version": null,
+  "channel": null,
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "ChromeOS"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": "데스크톱 소스 등록. 기존 메뉴 검색 feature의 chrome://flags 진입점이며 app-menu-glow-up도 활성화해야 한다. 기본값은 비활성.",
+  "observed_at": "2026-11-05T22:53:24Z",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": "ac186a2376a0cccda4f1e47f4946323dc0665865",
+  "committed_at": "2026-11-04T00:49:40Z",
+  "sources": [
+    {
+      "url": "https://chromium.googlesource.com/chromium/src/+/ac186a2376a0cccda4f1e47f4946323dc0665865^!",
+      "section": "about_flags.cc, flag_descriptions.h, flag-metadata.json 및 관련 feature/구현 diff",
+      "verified_at": "2026-11-05T22:53:24Z"
+    },
+    {
+      "url": "https://github.com/chromium/chromium/commit/ac186a2376a0cccda4f1e47f4946323dc0665865",
+      "section": "Official Chromium GitHub mirror commit metadata and full diff",
+      "verified_at": "2026-11-05T22:53:24Z"
+    }
+  ],
+  "summary": "Chrome 데스크톱 메뉴 검색의 실험 진입점 추가 (소스 관찰)",
+  "delta": "기존에는 명령행으로 제어하던 feature에 chro-menu-search 등록·설명·metadata를 추가했다. 메뉴 검색 자체의 최초 구현·정식 출시는 아니다.",
+  "verification_status": "source_diff_and_snapshot_verified",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "새 기능 출시가 아니라 실험 접근 경로 추가로 한정한다. 메뉴 탐색과 검색의 과제 비교를 구체화할 수 있다.",
+  "priority": "P2",
+  "priority_reason": "메뉴 명령을 발견하고 실행하는 한정된 탐색 과제에서 클릭 수·검색 정확도·완료 시간을 비교할 가치가 있다. 브라우저 전반의 기본 동작 변경보다 범위가 좁아 P2로 둔다.",
+  "comparison_question": "Windows에서 동일 메뉴 명령을 계층 탐색과 검색으로 찾을 때 입력·클릭 수와 완료 시간은 어떻게 다른가? 삼성 브라우저의 동등 검색 기능 여부는 별도 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "해당 revision을 포함한 설치본·계정·지역 조건을 확보하면 flag 노출과 과제 동작을 확인한다.",
+  "assessed_at": "2026-11-05T22:53:24Z",
+  "selection_rule_version": "pm-selection-v2",
+  "flag_ids": [
+    "chro-menu-search"
+  ],
+  "related_feature_symbols": [
+    "features::kChroMenuSearch"
+  ],
+  "source_event_id": "chrome-source-ac186a2376a0cccda4f1e47f4946323dc0665865",
+  "korea_availability": "unknown",
+  "korean_language_support": "unknown",
+  "installed_build_verification": "not_run",
+  "behavioral_verification": "not_run",
+  "novelty_basis": "직전 성공 snapshot에 해당 등록이 없고 이번 diff에 추가됨. 과거 repository source index·flag 문서 및 정확한 ID 검색에서 이전 사건을 찾지 못했다. 기능 자체의 최초 구현 또는 세계 최초 공개를 주장하지 않는다."
+}

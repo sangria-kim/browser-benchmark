@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "event_id": "firefox-pip-playback-speed-stable-160-20261110",
+  "feature_id": "firefox-pip-playback-speed",
+  "browser": "firefox",
+  "version": "160.0",
+  "channel": "stable",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "event_type": "channel_expansion",
+  "observed_at": "2026-11-10T23:16:21.389826+00:00",
+  "announced_at": "2026-11-10",
+  "effective_at": "2026-11-10",
+  "source_revision": null,
+  "previous_event_id": null,
+  "summary": "PiP 창 재생 속도 조절의 Stable 확대",
+  "delta": "기존 160 Beta에서 설명한 기능이 11/10 Release 노트에 수록됐다. 기능 전체 최초 도입이 아니라 Stable 확대 사건이다.",
+  "novelty_basis": "저장된 160-beta 항목과 10/29 보고를 대조. 160.0 Stable은 기존 공개 사건에 없음.",
+  "verification_status": "official_document_verified_not_device_tested",
+  "selection_status": "selected",
+  "selection_reason": "강의·영상의 속도를 바꾸기 위해 원래 탭으로 돌아가는 단계를 줄인다. 작은 창에서는 메뉴가 보이지 않아 크기에 따른 발견 가능성이 달라진다. 기존 Beta와 달리 11/10 Stable Release 수록이 확인되어 비교 대상 채널이 확대됐다.",
+  "priority": "P2",
+  "priority_reason": "영상 시청 흐름의 제한된 개선이며 재생 상태·자막 일관성을 비교할 수 있어 P2로 둔다.",
+  "comparison_question": "삼성 브라우저 PiP에서 원래 페이지로 돌아가지 않고 속도를 바꿀 수 있으며 작은 창에서도 발견 가능한가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "실제 Stable 노출과 동일 조건 비교 환경 확보",
+  "assessed_at": "2026-11-10T23:16:21.389826+00:00",
+  "selection_rule_version": "pm-selection-v2",
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "0.25배~2배. 중간 크기 이상 PiP 창에서만 메뉴 표시. PiP 자체 최초 도입 아님."
+  },
+  "sources": [
+    {
+      "url": "https://www.firefox.com/en-US/firefox/160.0/releasenotes/#note-792502",
+      "section": "The Picture-in-Picture player now has a playback speed setting, with options ranging from 0.25x to 2.0x speed. The setting appears only when the player window is medium-sized or larger.",
+      "observed_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "url": "https://www.firefox.com/en-US/firefox/160.0beta/releasenotes/#note-792368",
+      "section": "160 Beta 선행 항목 792368. 이전 본문·저장 항목과 대조.",
+      "observed_at": "2026-11-10T23:16:21.389826+00:00"
+    }
+  ],
+  "benchmark_candidate": {
+    "task": "PiP 창 재생 속도 조절의 Stable 확대",
+    "conditions": "동일 기기·OS·언어·지역·합성 데이터. 비교 브라우저 기능의 실제 존재를 먼저 확인. 설치·권한 변경은 승인된 시험 환경에서만 수행.",
+    "steps": [
+      "동일 합성 영상 재생 후 PiP 분리",
+      "중간/작은 창에서 1.5배·0.75배 변경",
+      "원본 플레이어 복귀 후 속도·자막 상태 확인"
+    ],
+    "metrics": [
+      "속도 변경 조작 수",
+      "메뉴 발견률",
+      "속도 유지"
+    ],
+    "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
+    "executed": false
+  },
+  "user_impact": "강의·영상의 속도를 바꾸기 위해 원래 탭으로 돌아가는 단계를 줄인다. 작은 창에서는 메뉴가 보이지 않아 크기에 따른 발견 가능성이 달라진다."
+}

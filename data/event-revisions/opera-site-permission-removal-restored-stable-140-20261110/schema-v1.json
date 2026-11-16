@@ -1,0 +1,57 @@
+{
+  "schema_version": 1,
+  "event_id": "opera-site-permission-removal-restored-stable-140-20261110",
+  "feature_id": "opera-site-permission-removal",
+  "browser": "opera",
+  "event_type": "bug_fix",
+  "version": "140.0.6074.17",
+  "channel": "stable",
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "Desktop Stable 140. 공식 설치 링크는 Windows, macOS, Linux를 제공한다. 특정 권한 종류, 회귀 시작 버전, 국가 및 계정 조건은 미공개다. 모든 OS의 동일 동작을 직접 시험한 것은 아니다.",
+    "benchmark_repetitions": 3
+  },
+  "observed_at": "2026-11-12T23:24:54.740586+00:00",
+  "announced_at": "2026-11-10",
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://blogs.opera.com/desktop/2026/11/opera-140-stable/",
+      "section": "Fixes",
+      "observed_at": "2026-11-12T23:18:01.113046+00:00",
+      "content_sha256": "cc3d1176b80ea054919724d72014219cdd04fe8e09d81f7127c26d31cacb661a"
+    },
+    {
+      "url": "https://blogs.opera.com/desktop/changelog-for-140/",
+      "section": "140.0.6074.17 / RNA-5189",
+      "observed_at": "2026-11-12T23:19:04.183717+00:00",
+      "content_sha256": "4518065cd413b80ebe7653985456a02231f145b120770430601fe3ebe3ac3f00"
+    }
+  ],
+  "summary": "Opera 140에서 허용 사이트 권한 삭제 복구",
+  "delta": "Stable 본문이 허용 사이트의 권한 제거 복구를 명시하며, changelog의 RNA-5189가 대응한다. 140 Developer의 동일 수정이 Stable에 포함된 것으로, 새 권한 API 출시는 아니다.",
+  "verification_status": "official_document_observation_not_device_tested",
+  "previous_event_id": null,
+  "selection_status": "selected",
+  "selection_reason": "사이트에 준 권한을 회수하는 개인정보 통제의 실패를 복구하므로 일반 시각적 수정과 구분한다.",
+  "priority": "P1",
+  "priority_reason": "기존 개인정보 통제 실패의 복구를 우선 검증한다.",
+  "comparison_question": "삼성 브라우저와 비교할 때, 허용 사이트 권한을 설정에서 지운 뒤 실제 사이트 접근과 다음 권한 요청이 일치하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 권한 종류, 사이트 및 관리 정책 조건에서 Stable 재현",
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

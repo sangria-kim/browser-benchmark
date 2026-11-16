@@ -1,0 +1,26 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "소스 보안 격리 실험이며 검증된 사용자 과제 변화나 비교 지표 근거가 아직 없음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-seccomp-filter-gpu-sandbox-registration-bbc7faad4959/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "공식 배포와 사용자 영향 근거가 확인되면 같은 Android GPU 안정성 과제를 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 제품 배포·사용자 영향 또는 실행 가능한 검증 조건이 확인될 때.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3a49dc98560f663c9a6240b1d4b5f732",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-seccomp-filter-gpu-sandbox-registration-bbc7faad4959",
+  "input_hash": "be4522963e502ed8bc784c8bd58d71f89b5c028d1c4d0168ab592bdef49dff30",
+  "input_revision": "data/event-revisions/chrome-seccomp-filter-gpu-sandbox-registration-bbc7faad4959/schema-v1.json:sha256:a2216d6b5da1e88caea6e94db77ba1f332cb3fd20aeb99db10c3a9dec28db62c",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-31T23:25:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-e5dcb6e8fe39395df29d31ff"
+  ]
+}

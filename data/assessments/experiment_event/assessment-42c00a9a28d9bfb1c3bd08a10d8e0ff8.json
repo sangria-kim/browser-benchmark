@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3eed22c041c5d40e695f91eb: Source baseline: Android Desktop Zoom Scaling A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-42c00a9a28d9bfb1c3bd08a10d8e0ff8",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3eed22c041c5d40e695f91eb",
+  "input_hash": "0503b6e4e86f957bc518729f31b55106f9050a4ef7cd98dcecfc06e64b612056",
+  "input_revision": "semantic-sha256:a3994e6866491f97c7fb7ababad270711839ad2f80157b11ba176c5d29b39e5a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-2b5c79f762bc9267146563f0",
+    "src-legacy-4ec85d71c54c7a3bffba12b8"
+  ]
+}

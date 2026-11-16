@@ -1,0 +1,204 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "selected",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 2
+    },
+    "selection_kind": {
+      "enum": [
+        "features",
+        "flags"
+      ]
+    },
+    "as_of": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_hash": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "rule_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "current": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "subject_kind": {
+            "enum": [
+              "source_item",
+              "feature_event",
+              "experiment_event"
+            ]
+          },
+          "subject_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "assessment_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "catalog_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "event_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "experiment_kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "flag_entry",
+                  "base_feature",
+                  "command_switch"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "subject_kind",
+          "subject_id",
+          "assessment_id",
+          "catalog_id",
+          "event_ids",
+          "experiment_kind"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "change_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "subject_kind": {
+            "enum": [
+              "source_item",
+              "feature_event",
+              "experiment_event"
+            ]
+          },
+          "subject_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "assessment_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+          },
+          "previous_assessment_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "action": {
+            "enum": [
+              "selected",
+              "deselected",
+              "reselected",
+              "changed"
+            ]
+          },
+          "effective_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "event_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "experiment_kind": {
+            "anyOf": [
+              {
+                "enum": [
+                  "flag_entry",
+                  "base_feature",
+                  "command_switch"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "catalog_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "change_id",
+          "subject_kind",
+          "subject_id",
+          "assessment_id",
+          "previous_assessment_id",
+          "action",
+          "effective_at",
+          "event_ids",
+          "experiment_kind"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "selection_kind",
+    "as_of",
+    "input_hash",
+    "rule_version",
+    "current",
+    "history"
+  ],
+  "additionalProperties": false
+}

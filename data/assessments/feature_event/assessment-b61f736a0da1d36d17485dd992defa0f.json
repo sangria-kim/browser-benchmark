@@ -1,0 +1,29 @@
+{
+  "status": "watch",
+  "reasons": [
+    "직전 iOS 156 단계에 없던 Android 160 배포 계획을 확인. 기업 정책과 시험 계정 조건이 필요하며 현재 소비자 Android 제공으로 해석하지 않음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-dlp-paste-android-plan-160-20261106/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "동일한 기업 DLP 규칙에서 Android의 붙여넣기 경고·차단·취소 흐름과 작업 완료율은 브라우저별로 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
+  "schema_version": 2,
+  "assessment_id": "assessment-b61f736a0da1d36d17485dd992defa0f",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-dlp-paste-android-plan-160-20261106",
+  "input_hash": "ec307944196017f6c1d8f5469d5bef43335ca5fc735b346002d2ae9311409797",
+  "input_revision": "data/event-revisions/chrome-dlp-paste-android-plan-160-20261106/schema-v1.json:sha256:1ae7367438647c5fab3b5f3614f4fbc7d0119ee62cc2d7f7c90f6bc0e6d87f62",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-4dd4db0beba079e4094b2e34",
+    "src-legacy-d906191d00b32c94393ed8f9",
+    "src-legacy-55c1a52195cf030debad1568",
+    "src-legacy-c4c22eb84dcadf0e4a4a7cf1"
+  ]
+}

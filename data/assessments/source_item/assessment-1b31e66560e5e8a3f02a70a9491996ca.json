@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3f2c7c754d9b01441e230a1f: Fixed an issue where RegExp.escape incorrectly narrowed supplementary code points to 16 bits. (186962453) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1b31e66560e5e8a3f02a70a9491996ca",
+  "subject_kind": "source_item",
+  "subject_id": "src-3f2c7c754d9b01441e230a1f",
+  "input_hash": "6383d15b8941157b387d335a57f5a4ea92604c07e1c1d8cbb5a7a4f296035003",
+  "input_revision": "semantic-sha256:e1953bd1cff7c29bfc120b9c8f17b00389f44973e31e91f64087ac1f1c59d41d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3f2c7c754d9b01441e230a1f"
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "event_id": "edge-agent-profile-policy-document-omission-20261112",
+  "feature_id": "edge-agent-isolated-profiles",
+  "browser": "edge",
+  "event_type": "verification_pending",
+  "version": "158",
+  "channel": "beta",
+  "platform": [
+    "Windows"
+  ],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": true,
+  "scope": {
+    "korea_availability": "미확인",
+    "korean_language": "미확인",
+    "korea_effective_at": null,
+    "real_test": "미실행",
+    "conditions": "공식 문서에 표시되는 범위만 관찰했다. 제품 철회나 한국 미지원이 확인된 것은 아니다. platform은 이전 공식 관찰의 범위이며 현재 지원 확정을 뜻하지 않는다."
+  },
+  "observed_at": "2026-11-12T23:24:54.740586+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "source_revision": null,
+  "sources": [
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-beta-channel",
+      "section": "158.0.4370.7의 Policy updates",
+      "observed_at": "2026-11-12T23:16:43.625749+00:00",
+      "content_sha256": "77f0e6ca84fc81df60649991fece5f21a714b967ec4e5e7e82296730cba48e70"
+    },
+    {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies",
+      "section": "현재 정책 색인",
+      "observed_at": "2026-11-12T23:19:04.185825+00:00",
+      "content_sha256": "a02a8a6522c396abc7463b3d971616ca5f9174b70e51b2f6eeb171d32b1783ac"
+    }
+  ],
+  "summary": "Edge 에이전트 격리 프로필 정책의 현재 문서 근거 검증 대기",
+  "delta": "이전에 공개된 정책 항목이 현재 158 Beta 노트와 정책 색인에는 표시되지 않는다. 명시적인 철회 설명이나 설치본 동작 근거가 없어 제품 기능 제거 또는 출시 취소로 해석하지 않는다.",
+  "verification_status": "official_document_observation_not_device_tested",
+  "previous_event_id": "edge-agent-profile-policy-158-20261106",
+  "selection_status": "pending_verification",
+  "selection_reason": "과거 watch 판단의 문서 근거가 현재 목록에 없지만 제품 상태는 확정할 수 없다.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": "공식 상태가 확정되면 에이전트의 격리, 허용 범위 및 사용자 통제 조건은 어떻게 달라지는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "문서 복구 또는 명시적인 공식 정책 변경 설명",
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "selection_rule_version": "pm-selection-v2"
+}

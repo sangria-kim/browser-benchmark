@@ -21,7 +21,7 @@
   "revisit_trigger": "영향 사이트 또는 재현 디스플레이 조건 확보",
   "assessed_at": "2026-11-06T22:54:23Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "whale-desktop-page-capture-5-41-429-3-20261106",
   "feature_id": "whale-page-capture",
   "event_type": "behavior_change",
@@ -59,5 +59,15 @@
       "comparison_limit": "삼성 브라우저의 동등 기능·차이는 미확인. 같은 OS·조건에서만 비교.",
       "completion_criteria": "6회 모두 읽을 수 있는 출력이며 지정 영역이 누락·중복 없이 저장되는지 확인. 공식 영향 사이트 미공개로 광범위 해결 단정 금지."
     }
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-17d377345b06aa5976fd0a22",
+    "src-legacy-c23cd9d47a8f0d684660587c",
+    "src-legacy-b137815dd24a77a044d289e8"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

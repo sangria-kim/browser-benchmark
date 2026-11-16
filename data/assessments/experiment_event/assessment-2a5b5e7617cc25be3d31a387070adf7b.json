@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-478b87bcac1bcd084d904e88: Source baseline: allow-appshim-signature-mismatch-for-tests A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2a5b5e7617cc25be3d31a387070adf7b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-478b87bcac1bcd084d904e88",
+  "input_hash": "acd248ea33e32353bb9ccab916e039558bfcd43398e838cd47d128e415dd63ef",
+  "input_revision": "semantic-sha256:0d2d61a5a7709418def8bd45931043f71d61d3595ce5df33abcc18c9f21862cc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-5dd62b22e4aed3e6d3139152"
+  ]
+}

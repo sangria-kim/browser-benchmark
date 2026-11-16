@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "Actual navigation branch and unit-test additions observed: AI Mode from a non-NTP opens a new tab; NTP stays current, new-window modifiers take precedence. Build availability and country/language eligibility remain unknown.",
+    "Original priority reason: 사용자 흐름과 관련된 실험이나 실행 가능한 제품 범위는 아직 미확인입니다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-omnibox-aim-open-in-new-tab-registration-f1bad2d61e8a/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저의 같은 사용자 과제와 실제 기능 노출을 먼저 확인할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Public build exposure or official rollout documentation, including country and language conditions.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c1e1c80df2bbacc6ef6942204957cc0b",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-omnibox-aim-open-in-new-tab-registration-f1bad2d61e8a",
+  "input_hash": "fc58ed7ab1aeed0a62ad040ac76c2743f227798d6890a7f1d12b855b55c0e9b7",
+  "input_revision": "data/event-revisions/chrome-omnibox-aim-open-in-new-tab-registration-f1bad2d61e8a/schema-v1.json:sha256:6ff9a9dbf06347e3e143521574eae66fceaf9bff683a71a92037fc00a4366855",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-29T22:43:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-84d695ae8ca40855ba7ef7d0"
+  ]
+}

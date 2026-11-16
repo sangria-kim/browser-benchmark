@@ -1,0 +1,26 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "이미 기본 활성화된 기능의 gate 정리이며 새 사용자 행동 변화가 확인되지 않음.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-glic-print-menu-item-removal-835ee59ef722/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "Glic 인쇄의 실제 노출과 사용자 과제 변화가 공식 제품 자료로 확인되는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 제품 배포·사용자 영향 또는 실행 가능한 검증 조건이 확인될 때.",
+  "schema_version": 2,
+  "assessment_id": "assessment-442ec8a204a419dca5978ca386f51bc9",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-glic-print-menu-item-removal-835ee59ef722",
+  "input_hash": "e5c8801153c184aee0d38ba219714545934b9da3e8bb469647a4f1071019aa5f",
+  "input_revision": "data/event-revisions/chrome-glic-print-menu-item-removal-835ee59ef722/schema-v1.json:sha256:db4e9492cb8e24de5419ee6476012b8c2b3cde67c80bb37363b0fdac50576898",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-10-31T23:25:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-d7618195d6eb881978f22350"
+  ]
+}

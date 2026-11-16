@@ -1,0 +1,265 @@
+{
+  "event_id": "chrome-dynamic-aim-fulfillment-source-20261112",
+  "source_revision": "28338c8345572c16c564bfa8d9689699187b0218",
+  "committed_at": "2026-11-12T02:08:02Z",
+  "source_url": "https://github.com/chromium/chromium/commit/28338c8345572c16c564bfa8d9689699187b0218",
+  "title": "[Composebox] Add chrome://flags for dynamic AIM fulfillment",
+  "files": [
+    {
+      "path": "chrome/browser/about_flags.cc",
+      "patch_sha256": "6a4a7ad9a39ed4cf8884928a0d4bdb601494b3d5e1e53ba22792067552c4f518",
+      "additions": 52,
+      "deletions": 0,
+      "source_url": "https://github.com/chromium/chromium/commit/28338c8345572c16c564bfa8d9689699187b0218.diff",
+      "direct_entry_changes": [
+        {
+          "flag_id": "dynamic-aim-fulfillment",
+          "action": "added",
+          "before": null,
+          "after": "{\"dynamic-aim-fulfillment\", flag_descriptions::kDynamicAimFulfillmentName,\n     flag_descriptions::kDynamicAimFulfillmentDescription,\n     kOsDesktop | kOsAndroid,\n     FEATURE_WITH_PARAMS_VALUE_TYPE(omnibox::kDynamicAimFulfillment,\n                                    kDynamicAimFulfillmentVariations,\n                                    \"DynamicAimFulfillment\")}",
+          "platform_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ],
+          "feature_symbols": [
+            "flag_descriptions::kDynamicAimFulfillmentDescription",
+            "flag_descriptions::kDynamicAimFulfillmentName",
+            "omnibox::kDynamicAimFulfillment"
+          ],
+          "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+        },
+        {
+          "flag_id": "dynamic-aim-fulfillment-omnibox",
+          "action": "added",
+          "before": null,
+          "after": "{\"dynamic-aim-fulfillment-omnibox\",\n     flag_descriptions::kDynamicAimFulfillmentOmniboxName,\n     flag_descriptions::kDynamicAimFulfillmentOmniboxDescription, kOsDesktop,\n     FEATURE_VALUE_TYPE(omnibox::kDynamicAimFulfillmentOmnibox)}",
+          "platform_masks": [
+            "kOsDesktop"
+          ],
+          "feature_symbols": [
+            "flag_descriptions::kDynamicAimFulfillmentOmniboxDescription",
+            "flag_descriptions::kDynamicAimFulfillmentOmniboxName",
+            "omnibox::kDynamicAimFulfillmentOmnibox"
+          ],
+          "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+        },
+        {
+          "flag_id": "dynamic-aim-fulfillment-realbox",
+          "action": "added",
+          "before": null,
+          "after": "{\"dynamic-aim-fulfillment-realbox\",\n     flag_descriptions::kDynamicAimFulfillmentRealboxName,\n     flag_descriptions::kDynamicAimFulfillmentRealboxDescription,\n     kOsDesktop | kOsAndroid,\n     FEATURE_VALUE_TYPE(omnibox::kDynamicAimFulfillmentRealbox)}",
+          "platform_masks": [
+            "kOsAndroid",
+            "kOsDesktop"
+          ],
+          "feature_symbols": [
+            "flag_descriptions::kDynamicAimFulfillmentRealboxDescription",
+            "flag_descriptions::kDynamicAimFulfillmentRealboxName",
+            "omnibox::kDynamicAimFulfillmentRealbox"
+          ],
+          "conditional_scope": "platform mask verified; surrounding build conditions may further restrict"
+        }
+      ]
+    },
+    {
+      "path": "chrome/browser/flag-metadata.json",
+      "patch_sha256": "567587ecc14365f66f3cf8ffa6a0ff674cab8f45c26682f0278c98b38afa6483",
+      "additions": 30,
+      "deletions": 0,
+      "source_url": "https://github.com/chromium/chromium/commit/28338c8345572c16c564bfa8d9689699187b0218.diff",
+      "metadata_changes": [
+        {
+          "flag_id": "dynamic-aim-fulfillment",
+          "action": "added",
+          "before_expiry": null,
+          "after_expiry": 165,
+          "owners_changed": true
+        },
+        {
+          "flag_id": "dynamic-aim-fulfillment-omnibox",
+          "action": "added",
+          "before_expiry": null,
+          "after_expiry": 165,
+          "owners_changed": true
+        },
+        {
+          "flag_id": "dynamic-aim-fulfillment-realbox",
+          "action": "added",
+          "before_expiry": null,
+          "after_expiry": 165,
+          "owners_changed": true
+        }
+      ]
+    },
+    {
+      "path": "chrome/browser/flag_descriptions.h",
+      "patch_sha256": "ff38a8d9ed37b4a6dc7923d620ba80173a1af883cafc892adc5444fb79756a88",
+      "additions": 19,
+      "deletions": 0,
+      "source_url": "https://github.com/chromium/chromium/commit/28338c8345572c16c564bfa8d9689699187b0218.diff",
+      "description_changes": [
+        {
+          "symbol": "kDynamicAimFulfillmentDescription",
+          "before": null,
+          "after": "Main switch for dynamic AIM fulfillment, routing Composebox queries to the Search results page unless active tools, models, or inputs require AI Mode. Must be enabled alongside the per-surface (Realbox or Omnibox) flag.",
+          "flag_id": "dynamic-aim-fulfillment",
+          "mapping_status": "exact same-commit registration reference"
+        },
+        {
+          "symbol": "kDynamicAimFulfillmentName",
+          "before": null,
+          "after": "Dynamic AIM Fulfillment",
+          "flag_id": "dynamic-aim-fulfillment",
+          "mapping_status": "exact same-commit registration reference"
+        },
+        {
+          "symbol": "kDynamicAimFulfillmentOmniboxDescription",
+          "before": null,
+          "after": "Enables dynamic AIM fulfillment in the WebUI Omnibox Composebox. Requires Dynamic AIM Fulfillment to also be enabled.",
+          "flag_id": "dynamic-aim-fulfillment-omnibox",
+          "mapping_status": "exact same-commit registration reference"
+        },
+        {
+          "symbol": "kDynamicAimFulfillmentOmniboxName",
+          "before": null,
+          "after": "Dynamic AIM Fulfillment (Omnibox)",
+          "flag_id": "dynamic-aim-fulfillment-omnibox",
+          "mapping_status": "exact same-commit registration reference"
+        },
+        {
+          "symbol": "kDynamicAimFulfillmentRealboxDescription",
+          "before": null,
+          "after": "Enables dynamic AIM fulfillment in the NTP Realbox Composebox. Requires Dynamic AIM Fulfillment to also be enabled.",
+          "flag_id": "dynamic-aim-fulfillment-realbox",
+          "mapping_status": "exact same-commit registration reference"
+        },
+        {
+          "symbol": "kDynamicAimFulfillmentRealboxName",
+          "before": null,
+          "after": "Dynamic AIM Fulfillment (Realbox)",
+          "flag_id": "dynamic-aim-fulfillment-realbox",
+          "mapping_status": "exact same-commit registration reference"
+        }
+      ]
+    }
+  ],
+  "flag_ids": [
+    "dynamic-aim-fulfillment",
+    "dynamic-aim-fulfillment-omnibox",
+    "dynamic-aim-fulfillment-realbox"
+  ],
+  "platform": [
+    "Windows",
+    "macOS",
+    "Linux",
+    "ChromeOS",
+    "Android"
+  ],
+  "feature_mapping": "unknown except explicit feature symbols recorded per registration",
+  "channel": "source-main",
+  "version": null,
+  "verification_status": "source_verified_not_device_tested",
+  "device_test": "not_run",
+  "korea_availability": "unknown",
+  "korean_language_support": "unknown",
+  "selection_status": "selected",
+  "selection_reason": "질의·첨부파일·탭·Drive 조합에 따라 검색/AI 작업 경로가 달라지는 구체적 비교 과제가 있습니다. 소스 실험으로만 선정합니다.",
+  "priority": "P2",
+  "priority_reason": "검색과 AI 전환의 탐색적 비교 가치가 크지만 실제 접근 조건과 설치본 노출이 확인되지 않았습니다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "공식 시험 빌드에서 flag·기기·관리 정책 조건과 실제 동작을 확인할 수 있거나 공식 출시·범위 변경 근거가 나오면 갱신합니다.",
+  "selection_rule_version": "pm-selection-v2",
+  "observed_at": "2026-11-12T23:16:03Z",
+  "assessed_at": "2026-11-12T23:20:54.575005+00:00",
+  "change_types": [
+    "description_changed",
+    "metadata_added",
+    "metadata_ownership_changed",
+    "registration_added"
+  ],
+  "summary": "Composebox 질의를 일반 검색 결과 또는 AI Mode로 보내는 dynamic AIM fulfillment flag와 입력조합 7개를 등록합니다. Omnibox와 NTP Realbox를 별도로 켜며 주 스위치도 필요합니다. 기존 feature를 chrome://flags UI에 노출하는 등록 사건입니다. 라우팅 구현의 최초 도입이나 일반 사용자 활성화를 뜻하지 않습니다. 주 스위치와 해당 surface flag를 함께 켜야 합니다. Main/Realbox는 kOsDesktop | kOsAndroid, Omnibox는 kOsDesktop으로 등록되어 있습니다.",
+  "comparison_question": "Chrome과 삼성 브라우저를 같은 플랫폼·조건으로 비교할 때, 같은 질의와 입력 조합에서 일반 검색과 AI Mode 중 어느 경로로 연결되며, 사용자가 결과를 예측하고 선택할 수 있는가?",
+  "feature_id": "chrome-dynamic-aim-fulfillment",
+  "event_type": "flag_registration",
+  "workstreams": [
+    "pc",
+    "mobile"
+  ],
+  "ai_related": true,
+  "scope": {
+    "main_and_realbox": "kOsDesktop | kOsAndroid",
+    "omnibox": "kOsDesktop",
+    "required": "main flag plus matching per-surface flag",
+    "region": "unknown",
+    "language": "unknown",
+    "account": "unknown",
+    "channel": "source-main",
+    "installed_build_exposure": "unknown",
+    "device_test": "not_run",
+    "korea_availability": "unknown",
+    "korean_language_support": "unknown",
+    "change_kind": "registration_and_variation_exposure_only",
+    "data_transmission": "not_observed",
+    "platform_evidence": "Source registration OS masks only; build/runtime guards can further restrict availability. No installed-platform validation.",
+    "source_os_masks": [
+      "kOsAndroid",
+      "kOsDesktop"
+    ],
+    "os_mask_definition_source": "https://github.com/chromium/chromium/blob/c5715b43091a8976ccb6f69ef54bd7a3e8fb67f5/chrome/browser/about_flags.cc#L439-L440",
+    "main_and_realbox_platforms": [
+      "Windows",
+      "macOS",
+      "Linux",
+      "ChromeOS",
+      "Android"
+    ],
+    "omnibox_platforms": [
+      "Windows",
+      "macOS",
+      "Linux",
+      "ChromeOS"
+    ]
+  },
+  "benchmark_steps": [
+    "같은 플랫폼에서 Chrome과 삼성 브라우저의 해당 과제 지원 여부를 확인한다. 지원되지 않으면 미지원 또는 대체 흐름으로 기록하며 동일 기능이 있다고 가정하지 않는다.",
+    "동일한 테스트 빌드에서 주 스위치와 대상 surface flag의 노출을 확인한다.",
+    "일반 텍스트, 이미지 1개/여러 개, 파일, 탭, Drive 첨부 조합을 동일한 질의로 반복한다.",
+    "선택한 srp_input_mode와 실제 도착 화면을 기록한다.",
+    "같은 플랫폼에서 비교 브라우저의 지원 여부를 먼저 확인하고 동일 과제를 비교한다."
+  ],
+  "metrics": [
+    "일반 검색/AI Mode 라우팅 일치율",
+    "작업 완료까지 조작 수",
+    "결과 도착 시간",
+    "예상과 다른 경로 및 복귀 조작 수"
+  ],
+  "completion_criteria": "7개 srp_input_mode와 지원 surface별 결과를 재현하고 접근 불가 조건을 따로 기록한다.",
+  "srp_input_mode": [
+    "none",
+    "single_image",
+    "multi_image",
+    "any_combination_images_files",
+    "any_combination_images_files_tabs",
+    "any_combination_images_files_drive",
+    "any_combination_all_types"
+  ],
+  "schema_version": 1,
+  "browser": "chrome",
+  "announced_at": null,
+  "effective_at": null,
+  "previous_event_id": null,
+  "sources": [
+    {
+      "url": "https://github.com/chromium/chromium/commit/28338c8345572c16c564bfa8d9689699187b0218",
+      "title": "[Composebox] Add chrome://flags for dynamic AIM fulfillment",
+      "section": "chrome/browser/about_flags.cc; chrome/browser/flag-metadata.json; chrome/browser/flag_descriptions.h",
+      "checked_at": "2026-11-12T23:16:03Z"
+    }
+  ],
+  "delta": "기존에는 raw command-line feature switches/parameters로 설정하던 조건을 chrome://flags의 7개 입력조합 선택지로 설정할 수 있게 합니다. 입력·도구·모델 조건이 AI Mode를 요구하지 않으면 일반 검색 결과로 연결한다는 소스 설명이며 실제 전송 데이터와 설치본 동작은 확인하지 않았습니다.",
+  "source_commit_id": "chrome-source-28338c8345572c16c564bfa8d9689699187b0218",
+  "comparison_targets": [
+    "Chrome",
+    "Samsung Browser"
+  ]
+}

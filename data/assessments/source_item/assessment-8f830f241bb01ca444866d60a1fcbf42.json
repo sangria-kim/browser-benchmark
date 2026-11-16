@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-761c31ff0366148eb2c71ec5: Fixed getComputedStyle() returning stale values for elements in the shadow tree of a display: none host after an inherited property changed on the host. (185079066) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8f830f241bb01ca444866d60a1fcbf42",
+  "subject_kind": "source_item",
+  "subject_id": "src-761c31ff0366148eb2c71ec5",
+  "input_hash": "f542402fefcb016bc686f834e9c387447c05b6764c5c52ee94022b9233137eb1",
+  "input_revision": "semantic-sha256:8ef931df1b323097cf74ae32ee8179f1b91890b6c956889d84729762e9f3fdb7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-761c31ff0366148eb2c71ec5"
+  ]
+}

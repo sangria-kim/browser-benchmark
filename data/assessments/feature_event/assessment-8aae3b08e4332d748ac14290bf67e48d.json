@@ -1,0 +1,27 @@
+{
+  "status": "watch",
+  "reasons": [
+    "이전 누락은 기록으로 보존. 현재 문서의 계획 대상 버전은 확인됐지만 제품 배포·설치본 동작이 확인되지 않아 관찰 유지.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/chrome-svg-textpath-side-list-restored-20261104/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "동일 SVG 텍스트 경로의 side 좌우 변경이 대상 버전에서 예상한 방향·위치로 렌더링되는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 배포 확인 또는 대상 버전 설치본의 SVG 렌더링 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-8aae3b08e4332d748ac14290bf67e48d",
+  "subject_kind": "feature_event",
+  "subject_id": "chrome-svg-textpath-side-list-restored-20261104",
+  "input_hash": "115001c3fd77a1a87e20aaa2320579a2a802ff7db9615fe79821b4eb017a3930",
+  "input_revision": "data/event-revisions/chrome-svg-textpath-side-list-restored-20261104/schema-v1.json:sha256:7566cbb77924874711874f3e2c65b21708a6f5ee5166e0116909f691c3298017",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-03T23:28:09.142492+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-54d4b78c082896fe995a9b0e",
+    "src-legacy-c0d0c61dc280c6a7dd0e95c6"
+  ]
+}

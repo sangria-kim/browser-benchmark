@@ -19,7 +19,7 @@
   "revisit_trigger": "공식 적용 시점·빌드·지원 범위와 변경 전후 비교 조건 확인",
   "assessed_at": "2026-11-07T23:12:38.066677+00:00",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "edge-performance-detector-retirement-plan-164-20261106",
   "feature_id": "edge-performance-detector",
   "event_type": "planned_retirement",
@@ -72,5 +72,15 @@
     "completion": "종료 적용 확인과 동일 조건 전후 관찰이 모두 확보될 때 비교",
     "executed": false
   },
-  "novelty_basis": "공식 Beta archive의 107.0.1418.8(2022-10-13)은 PerformanceDetectorEnabled 신규 정책 도입이다. 158.0.4370.7(2026-11-06)의 종료 계획과 구분한다. 최초 대외 발표 시점을 모든 과거 revision에서 확정한 것은 아니다."
+  "novelty_basis": "공식 Beta archive의 107.0.1418.8(2022-10-13)은 PerformanceDetectorEnabled 신규 정책 도입이다. 158.0.4370.7(2026-11-06)의 종료 계획과 구분한다. 최초 대외 발표 시점을 모든 과거 revision에서 확정한 것은 아니다.",
+  "source_item_ids": [
+    "src-legacy-96c21fcf928206d9efe0b93a",
+    "src-legacy-f4c43ed1a0b1af4b1cc36b4e",
+    "src-legacy-1d4beca0c1f40b6646290ce4"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

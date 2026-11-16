@@ -1,0 +1,30 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Edge 152.0.4191.53(2026-08-27) 공식 Stable 노트에 SmartScreen 탐지 연계 자동 해제·사용자 안내·설정 복구의 controlled rollout이 이미 명시되어 있다. 11/2 글의 156 설명과 단계 차이가 밝혀지지 않아 신규성 검증 대기로 정정한다. 156에서 Scareware 경로가 최초 추가됐다고 단정하지 않는다.",
+    "Original priority reason: 기존 P1 선정은 신규성 검증 누락으로 철회. 기능 비교 가치와 신규 사건 선정은 별개다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-notification-scam-auto-revocation-156/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "탐지 후 반복 알림을 줄이면서 차단 사유 인지와 오탐 복구를 명확하게 제공하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "152와 156 사이의 실제 신규 동작·배포 단계 차이를 명시하는 공식 근거 확보",
+  "schema_version": 2,
+  "assessment_id": "assessment-041dba7ad138b22c2d232eb19e72509d",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-notification-scam-auto-revocation-156",
+  "input_hash": "2a43614097fdb3c8960b1e6e08891160578c1e6430b508fcd6452175626d2663",
+  "input_revision": "data/event-revisions/edge-notification-scam-auto-revocation-156/schema-v1.json:sha256:0abd5bace7ea3038aea548a0728033954f66a025bbecc920fefc8fe851490667",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-04T01:32:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-6d806e2ddf1d4dc78fe5bbd2",
+    "src-legacy-c0e8a71675c8158065dc24dd",
+    "src-legacy-3d66060c094c5556aafefb8c",
+    "src-legacy-59c14e8debd1d23f60a1b5e0"
+  ]
+}

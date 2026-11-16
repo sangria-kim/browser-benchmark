@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-webui-omnibox-hide-aim-url-removal-54315355e9a1",
   "feature_id": "chrome-webui-omnibox-hide-aim-url",
   "browser": "chrome",
@@ -55,5 +55,13 @@
     "evidence": [
       "https://github.com/chromium/chromium/commit/54315355e9a1e3481bbdf7e6fecd8dd32b80885c"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-72c837c32775639788bb2c50"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

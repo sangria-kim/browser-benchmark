@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
   "feature_id": "chrome-bookmark-bar-area-keyboard-navigation",
   "browser": "chrome",
@@ -83,5 +83,14 @@
   "benchmark_readiness": "conditional",
   "revisit_trigger": "해당 revision을 포함하는 설치본에서 flag 노출 확인 후 비활성/활성 비교. 공식 제품 출시 또는 지원 조건 문서가 공개되면 재검토.",
   "assessed_at": "2026-11-03T23:27:14Z",
-  "selection_rule_version": "pm-selection-v2"
+  "selection_rule_version": "pm-selection-v2",
+  "source_item_ids": [
+    "src-legacy-90ea3868c6b67901a97ea179",
+    "src-legacy-7039a2beefa826d775109968"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

@@ -39,36 +39,39 @@ test('resolves explicit source ref and downloads exactly the recorded SHA',async
  await assert.rejects(feed.load(async()=>({ok:false})),/unavailable/);
 });
 
-// Exercise the real renderer with zero events and an incoming Safari event.
+// Exercise the real renderer using the compact selected-card contract.
 function appContext(events){
  const nodes=new Map();
  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',value:'',checked:false,hidden:false,disabled:false,dataset:{},setAttribute(){}});return nodes.get(id);};
- const context=vm.createContext({URL,URLSearchParams,Intl,Date,console,location:{search:'?browser=safari',pathname:'/'},history:{replaceState(){}},document:{getElementById:node,querySelector:node},setInterval(){},setTimeout(){}});
+ const context=vm.createContext({URL,URLSearchParams,Intl,Date,console,ResearchModel:require('../dashboard/research-model.js'),location:{search:'?browser=safari',pathname:'/'},history:{replaceState(){}},document:{getElementById:node,querySelector:node},setInterval(){},setTimeout(){}});
  let app=fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,'');
  vm.runInContext(app,context);
- context.input={events,flags:[],catalog:{events:{}}};
- vm.runInContext('data=input;render();',context);
+ const latest=new Map();for(const e of events){const old=latest.get(e.feature_id);if(!old||e.observed_at>old.observed_at)latest.set(e.feature_id,e);}
+ const row=e=>({key:'feature_event:'+e.event_id,id:e.event_id,subject_kind:'feature_event',title:e.summary,browser:e.browser,platform:e.platform,date:e.observed_at,catalog_id:e.feature_id,current_status:'selected',current_selected:true,detail:'details/example.json'});
+ context.input={selected:{features:[...latest.values()].map(row),flags:[]},history:events.map(row),catalog:{events:{}},counts:{source_item:events.length,feature:latest.size,experiment:0},experiment_counts:{}};
+ node('sort').value='new';node('membership').value='current';
+ vm.runInContext("data=input;browser='safari';render();",context);
  return {nodes,context,node};
 }
-test('Safari is selectable before collection; real events fill its card and results',()=>{
+test('Safari is selectable with zero selected cards; collected and selected counts are distinguished',()=>{
  const empty=appContext([]);
  assert.match(empty.node('browser-cards').innerHTML,/data-browser="safari" aria-pressed="true"/);
- assert.match(empty.node('empty-title').textContent,/Safari 조사 결과/);
- assert.match(empty.node('browser-cards').innerHTML,/수집 대기/);
+ assert.match(empty.node('empty-title').textContent,/Safari.*선정 항목/);
+ assert.match(empty.node('browser-cards').innerHTML,/현재 선정 없음/);
  const filled=appContext([{event_id:'safari-example',feature_id:'safari-example',browser:'safari',summary:'Safari feature',platform:['macOS'],observed_at:'2026-11-16',version:'27',event_type:'improvement'}]);
  assert.equal(filled.node('empty').hidden,true);
- assert.match(filled.node('result-count').textContent,/1개 변경 사건 · 1개 기능/);
+ assert.match(filled.node('result-count').textContent,/1개 항목/);
  assert.match(filled.node('feature-grid').innerHTML,/Safari feature/);
 });
 
-
-test('multiple events of one feature become one latest card; detail retains prior events',()=>{
+test('selected projection renders one current card; detail links preserve earlier event identity',()=>{
  const base={feature_id:'safari-tabs',browser:'safari',platform:['macOS'],version:'27',event_type:'improvement'};
- const state=appContext([{...base,event_id:'old',observed_at:'2026-11-15',summary:'Earlier version'}, {...base,event_id:'new',observed_at:'2026-11-16',summary:'Latest version'}]);
+ const old={...base,event_id:'old',observed_at:'2026-11-15',summary:'Earlier version'},latest={...base,event_id:'new',observed_at:'2026-11-16',summary:'Latest version'};
+ const state=appContext([old,latest]);
  assert.equal((state.node('feature-grid').innerHTML.match(/class="feature-card"/g)||[]).length,1);
  assert.match(state.node('feature-grid').innerHTML,/Latest version/);
- assert.match(state.node('result-count').textContent,/2개 변경 사건 · 1개 기능/);
- assert.match(vm.runInContext('eventDetail(data.events[1])',state.context),/data-history="old"/);
+ state.context.detail={row:state.context.input.selected.features[0],fact:latest,assessments:[],selection_history:[],current_owner:null,related:[state.context.input.history[0]],evidence:[],revisions:[],reports:[],legacy_flags:[]};
+ assert.match(vm.runInContext('detailHTML(detail)',state.context),/data-detail="feature_event:old"/);
 });
 
 test('refresh keeps verified data on errors and rejects older snapshots',async()=>{
@@ -85,14 +88,14 @@ test('refresh keeps verified data on errors and rejects older snapshots',async()
  response={sha:'b'.repeat(40),feed:sample({'safari-example':{status:'done',url:result}})};
  await state.node('sync-refresh').onclick();
  assert.equal(state.node('sync-state').dataset.state,'live');
- assert.equal(vm.runInContext("wt(data.events[0]).status",state.context),'done');
+ assert.equal(vm.runInContext("wt(data.selected.features[0]).status",state.context),'done');
  response=new Error('network failure');
  await state.node('sync-refresh').onclick();
  assert.match(state.node('sync-state').textContent,/갱신 지연/);
- assert.equal(vm.runInContext("wt(data.events[0]).status",state.context),'done');
+ assert.equal(vm.runInContext("wt(data.selected.features[0]).status",state.context),'done');
  response={sha:'c'.repeat(40),feed:{...sample({'safari-example':{status:'todo'}}),checked_at:'2026-11-15'}};
  await state.node('sync-refresh').onclick();
- assert.equal(vm.runInContext("wt(data.events[0]).status",state.context),'done');
+ assert.equal(vm.runInContext("wt(data.selected.features[0]).status",state.context),'done');
  assert.equal(state.node('sync-refresh').disabled,false);
 });
 

@@ -1,0 +1,288 @@
+{
+  "source_item": [
+    {
+      "schema_version": 2,
+      "source_item_id": "src-test",
+      "source_id": "chrome-releases",
+      "browser": "chrome",
+      "item_key": "release/test#fixture",
+      "item_type": "feature",
+      "title": "Contract fixture",
+      "summary": "Synthetic test evidence.",
+      "channel": "stable",
+      "platform": [
+        "Windows"
+      ],
+      "version": null,
+      "published_at": "2026-11-16",
+      "observed_at": "2026-11-16T00:00:00Z",
+      "evidence": {
+        "url": "https://chromereleases.googleblog.com/",
+        "section": "fixture",
+        "source_revision": null,
+        "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+        "observed_at": "2026-11-16T00:00:00Z",
+        "excerpt": "Synthetic test evidence."
+      },
+      "record_status": "parsed",
+      "origin": "baseline",
+      "lifecycle": "active",
+      "revisions": [
+        {
+          "revision_id": "rev-test",
+          "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "source_revision": null,
+          "title": "Contract fixture",
+          "summary": "Synthetic test evidence.",
+          "evidence": {
+            "url": "https://chromereleases.googleblog.com/",
+            "section": "fixture",
+            "source_revision": null,
+            "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+            "observed_at": "2026-11-16T00:00:00Z",
+            "excerpt": "Synthetic test evidence."
+          },
+          "published_at": "2026-11-16",
+          "observed_at": "2026-11-16T00:00:00Z"
+        }
+      ],
+      "experiment_kind": null,
+      "source_location": null,
+      "source_symbol": null
+    }
+  ],
+  "feature": [
+    {
+      "schema_version": 2,
+      "feature_id": "chrome-test",
+      "browser": "chrome",
+      "canonical_key": "test",
+      "title": "Contract fixture",
+      "aliases": [],
+      "source_item_ids": [
+        "src-test"
+      ],
+      "event_ids": [
+        "event-test"
+      ],
+      "lifecycle": "active",
+      "legacy": false
+    }
+  ],
+  "feature_event": [
+    {
+      "schema_version": 2,
+      "event_id": "event-test",
+      "feature_id": "chrome-test",
+      "browser": "chrome",
+      "event_type": "introduced",
+      "version": null,
+      "channel": "stable",
+      "platform": [
+        "Windows"
+      ],
+      "observed_at": "2026-11-16T00:00:00Z",
+      "announced_at": "2026-11-16",
+      "effective_at": null,
+      "sources": [
+        {
+          "url": "https://chromereleases.googleblog.com/",
+          "section": "fixture"
+        }
+      ],
+      "source_item_ids": [
+        "src-test"
+      ],
+      "summary": "Synthetic event",
+      "before": null,
+      "after": {
+        "state": "documented"
+      },
+      "verification_status": "official_document",
+      "origin": "baseline",
+      "correction_of": null,
+      "revision": 1
+    }
+  ],
+  "experiment": [
+    {
+      "schema_version": 2,
+      "experiment_id": "chrome-flag-entry-test",
+      "experiment_kind": "flag_entry",
+      "canonical_key": "flag_entry:test",
+      "symbol": null,
+      "flag_id": "test",
+      "title": "Test flag",
+      "description": null,
+      "source_item_ids": [
+        "src-test"
+      ],
+      "event_ids": [
+        "exp-event-test"
+      ],
+      "source_locations": [
+        {
+          "path": "chrome/browser/about_flags.cc",
+          "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "line_start": 1,
+          "line_end": 2,
+          "content_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+        }
+      ],
+      "build_conditions": [
+        "BUILDFLAG(IS_WIN)"
+      ],
+      "platform": [
+        "Windows"
+      ],
+      "default_state": null,
+      "expiry_milestone": null,
+      "never_expire": null,
+      "ui_exposure": "registered",
+      "product_channel": null,
+      "product_revision": null,
+      "installed_availability": "unknown",
+      "verification_status": "source_only",
+      "lifecycle": "active",
+      "relationships": [],
+      "aliases": [],
+      "legacy": false
+    }
+  ],
+  "experiment_event": [
+    {
+      "schema_version": 2,
+      "event_id": "exp-event-test",
+      "experiment_id": "chrome-flag-entry-test",
+      "experiment_kind": "flag_entry",
+      "event_type": "baseline",
+      "source_item_ids": [
+        "src-test"
+      ],
+      "source_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "previous_source_revision": null,
+      "observed_at": "2026-11-16T00:00:00Z",
+      "effective_at": null,
+      "before": null,
+      "after": {
+        "registered": true
+      },
+      "summary": "Synthetic flag baseline",
+      "verification_status": "source_only",
+      "origin": "baseline",
+      "correction_of": null,
+      "revision": 1
+    }
+  ],
+  "assessment": [
+    {
+      "schema_version": 2,
+      "assessment_id": "assessment-test",
+      "subject_kind": "feature_event",
+      "subject_id": "event-test",
+      "input_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "input_revision": "1",
+      "rule_version": "pm-fixture-v1",
+      "evaluator": "deterministic",
+      "model_id": null,
+      "prompt_version": null,
+      "status": "selected",
+      "reasons": [
+        "Synthetic user-impact evidence."
+      ],
+      "priority": "P2",
+      "comparison_question": "Does the test workflow change?",
+      "benchmark_readiness": "conditional",
+      "revisit_trigger": null,
+      "assessed_at": "2026-11-16T00:00:00Z",
+      "supersedes": null,
+      "evidence_source_item_ids": [
+        "src-test"
+      ]
+    }
+  ],
+  "selected": [
+    {
+      "schema_version": 2,
+      "selection_kind": "features",
+      "as_of": "2026-11-16T00:00:00Z",
+      "input_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "rule_version": "pm-fixture-v1",
+      "current": [
+        {
+          "subject_kind": "feature_event",
+          "subject_id": "event-test",
+          "assessment_id": "assessment-test",
+          "catalog_id": "chrome-test",
+          "event_ids": [
+            "event-test"
+          ],
+          "experiment_kind": null
+        }
+      ],
+      "history": [
+        {
+          "change_id": "selection-test",
+          "subject_kind": "feature_event",
+          "subject_id": "event-test",
+          "assessment_id": "assessment-test",
+          "previous_assessment_id": null,
+          "action": "selected",
+          "effective_at": "2026-11-16T00:00:00Z",
+          "event_ids": [
+            "event-test"
+          ],
+          "experiment_kind": null
+        }
+      ]
+    }
+  ],
+  "report": [
+    {
+      "schema_version": 2,
+      "report_id": "daily-2026-11-16",
+      "date": "2026-11-16",
+      "timezone": "Asia/Seoul",
+      "cutoff": "2026-11-16T00:00:00Z",
+      "revision": 1,
+      "input_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "rule_version": "pm-fixture-v1",
+      "supersedes_revision": null,
+      "markdown_path": "reports/2026-11-16.md",
+      "items": [
+        {
+          "subject_kind": "feature_event",
+          "subject_id": "event-test",
+          "assessment_id": "assessment-test",
+          "event_ids": [
+            "event-test"
+          ],
+          "change_id": "selection-test",
+          "timing": "backfill",
+          "announced_at": "2026-11-16",
+          "observed_at": "2026-11-16T00:00:00Z",
+          "source_urls": [
+            "https://chromereleases.googleblog.com/"
+          ]
+        }
+      ]
+    }
+  ],
+  "export_manifest": [
+    {
+      "contract_version": "1.0",
+      "source_repository": "https://github.com/example/browser-benchmark",
+      "source_ref": "main",
+      "source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "files": [
+        {
+          "path": "data/events/event-test.json",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+          "bytes": 123,
+          "data_kind": "feature-events"
+        }
+      ],
+      "link_policy": "preserve-relative-allowlisted-or-immutable-source-url"
+    }
+  ]
+}

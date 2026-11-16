@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
+    "Original priority reason: 반복 조작·작업 전환 또는 확장 호환성 비교 가치.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-android-open-in-app-8-3-stable-20261105/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "브라우저 탐색 맥락을 잃지 않고 앱 기능으로 전환할 수 있는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
+  "schema_version": 2,
+  "assessment_id": "assessment-e46a84dac49dc99741dd9dc54cb90b4a",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-android-open-in-app-8-3-stable-20261105",
+  "input_hash": "ac8646c4aaa8734e8cfc4e53cd7c96a02e782750bc856e8ceacd367d3a3a13ba",
+  "input_revision": "data/event-revisions/vivaldi-android-open-in-app-8-3-stable-20261105/schema-v1.json:sha256:d04f19f19ee666cc1ad128c0118bec729853fed1e50bed3f5d5321f06d9cb0b5",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-2374a1644bff2047ccee7eb4",
+    "src-legacy-a8e8c58a358ec6803dbdd13b",
+    "src-legacy-ad9e784ec2b3bdc05a3abc3e"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-19c607868c19606d1876417d: Fixed a GPU hang when a render pass issued repeated drawIndirect() or drawIndexedIndirect() calls using the same buffer. (185057290) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3bb10086793de99912ed415667c246ec",
+  "subject_kind": "source_item",
+  "subject_id": "src-19c607868c19606d1876417d",
+  "input_hash": "626081ec3ff08074ec6946f723f5002136fef58467ec40fd91f36c642f0d2589",
+  "input_revision": "semantic-sha256:e9b11b3923d0d2863b7e64911a41b3ddd03e70bc76cff16d74403bc23d4f47cb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-19c607868c19606d1876417d"
+  ]
+}

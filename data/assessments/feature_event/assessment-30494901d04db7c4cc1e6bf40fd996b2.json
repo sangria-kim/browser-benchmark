@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "영상과 페이지를 오갈 때 기존 창 모드를 유지하는 구체적인 작업 복구 차이가 있다.",
+    "Original priority reason: 영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/vivaldi-browser-fullscreen-retention-fix-stable-83-20261110/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저와 비교할 때, 영상 전체화면만 끝냈을 때 원래 브라우저 창의 전체화면 상태와 작업 맥락을 유지하는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "동일 OS와 영상 플레이어에서 실제 설치 버전 및 키와 버튼별 재현",
+  "schema_version": 2,
+  "assessment_id": "assessment-30494901d04db7c4cc1e6bf40fd996b2",
+  "subject_kind": "feature_event",
+  "subject_id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+  "input_hash": "dd4bc5a593325d7a4046179efe44c32a6ae9c50974e71f034fc8a7b97a484957",
+  "input_revision": "data/event-revisions/vivaldi-browser-fullscreen-retention-fix-stable-83-20261110/schema-v1.json:sha256:6bf4a56777a04a4b1899b019bda6eade4a0f24a1737368258428cb6baa6fc8e1",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-0260e9859e118ecfbe0b4de6",
+    "src-legacy-6b9751a12cd50adbc61811d4"
+  ]
+}

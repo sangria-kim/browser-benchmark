@@ -1,0 +1,27 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "문서 항목 누락은 확인했으나 명시적 정책 철회·출시 취소·일정 변경의 공식 설명이 없어 검증 대기로 보존.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-webview2-filesystem-document-omission-20261103/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "공식 상태가 확정되면 Windows 웹 파일 접근 동작과 호환성 영향을 비교할 수 있는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "공식 명시적 변경 설명 또는 문서 복구",
+  "schema_version": 2,
+  "assessment_id": "assessment-6e33cc07bc0764fd56ba92e860cb7fc1",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-webview2-filesystem-document-omission-20261103",
+  "input_hash": "09835188eae53fbbe6b124eed2b1168b9c53cca177c669d3f2cc70ae41b47d64",
+  "input_revision": "data/event-revisions/edge-webview2-filesystem-document-omission-20261103/schema-v1.json:sha256:5929f600ddf63d64b8dbc9a9ca613b34c5b1564a7a44d5159125955dc3b56305",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-02T23:31:37Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-3bd7ea1b5e4fa09d197f5c84",
+    "src-legacy-d0fd8f67488e478d551f4a00"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "status": "selected",
+  "reasons": [
+    "영상 재생 성능 회귀의 구체적인 발생 조건과 사용자 복구 경로가 공식 확인되어 비교할 수 있다.",
+    "Original priority reason: 영향 범위는 제한적이지만 명확한 작업 또는 복구 차이가 있다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/whale-angle-d3d9-removal-recovery-notice-20261112/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "삼성 브라우저와 비교할 때, 구버전 그래픽 설정이 사라질 때 기본값 복구, 안내, 영상 재생 자원 사용은 어떻게 달라지는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "정확한 영향 빌드, 기존 설정이 남은 안전한 시험 환경 및 실기 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-15dbe75bc225e11abb4110ce64f972c4",
+  "subject_kind": "feature_event",
+  "subject_id": "whale-angle-d3d9-removal-recovery-notice-20261112",
+  "input_hash": "3b127e2cb59009247abdfb060cd65ae312a445383eda907ce0051e13b6dabf41",
+  "input_revision": "data/event-revisions/whale-angle-d3d9-removal-recovery-notice-20261112/schema-v1.json:sha256:9dbd893b25242beb8917b62145e1a7afa00ca18184fe79380165e5323dca3b9b",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-665f2c3cd1ff216e74deb132",
+    "src-legacy-25e87c9f62cf7e027553f78b"
+  ]
+}

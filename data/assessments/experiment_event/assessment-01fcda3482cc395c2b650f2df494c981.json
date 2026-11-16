@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0aeb6934b42d8dc96fe6da5d: Source baseline: aim-3p-entrypoint A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-01fcda3482cc395c2b650f2df494c981",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0aeb6934b42d8dc96fe6da5d",
+  "input_hash": "6b4ec3b6e76c3f2f55b7122826df814b78769e1e06d919cd9d5c7b533d5aa388",
+  "input_revision": "semantic-sha256:7710b4250cb8a35ecaf912b45a14659aa799be82df0bbdf72a18fecae84fe7e4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8e98da2c3829b8cdcd7c2070",
+    "src-legacy-c3360ce64c4483491a24a4ce"
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "browser": "whale",
+  "version": "5.41.429.3",
+  "channel": "stable_and_beta",
+  "platform": [],
+  "workstreams": [
+    "pc"
+  ],
+  "ai_related": false,
+  "observed_at": "2026-11-06T22:54:23Z",
+  "announced_at": "2026-11-06",
+  "effective_at": "2026-11-06",
+  "summary": "첫 로그인 기존 데이터 이어쓰기",
+  "verification_status": "official_bodies_verified_no_device_test",
+  "selection_status": "selected",
+  "selection_reason": "기존 Beta 사건의 Stable 포함 범위가 한국어·영어 공식 본문에서 일치하여 확인됨. 기능 최초 발명이 아닌 단계 변경.",
+  "priority": "P1",
+  "priority_reason": "첫 계정 로그인에서 비밀번호·북마크·설정의 귀속과 작업 연속성을 다루므로 보존·혼입·취소를 우선 검증할 필요가 있음.",
+  "comparison_question": "로그인 전 환경을 계정에 연결할 때 데이터 보존·선택 명확성·계정 혼입 방지가 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "5.41.429.3 Stable 설치본의 기능 노출·동작 및 OS·계정·한국 제공 조건 확인",
+  "assessed_at": "2026-11-06T22:54:23Z",
+  "selection_rule_version": "pm-selection-v2",
+  "schema_version": 1,
+  "event_id": "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106",
+  "feature_id": "whale-sign-in-continuity",
+  "event_type": "rollout_expansion",
+  "source_revision": null,
+  "sources": [
+    "https://notice.naver.com/notices/whalehomepage/35247",
+    "https://notice.naver.com/notices/whalehomepage/35248",
+    "https://forum.whale.naver.com/topic/63213/"
+  ],
+  "delta": "기존 .2 Beta 기능의 소개는 반복이지만 .3의 공식 채널이 Stable/Beta로 일치해 정식 채널 포함을 확인. 실제 전체 설치본 활성화는 미검증.",
+  "previous_event_id": "whale-desktop-sign-in-continuity-5-41-429-2-20261102",
+  "scope": {
+    "product": "Whale Desktop",
+    "source_item_numbers": [
+      5
+    ],
+    "release_stage": "Stable/Beta",
+    "registration_date": "2026-11-03",
+    "body_release_date": "2026-11-06",
+    "actual_device_validation": "미실행",
+    "korea": {
+      "availability": "미확인",
+      "korean_language": "미확인",
+      "conditions": "Desktop 5.41.429.3 Stable/Beta 공식 표기. 기능별 국가·한국어·계정·기기 조건 미확인. 설치본 미실행.",
+      "checked_at": "2026-11-06T22:54:23Z",
+      "effective_at": null,
+      "real_test": "미실행"
+    },
+    "platform_basis": "Desktop 공지. Windows 명시 수정 외 OS별 적용은 미공개.",
+    "effective_at_basis": "공식 본문 배포 날짜이며 전체 설치본 배포 완료 아님.",
+    "benchmark_plan": {
+      "procedure": "비민감 테스트 북마크·비밀번호·설정을 만든 새 프로필에서 첫 로그인 및 이어쓰기를 수행한다.",
+      "metrics": "데이터 보존·중복·누락, 선택 의미 이해, 취소 시 상태",
+      "execution": "미실행",
+      "comparison_limit": "삼성 브라우저의 동등 기능·차이는 미확인. 같은 OS·조건에서만 비교."
+    }
+  }
+}

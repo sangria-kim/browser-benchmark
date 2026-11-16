@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-fe60b2e30dd565d15e4a28e3: Source baseline: MAC address randomization A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7f952036f225a233d136b172cfbde50b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-fe60b2e30dd565d15e4a28e3",
+  "input_hash": "36cfe8c8a7f9caf9bc149d308f55aca367d701096adb8d9aa9217494f5af9ee0",
+  "input_revision": "semantic-sha256:8335c352dfbe1253fc8502c2c0e2f153dae42713edd9fc5278619c9baaf45051",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-c00bdbb6a6b205a70c16b8a7"
+  ]
+}

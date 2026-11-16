@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-54278f73a28f777fb0d576cc: Source baseline: Android Keyboard Shortcut Open File A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8953c1047b997ced76f9f4dc47ec7f81",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-54278f73a28f777fb0d576cc",
+  "input_hash": "c90b4874830f2daa9b459063d81b3870cbc43bc0ff9ac239b956421c5b3b08e1",
+  "input_revision": "semantic-sha256:a7406f650173489e44a27d5e4dfc7b6f0a8b434ae49683267f05ef142f79cc70",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-a61e0521075e7eb6957d3f30",
+    "src-legacy-77afa6a64cc70691a515960d"
+  ]
+}

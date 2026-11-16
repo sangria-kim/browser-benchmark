@@ -1,0 +1,28 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "본문 확보로 URL 매칭·private-network 예외 동작 확인. 구 BrowsingWithCopilot 정책 대비 실질 변화·마이그레이션 근거는 미확인으로 유지.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-copilot-browser-use-policy-transition-158-20261106/schema-v1.json"
+  ],
+  "priority": null,
+  "comparison_question": "동일 URL 패턴을 적용했을 때 외부/인트라넷 접근 경계와 관리자 예상이 일치하는가?",
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "구 정책과 과거 공식 기능 이력 비교, 적용 빌드·계정·한국 제공 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-e3731072d7a27af97c74c5f35f887482",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-copilot-browser-use-policy-transition-158-20261106",
+  "input_hash": "a177ce62d4665626dcdceedee1c7e643e932d89d9c1776fac5c1bc58d37c425f",
+  "input_revision": "data/event-revisions/edge-copilot-browser-use-policy-transition-158-20261106/schema-v1.json:sha256:7dec4e268b57ee8f9145675e8fc2e4a9962fc46751f99a50e08868aa256fdb01",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-07T23:12:38.066677+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-b4dad5336409fdc2392dd563",
+    "src-legacy-b74827437f4c8a5074dc2503",
+    "src-legacy-e777ae0e216de65635a030ed"
+  ]
+}

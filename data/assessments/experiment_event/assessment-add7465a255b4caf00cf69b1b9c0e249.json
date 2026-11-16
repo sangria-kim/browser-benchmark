@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-68b8fc535808992fe018aa20: Source baseline: Device model client hint for Desktop Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-add7465a255b4caf00cf69b1b9c0e249",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-68b8fc535808992fe018aa20",
+  "input_hash": "462a0b4726a3d5a39f2be23f1e85bb8a9af387cc06fe0b0f14e690e4efe58141",
+  "input_revision": "semantic-sha256:2afdcede553efbf2e8640ff9956a90c92a58b58bd53a5853c114d8607342cd80",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-7ed33491cc28cf1de4a4a793",
+    "src-legacy-bc9c339059185b0706fd2003"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-87345006142f9c8d05ca8d46: Source baseline: autofill-enable-wallet-reminder-notice-public-pass A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-42bba322f7f20d63a5f9cf4700c94c88",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-87345006142f9c8d05ca8d46",
+  "input_hash": "f434fc7912c6df12ede5e54593c00233016c698ca93cb01df4ef3b59ed245ae1",
+  "input_revision": "semantic-sha256:295a483f5434c97a4eb3a273e2927903ee385804ba8d09534814f3743cb5f16b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-16T03:05:09Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-69900e411a2488079379c7b5",
+    "src-legacy-4661af1391d42c85ee38776c"
+  ]
+}

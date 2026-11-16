@@ -16,7 +16,7 @@
   "revisit_trigger": "Eligible desktop-Android installed build exposes these flags; verify regional/account AI availability before behavioral comparison.",
   "assessed_at": "2026-10-30T22:49:00Z",
   "selection_rule_version": "pm-selection-v2",
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "chrome-composebox-persistent-aim-button-with-x-modified-f117b891e09e",
   "feature_id": "chrome-composebox-persistent-aim-button-with-x",
   "browser": "chrome",
@@ -62,5 +62,14 @@
     "evidence": [
       "https://chromium.googlesource.com/chromium/src/+/f117b891e09e628d40532e484ff6e64548d59546^!"
     ]
-  }
+  },
+  "source_item_ids": [
+    "src-legacy-dac96d457560e9d24a28244a",
+    "src-legacy-51512e63b11511206703a294"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

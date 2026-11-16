@@ -1,0 +1,30 @@
+{
+  "status": "selected",
+  "reasons": [
+    "기존 세로 탭과 별개로 창 단위 레이아웃 상태 저장 범위가 명시됨.",
+    "Original priority reason: 다중 창의 작업 배치를 유지하는 반복 조작 감소 후보.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/whale-desktop-vertical-tab-window-width-5-41-429-2-20261102/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "크기가 다른 여러 창을 번갈아 쓰면서 탭 목록을 다시 맞추는 조작이 줄어드는가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "여러 창의 너비 독립성 및 재시작 보존 범위 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-ef7fa48cac1c3cf55ec889977eea5809",
+  "subject_kind": "feature_event",
+  "subject_id": "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102",
+  "input_hash": "5792f17ba45772968f2b2f3f5862317fae6e72842de132d81de32d84b984c4a8",
+  "input_revision": "data/event-revisions/whale-desktop-vertical-tab-window-width-5-41-429-2-20261102/schema-v1.json:sha256:3738a7686e5978200f2446b75393078030457d665d96ab853a7bdcd0023ff23d",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-03T23:30:00Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-e32162b974f40f62baf3f009",
+    "src-legacy-0cde2d9e9cbe8bf0297b78a4",
+    "src-legacy-91382eceb09ed454cf300a46",
+    "src-legacy-a6578bb6241688378dca1ed0"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "brave-search-url-cloaking-announcement-20261111",
   "feature_id": "brave-search-result-url-cloaking",
   "browser": "brave",
@@ -46,5 +46,13 @@
   "benchmark_readiness": "conditional",
   "revisit_trigger": "Official rollout or reproducible test environment",
   "assessed_at": "2026-11-11T22:39:34.161576+00:00",
-  "selection_rule_version": "pm-selection-v2"
+  "selection_rule_version": "pm-selection-v2",
+  "source_item_ids": [
+    "src-legacy-643be0bd75dc563e65ee64f9"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

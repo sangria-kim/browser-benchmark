@@ -1,0 +1,32 @@
+{
+  "status": "selected",
+  "reasons": [
+    "Mobile Beta 10/29 선행, Desktop Stable 149(6/4) controlled rollout 선행 및 151(7/31) 반복 안내를 본문으로 대조했다. 새 사건은 11/9 Mobile Stable 확대이며 모든 소비자 계정 지원으로 일반화하지 않는다.",
+    "Original priority reason: 업무 계정 자격증명의 기기 간 동기화는 인증 경계와 기존 로그인 연속성에 영향을 준다. 모바일 Stable 확대에 맞춰 계정 분리·정책 제한·기존 자격증명 보존을 우선 검토한다.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/edge-entra-passkey-sync-mobile-stable-157-20261109/schema-v1.json"
+  ],
+  "priority": "P1",
+  "comparison_question": "삼성 브라우저의 업무 계정 패스키는 어떤 기기·계정·저장소 경계에서 이용 가능하며 로그아웃·관리 정책 변경 뒤 기존 로그인의 연속성은 어떻게 달라지는가? 공개 근거와 시험으로 확인한다.",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "지원 범위와 실제 노출 환경 확보 후 동일 조건에서 비교",
+  "schema_version": 2,
+  "assessment_id": "assessment-320ffde106a3347bebd38777fba01bd7",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-entra-passkey-sync-mobile-stable-157-20261109",
+  "input_hash": "399d86888e71c2238049a4f5cd523a8fc946f952cfad959956cb63eeddf5bacc",
+  "input_revision": "data/event-revisions/edge-entra-passkey-sync-mobile-stable-157-20261109/schema-v1.json:sha256:d18a4c01afebc0ae2fa06dbd312b8de83d9783b24dda1eed6fd329dc1a6af39a",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-09T22:50:46.214286+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-7d6d30a7b5f27ab899b4f3b5",
+    "src-legacy-b9cee42399702337d5efb5c2",
+    "src-legacy-746cb46557fcf756127597fe",
+    "src-legacy-f4fa192bbd2b444876a1a929",
+    "src-legacy-12a4b1e64ddc5178d730b104",
+    "src-legacy-2be0e95349591cab7c1d859b"
+  ]
+}

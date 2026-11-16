@@ -1,5 +1,5 @@
 {
-  "schema_version": 1,
+  "schema_version": 2,
   "event_id": "firefox-protocol-handler-never-allow-stable-160-20261110",
   "feature_id": "firefox-protocol-handler-never-allow",
   "browser": "firefox",
@@ -68,5 +68,14 @@
     "completion": "각 흐름 3회 반복, 성공·실패와 제한을 근거 화면으로 설명. 미실행.",
     "executed": false
   },
-  "user_impact": "웹메일 등 링크 처리기 등록을 반복 요청하는 사이트를 지속 차단할 수 있다. 사용자는 매번 같은 요청을 닫지 않아도 되고 설정에서 차단 결정을 되돌릴 수 있다."
+  "user_impact": "웹메일 등 링크 처리기 등록을 반복 요청하는 사이트를 지속 차단할 수 있다. 사용자는 매번 같은 요청을 닫지 않아도 되고 설정에서 차단 결정을 되돌릴 수 있다.",
+  "source_item_ids": [
+    "src-legacy-5810cd4e3493e39d02fde042",
+    "src-legacy-9ca37e3ab97f8218f673d139"
+  ],
+  "before": null,
+  "after": null,
+  "origin": "legacy",
+  "correction_of": null,
+  "revision": 1
 }

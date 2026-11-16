@@ -1,0 +1,250 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "chrome-scope-config",
+  "type": "object",
+  "properties": {
+    "contract_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "browser": {
+      "type": "string",
+      "minLength": 1
+    },
+    "repository_url": {
+      "type": "string",
+      "minLength": 1
+    },
+    "baseline_ref": {
+      "type": "string",
+      "minLength": 1
+    },
+    "pin_revision_before_enumeration": {
+      "const": true
+    },
+    "experiment_kinds": {
+      "type": "array",
+      "items": {
+        "enum": [
+          "flag_entry",
+          "base_feature",
+          "command_switch"
+        ]
+      },
+      "minItems": 3,
+      "uniqueItems": true
+    },
+    "baseline": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "historical_backfill_since": {
+          "type": "string",
+          "format": "date"
+        },
+        "historical_backfill_until": {
+          "type": "string",
+          "minLength": 1
+        },
+        "legacy_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "new_definition_history": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "mode",
+        "historical_backfill_since",
+        "historical_backfill_until",
+        "legacy_scope",
+        "new_definition_history"
+      ],
+      "additionalProperties": false
+    },
+    "required_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "optional_paths": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 0,
+      "uniqueItems": true
+    },
+    "discovery": {
+      "type": "object",
+      "properties": {
+        "roots": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "extensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "exclude_path_components": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "base_feature_markers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "command_switch_markers": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "definition_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_policy": {
+          "type": "string",
+          "minLength": 1
+        },
+        "related_include_policy": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "roots",
+        "extensions",
+        "exclude_path_components",
+        "base_feature_markers",
+        "command_switch_markers",
+        "definition_policy",
+        "manifest_policy",
+        "related_include_policy"
+      ],
+      "additionalProperties": false
+    },
+    "channel_mapping": {
+      "type": "object",
+      "properties": {
+        "default_channel": {
+          "type": "null"
+        },
+        "require_product_revision_evidence": {
+          "const": true
+        }
+      },
+      "required": [
+        "default_channel",
+        "require_product_revision_evidence"
+      ],
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "properties": {
+        "exclude_metadata_fields": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "minItems": 0,
+          "uniqueItems": true
+        },
+        "publish": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "exclude_metadata_fields",
+        "publish"
+      ],
+      "additionalProperties": false
+    },
+    "failure_policy": {
+      "type": "string",
+      "minLength": 1
+    },
+    "input_modes": {
+      "type": "object",
+      "properties": {
+        "local_checkout": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gitiles": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "local_checkout",
+        "gitiles"
+      ],
+      "additionalProperties": false
+    },
+    "coverage_basis": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "required": [
+    "contract_version",
+    "source_id",
+    "browser",
+    "repository_url",
+    "baseline_ref",
+    "pin_revision_before_enumeration",
+    "experiment_kinds",
+    "baseline",
+    "required_paths",
+    "optional_paths",
+    "discovery",
+    "channel_mapping",
+    "privacy",
+    "failure_policy",
+    "input_modes",
+    "coverage_basis"
+  ],
+  "additionalProperties": false
+}

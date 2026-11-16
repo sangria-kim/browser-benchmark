@@ -1,0 +1,29 @@
+{
+  "status": "selected",
+  "reasons": [
+    "이전 .2 전체 색인과 직전 Stable 본문에 없는 주소창 질의 직접 전달 동작.",
+    "Original priority reason: AI 질문 입력의 화면 전환·재입력 감소를 비교 가능.",
+    "Imported legacy judgment; no new PM evaluation. Provenance: data/event-revisions/whale-desktop-address-bar-ai-query-5-41-429-3-20261106/schema-v1.json"
+  ],
+  "priority": "P2",
+  "comparison_question": "같은 질문을 주소창과 AI 사이트에서 보낼 때 조작 수·질의 보존·전송 인지가 어떻게 다른가?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "검색 제공자 설정·로그인 조건·설치본 노출 확인",
+  "schema_version": 2,
+  "assessment_id": "assessment-00c9e89b9064b9e7ac9fcd1bbeed9160",
+  "subject_kind": "feature_event",
+  "subject_id": "whale-desktop-address-bar-ai-query-5-41-429-3-20261106",
+  "input_hash": "1d60aa1aecfc004e63dfd3f649738b58dd32f23cb5e4182ee9a054eb7fb56ccc",
+  "input_revision": "data/event-revisions/whale-desktop-address-bar-ai-query-5-41-429-3-20261106/schema-v1.json:sha256:db167737c6dab534d5df57f448e2f1959df51b890de76dd3b6cd50156cbeb960",
+  "rule_version": "pm-selection-v2",
+  "evaluator": "legacy",
+  "model_id": null,
+  "prompt_version": null,
+  "assessed_at": "2026-11-06T22:54:23Z",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-legacy-1882868c54ebc6947a57d50e",
+    "src-legacy-9a7382f8fe4af4344de36aa2",
+    "src-legacy-cb94d68193cb33d5e476f862"
+  ]
+}
