@@ -79,6 +79,88 @@ class CollectorsTest(unittest.TestCase):
         self.assertEqual(records, same)
         self.assertEqual(8, again['duplicate'])
 
+    def test_chrome_releases_reads_inert_post_templates_once(self):
+        s = source('chrome-releases')
+        url = s['url'] + '2026/11/chromeos.html'
+        future = s['url'] + '2026/11/future.html'
+        fragment = '''
+            <h2>ChromeOS changes</h2>
+            <p id="rollout">Stable rollout for ChromeOS &amp; ChromeOS Flex.</p>
+            <ul><li id="fix">Fixed a startup crash.</li></ul>
+            <p>Example Signoff<br><a href="/team">Google ChromeOS</a></p>
+            <span itemprop="author"><p>Author metadata</p></span>
+            <nav><p>Template navigation</p></nav>
+        '''
+        html = '''
+            <script type="text/template"><p>Outside the post body</p></script>
+            <div class="post-header">
+                <span class="publishdate" itemprop="datePublished">Friday, November 13, 2026</span>
+            </div>
+            <div class="post-body entry-content">
+                <script type="text/template"><p>Outside the post content</p></script>
+                <div class="post-content">
+                    <script type="text/template">{fragment}</script>
+                    <noscript>{fragment}</noscript>
+                    <script><p>Inline script</p></script>
+                    <script type="text/javascript"><p>Executable script</p></script>
+                    <script type="text/template" src="example"><p>External script</p></script>
+                    <nav><script type="text/template"><p>Navigation template</p></script></nav>
+                    <p id="normal">Updated release notes.</p>
+                </div>
+            </div>
+        '''.format(fragment=fragment)
+        state, records = self.collect(s, {
+            s['url']: self.index(s, [url, future]),
+            url: self.release(url, html),
+            future: self.release(future, html.replace('November 13', 'November 20')),
+        })
+        self.assertEqual('partial', state['status'])
+        self.assertEqual(4, state['discovered'])
+        self.assertEqual(1, state['unparsed'])
+        self.assertEqual([future], state['excluded_by_date'])
+        self.assertEqual({'2026-11-13'}, {r['published_at'] for r in records})
+        self.assertEqual({
+            'rollout': 'Stable rollout for ChromeOS & ChromeOS Flex.',
+            'fix': 'Fixed a startup crash.',
+            'normal': 'Updated release notes.',
+            'chrome-post-signoff': None,
+        }, {r['item_key']: r['title'] for r in records})
+
+        s = source('vivaldi-desktop')
+        url = 'https://vivaldi.com/blog/release/'
+        _, records = self.collect(s, {s['url']: self.index(s, [url]), url: self.release(url, html)})
+        self.assertEqual(['normal'], [r['item_key'] for r in records])
+
+    def test_chrome_release_archive_keeps_boundary_day_and_stops_before_it(self):
+        s = source('chrome-releases')
+        home = s['url']
+        archive = home + 'search?updated-max='
+        boundary_page = archive + '2026-10-28T00:00:00-07:00'
+        unknown_page = archive + '2026-10-27T23:59:59'
+        before_boundary = archive + '2026-10-27T23:59:59-07:00'
+        release_urls = [home + '2026/10/' + path + '.html'
+                        for path in ('latest', 'boundary-1', 'boundary-2')]
+        requests = [(home, boundary_page), (boundary_page, unknown_page),
+                    (unknown_page, before_boundary)]
+        mapping = {}
+        for (page, next_page), release_url in zip(requests, release_urls):
+            mapping[page] = response(page, '''
+                <a href="{release}">Release</a>
+                <a id="Blog1_blog-pager-older-link" href="{next_page}">Older Posts</a>
+            '''.format(release=release_url, next_page=next_page))
+            mapping[release_url] = self.release(release_url, '''
+                <div class="post-header">
+                    <span class="publishdate" itemprop="datePublished">October 28, 2026</span>
+                </div>
+                <div class="post-body"><p>Release evidence.</p></div>
+            ''')
+        state, records = self.collect(s, mapping)
+        self.assertEqual('complete', state['status'])
+        self.assertTrue(state['pagination_exhausted'])
+        self.assertEqual(3, state['pages'])
+        self.assertEqual(3, len(records))
+        self.assertCountEqual(list(mapping), self.transport.calls)
+
     def test_partial_failure_preserves_previous_and_minimum_record(self):
         s = source('opera-desktop')
         url = 'https://blogs.opera.com/desktop/2026/11/test/'

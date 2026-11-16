@@ -3,7 +3,7 @@ import re
 import hashlib
 import json
 from html.parser import HTMLParser
-from urllib.parse import urljoin, urldefrag
+from urllib.parse import parse_qs, urljoin, urldefrag, urlsplit
 from datetime import datetime
 
 VOID = {'br', 'img', 'meta', 'link', 'hr', 'input', 'source', 'wbr', 'area', 'base', 'embed'}
@@ -33,6 +33,10 @@ class Node:
         while node:
             yield node
             node = node.parent
+
+
+class UnresolvedChromeSignoff(Node):
+    pass
 
 
 class Tree(HTMLParser):
@@ -79,7 +83,7 @@ def date_value(value):
     return None
 
 
-def published(tree):
+def published(tree, source_id=None):
     for n in tree.walk():
         if n.tag == 'meta' and n.attrs.get('property', n.attrs.get('name')) in (
                 'article:published_time', 'date', 'datePublished', 'publication_date'):
@@ -90,7 +94,73 @@ def published(tree):
             found = date_value(n.attrs.get('datetime', n.text()))
             if found:
                 return found
+        if (source_id == 'chrome-releases' and n.has_class('publishdate') and
+                n.attrs.get('itemprop') == 'datePublished' and
+                any(a.has_class('post-header') for a in n.ancestors())):
+            found = date_value(n.text())
+            if found:
+                return found
     return None
+
+
+def remove_chrome_post_signoff(fragment):
+    # Blogger places the unmarked byline on its own line before the publisher
+    # label, in adjacent paragraphs or on opposite sides of a line break.
+    lines = [[]]
+
+    def visit(node):
+        if node.tag in SKIP:
+            return
+        separates_lines = node.tag in {'p', 'div', 'br', 'li'}
+        if separates_lines and lines[-1]:
+            lines.append([])
+        for index, child in enumerate(node.children):
+            if isinstance(child, Node):
+                visit(child)
+            elif child.strip():
+                lines[-1].append((node, index, child.strip()))
+        if separates_lines and lines[-1]:
+            lines.append([])
+
+    visit(fragment)
+    lines = [line for line in lines if line]
+    if len(lines) < 2:
+        return
+    publisher = ' '.join(' '.join(text for _, _, text in lines[-1]).split())
+    if publisher not in {'Google Chrome', 'Google ChromeOS', 'Google Chrome OS'}:
+        return
+    for node, index, _ in lines[-1]:
+        node.children[index] = ''
+    # The preceding line has no author marker. Keep its location without
+    # exposing possible personal text or assuming that it is a byline.
+    if len(lines[-2]) == 1:
+        node, index, text = lines[-2][0]
+        if len(text) <= 64 and not any(a.tag in {'li', 'a'} for a in (node, *node.ancestors())):
+            node.children[index] = ''
+            fragment.children.append(UnresolvedChromeSignoff('document', parent=fragment))
+
+
+def expand_chrome_post_templates(body):
+    # Chrome Releases stores the article markup in an inert Blogger template.
+    # Its noscript copy remains excluded by SKIP.
+    for content in body.children:
+        if not isinstance(content, Node) or not content.has_class('post-content'):
+            continue
+        for index, child in enumerate(content.children):
+            if (not isinstance(child, Node) or child.tag != 'script' or
+                    child.attrs.get('type') != 'text/template' or 'src' in child.attrs):
+                continue
+            fragment = Tree(''.join(child.children)).root
+            has_author_metadata = False
+            for node in list(fragment.walk())[1:]:
+                is_author = node.attrs.get('itemprop') == 'author'
+                has_author_metadata |= is_author
+                if is_author or node.tag == 'header':
+                    node.parent.children.remove(node)
+            if has_author_metadata:
+                remove_chrome_post_signoff(fragment)
+            fragment.parent = content
+            content.children[index] = fragment
 
 
 def boundary(tree, source_id):
@@ -120,6 +190,8 @@ def boundary(tree, source_id):
                 (kind == 'attr' and n.attrs.get(value[0]) == value[1])):
                 matches.append(n)
         if matches:
+            if key == 'chrome-releases':
+                expand_chrome_post_templates(matches[0])
             # Learn has a title-only .content before its complete article body.
             return max(matches, key=lambda n: len(n.text())) if key == 'edge' else matches[0]
     return None
@@ -133,7 +205,28 @@ def links(tree, base):
                 yield url, n.text(), n
 
 
-def next_links(tree, base):
+def chrome_archive_before(node, url, since):
+    if node.tag != 'a' or node.attrs.get('id') != 'Blog1_blog-pager-older-link':
+        return False
+    target = urlsplit(url)
+    if (target.scheme, target.netloc, target.path) != (
+            'https', 'chromereleases.googleblog.com', '/search'):
+        return False
+    cursors = parse_qs(target.query, keep_blank_values=True).get('updated-max', [])
+    if len(cursors) != 1 or not re.fullmatch(
+            r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?[+-]\d{2}:\d{2}', cursors[0]):
+        return False
+    try:
+        cursor = datetime.fromisoformat(cursors[0])
+        midnight = datetime.strptime(since, '%Y-%m-%d').replace(tzinfo=cursor.tzinfo)
+    except ValueError:
+        return False
+    # The publisher's offset determines its calendar day. Keep the entire
+    # boundary day, including a cursor that lands exactly at its midnight.
+    return cursor < midnight
+
+
+def next_links(tree, base, chrome_releases_since=None):
     result = []
     for n in tree.walk():
         if n.tag not in {'a', 'link'} or not n.attrs.get('href'):
@@ -143,7 +236,10 @@ def next_links(tree, base):
         if ('next' in attrs.get('rel', '').split() or n.has_class('next') or
                 n.has_class('blog-pager-older-link') or attrs.get('id') == 'Blog1_blog-pager-older-link' or
                 attrs.get('rel') == 'next' or label.strip() in {'next', 'next page', 'older posts', 'older', '다음'}):
-            result.append(urldefrag(urljoin(base, attrs['href']))[0])
+            url = urldefrag(urljoin(base, attrs['href']))[0]
+            if chrome_releases_since and chrome_archive_before(n, url, chrome_releases_since):
+                continue
+            result.append(url)
     return list(dict.fromkeys(result))
 
 
@@ -195,6 +291,10 @@ def blocks(body):
             continue
         if n.tag in SKIP:
             covered.add(id(n))
+            continue
+        if isinstance(n, UnresolvedChromeSignoff):
+            result.append({'key': 'chrome-post-signoff', 'text': '',
+                           'section': 'post sign-off', 'parsed': False})
             continue
         text = n.text()
         if re.fullmatch(r'h[1-6]', n.tag):

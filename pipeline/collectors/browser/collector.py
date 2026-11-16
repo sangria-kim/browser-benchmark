@@ -329,7 +329,7 @@ class BrowserCollector:
         canonical_url = urldefrag(response.url)[0]
         if '<html' in text.lower() and '</html>' not in text.lower():
             self.problem(url, 'Truncated HTML document')
-        date = published(root)
+        date = published(root, self.source['source_id'])
         if not self.allowed_date(date, current):
             self.state['excluded_by_date'].append(url)
             return root
@@ -365,6 +365,7 @@ class BrowserCollector:
                 self.problem(source['url'], str(error))
             return
         pattern = re.compile(source['discovery']['include_url_pattern'])
+        chrome_releases_since = self.since if source['source_id'] == 'chrome-releases' else None
         pending_pages, visited_pages, documents, document_set = [source['url']], set(), [], set()
         enumeration_valid = True
         while pending_pages:
@@ -394,7 +395,7 @@ class BrowserCollector:
                         document_set.add(doc)
                         documents.append((doc, response, url == source['url']))
                 if source['discovery']['pagination'] == 'next_link':
-                    for next_url in next_links(root, url):
+                    for next_url in next_links(root, url, chrome_releases_since):
                         if urlparse(next_url).netloc != urlparse(source['url']).netloc:
                             self.problem(next_url, 'Unexpected pagination host')
                         elif next_url in visited_pages:
