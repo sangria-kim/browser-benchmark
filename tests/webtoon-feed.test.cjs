@@ -45,6 +45,8 @@ function appContext(events){
  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',value:'',checked:false,hidden:false,disabled:false,dataset:{},setAttribute(){}});return nodes.get(id);};
  const context=vm.createContext({URL,URLSearchParams,Intl,Date,console,ResearchModel:require('../dashboard/research-model.js'),location:{search:'?browser=safari',pathname:'/'},history:{replaceState(){}},document:{getElementById:node,querySelector:node},setInterval(){},setTimeout(){}});
  let app=fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,'');
+ context.fetch=async()=>{throw Error('Unexpected resource request');};
+ vm.runInContext(fs.readFileSync('dashboard/resources.js','utf8'),context);
  vm.runInContext(app,context);
  const latest=new Map();for(const e of events){const old=latest.get(e.feature_id);if(!old||e.observed_at>old.observed_at)latest.set(e.feature_id,e);}
  const row=e=>({key:'feature_event:'+e.event_id,id:e.event_id,subject_kind:'feature_event',title:e.summary,browser:e.browser,platform:e.platform,date:e.observed_at,catalog_id:e.feature_id,current_status:'selected',current_selected:true,detail:'details/example.json'});

@@ -280,7 +280,7 @@ def worker(stage, root, run_dir, options):
                 'items': len(result['report']['items'])}
     if stage == 'validate':
         from pipeline.normalize import validate_graph
-        from scripts.build_dashboard import build
+        from scripts.build_dashboard import build, read_resource as read_dashboard_json
         from scripts.export_dataset import export
         graph = validate_graph(root)
         sha = commit_candidate(root)
@@ -293,7 +293,7 @@ def worker(stage, root, run_dir, options):
             if expected != actual:
                 raise ValueError('Dashboard/selected mismatch')
         for entry in payload['reports']:
-            rendered = read(root / 'dist' / entry['path'])
+            rendered = read_dashboard_json(root / 'dist' / entry['path'])
             original = read(root / ('data/reports/history/%s/revision-%s.json' % (entry['date'], entry['revision'])))
             if rendered != original:
                 raise ValueError('Dashboard/report mismatch')

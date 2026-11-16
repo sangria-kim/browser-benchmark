@@ -17,16 +17,16 @@ const tag = (text,cls='') => `<span class="tag ${cls}">${esc(text)}</span>`;
 const temporalHTML = scope => !scope ? '' : `<section class="detail-box"><h4>수집 기간과 근거</h4><p>${esc(scope.since)} 이후 · ${{in_period:'기간 내 근거 확인',before_period:'기간 이전',after_cutoff:'수집 마감 이후',unchanged:'연초와 같은 정의',unknown:'날짜 또는 대응 미확인',context:'비교 문맥'}[scope.status]||esc(scope.status)}</p><p>근거 날짜 ${esc(scope.evidence_date||'정확한 날짜 없음')} · 정밀도 ${esc(scope.precision)}<br>수집 마감 ${esc(scope.cutoff)}</p><p>${esc(scope.reason)}</p>${scope.baseline_revision?`<p class="mono">${esc(scope.baseline_revision)} → ${esc(scope.current_revision)}<br>commit 시각 ${esc(scope.baseline_committed_at)} → ${esc(scope.current_committed_at)}</p><p>현재 정의의 양 끝 비교입니다. 삭제·중간 변경 후 원복 이력은 포함하지 않습니다.</p>`:''}</section>`;
 let data, rows=[], page=1, browser='all', view='features', dataset=[], datedRows=null;
 let detailId=null, opener=null, detailToken=0, renderToken=0, currentReport=null, restoringURL=true;
-const pageSize=18, cache=new Map(), params=new URLSearchParams(location.search);
+const pageSize=18, params=new URLSearchParams(location.search);
 const views=['features','flags','reports','all'];
 const kindNames={flag_entry:'UI flag',base_feature:'Base feature',command_switch:'Command switch'};
 selectionNames.unassessed='판단 없음';
 const controls=['search','platform','status','change','sort','ai','membership','judgment-date','all-kind','judgment-status','kind','from-date','to-date','build'];
 const detailPath=async key=>{
  const bytes=new TextEncoder().encode(key), digest=await crypto.subtle.digest('SHA-256',bytes);
- return 'details/'+Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('')+'.json';
+ return 'details/'+Array.from(new Uint8Array(digest),x=>x.toString(16).padStart(2,'0')).join('')+'.json'+(data?.resource_encoding==='gzip'?'.gz':'');
 };
-async function json(path){if(!cache.has(path))cache.set(path,fetch(path).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json();}).catch(e=>{cache.delete(path);throw e;}));return cache.get(path);}
+const json=DashboardResources.createLoader();
 function extra(row){return row.subject_kind==='feature_event'?data.catalog.events[row.id]||{}:{};}
 function wt(row){return extra(row).webtoon||{status:'unlinked'};}
 function buttonDetail(row,label){return `<button class="history-event" data-detail="${esc(row.key)}" data-path="${esc(row.detail||'')}">${esc(label||row.title)}</button>`;}
@@ -80,7 +80,7 @@ async function render(){
   $('scope-note').textContent=view==='flags'||(view==='all'&&$('all-kind').value==='experiment')?counts:$('judgment-date').value?'판단 시간 기준 · 당시 저장된 사실 목록을 재현하지 않습니다.':'날짜: 근거 확인일(KST) · 출시일과 구분';
   $('page-info').textContent=rows.length?`${(page-1)*pageSize+1}–${Math.min(page*pageSize,rows.length)} / ${rows.length.toLocaleString()} · ${page}/${Math.ceil(rows.length/pageSize)} 페이지`:'0개 결과';$('prev').disabled=page===1;$('next').disabled=page*pageSize>=rows.length;
   updateURL();
- }catch(error){if(token!==renderToken)return;$('result-count').textContent='자료를 불러오지 못했습니다. 다시 선택하거나 새로고침해 주세요.';$('feature-grid').innerHTML='';$('empty').hidden=false;}
+ }catch(error){if(token!==renderToken)return;$('result-count').textContent='자료를 불러오지 못했습니다. 다시 선택하거나 새로고침해 주세요. '+error.message;$('feature-grid').innerHTML='';$('table-body').innerHTML='';$('report-content').innerHTML='';$('empty-title').textContent='자료를 불러오지 못했습니다';$('empty-description').textContent=error.message;$('empty').hidden=false;}
 }
 function featureCard(row){const w=wt(row);return `<button class="feature-card" data-detail="${esc(row.key)}" data-path="${esc(row.detail)}" aria-haspopup="dialog" aria-label="${esc(row.title)} 상세 보기" style="--browser-color:${colors[row.browser]||colors.all}"><span class="card-top"><span class="browser-cell">${icon(row.browser)}${esc(names[row.browser]||row.browser)}</span><span class="card-date">${esc(date(row.date))}</span></span><span class="card-title">${esc(row.title)}</span><span class="card-platform">${esc(row.platform.filter(p=>p!=='unknown').join(' · '))||' '}${row.versions?.length?' · 관찰 버전 '+esc(row.versions.join(', ')):''}</span><span class="card-bottom">${row.experiment_kind?tag(kindNames[row.experiment_kind]):w.status==='unlinked'?'<span></span>':tag(statusNames[w.status],w.status)}<span class="card-open">자세히 ↗</span></span></button>`;}
 function assessmentHTML(a){return `<div class="assessment"><h4>${esc(date(a.assessed_at))} · ${esc(selectionNames[a.status]||a.status)}</h4><p>${esc(a.assessment_id)} · ${esc(a.rule_version)} · ${esc(a.evaluator||'')}</p><ul>${(a.reasons||[]).map(r=>`<li>${esc(r)}</li>`).join('')}</ul>${a.comparison_question?`<p><b>비교 질문</b> ${esc(a.comparison_question)}</p>`:''}${a.benchmark?`<details><summary>비교 과제 · 조건 · 측정</summary><pre class="evidence-body">${esc(readable(a.benchmark))}</pre></details>`:''}<p>다시 볼 조건: ${esc(a.revisit_trigger||'미기록')} · 이전 판단 ${esc(a.supersedes||'없음')}</p></div>`;}
@@ -91,7 +91,7 @@ async function openDetail(key,path='',snapshot=null){
  $('detail-content').innerHTML='<div class="detail"><p role="status">상세를 불러오는 중…</p></div>';
  try{const detail=await json(path||await detailPath(key));if(token!==detailToken||!$('feature-dialog').open)return;
  $('feature-dialog').setAttribute('aria-label',detail.row.title+' 상세');$('detail-content').innerHTML=detailHTML(detail,snapshot);$('detail-content').scrollTop=0;attachMediaFallbacks();
- }catch{if(token===detailToken)$('detail-content').innerHTML='<div class="detail"><p>상세 자료를 불러오지 못했습니다. 닫은 뒤 다시 선택해 주세요.</p></div>';}
+ }catch(error){if(token===detailToken)$('detail-content').innerHTML='<div class="detail"><p>상세 자료를 불러오지 못했습니다. 닫은 뒤 다시 선택해 주세요.</p><p>'+esc(error.message)+'</p></div>';}
 }
 function detailHTML(d,snapshot){
  const row=d.row,f=d.fact,x=extra(row),w=wt(row),after=f.after||{},delta=f.delta||{};
