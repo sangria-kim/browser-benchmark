@@ -66,6 +66,23 @@ test('Safari is selectable with zero selected cards; collected and selected coun
  assert.match(filled.node('feature-grid').innerHTML,/Safari feature/);
 });
 
+test('Chrome experiment shortcut opens the current selection and focuses its tab',()=>{
+ const state=appContext([]);
+ state.context.input.selected.flags=[{key:'experiment:flag',subject_kind:'experiment',title:'Selected flag',
+  browser:'chrome',platform:['Windows'],date:'2026-11-16',experiment_kind:'flag_entry'}];
+ state.node('membership').value='history';
+ state.node('from-date').value='2099-01-01';
+ state.node('search').value='different feature';
+ let focused=false, scrolled=false;
+ state.node('flags-tab').focus=()=>{focused=true;};
+ state.node('explorer').scrollIntoView=()=>{scrolled=true;};
+ vm.runInContext('openSelectedExperiments()',state.context);
+ assert.match(state.node('browser-cards').innerHTML,/data-experiment-shortcut\s+aria-current="true"[\s\S]*?현재 선정 1개/);
+ assert.match(state.node('browser-cards').innerHTML,/data-browser="chrome" aria-pressed="false"/);
+ assert.match(state.node('feature-grid').innerHTML,/Selected flag/);
+ assert.equal(focused && scrolled,true);
+});
+
 test('selected projection renders one current card; detail links preserve earlier event identity',()=>{
  const base={feature_id:'safari-tabs',browser:'safari',platform:['macOS'],version:'27',event_type:'improvement'};
  const old={...base,event_id:'old',observed_at:'2026-11-15',summary:'Earlier version'},latest={...base,event_id:'new',observed_at:'2026-11-16',summary:'Latest version'};

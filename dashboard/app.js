@@ -32,7 +32,16 @@ function wt(row){return extra(row).webtoon||{status:'unlinked'};}
 function buttonDetail(row,label){return `<button class="history-event" data-detail="${esc(row.key)}" data-path="${esc(row.detail||'')}">${esc(label||row.title)}</button>`;}
 function currentFeatureRows(){return data.selected.features;}
 function renderCards(){
- $('browser-cards').innerHTML=Object.entries(names).map(([id,name])=>{const es=currentFeatureRows().filter(r=>id==='all'||r.browser===id),latest=es.map(r=>r.date).sort().at(-1);return `<button class="browser-card" data-browser="${id}" aria-pressed="${browser===id}" aria-label="${name}, 현재 선정 ${es.length}개 필터"><span class="browser-top">${icon(id)}${name}</span><strong>${es.length}</strong><small>개 선정</small><span class="date">${latest?date(latest)+' 업데이트':'현재 선정 없음'}</span></button>`;}).join('');
+ const browserCards=Object.entries(names).map(([id,name])=>{const es=currentFeatureRows().filter(r=>id==='all'||r.browser===id),latest=es.map(r=>r.date).sort().at(-1);return `<button class="browser-card" data-browser="${id}" aria-pressed="${view!=='flags'&&browser===id}" aria-label="${name}, 현재 선정 ${es.length}개 필터"><span class="browser-top">${icon(id)}${name}</span><strong>${es.length}</strong><small>개 선정</small><span class="date">${latest?date(latest)+' 업데이트':'현재 선정 없음'}</span></button>`;}).join('');
+ const experimentCount=data.selected.flags.length.toLocaleString('ko-KR');
+ $('browser-cards').innerHTML=browserCards+`
+  <button type="button" class="browser-card experiment-shortcut" data-experiment-shortcut
+   aria-current="${view==='flags'}" aria-controls="results-panel"
+   aria-label="Chrome 플래그·실험, 현재 선정 ${experimentCount}개. 선정 Chrome 실험 탭으로 이동">
+   <span class="browser-top"><span class="browser-icon" aria-hidden="true">⚑</span>Chrome 플래그·실험</span>
+   <strong>${experimentCount}</strong><small>개 선정</small>
+   <span class="date">선정 실험 보기 ↓</span>
+  </button>`;
  $('browser-filter-boxes').innerHTML=Object.entries(names).map(([id,name])=>`<button class="browser-filter-box" data-browser="${id}" aria-pressed="${browser===id}">${icon(id)}<span>${id==='all'?'전체':esc(name)}</span><span class="filter-count">${currentFeatureRows().filter(r=>id==='all'||r.browser===id).length}</span></button>`).join('');
  $('overview').innerHTML=`
   <div class="metric">
@@ -149,6 +158,14 @@ async function renderReport(){
 }
 function reset(){for(const id of controls){const el=$(id);if(el.type==='checkbox')el.checked=false;else el.value='';}$('sort').value='new';$('membership').value='current';$('all-kind').value='source_item';browser='all';page=1;render();}
 function switchView(next){view=next;if(view==='flags')browser='chrome';page=1;for(const id of ['platform','status','kind','change','build','search','judgment-date'])$(id).value='';$('ai').checked=false;render();}
+function openSelectedExperiments(){
+ $('membership').value='current';
+ $('from-date').value='';
+ $('to-date').value='';
+ switchView('flags');
+ $('flags-tab').focus({preventScroll:true});
+ $('explorer').scrollIntoView({block:'start'});
+}
 async function init(){try{
  data=await json('data.json');view=views.includes(params.get('view'))?params.get('view'):'features';browser=Object.hasOwn(names,params.get('browser'))?params.get('browser'):'all';if(view==='flags')browser='chrome';
  $('updated').textContent=date(data.updated_at)+' KST';$('event-count').textContent=data.selected.features.length;$('flag-count').textContent=data.selected.flags.length;
@@ -157,7 +174,13 @@ async function init(){try{
  $('judgment-date').innerHTML='<option value="">현재</option>'+data.dates.map(d=>`<option value="${d.date}">${d.date} · ${d.count}개 선정</option>`).join('');
  $('report-date').innerHTML=[...new Set(data.reports.map(r=>r.date))].map(d=>`<option>${d}</option>`).join('');if(params.has('report-date'))$('report-date').value=params.get('report-date');reportOptions();if(params.has('report-revision'))$('report-revision').value=params.get('report-revision');
  for(const id of controls)if(params.has(id)){if($(id).type==='checkbox')$(id).checked=params.get(id)==='1';else $(id).value=params.get(id);}
- for(const id of ['browser-cards','browser-filter-boxes'])$(id).onclick=e=>{const b=e.target.closest('[data-browser]');if(!b)return;browser=b.dataset.browser;page=1;if(view==='flags'){view='features';for(const filter of ['kind','change','build','platform'])$(filter).value='';}render().then(()=>{[...$(id).querySelectorAll('[data-browser]')].find(el=>el.dataset.browser===browser)?.focus({preventScroll:true});});};
+ for(const id of ['browser-cards','browser-filter-boxes'])$(id).onclick=e=>{
+  if(e.target.closest('[data-experiment-shortcut]')){openSelectedExperiments();return;}
+  const b=e.target.closest('[data-browser]');if(!b)return;
+  browser=b.dataset.browser;page=1;
+  if(view==='flags'){view='features';for(const filter of ['kind','change','build','platform'])$(filter).value='';}
+  render().then(()=>{[...$(id).querySelectorAll('[data-browser]')].find(el=>el.dataset.browser===browser)?.focus({preventScroll:true});});
+ };
  document.querySelector('.tabs').onclick=e=>{const b=e.target.closest('[data-view]');if(b)switchView(b.dataset.view);};
  document.querySelector('.tabs').onkeydown=e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();const index=e.key==='Home'?0:e.key==='End'?views.length-1:(views.indexOf(view)+(e.key==='ArrowRight'?1:views.length-1))%views.length;switchView(views[index]);$(views[index]+'-tab').focus();}};
  for(const id of controls)$(id).addEventListener(['search','build'].includes(id)?'input':'change',()=>{page=1;if(id==='membership')$('judgment-date').value='';if(id==='all-kind'){for(const filter of ['kind','change','platform','status','build'])$(filter).value='';}render();});
