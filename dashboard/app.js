@@ -34,7 +34,25 @@ function currentFeatureRows(){return data.selected.features;}
 function renderCards(){
  $('browser-cards').innerHTML=Object.entries(names).map(([id,name])=>{const es=currentFeatureRows().filter(r=>id==='all'||r.browser===id),latest=es.map(r=>r.date).sort().at(-1);return `<button class="browser-card" data-browser="${id}" aria-pressed="${browser===id}" aria-label="${name}, 현재 선정 ${es.length}개 필터"><span class="browser-top">${icon(id)}${name}</span><strong>${es.length}</strong><small>개 선정</small><span class="date">${latest?date(latest)+' 업데이트':'현재 선정 없음'}</span></button>`;}).join('');
  $('browser-filter-boxes').innerHTML=Object.entries(names).map(([id,name])=>`<button class="browser-filter-box" data-browser="${id}" aria-pressed="${browser===id}">${icon(id)}<span>${id==='all'?'전체':esc(name)}</span><span class="filter-count">${currentFeatureRows().filter(r=>id==='all'||r.browser===id).length}</span></button>`).join('');
- $('overview').innerHTML=`<div class="metric"><span class="metric-label">현재 선정 · 기능 / 실험</span><div class="metric-line"><strong>${data.selected.features.length} / ${data.selected.flags.length}</strong><small>PM 판단 기준</small></div></div><div class="metric"><span class="metric-label">전체 보존 · 원천 / 기능</span><div class="metric-line"><strong>${data.counts.source_item.toLocaleString()}</strong><small>개 원천 · ${data.counts.feature}개 기능</small></div></div><div class="metric tip"><span class="metric-label">전체 Chrome 실험 · ${data.counts.experiment.toLocaleString()}</span><p>${Object.entries(kindNames).map(([k,n])=>`${n} ${data.experiment_counts[k]||0}`).join(' · ')}<br>현재 등록된 수집 자료 기준 · 전수 수집 완료를 뜻하지 않습니다.</p></div>`;
+ $('overview').innerHTML=`
+  <div class="metric">
+   <span class="metric-label">현재 선정 · 기능 / 실험</span>
+   <div class="metric-line"><strong>${data.selected.features.length} / ${data.selected.flags.length}</strong><small>PM 판단 기준</small></div>
+  </div>
+  <div class="metric">
+   <span class="metric-label">기능 카탈로그</span>
+   <div class="metric-line"><strong>${data.counts.feature.toLocaleString('ko-KR')}</strong><small>개 기능</small></div>
+  </div>
+  <div class="metric">
+   <span class="metric-label">수집한 근거 항목</span>
+   <div class="metric-line"><strong>${data.counts.source_item.toLocaleString('ko-KR')}</strong><small>건</small></div>
+   <p class="metric-caption">릴리스 노트·정책·보안 공지의 개별 기록과 Chromium 소스 정의</p>
+  </div>
+  <div class="metric">
+   <span class="metric-label">Chrome 실험 카탈로그</span>
+   <div class="metric-line"><strong>${data.counts.experiment.toLocaleString('ko-KR')}</strong><small>개 실험</small></div>
+   <p class="metric-caption">${Object.entries(kindNames).map(([k,n])=>`${n} ${(data.experiment_counts[k]||0).toLocaleString('ko-KR')}`).join(' · ')}</p>
+  </div>`;
 }
 function updateURL(){const p=new URLSearchParams();if(view!=='features')p.set('view',view);if(browser!=='all')p.set('browser',browser);for(const id of controls){const el=$(id),v=el.type==='checkbox'?(el.checked?'1':''):el.value;if(v&&!['new','current','source_item'].includes(v))p.set(id,v);}if(view==='reports'){p.set('report-date',$('report-date').value);p.set('report-revision',$('report-revision').value);}history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);}
 function options(id,values,label){const old=$(id).value;$(id).innerHTML=`<option value="">${label}</option>`+values.map(v=>`<option value="${esc(v)}">${esc(changeNames[v]||v)}</option>`).join('');$(id).value=old;}
@@ -54,7 +72,7 @@ function configure(){
  $('results-panel').setAttribute('aria-labelledby',view+'-tab');
  $('table-eyebrow').textContent={features:'SELECTED FEATURES',flags:'SELECTED EXPERIMENTS',reports:'DAILY RESEARCH',all:'SOURCE EXPLORER'}[view];
  $('table-title').textContent={features:'비교해 볼 브라우저 기능',flags:'선정된 Chrome 실험',reports:'오늘의 판단과 변화',all:'전체 수집 자료 탐색'}[view];
- $('table-description').textContent=report?'리포트는 작성 시점의 사실과 판단을 보존합니다. 날짜와 revision을 선택하세요.':all?'전체 원천, 기능 카탈로그, 실험 카탈로그를 구분해 확인합니다. 원천 항목이 곧 기능 사건은 아닙니다.':scope.experiments?'선정된 소스 실험입니다. 제품 도입 여부와 등록·만료·기본값은 상세에서 확인하세요.':'현재 선정과 과거 판단을 살펴보세요. 카드를 누르면 사실·판단·웹툰을 함께 확인할 수 있어요.';
+ $('table-description').textContent=report?'리포트는 작성 시점의 사실과 판단을 보존합니다. 날짜와 revision을 선택하세요.':all?'같은 기능의 근거가 여러 문서나 버전에 기록될 수 있습니다. 자료 종류를 선택해 확인하세요.':scope.experiments?'선정된 소스 실험입니다. 제품 도입 여부와 등록·만료·기본값은 상세에서 확인하세요.':'현재 선정과 과거 판단을 살펴보세요. 카드를 누르면 사실·판단·웹툰을 함께 확인할 수 있어요.';
 }
 async function render(){
  const token=++renderToken;configure();renderCards();
@@ -75,7 +93,11 @@ async function render(){
   $('feature-grid').innerHTML=rows.slice((page-1)*pageSize,page*pageSize).map(featureCard).join('');$('feature-grid').hidden=!rows.length;$('empty').hidden=!!rows.length;
   $('empty-title').textContent=view==='features'&&browser!=='all'?names[browser]+'의 조건에 맞는 선정 항목이 없습니다':'조건에 맞는 항목이 없습니다';
   $('empty-description').textContent=view==='features'?'선정되지 않은 자료도 전체 원천 목록에서 확인할 수 있습니다.':'검색어를 줄이거나 필터를 초기화해 보세요.';
-  $('result-count').textContent=`${rows.length.toLocaleString()}개 항목`+($('judgment-date').value?` · ${$('judgment-date').value} 종료 시점 판단`:'');
+  const count=rows.length.toLocaleString('ko-KR');
+  const sourceItems=view==='all'&&$('all-kind').value==='source_item';
+  $('feature-grid').setAttribute('aria-label',sourceItems?'수집한 근거 항목 카드':'자료 상세 카드');
+  const resultLabel=sourceItems?`근거 항목 ${count}건`:`${count}개 항목`;
+  $('result-count').textContent=resultLabel+($('judgment-date').value?` · ${$('judgment-date').value} 종료 시점 판단`:'');
   const counts=Object.entries(kindNames).map(([k,n])=>`${n} ${rows.filter(r=>r.experiment_kind===k).length}`).join(' · ');
   $('scope-note').textContent=view==='flags'||(view==='all'&&$('all-kind').value==='experiment')?counts:$('judgment-date').value?'판단 시간 기준 · 당시 저장된 사실 목록을 재현하지 않습니다.':'날짜: 근거 확인일(KST) · 출시일과 구분';
   $('page-info').textContent=rows.length?`${(page-1)*pageSize+1}–${Math.min(page*pageSize,rows.length)} / ${rows.length.toLocaleString()} · ${page}/${Math.ceil(rows.length/pageSize)} 페이지`:'0개 결과';$('prev').disabled=page===1;$('next').disabled=page*pageSize>=rows.length;
