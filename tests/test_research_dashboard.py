@@ -3,9 +3,11 @@ import json
 import gzip
 import tempfile
 import unittest
+from collections import Counter, defaultdict
 from pathlib import Path
 from scripts.build_dashboard import ROOT, build, write_resource, read_resource
-from pipeline.selection.core import as_of
+from pipeline.normalize import load_dataset
+from pipeline.selection.core import build_contexts, load_rules, project
 
 
 class ResearchDashboardTests(unittest.TestCase):
@@ -17,6 +19,7 @@ class ResearchDashboardTests(unittest.TestCase):
         (cls.output/'details/stale.json').write_text('{}')
         cls.payload = build(cls.output)
         cls.data = json.loads((cls.output/'data.json').read_text())
+        cls.dataset = load_dataset(ROOT)
 
     @classmethod
     def tearDownClass(cls):
@@ -55,14 +58,15 @@ class ResearchDashboardTests(unittest.TestCase):
             expected = {(r['subject_kind'],r['subject_id'],r['assessment_id']) for r in source['current']}
             actual = {(r['subject_kind'],r['id'],r['assessment_id']) for r in self.data['selected'][kind]}
             self.assertEqual(expected, actual)
-        self.assertTrue(any(r['subject_kind']=='source_item' for r in self.data['selected']['features']))
-        self.assertEqual(65,len(self.data['selected']['features']))
-        self.assertEqual(2,len(self.data['selected']['flags']))
+            self.assertEqual(len(expected), len(self.data['selected'][kind]))
 
     def test_date_views_match_t5_without_unioning_archived_history(self):
+        contexts, _ = build_contexts(self.dataset)
+        rules = load_rules()
         for date in self.data['dates']:
             snapshot = self.read(date['path'])
-            expected = as_of(ROOT,snapshot['cutoff'])
+            cutoff = snapshot['cutoff']
+            expected = project(self.dataset, contexts, self.dataset['assessment'], rules, cutoff, as_of=cutoff)
             self.assertEqual({(r['subject_kind'],r['subject_id'],r['assessment_id']) for p in expected.values() for r in p['current']},
                              {(r['subject_kind'],r['id'],r['assessment_id']) for r in snapshot['rows']})
         keys = [r['key'] for r in self.data['history']]
@@ -70,14 +74,16 @@ class ResearchDashboardTests(unittest.TestCase):
         self.assertTrue(any(not r['current_selected'] for r in self.data['history']))
 
     def test_all_sources_and_three_experiment_kinds_are_preserved(self):
+        for kind in ('source_item', 'feature', 'experiment'):
+            rows = self.read(self.data['indexes'][kind])
+            expected = {r[kind + '_id'] for r in self.dataset[kind]}
+            self.assertEqual(expected, {r['id'] for r in rows})
+            self.assertEqual(len(expected), len(rows))
+            self.assertEqual(len(expected), self.data['counts'][kind])
+        kinds = Counter(r['experiment_kind'] for r in self.dataset['experiment'])
+        self.assertEqual({'flag_entry', 'command_switch', 'base_feature'}, set(kinds))
+        self.assertEqual(dict(kinds), self.data['experiment_counts'])
         sources = self.read(self.data['indexes']['source_item'])
-        expected = {r['source_item_id'] for p in (ROOT/'data/source-items').glob('*/*.json') for r in json.loads(p.read_text())}
-        self.assertEqual(expected,{r['id'] for r in sources})
-        self.assertEqual(4844,len(sources))
-        experiments = self.read(self.data['indexes']['experiment'])
-        self.assertEqual(2670,len(experiments))
-        self.assertEqual({'flag_entry':2364,'command_switch':278,'base_feature':28},self.data['experiment_counts'])
-        self.assertEqual(113,len(self.read(self.data['indexes']['feature'])))
         self.assertTrue(any(r['browser']=='safari' for r in sources))
 
     def test_original_events_and_media_are_exact_and_lazy(self):
@@ -94,10 +100,15 @@ class ResearchDashboardTests(unittest.TestCase):
         self.assertEqual(json.loads((ROOT/'dashboard/catalog.json').read_text()),self.data['catalog'])
 
     def test_report_revision_items_and_frozen_evidence_are_exact(self):
+        archives = set((ROOT/'data/reports/history').glob('*/*.json'))
         for entry in self.data['reports']:
             report = self.read(entry['path'])
-            original = json.loads((ROOT/f'data/reports/history/{entry["date"]}/revision-{entry["revision"]}.json').read_text())
+            path = ROOT/f'data/reports/history/{entry["date"]}/revision-{entry["revision"]}.json'
+            archives.remove(path)
+            original = json.loads(path.read_text())
             self.assertEqual(original, report)
+            self.assertEqual(len(original['items']), entry['count'])
+            self.assertEqual(original['completeness'], entry['completeness'])
             for item in report['items']:
                 import hashlib
                 key=item['subject_kind']+':'+item['subject_id']
@@ -105,18 +116,23 @@ class ResearchDashboardTests(unittest.TestCase):
                 detail=self.read(path)
                 self.assertEqual(key,detail['row']['key'])
                 self.assertTrue(any(a['assessment_id']==item['assessment_id'] for a in detail['assessments']))
-        current=self.read(self.data['reports'][0]['path'])
-        self.assertEqual(4,len(current['items']))
-        self.assertEqual('partial',current['completeness']['collection'])
-        self.assertEqual('complete',current['completeness']['evaluation'])
-        self.assertTrue(all(i['timing']=='backfill' for i in current['items'] if i['selection_kind']=='flags'))
+        self.assertFalse(archives)
+        baseline = self.read('reports/2026-11-16-r1.json.gz')
+        self.assertEqual(4,len(baseline['items']))
+        self.assertEqual('partial',baseline['completeness']['collection'])
+        self.assertEqual('complete',baseline['completeness']['evaluation'])
+        self.assertTrue(all(i['timing']=='backfill' for i in baseline['items'] if i['selection_kind']=='flags'))
 
     def test_replaced_owner_is_not_fabricated_deselection(self):
         replaced=[self.read(r['detail']) for r in self.data['history'] if not r['current_selected']]
         self.assertTrue(replaced)
+        assessments = defaultdict(set)
+        for a in self.dataset['assessment']:
+            assessments[a['subject_kind'], a['subject_id']].add(a['assessment_id'])
         for detail in replaced:
-            original = [a for p in (ROOT/'data/assessments').glob('*/*.json') for a in [json.loads(p.read_text())] if a['subject_id']==detail['row']['id']]
-            self.assertEqual({a['assessment_id'] for a in original},{a['assessment_id'] for a in detail['assessments']})
+            row = detail['row']
+            self.assertEqual(assessments[row['subject_kind'], row['id']],
+                             {a['assessment_id'] for a in detail['assessments']})
         self.assertTrue(any(d['current_owner'] and d['current_owner']['key']!=d['row']['key'] for d in replaced))
 
     def test_legacy_flags_and_relative_resources_survive(self):

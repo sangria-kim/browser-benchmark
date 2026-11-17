@@ -235,11 +235,23 @@ class SelectionTests(unittest.TestCase):
 
     def test_real_default_profiles_are_source_only_conditional_not_launch_claims(self):
         contexts, _ = build_contexts(load_dataset(ROOT))
-        selected_flags = [evaluate(c, load_rules()) for c in contexts.values()
-                          if c['subject_kind']=='experiment_event' and
-                          c['subject'].get('after', {}).get('flag_id') in ('actor-observe-screenshot-default','enable-parallel-downloading')]
-        self.assertEqual(2, len(selected_flags))
-        for result in selected_flags:
+        flag_ids = {'actor-observe-screenshot-default', 'enable-parallel-downloading'}
+        profiles = {c['subject']['after']['flag_id']: c for c in contexts.values()
+                    if c['subject_kind'] == 'experiment_event'
+                    and c['subject'].get('event_type') == 'baseline'
+                    and (c['subject'].get('after') or {}).get('flag_id') in flag_ids}
+        self.assertEqual(flag_ids, profiles.keys())
+        rules = load_rules()
+        for context in profiles.values():
+            subject, catalog = context['subject'], context['catalog']
+            scope = (catalog or {}).get('temporal_scope') or subject.get('temporal_scope')
+            if scope and scope['status'] != 'in_period':
+                self.assertEqual('excluded', evaluate(context, rules)['status'])
+            # Exercise the retained source profile independently of today's window.
+            unscoped = dict(context, subject=dict(subject), catalog=dict(catalog or {}))
+            unscoped['subject'].pop('temporal_scope', None)
+            unscoped['catalog'].pop('temporal_scope', None)
+            result = evaluate(unscoped, rules)
             self.assertEqual('selected', result['status'])
             self.assertEqual('conditional', result['benchmark_readiness'])
             self.assertIn('Source-only baseline', ' '.join(result['reasons']))
@@ -267,7 +279,7 @@ class SelectionTests(unittest.TestCase):
         recovered = by_subject['chrome-source-542d7914a86f0915025d40e699fa2de876d36e7d']
         self.assertEqual('watch', recovered['status'])
         self.assertIn('2026-11-source-index-2026-11-12.json', recovered['input_revision'])
-        self.assertEqual(4844, len(coverage))
+        self.assertEqual({s['source_item_id'] for s in dataset['source_item']}, coverage.keys())
         self.assertTrue(all(k in contexts for k in coverage.values()))
         self.assertTrue(all(sid in {s['source_item_id'] for s in contexts[k]['sources']}
                             for sid, k in coverage.items()))

@@ -15,6 +15,7 @@ from pipeline.deduplicate import AliasIndex, digest
 from pipeline.normalize import merge_sources, normalize_browser_facts, normalize_chrome, publish, validate_graph
 from pipeline.normalize.core import normalize_browser_catalog
 from pipeline.normalize.legacy import legacy_source, migrate_events, resolve_predecessors
+from pipeline.selection.core import PM_FIELDS
 from scripts.migrate_dataset import migrate, prepare
 from schemas.validate import ContractError, load_config, validate_record, validate_dataset
 from test_chrome_collectors import fixture_files, MemoryProvider
@@ -317,7 +318,12 @@ class NormalizationTests(unittest.TestCase):
         self.assertEqual(Counter(selected=75, watch=30, pending_verification=13, excluded=9), Counter(e['selection_status'] for e in events))
         for old, event in zip(originals, events):
             self.assertEqual({k: v for k, v in old.items() if k != 'schema_version'}, {k: event[k] for k in old if k != 'schema_version'})
-            self.assertEqual(event, load_config(ROOT / 'data/events' / (event['event_id'] + '.json')))
+            current = load_config(ROOT / 'data/events' / (event['event_id'] + '.json'))
+            # Current compatibility judgments can change. The migrated facts
+            # and the original judgment in the v1 archive serve different roles.
+            projected = PM_FIELDS | {'temporal_scope'}
+            self.assertEqual({k: v for k, v in event.items() if k not in projected},
+                             {k: v for k, v in current.items() if k not in projected})
         predecessors, resolved = resolve_predecessors(ROOT, events)
         self.assertEqual(1, len(predecessors))
         self.assertEqual(128, len(resolved))
