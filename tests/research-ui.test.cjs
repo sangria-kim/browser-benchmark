@@ -41,11 +41,13 @@ test('actual renderer applies only visible filters after switching data layers',
  vm.runInContext(fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,''),context);
  context.feature={id:'feature',key:'feature_event:feature',subject_kind:'feature_event',title:'Feature',browser:'chrome',platform:['Windows'],date:'2026-11-16',detail:'details/f.json'};
  context.experiment={...context.feature,id:'experiment',key:'experiment:experiment',subject_kind:'experiment',title:'Experiment',experiment_kind:'base_feature',ai_related:false};
- context.input={selected:{features:[context.feature],flags:[]},history:[],catalog:{events:{}},counts:{source_item:1,feature:1,experiment:1},experiment_counts:{base_feature:1},indexes:{source_item:'sources.json',experiment:'experiments.json'}};
+ context.input={selected:{features:[context.feature],flags:[]},history:[],catalog:{events:{}},counts:{source_item:119959,feature:3853,experiment:1},experiment_counts:{base_feature:1},indexes:{source_item:'sources.json',experiment:'experiments.json'}};
  context.resourceData={'sources.json':[context.feature],'experiments.json':[context.experiment]};
  vm.runInContext("data=input;view='all';",context);
  node('sort').value='new';node('membership').value='current';node('all-kind').value='source_item';node('ai').checked=true;
- await vm.runInContext('render()',context);assert.match(node('result-count').textContent,/0개 항목/);
+ await vm.runInContext('render()',context);
+ assert.equal(node('result-count').textContent,'근거 항목 0건');
+ assert.equal(node('source-totals').textContent,'전체 자료 · 기능 카탈로그 3,853개 · 수집한 근거 항목 119,959건 · Chrome 실험 카탈로그 1개');
  // The user changes only the layer. Hidden stale values must not affect results.
  node('all-kind').value='experiment';node('status').value='done';
  await vm.runInContext('render()',context);
