@@ -45,7 +45,11 @@ function appContext(events){
  const node=id=>{if(!nodes.has(id))nodes.set(id,{innerHTML:'',textContent:'',value:'',checked:false,hidden:false,disabled:false,dataset:{},setAttribute(){}});return nodes.get(id);};
  const context=vm.createContext({URL,URLSearchParams,Intl,Date,console,ResearchModel:require('../dashboard/research-model.js'),location:{search:'?browser=safari',pathname:'/'},history:{replaceState(){}},document:{getElementById:node,querySelector:node},setInterval(){},setTimeout(){}});
  let app=fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,'');
- context.fetch=async()=>{throw Error('Unexpected resource request');};
+ context.resourceData={};
+ context.fetch=async path=>{
+  if(!Object.hasOwn(context.resourceData,path))throw Error('Unexpected resource request');
+  return {ok:true,json:async()=>context.resourceData[path]};
+ };
  vm.runInContext(fs.readFileSync('dashboard/resources.js','utf8'),context);
  vm.runInContext(app,context);
  const latest=new Map();for(const e of events){const old=latest.get(e.feature_id);if(!old||e.observed_at>old.observed_at)latest.set(e.feature_id,e);}
@@ -81,6 +85,30 @@ test('Chrome experiment shortcut opens the current selection and focuses its tab
  assert.match(state.node('browser-cards').innerHTML,/data-browser="chrome" aria-pressed="false"/);
  assert.match(state.node('feature-grid').innerHTML,/Selected flag/);
  assert.equal(focused && scrolled,true);
+});
+
+test('judgment date replaces current totals with the same snapshot used by both selection tabs',async()=>{
+ const state=appContext([{event_id:'safari-today',feature_id:'safari-today',browser:'safari',summary:'Current Safari',
+  platform:['macOS'],observed_at:'2026-11-17'}]);
+ const feature={...state.context.input.selected.features[0],browser:'firefox',title:'Dated Firefox'};
+ const flag={...feature,key:'experiment:flag',subject_kind:'experiment',browser:'chrome',title:'Dated flag',experiment_kind:'flag_entry'};
+ state.context.input.dates=[{date:'2026-11-16',path:'dated.json'}];
+ state.context.resourceData['dated.json']={rows:[feature,flag]};
+ state.node('flags-tab').focus=()=>{};
+ state.node('explorer').scrollIntoView=()=>{};
+ state.node('judgment-date').value='2026-11-16';
+ await vm.runInContext("browser='all';render()",state.context);
+ assert.equal(state.node('dated-selection-count').textContent,'선정 기능 1개 · Chrome 실험 1개');
+ assert.match(state.node('browser-cards').innerHTML,/Firefox, 2026-11-16 기준 선정 1개/);
+ assert.match(state.node('browser-cards').innerHTML,/Safari, 2026-11-16 기준 선정 0개/);
+ assert.match(state.node('feature-grid').innerHTML,/Dated Firefox/);
+ await vm.runInContext('openSelectedExperiments()',state.context);
+ assert.match(state.node('feature-grid').innerHTML,/Dated flag/);
+ assert.equal(state.node('judgment-date').value,'2026-11-16');
+ state.node('judgment-date').value='';
+ await vm.runInContext("switchView('features')",state.context);
+ assert.equal(state.node('dated-selection-count').hidden,true);
+ assert.match(state.node('browser-cards').innerHTML,/Safari, 현재 선정 1개/);
 });
 
 test('selected projection renders one current card; detail links preserve earlier event identity',()=>{
