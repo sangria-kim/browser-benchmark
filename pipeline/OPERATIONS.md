@@ -38,6 +38,33 @@ complete coverage. `--kind browser --source firefox-beta` is a small official
 sample, not a full browser baseline. `--chrome-bundle` and `--responses` replay
 frozen private inputs; a replay is not fresh network collection.
 
+To use repaired collector code, start a new run. Never edit the old run's frozen
+code or checkpoint. `--browser-cache-from /private/old-run/collection/browser`
+copies only raw responses after SHA256 checks at the same cutoff. It does not
+copy completion status, parsed records, errors, or document-completion judgments.
+Every document is parsed again. The new run freezes a private handoff manifest.
+Mutable ChromeStatus and Google blog API pages are refreshed as one enumeration so an old
+partial page set is not mixed with newly shifted pages.
+
+`--reviewed-attributions /private/review.json` accepts a private mapping from an
+exact document SHA256 to a list of reviewed attribution-line SHA256 values. It is
+used only for the known Chrome Releases footer position. The public record keeps
+the source location and content hash and replaces the reviewed personal text with
+an attribution omission label. A different document or line hash remains
+unresolved. A short final sentence alone is never sufficient review evidence.
+Keep the review input private and inspect the original evidence before adding a
+hash. The runner freezes and verifies this input like other private decisions.
+
+The collection period starts on 2026-01-01. Printed publication dates retain the
+publisher's calendar day; no time or timezone is invented for date-only evidence.
+Private source status separates in-period, before-period, after-cutoff, and
+unknown-date observations. Unknown dates are not proof of a 2026 change.
+Chromium is observed at actual collection time, not backdated to the browser
+window cutoff. The current-existing experiment scope requires a separate January boundary/current-state
+comparison. A pinned current scan alone does not complete that temporal projection
+and does not establish intervening deletion/revert history. The timestamp boundary
+is 2026-01-01T00:00:00+09:00 (2025-12-31T15:00:00Z).
+
 To continue partial source enumeration, use the same run ID with
 `--resume --retry-collection`. This keeps the base inputs and pinned source caches,
 invalidates downstream snapshots, and uses new actual judgment/report times.

@@ -189,6 +189,102 @@
       },
       "minItems": 0,
       "uniqueItems": true
+    },
+    "collection_scope": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "const": "dated-endpoints-v1"
+        },
+        "since": {
+          "type": "string",
+          "format": "date"
+        },
+        "cutoff": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "timezone": {
+          "const": "Asia/Seoul"
+        },
+        "chrome_endpoints": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "baseline_revision": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "current_revision": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{40}$"
+              },
+              "baseline_committed_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "current_committed_at": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "date-time"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "baseline_revision",
+              "current_revision"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "source_windows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "type": "string"
+              },
+              "since": {
+                "type": "string",
+                "format": "date"
+              },
+              "cutoff": {
+                "type": "string",
+                "format": "date-time"
+              }
+            },
+            "required": [
+              "source_id",
+              "since",
+              "cutoff"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "version",
+        "since",
+        "cutoff",
+        "timezone",
+        "chrome_endpoints",
+        "source_windows"
+      ],
+      "additionalProperties": false
     }
   },
   "required": [

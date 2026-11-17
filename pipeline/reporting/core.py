@@ -12,6 +12,7 @@ from pipeline.normalize.storage import PATHS, records
 from pipeline.selection import as_of, catalog_transitions
 from pipeline.selection.core import semantic
 from schemas.validate import ContractError, validate_record
+from pipeline.temporal import policy
 
 KST = ZoneInfo('Asia/Seoul')
 VERSION = 'daily-selected-v1'
@@ -137,8 +138,10 @@ def make_item(change, kind, dataset, paths, day, cutoff, documentation, root):
         raise ContractError('Subject facts postdate cutoff; use a stored report revision')
     first_source = sources[evidence[0]['source_item_id']]
     after = subject.get('after') or {}
-    details = dict(title=subject.get('title') or subject.get('summary') or change['subject_id'],
-                   summary=subject.get('delta') or subject.get('summary') or '',
+    def display(value):
+        return value if isinstance(value, str) else json.dumps(value, ensure_ascii=False, sort_keys=True)
+    details = dict(title=display(subject.get('title') or subject.get('summary') or change['subject_id']),
+                   summary=display(subject.get('delta') or subject.get('summary') or ''),
                    browser=subject.get('browser', first_source['browser']),
                    channel=subject.get('channel', first_source.get('channel')),
                    platform=subject.get('platform', after.get('platform', first_source.get('platform', []))),
@@ -182,6 +185,16 @@ def render(report):
         lines += ['새 선정 변화 여부를 확정할 수 없습니다. 수집·평가 상태를 확인해야 합니다.', '']
     lines += ['과거 보강·신규 선정은 신규 출시와 다릅니다. 발표일·적용일·원천 관측일·선정 확인일을 구분합니다.', '',
               '전체 현재 목록: ' + link('기능', 'data/selected/features/current.json') + ' · ' + link('실험', 'data/selected/flags/current.json') + '.', '']
+    if report.get('collection_scope'):
+        scope = report['collection_scope']
+        lines += [f'수집 범위: {scope["since"]} 이후 공식 항목 날짜. 출처별 마감은 아래와 다르며 공통 시점 웹 스냅샷이 아닙니다. 날짜 미확인은 기간 내 변화로 세지 않습니다.', '',
+                  'Chrome 실험은 현재 존재하는 정의의 연초·현재 의미 비교입니다. 삭제된 실험과 중간 변경 후 원복된 이력은 이 비교에 포함하지 않습니다.', '']
+        for window in scope['source_windows']:
+            lines += [f'- `{window["source_id"]}`: {window["since"]} ~ {window["cutoff"]}']
+        lines += ['']
+        for pair in scope['chrome_endpoints']:
+            lines += [f'- Chrome 비교 commit: `{pair["baseline_revision"]}` → `{pair["current_revision"]}`',
+                      f'  - commit 시각: {pair.get("baseline_committed_at")} → {pair.get("current_committed_at")}', '']
     labels = {'backfill': '과거·기준 목록 보강', 'late_observation': '늦은 확인', 'correction': '근거 정정', 'reclassification': 'PM 재분류', 'current': '당일 확인'}
     actions = {'selected': '신규 선정', 'changed': '선정 내용 변경', 'deselected': '선정 해제', 'reselected': '재선정'}
     for item in report['items']:
@@ -283,6 +296,8 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
                    previous_cutoff=previous_cutoff, generator_version=VERSION, rule_version=VERSION,
                    items=items, catalog_transitions=transitions, completeness=completeness, outcome=outcome,
                    selection_snapshot_paths=sorted(snapshot_files))
+    if policy(dataset, cutoff):
+        payload['collection_scope'] = policy(dataset, cutoff)
     # Include immutable snapshots and normalized cutoff; run IDs and clock time
     # have no role in report identity or input equality.
     input_hash = digest(payload)

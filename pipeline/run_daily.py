@@ -251,6 +251,8 @@ def worker(stage, root, run_dir, options):
             transport=transport if responses is not None else None,
             chrome_bundle=read(run_dir / 'inputs/chrome.json') if (run_dir / 'inputs/chrome.json').exists() else None,
             previous_bundle=read(run_dir / 'inputs/previous.json') if (run_dir / 'inputs/previous.json').exists() else None,
+            reviewed_attributions=read(run_dir / 'inputs/attributions.json') if (run_dir / 'inputs/attributions.json').exists() else None,
+            brave_release_metadata=read(run_dir / 'inputs/brave.json') if (run_dir / 'inputs/brave.json').exists() else None,
             sample_paths=options['sample_paths'], max_files=options['max_files'], max_trees=options['max_trees'])
         from schemas.validate import load_config
         enabled = {s['source_id'] for s in load_config(root / 'config/sources.yml')['sources'] if s['enabled']}
@@ -278,7 +280,7 @@ def worker(stage, root, run_dir, options):
                 'items': len(result['report']['items'])}
     if stage == 'validate':
         from pipeline.normalize import validate_graph
-        from scripts.build_dashboard import build
+        from scripts.build_dashboard import build, read_resource as read_dashboard_json
         from scripts.export_dataset import export
         graph = validate_graph(root)
         sha = commit_candidate(root)
@@ -291,7 +293,7 @@ def worker(stage, root, run_dir, options):
             if expected != actual:
                 raise ValueError('Dashboard/selected mismatch')
         for entry in payload['reports']:
-            rendered = read(root / 'dist' / entry['path'])
+            rendered = read_dashboard_json(root / 'dist' / entry['path'])
             original = read(root / ('data/reports/history/%s/revision-%s.json' % (entry['date'], entry['revision'])))
             if rendered != original:
                 raise ValueError('Dashboard/report mismatch')
@@ -314,7 +316,7 @@ def subprocess_stage(stage, root, run_dir, options, *, lock_fd=None):
 
 
 def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_partial=False, retry_collection=False,
-        options=None, input_files=None, execute=subprocess_stage):
+        options=None, input_files=None, execute=subprocess_stage, browser_cache_from=None):
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
     require_external(root, private)
     if not re.fullmatch('[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', run_id):
@@ -371,9 +373,14 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
             if inventory(root) != initial or git(root, 'rev-parse', 'HEAD') != state['source_commit']:
                 raise RuntimeError('Inputs changed during snapshot')
             for name, source in (input_files or {}).items():
-                if name not in ('responses', 'chrome', 'previous', 'decisions'):
+                if name not in ('responses', 'chrome', 'previous', 'decisions', 'attributions', 'brave'):
                     raise ValueError('Unknown private input')
                 durable(run_dir / 'inputs' / (name + '.json'), Path(source).read_bytes())
+            if browser_cache_from:
+                require_external(root, Path(browser_cache_from).resolve())
+                from pipeline.collectors.browser.cache import seed_cache
+                provenance = seed_cache(browser_cache_from, run_dir / 'collection/browser', options['collection_cutoff'])
+                durable(run_dir / 'inputs/browser-cache-provenance.json', encoded(provenance))
             state['private_inputs'] = private_input_inventory(run_dir / 'inputs')
         durable(path, encoded(state))
         if inventory(run_dir / 'base') != state['inputs']:
@@ -452,6 +459,9 @@ def main():
     parser.add_argument('--max-files', type=int, default=20)
     parser.add_argument('--max-trees', type=int, default=20)
     parser.add_argument('--chrome-bundle', type=Path)
+    parser.add_argument('--browser-cache-from', type=Path, help='Checksum-verified raw response carry-forward at the same cutoff; reparse every document')
+    parser.add_argument('--reviewed-attributions', type=Path, help='Private human-reviewed document SHA256 to attribution-line SHA256 list; new content remains unresolved')
+    parser.add_argument('--brave-release-metadata', type=Path, help='Private verified full GitHub release metadata; hash-frozen for this new run')
     parser.add_argument('--previous-bundle', type=Path)
     parser.add_argument('--responses', type=Path, help='Private fixture URL map; this is replay, not live collection')
     parser.add_argument('--decisions', type=Path)
@@ -468,8 +478,9 @@ def main():
         sample_paths=args.sample_path, max_files=args.max_files, max_trees=args.max_trees,
         model_id=args.model_id, assessed_at=None, report_cutoff=None, day=None)
     state = run(args.repository, args.private_dir, args.run_id, resume=args.resume, publish=args.publish,
+        browser_cache_from=args.browser_cache_from,
         retry_collection=args.retry_collection, allow_partial=args.allow_partial, options=options,
-        input_files={k: v for k, v in dict(chrome=args.chrome_bundle, previous=args.previous_bundle,
+        input_files={k: v for k, v in dict(chrome=args.chrome_bundle, previous=args.previous_bundle, attributions=args.reviewed_attributions, brave=args.brave_release_metadata,
                                          responses=args.responses, decisions=args.decisions).items() if v})
     print(json.dumps({k: state[k] for k in ('status', 'published', 'source_commit')}))
     return 0 if state['status'] == 'complete' else 2

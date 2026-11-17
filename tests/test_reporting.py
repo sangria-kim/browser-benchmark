@@ -57,6 +57,25 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual('no_changes', later['outcome'])
         validate_graph(self.repo)
 
+    def test_structured_legacy_delta_remains_readable_report_text(self):
+        from pipeline.reporting.core import judged_subject
+        self.selected()
+        delta = {'before': 'Earlier behavior.', 'after': 'Documented correction.', 'not_claimed': 'No launch claim.'}
+        def legacy_shape(*args):
+            value, path = judged_subject(*args)
+            value = copy.deepcopy(value)
+            value['delta'] = delta
+            value['announced_at'] = '2026-11-16T00:00:00Z'
+            value['effective_at'] = '2026-11-16T01:00:00Z'
+            return value, path
+        with patch('pipeline.reporting.core.judged_subject', side_effect=legacy_shape):
+            report = self.report()['report']
+        self.assertTrue(report['items'])
+        for item in report['items']:
+            self.assertEqual(delta, json.loads(item['details']['summary']))
+            self.assertEqual('2026-11-16T00:00:00Z', item['announced_at'])
+            self.assertEqual('2026-11-16T01:00:00Z', item['effective_at'])
+
     def test_partial_unknown_failure_do_not_claim_no_changes(self):
         self.selected()
         for state in ['partial', 'failed', 'unknown']:

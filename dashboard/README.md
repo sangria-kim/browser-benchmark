@@ -95,3 +95,12 @@ node --test tests/webtoon-feed.test.cjs tests/research-ui.test.cjs
 원본 사건·미디어·flag 전문 보존과 초기 payload 크기를 검사합니다.
 브라우저 검증에서는 데스크톱·모바일, 필터 조합, 빈 결과, 페이지 이동,
 키보드 탭 이동, 상세 열기·Escape·포커스 복원, 과거 사건과 리포트 이동을 확인해야 합니다.
+
+
+## Generated JSON resources
+
+The builder keeps `data.json` as plain JSON. It declares `resource_encoding: "gzip"` and points to lazy `details/`, `indexes/`, `dates/` and `reports/` resources with explicit `.json.gz` names. Computed detail links use the same encoding. Gzip headers omit local filenames and use a zero timestamp. A rebuild replaces these generated resource directories, so stale plaintext copies do not inflate the site. Use a dedicated output directory.
+
+The browser loader accepts older plain `.json` resources. For `.json.gz`, it checks the gzip magic bytes and uses the native [DecompressionStream API](https://compression.spec.whatwg.org/#decompression-stream). If Fetch has already decoded HTTP `Content-Encoding: gzip`, it reads the returned JSON without decompressing twice. HTTP, decoding and unsupported-browser errors remain visible; failed loads are removed from the cache so the same action can retry. No runtime dependency is downloaded.
+
+Only generated Pages assets are compressed. Repository evidence, export packages and company import contracts remain unchanged. The complete source index still has its original decoded payload and memory cost. A smaller static build does not establish collection completeness or a successful deployment. Check actual generated content bytes against the [GitHub Pages size limit](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) before publishing.

@@ -45,7 +45,7 @@ class ContractTests(unittest.TestCase):
         validate_record('chrome_scope_config', scope)
         self.assertEqual(len(set(config['browsers'])), 8)
         self.assertEqual(set(scope['experiment_kinds']), {'flag_entry', 'base_feature', 'command_switch'})
-        self.assertEqual(scope['baseline']['historical_backfill_since'], '2026-06-01')
+        self.assertEqual(scope['baseline']['historical_backfill_since'], '2026-01-01')
         for source in config['sources']:
             pattern = source['discovery']['include_url_pattern']
             if pattern:

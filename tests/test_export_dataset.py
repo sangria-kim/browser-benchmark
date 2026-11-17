@@ -65,6 +65,17 @@ class ExportTests(unittest.TestCase):
         exporter.initialize(self.managed)
         self.private = self.base / 'import-private'
 
+    def test_manifest_duplicate_paths_rejected_without_quadratic_object_comparison(self):
+        from schemas.validate import validate_record
+        exporter.export(self.source, 'HEAD', self.package, source_repository=PUBLIC)
+        fixture = json.loads((self.package / exporter.MANIFEST).read_text())
+        entry = fixture['files'][0]
+        fixture['files'] = [dict(entry, path='data/events/event-%s.json' % i) for i in range(10000)]
+        validate_record('export_manifest', fixture)
+        fixture['files'].append(dict(fixture['files'][0], bytes=entry['bytes'] + 1))
+        with self.assertRaises(ContractError):
+            validate_record('export_manifest', fixture)
+
     def git(self, root, *args):
         return subprocess.check_output(['git', '-C', str(root), *args], stderr=subprocess.PIPE).decode().strip()
 

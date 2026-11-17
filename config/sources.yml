@@ -13,9 +13,9 @@
   ],
   "baseline": {
     "mode": "current_index_and_bounded_backfill",
-    "backfill_since": "2026-10-28",
+    "backfill_since": "2026-01-01",
     "backfill_until": "baseline_cutoff",
-    "reason": "First dated daily report is reports/2026-10-28.md. Preserve older existing artifacts as legacy; this is not a claim of historic completeness.",
+    "reason": "Collect official items announced or changed since 2026-01-01. Retain older accepted records as context; undated items remain unknown, not evidence of an in-period change.",
     "include_undated_current_documents": true,
     "overlap_days": 7,
     "full_reconcile_days": 30,
@@ -47,7 +47,7 @@
         "include_url_pattern": "^https://chromereleases\\.googleblog\\.com/\\d{4}/\\d{2}/[^/]+\\.html$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -77,11 +77,11 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product. The official page now links to chromeenterprise.google release notes. Follow the dated support archive and its public release-notes API. Exclude unpublished, confidential, unlisted and deleted API rows."
     },
     {
       "source_id": "chrome-platform-status",
@@ -108,7 +108,7 @@
         "include_url_pattern": "^https://chromestatus\\.com/feature/\\d+$",
         "pagination": "api_total",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -136,11 +136,11 @@
         "include_url_pattern": "^https://blog\\.google/(products|products-and-platforms)/.*chrome/",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+      "scope_note": "Official Chrome-tagged blog API, including cross-product posts. Enumerate its explicit total and next_page; retain all in-period item types."
     },
     {
       "source_id": "edge-stable",
@@ -162,7 +162,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -187,7 +187,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -211,7 +211,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -235,7 +235,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -261,7 +261,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -286,7 +286,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -312,7 +312,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -342,7 +342,7 @@
         "include_url_pattern": "^https://learn\\.microsoft\\.com/en-us/deployedge/microsoft-edge-policies/[^/#]+$",
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -365,10 +365,10 @@
       "language": "en",
       "enabled": true,
       "discovery": {
-        "include_url_pattern": "^https://www\\.firefox\\.com/en-US/firefox/[0-9.]+(?:esr)?/releasenotes/$",
+        "include_url_pattern": "^https://www\\.firefox\\.com/(?:en-US/)?firefox/[0-9.]+(?:esr)?/releasenotes/$",
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -393,7 +393,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -416,7 +416,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -439,7 +439,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -465,7 +465,7 @@
         "include_url_pattern": "^https://www\\.mozilla\\.org/en-US/security/advisories/mfsa[^/]+/$",
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -491,7 +491,7 @@
         "include_url_pattern": "^https://developer\\.apple\\.com/documentation/safari-release-notes/safari-[^/]+release[-_]notes(?:\\.md)?$",
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -514,7 +514,7 @@
         "include_url_pattern": "^https://webkit\\.org/blog/\\d+/release-notes-for-safari-technology-preview-[^/]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -539,7 +539,7 @@
         "include_url_pattern": "^https://support\\.apple\\.com/en-us/\\d+$",
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -566,12 +566,12 @@
       "discovery": {
         "include_url_pattern": null,
         "pagination": "link_header",
-        "max_pages": 100,
-        "max_documents": 500,
+        "max_pages": 500,
+        "max_documents": 20000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product. REST enumeration can stop at 1,000 releases. Reconcile official monthly creation-date search with release publication dates. Creation-date partitions alone cannot prove publication-window completeness."
     },
     {
       "source_id": "brave-android-changelog",
@@ -590,7 +590,7 @@
         "include_url_pattern": null,
         "pagination": "none",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -617,7 +617,7 @@
         "include_url_pattern": "^https://brave\\.com/(blog/)?[^/#]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -645,7 +645,7 @@
         "include_url_pattern": "^https://forum\\.whale\\.naver\\.com/topic/\\d+/",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -672,7 +672,7 @@
         "include_url_pattern": "^https://v1\\.whale\\.naver\\.com/ko/whats_new/notice/",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -699,7 +699,7 @@
         "include_url_pattern": "^https://blogs\\.opera\\.com/desktop/(?:\\d{4}/\\d{2}/[^/]+|changelog-for-[^/]+)/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -724,7 +724,7 @@
         "include_url_pattern": "^https://blogs\\.opera\\.com/mobile/\\d{4}/\\d{2}/[^/]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -751,7 +751,7 @@
         "include_url_pattern": "^https://blogs\\.opera\\.com/news/\\d{4}/\\d{2}/[^/]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -777,7 +777,7 @@
         "include_url_pattern": "^https://vivaldi\\.com/blog/(?:desktop/)?[^/#]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -801,7 +801,7 @@
         "include_url_pattern": "^https://vivaldi\\.com/blog/(?:ios/|android/)?[^/#]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",
@@ -825,7 +825,7 @@
         "include_url_pattern": "^https://vivaldi\\.com/blog/(?:ios/|android/)?[^/#]+/$",
         "pagination": "next_link",
         "max_pages": 100,
-        "max_documents": 500,
+        "max_documents": 5000,
         "follow_related_documents": true
       },
       "item_policy": "all_sections_including_security_and_fixes",

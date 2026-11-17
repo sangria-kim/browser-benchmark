@@ -6,6 +6,39 @@ from pipeline.deduplicate import canonical, digest, feature_identity, event_iden
 from schemas.validate import ContractError, validate_record, validate_transition
 
 
+def attach_accepted_chrome_history(bundle, accepted):
+    """Attach accepted snapshots to a fresh, explicitly compared observation.
+
+    This does not rewrite a source snapshot or infer an upstream change. An
+    older observation, historical replay or unrelated revision is rejected.
+    Normal prefix-preserving bundles still follow the original merge contract.
+    """
+    if not bundle.get('temporal_comparison'):
+        return bundle
+    from pipeline.temporal import instant
+    result = copy.deepcopy(bundle)
+    previous = {s['source_item_id']: s for s in accepted}
+    for index, item in enumerate(result['source_items']):
+        old = previous.get(item['source_item_id'])
+        if not old or item['revisions'][:len(old['revisions'])] == old['revisions']:
+            continue
+        if (len(item['revisions']) != 1 or item['evidence']['source_revision'] != bundle['revision']
+                or instant(item['observed_at']) < instant(old['observed_at'])):
+            raise ContractError('Fresh endpoint observation required to attach accepted source history')
+        snapshot = item['revisions'][0]
+        existing = [r['revision_id'] for r in old['revisions']]
+        if snapshot['revision_id'] in existing:
+            if snapshot['revision_id'] != existing[-1]:
+                raise ContractError('Endpoint observation would replay an older accepted snapshot')
+            retained = copy.deepcopy(old)
+            retained['temporal_scope'] = copy.deepcopy(item['temporal_scope'])
+            result['source_items'][index] = retained
+        else:
+            item['revisions'] = copy.deepcopy(old['revisions']) + item['revisions']
+            validate_transition('source_item', old, item)
+    return result
+
+
 def merge_sources(previous, incoming):
     """Accept only prefix-preserving source updates; never infer deletions."""
     result = {x['source_item_id']: copy.deepcopy(x) for x in previous}
@@ -103,6 +136,13 @@ def normalize_chrome(bundle, sources, experiments=(), events=(), *, observed_at=
     facts = {f['experiment_id']: f for f in bundle['facts']}
     if len(facts) != len(bundle['facts']):
         raise ContractError('Duplicate Chromium fact identity')
+    from .corrections import parser_aliases
+    identified = []
+    for value in bundle['experiments']:
+        record = copy.deepcopy(value)
+        record['source_definition'] = source_definition(facts[value['experiment_id']])
+        identified.append(record)
+    corrected_ids = {a['target_id'] for a in parser_aliases(experiments, identified, [])}
     removals = {r['experiment_id']: r for r in bundle.get('removed_candidates', [])}
     for incoming in bundle['experiments']:
         current = copy.deepcopy(incoming)
@@ -144,7 +184,10 @@ def normalize_chrome(bundle, sources, experiments=(), events=(), *, observed_at=
             current['aliases'] = sorted(set(old['aliases'] + current['aliases']))
             current['legacy'] = old['legacy'] or current['legacy']
         before, after = experiment_state(old) if old else None, experiment_state(current)
-        if before != after:
+        same_revision = bool(old and any(loc['revision'] == fact['source_revision'] and loc['path'] == fact['definition']['path'] for loc in old['source_locations']))
+        initial_projection = bool(old and 'temporal_scope' not in old and current.get('temporal_scope'))
+        unchanged_projection = current.get('temporal_scope', {}).get('change') == 'unchanged'
+        if before != after and not same_revision and ident not in corrected_ids and not initial_projection and not unchanged_projection:
             kind = 'baseline' if old is None else 'changed'
             if old and old['lifecycle'] == 'removed' and current['lifecycle'] != 'removed':
                 kind = 'restored'
@@ -160,6 +203,8 @@ def normalize_chrome(bundle, sources, experiments=(), events=(), *, observed_at=
                 observed_at=source['observed_at'], effective_at=None, before=before, after=after,
                 summary=('Source baseline: ' if old is None else 'Source definition changed: ') + (current['title'] or current['symbol'] or current['flag_id'] or ident),
                 verification_status='source_only', origin=source['origin'], correction_of=None, revision=1)
+            if 'temporal_scope' in current:
+                event['temporal_scope'] = copy.deepcopy(current['temporal_scope'])
             if eid in history and history[eid] != event:
                 raise ContractError('Experiment event ID collision')
             history[eid] = event
@@ -240,6 +285,30 @@ def normalize_browser_catalog(sources, features=(), events=()):
         ident = next(iter(matches)) if len(matches) == 1 else feature_identity('chrome', canonical_key)
         if ident in catalog and len(matches) != 1 and (catalog[ident]['browser'], catalog[ident]['canonical_key']) != ('chrome', canonical_key):
             raise ContractError('Feature ID collision')
+        feature = catalog.setdefault(ident, dict(schema_version=2, feature_id=ident, browser='chrome', canonical_key=canonical_key,
+            title=source['title'] or canonical_key, aliases=[], source_item_ids=[], event_ids=[], lifecycle='unknown', legacy=False))
+        feature['source_item_ids'] = sorted(set(feature['source_item_ids'] + [source['source_item_id']]))
+    # Enterprise's official API repeats the same public feature across release
+    # milestones. Match full source-unit hashes and upstream IDs, never titles
+    # alone. Preserve every version-specific source and revision as evidence.
+    status_owners = {}
+    source_owners = {sid: f['feature_id'] for f in catalog.values() for sid in f['source_item_ids']}
+    for source in sources:
+        if source['source_id'] == 'chrome-platform-status' and source.get('item_content_sha256') and source['source_item_id'] in source_owners:
+            identity = (source['item_key'], source['item_content_sha256'], source['title'])
+            status_owners.setdefault(identity, set()).add(source_owners[source['source_item_id']])
+    from urllib.parse import urlsplit, parse_qs
+    for source in sources:
+        if source['source_id'] != 'chrome-enterprise' or source['record_status'] != 'parsed' or not source.get('item_content_sha256'):
+            continue
+        url = urlsplit(source['evidence']['url'])
+        if (url.scheme != 'https' or url.netloc != 'release-notes-787862449254.us-central1.run.app' or url.path != '/features'
+                or not re.fullmatch(r'\d+', source['item_key']) or parse_qs(url.query).get('version') != [source['version']]):
+            continue
+        identity = (source['item_key'], source['item_content_sha256'], source['title'])
+        matches = status_owners.get(identity, set())
+        canonical_key = 'chrome-enterprise:' + source['item_key']
+        ident = next(iter(matches)) if len(matches) == 1 else feature_identity('chrome', canonical_key)
         feature = catalog.setdefault(ident, dict(schema_version=2, feature_id=ident, browser='chrome', canonical_key=canonical_key,
             title=source['title'] or canonical_key, aliases=[], source_item_ids=[], event_ids=[], lifecycle='unknown', legacy=False))
         feature['source_item_ids'] = sorted(set(feature['source_item_ids'] + [source['source_item_id']]))

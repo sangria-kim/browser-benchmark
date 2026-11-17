@@ -23,6 +23,25 @@ downloads per call. `--max-trees` limits directory requests per call. Exit statu
 `2` means partial coverage; `0` means complete coverage under the configured
 scope. The command prints an operations summary. Keep it outside the public repo.
 
+For the 2026 projection, collect the verified pre-KST-Jan1 commit and the current
+commit with the same final parser and scope. Each handoff records the parser code
+SHA-256. Compare with `--baseline-bundle /private/boundary/handoff.json
+--boundary-time <verified-commit-timestamp> --current-time <verified-current-commit-timestamp>
+--cutoff <source-cutoff>` on the current
+collection command. The timestamp must precede `2025-12-31T15:00:00Z`.
+The current timestamp must not exceed its declared source cutoff. Browser and
+Chromium cutoffs may differ; retain both in `collection_scope.source_windows`.
+Use a new state directory when parser or scope changes. `handoff.json` then carries
+`temporal_comparison` and public per-item scope. Pass that handoff to the daily
+runner's `--chrome-bundle`. A current scan without this comparison stays temporally
+unknown and cannot complete the bounded collection.
+
+Enumeration, syntax parsing, reference resolution and temporal eligibility are
+separate coverage dimensions. A zero syntax-error count does not prove resolved
+relationships. The endpoint comparison ignores file hashes, line movement,
+comments and declaration formatting. It retains older accepted identities and
+does not publish removed/transient-only definitions as current 2026 changes.
+
 Use one state directory per pinned revision. A resumed run reuses its original
 revision even if main has moved. For a new revision, use a new directory and pass
 `--previous-bundle /private/previous-run/handoff.json`. The previous source
@@ -97,6 +116,21 @@ references also prevent full coverage, even when the enclosing syntax is parsed.
 
 Named auxiliary references require matching namespace and an unambiguous owner.
 The collector does not merge two unrelated definitions that share a bare symbol.
+Feature defaults and symbolic feature names include supported constant initializer
+dependencies. Conditional default definitions must be mutually exclusive and cover
+the feature's build conditions. Their initializer values and branch conditions enter
+the endpoint comparison. Unsupported function calls, expressions, missing constants,
+cycles and ambiguous branches remain unknown, even when the symbol text is unchanged.
+Feature wrappers preserve object-macro names for this resolver. They do not select
+the last macro definition. Macro redefinitions, `undef`, macro/constant collisions,
+and locally defined macros used in build guards remain unknown when their meaning
+cannot be proved. `BUILDFLAG(IS_*)` platform predicates remain symbolic conditions.
+An empty `#ifndef` / `#define` wrapper around a whole header is structural when
+the macro has no other use, redefinition, or outer alternative. Only this proven
+include guard is removed from semantic conditions. Original identity keys keep
+the source guard for compatibility. Header constants can then cover all of a
+feature's conditions without a false unresolved guard. Other local macros remain
+unknown. Guard removal does not prove installed feature availability.
 An unsupported conditional initializer can yield multiple unresolved fragments;
 these fragments prevent full coverage and remain available for parser repair.
 Arbitrary generated macro families and non-string switch representations are

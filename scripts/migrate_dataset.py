@@ -26,11 +26,26 @@ def prepare(repository, chrome_bundle=None, observed_at=None):
     sources = merge_sources(old['source_item'], legacy_sources + predecessor_sources)
     experiments, experiment_events = old['experiment'], old['experiment_event']
     if chrome_bundle is not None:
+        from pipeline.normalize.core import attach_accepted_chrome_history
+        chrome_bundle = attach_accepted_chrome_history(chrome_bundle, sources)
         sources = merge_sources(sources, chrome_bundle['source_items'])
         experiments, experiment_events = normalize_chrome(chrome_bundle, sources, experiments, experiment_events, observed_at=observed_at)
     flag_sources, experiments = migrate_flag_documents(root, experiments, observed_at, sources)
     sources = merge_sources(sources, flag_sources)
     features = normalize_browser_catalog(sources, features, events)
+    if any('temporal_scope' in s for s in sources):
+        from pipeline.temporal import project_legacy
+        registry = load_config(root / 'config/sources.yml')
+        project_legacy(sources, features, events, experiments, registry['baseline']['backfill_since'], observed_at)
+        if chrome_bundle and chrome_bundle.get('temporal_comparison'):
+            current_ids = {e['experiment_id'] for e in chrome_bundle['experiments']}
+            current_sources = {s['source_item_id'] for s in chrome_bundle['source_items']}
+            for record in experiments + sources:
+                retained = (record.get('experiment_id') not in current_ids if 'experiment_id' in record else
+                            record['source_id'] == 'chromium-source' and record['source_item_id'] not in current_sources)
+                if retained:
+                    record['temporal_scope'].update(status='context', change='unknown',
+                        reason='Retained accepted identity is not in the current endpoint projection. No product removal is inferred.')
     changes = {}
     for event in old['feature_event']:
         if event['schema_version'] == 1:
@@ -55,6 +70,11 @@ def prepare(repository, chrome_bundle=None, observed_at=None):
     changes['data/experiment-events/events.json'] = sorted(experiment_events, key=lambda x: x['event_id'])
     alias_path = root / 'data/aliases/corrections.json'
     changes['data/aliases/corrections.json'] = load_config(alias_path) if alias_path.exists() else []
+    if chrome_bundle is not None:
+        from pipeline.normalize.corrections import parser_aliases
+        incoming_ids = {e['experiment_id'] for e in chrome_bundle['experiments']}
+        incoming = [e for e in experiments if e['experiment_id'] in incoming_ids]
+        changes['data/aliases/corrections.json'] = parser_aliases(old['experiment'], incoming, changes['data/aliases/corrections.json'])
     changes['data/compatibility/legacy-index.json'] = compatibility_index(root, features, experiments)
     validate_graph(root, changes)
     return changes

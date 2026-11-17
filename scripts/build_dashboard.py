@@ -1,5 +1,7 @@
 """Build a static public dashboard from the repository's evidence."""
 import argparse
+import gzip
+import io
 import json
 import re
 import shutil
@@ -9,6 +11,25 @@ from pathlib import Path
 from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def write_resource(output, path, value):
+    """Only generated lazy resources use deterministic gzip; data.json stays plain."""
+    target = output / path
+    target.parent.mkdir(parents=True, exist_ok=True)
+    content = json.dumps(value, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
+    if path.endswith('.json.gz'):
+        buffer = io.BytesIO()
+        with gzip.GzipFile(fileobj=buffer, mode='wb', filename='', mtime=0) as stream:
+            stream.write(content)
+        content = buffer.getvalue()
+    target.write_bytes(content)
+
+
+def read_resource(path):
+    """Read a generated dashboard resource, including the plain entry file."""
+    content = path.read_bytes()
+    return json.loads(gzip.decompress(content) if path.name.endswith('.json.gz') else content)
 
 
 def read_json(path):
@@ -24,6 +45,7 @@ def build_research(output, legacy, base):
     import hashlib
     sys.path.insert(0, str(ROOT))
     from pipeline.selection.core import build_contexts, latest_assessments, project, load_rules
+    from pipeline.temporal import policy
     from collections import defaultdict, Counter
     from datetime import timedelta
 
@@ -44,12 +66,10 @@ def build_research(output, legacy, base):
         return kind + ':' + identifier
 
     def resource(identifier):
-        return 'details/' + hashlib.sha256(identifier.encode()).hexdigest() + '.json'
+        return 'details/' + hashlib.sha256(identifier.encode()).hexdigest() + '.json.gz'
 
     def write(path, value):
-        target = output / path
-        target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_text(json.dumps(value, ensure_ascii=False, separators=(',', ':')))
+        write_resource(output, path, value)
 
     groups = {
         'source_item': records('data/source-items/*/*.json'),
@@ -128,12 +148,17 @@ def build_research(output, legacy, base):
             after = {}
         title = fact.get('feature_title') or after.get('title') or fact.get('title') or fact.get('summary') or fact.get('symbol') or k.split(':', 1)[1]
         platforms = fact.get('platform') or after.get('platform') or catalog.get('platform') or []
+        versions = sorted({objects[key('source_item', sid)].get('version') for sid in catalog.get('source_item_ids', [])
+                           if objects[key('source_item', sid)].get('version')})
+        if not versions and fact.get('version'):
+            versions = [fact['version']]
         dates = [fact.get('observed_at')]
         if not k.startswith(('feature_event:', 'experiment_event:')):
             dates += [objects.get(key('source_item', s), {}).get('observed_at') for s in fact.get('source_item_ids', [])]
         return {'key': k, 'id': k.split(':',1)[1], 'subject_kind': k.split(':',1)[0],
                 'title': title, 'browser': fact.get('browser') or catalog.get('browser') or 'chrome',
                 'platform': platforms if isinstance(platforms,list) else [platforms],
+                'versions': versions,
                 'date': max(filter(None, dates), key=stamp, default=''), 'catalog_id': cid,
                 'experiment_kind': fact.get('experiment_kind') or catalog.get('experiment_kind'),
                 'event_type': fact.get('event_type'), 'build_conditions': after.get('build_conditions', fact.get('build_conditions', [])),
@@ -141,6 +166,8 @@ def build_research(output, legacy, base):
                 'status': a['status'] if a else 'unassessed', 'assessment_id': a['assessment_id'] if a else None,
                 'current_status': heads.get(pk, {}).get('status', 'unassessed'),
                 'current_selected': pk in current_keys, 'principal': pk,
+                'temporal_scope': ((catalog.get('temporal_scope') or fact.get('temporal_scope')) if fact.get('experiment_kind')
+                                   else (fact.get('temporal_scope') or catalog.get('temporal_scope'))),
                 'detail': resource(k)}
     projections = {p['selection_kind']: p for p in records('data/selected/*/current.json')}
     actual_keys = {key(r['subject_kind'],r['subject_id']) for p in projections.values() for r in p['current']}
@@ -158,12 +185,12 @@ def build_research(output, legacy, base):
         dated = project(dataset, contexts, assessments, load_rules(), cutoff, as_of=cutoff)
         date_heads = heads_at(cutoff)
         rows = [brief(key(r['subject_kind'],r['subject_id']), date_heads[key(r['subject_kind'],r['subject_id'])]) for p in dated.values() for r in p['current']]
-        path = 'dates/' + d + '.json'
+        path = 'dates/' + d + '.json.gz'
         write(path, {'date':d, 'cutoff':cutoff, 'rows':rows})
         date_index.append({'date':d, 'path':path, 'count':len(rows)})
     report_index, report_links = [], defaultdict(list)
     for report in records('data/reports/history/*/*.json'):
-        path = 'reports/' + report['date'] + '-r' + str(report['revision']) + '.json'
+        path = 'reports/' + report['date'] + '-r' + str(report['revision']) + '.json.gz'
         write(path, report)
         entry = {k:report[k] for k in ('report_id','date','revision','cutoff','completeness','outcome')}
         entry.update(path=path, count=len(report['items']), markdown=base+'reports/generated/'+report['date']+'/r'+str(report['revision'])+'.md')
@@ -204,9 +231,9 @@ def build_research(output, legacy, base):
                             'legacy_flags':docs.get(cid, [])})
     all_rows = {kind:[brief(key(kind,r[fields[kind]])) for r in groups[kind]] for kind in ('source_item','feature','experiment')}
     for kind, rows in all_rows.items():
-        write('indexes/'+kind+'.json', rows)
+        write('indexes/'+kind+'.json.gz', rows)
     selected_rows = {kind:[brief(key(r['subject_kind'],r['subject_id'])) for r in projections.get(kind,{}).get('current',[])] for kind in ('features','flags')}
-    initial = {'format_version':2, 'source':legacy['source'], 'built_at':legacy['built_at'],
+    initial = {'format_version':2, 'resource_encoding':'gzip', 'source':legacy['source'], 'built_at':legacy['built_at'],
                'updated_at':max((a['assessed_at'] for a in assessments),default=legacy['updated_at']),
                'catalog':legacy['catalog'], 'selected':selected_rows,
                'history':[brief(k) for k in sorted(ever)], 'dates':date_index,
@@ -214,7 +241,9 @@ def build_research(output, legacy, base):
                'counts':{kind:len(rows) for kind,rows in groups.items()},
                'experiment_counts':dict(Counter(r['experiment_kind'] for r in groups['experiment'])),
                'assessment_count':len(assessments),
-               'indexes':{k:'indexes/'+k+'.json' for k in all_rows}}
+               'indexes':{k:'indexes/'+k+'.json.gz' for k in all_rows}}
+    if policy(dataset):
+        initial['collection_scope'] = policy(dataset)
     write('data.json',initial)
     return initial
 
@@ -281,7 +310,10 @@ def build(output):
             if media['type'] not in ('image', 'video', 'link') or not media['url'].startswith('https://'):
                 raise ValueError('Invalid media')
     output.mkdir(parents=True, exist_ok=True)
-    for name in ('index.html', 'style.css', 'app.js', 'webtoon-feed.js', 'research-model.js'):
+    for name in ('details', 'indexes', 'dates', 'reports'):
+        if (output / name).exists():
+            shutil.rmtree(output / name)
+    for name in ('index.html', 'style.css', 'app.js', 'webtoon-feed.js', 'research-model.js', 'resources.js'):
         shutil.copy2(ROOT / 'dashboard' / name, output / name)
     payload = {'events': events, 'flags': flags, 'catalog': extras, 'source': {'ref': ref, 'sha': sha},
                'built_at': datetime.now(timezone.utc).isoformat(),

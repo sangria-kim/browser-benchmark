@@ -7,6 +7,8 @@ from pathlib import Path
 
 from pipeline.collectors.browser import BrowserCollector, Response
 from pipeline.collectors.browser.collector import digest, minimal, docc_items, markdown_items
+from pipeline.collectors.browser.html import date_value, Tree, boundary, blocks
+from pipeline.collectors.browser.cache import seed_cache
 from schemas.validate import load_config, validate_dataset
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -47,9 +49,9 @@ class CollectorsTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def collect(self, s, mapping, cutoff=CUTOFF):
+    def collect(self, s, mapping, cutoff=CUTOFF, since='2026-10-28'):
         self.transport = Transport(mapping)
-        state = BrowserCollector(self.root, self.private, self.transport).collect(s, cutoff, '2026-10-28')
+        state = BrowserCollector(self.root, self.private, self.transport).collect(s, cutoff, since)
         records = json.loads((self.root / 'data/source-items' / s['browser'] / (s['source_id'] + '.json')).read_text())
         validate_dataset({'source_item': records}, {s['source_id']})
         self.assertEqual(state['discovered'], state['processed'] + state['duplicate'] + state['unparsed'])
@@ -78,6 +80,88 @@ class CollectorsTest(unittest.TestCase):
         again, same = self.collect(s, mapping, '2026-11-16T01:00:00Z')
         self.assertEqual(records, same)
         self.assertEqual(8, again['duplicate'])
+
+    def test_chrome_releases_reads_inert_post_templates_once(self):
+        s = source('chrome-releases')
+        url = s['url'] + '2026/11/chromeos.html'
+        future = s['url'] + '2026/11/future.html'
+        fragment = '''
+            <h2>ChromeOS changes</h2>
+            <p id="rollout">Stable rollout for ChromeOS &amp; ChromeOS Flex.</p>
+            <ul><li id="fix">Fixed a startup crash.</li></ul>
+            <p>Example Signoff<br><a href="/team">Google ChromeOS</a></p>
+            <span itemprop="author"><p>Author metadata</p></span>
+            <nav><p>Template navigation</p></nav>
+        '''
+        html = '''
+            <script type="text/template"><p>Outside the post body</p></script>
+            <div class="post-header">
+                <span class="publishdate" itemprop="datePublished">Friday, November 13, 2026</span>
+            </div>
+            <div class="post-body entry-content">
+                <script type="text/template"><p>Outside the post content</p></script>
+                <div class="post-content">
+                    <script type="text/template">{fragment}</script>
+                    <noscript>{fragment}</noscript>
+                    <script><p>Inline script</p></script>
+                    <script type="text/javascript"><p>Executable script</p></script>
+                    <script type="text/template" src="example"><p>External script</p></script>
+                    <nav><script type="text/template"><p>Navigation template</p></script></nav>
+                    <p id="normal">Updated release notes.</p>
+                </div>
+            </div>
+        '''.format(fragment=fragment)
+        state, records = self.collect(s, {
+            s['url']: self.index(s, [url, future]),
+            url: self.release(url, html),
+            future: self.release(future, html.replace('November 13', 'November 20')),
+        })
+        self.assertEqual('partial', state['status'])
+        self.assertEqual(4, state['discovered'])
+        self.assertEqual(1, state['unparsed'])
+        self.assertEqual([future], state['excluded_by_date'])
+        self.assertEqual({'2026-11-13'}, {r['published_at'] for r in records})
+        self.assertEqual({
+            'rollout': 'Stable rollout for ChromeOS & ChromeOS Flex.',
+            'fix': 'Fixed a startup crash.',
+            'normal': 'Updated release notes.',
+            'chrome-post-signoff': None,
+        }, {r['item_key']: r['title'] for r in records})
+
+        s = source('vivaldi-desktop')
+        url = 'https://vivaldi.com/blog/release/'
+        _, records = self.collect(s, {s['url']: self.index(s, [url]), url: self.release(url, html)})
+        self.assertEqual(['normal'], [r['item_key'] for r in records])
+
+    def test_chrome_release_archive_keeps_boundary_day_and_stops_before_it(self):
+        s = source('chrome-releases')
+        home = s['url']
+        archive = home + 'search?updated-max='
+        boundary_page = archive + '2026-10-28T00:00:00-07:00'
+        unknown_page = archive + '2026-10-27T23:59:59'
+        before_boundary = archive + '2026-10-27T23:59:59-07:00'
+        release_urls = [home + '2026/10/' + path + '.html'
+                        for path in ('latest', 'boundary-1', 'boundary-2')]
+        requests = [(home, boundary_page), (boundary_page, unknown_page),
+                    (unknown_page, before_boundary)]
+        mapping = {}
+        for (page, next_page), release_url in zip(requests, release_urls):
+            mapping[page] = response(page, '''
+                <a href="{release}">Release</a>
+                <a id="Blog1_blog-pager-older-link" href="{next_page}">Older Posts</a>
+            '''.format(release=release_url, next_page=next_page))
+            mapping[release_url] = self.release(release_url, '''
+                <div class="post-header">
+                    <span class="publishdate" itemprop="datePublished">October 28, 2026</span>
+                </div>
+                <div class="post-body"><p>Release evidence.</p></div>
+            ''')
+        state, records = self.collect(s, mapping)
+        self.assertEqual('complete', state['status'])
+        self.assertTrue(state['pagination_exhausted'])
+        self.assertEqual(3, state['pages'])
+        self.assertEqual(3, len(records))
+        self.assertCountEqual(list(mapping), self.transport.calls)
 
     def test_partial_failure_preserves_previous_and_minimum_record(self):
         s = source('opera-desktop')
@@ -144,7 +228,7 @@ class CollectorsTest(unittest.TestCase):
 
     def test_github_link_pagination_and_markdown_security(self):
         s = source('brave-releases')
-        first = 'https://api.github.com/repos/brave/brave-browser/releases?per_page=10&page=1'
+        first = 'https://api.github.com/repos/brave/brave-browser/releases?per_page=100&page=1'
         second = first.replace('page=1', 'page=2')
         row = {'id': 1, 'html_url': s['url'] + '/tag/v1', 'tag_name': 'v1', 'published_at': '2026-11-10T00:00:00Z',
                'body': '## Security\n- Fixed CVE-2026-12345\n## General\n- Improved performance\n', 'author': {'login': 'private-name'}}
@@ -193,18 +277,202 @@ class CollectorsTest(unittest.TestCase):
         state, _ = self.collect(s, {s['url']: response(s['url'], 'truncated', status=206)})
         self.assertEqual('partial', state['status'])
 
-    def test_capped_api_resume_uses_pinned_cache_and_finishes(self):
+    def test_capped_mutable_api_resume_refreshes_whole_epoch_and_finishes(self):
         s = source('chrome-platform-status');s['discovery']['max_documents'] = 1
         url = 'https://chromestatus.com/api/v0/features?num=100&start=0'
         mapping = {url: response(url, {'total_count': 2, 'features': [{'id':1,'name':'A'}, {'id':2,'name':'B'}]})}
         state, records = self.collect(s, mapping)
         self.assertEqual('partial', state['status'])
         self.assertEqual(1, len(records))
-        no_network = Transport({})
-        resumed = BrowserCollector(self.root, self.private, no_network, resume=True).collect(s, CUTOFF, '2026-10-28')
+        fresh = Transport(mapping)
+        resumed = BrowserCollector(self.root, self.private, fresh, resume=True).collect(s, CUTOFF, '2026-10-28')
         self.assertEqual('complete', resumed['status'])
         self.assertEqual(2, resumed['stored_records'])
-        self.assertEqual([], no_network.calls)
+        self.assertEqual([url], fresh.calls)
+
+    def test_iso_and_publisher_dates_preserve_day_and_upper_bound(self):
+        self.assertEqual('2026-01-01', date_value('2026-01-01T00:00:00+09:00'))
+        self.assertEqual('2026-01-01', date_value('01 Jan 2026'))
+        self.assertEqual('2026-11-04', date_value('Nov 4, 2026'))
+        self.assertIsNone(date_value('2026-01-011'))
+        s = source('vivaldi-desktop')
+        urls = ['https://vivaldi.com/blog/' + v + '/' for v in ('old', 'new', 'future')]
+        mapping = {s['url']: self.index(s, urls)}
+        for url, day in zip(urls, ('2025-12-31', '2026-11-01', '2026-11-20')):
+            mapping[url] = response(url, '<meta property="article:published_time" content="' + day + 'T12:00:00Z"><div class="entry-content"><p>Product change.</p></div>')
+        state, rows = self.collect(s, mapping)
+        self.assertEqual('complete', state['status'])
+        self.assertEqual(1, len(rows))
+        self.assertEqual(1, state['temporal_coverage']['in_period'])
+        self.assertEqual([urls[0], urls[2]], state['excluded_by_date'])
+
+    def test_html_publication_timestamps_survive_index_and_document_filters(self):
+        s = source('vivaldi-desktop')
+        urls = ['https://vivaldi.com/blog/' + name + '/'
+                for name in ('before', 'start', 'indexed-start', 'cutoff', 'after', 'day', 'naive')]
+        before, start, indexed_start, cutoff, after, day, naive = urls
+        start_time = '2025-12-31T15:00:00Z'
+        cutoff_time = '2026-11-16T12:53:40Z'
+        index_dates = {indexed_start: start_time, cutoff: '2026-11-16'}
+        index = ''.join('<article><h2><a href="%s">Release</a></h2>%s</article>' % (
+            url, '<time datetime="%s"></time>' % index_dates[url] if url in index_dates else '') for url in urls)
+
+        def article(url, metadata, heading=''):
+            return response(url, metadata + '<div class="entry-content">' + heading + '<p>Product change.</p></div>')
+
+        state, rows = self.collect(s, {
+            s['url']: response(s['url'], index),
+            before: article(before, '<meta property="article:published_time" content="2025-12-31T14:59:59Z">'),
+            start: article(start, '<meta property="article:published_time" content="' + start_time + '">',
+                           '<h2>Dec 31, 2025</h2>'),
+            indexed_start: article(indexed_start, ''),
+            cutoff: article(cutoff, '<time datetime="2026-11-16T21:53:40+09:00">Nov 16, 2026</time>'),
+            after: article(after, '<meta property="article:published_time" content="2026-11-16T12:53:41Z">'),
+            day: article(day, '<meta property="article:published_time" content="2026-11-16">'),
+            naive: article(naive, '<meta property="article:published_time" content="2026-11-16T12:53:41">'),
+        }, cutoff=cutoff_time, since='2026-01-01')
+        self.assertEqual('complete', state['status'])
+        self.assertEqual([before, after], state['excluded_by_date'])
+        scopes = {r['evidence']['url']: r['temporal_scope'] for r in rows}
+        self.assertEqual({start, indexed_start, cutoff, day, naive}, set(scopes))
+        for url, value, precision in [(start, start_time, 'timestamp'),
+                                      (indexed_start, start_time, 'timestamp'),
+                                      (cutoff, '2026-11-16T21:53:40+09:00', 'timestamp'),
+                                      (day, '2026-11-16', 'day')]:
+            self.assertEqual(('in_period', value, precision),
+                             tuple(scopes[url][key] for key in ('status', 'evidence_date', 'precision')))
+        self.assertEqual('unknown', scopes[naive]['status'])
+
+    def test_nested_docc_code_lists_and_inline_html(self):
+        rows = docc_items({'primaryContentSections': [{'kind': 'content', 'content': [
+            {'type': 'unorderedList', 'items': [{'content': [{'type': 'paragraph', 'inlineContent': [
+                {'type': 'text', 'text': 'Fixed'}, {'type': 'codeVoice', 'code': ['first', 'second']}]}]}]}]}]})
+        self.assertEqual('Fixed first second', rows[0]['text'])
+        self.assertTrue(rows[0]['parsed'])
+        body = Tree('<div><span>Updated <u>underlined</u> text.</span><custom>Unknown content</custom></div>').root
+        rows = blocks(body)
+        self.assertTrue(any(r['parsed'] and 'underlined' in r['text'] for r in rows))
+        self.assertTrue(any(not r['parsed'] for r in rows))
+
+    def test_forum_body_inside_form_omits_replies_and_inactive_next(self):
+        s = source('whale-notices')
+        url = 'https://forum.whale.naver.com/topic/123/'
+        index = '<a href="' + url + '">Release</a><li class="ipsPagination_inactive"><a rel="next" href="' + s['url'] + '">Next</a></li>'
+        html = '<form><div data-role="commentContent"><p>Official change.</p></div><div data-role="commentContent"><p>Private reply.</p></div></form>'
+        state, rows = self.collect(s, {s['url']: response(s['url'], index), url: response(url, html)})
+        self.assertEqual('complete', state['status'])
+        self.assertEqual(['Official change.'], [r['title'] for r in rows])
+
+    def test_reviewed_signoff_requires_document_and_line_hash(self):
+        s = source('chrome-releases')
+        url = s['url'] + '2026/11/test.html'
+        html = '<div class="post-body"><div class="post-content"><script type="text/template"><p>Product change.</p><p>Example Person</p><p>Google Chrome</p><span itemprop="author"></span></script></div></div>'
+        mapping = {s['url']: self.index(s, [url]), url: response(url, html)}
+        review = {digest(html.encode()): [digest(b'Example Person')]}
+        collector = BrowserCollector(self.root, self.private, Transport(mapping), reviewed_attributions=review)
+        state = collector.collect(s, CUTOFF, '2026-01-01')
+        self.assertEqual('complete', state['status'])
+        self.assertNotIn('Example Person', collector.destination.read_text())
+        mapping[url] = response(url, html.replace('Example Person', 'Fixed crash'))
+        state = BrowserCollector(self.root, self.private, Transport(mapping), reviewed_attributions=review).collect(s, CUTOFF, '2026-01-01')
+        self.assertEqual('partial', state['status'])
+        self.assertEqual(1, state['unparsed'])
+
+    def test_cache_handoff_reparses_and_rejects_corruption(self):
+        s = source('edge-stable')
+        self.collect(s, {s['url']: response(s['url'], '<div class="content"><p>Product change.</p></div>')})
+        target = self.private.parent / 'new-cache'
+        provenance = seed_cache(self.private, target, CUTOFF)
+        self.assertTrue(provenance['blobs'])
+        self.assertFalse((target / (s['source_id'] + '.json')).exists())
+        progress = json.loads((target / (s['source_id'] + '-progress.json')).read_text())
+        self.assertEqual([], progress['documents'])
+        next((self.private / 'cache').iterdir()).write_bytes(b'changed')
+        bad = self.private.parent / 'bad-cache'
+        with self.assertRaisesRegex(ValueError, 'checksum'):
+            seed_cache(self.private, bad, CUTOFF)
+        self.assertFalse(bad.exists())
+
+    def test_explicit_security_attribution_is_not_published(self):
+        self.assertNotIn('Example Person', minimal('CVE-2026-12345: Example Person'))
+        self.assertNotIn('Example Person', minimal('Fixed crash. Reported by Example Person on 2026-11-01'))
+
+    def test_google_custom_feed_total_and_product_body(self):
+        s = source('chrome-blog')
+        api = 'https://blog.google/api/v2/latest/?tags=chrome&site_id=2&paginate=50'
+        article = 'https://blog.google/products-and-platforms/products/chrome/new/'
+        mapping = {
+            s['url']: response(s['url'], '<uni-latest-news-feed tag-slugs=\'[{"slug":"chrome"}]\' site-id="2"></uni-latest-news-feed>'),
+            api: response(api, {'meta': {'total_count': 3}, 'next_page': None, 'results': [
+                {'page_id': 1, 'url': '/products-and-platforms/products/chrome/old/', 'published': '2025-12-31T14:59:59Z'},
+                {'page_id': 2, 'url': article, 'published': '2025-12-31T15:00:00Z'},
+                {'page_id': 3, 'url': '/products-and-platforms/products/chrome/future/', 'published': '2026-11-16T12:53:41Z'}]}),
+            article: response(article, '<section class="uni-article-hero"><p>Personal author.</p></section><section class="article-container"><uni-article-paragraph><p>New browser feature.</p></uni-article-paragraph></section>')}
+        state, rows = self.collect(s, mapping, cutoff='2026-11-16T12:53:40Z', since='2026-01-01')
+        self.assertEqual('complete', state['status'])
+        self.assertEqual(3, state['api_total'])
+        self.assertEqual('2026-11-16', state['latest_publication_date'])
+        self.assertEqual(2, len(state['excluded_by_date']))
+        self.assertEqual('chrome', state['index_evidence']['tag'])
+        self.assertEqual(['New browser feature.'], [r['title'] for r in rows])
+        self.assertEqual(('in_period', 'timestamp', '2025-12-31T15:00:00Z'),
+                         tuple(rows[0]['temporal_scope'][key] for key in ('status', 'precision', 'evidence_date')))
+
+    def test_google_resume_refreshes_same_total_changed_membership(self):
+        s = source('chrome-blog')
+        api = 'https://blog.google/api/v2/latest/?tags=chrome&site_id=2&paginate=50'
+        page2 = 'https://blog.google/api/v2/latest?cursor=2'
+        index = '<uni-latest-news-feed tag-slugs=\'[{"slug":"chrome"}]\' site-id="2"></uni-latest-news-feed>'
+        def page(ident, following):
+            return {'meta': {'total_count': 2}, 'next_page': following,
+                    'results': [{'page_id': ident, 'url': '/products/chrome/' + str(ident) + '/',
+                                 'published': '2026-11-01T12:00:00Z'}]}
+        def article(ident):
+            return 'https://blog.google/products/chrome/' + str(ident) + '/'
+        state, _ = self.collect(s, {
+            s['url']: response(s['url'], index), api: response(api, page(1, page2)),
+            article(1): response(article(1), '<section class="article-container"><p>Old product fact.</p></section>'),
+            page2: RuntimeError('Interrupted second page')})
+        self.assertEqual('partial', state['status'])
+        # Same count, different membership. A cached first page would silently
+        # produce IDs 1+3 instead of the available current enumeration 2+3.
+        fresh_pages = {s['url']: response(s['url'], index), api: response(api, page(2, page2)),
+                       page2: response(page2, page(3, None))}
+        transport = Transport(dict(fresh_pages, **{
+            article(i): response(article(i), '<section class="article-container"><p>Current fact %s.</p></section>' % i)
+            for i in (2, 3)}))
+        collector = BrowserCollector(self.root, self.private, transport, resume=True)
+        resumed = collector.collect(s, CUTOFF, '2026-10-28')
+        self.assertEqual('complete', resumed['status'])
+        self.assertEqual(2, resumed['api_total'])
+        self.assertEqual({article(2), article(3)}, {collector.records[k]['evidence']['url'] for k in collector.seen})
+        self.assertEqual([s['url'], api, article(2), page2, article(3)], transport.calls)
+        # Another retry still refreshes enumeration, but reuses article bodies.
+        cached_articles = Transport(fresh_pages)
+        again = BrowserCollector(self.root, self.private, cached_articles, resume=True).collect(s, CUTOFF, '2026-10-28')
+        self.assertEqual('complete', again['status'])
+        self.assertEqual([s['url'], api, page2], cached_articles.calls)
+
+    def test_nested_attribution_omitted_from_ancestors_and_section_labels(self):
+        examples = [
+            '<div><span>Browser update.</span><span itemprop="author">Example Person</span></div>',
+            '<span>Browser update.<a rel="author noopener">Example Person</a></span>',
+            '<p>Browser update.<span itemprop="author"><b>Example Person</b></span> Fixed crash.</p>',
+            '<blockquote>Browser update.<dl><dt>Reporter</dt><dd><span>Example Person</span></dd><dt>Impact</dt><dd>High</dd></dl></blockquote>',
+            '<div><h2>Changes <span itemprop="author">Example Person</span></h2><p>Browser update.</p></div>',
+        ]
+        for html in examples:
+            with self.subTest(html=html):
+                rows = blocks(Tree(html).root)
+                self.assertNotIn('Example Person', json.dumps(rows))
+                self.assertTrue(any('Browser update.' in r['text'] for r in rows))
+                self.assertTrue(all(r['parsed'] for r in rows))
+        s = source('edge-stable')
+        state, records = self.collect(s, {s['url']: response(s['url'], '<div class="content">' + ''.join(examples) + '</div>')})
+        self.assertEqual('complete', state['status'])
+        self.assertNotIn('Example Person', json.dumps(records))
+        self.assertTrue(any('Fixed crash.' in (r['summary'] or '') for r in records))
+        self.assertTrue(any('Impact High' in (r['summary'] or '') for r in records))
 
     def test_html_page_and_document_caps_resume_without_repeating_requests(self):
         s = source('vivaldi-desktop');s['discovery']['max_pages'] = 1;s['discovery']['max_documents'] = 1
@@ -306,7 +574,7 @@ class CollectorsTest(unittest.TestCase):
         wrappers = {'edge': '<div class="content">%s</div>', 'chrome': '<div class="article-content">%s</div>',
                     'firefox': '<section class="c-release-notes">%s</section>'}
         for s in REGISTRY['sources']:
-            if s['parser'] != 'html_document':
+            if s['parser'] != 'html_document' or s['source_id'] == 'chrome-enterprise':
                 continue
             with self.subTest(source=s['source_id']):
                 html = wrappers[s['browser']] % '<h2>Fixed</h2><ul><li id="note-1">Fixed crash</li><li id="note-2">Security update</li></ul>'
