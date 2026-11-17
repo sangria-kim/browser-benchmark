@@ -283,6 +283,10 @@ class SelectionTests(unittest.TestCase):
         self.assertTrue(all(k in contexts for k in coverage.values()))
         self.assertTrue(all(sid in {s['source_item_id'] for s in contexts[k]['sources']}
                             for sid, k in coverage.items()))
+        # The collected Firefox item matches the existing event by its
+        # official release-note anchor, even without a separate version.
+        self.assertEqual(('feature_event', 'firefox-copy-current-tab-url-shortcut-beta-161-20261109'),
+                         coverage['src-11dc7c934fdf8ce4dfc73895'])
         standalone = {subject_id for kind, subject_id in contexts if kind == 'source_item'}
         self.assertEqual(standalone, {sid for sid, principal in coverage.items()
                                      if principal == ('source_item', sid)})
