@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: The warning displayed when a user opts in to the **Always Use Secure Connections** on `chrome://settings/security` is changing from an interstitial to a dialog. Full page load remains blocked, and the functionality remai"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8fe46b24397fce61b048c1341c80f2ed",
+  "subject_kind": "source_item",
+  "subject_id": "src-2ba88167428514360b16c654",
+  "input_hash": "e108b03197cbaea7015dd6eb18c18cb1db9ad7a72f6f9a29d126e2b9bd03bea2",
+  "input_revision": "semantic-v2-sha256:37cde74c5749c16613301be395acdc3846c102ba006ce0216ebab723a84cac39",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2ba88167428514360b16c654"
+  ]
+}

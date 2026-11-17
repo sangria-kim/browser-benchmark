@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-840161e19e1704b6103d9d6b: Source baseline: saas-usage-reporting A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5b20b03712019cae0dc795efb7e232fa",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-840161e19e1704b6103d9d6b",
+  "input_hash": "52d1c96c15f1c3b42b33d20b1334b621da5e782e4d0e2bffeda05c1f21236a85",
+  "input_revision": "semantic-v2-sha256:eaa8f3432ac3f60b7fbb6a5468c53ad6f1cb5b835a1c2de5d90e6a9c943db75d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-df704ca46ba735ff6ac1702ac4525f44",
+  "evidence_source_item_ids": [
+    "src-chromium-ee0b97d8bf94ce351474c91a",
+    "src-legacy-d5abbbc50ccad8d5376896b0"
+  ]
+}

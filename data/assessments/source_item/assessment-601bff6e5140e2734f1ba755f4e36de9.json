@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted font may result in the disclosure of process memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-601bff6e5140e2734f1ba755f4e36de9",
+  "subject_kind": "source_item",
+  "subject_id": "src-e2879ea2e4624f468f79a3a5",
+  "input_hash": "25467ef10095b2ce742f52d8e72efa2366a8adcda00886bf56e96d3481d39c33",
+  "input_revision": "semantic-v2-sha256:db0b7c52a57c13d01647e2b6c648226125b4b819099039f8c52f8c13a859cda4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e2879ea2e4624f468f79a3a5"
+  ]
+}

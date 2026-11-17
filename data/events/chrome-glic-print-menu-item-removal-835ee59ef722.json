@@ -43,14 +43,14 @@
   "verification_status": "official_source_diff_reviewed_not_executed",
   "previous_event_id": null,
   "selection_status": "excluded",
-  "selection_reason": "이미 기본 활성화된 기능의 gate 정리이며 새 사용자 행동 변화가 확인되지 않음.",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "Glic 인쇄의 실제 노출과 사용자 과제 변화가 공식 제품 자료로 확인되는가?",
+  "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "공식 제품 배포·사용자 영향 또는 실행 가능한 검증 조건이 확인될 때.",
-  "assessed_at": "2026-10-31T23:25:00Z",
-  "selection_rule_version": "pm-selection-v2",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "korea": {
     "availability": "미확인",
     "korean_language": "미확인",
@@ -68,5 +68,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Low Fixes CVE-2024-58009 Memory Safety (NULL pointer dereference) vulnerability in the Bluetooth L2CAP layer."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b41f018deacc4c597a52a01ff3df7d10",
+  "subject_kind": "source_item",
+  "subject_id": "src-5770e3e86c4f09bc60f0df35",
+  "input_hash": "ff0cce257bca270cdd3d814592f6bdf8406faba7d0dcfbf9e660980e145add63",
+  "input_revision": "semantic-v2-sha256:7e9b74e242e310dbc5ea98860d2e6e2d504330c0335629e0167265dcb83ac17b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5770e3e86c4f09bc60f0df35"
+  ]
+}

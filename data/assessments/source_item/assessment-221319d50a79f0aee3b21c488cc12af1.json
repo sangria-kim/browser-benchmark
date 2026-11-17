@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted font may lead to unexpected app termination or corrupt process memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-221319d50a79f0aee3b21c488cc12af1",
+  "subject_kind": "source_item",
+  "subject_id": "src-9c0d5ffd625e080ed4ef2a30",
+  "input_hash": "26d51d478012338101ab35dff6295774d3c20b047f4f5d93535daff3212eec85",
+  "input_revision": "semantic-v2-sha256:6718f25de4e06d0a99318b0d13c6e6072dde4deb25b3b410c59a87676003df18",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9c0d5ffd625e080ed4ef2a30"
+  ]
+}

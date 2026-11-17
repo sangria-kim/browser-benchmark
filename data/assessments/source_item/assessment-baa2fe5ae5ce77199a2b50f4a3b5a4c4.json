@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A remote attacker may be able to cause unexpected app termination or heap corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-baa2fe5ae5ce77199a2b50f4a3b5a4c4",
+  "subject_kind": "source_item",
+  "subject_id": "src-47d854bbc5cc9ae8a1ca6fbc",
+  "input_hash": "18f8e505f07024639e82578933f712bf3faad2e5a7ca0cc73f73c5faded6f3a7",
+  "input_revision": "semantic-v2-sha256:d462baa90e9f87016da0c72615ad04a11f493b09f403e7caaf253f8d2d825d31",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-47d854bbc5cc9ae8a1ca6fbc"
+  ]
+}

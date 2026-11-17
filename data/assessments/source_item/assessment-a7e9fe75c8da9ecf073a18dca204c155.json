@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted PDF file may lead to memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a7e9fe75c8da9ecf073a18dca204c155",
+  "subject_kind": "source_item",
+  "subject_id": "src-d8caec9b824094df7a14ab8c",
+  "input_hash": "e0bc4a99e1d2d336f81c940162df5e4271425ec62b5794ab120c73348f7a5ff0",
+  "input_revision": "semantic-v2-sha256:785f9baedd655682091e017f8aa25d5f957aee1cbb339eda1f0307e9deac5950",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d8caec9b824094df7a14ab8c"
+  ]
+}

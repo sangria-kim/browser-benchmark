@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome 150 updates how Dedicated and Shared Workers handle data: URLs . Rather than automatically inheriting the security origin of the script or page that created them, these workers will now be assigned a unique opaque"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6aa00817b69ff53d0fd61c77618040d5",
+  "subject_kind": "source_item",
+  "subject_id": "src-50a829a51fdcacc177d85f81",
+  "input_hash": "22b9fb9d5136703082180b18ccc2c8d49bcd6b78186960c18af1c4faa0e9e182",
+  "input_revision": "semantic-v2-sha256:61df622e32f941d82a631e421e1fefed6c3a7fcfef686737760e005c374d022f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-50a829a51fdcacc177d85f81"
+  ]
+}

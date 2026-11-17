@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-8afbc35e7a0e6516c24ad4e9: The password itself is never transmitted. No plaintext at the server means no accidental logs, no memory scraping, no insider peeking, no “we’ve discovered a subset of passwords were stored in cleartext” blog post two ye A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-810e29cae9f3961fa0559f8fbf7d2e41",
+  "subject_kind": "source_item",
+  "subject_id": "src-8afbc35e7a0e6516c24ad4e9",
+  "input_hash": "5edd9a323354ce25c7d9ab22726f1131d6f60252f4b51fd9ba01a5e0453014fe",
+  "input_revision": "semantic-v2-sha256:78dd7fd085bfdb79c55ece92cb14b739f19a4e417ad712c40b0c8f56a69b6546",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8afbc35e7a0e6516c24ad4e9"
+  ]
+}

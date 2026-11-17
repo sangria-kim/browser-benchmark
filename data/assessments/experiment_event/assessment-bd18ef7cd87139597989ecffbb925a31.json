@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e732f04aa35e18c1ac341c38: Source baseline: IOSPasskeyOnDeviceEncryptionStateTracker A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bd18ef7cd87139597989ecffbb925a31",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e732f04aa35e18c1ac341c38",
+  "input_hash": "7fb72de998396d48c08addce4b4ea93b9fe33f0e544b1fd23e6dc732722e7ce3",
+  "input_revision": "semantic-v2-sha256:0c3ac15dddce9f8a4868da8590f1f6b493a4b849650b839adda97aed81b31b7b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-61623283bce0ba93954cbe93"
+  ]
+}

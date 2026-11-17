@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c67f68a637809a0e96ebc1ad: Source baseline: CheckAutoCommitInCommitAndRollback A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c014b0c2cfb1f15315a0c60eca9a1089",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c67f68a637809a0e96ebc1ad",
+  "input_hash": "bdda0785eaf1623f4a3783648f820750eee74c2461921daab5038fec35b7b7e6",
+  "input_revision": "semantic-v2-sha256:da110267d45545b9d08a9ed97c450d789873ea7683fe0250209f578282fb5042",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-7fc0e8052eeda00fba9b31a6"
+  ]
+}

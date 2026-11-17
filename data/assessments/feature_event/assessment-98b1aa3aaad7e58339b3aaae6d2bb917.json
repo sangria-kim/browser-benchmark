@@ -1,0 +1,27 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for edge-accelerated-app-launch-windows-kb5127936-20261028: Windows의 기존 Edge 프로세스 직접 호출로 warm launch의 중간 프로세스 생성을 줄이는 배포 단계. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-98b1aa3aaad7e58339b3aaae6d2bb917",
+  "subject_kind": "feature_event",
+  "subject_id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
+  "input_hash": "518dbaf47191616f93ed4936a95ff02f5a11c96da67004660b3f08d984ba3131",
+  "input_revision": "semantic-v2-sha256:f2b7d817f6e6040a20261b07673d95d0374e1bec3b3b7de7da3a256d35b55d26",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-23bd1e955751d48c4a32fa22a7757b3a",
+  "evidence_source_item_ids": [
+    "src-legacy-2186cd291dce9e05feaeb61a",
+    "src-legacy-47baf1ae4a33d6c39620354f",
+    "src-legacy-c6042d31850add17a4766b2d"
+  ]
+}

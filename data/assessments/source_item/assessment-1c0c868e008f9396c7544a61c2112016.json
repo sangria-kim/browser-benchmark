@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Added support for the WebAuthn PRF extension that maps to the CTAP hmac-secret extension, enabling credential-bound cryptographic secrets for both credential creation and authentication flows with security keys. (1135728"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1c0c868e008f9396c7544a61c2112016",
+  "subject_kind": "source_item",
+  "subject_id": "src-16dea3e48ac4658930adc54f",
+  "input_hash": "d2744d5f6b8e373614002570e25d886109772fec7e31d0f06684cdea6d8aac5a",
+  "input_revision": "semantic-v2-sha256:aa7e31f7b14cbbba4381a9b463e897f03849616f565dbdbdc068e8306ea7f8b5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-16dea3e48ac4658930adc54f"
+  ]
+}

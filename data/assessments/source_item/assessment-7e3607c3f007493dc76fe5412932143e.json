@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7007afc601d5e00308fb66f4: Brave Search API endpoints behind x402 require payment on every request rather than authentication. A request sent without payment receives an HTTP 402 Payment Required response that states the price of that search and t A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7e3607c3f007493dc76fe5412932143e",
+  "subject_kind": "source_item",
+  "subject_id": "src-7007afc601d5e00308fb66f4",
+  "input_hash": "b8f7a08afd2d401de0fa27b548a5133bf0e88dbac2b36cb5669ae094fe9a3dbb",
+  "input_revision": "semantic-v2-sha256:ffad9a449ab6fe18cabd7bf4c740d8e86048cc2138c0c1c5d8c6623fbb5a773b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7007afc601d5e00308fb66f4"
+  ]
+}

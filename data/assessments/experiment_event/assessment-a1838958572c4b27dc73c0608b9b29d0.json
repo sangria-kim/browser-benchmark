@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e143ecf9aa5b98b674013522: Source baseline: EnableWindowsTcpLoopbackFastFail A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a1838958572c4b27dc73c0608b9b29d0",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e143ecf9aa5b98b674013522",
+  "input_hash": "9f9a99fd3752aaea0832302ca0d9e8fca7b60558934732bef0dada9006fe2690",
+  "input_revision": "semantic-v2-sha256:a1b8e6e7cb7ea29a445b029ffe1c0b75457461cb5f550ce36081d815efa7b08a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-e06005105dcae7f05aebfeca"
+  ]
+}

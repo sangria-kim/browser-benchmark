@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4b0b661e3d2fe46ab7e65683: Fixed an issue where getClientRects() could return rects with zero width and height for spans in multi-column layouts. (171101490) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c1767ceb471b6360ca52926f0c2a4249",
+  "subject_kind": "source_item",
+  "subject_id": "src-4b0b661e3d2fe46ab7e65683",
+  "input_hash": "a8b65ef825a91fa46b0c8a4dbd609756397289b78587bc987175e5b0910b7781",
+  "input_revision": "semantic-v2-sha256:0d234ba047518218b07d40333ac23e72bfe457fcb24f4128545a06de631d013e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4b0b661e3d2fe46ab7e65683"
+  ]
+}

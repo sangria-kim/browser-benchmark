@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$500][ 508638064 ] High CVE-2026-79069: Memory corruption in Tint. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cc799fb8af3470073728b343e70891f5",
+  "subject_kind": "source_item",
+  "subject_id": "src-1a911c2389e9265ec37a0064",
+  "input_hash": "632cd8d1180df2a3ed7266716016cae702584331d562b135e818b2930479b555",
+  "input_revision": "semantic-v2-sha256:0a6110cdddb60cb45fba3f11d2346a071388aea55c906c4f1bebbe05b6c4d0d2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1a911c2389e9265ec37a0064"
+  ]
+}

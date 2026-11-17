@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker with control of a network file server may be able to cause unexpected system termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bff0af14da282cb16421a87c1285e0f0",
+  "subject_kind": "source_item",
+  "subject_id": "src-b9333c6da6d57ae16e77f341",
+  "input_hash": "154c454ba267911d678d2d78cedb7417cf079f6f01f66c3eba54d9b3bff91718",
+  "input_revision": "semantic-v2-sha256:155178378177cfd516a6cbe8ce621721721694612339d1913e315f8968365a85",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b9333c6da6d57ae16e77f341"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a4cd72571717621154c81df0: Fixed a regression where images with srcset and sizes attributes containing calc() expressions with division by zero were not displayed. (173954748) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f4102e15fd0c66d1e6cb7517f1fc0b47",
+  "subject_kind": "source_item",
+  "subject_id": "src-a4cd72571717621154c81df0",
+  "input_hash": "a74f8636dedf3cb49bfd2a3d274879896d5d4d28c3a943000ab273fd0eec2e77",
+  "input_revision": "semantic-v2-sha256:762cfb5872d33ad9ec4c9ce2e771316731199cca3ea2172a52e1b69dd6788b1f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a4cd72571717621154c81df0"
+  ]
+}

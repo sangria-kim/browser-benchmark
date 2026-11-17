@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An issue existed in curl which may result in unintentionally sending sensitive information via an incorrect connection"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a4c8c7bc8b7de34d299455f18cdf57a0",
+  "subject_kind": "source_item",
+  "subject_id": "src-5868d1796ec6e3221e34fa44",
+  "input_hash": "86e034103a76f11baba3cd1c06d6539584896531fc3f793ef26971cee1cba44e",
+  "input_revision": "semantic-v2-sha256:668bea61b37874998d8cd178d6f9803a8b84ba1903811fd9bb9fad75819f22bd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5868d1796ec6e3221e34fa44"
+  ]
+}

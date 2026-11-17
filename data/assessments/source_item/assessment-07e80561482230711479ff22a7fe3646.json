@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 562042411 High CVE-2026-102319 Uninitialized resource in GPU"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-07e80561482230711479ff22a7fe3646",
+  "subject_kind": "source_item",
+  "subject_id": "src-544da6a40cf8896b8bebaf57",
+  "input_hash": "fc54ae8f2f881dd802951c213461a7dcad76af3e32de7365329885a098128d08",
+  "input_revision": "semantic-v2-sha256:673280a04ed141d0b8ff9d086f3318e4c7747acd8dcebe3ef48f8b1440bc75a2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-544da6a40cf8896b8bebaf57"
+  ]
+}

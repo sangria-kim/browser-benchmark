@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-24bbae82f05ba2980b1e7325: Fixed Intl.DurationFormat dropping a fractional value folded into a zero unit, so formatting { milliseconds: 500 } with milliseconds: \"numeric\" returns 0.5 sec instead of an empty string. ( [contact omitted] ) (188362824 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d766478d4c994e443c37e6f82f6a7dee",
+  "subject_kind": "source_item",
+  "subject_id": "src-24bbae82f05ba2980b1e7325",
+  "input_hash": "6b8e60a63153ee951d95b7c8bd32f8eca8ee541a113be50952b13d4f3fb4308d",
+  "input_revision": "semantic-v2-sha256:98af3e606c783b4e086c93b0418025633fa6c753ad3746c528f0b10311aa06b4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-24bbae82f05ba2980b1e7325"
+  ]
+}

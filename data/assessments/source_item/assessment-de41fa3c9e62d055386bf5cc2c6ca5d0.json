@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a26678118dbb3fd366bade49: zkLogin , hence, works in the federated-friendly setting of OIDC and inherits some of its trust assumptions and those from JWTs. As noted, it introduces two external parties: a proving service and a salt service. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-de41fa3c9e62d055386bf5cc2c6ca5d0",
+  "subject_kind": "source_item",
+  "subject_id": "src-a26678118dbb3fd366bade49",
+  "input_hash": "006834518565347813eba28d84f1495c645d9cc326fb362822fb8e9d67572d32",
+  "input_revision": "semantic-v2-sha256:d6d34f117ade8e0b50c07b2f7b2f512690d01b9783767789a027571b61c40c26",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a26678118dbb3fd366bade49"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious app may be able to break out of its sandbox"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e6e24cc0084e060666bd2a276fe3d49f",
+  "subject_kind": "source_item",
+  "subject_id": "src-b400e2a12e50b21f2b298788",
+  "input_hash": "0222fe12c40c24a3ddf8b034f4959aef4bf51031c77ae13b942299ccae22a4bb",
+  "input_revision": "semantic-v2-sha256:b38072deb85c73edf36d72d64a3edff19570af79591c3f4dcd282f4e67984e09",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b400e2a12e50b21f2b298788"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-af40d202dc7e58ca842d6b11: Fixed unary + so it no longer changes the evaluation order of operands in binary expressions. ( [contact omitted] ) (189267513) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8a21387fc64610c37b7ec7432c636b45",
+  "subject_kind": "source_item",
+  "subject_id": "src-af40d202dc7e58ca842d6b11",
+  "input_hash": "d9dbafb4c401183c23be5965d9d05ac81673b0e7a3504b919773527c91adb5ad",
+  "input_revision": "semantic-v2-sha256:f34864db849be07d4f29fba543cd9cfe6bc2e9a4d92a5aca82481d3649183c20",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-af40d202dc7e58ca842d6b11"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e2e5e4b0223c11a6b19d6842: Fixed (a?.b)(x) skipping the call and returning undefined when a is null or undefined , instead of evaluating the arguments and throwing a TypeError . ( [contact omitted] ) (188347937) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3cd5b00acfb2779e613f76a8105aa47e",
+  "subject_kind": "source_item",
+  "subject_id": "src-e2e5e4b0223c11a6b19d6842",
+  "input_hash": "35fcab290c09c22db2984546ff08c049f9eb1ee6cf10135aed16aafd6c94dda2",
+  "input_revision": "semantic-v2-sha256:66ee39ed03e67475f0c07aa1e49c65186c01787d4af0ee285fa1ea6ef9ac5db8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e2e5e4b0223c11a6b19d6842"
+  ]
+}

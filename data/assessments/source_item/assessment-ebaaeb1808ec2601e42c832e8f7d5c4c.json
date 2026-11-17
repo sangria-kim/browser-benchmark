@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes CVE-2026-45202 [PSP-578][PowerVR] Silent High -Order CMA Memory Leak & Double Free in `_FreeOSPages_Fast`"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ebaaeb1808ec2601e42c832e8f7d5c4c",
+  "subject_kind": "source_item",
+  "subject_id": "src-69006fd6d2ab88e4c13a0ebc",
+  "input_hash": "dd4a2b2079f069e7f95a869f8b02f2a2a0321959db3ca6b651e4f6274308be66",
+  "input_revision": "semantic-v2-sha256:d641b776b958c5ce50da461f1b856ff8c2ccce955c57e5c9dec78ead5cc2d85a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-69006fd6d2ab88e4c13a0ebc"
+  ]
+}

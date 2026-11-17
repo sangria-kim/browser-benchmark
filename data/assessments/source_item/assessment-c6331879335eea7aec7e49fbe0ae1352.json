@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c11402098204f8129f951ed4: As early as Chrome 152, Chrome calls into the SafeBrowsing v4 API will be migrated to call into the v5 API instead. The method names are also different between v4 and v5. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c6331879335eea7aec7e49fbe0ae1352",
+  "subject_kind": "source_item",
+  "subject_id": "src-c11402098204f8129f951ed4",
+  "input_hash": "bd071f0c9e06c3d89173613a1e72aca00d8e8511e6d708812eb37eae621961a9",
+  "input_revision": "semantic-v2-sha256:07642232de970f912c13e8fa8ab30b20db56b24be051b9df6c775640ca605578",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c11402098204f8129f951ed4"
+  ]
+}

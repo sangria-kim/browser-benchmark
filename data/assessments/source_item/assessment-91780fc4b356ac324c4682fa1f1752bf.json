@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: In practice, zkLogin ’s security relies on several environmental assumptions that are not enforced by the protocol itself: (i) provers correctly enforce a strict issuer allow-list; (ii) the aud claim reliably identifies "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-91780fc4b356ac324c4682fa1f1752bf",
+  "subject_kind": "source_item",
+  "subject_id": "src-8a5be311fdbcd0e677e71365",
+  "input_hash": "2072a9d85f761f8af6e0f46be27a91dc62c2f0d98b569597b625a5bd5e4b0846",
+  "input_revision": "semantic-v2-sha256:5221e8d4962213b1a75effc40e317babe743d7212b55113c544f2d4822e64499",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8a5be311fdbcd0e677e71365"
+  ]
+}

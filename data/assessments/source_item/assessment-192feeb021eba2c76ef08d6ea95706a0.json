@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Low Fixes CVE-2025-21823 Potential invalid memory access (UAF) vulnerability in the Batman-adv networking module."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-192feeb021eba2c76ef08d6ea95706a0",
+  "subject_kind": "source_item",
+  "subject_id": "src-c7547cd6a6132031dd9d0d50",
+  "input_hash": "9a031b9c142627a0a9d555e816aa8165867091f9aa5f13bc4c75427625409c85",
+  "input_revision": "semantic-v2-sha256:f482b69e06d860e67e01529e9d7aed248e1a8a67171d717f561e0da6378e4988",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c7547cd6a6132031dd9d0d50"
+  ]
+}

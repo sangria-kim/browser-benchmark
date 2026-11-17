@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2ca6a400cec5d731a0d9f8a4: Fixed a rare case on Windows where starting Firefox while a partial update was still being applied could leave the installation broken and unable to start. ( Bug 2058197 , Bug 2058594 ) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ae76b4757c8b1760d1307c718f2cc3ee",
+  "subject_kind": "source_item",
+  "subject_id": "src-2ca6a400cec5d731a0d9f8a4",
+  "input_hash": "354e7a50dd352f25160dfa0b8c3888c2ce9fb806d6b79a794c984f42c5dbb0ec",
+  "input_revision": "semantic-v2-sha256:fcefd542a3aad98a53ad911540b0a635eddf94da05e6a665b7c796622062915b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2ca6a400cec5d731a0d9f8a4"
+  ]
+}

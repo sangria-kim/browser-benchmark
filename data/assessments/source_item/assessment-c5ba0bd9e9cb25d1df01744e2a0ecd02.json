@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b70aa7b8fe4b568876f645cf: Fixed Intl.Locale.prototype.getWeekInfo() to remove the minimalDays property for compliance with the specification. (165083619) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c5ba0bd9e9cb25d1df01744e2a0ecd02",
+  "subject_kind": "source_item",
+  "subject_id": "src-b70aa7b8fe4b568876f645cf",
+  "input_hash": "099f8117351765cad0817ac54d1d5feb5dd0a9a831abea54c573019273ad707f",
+  "input_revision": "semantic-v2-sha256:9876c20d10f3ae4c782df23bf919f5b023983c41aa6fec2d2989c6df0efadadd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b70aa7b8fe4b568876f645cf"
+  ]
+}

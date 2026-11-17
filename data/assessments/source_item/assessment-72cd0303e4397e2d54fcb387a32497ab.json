@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A maliciously crafted ZIP archive may bypass Gatekeeper checks"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-72cd0303e4397e2d54fcb387a32497ab",
+  "subject_kind": "source_item",
+  "subject_id": "src-df97a6dcbed86de74bbba513",
+  "input_hash": "6b651b8575f0d5e824e1244370b92531459b1623a0247f48e336250a97f0ee41",
+  "input_revision": "semantic-v2-sha256:faf85dc6df65259f39cf362bd9632e2529b59450d813660141ac62142ba97f88",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-df97a6dcbed86de74bbba513"
+  ]
+}

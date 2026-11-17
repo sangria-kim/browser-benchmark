@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f20221b165f279b943e09788: Fixed an issue where a non-BMP character before a <tspan> boundary shifted the x and y value lists by one position. (178360036) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-178124185b22eb933e4d62c8f4cf6417",
+  "subject_kind": "source_item",
+  "subject_id": "src-f20221b165f279b943e09788",
+  "input_hash": "b2e74ae075f8b69b3a62cbb452d4e945319dd2ad396f1115a595b8f374917587",
+  "input_revision": "semantic-v2-sha256:5ab03b673b941911477f89afc884b1290b2e567e7689e5ff8eeea1cb974446c8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f20221b165f279b943e09788"
+  ]
+}

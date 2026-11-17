@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a9fe09bf2942749980e67c49: Source baseline: use-fake-dmserver A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8d89b6af1a1303c48b72e53918aee288",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a9fe09bf2942749980e67c49",
+  "input_hash": "4d212ec92bff43699574ddfaeba138fb7875d189ceae0699e930b2d3c96e2391",
+  "input_revision": "semantic-v2-sha256:a47e535354bc5f40908e1b0e9ffd71607556a618054b4a7b813defd70740bc9d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-c286bf4a97d7ef3a488c81a1"
+  ]
+}

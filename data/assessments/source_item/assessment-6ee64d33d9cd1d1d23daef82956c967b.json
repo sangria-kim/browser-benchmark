@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-50fc9d9b4ef1dc613663a863: 백그라운드 스레드 UIKit 접근, alert/WKWebView completion handler 관련 크래시 및 메인 스레드 처리 이슈 등 다수 크래시를 수정해 안정성을 높였습니다. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6ee64d33d9cd1d1d23daef82956c967b",
+  "subject_kind": "source_item",
+  "subject_id": "src-50fc9d9b4ef1dc613663a863",
+  "input_hash": "eeb39d2c059d4dc2e13d30d55848c51b4626d971478cce08a441fb028b428183",
+  "input_revision": "semantic-v2-sha256:62873bad8a768b909efc8d7ef65982df8cd5fb0546be9ca88c785f80f596b464",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-50fc9d9b4ef1dc613663a863"
+  ]
+}

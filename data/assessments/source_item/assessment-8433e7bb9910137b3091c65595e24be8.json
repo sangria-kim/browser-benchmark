@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Restoring a maliciously crafted backup file may lead to modification of protected system files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8433e7bb9910137b3091c65595e24be8",
+  "subject_kind": "source_item",
+  "subject_id": "src-467970af02d7c75b7613c7f3",
+  "input_hash": "c113acfe2c181b1bb38f33dd36a91c08bd846960fd055971401ea4c73d9a3f02",
+  "input_revision": "semantic-v2-sha256:2f0dbe1ad2e1a219b8412f92a192f7850e4fbe6bdd30132f1fd0fb791f1a616d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-467970af02d7c75b7613c7f3"
+  ]
+}

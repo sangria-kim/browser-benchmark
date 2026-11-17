@@ -36,15 +36,15 @@
   "delta": "Safari 27.3 beta 릴리스 노트 Browser 항목은 세로 레이아웃으로 탭을 탐색·관리하는 기능을 명시한다.",
   "verification_status": "official_body_verified_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "watch",
-  "selection_reason": "베타 기능의 공식 설명을 확인했다. OS별 기능 노출과 실제 동작 조건이 부족하여 관찰 대상으로 유지한다.",
+  "selection_status": "pending_verification",
+  "selection_reason": "Evidence retained for safari-vertical-tabs-beta-273-20261103: Safari 27.3 beta 세로 탭 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "세로 탭과 가로 탭에서 같은 수의 탭을 찾고 전환할 때 제목 식별과 콘텐츠 공간은 어떻게 달라지는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "기능별 OS 지원·정식 확대 또는 재현 환경 확인",
-  "assessed_at": "2026-11-15T22:54:43Z",
-  "selection_rule_version": "pm-selection-v2",
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "source_item_ids": [
     "src-legacy-f690c6caf7cc98ce51b62656"
   ],
@@ -52,5 +52,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-03",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

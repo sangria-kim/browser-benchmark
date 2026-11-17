@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: This feature introduces a WebRequest.SecurityInfo API for [ControlledFrame]( It allows a web app to intercept an HTTPS, WSS, or WebTransport request to a server, retrieve the server's certificate fingerprint (as verified"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f8227c95406f9d0c8ea1034f760593b8",
+  "subject_kind": "source_item",
+  "subject_id": "src-dc0ceddb1b5ba468e0bc6a36",
+  "input_hash": "003cc8b200eb613496b5c637f4fea5aa501e6dcec8432e6318182897675b3e69",
+  "input_revision": "semantic-v2-sha256:2850106b47da8c734604bfb7c031d76b013c6cbb08d0ad993b7c9d520cad5d95",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-dc0ceddb1b5ba468e0bc6a36"
+  ]
+}

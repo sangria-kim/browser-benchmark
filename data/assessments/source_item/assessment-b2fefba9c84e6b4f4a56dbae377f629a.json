@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes Use-After-Free in CRAS server via dangling active_fm->lea pointer"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b2fefba9c84e6b4f4a56dbae377f629a",
+  "subject_kind": "source_item",
+  "subject_id": "src-df0a54004ae4c5981865c90b",
+  "input_hash": "9d02ee3d54f665d60f0e88f2714957a7c99e526476e7e838139795e838712a24",
+  "input_revision": "semantic-v2-sha256:8bea93e3181e97a2c55062395b2df2c833de1560df473c5c6ef899c2ece66c0e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-df0a54004ae4c5981865c90b"
+  ]
+}

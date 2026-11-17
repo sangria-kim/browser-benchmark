@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing maliciously crafted web content may lead to memory corruption. This fix associated with the Coruna exploit was shipped in iOS 16.6 on July 24, 2023. This update brings that fix to devices that cannot u"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cddb6359ce136986c29e9f143d9986a4",
+  "subject_kind": "source_item",
+  "subject_id": "src-3006f0b30893e7dfeaf5b86b",
+  "input_hash": "96d620d48dd9fc7713860d7651245777f72aab107b1b128bce2b00ec6e1d977a",
+  "input_revision": "semantic-v2-sha256:2ee6fa3eb1ade75af239a0249f48cb0d86b829ec694daa230344a46b0a0c6e13",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3006f0b30893e7dfeaf5b86b"
+  ]
+}

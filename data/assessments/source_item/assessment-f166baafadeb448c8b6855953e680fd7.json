@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to cause unexpected changes to copy-on-write memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f166baafadeb448c8b6855953e680fd7",
+  "subject_kind": "source_item",
+  "subject_id": "src-9aec03c81692688cf1d3b30b",
+  "input_hash": "d2382e4fb5b21d5134ff935e2b0d97fc20b7e3303d7302ac17e8c7b96c0323b7",
+  "input_revision": "semantic-v2-sha256:d929aabaa738eeed00e4f7e7ad1170df2c2a6600dc194ca3ba9b2556601130ee",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9aec03c81692688cf1d3b30b"
+  ]
+}

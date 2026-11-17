@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-08adbf950e4431c208e06c80: Source baseline: SecurityKeyHidInterfacesAreFido A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-60ed7cc128de492c90d3fdce5db868bb",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-08adbf950e4431c208e06c80",
+  "input_hash": "3e6fd2ca646695dc123cc29826772f2265e09c4818323dd49757fca9537e0f42",
+  "input_revision": "semantic-v2-sha256:fed861696ed59137e7bbe50ae314f9ebef900ad365b5f0bd8dd2800804e90a7a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-f17204cdbfbb0de6e628b195"
+  ]
+}

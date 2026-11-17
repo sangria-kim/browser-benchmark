@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [TBD][ 559793873 ] High CVE-2026-106393: Use after free in Storage. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-75a4ec6357b2b583a70b91442d0a1627",
+  "subject_kind": "source_item",
+  "subject_id": "src-7ff3e9288b915c72986a74c5",
+  "input_hash": "d955667517e0443c318f629eeaa323b93a130301bf999c7f37a480c360a61322",
+  "input_revision": "semantic-v2-sha256:a45f3b55474290285733756360b8b74146f7014e46969cc523938a7861d5d80f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7ff3e9288b915c72986a74c5"
+  ]
+}

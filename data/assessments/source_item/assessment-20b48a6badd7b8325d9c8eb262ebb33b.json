@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$3000.0] [504073872 ] Medium CVE-2026-11197 SharedWorker same-origin check bypass for chrome-extension:// — DedicatedWorker hardening (8bde565) not applied to sibling SharedWorker path [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-20b48a6badd7b8325d9c8eb262ebb33b",
+  "subject_kind": "source_item",
+  "subject_id": "src-0b4680bebf8dccaeefdbc697",
+  "input_hash": "b165344317b8119e0d88af5e859f3a57c2b1d0dc8d493c6e630c84e44e67b8af",
+  "input_revision": "semantic-v2-sha256:6afebd9676130b23d365e50fe93cbbc53dbce5936b846c7450366134e91d7a34",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0b4680bebf8dccaeefdbc697"
+  ]
+}

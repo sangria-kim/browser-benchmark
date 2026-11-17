@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c2fdca76f8ea6e08cd18129f: Fixed incorrect width calculation for positioned elements using box-sizing: border-box with an aspect-ratio , ensuring borders and padding are not double-counted. (121500004) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6020546ffa702f4f7a158a7c8a33bdbd",
+  "subject_kind": "source_item",
+  "subject_id": "src-c2fdca76f8ea6e08cd18129f",
+  "input_hash": "eab1e82685c4fd086d09a513f00a9ff91b28179a09b0447d301f79c2c3e72b95",
+  "input_revision": "semantic-v2-sha256:4a6a62db6844b7f67867a19e39ce9bacc64d70bb7ee2d2dae0b0734764c2d9ef",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c2fdca76f8ea6e08cd18129f"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4e8a09d6ed7e793410297339: Fixed Object.defineProperty to read descriptor fields after converting the property key, so side effects from key conversion are respected. ( [contact omitted] ) (179389067) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b8d17b0d49e233cc837a235c7fdf8e14",
+  "subject_kind": "source_item",
+  "subject_id": "src-4e8a09d6ed7e793410297339",
+  "input_hash": "c87f631b5fb28aff37f2fb07330e3f2ba3cb57ec8e0e83be9f50b7fc997383c1",
+  "input_revision": "semantic-v2-sha256:dfd35a35768fb50757d570f0a69f85713b33c26adce9e74c155d2ceb79fe3e69",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4e8a09d6ed7e793410297339"
+  ]
+}

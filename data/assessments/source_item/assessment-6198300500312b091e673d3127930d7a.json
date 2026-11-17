@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-56684becc798734de5683638: [Linux][Media] Users on on older, LTS distros, might fail to start. To fix it issue: sudo rm -v {~/.local/lib,/var/opt}/vivaldi-snapshot/media-codecs-8.1 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6198300500312b091e673d3127930d7a",
+  "subject_kind": "source_item",
+  "subject_id": "src-56684becc798734de5683638",
+  "input_hash": "6d5738b690264c98153910909b05b869c15391fe5aa1813421d52b627c9f443b",
+  "input_revision": "semantic-v2-sha256:5ae20d24c3b32faf5267062c8d123fd836f17f183776d84698f31f1914857c8c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-56684becc798734de5683638"
+  ]
+}

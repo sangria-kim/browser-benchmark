@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$1500][ 492211919 ] Low CVE-2026-11221: Insufficient validation of untrusted input in PointerLock. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2dbb8e13110753b848282f44105549ec",
+  "subject_kind": "source_item",
+  "subject_id": "src-69fa5c4d01cc6b04e14e7fdf",
+  "input_hash": "c275e0f3bd40386340cb13df1496bec2e010117c0599cef8fb48eb7df5783ffd",
+  "input_revision": "semantic-v2-sha256:0cc6f451c86f6081ab4a93bb026210ef1c864de958cb9b59906f5f53cdadc140",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-69fa5c4d01cc6b04e14e7fdf"
+  ]
+}

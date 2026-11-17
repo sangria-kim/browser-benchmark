@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 575851252 High CVE-2026-118356 Use after free in WTF"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-82060281e7929e506c0aca490e2b7c0a",
+  "subject_kind": "source_item",
+  "subject_id": "src-7b7ffd12e734b43dbabfa778",
+  "input_hash": "cf627b2c474cce639290967bd1f6473c61d0b9ec7a4cb30d0fdae98642f8509f",
+  "input_revision": "semantic-v2-sha256:cbb053ce9918e751168834a7f13f821627d66fd5bde5fe62ca5242b370493530",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7b7ffd12e734b43dbabfa778"
+  ]
+}

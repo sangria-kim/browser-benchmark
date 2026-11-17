@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d22bab86b8b4b6bf7145740c: Fixed rendering failing when using direct GPUTexture objects instead of GPUTextureView with multisampled resolve targets in render passes. (175452924) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ec3ab3b27cdce3231e32c0c1f9288eaf",
+  "subject_kind": "source_item",
+  "subject_id": "src-d22bab86b8b4b6bf7145740c",
+  "input_hash": "db447d3afcd05b3328725a3023ddddab4fbbdefa8751708f76f5bbf754ffeec0",
+  "input_revision": "semantic-v2-sha256:2f94202f879aeac760efd49801c8499383ad49df1ac138aa9928ca308b5a6104",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d22bab86b8b4b6bf7145740c"
+  ]
+}

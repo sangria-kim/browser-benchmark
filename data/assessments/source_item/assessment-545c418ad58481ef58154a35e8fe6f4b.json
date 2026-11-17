@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fix es CVE-2024-36325 Arbitrary writes to SOC registers via AMDGPU VCN JPEG command processor"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-545c418ad58481ef58154a35e8fe6f4b",
+  "subject_kind": "source_item",
+  "subject_id": "src-781d7d3ce1169c276b7a25eb",
+  "input_hash": "8576b35d009807f4c0eac7a3b365650425b2f408e0fb208176f8446f00fa36ee",
+  "input_revision": "semantic-v2-sha256:7fa26966365e581ee10d41104164f6528dbcdbe9852383d5b04c53135b72a83e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-781d7d3ce1169c276b7a25eb"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f4808eb1830909392688811d: IDNA is the mechanism for non-ASCII characters in domain names, encoding a URL like as (a redirect to naver.com). The processing is defined by and is invoked by The URL spec sets the CheckJoiners flag, which enables the  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-114dd8469ef5ecd97aca0a7c979ac4a1",
+  "subject_kind": "source_item",
+  "subject_id": "src-f4808eb1830909392688811d",
+  "input_hash": "21d6138b9d0fbd1756a6936abd2adb14d733daaf1235108a1ba4e4661be00525",
+  "input_revision": "semantic-v2-sha256:6c110db47b2ea9e8bec298db8644c9e53a264c6c2822e154c755d339d7c8b5b0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f4808eb1830909392688811d"
+  ]
+}

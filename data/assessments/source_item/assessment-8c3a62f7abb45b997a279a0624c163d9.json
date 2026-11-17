@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-62bd29e4c5cf272318e052cb: Fixed Promise.prototype.then() , catch() , finally() , Promise.resolve() , and Promise.reject() creating promises and errors in the wrong realm when used with a Promise from another realm, such as an iframe. ( [contact o A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8c3a62f7abb45b997a279a0624c163d9",
+  "subject_kind": "source_item",
+  "subject_id": "src-62bd29e4c5cf272318e052cb",
+  "input_hash": "185cbcd5a82c0cff2cc3af01d5914250d9109dfe92c05f386252d25005d98fbf",
+  "input_revision": "semantic-v2-sha256:4d41d64e0db752125b8a884d8d7ee61e64f1e2792c1bc2d7d650dc1e1553e01e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-62bd29e4c5cf272318e052cb"
+  ]
+}

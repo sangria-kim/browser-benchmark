@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Google is aware that an exploit for CVE-2026-125350 exists in the wild."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6c7a587e6cf688962690a94c51b3186a",
+  "subject_kind": "source_item",
+  "subject_id": "src-86954e7d581d87223dae6337",
+  "input_hash": "c33ef625c0711b54a9062252fd0c66f405a12a1d05b36773eed9666a8eceef84",
+  "input_revision": "semantic-v2-sha256:e5b2879c9adf6f1995ff94329396122a5d1b414cea349d2aecdf42948b0cf8ce",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-86954e7d581d87223dae6337"
+  ]
+}

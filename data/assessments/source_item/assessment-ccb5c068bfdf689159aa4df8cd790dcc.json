@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4b7f9647c381bc357e144f95: This change updates Chromium’s emoji rendering behavior in Forced Colors Mode. During computed-value resolution, emoji whose font-variant-emoji value computes to normal or unicode are rendered using their monochrome glyp A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ccb5c068bfdf689159aa4df8cd790dcc",
+  "subject_kind": "source_item",
+  "subject_id": "src-4b7f9647c381bc357e144f95",
+  "input_hash": "bd2182db94d50b2c31501772d9374fc025e2f870fc089b1fa06a0fea19123f76",
+  "input_revision": "semantic-v2-sha256:27f21c609cdd72da793b6aa1f6eb390831b3d04c91f686087d61ee8a77f413aa",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4b7f9647c381bc357e144f95"
+  ]
+}

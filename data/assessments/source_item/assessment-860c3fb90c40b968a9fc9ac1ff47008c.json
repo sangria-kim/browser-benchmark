@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [N/A][ 505191883 ] High CVE-2026-10951: Use after free in Autofill. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-860c3fb90c40b968a9fc9ac1ff47008c",
+  "subject_kind": "source_item",
+  "subject_id": "src-d285c04775de95a43eeee811",
+  "input_hash": "d852a38188161cf681c88fff0c63366c178a76969e604f7886ce544d983a6a34",
+  "input_revision": "semantic-v2-sha256:5fd9c5b18351be9c41c7386fac18adc1b5d88af4e2ac8268886931a0e5afa8d3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d285c04775de95a43eeee811"
+  ]
+}

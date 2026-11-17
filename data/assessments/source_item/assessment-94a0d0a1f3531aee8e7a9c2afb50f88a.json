@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Introduces a new keywords to the script-src Content Security Policy (CSP) directive. This adds two new hash based allowlisting mechanisms: script sources based on hashes of URLs and contents of eval() and eval() like fun"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-94a0d0a1f3531aee8e7a9c2afb50f88a",
+  "subject_kind": "source_item",
+  "subject_id": "src-fd0a92c4135608cc9a66f6a7",
+  "input_hash": "4258b154e286bbc9747e746212e00e1cc29f51dfe9b029bd719ea8f6937ccbcd",
+  "input_revision": "semantic-v2-sha256:93c953d0f22f4401c733d2f54b50ba3bbc9976eec2f5921fb49c53d7e7da9810",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fd0a92c4135608cc9a66f6a7"
+  ]
+}

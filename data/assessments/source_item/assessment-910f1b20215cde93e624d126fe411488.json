@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3a5e69d7d341834ca61b7fb1: Fixed an issue where finding text starting from a selection could resolve to the wrong caption cue instead of the one nearest the video’s playhead. (182001231) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-910f1b20215cde93e624d126fe411488",
+  "subject_kind": "source_item",
+  "subject_id": "src-3a5e69d7d341834ca61b7fb1",
+  "input_hash": "97c9ebbb10a7e5cf59a22a12a69eaad4ee22f98d3ca7eae78b6e0278bf1070c5",
+  "input_revision": "semantic-v2-sha256:6ad458cd1f37045e06a27085bb83e82ca71ae54f640d7111b379c461e3798510",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-d4dc93bc195f7235f4d9391655999eb9",
+  "evidence_source_item_ids": [
+    "src-3a5e69d7d341834ca61b7fb1"
+  ]
+}

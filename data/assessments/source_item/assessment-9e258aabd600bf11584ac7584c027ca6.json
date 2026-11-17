@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes Stack OOB Read to Heap OOB Write in msm_ccmd_ioctl_simple via Guest-Controlled _IOC_SIZE"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9e258aabd600bf11584ac7584c027ca6",
+  "subject_kind": "source_item",
+  "subject_id": "src-ee6226b19fda5cdf227bcc63",
+  "input_hash": "b153b2a0e98e9ab88f9dbf2b5a8978b2eced6a83e06c3828b0fd7a7392541c6e",
+  "input_revision": "semantic-v2-sha256:de7248320c454d8c79a7c7be82fd5b07ad74bb42f410e2ca916041df7d2050cc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ee6226b19fda5cdf227bcc63"
+  ]
+}

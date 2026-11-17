@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: The update includes important security patches from Chromium, addressing the zero-day vulnerabilities CVE-2026-3910 and CVE-2026-3909."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-eaf15bc6ee692c031b9c87f57e81355b",
+  "subject_kind": "source_item",
+  "subject_id": "src-ad8080c44f213fcbdd0c9614",
+  "input_hash": "96e69f57f9651eccd62ec9921e56f5a4137ab90db9b9ea167273b19788785efb",
+  "input_revision": "semantic-v2-sha256:60ab49f832bd5aab6629e9818a347ff2dd873235e45492c284ccd55b294107df",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ad8080c44f213fcbdd0c9614"
+  ]
+}

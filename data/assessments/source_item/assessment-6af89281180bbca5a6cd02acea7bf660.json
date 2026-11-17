@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-25446c27a01a27ebcd968ba7: Fixed an issue where SMIL parseClockValue did not reject out-of-range minutes and seconds values per the SMIL timing specification. (173577212) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6af89281180bbca5a6cd02acea7bf660",
+  "subject_kind": "source_item",
+  "subject_id": "src-25446c27a01a27ebcd968ba7",
+  "input_hash": "212f4871233597e8f278250c4e67933525150bdc39e0e59d8976cf7e0861f04f",
+  "input_revision": "semantic-v2-sha256:108a233a9a4892a678b7ef9ebdea2b25a5d885853a12ac64f8c6f9710778bbd7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-25446c27a01a27ebcd968ba7"
+  ]
+}

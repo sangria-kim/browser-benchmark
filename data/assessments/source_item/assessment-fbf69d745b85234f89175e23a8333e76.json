@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c90d294c51985b841e7da42a: Fixed window.open() with noopener setting an opener on a reused window and returning null instead of the window when targeting _self . (185957071) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fbf69d745b85234f89175e23a8333e76",
+  "subject_kind": "source_item",
+  "subject_id": "src-c90d294c51985b841e7da42a",
+  "input_hash": "dd3d91d97cf7fab58d8be2d8185c956533333054baea0c62b3170c6e71ff7f94",
+  "input_revision": "semantic-v2-sha256:dba5fc49828358aebe0c8e7c474d11a2de7bc6454bf4160f9efd5438f724af42",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-66e37afb0065be8086c16903826a69e1",
+  "evidence_source_item_ids": [
+    "src-c90d294c51985b841e7da42a"
+  ]
+}

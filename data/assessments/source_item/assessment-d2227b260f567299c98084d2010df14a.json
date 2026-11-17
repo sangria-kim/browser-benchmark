@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-738cbf4c30b7d1b915c379a7: Addressed a startup crash on Windows that could occur after updating Firefox, when some of the application's internal files could not be loaded. Firefox should now start in these cases, although parts of the interface ma A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d2227b260f567299c98084d2010df14a",
+  "subject_kind": "source_item",
+  "subject_id": "src-738cbf4c30b7d1b915c379a7",
+  "input_hash": "a6ab15770011fdc4e449c52bd4acaf5e6456ad26199d8ebc645b36c12119de8b",
+  "input_revision": "semantic-v2-sha256:b131d772e6918767705c45eb20570de4d0be3efd8582d1ed6376a7603bdd37c0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-738cbf4c30b7d1b915c379a7"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker with a compromised intermediate certificate authority may be able to issue certificates with arbitrary extended key usages"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e0ea750fa73776b4effa64f065f6e001",
+  "subject_kind": "source_item",
+  "subject_id": "src-73ef5b027fdbc3548f50219a",
+  "input_hash": "61ec185b5129fac339cfcf67b6020e49620f1ae00125694391fc8cd28f1d95a7",
+  "input_revision": "semantic-v2-sha256:78b37093e9bc4e3d66c341d6975bcfcac89e7f18852d045c0772357a9f0bcd7d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-73ef5b027fdbc3548f50219a"
+  ]
+}

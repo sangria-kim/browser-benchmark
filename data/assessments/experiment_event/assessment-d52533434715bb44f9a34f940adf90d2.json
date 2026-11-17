@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d8324b4aa99a519884ff7a8c: Source baseline: V8CppGCAllocationSampler A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d52533434715bb44f9a34f940adf90d2",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d8324b4aa99a519884ff7a8c",
+  "input_hash": "dc30505031b3a437ef6b2d8790698c7790a74914d1c40ff214d5ed408e739f0b",
+  "input_revision": "semantic-v2-sha256:8e06b17e004aad58be8b61642e66d259f36acb081ced86506750289e0e4f115d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-07c77f62453fa7cf9a45f8ba"
+  ]
+}

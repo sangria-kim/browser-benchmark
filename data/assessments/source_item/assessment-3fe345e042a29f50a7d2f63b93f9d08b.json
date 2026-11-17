@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed an issue where Content Security Policy 'self' did not match script sources in opaque-origin HTTP(S) documents. ( [contact omitted] ) (178638597)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3fe345e042a29f50a7d2f63b93f9d08b",
+  "subject_kind": "source_item",
+  "subject_id": "src-e5821ea652531cffbd8e41db",
+  "input_hash": "3146b4ff55954dca59893e4e70b221e5084d6c5728f3fc0d1d8b2106b47df46f",
+  "input_revision": "semantic-v2-sha256:4d6f7d6285eb4cce70e390eeca33fd53c992f7875ed9545c9f5454ec6a2975d6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e5821ea652531cffbd8e41db"
+  ]
+}

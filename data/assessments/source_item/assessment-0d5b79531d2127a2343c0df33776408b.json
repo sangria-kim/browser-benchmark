@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9e3738bf92181b5c93d59a18: Previously, Chrome 126 introduced an out-of-process iframe ([OOPIF]( architecture for the PDF viewer. This modern architecture is simpler and supports new features. Chrome 152 will deprecate the original PDF viewer archi A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0d5b79531d2127a2343c0df33776408b",
+  "subject_kind": "source_item",
+  "subject_id": "src-9e3738bf92181b5c93d59a18",
+  "input_hash": "339c523409c146159b9978d6134df6311a75288c6a3b47cccf5d5f75a18f01a5",
+  "input_revision": "semantic-v2-sha256:344477a40d368e1a4ddc9f5b74467e75528febc1a79a952bf9e231a41b268aa5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9e3738bf92181b5c93d59a18"
+  ]
+}

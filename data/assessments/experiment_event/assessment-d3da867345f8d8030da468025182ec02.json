@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0a102870bcc1081969da93b3: Source baseline: AndroidResizeLargeNotificationBitmaps A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d3da867345f8d8030da468025182ec02",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0a102870bcc1081969da93b3",
+  "input_hash": "8bfb5765c7d6b65481f2615bd5dca7e10214a993f95c39efc1d86ec414a513ce",
+  "input_revision": "semantic-v2-sha256:86433cb6e73b4664cc09186b11752bf47692f2921a1ebf774f01cb4bad0ef916",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-c6ee83e24e741fb72f2fb251"
+  ]
+}

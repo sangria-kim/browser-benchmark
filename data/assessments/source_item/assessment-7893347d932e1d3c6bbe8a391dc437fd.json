@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c53774b3b83ea144e669a197: Fixed an issue where the change event was not fired on <input> and <textarea> elements when they lost focus while another application was in the foreground. (98526540) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7893347d932e1d3c6bbe8a391dc437fd",
+  "subject_kind": "source_item",
+  "subject_id": "src-c53774b3b83ea144e669a197",
+  "input_hash": "1971d26dd35bb62ae647577834df9a208622d8d2961159187cd5b1f2cc4e7e60",
+  "input_revision": "semantic-v2-sha256:629bd23d3955969f30a76bcbc50aadb8560b0c6b5050cfdf4e04bfde35b72bc7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c53774b3b83ea144e669a197"
+  ]
+}

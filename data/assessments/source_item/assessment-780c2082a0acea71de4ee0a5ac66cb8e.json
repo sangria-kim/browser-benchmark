@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-11e5b9deab6ad7b7fd48961c: Fixed a performance issue with TypedArray.prototype.lastIndexOf by adding SIMD-accelerated reverse search for numeric types. (175904377) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-780c2082a0acea71de4ee0a5ac66cb8e",
+  "subject_kind": "source_item",
+  "subject_id": "src-11e5b9deab6ad7b7fd48961c",
+  "input_hash": "e79f7c3354dea5900b0a3e8412effb8ccd1af1bbaa60bcb5c69b0e89fb861be4",
+  "input_revision": "semantic-v2-sha256:3e068dc79a841899594e6f1acef7d8a13c4a7f02196ee5e1b52151fb4d20908f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-11e5b9deab6ad7b7fd48961c"
+  ]
+}

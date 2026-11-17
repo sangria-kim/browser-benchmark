@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [N/A][ 567175125 ] High CVE-2026-113338: Use after free in Turbolev. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-89f35277c150ef4bcaed6c8560a0566c",
+  "subject_kind": "source_item",
+  "subject_id": "src-b45c9b352cfb919e16911b88",
+  "input_hash": "4aaf7fc6ffc571b4a373c5ffd72b3f360f6087a24b4e2bf9bb3c2c10f48352ce",
+  "input_revision": "semantic-v2-sha256:aca7e062a028ab1ea14d7e060bd7bc6bbb4ac15d86a556c864ebd1505ce6e8b0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b45c9b352cfb919e16911b88"
+  ]
+}

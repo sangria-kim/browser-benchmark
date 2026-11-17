@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1a5219ffa5264a2d5d3fc76e: Fixed an issue where an extension’s service worker lost its clients after being unloaded and reloaded, preventing it from finding an existing offscreen document. (186116488) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6527b04932a077064efb5e76db1a6675",
+  "subject_kind": "source_item",
+  "subject_id": "src-1a5219ffa5264a2d5d3fc76e",
+  "input_hash": "99d8af1ad5a57b0b9aae053b88b29069f20308e9627227cea4862a879358a1af",
+  "input_revision": "semantic-v2-sha256:7212250295298d9f8552760564e0a999536dd9d0f4c906e2051a8c662af8adfb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-cfa8ab9367beea307525b54aebc6ebb2",
+  "evidence_source_item_ids": [
+    "src-1a5219ffa5264a2d5d3fc76e"
+  ]
+}

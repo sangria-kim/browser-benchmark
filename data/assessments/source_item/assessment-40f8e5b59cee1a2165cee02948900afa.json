@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ed69355d674ae0939f87f413: Chromium's MediaRecorder API now supports HEVC encoding, introducing the hvc1.* codec string, and adds new codecs (hev1.* and avc3.*) supporting variable resolution video in MP4. Support for HEVC platform encoding was ad A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-40f8e5b59cee1a2165cee02948900afa",
+  "subject_kind": "source_item",
+  "subject_id": "src-ed69355d674ae0939f87f413",
+  "input_hash": "fe1bd0751cea7f43f24f02d0f0ecee6add488e5952af0f72d11c8fee633e8e09",
+  "input_revision": "semantic-v2-sha256:6c3ebe3b05aa98a1abd0620f2a8fa8f6e145f0969c676088a3562af0c27420b3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ed69355d674ae0939f87f413"
+  ]
+}

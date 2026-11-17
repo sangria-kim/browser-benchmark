@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-599430a956cd206f1a82bb40: Source baseline: SanitizerAPI A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a7cb8cbe5251bfbc47f97bae7d526802",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-599430a956cd206f1a82bb40",
+  "input_hash": "b246baa8c2090552c6214cdc9af684e1619d203b1e76e461bbfe4d9648b38f35",
+  "input_revision": "semantic-v2-sha256:6a11ebb7108d1197e1cb4a6fd2ffb0f1a90b1f7985613fb0076f001f71986dec",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8683c03dcc4698cd488d0b85"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$43000][ 505077859 ] Critical CVE-2026-9872: Out of bounds write in GPU. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1d0a81bdcee60e342c6eb1983c00fa8c",
+  "subject_kind": "source_item",
+  "subject_id": "src-1fe279ad41f6eeddb867642b",
+  "input_hash": "02478c195938e57111a425bee3dc46600190c63ae5ef95238f18612457c3fc5c",
+  "input_revision": "semantic-v2-sha256:151a41f29fa61d5b714aa41766f66d00b69f095ebd9ab0401dea439a9ea3ad85",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1fe279ad41f6eeddb867642b"
+  ]
+}

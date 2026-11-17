@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4b78f033f663fedcb4965a22: Fixed an issue where RTCPeerConnection configured with iceTransportPolicy: \"relay\" failed to gather any ICE candidates on macOS Sequoia. (175009190) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e8462ade7fcb636717b1b8dc1ced3316",
+  "subject_kind": "source_item",
+  "subject_id": "src-4b78f033f663fedcb4965a22",
+  "input_hash": "325d83b0bd4f0d8be5148eb0e48f08b268e1b1a5e39caa578a00a061bd1315a7",
+  "input_revision": "semantic-v2-sha256:76f86ab706992850d51079f6e85d5cb8a52b24fa26320b58b5eceb1728bedf42",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4b78f033f663fedcb4965a22"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$11000][ 485397279 ] Medium CVE-2026-5874: Use after free in PrivateAI. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d4d2696078bb54f87c29ffc34562be56",
+  "subject_kind": "source_item",
+  "subject_id": "src-3a51c28cb45cd3921fabcd27",
+  "input_hash": "f75f6705e66fda573f3d86deecc1072b246e63b8c3d625077556667f752f427b",
+  "input_revision": "semantic-v2-sha256:80c5b654e65e7658ad399f2fefff9944bffc20fa5c3ebd627ac98f9c2d4e483d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3a51c28cb45cd3921fabcd27"
+  ]
+}

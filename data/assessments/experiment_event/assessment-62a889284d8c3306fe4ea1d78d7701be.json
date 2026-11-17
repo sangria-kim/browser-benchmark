@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a5e8d2b530173fca86bfab0e: Source baseline: OmniboxDogfoodFeedbackTestDisabled A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-62a889284d8c3306fe4ea1d78d7701be",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a5e8d2b530173fca86bfab0e",
+  "input_hash": "16a32fc7f1d886e989048724d49dd491fd1783b37f5f32c567f6f5bd168383a2",
+  "input_revision": "semantic-v2-sha256:7af7ab113c480db8c36b8db668afe499c3ef10a2dbb12a80e329657d365fffd3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-99b9ca21833caa3d6db72d19"
+  ]
+}

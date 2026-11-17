@@ -1,0 +1,31 @@
+{
+  "status": "selected",
+  "reasons": [
+    "Evidence-gated deterministic profile macos-menu-shortcut-override: macOS users can replace browser menu shortcuts with system preferences. This changes keyboard task completion and shortcut conflicts.",
+    "Evidence: On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+    "Material change: The official Beta note says custom shortcuts now replace built-in shortcuts; this is a historical Beta note, not a newly observed launch.",
+    "Benchmark: Confirm browser availability and the stated Beta behavior on the same macOS device → Assign a menu shortcut in System Settings → Invoke both the custom and former shortcuts while a page input has focus → Restore the original setting",
+    "Measure: Successful menu invocations; Unexpected text input or conflicting commands; Setup steps",
+    "Completion: Three repetitions per supported browser; record outcomes and unavailable paths. No execution is claimed.",
+    "Conditions: Beta documentation only; no device test. Confirm both browsers and menu support on macOS first. If Samsung Browser is unavailable on macOS, retain as a design comparison and do not report a cross-product performance result."
+  ],
+  "priority": "P2",
+  "comparison_question": "On the same macOS version, can a user override a browser menu shortcut through System Settings, and what happens to the former shortcut in Firefox and Samsung Browser if available?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Beta documentation only; no device test. Confirm both browsers and menu support on macOS first. If Samsung Browser is unavailable on macOS, retain as a design comparison and do not report a cross-product performance result.",
+  "schema_version": 2,
+  "assessment_id": "assessment-42a064a03149c402471af28e108a8cd6",
+  "subject_kind": "source_item",
+  "subject_id": "src-82284d6c37170a8065617d7d",
+  "input_hash": "e32cfe0ba4b61269802eb50edaba7ff43a9731c8a09b52fcd9c9df8694966b75",
+  "input_revision": "semantic-v2-sha256:263528831d3a49db9851914c300960c4ad77997eeee2cd6038fae6d9bc9d2b38",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-6362515874962872d64793391b03cf19",
+  "evidence_source_item_ids": [
+    "src-82284d6c37170a8065617d7d"
+  ]
+}

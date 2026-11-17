@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-090be4a2fd1cd74517855650: Fixed the configurationchange event being dropped when a source-side change occurred while a MediaStreamTrack was muted; the event is now deferred until unmute. ( [contact omitted] ) (180728609) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f0699c76c4ee4309a01a0a3f93c84c3f",
+  "subject_kind": "source_item",
+  "subject_id": "src-090be4a2fd1cd74517855650",
+  "input_hash": "82bff20787fb930b9600a0f8740d3c925e444393268b5a2e2cc6ead430ee74fc",
+  "input_revision": "semantic-v2-sha256:74d01e4087a2446ddf8f72938d892dd3c0722f288caae5ff13b75eb967307238",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-090be4a2fd1cd74517855650"
+  ]
+}

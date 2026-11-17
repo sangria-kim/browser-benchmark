@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c6a6986cc28f6b6579f0f9d2: Source baseline: UseRustCborParser A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-76ffbe029829ddf201a9997552af9c30",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c6a6986cc28f6b6579f0f9d2",
+  "input_hash": "ef49170a81a2dd61ab19fc64e856fdf386eaac1f1b818b532cd6af4c8b5a1651",
+  "input_revision": "semantic-v2-sha256:f1795e31b6add67478e899c372e2f3e5311b869515aec9a8648cfdd53ee427f5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-1c7f281c2e3bcb12968347a8"
+  ]
+}

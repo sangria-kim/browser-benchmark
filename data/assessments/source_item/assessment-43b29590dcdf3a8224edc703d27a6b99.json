@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted asset catalog may lead to unexpected process termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-43b29590dcdf3a8224edc703d27a6b99",
+  "subject_kind": "source_item",
+  "subject_id": "src-5655cb57b74fcf9f190f76ff",
+  "input_hash": "4be473b81794a5067cc23e8c43ddc217f07d540f6d1cb6c7582b04ae69153126",
+  "input_revision": "semantic-v2-sha256:9f83ee7250ca97d15ec98e236acf1c2a2bc1c9747a055356d8ee20f6ff8e5cd3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5655cb57b74fcf9f190f76ff"
+  ]
+}

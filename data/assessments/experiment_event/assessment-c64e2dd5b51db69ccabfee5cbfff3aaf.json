@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a1c2d9d500fb38b138f10929: Source baseline: Clank startup and tab creation optimizations A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c64e2dd5b51db69ccabfee5cbfff3aaf",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a1c2d9d500fb38b138f10929",
+  "input_hash": "cb22c51ce32aae60a9b4afa3e449f6ad5933adce991179b8eee36f190fd42e19",
+  "input_revision": "semantic-v2-sha256:4b333654652dd319bb51e56c2816718a022dbdb40b624b3103b0aa46b03503a1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-ba0acc404eb6ce2e52a48aa7ba9aa23d",
+  "evidence_source_item_ids": [
+    "src-chromium-38d26e95650f364d5c8c6e65",
+    "src-legacy-4d8b8dc5ed93eca56950236f"
+  ]
+}

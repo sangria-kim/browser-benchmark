@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b71ced881fb55e3d9392dc00: Fixed the Styles panel showing var() with a non-ASCII custom property name, such as var(--色) , as invalid even though it resolves. ( [contact omitted] ) (188169850) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8bddac3158b4cf25f8685e4869520726",
+  "subject_kind": "source_item",
+  "subject_id": "src-b71ced881fb55e3d9392dc00",
+  "input_hash": "84ff9e0777505d249cc63129f195448fccc5cd58f50623709bb2cd7b0881c247",
+  "input_revision": "semantic-v2-sha256:de744233f31337c11a2643dba92f950c7ac2c8f6ecf3c993cd09526dd7202421",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b71ced881fb55e3d9392dc00"
+  ]
+}

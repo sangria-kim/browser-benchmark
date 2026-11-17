@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2a57097d771ed7ce325f8d56: Inference : NEAR AI’s code that runs inside the TEEs: inference-proxy (sits in front of the model and produces its attestations), compose-manager (launches the model and logs which one is running), and cloud-api (NEAR AI A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cd9dc5c4b32c5991d60b6bf85c7c65a1",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a57097d771ed7ce325f8d56",
+  "input_hash": "51510c10bcf4b83bd8bf01ef573f83d0044c000250a85c96c67d84bce6d058ad",
+  "input_revision": "semantic-v2-sha256:16f28252db01359c908d59ee7337b37de3a300cb22226e5b0e9f0a4a26054842",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2a57097d771ed7ce325f8d56"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ab96b4fc741dbccfcbb8337f: Fixed an issue where optimized code could read a stale value of a module variable after an import cycle. ( [contact omitted] ) (187432418) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-594961477f470e369d30911c37979fa8",
+  "subject_kind": "source_item",
+  "subject_id": "src-ab96b4fc741dbccfcbb8337f",
+  "input_hash": "5a4ba108140150a84b03e7d4e255736335b11da35dca354d9350121b6ea477cc",
+  "input_revision": "semantic-v2-sha256:4e14ac7620b745af2c85f81f7e61e64b279ede580e6abac2d27f428db4da743c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ab96b4fc741dbccfcbb8337f"
+  ]
+}

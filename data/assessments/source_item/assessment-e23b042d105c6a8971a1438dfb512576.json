@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious app may be able to bypass clickjacking protections for secure prompts"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e23b042d105c6a8971a1438dfb512576",
+  "subject_kind": "source_item",
+  "subject_id": "src-11f17bab48b199f4870c5064",
+  "input_hash": "c56de19f0bbb48ec88383c97115eed1f6fc54d96514025006940b32e9eae5d37",
+  "input_revision": "semantic-v2-sha256:da3d5563fd904a254dda2b263592f8591bd27eda2aa246507b5a6fc1de00eabd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-11f17bab48b199f4870c5064"
+  ]
+}

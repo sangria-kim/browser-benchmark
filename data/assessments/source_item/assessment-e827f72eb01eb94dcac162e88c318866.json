@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a271fbde43f7f8e67d0252c9: Fixed the transform order for clipPath elements so that the bounding box is scaled correctly before applying the local transform. (167417135) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e827f72eb01eb94dcac162e88c318866",
+  "subject_kind": "source_item",
+  "subject_id": "src-a271fbde43f7f8e67d0252c9",
+  "input_hash": "a21c77f4cd1b5c52aed26e64133b997320eb99c6dba9ac316955856d12294ed0",
+  "input_revision": "semantic-v2-sha256:e9ca0d27b90c504560d15a2a33da15c9acc3498063ad9d2438d39cd35e518ea3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a271fbde43f7f8e67d0252c9"
+  ]
+}

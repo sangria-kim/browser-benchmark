@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a8ed6b452949c2736f940f40: Source baseline: HttpHeadersInjection A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0b340fc93746ef902a24ee1ba03a1b8d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a8ed6b452949c2736f940f40",
+  "input_hash": "513ee228b1a44879f054cc4eeba223845dc5ea69635e23f46919dbf507443458",
+  "input_revision": "semantic-v2-sha256:8030bac2c5065c53b7b5e9c6c5d3db5279bb1e13e379dc7617a42ed8c465d866",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8d21b6bbd5207f0f5d073344"
+  ]
+}

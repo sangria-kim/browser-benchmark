@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 517046249 Critical CVE-2026-10902: Use after free in Ozone"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5fd85465bdf4825f9bfe0dc3743c164d",
+  "subject_kind": "source_item",
+  "subject_id": "src-0a9f9259a068f642646f5f1d",
+  "input_hash": "9b7ff20c550768ada67a47f7a37fe83cc3f7f1e743f603d3491649fe49819c1f",
+  "input_revision": "semantic-v2-sha256:9f4758513ffd19b68f84f860aded804a771de9cb33e4daafbf5f6718f3fcc440",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0a9f9259a068f642646f5f1d"
+  ]
+}

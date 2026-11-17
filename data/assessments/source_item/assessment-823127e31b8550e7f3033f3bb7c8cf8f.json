@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing an audio stream in a maliciously crafted media file may terminate the process"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-823127e31b8550e7f3033f3bb7c8cf8f",
+  "subject_kind": "source_item",
+  "subject_id": "src-fa4e3c627de44e278512ddfd",
+  "input_hash": "e85e194a58a49cb2dd0ed627144a6838d696ffee3135d38841f22164bc7889d3",
+  "input_revision": "semantic-v2-sha256:5d14b81c4684d312e5c75abf37c71cb59130b06af75d57b6f37c34cb81f07b80",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fa4e3c627de44e278512ddfd"
+  ]
+}

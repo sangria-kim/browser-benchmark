@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a0f5af85184fa25cc77c9c4f: Fixed Intl.Segmenter containing() returning a segment that also included the preceding segment when the index was at a boundary before a surrogate pair, such as an emoji. ( [contact omitted] ) (187863002) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-65b59e82c815a18249d0c6dab94d7d8a",
+  "subject_kind": "source_item",
+  "subject_id": "src-a0f5af85184fa25cc77c9c4f",
+  "input_hash": "5d3937e09606c867aeb892531788f9de127f126e1e9348526966e6ea5463cd88",
+  "input_revision": "semantic-v2-sha256:24831e8b4e1c700f587618cad9a27256265aab99b4c63d8f2b3abbbb8a90de04",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a0f5af85184fa25cc77c9c4f"
+  ]
+}

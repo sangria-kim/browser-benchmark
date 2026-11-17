@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-4c8cf6c182fa0a8ac7061cf5: Source baseline: WebAuthnAndroidDisallowIncognitoConditionalCreate A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e0302f75aaf2ddb6d95572ebd8279d56",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-4c8cf6c182fa0a8ac7061cf5",
+  "input_hash": "107a24b2896eef95b5151fb460b21e968b8bfaba2ca2a1080f53327b2500c6aa",
+  "input_revision": "semantic-v2-sha256:fe8ad0ab716daf4ae0ab3657c7ad6fe8e4c3b19a2a4bf43d81160784179f6d2c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-55c63c2e7e3a49b25e14244d"
+  ]
+}

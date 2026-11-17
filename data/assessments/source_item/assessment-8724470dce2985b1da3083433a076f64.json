@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted image may lead to disclosure of user information"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8724470dce2985b1da3083433a076f64",
+  "subject_kind": "source_item",
+  "subject_id": "src-7ba3da156a9c35d823c17cd7",
+  "input_hash": "293ccfaa7cce4da2a8f03b6dd60d5d6f0495f507303871dd8c8d2943416b43d0",
+  "input_revision": "semantic-v2-sha256:a3fcd74097567207ed824c3fdf41eb79877e5fc00ee15bd431166652130106b2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7ba3da156a9c35d823c17cd7"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ee829088cd34860d7a363285: Source baseline: WebTransportExportKeyingMaterial A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1e07af88cb926398b330a7a19159e909",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ee829088cd34860d7a363285",
+  "input_hash": "3e7cf72e998450e6fb8cd4ef0f2670ee91a6b81cba119212ae8877abc69a7fdd",
+  "input_revision": "semantic-v2-sha256:8a36b619d2047ea040502d72ed4b63277e7b3326d4c6a2831380e7d7241949f4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-39596a1924f2e243638d22b1"
+  ]
+}

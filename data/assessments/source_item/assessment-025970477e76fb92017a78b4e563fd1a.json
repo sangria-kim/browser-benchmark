@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Memory safety bugs present in Firefox ESR 115.32, Firefox ESR 140.7, Thunderbird ESR 140.7, Firefox 147 and Thunderbird 147. Some of these bugs showed evidence of memory corruption and we presume that with enough effort "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-025970477e76fb92017a78b4e563fd1a",
+  "subject_kind": "source_item",
+  "subject_id": "src-3a078fbd444ae734cdc4dedc",
+  "input_hash": "caefafd31926fadb559424ee16e029b248dd57dec4c927e4e6ba14a5f417d214",
+  "input_revision": "semantic-v2-sha256:ee3e4cd6d89a790e20bcf9956fe08ec03685ed5bade5c38da22cacc23c5a08f9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3a078fbd444ae734cdc4dedc"
+  ]
+}

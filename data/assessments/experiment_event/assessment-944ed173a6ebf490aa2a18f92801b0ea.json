@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d96d92ef79de5b3308ed3ee9: Source baseline: disable-webnn-compiler-sandbox A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-944ed173a6ebf490aa2a18f92801b0ea",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d96d92ef79de5b3308ed3ee9",
+  "input_hash": "56c1f4b4b2bd13281136647c79058763516a1bd8175daed405974f7585dc8076",
+  "input_revision": "semantic-v2-sha256:fa791d8256864645eac35ab3fd61685cb7bde57d9604d164ea8a73b69cbb2a85",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-503b671aa582bedb76b62194"
+  ]
+}

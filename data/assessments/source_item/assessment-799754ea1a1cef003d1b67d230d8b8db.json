@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0d654211f472356b74268c15: Third-party storage partitioning became the default in Chrome 115. Chrome 128 removed the `chrome:// flag` that allowed users to disable this feature, and the deprecation trial ended with Chrome 139. In Chrome 146, we re A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-799754ea1a1cef003d1b67d230d8b8db",
+  "subject_kind": "source_item",
+  "subject_id": "src-0d654211f472356b74268c15",
+  "input_hash": "712c17279f039280b1861e56c5f078d479bcb9824f6abd759cf40af3af5055a0",
+  "input_revision": "semantic-v2-sha256:f305d40347b3d688d05c0aa4365b14350ce8611eb3fc8ef3aec351479f3564cb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0d654211f472356b74268c15"
+  ]
+}

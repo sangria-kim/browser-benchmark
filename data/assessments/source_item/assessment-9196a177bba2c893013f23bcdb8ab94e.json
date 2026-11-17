@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 514742747 High CVE-2026-12014 Use after free"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9196a177bba2c893013f23bcdb8ab94e",
+  "subject_kind": "source_item",
+  "subject_id": "src-0ee97d993fcf4ae880302550",
+  "input_hash": "d1a0aac8b162cf34fc5a4bdaad1904682998398555904279f9415c5b577a9fd4",
+  "input_revision": "semantic-v2-sha256:bc138ee908dbe0fabce1b72a039ff16aad28aff7f89767e9fbb7eba7dfcf7bf6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0ee97d993fcf4ae880302550"
+  ]
+}

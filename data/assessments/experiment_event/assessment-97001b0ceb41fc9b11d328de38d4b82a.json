@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f8d1e2fe36da65dc713b5832: Source baseline: WebHID on Desktop Android for extension service workers A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-97001b0ceb41fc9b11d328de38d4b82a",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f8d1e2fe36da65dc713b5832",
+  "input_hash": "53d16097a8d997d6c8277482ec8bdcd38fa3a18bc97f2f0798304ff96026b64f",
+  "input_revision": "semantic-v2-sha256:7b567cfc008366dab4cdecb98efd496e6bd7f9abdfcea36f49f80e1b28ececcf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-47738c074c0d877446c7807a1219503c",
+  "evidence_source_item_ids": [
+    "src-chromium-febfb872cc7ee829dff580de",
+    "src-legacy-806ea8f129eb7d99d6d13b5a"
+  ]
+}

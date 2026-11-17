@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Acknowledged, but Underexplored, by zkLogin: The zkLogin paper itself acknowledges that allowing escape sequences in JSON keys can break security: if keys contain escaped quotes, claim binding may fail. This confirms tha"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a904d478569cd23188a38ca8fcd98ef7",
+  "subject_kind": "source_item",
+  "subject_id": "src-95f9a537b2d99694bdbeb7ae",
+  "input_hash": "b481a5af10cc60b8c0342614a50f606bffeba595b3e1dba03ec4b897abd2344d",
+  "input_revision": "semantic-v2-sha256:0066d2ba339ac8b8101a710231a6816c6a2c78c22f5416122ec026a098b245e1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-95f9a537b2d99694bdbeb7ae"
+  ]
+}

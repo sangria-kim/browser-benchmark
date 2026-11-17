@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: A buffer overflow was addressed with improved bounds checking."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7ec054923c9a197312aa1d294796bb00",
+  "subject_kind": "source_item",
+  "subject_id": "src-b41937f34796bffc276fc7c2",
+  "input_hash": "4dc4d872dbac73d91326e3f5750b45ab180851cee02b64c7ffbda76282819b5d",
+  "input_revision": "semantic-v2-sha256:9bf0f9371409e8d672500bf3fba42178884accd4319528ce6b9aa092cc563de9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b41937f34796bffc276fc7c2"
+  ]
+}

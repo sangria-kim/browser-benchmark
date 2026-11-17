@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$3000][ 507090179 ] Medium CVE-2026-13858: Out of bounds read in FFmpeg. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fad550d168051a0044fb0b8f7b610264",
+  "subject_kind": "source_item",
+  "subject_id": "src-1fa082b67c6faebf7010425b",
+  "input_hash": "638a490d963b0e897ab4ab73c507ccc98200b98e341a87e2eca1be08b3f6a939",
+  "input_revision": "semantic-v2-sha256:e36d00bd0f543da72349862737f832cee42440b09b238c752ec3b344d9a542de",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1fa082b67c6faebf7010425b"
+  ]
+}

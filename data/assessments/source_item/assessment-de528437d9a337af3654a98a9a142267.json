@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 523292588 High CVE-2026-16805 Use after free in Blink"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-de528437d9a337af3654a98a9a142267",
+  "subject_kind": "source_item",
+  "subject_id": "src-5d9f91a962b28334f347067e",
+  "input_hash": "31adf11b8651fd7de3501892a99437a41468359ce44d8bae27f451d01cdb578d",
+  "input_revision": "semantic-v2-sha256:e477a106a4b0b7f309443f9af4cbd8504cd7240fa9fd9a6292c6fb918370c375",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5d9f91a962b28334f347067e"
+  ]
+}

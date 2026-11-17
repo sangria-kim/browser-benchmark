@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-af9b052e7d71f77b0a7211ea: Source baseline: Enable Instant API on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f1452aa3e3610346f4ac238ae950547e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-af9b052e7d71f77b0a7211ea",
+  "input_hash": "df5f45214e071df8a6906d2b80333075831ad0c9731497ac4d240b3c3d2659f0",
+  "input_revision": "semantic-v2-sha256:6b8822b13c34e916cdc2377570a3cac8f6bb377bde5d09ee0a5c7a5ab4d751f4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-1a905261d4cf9755938d4eaffab36dae",
+  "evidence_source_item_ids": [
+    "src-chromium-233ecb8652a9d168d186d829",
+    "src-legacy-a521ae465095f08971e9aaf5"
+  ]
+}

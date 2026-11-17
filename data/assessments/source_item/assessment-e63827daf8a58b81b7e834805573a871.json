@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-eed2990d77979327105f12b9: Fixed %ArrayIteratorPrototype%.next() to return { done: true } instead of throwing a TypeError when the source TypedArray is detached and the iterator has already completed. (173759106) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e63827daf8a58b81b7e834805573a871",
+  "subject_kind": "source_item",
+  "subject_id": "src-eed2990d77979327105f12b9",
+  "input_hash": "88e7a0063a4a562fd1e7c9ea0d4040074478c9bb7d4e58cb16f89f90b56728db",
+  "input_revision": "semantic-v2-sha256:0275f78b3b5411fa743562feca5b0305933bdfe9f61a1a8ad5a9ebc3fd71f8c1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-eed2990d77979327105f12b9"
+  ]
+}

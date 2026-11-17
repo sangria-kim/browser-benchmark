@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Google is aware that an exploit for CVE-2026-5281 exists in the wild."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3bbe8c930be841ebe42aab641887febc",
+  "subject_kind": "source_item",
+  "subject_id": "src-0bd5cc70053a60e0843d3f86",
+  "input_hash": "6d36f4cdbdbeb934e68b4126e3bd49622b888e6a5c798c2d91a2a764a7047d4b",
+  "input_revision": "semantic-v2-sha256:f958adea8874bcb93ec631c1db21b988383e07d2a3b0a4dc52ba4006c4297722",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0bd5cc70053a60e0843d3f86"
+  ]
+}

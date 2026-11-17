@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted file may bypass Gatekeeper checks"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ee74c48d1080ca73f1ed26cb9c1ef58d",
+  "subject_kind": "source_item",
+  "subject_id": "src-b1fa1223b8752d08e58b7f12",
+  "input_hash": "6f9a08fa8be464d5b5cbf105c70dd5bc3eb194eadee875b1cd8ebee5a9280d43",
+  "input_revision": "semantic-v2-sha256:e7f1cc0a002e61fb3ec17cd332e45908286d20374567699d24295c6e6bb92ebd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b1fa1223b8752d08e58b7f12"
+  ]
+}

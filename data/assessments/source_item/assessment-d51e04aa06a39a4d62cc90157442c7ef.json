@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a890230a33ee79496711e1c4: Fixed the regular expression engine to reject dangling hyphens in character class syntax when using the /v flag. (175559808) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d51e04aa06a39a4d62cc90157442c7ef",
+  "subject_kind": "source_item",
+  "subject_id": "src-a890230a33ee79496711e1c4",
+  "input_hash": "7c61fb4cc4ec42cb712603834ff9d626a4cc2a2545a40342dec8fc03c09350d6",
+  "input_revision": "semantic-v2-sha256:854ee56e6dfc624c48cfb1920eeac53e1d6417b9327a5c0900045faf3d211a88",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a890230a33ee79496711e1c4"
+  ]
+}

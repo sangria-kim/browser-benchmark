@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed an issue where HTTP and HTTPS iframes loaded inside a web extension page incorrectly received the extension’s Content Security Policy. ( [contact omitted] ) (188407446)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f5bd10057898a29ffeda51d5d47d2819",
+  "subject_kind": "source_item",
+  "subject_id": "src-ac63da89a41beb73acca1573",
+  "input_hash": "90296c7a5aacb9404b0fee76c8aec51156b40bf917c3c89c72d680e142638d7e",
+  "input_revision": "semantic-v2-sha256:1fb1da3572cfc5c31d52a33c80a4407a49eeb6b90e192f6e99ea45a2e6a8a6b3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ac63da89a41beb73acca1573"
+  ]
+}

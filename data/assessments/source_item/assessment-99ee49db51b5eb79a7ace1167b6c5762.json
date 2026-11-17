@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker in a privileged network position may be able to bypass IPSec authentication and intercept network traffic"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-99ee49db51b5eb79a7ace1167b6c5762",
+  "subject_kind": "source_item",
+  "subject_id": "src-23489b344c216e67eaeaa84c",
+  "input_hash": "ce1c67c3b98284f769600ced991d387421e8c627d08663d4b38f647e78500046",
+  "input_revision": "semantic-v2-sha256:75344c8d3b460f3a5dafd46a88c871decd3acb23f55482b4c250bc19ff5ebc69",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-23489b344c216e67eaeaa84c"
+  ]
+}

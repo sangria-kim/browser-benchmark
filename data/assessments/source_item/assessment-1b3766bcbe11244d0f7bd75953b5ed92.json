@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f2ef09e93fd57ec2edd455c9: Fixed DeviceMotionEvent and DeviceOrientationEvent interfaces so that they only show up in secure contexts just like the corresponding events and made ondevicemotion and ondeviceorientation enumerable, aligning with the  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1b3766bcbe11244d0f7bd75953b5ed92",
+  "subject_kind": "source_item",
+  "subject_id": "src-f2ef09e93fd57ec2edd455c9",
+  "input_hash": "07fb98b026c1f6591ff7b652fa99c428921cb5551b20c1a878ea0b7b611c9e31",
+  "input_revision": "semantic-v2-sha256:62f79d4ec2a5149beffdd260f9d68e9ce8e6803db1f03a9fd01a67f6c73def54",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f2ef09e93fd57ec2edd455c9"
+  ]
+}

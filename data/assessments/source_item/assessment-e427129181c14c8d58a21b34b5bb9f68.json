@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker with memory write capability may be able to bypass pointer authentication codes and run arbitrary code"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e427129181c14c8d58a21b34b5bb9f68",
+  "subject_kind": "source_item",
+  "subject_id": "src-6256de44a9c4dec64dc70511",
+  "input_hash": "77547765684a92ddeda73462d00b3782e3891230acd1db77704d7dc64cb44476",
+  "input_revision": "semantic-v2-sha256:3166043a00edd2fca584159bb765206e6b7a5d31f0392ac5c36af74235c00817",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6256de44a9c4dec64dc70511"
+  ]
+}

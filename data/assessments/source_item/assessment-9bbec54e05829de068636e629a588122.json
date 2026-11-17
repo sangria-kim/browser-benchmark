@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4b221182d2eabd11700c8d1a: Fixed nested calls to requestClose() incorrectly firing multiple cancel events and causing a stack overflow. ( [contact omitted] ) (174850509) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9bbec54e05829de068636e629a588122",
+  "subject_kind": "source_item",
+  "subject_id": "src-4b221182d2eabd11700c8d1a",
+  "input_hash": "8f2a1b17271324e3f3fe826c7b88eea541664e0d963dc351760b214fa8d23512",
+  "input_revision": "semantic-v2-sha256:2fadf48c7eeb98296eadb2ef133e05d103068c7d9715f832c5593132c7c2ac4b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4b221182d2eabd11700c8d1a"
+  ]
+}

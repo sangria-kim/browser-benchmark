@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-4a640e24582465cbb93f7869: Source baseline: SharedMemorySystemProfileMinidump A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5c8ff99bdec4c5785952de3f41cee56f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-4a640e24582465cbb93f7869",
+  "input_hash": "17fb96b61ba23f1f80de1bc6e6754eda8a1abebe2b57a064ef8575d672fd6b9b",
+  "input_revision": "semantic-v2-sha256:38f881cbc86c222633c044e47d6442f14c1b370d7855e514e2f4e84ce37e43b8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-842742dfbf1da78a7e1b2228"
+  ]
+}

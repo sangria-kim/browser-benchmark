@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-2095ed97a8e3d8e69ce08f10: Source baseline: SeccompFilterGpuSandbox A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b3d0c54b75a7eff3d60e7ddc96906b03",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-2095ed97a8e3d8e69ce08f10",
+  "input_hash": "1333d07342bb60bb7dcb1115ba2a154429ec17ca5f56bb6ffee84975e55b5d56",
+  "input_revision": "semantic-v2-sha256:e6338bed1a60198cc7fcda85163ed0ff812a3ce2a0251a79443e6f356bd1d271",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-336084cf8d42702b84fe9093"
+  ]
+}

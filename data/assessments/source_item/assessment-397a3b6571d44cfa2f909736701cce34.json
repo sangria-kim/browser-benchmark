@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious afpfs server may lead to kernel memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-397a3b6571d44cfa2f909736701cce34",
+  "subject_kind": "source_item",
+  "subject_id": "src-7a1d04410c2cba2d8dbc1401",
+  "input_hash": "311967019cd35ec912869bff099e76cd75894ab09a11a8737b28fbe2bbeac873",
+  "input_revision": "semantic-v2-sha256:c6f55e1add734df48d4516d8d0ade9c3034f2ef4cb297f4f6afe13b09612b54f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7a1d04410c2cba2d8dbc1401"
+  ]
+}

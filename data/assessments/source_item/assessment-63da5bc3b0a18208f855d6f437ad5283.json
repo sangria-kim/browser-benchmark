@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to modify a file it only had permission to read"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-63da5bc3b0a18208f855d6f437ad5283",
+  "subject_kind": "source_item",
+  "subject_id": "src-ce166d7e965097943e46ad1c",
+  "input_hash": "1d21fdc10f450c5ca403547f274c533e72c21bdcb78f723582368459623f1c36",
+  "input_revision": "semantic-v2-sha256:1f5af0b4c8b74475900c0aa7990bd8d6d3f3775f8ccb3efa9b849a0ad4ccd20e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ce166d7e965097943e46ad1c"
+  ]
+}

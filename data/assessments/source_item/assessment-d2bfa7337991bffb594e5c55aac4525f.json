@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bd53a9f198ca3232b91f57aa: `import defer` allows lazily evaluating ES modules, to reduce the startup impact of modules that are not actually needed for the first JavaScript execution. This provides an easier-to-use alternative to dynamic import. W A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d2bfa7337991bffb594e5c55aac4525f",
+  "subject_kind": "source_item",
+  "subject_id": "src-bd53a9f198ca3232b91f57aa",
+  "input_hash": "3c137b8b95daa1f552be39594cd2c8081ab7a0675342885f8079ff48a53036a7",
+  "input_revision": "semantic-v2-sha256:736ed283da15acca34545df847b7d0eba589f7f8aedf870f8f12310b08f73220",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bd53a9f198ca3232b91f57aa"
+  ]
+}

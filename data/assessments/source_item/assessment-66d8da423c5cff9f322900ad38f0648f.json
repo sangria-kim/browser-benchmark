@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bdca6f0b3f121b3af0f4e6e9: AllowSocketPoolSizeRandomizationForProxies This policy controls the randomization of the connection limits for TCP socket proxy pools, which is designed to mitigate cross-site state leakage. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-66d8da423c5cff9f322900ad38f0648f",
+  "subject_kind": "source_item",
+  "subject_id": "src-bdca6f0b3f121b3af0f4e6e9",
+  "input_hash": "6e45341cc0e53de06f60c4efc543e665167a9611e2c9d97a055c4210d9d83221",
+  "input_revision": "semantic-v2-sha256:cf6fec276a77471aaecc9477f4da9bbee3303c09a80b44b24c9569d7c4e74904",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bdca6f0b3f121b3af0f4e6e9"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted Bluetooth packet may result in disclosure of process memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-842063574d9851fa963c4a9b5262d214",
+  "subject_kind": "source_item",
+  "subject_id": "src-51ec9777efc28baf4a98f656",
+  "input_hash": "3173da13e71b40c3937a2933f2d993094753589daaaa26788cab1c075c222312",
+  "input_revision": "semantic-v2-sha256:9be19c41dbd6cfee8d97c1cd7f891b5ce30ab87aceae0bf9ebd6540d3cab9082",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-51ec9777efc28baf4a98f656"
+  ]
+}

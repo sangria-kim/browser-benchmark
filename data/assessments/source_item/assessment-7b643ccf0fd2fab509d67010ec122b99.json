@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bafb4deb35bf22cc35b30437: By exploiting limits in the connection pool size on Chrome, knowledge can be gained about cross-site state which would otherwise be inaccessible. Specifically, it’s possible (with some statistical certainty) to evaluate  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7b643ccf0fd2fab509d67010ec122b99",
+  "subject_kind": "source_item",
+  "subject_id": "src-bafb4deb35bf22cc35b30437",
+  "input_hash": "0cb4f675dd87e6d14ee27e4a549808e1f492220fcb106e7bbe8d3a8898fa3b89",
+  "input_revision": "semantic-v2-sha256:0ec4a8e350aa84d2fcf7f925ed3df629a8ef6f788686a0a35c169ce612999067",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bafb4deb35bf22cc35b30437"
+  ]
+}

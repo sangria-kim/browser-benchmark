@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7143af6d84faff31637bf4bb: Notifies one of the MessagePorts that the other port has been disentangled (i.e., close() is called, an owning document is destroyed, or the port is garbage collected). A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-65d8c225f6cabbf450a068613b1ed52d",
+  "subject_kind": "source_item",
+  "subject_id": "src-7143af6d84faff31637bf4bb",
+  "input_hash": "20c7065025ce902604bee3991ec731dd5ab8d17224c62c3f2c9cb93239ed9514",
+  "input_revision": "semantic-v2-sha256:55a0f961f37954250bbda379abc328bbd1fd6b62c5a7f32f64a89581666861b0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7143af6d84faff31637bf4bb"
+  ]
+}

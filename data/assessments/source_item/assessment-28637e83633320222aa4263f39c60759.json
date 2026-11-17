@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed Content-Security-Policy object-src with an empty or invalid source list to block empty <object> and <embed> elements consistently with object-src 'none' . ( [contact omitted] ) (171298717)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-28637e83633320222aa4263f39c60759",
+  "subject_kind": "source_item",
+  "subject_id": "src-d21ebb65e0a41cff9c0088f2",
+  "input_hash": "b0b67deeb915be00d3ac14b3b9d965e20c77a422acb457d9ea53bff8e3d9848f",
+  "input_revision": "semantic-v2-sha256:c84d0013858dfc6edca6a55a8d10817910355e695184a3459eaafad3f4c04f6a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d21ebb65e0a41cff9c0088f2"
+  ]
+}

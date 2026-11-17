@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Critically, this API key is a static bearer credential and is not cryptographically bound to protocol values such as aud , iss , or the JWT being proven. As a result, possession of the key suffices to request proofs for "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2d2294f67b0eb4d2c707a85628893bb6",
+  "subject_kind": "source_item",
+  "subject_id": "src-da5273b1ff20d94111902155",
+  "input_hash": "33fb44d078ac8447adeccec13a92e0222897e8ee988e6a9b9b8ffda3772482a2",
+  "input_revision": "semantic-v2-sha256:c3a4409643015b6a1d5854b48a4f7e96b3682202374471e6b4caf80a3170dba3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-da5273b1ff20d94111902155"
+  ]
+}

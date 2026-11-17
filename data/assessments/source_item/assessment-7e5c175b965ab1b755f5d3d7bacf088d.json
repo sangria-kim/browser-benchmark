@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$TBD] [513135862 ] High CVE-2026-10974 Insufficient validation of untrusted input in ANGLE on sampler-only structs in ESSL 3.00+ on 2026-05-14"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7e5c175b965ab1b755f5d3d7bacf088d",
+  "subject_kind": "source_item",
+  "subject_id": "src-727e6ca9e36380529001eabf",
+  "input_hash": "3d4eac5927d1b5d8f75e3436c5f0d27ecc416e734ab589f28c2e9cf80b1066b3",
+  "input_revision": "semantic-v2-sha256:b6eb2be88b7554ae3bdcf1a4b742bcf1a6f758149a6204735e2b21c3bc3c2390",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-727e6ca9e36380529001eabf"
+  ]
+}

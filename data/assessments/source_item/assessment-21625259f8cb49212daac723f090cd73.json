@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app with root privileges may be able to delete protected system files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-21625259f8cb49212daac723f090cd73",
+  "subject_kind": "source_item",
+  "subject_id": "src-ef9551640612985ca6578f6f",
+  "input_hash": "d8d64b83900c8933d78ab3e122e9492a0ac0daec71308b59d0d0ec506472c58b",
+  "input_revision": "semantic-v2-sha256:3a1b4fcda203dcc2b8d4748cda118dd0b1cf30521ef39b24e60dfd0dbad65720",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ef9551640612985ca6578f6f"
+  ]
+}

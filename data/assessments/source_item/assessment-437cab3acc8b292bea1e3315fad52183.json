@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: A heap buffer overflow was addressed with improved bounds checking."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-437cab3acc8b292bea1e3315fad52183",
+  "subject_kind": "source_item",
+  "subject_id": "src-fc571e99fee5977a76118516",
+  "input_hash": "1f32545124199b7c8aef0bcdcef4be0f505e538ee5e712b8159db92bebf2906a",
+  "input_revision": "semantic-v2-sha256:47cc50e446bf7224805ded9c2d5fa293ef551e89ace3ecb32efbd1c4f7aadb23",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fc571e99fee5977a76118516"
+  ]
+}

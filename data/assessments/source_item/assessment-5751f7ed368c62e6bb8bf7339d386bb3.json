@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2788976746172a0784914e0f: Fixed an issue where Array.prototype.concat could produce incorrect results when combining arrays with incompatible indexing types. ( [contact omitted] ) (176219964) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5751f7ed368c62e6bb8bf7339d386bb3",
+  "subject_kind": "source_item",
+  "subject_id": "src-2788976746172a0784914e0f",
+  "input_hash": "b3f2555c83da814fd049aa17853fa121af5fef8d183cf7981e77a4e84cd62a87",
+  "input_revision": "semantic-v2-sha256:8ccbcfbe7495afdcf5e73484a294732f8a887da6d7440084f6bef0e7c7d10c74",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2788976746172a0784914e0f"
+  ]
+}

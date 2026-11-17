@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b69f37bb0747814cd61c42f1: Fixed the software VP9 decoder used by WebCodecs and media playback to report a decode error instead of silently dropping 4:4:4 frames or producing corrupted 12-bit frames. ( [contact omitted] ) (188868857) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7846e17cd31756fcb3309c58fc61d98b",
+  "subject_kind": "source_item",
+  "subject_id": "src-b69f37bb0747814cd61c42f1",
+  "input_hash": "fede5ec1789c0d46eed817c32d6cd4d1dc2bad4d844d0577edb497cdc9633949",
+  "input_revision": "semantic-v2-sha256:4d321a3afa35d56c93803b0fb99dd176b99b3660db3604e28afe22e0eaab5d72",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b69f37bb0747814cd61c42f1"
+  ]
+}

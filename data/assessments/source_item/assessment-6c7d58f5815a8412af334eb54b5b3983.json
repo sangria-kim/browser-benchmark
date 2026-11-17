@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e43ccb9240f648cf940175a1: Fixed an issue where Intl.Segmenter with granularity: \"word\" incorrectly reported isWordLike: false for numeric segments. ( [contact omitted] ) (175057894) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6c7d58f5815a8412af334eb54b5b3983",
+  "subject_kind": "source_item",
+  "subject_id": "src-e43ccb9240f648cf940175a1",
+  "input_hash": "3741983673286d6bfda79a50536ae0431782119157ce241f461b7b8d83bef576",
+  "input_revision": "semantic-v2-sha256:cb03ce27c10d726f7c6cb44a7c56d47e9d9b0bc7e4790799be2be38531ae0959",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e43ccb9240f648cf940175a1"
+  ]
+}

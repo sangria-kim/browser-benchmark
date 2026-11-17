@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a77af87714cb6e4e1e9bb568: Fixed an issue where DecompressionStream discarded valid decompressed output when extra trailing bytes were present after the compressed stream, instead of enqueuing the output before throwing. (171020155) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9f4070d0d5348cde2cd10e43a5787846",
+  "subject_kind": "source_item",
+  "subject_id": "src-a77af87714cb6e4e1e9bb568",
+  "input_hash": "99ce6d7cd42e106e2abe8dfa2d56064d166e15affa16ecc8e59d05c5beda6750",
+  "input_revision": "semantic-v2-sha256:92a32ba2f0652fd03cb1069d6505739c78f1221f5d3756406b7c00a176d6cd7a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a77af87714cb6e4e1e9bb568"
+  ]
+}

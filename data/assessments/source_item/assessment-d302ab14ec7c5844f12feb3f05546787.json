@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [ 489381399 ] High CVE-2026-4441: Use after free in Base."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d302ab14ec7c5844f12feb3f05546787",
+  "subject_kind": "source_item",
+  "subject_id": "src-770571d3b3800ac0211e86df",
+  "input_hash": "0be5258935e97369161a4199a31a806654cf55c4fccaf31700308b38ccaf2a32",
+  "input_revision": "semantic-v2-sha256:6c805b7a7aa7056924115569af61c64c51e2a538d9c8cad0b0dede30235ab551",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-770571d3b3800ac0211e86df"
+  ]
+}

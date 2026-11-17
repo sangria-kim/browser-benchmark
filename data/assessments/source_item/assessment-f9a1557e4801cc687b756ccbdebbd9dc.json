@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A remote user may cause an unexpected app termination or arbitrary code execution"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f9a1557e4801cc687b756ccbdebbd9dc",
+  "subject_kind": "source_item",
+  "subject_id": "src-6516aa302d4f30a574803d06",
+  "input_hash": "5de4d8afea865d6def61588c46967fca1457e483a70caa1dc56bc00122e1d6c8",
+  "input_revision": "semantic-v2-sha256:315505b011f051a415e1fa30813966259378ffa7f8beac130e3c0c0344e01df2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6516aa302d4f30a574803d06"
+  ]
+}

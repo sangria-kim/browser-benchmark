@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b099f15b249e9a58549216d3: Source baseline: BusyLoopOnMainThread A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a3a46f515644545c2a21f086cb75a858",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b099f15b249e9a58549216d3",
+  "input_hash": "cf46c4a6b651096bb5461bcb90b1427f50634b25c67590736c70d518a64cbee7",
+  "input_revision": "semantic-v2-sha256:738515adf21515e4568cfc5aaae147bcf525d5fc8ac94220dab6cf57b7231a98",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8fa45502703d51549a23385d"
+  ]
+}

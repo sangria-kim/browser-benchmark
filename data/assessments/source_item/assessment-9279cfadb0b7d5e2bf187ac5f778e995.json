@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes UAF in CRAS server via dangling default_rmod->odev pointer after stream disconnect"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9279cfadb0b7d5e2bf187ac5f778e995",
+  "subject_kind": "source_item",
+  "subject_id": "src-40bd128e45da10c99ccc6b8d",
+  "input_hash": "5ea2cacc2b006964d80705bcb3c8036a38bd07ff8802b72b30a8afa88a75f1ac",
+  "input_revision": "semantic-v2-sha256:bcfaf7c04dc1644cb713cecda6265d0f8141c21b8706dca11a6f2eadecbcdcf5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-40bd128e45da10c99ccc6b8d"
+  ]
+}

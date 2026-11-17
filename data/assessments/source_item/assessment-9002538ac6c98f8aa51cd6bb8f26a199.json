@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f21a96d1c362ac8e3cdd217d: Fixed the bitmap image naturalWidth and naturalHeight to return the density-corrected natural rather than the layout size which can be affected the style such as image-orientation . ( [contact omitted] ) (189024238) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9002538ac6c98f8aa51cd6bb8f26a199",
+  "subject_kind": "source_item",
+  "subject_id": "src-f21a96d1c362ac8e3cdd217d",
+  "input_hash": "b7f0468eb157454b4ae58d53a15f306ffec3339eb52b56f3c531835657e955f1",
+  "input_revision": "semantic-v2-sha256:1a58e73133d48ab2d488ff81aefdc4da857c1ff6c1d1a637e67dc2aa050103b9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f21a96d1c362ac8e3cdd217d"
+  ]
+}

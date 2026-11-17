@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5e5263379ea278c44af37c9a: Source baseline: AndroidProgressBarCancelOnWindowInvisible A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ceba6160cdfb6ee816fa269547c67fd7",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5e5263379ea278c44af37c9a",
+  "input_hash": "c103c4780b8aba6ac0c32bd9802e81b4135731e611af18dccc66ff4116709708",
+  "input_revision": "semantic-v2-sha256:a99684784cb3472e8dc87887f96edaced4a554996521b3738ce746eec7f5eb6b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ce069d1ca9bb8df3eea46dfb"
+  ]
+}

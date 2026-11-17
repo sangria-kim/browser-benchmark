@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-21e079068de32f20e764a089: Chromium's FontFaceSet IDL previously used [LegacyNoInterfaceObject], which hid FontFaceSet as a global property and deleted the constructor property from its prototype. This deviated from the CSS Font Loading spec and d A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e6c51814a219bcaa05d2e90a16f3db44",
+  "subject_kind": "source_item",
+  "subject_id": "src-21e079068de32f20e764a089",
+  "input_hash": "77b66ca71ddba26cde5d16c143b2597383f5dd5aa58a398ebdde41ca745e038b",
+  "input_revision": "semantic-v2-sha256:c7b9f62bdc9e999365c000cd453efe57d8794a8194b0339206b7d77dd1e9e91f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-21e079068de32f20e764a089"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d8869c9d98fd449a8cf57245: Fixed structuredClone() and window.postMessage() to correctly throw a DataCloneError when serializing a SharedArrayBuffer outside of cross-origin isolated contexts. ( [contact omitted] ) (174562553) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d9055b4b66cd7c4d10f6deff4f4c13dd",
+  "subject_kind": "source_item",
+  "subject_id": "src-d8869c9d98fd449a8cf57245",
+  "input_hash": "8aa78341e2347bd9ea5a2c8354ea58e94dd1dbb107cdfa738b0a1bd871b22aef",
+  "input_revision": "semantic-v2-sha256:6a67de5a047598ec2c97cb6f307e7dfaf6799f2008668a596d0f6c51dfc43fcf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d8869c9d98fd449a8cf57245"
+  ]
+}

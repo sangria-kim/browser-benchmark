@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 507365348 Critical CVE-2026-9873: Use after free in Network."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9a500890ef0b1f64b8eee7e501d89369",
+  "subject_kind": "source_item",
+  "subject_id": "src-9726db47bc033e012b0c6824",
+  "input_hash": "ee0e997d2e9fd465849d35a87271b7af399a6d78587dc2145ef047b8d2b17f21",
+  "input_revision": "semantic-v2-sha256:d39cf49509c3426298a0342158bcc79fc1d933aabe2c7cec5bc498ccc213ef9c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9726db47bc033e012b0c6824"
+  ]
+}

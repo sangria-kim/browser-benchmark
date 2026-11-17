@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome 151 introduces two updates to URL filtering behavior to ensure consistent security enforcement and more accurate administrative reporting across all platforms. This results in changes to the [URLBlocklist]( and [U"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1070d2a72b0c210bc764a2177be76e5a",
+  "subject_kind": "source_item",
+  "subject_id": "src-fedf8a7d590f5587d33298ef",
+  "input_hash": "9ba73bca7d33851cd1c87efd7f4c8d6c3fbd83b7da2a84140b228838fa4aff19",
+  "input_revision": "semantic-v2-sha256:4aad15b2ca554502d428f3d3cc6270667080ae679b2bc4ef4c316d502517d6b6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fedf8a7d590f5587d33298ef"
+  ]
+}

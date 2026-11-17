@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d7b438bce8fc2badb79b2524: Source baseline: enable-dynamic-route-fetching A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-985ee206573b1e9363be52c9e0e508dc",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d7b438bce8fc2badb79b2524",
+  "input_hash": "f0a2b61083a92c9625b1dc41220bab414242666d769816eff6cdbd6d956e99bd",
+  "input_revision": "semantic-v2-sha256:cb21fc71282b11295676aa9a0c21bc2fbb3f2b2e2e4bcc266a753cd58bb7d133",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-8d0a8f92161d1872d9dfddc079f5d57b",
+  "evidence_source_item_ids": [
+    "src-chromium-d29b0ee67484c950dea87807",
+    "src-legacy-3c6dc703a586dd5af1edd039"
+  ]
+}

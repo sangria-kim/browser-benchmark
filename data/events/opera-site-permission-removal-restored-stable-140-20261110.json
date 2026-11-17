@@ -45,15 +45,15 @@
   "delta": "Stable 본문이 허용 사이트의 권한 제거 복구를 명시하며, changelog의 RNA-5189가 대응한다. 140 Developer의 동일 수정이 Stable에 포함된 것으로, 새 권한 API 출시는 아니다.",
   "verification_status": "official_document_observation_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "selected",
-  "selection_reason": "사이트에 준 권한을 회수하는 개인정보 통제의 실패를 복구하므로 일반 시각적 수정과 구분한다.",
-  "priority": "P1",
-  "priority_reason": "기존 개인정보 통제 실패의 복구를 우선 검증한다.",
-  "comparison_question": "삼성 브라우저와 비교할 때, 허용 사이트 권한을 설정에서 지운 뒤 실제 사이트 접근과 다음 권한 요청이 일치하는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "동일 권한 종류, 사이트 및 관리 정책 조건에서 Stable 재현",
-  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "pending_verification",
+  "selection_reason": "Evidence retained for opera-site-permission-removal-restored-stable-140-20261110: Opera 140에서 허용 사이트 권한 삭제 복구 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "source_item_ids": [
     "src-legacy-fc610196e7d1bc14595856e9",
     "src-legacy-c8ea51ef1c796ce9670f7b55"
@@ -62,5 +62,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-10",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

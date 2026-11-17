@@ -1,131 +1,150 @@
-# 사내 자료 반입 지침
+# 사내 반입 안내: 변경 구조와 가져올 자료
 
-공개 브라우저 조사 **자료만** 사내 저장소의 지정 하위 경로로 반입한다.
-공개 브랜치와 Git 이력을 사내 원격 저장소에 그대로 push하지 않는다.
-사내 대시보드, workflow, 루트 지침은 사내 저장소가 관리한다.
+이 문서는 공개 브라우저 벤치마크 저장소의 변경된 구조, 수집·선별 방식,
+사내에 가져올 자료와 제외할 자료를 한곳에 정리한다.
+사내에서는 기존 PowerShell·배치 스크립트로 자료를 가져오고, 대시보드는
+별도로 구축한다. 이 문서는 사내 스크립트를 제공하거나 변경하지 않는다.
 
-## 반입할 자료
+## 이번 구조 변경
 
-정확한 허용 목록은 `config/export-allowlist.json`이다. 디렉터리 전체를
-임의로 복사하지 않는다. exporter가 선택하고 verifier가 확인한 파일만 사용한다.
+기존에는 `reports/`, `features/`, `releases/`, `experiments/chrome/`의
+문서 중심으로 자료를 조회했다. 이제 **원천 → 사실·변경 사건 → PM 판정 →
+선정 목록 → 리포트·대시보드**를 분리한 JSON 계층을 제공한다.
+기존 문서와 ID는 호환성과 과거 근거 확인을 위해 유지한다.
 
-| 자료 | 용도 |
+- PM 기준에서 제외된 항목도 원천 목록에 남는다. 선정 목록이 전체 수집 목록은 아니다.
+- 기능 사실과 PM 판정을 별도로 저장한다. 선정 해제가 제품 기능 삭제를 뜻하지 않는다.
+- 현재 선정과 과거 선정·판정·사실 정정 이력을 구분한다.
+- 공개 대시보드는 이 자료의 소비자다. 사내 대시보드가 공개 UI 코드를 가져올 필요는 없다.
+
+## 수집과 선별 방식
+
+### 브라우저 기능
+
+대상은 Chrome, Edge, Firefox, Safari, Brave, Whale, Opera, Vivaldi다.
+[등록된 공식 출처](../config/sources.yml)의 항목을 PM 선별 전에 수집한다.
+보안 수정, 일반 수정, 선정되지 않은 항목과 미해석 항목도 최소 근거와 함께
+보존한다. 원문 전체 페이지나 비공개 캐시는 공개 자료에 포함하지 않는다.
+
+조사 범위는 **2026년 1월 1일 이후 공식 발표·변경 근거가 있는 항목**이다.
+출처·항목의 안정적인 ID와 근거로 중복을 식별한다. 제목이 비슷하다는 이유만으로
+서로 다른 제품·채널·버전의 항목을 합치지 않는다. 기존 과거 자료는 삭제하지 않고
+비교 근거와 이력으로 남긴다. 날짜가 불명확한 항목을 올해 변경으로 추정하지 않는다.
+
+### Chrome flag와 소스 실험
+
+`chrome://flags`에 표시되는 UI flag뿐 아니라 등록된 Chromium 수집 범위의
+**base feature와 command-line switch**도 수집한다. 각각의 종류를 구별한다.
+이는 고정한 공개 Chromium 소스 범위이며, 비공개 코드나 모든 설치본의
+실험을 전부 조사했다는 뜻은 아니다.
+
+한국 시각 2026년 1월 1일 직전의 고정 commit과 현재 고정 commit을 비교한다.
+**현재 존재하면서 기간 중 추가됐거나 의미·기본값·조건·관계가 달라진 정의**가
+주요 대상이다. 파일 수정일을 모든 flag의 변경일로 사용하지 않는다.
+기간 중 삭제된 정의 전체와 중간에 변경됐다가 원복된 모든 이력을 복원하는 방식은 아니다.
+소스 등록·기본값·만료 정보는 실제 출시, 설치본 노출, 직접 동작 검증과 구별한다.
+
+### PM 선별, 리포트와 이력
+
+수집·정규화 후 독립 평가기가 원천·기능 사건·실험 사건을 평가한다.
+기준은 사용자 영향, 실질적 변화, 제품 비교 가치, 벤치마크 가능성, 출시·검증 조건이다.
+
+- 선언형 공개 기준: [rules/pm/pm-selection-v3.json](../rules/pm/pm-selection-v3.json).
+- 평가 실행 코드: `pipeline/selection/`. 자료만 반입하는 사내 환경에는 가져오지 않는다.
+- 판정 결과: `data/assessments/`. `selected`, `watch`, `pending_verification`,
+  `excluded`와 이유·근거·규칙 버전을 보존한다.
+- 기본 평가기는 결정적 규칙 기반이다. 사람·모델의 의미 분석이나 실제 기기 테스트를
+  수행했다고 표시하지 않는다. 규칙이 해석하지 못한 가치 있는 항목은 추가 검토가 필요할 수 있다.
+- 새 판정은 이전 판정을 덮어쓰지 않고 `supersedes`로 연결한다.
+  현재 선정, 선정 해제·재선정, 날짜별 선정 스냅샷을 별도로 유지한다.
+- 데일리 리포트에는 선정 관련 변화·재판정·과거 보강을 구분해 담는다.
+  대시보드는 같은 선정 자료와 이력을 조회한다. 재판정을 신규 출시로 표현하지 않는다.
+
+사내에서 별도 PM 기준을 추가하면 사내 이름공간과 저장소에 둔다.
+공개 판정 원본을 덮어쓰거나 사내 PRD·평가·로드맵을 공개 저장소로 역동기화하지 않는다.
+
+## 사내에 가져올 자료
+
+정확한 파일 단위 기준은 [config/export-allowlist.json](../config/export-allowlist.json)이다.
+아래 표는 용도 설명이며 디렉터리 전체 복사를 허용하는 목록이 아니다.
+`exact_paths`에 있거나 `rules[].pattern`에 **전체 경로가 일치하는 파일만** 반입한다.
+
+| 경로 | 내용과 사내 사용처 |
 | --- | --- |
-| 전체 원천 목록과 출처 근거 | PM 제외 항목과 미해석 항목까지 확인 |
-| 전체 기능·Chrome 실험 카탈로그 | flag, base feature, switch를 구별 |
-| 기능·실험 사건 및 revision 이력 | 변경 전후와 공개 근거 확인 |
-| 전체 PM 판정 이력 | 선정·관찰·검증 대기·제외와 판정 변경 확인 |
-| 현재·날짜별 선정 기능과 flag | 현재 화면과 과거 판단 조회 |
-| 데일리 리포트와 revision | 당시 분석과 근거 재현 |
-| 명시된 기존 자료·별칭·호환 인덱스 | 기존 ID와 링크 유지 |
-| 명시된 출처 설정·JSON schema·선언형 PM 규칙·문서 | 읽기 전용 계약·출처 설명 |
-| manifest·파일 hash·공개 source ref·commit SHA | 동일 버전과 무결성 검증 |
+| `data/source-items/` | 브라우저 및 Chrome 실험의 전체 원천 목록·최소 근거. PM 제외 항목도 포함. |
+| `data/catalog/features/` | 기능 ID와 현재 기능 카탈로그. |
+| `data/catalog/chrome-experiments/` | UI flag·base feature·switch 카탈로그와 소스 조건. |
+| `data/events/`, `data/experiment-events/` | 기능·실험의 변경 사건. 원천 항목과 사건은 구별. |
+| `data/event-revisions/` | 사실 정정 전의 사건 revision. 현재 사건과 중복 집계하지 않음. |
+| `data/assessments/` | 전체 PM 판정과 이전 판정 연결. |
+| `data/selected/features/current.json` | 현재 선정 기능과 선정 변화 이력. 사내 기능 화면의 시작점. |
+| `data/selected/flags/current.json` | 현재 선정 Chrome 실험과 선정 변화 이력. |
+| `data/selected/history/` | 날짜별 선정 스냅샷. 현재 이력과 합칠 때 변화 ID로 중복 제거. |
+| `data/reports/current/`, `data/reports/history/` | 현재 리포트 및 보존된 revision의 구조화 자료. |
+| `reports/generated/`, 허용된 `reports/` 문서 | 기존 리포트 형식을 그대로 사용할 때 읽는 Markdown. |
+| `data/aliases/`, `data/compatibility/`, 허용된 기존 자료 | ID 정정·기존 자료 연결·호환성 근거. |
+| 허용된 `features/`, `releases/`, `experiments/chrome/` 파일 | 기존 읽기용 근거 문서. 새 JSON 계층과 함께 보존. |
+| 허용된 `config/`, `schemas/*.schema.json`, `rules/pm/`, `docs/` 파일 | 출처·자료 계약·선별 기준을 설명하는 읽기 전용 자료. 실행 코드는 제외. |
 
-`rules/pm/pm-selection-v3.json` 같은 선언형 규칙은 실행 코드와 구별한다.
-반입된 `AGENTS.md`와 문서는 snapshot 안의 참고 자료다. 사내 루트 지침을
-대체하거나 공개 지침에 사내 실행 권한을 부여하지 않는다.
+현재 선정 파일만 복사하면 상세 근거·이력·참조가 누락된다. 전체 원천과 선정 결과,
+관련 사건·판정·리포트 이력을 함께 가져온다. JSON은 파일 하나가 단일 레코드일 수도,
+배열일 수도 있다. 파일 수를 기능 수로 사용하지 않는다.
+허용 목록의 `AGENTS.md`는 자료 snapshot 안의 참고 문서이며 사내 루트 지침을 대체하지 않는다.
 
-## 반입하지 않을 자료
+## 가져오지 않을 것
 
-- `.github/` workflow와 공개 `dashboard/` 실행 코드.
-- 수집·평가·배포용 `pipeline/`, `scripts/`, 테스트 등 실행 코드.
-- 인증 정보, token, cookie, 계정 정보, 개인 식별자.
-- 원문 캐시, checkpoint, lock, 실행 ledger, 비용·오류·운영 로그.
-- 개인 Notion 문서, 메일, 비공개 조사 자료, 사내 PRD와 내부 분석.
+- `.git/`와 공개 Git 이력 자체를 사내 저장소에 합치거나 mirror push하지 않는다.
+  별도 공개 fetch 캐시 안에 이력이 존재하는 것은 허용한다.
+- `.github/` workflow, 공개 `dashboard/` 코드, 생성된 `dist/` 배포물.
+- `pipeline/`, `scripts/`, 테스트·설치 파일 등 수집·평가·배포 실행 코드.
+  `schemas/`도 폴더 전체를 복사하지 않는다.
+- 원문 캐시, checkpoint, lock, 실행 ledger, 오류·비용·운영 로그.
+- token, cookie, 계정 정보, 개인 식별자와 인증 정보.
+- 개인 Notion·웹툰 제작 상태의 비공개 연결 정보, 메일, 사내 자료·분석.
 
-허용된 경로에도 비밀값이나 개인 정보를 넣지 않는다. 사내 고유 평가와
-공개 PM 평가는 별도 이름공간에 둔다. 사내 PRD, 평가, 로드맵과 의사결정
-결과를 공개 저장소로 역동기화하지 않는다.
+공개 대시보드의 웹툰 연결과 UI 설정은 사내 대시보드의 필수 의존성이 아니다.
+사내에서는 필요한 경우 별도로 연결한다. `.github/` 문제를 workflow 권한 추가로
+우회하지 말고, 공개 자료만 사내의 새 commit으로 반영한다.
 
-## 공개 버전 선택
+## 사내 업데이트 순서
 
-새 export 계약은 `1.2`다. 신뢰한 importer와 validator를 이 버전으로
-먼저 갱신한다. 기존 `1.1` 패키지도 읽을 수 있다. JSON record의
-`schema_version: 2`는 유지하며 선택적인 범위 필드를 추가했다.
+1. 별도 공개 캐시에 `main`을 fetch하고 반입할 **정확한 commit SHA**를 고정한다.
+   `work/browser-benchmark`는 에이전트 검증 후보이며 소유자 승인 버전이 아니다.
+   새 데이터 PR을 소유자가 병합한 뒤의 `main`을 사용한다.
+2. 사내에서 검토한 허용 목록으로 그 commit의 파일을 선택한다.
+   `.github/`만 제외한 전체 복사나 공개 브랜치의 사내 merge는 하지 않는다.
+3. 사내의 임시 후보 경로에 자료를 준비한다. 수정된 공개 캐시 작업 파일,
+   줄바꿈·인코딩 변환이나 링크를 통해 원본과 다른 내용이 섞이지 않도록 확인한다.
+4. 파일 목록·무결성·schema·ID 참조와 과거 이력 보존을 확인한다.
+   실패하면 마지막 정상 자료를 유지하고 반입을 중단한다.
+5. 사내 전용 자료 경로에만 반영한다. 같은 경로의 writer는 직렬로 실행하며
+   사내 대시보드·workflow·설정·루트 지침을 덮어쓰지 않는다.
+6. 사내 대시보드와 리포트 조회를 검사한다. 자료 경로 밖의 staged 변경이
+   없는지 확인한 뒤 사내 기본 브랜치 기반의 새 commit/PR로 제출한다.
+7. 반입한 공개 ref·SHA·검증 결과를 사내에 기록한다. 공개 저장소로 역반입하지 않는다.
 
-원천·카탈로그·현재 사건의 `temporal_scope`와 선정·리포트·manifest의
-`collection_scope`를 함께 반입한다. 기본 선정 화면은 `in_period`만
-기간 내 자료로 표시한다. `unknown`, `context`, `unchanged`도 원천과
-과거 이력에는 보존한다. 범위 제외를 기능 삭제 사건으로 바꾸지 않는다.
+사내 환경은 Windows PowerShell·배치 기준이다. 위 순서는 기존 사내 스크립트에
+적용할 요구사항이며 새 스크립트를 제공하는 것은 아니다. 현재 저장소의
+`export_dataset.py` 관리형 반입은 POSIX 잠금·파일 API를 사용하므로
+Windows 네이티브에서 그대로 실행할 수 있다고 가정하지 않는다.
+실제 사내 인증·스크립트·CI·파일 교체·복구·배포는 사내 환경에서 검증한다.
 
-브라우저는 공식 항목 발표·변경 날짜를 사용한다. 날짜만 있는 근거는
-원문의 날짜를 유지한다. Chrome 실험은 한국 시각 2026년 1월 1일 직전과
-현재의 고정 commit을 비교한다. 현재 존재하면서 의미·기본값·조건·관계가
-달라진 정의를 구별한다. 삭제된 실험이나 중간 변경 후 원복된 전체 이력은
-이 비교의 대상이 아니다. 실제 두 commit은 범위 필드에서 읽는다.
-`collection_scope.source_windows`의 출처별 마감도 유지한다. 집계의
-`cutoff`는 가장 늦은 마감이며 모든 출처가 같은 시점의 스냅샷이라는 뜻이
-아니다. 원문의 실제 관찰 시각과 commit 시각을 별도로 표시한다.
+## 사내 대시보드가 유지할 계약
 
-- `main`: 소유자가 PR을 검토하고 merge한 버전.
-- `work/browser-benchmark`: 에이전트가 검증한 후보. 소유자 승인과 다르다.
+새 export 계약은 `1.2`이며 기존 `1.1` 패키지 읽기도 지원한다.
+JSON record의 `schema_version: 2`는 유지하며 선택적 범위 필드를 추가했다.
+계약 검증을 생략한 단순 복사를 “export/import 계약 검증 완료”로 표시하지 않는다.
 
-소비 환경에서 선택한 ref와 실제 반입 SHA를 함께 기록한다. 수집 성공과
-소유자 승인 시각도 구별한다. 이 문서는 사내 스케줄이나 source branch를 변경하지 않는다.
+`temporal_scope`와 `collection_scope`를 보존한다. 기본 선정 화면은
+`in_period`를 기간 내 자료로 표시하고, `unknown`, `context`, `unchanged`는
+원천·이력에서 구분한다. 범위 제외를 제품 삭제 사건으로 바꾸지 않는다.
 
-## 반입 명령
+브라우저의 발표·변경일, 실제 근거 확인일, Chromium commit 시각은 서로 다르다.
+`collection_scope.source_windows`의 출처별 수집 마감을 유지한다.
+집계의 `cutoff`는 가장 늦은 마감이며 모든 출처가 같은 시점이라는 뜻은 아니다.
+날짜만 있는 원문은 그 날짜 정밀도를 유지한다. 누락·미해석이 남은 결과를
+전체 수집 완료나 “새로운 변화 없음”으로 표현하지 않는다.
 
-아래 경로는 예시다. 신뢰할 수 있는 도구 설치, 공개 fetch 캐시, 사내
-checkout을 각각 준비한다. Python 환경에는 `jsonschema`가 필요하다.
-공개 Git 이력을 **별도 캐시로 fetch하는 것**은 허용한다. 그 이력을
-사내 checkout에 merge하거나 사내 원격에 mirror push하지 않는다.
-
-```sh
-set -eu
-trusted_tools=/opt/browser-benchmark-tools
-public_cache=/srv/cache/browser-benchmark
-company_checkout=/srv/company-repository
-import_private=/srv/private/browser-benchmark-import
-source_branch=main
-source_ref="refs/remotes/origin/$source_branch"
-managed="$company_checkout/vendor/browser-benchmark"
-mkdir -p "$import_private"
-candidate=$(mktemp -d "$import_private/candidate.XXXXXX")
-package="$candidate/package"
-
-git -C "$public_cache" fetch origin "$source_branch:$source_ref"
-source_sha=$(git -C "$public_cache" rev-parse --verify "$source_ref^{commit}")
-python "$trusted_tools/scripts/export_dataset.py" export \
-  --repository "$public_cache" --ref "$source_sha" \
-  --source-repository https://github.com/sangria-kim/browser-benchmark \
-  --output "$package" > "$candidate/export-result.json"
-manifest_sha=$(python -c 'import json,sys; print(json.load(open(sys.argv[1]))["manifest_sha256"])' \
-  "$candidate/export-result.json")
-python "$trusted_tools/scripts/export_dataset.py" verify \
-  --package "$package" --expected-commit "$source_sha" \
-  --manifest-sha256 "$manifest_sha"
-```
-
-관리 경로가 아직 없으면 최초 한 번만 초기화한다. 빈 전용 경로를 사용한다.
-사내 저장소 루트나 기존 사내 파일이 있는 경로를 지정하지 않는다.
-
-```sh
-python "$trusted_tools/scripts/export_dataset.py" init --managed "$managed"
-```
-
-모든 writer는 같은 private lock 경로를 사용한다. 반입부터 사내 commit까지
-한 번에 한 writer만 실행한다.
-
-```sh
-python "$trusted_tools/scripts/export_dataset.py" import \
-  --package "$package" --managed "$managed" --private-dir "$import_private" \
-  --expected-commit "$source_sha" --manifest-sha256 "$manifest_sha"
-snapshot=$(python "$trusted_tools/scripts/export_dataset.py" resolve --managed "$managed")
-git -C "$company_checkout" add -- vendor/browser-benchmark
-git -C "$company_checkout" diff --cached --stat
-```
-
-staged 변경이 관리 경로 안에만 있는지 확인한다. 사내 대시보드 검사를
-`$snapshot`에 대해 실행한다. 사내 기본 브랜치 기반의 작업 브랜치에 자료
-변경만 새 commit으로 작성하고 사내 PR 절차를 따른다. 공개 commit 자체를
-사내 원격에 push하지 않는다. workflow 권한을 추가해서 전체 저장소 push를
-우회하는 방법도 사용하지 않는다.
-
-검증 실패 시 중단한다. importer는 hash·schema·참조·경로를 검사한 뒤
-완성된 snapshot을 만들고 `current.json` 포인터를 원자적으로 교체한다.
-실패 시 마지막 정상 자료와 사내 workflow·대시보드를 유지한다. 삭제도
-새 snapshot 안의 자료 범위에만 반영한다. 사내 파일이나 이전 snapshot을
-임의로 삭제하지 않는다. reader는 요청마다 포인터를 한 번만 읽는다.
-
-실제 사내 인증, CI, 대시보드와 배포는 해당 환경에서 별도로 확인한다.
-자세한 검증·복구 조건은 [반입 계약](internal-import-contract.md)을 따른다.
+필드·검증 세부 사항은 [자료 계약](dataset-contract.md),
+[사내 반입 계약](internal-import-contract.md),
+[PM 분석 기준](pm-persona-and-selection.md)을 참고한다.

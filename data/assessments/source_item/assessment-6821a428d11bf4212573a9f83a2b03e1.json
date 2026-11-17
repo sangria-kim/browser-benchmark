@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted asset catalog may result in disclosure of process memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6821a428d11bf4212573a9f83a2b03e1",
+  "subject_kind": "source_item",
+  "subject_id": "src-0f226fb6381a4283421ac5eb",
+  "input_hash": "4623156d99214b13e940d28e8a711ec1c69b848cfdf3112175f2723716d15d53",
+  "input_revision": "semantic-v2-sha256:857f0998034d4aaefee93b0bcbde5d98d0782eb4479b7046f627b30c67ed22e3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0f226fb6381a4283421ac5eb"
+  ]
+}

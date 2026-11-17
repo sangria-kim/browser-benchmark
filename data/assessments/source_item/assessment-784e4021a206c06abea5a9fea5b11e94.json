@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7766e082b02f01d31dad0263: Fixed an issue where IndexedDB transactions could be blocked for an extended period before starting when another page’s transaction was suspended in the background. ( [contact omitted] ) (178769599) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-784e4021a206c06abea5a9fea5b11e94",
+  "subject_kind": "source_item",
+  "subject_id": "src-7766e082b02f01d31dad0263",
+  "input_hash": "10a6f304b26c027ef28215d20c640e93b460fabb82c16775f50ddc8585a706e7",
+  "input_revision": "semantic-v2-sha256:a6048a6da423db9a44ece99a415c6a8d297a500b4e62bf2e276c076a932db6b2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7766e082b02f01d31dad0263"
+  ]
+}

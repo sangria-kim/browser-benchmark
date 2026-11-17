@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0bdf4703bc930ea27abc66d4: Chrome 149 restricted the ability for a Service Worker to perform downloads using the Background Fetch API . The RestrictBackgroundFetchFromServiceWorkerEnabled policy allows administrators to re-enable background fetch  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ca59687a1243799a466c8d9d01285c75",
+  "subject_kind": "source_item",
+  "subject_id": "src-0bdf4703bc930ea27abc66d4",
+  "input_hash": "00d27697a5d15d26eabeb2b0735142125588138d645fa8fcac33b58dafa912a1",
+  "input_revision": "semantic-v2-sha256:ff1067c3c338d18c66391b264a36990c4db3e2c85268f8036256187048f9cd76",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0bdf4703bc930ea27abc66d4"
+  ]
+}

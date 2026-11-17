@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-dfb2fc3016248a37a0aa1055: Fixed JavaScript module imports that failed with an HTTP or network error being cached, so a later import() of the same module can now retry. (182908208) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a1710356b1958b83d822029845491829",
+  "subject_kind": "source_item",
+  "subject_id": "src-dfb2fc3016248a37a0aa1055",
+  "input_hash": "10b3e035ded8b3de4ad6b9c84ff4a00ee4c631242b8806cef510cf54e0dc819b",
+  "input_revision": "semantic-v2-sha256:dde0b9674a3a263cee9c513691b2f49433cde8f00e76e8b1f2bf414f6a1acea6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-1b66c8e566f9bf2843388e65a18665c1",
+  "evidence_source_item_ids": [
+    "src-dfb2fc3016248a37a0aa1055"
+  ]
+}

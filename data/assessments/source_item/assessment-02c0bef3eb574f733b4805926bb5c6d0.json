@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-aa88f694e20b70dcd6c33f7f: Fixed the WebAssembly.Global value setter not treating a missing argument as undefined . ( [contact omitted] ) (184608074) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-02c0bef3eb574f733b4805926bb5c6d0",
+  "subject_kind": "source_item",
+  "subject_id": "src-aa88f694e20b70dcd6c33f7f",
+  "input_hash": "e32af768be6cb583998a07f349845e0ede6753ff45c4a63f595ef53b1552b291",
+  "input_revision": "semantic-v2-sha256:4fc50dbc097ce0318c45b88448ca67d98c5fd4e578f5ad9f300c3320dd2a285b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-aa88f694e20b70dcd6c33f7f"
+  ]
+}

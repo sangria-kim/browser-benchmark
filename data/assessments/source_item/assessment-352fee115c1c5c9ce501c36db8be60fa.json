@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted audio file may lead to memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-352fee115c1c5c9ce501c36db8be60fa",
+  "subject_kind": "source_item",
+  "subject_id": "src-aa432cede7fd6decda66f2ad",
+  "input_hash": "a25a1f3dc8afbf1295c1d7cb6e2bfd538b4365365f3a2ac2cf76559a2a4183d5",
+  "input_revision": "semantic-v2-sha256:03b4da4a98e1e7f990ed7743487c51369d19bfb4e24ba9e5b7ffb3ef266a4d12",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-aa432cede7fd6decda66f2ad"
+  ]
+}

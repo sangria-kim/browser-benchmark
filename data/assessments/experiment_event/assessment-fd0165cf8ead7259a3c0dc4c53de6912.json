@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-9ed686c002ab36fe44491252: Source baseline: PartitionAllocBackupRefPtr A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fd0165cf8ead7259a3c0dc4c53de6912",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-9ed686c002ab36fe44491252",
+  "input_hash": "808775f5be1c65f83855e96033bb0c916396196284b9826d5d68c0c3e0687228",
+  "input_revision": "semantic-v2-sha256:33112d27ca298773834d44c9ad32af417d3cc7ebd139daaff3bb656c315660aa",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ecfd2845d8c85b7aad928c18"
+  ]
+}

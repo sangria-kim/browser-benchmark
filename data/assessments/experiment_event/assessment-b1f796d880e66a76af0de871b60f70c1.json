@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c22a5623e211fc114844c44b: Source baseline: Local Network Access Checks for WebSockets A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b1f796d880e66a76af0de871b60f70c1",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c22a5623e211fc114844c44b",
+  "input_hash": "cd169fdc4f0a69c9393a0b464fa707b26788016f1fc84c6876d429a6112ff207",
+  "input_revision": "semantic-v2-sha256:af7fb4266fbe97e72139a2e8a385751a9cc8814b7db9b01e91bc828a7f482b00",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-811eee0c17c19af04acf60e900bc9e6d",
+  "evidence_source_item_ids": [
+    "src-chromium-8eaf799b5a389634fa393ff3"
+  ]
+}

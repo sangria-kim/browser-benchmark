@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-81d5b8bc0509590054574a08: According to [Worker client case]( (github), workers should inherit controllers for the blob URL. However, existing code allows only dedicated workers to inherit the controller, and shared workers do not inherit the cont A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b0034d08b512521324392414f909fc7a",
+  "subject_kind": "source_item",
+  "subject_id": "src-81d5b8bc0509590054574a08",
+  "input_hash": "82708cf99bd2ac060dd8f0371219f186d3d25ce0b727492a1d1870fbb68aa8a4",
+  "input_revision": "semantic-v2-sha256:b2a0242c11dc9330fc36e6d13a8d9fd19d4bd8f7bfc1b6ce921dbf4bc3277ec6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-81d5b8bc0509590054574a08"
+  ]
+}

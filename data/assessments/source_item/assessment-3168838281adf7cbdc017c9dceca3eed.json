@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-82cb1febb47608eae5c5eb02: Fixed an issue on iOS where composited layers would briefly flash blank when window.scrollTo() was called synchronously with a DOM layout change. ( [contact omitted] ) (173197381) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3168838281adf7cbdc017c9dceca3eed",
+  "subject_kind": "source_item",
+  "subject_id": "src-82cb1febb47608eae5c5eb02",
+  "input_hash": "d95e2006fbd415173b9cbfe7c65338a850eea7a7cc6de30123f76ef5ffadebcb",
+  "input_revision": "semantic-v2-sha256:b1bda6a5fc4d61da0e277ba4dcc6133736925ddd3d7c4504312cb9fc4cfdb849",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-82cb1febb47608eae5c5eb02"
+  ]
+}

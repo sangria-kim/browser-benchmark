@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$2000][ 503553615 ] Medium CVE-2026-15107: Use after free in IndexedDB. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-41d5d682771a6945c99f9e1798a08846",
+  "subject_kind": "source_item",
+  "subject_id": "src-35c9ffc4c5d186090a41d062",
+  "input_hash": "8a380aaec2d44518973fda9a864be80eefc4dab803d8d8c0d8a833d8300a5ee7",
+  "input_revision": "semantic-v2-sha256:cb91a6b90f8be016781b86b169b5e9868372e01fe7d32665101a3fd2d90574cb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-35c9ffc4c5d186090a41d062"
+  ]
+}

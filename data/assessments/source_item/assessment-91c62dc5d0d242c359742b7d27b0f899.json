@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A maliciously crafted app may be able to bypass code signing enforcement"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-91c62dc5d0d242c359742b7d27b0f899",
+  "subject_kind": "source_item",
+  "subject_id": "src-468155e0f595a1f382a8a726",
+  "input_hash": "79b29bee5085c90d7c2c91cb3a8cfaf7581cb4d9c0114e57520543b3f1139b82",
+  "input_revision": "semantic-v2-sha256:2def9750b263bf1364281394e6e24837c39c91a90d9d09bdad1690895ed6072c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-468155e0f595a1f382a8a726"
+  ]
+}

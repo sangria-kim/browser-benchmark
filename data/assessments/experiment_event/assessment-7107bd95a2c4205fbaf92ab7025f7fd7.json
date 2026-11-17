@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e0a19dbea647285cff58eca0: Source baseline: simulate-lock-screen-smart-restart A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7107bd95a2c4205fbaf92ab7025f7fd7",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e0a19dbea647285cff58eca0",
+  "input_hash": "acef32b44b3f1b015c8251ce901d4d4794c97b9db2a869c602b6931dcdbffe57",
+  "input_revision": "semantic-v2-sha256:245e211b873b38a83fc10925940192433a476cfa491d7b98b99b163f29573826",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-b7a14e349cb1077da0bc784414b45dfe",
+  "evidence_source_item_ids": [
+    "src-chromium-ab64e4706af0c24b619a91c4"
+  ]
+}

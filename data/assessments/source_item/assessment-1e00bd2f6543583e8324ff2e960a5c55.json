@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$4000][ 506311914 ] Medium CVE-2026-10990: Use after free in Glic. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1e00bd2f6543583e8324ff2e960a5c55",
+  "subject_kind": "source_item",
+  "subject_id": "src-cb3e774350a5dbd085eb1b54",
+  "input_hash": "5ee6de75ff4a71f6b7973623ab285cb2f24d13c310ff9f087d4de42f0ba09a6b",
+  "input_revision": "semantic-v2-sha256:14108e1798039c7c590cfaee2f481cad81c8fe269f3d19039fcfa781c380f52f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cb3e774350a5dbd085eb1b54"
+  ]
+}

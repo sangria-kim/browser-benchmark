@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-9df4ee85fd5d1295cbf2c75e: Source baseline: Browser controls lockout duration A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d6038d93ba63eec7c73f2e49b4cc03bf",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-9df4ee85fd5d1295cbf2c75e",
+  "input_hash": "631ed4274b377926ba7ce57475f1c70662c11398792b62ec00cb0a25e08c3cca",
+  "input_revision": "semantic-v2-sha256:8f8cc79f087cf7b165049b80a0aec405a87cbb62569cf8572169013192020e83",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-082c15d028ecbc37c652e7756186a8b6",
+  "evidence_source_item_ids": [
+    "src-chromium-359460e9d4de5d5f4777c6da",
+    "src-legacy-42ce4825a7d06b1bdae2139f"
+  ]
+}

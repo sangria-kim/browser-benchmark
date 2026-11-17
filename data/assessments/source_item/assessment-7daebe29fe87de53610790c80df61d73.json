@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious NFS server may lead to kernel memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7daebe29fe87de53610790c80df61d73",
+  "subject_kind": "source_item",
+  "subject_id": "src-b6799bfb390dc922db56c927",
+  "input_hash": "d367282abb22758d2d5df73dc4017872e136caf92adc289d0962a9a73b8c96c4",
+  "input_revision": "semantic-v2-sha256:d971ccd685e58f205bf0dc4275fc47a9c020c76177c1a8e25d29bc182bd048a2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b6799bfb390dc922db56c927"
+  ]
+}

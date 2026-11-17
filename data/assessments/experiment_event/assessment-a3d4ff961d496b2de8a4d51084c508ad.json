@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-2ffb94e949f7378bfc475ba3: Source baseline: Biometric reauth for password filling A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a3d4ff961d496b2de8a4d51084c508ad",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-2ffb94e949f7378bfc475ba3",
+  "input_hash": "4769fda7fdd17e2699cb2bfdae140654c2ac827c1f7ec5ad5ad3153e24563485",
+  "input_revision": "semantic-v2-sha256:fb7eb93f27e69c16cceab35f7dcc10286089eec1e33f569981fc81de29398638",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-33448a136d3b043af5d0fac73548fa5d",
+  "evidence_source_item_ids": [
+    "src-chromium-6f0e9e6962213ed049c48831"
+  ]
+}

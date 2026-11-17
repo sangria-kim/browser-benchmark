@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted 3D file may lead to an out-of-bounds read"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a21cda18cdff6f2bb418d6867383f9af",
+  "subject_kind": "source_item",
+  "subject_id": "src-671eb52aff0a6b4cc2800116",
+  "input_hash": "9b5eebe11d7732f4bf47a301f36b9a8af94c0d9cd0fa41bae678bd7445c5238b",
+  "input_revision": "semantic-v2-sha256:b756f747015aefa53988e37abc612ac6a326106cfdd1bf54cb7d71a2e4bcb127",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-671eb52aff0a6b4cc2800116"
+  ]
+}

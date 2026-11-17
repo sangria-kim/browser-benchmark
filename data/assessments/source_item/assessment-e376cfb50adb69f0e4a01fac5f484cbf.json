@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-720d262039b5bf36065fd152: Fixed an issue where AudioBufferSourceNode rendered only silence when start() was called with an out-of-bounds offset and a negative playbackRate . (185769043) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e376cfb50adb69f0e4a01fac5f484cbf",
+  "subject_kind": "source_item",
+  "subject_id": "src-720d262039b5bf36065fd152",
+  "input_hash": "c36831943315735ae8234aaf21b97072e57aed253861bcf3f962ff4c6826126e",
+  "input_revision": "semantic-v2-sha256:b407df37a3f2543e472185cde2036ec036515653f4ab39c23f21f57f82210410",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-ef9b1abcfe25d522683e32a01f1cab55",
+  "evidence_source_item_ids": [
+    "src-720d262039b5bf36065fd152"
+  ]
+}

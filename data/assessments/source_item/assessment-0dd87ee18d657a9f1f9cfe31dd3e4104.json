@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: A subtle but important issue is key uniqueness. JSON does not mandate how duplicate keys are handled, and real-world parsers differ (“first wins,” “last wins,” or rejection). If different components interpret duplicate k"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0dd87ee18d657a9f1f9cfe31dd3e4104",
+  "subject_kind": "source_item",
+  "subject_id": "src-93eaa5d83706ad772eb77c58",
+  "input_hash": "f1b828d8dc0736bf308bce04f6970ebf46cb602ad7d75c05d59ee1007589a5c0",
+  "input_revision": "semantic-v2-sha256:ad6ddf7850c80e90874f0ae8c057c03c9eb4513f32161002708f83aec07d71b7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-93eaa5d83706ad772eb77c58"
+  ]
+}

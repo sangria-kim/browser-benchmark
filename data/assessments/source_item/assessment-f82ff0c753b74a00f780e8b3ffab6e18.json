@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-928b532db91876bd5ee92cf8: A dynamic import() that fails due to a network or HTTP error is no longer cached as a failure in the module map, so retrying the same specifier can now succeed. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f82ff0c753b74a00f780e8b3ffab6e18",
+  "subject_kind": "source_item",
+  "subject_id": "src-928b532db91876bd5ee92cf8",
+  "input_hash": "f4265489f853bd3cd264604b2041786551d8fca5949f9303e567a772f7d77549",
+  "input_revision": "semantic-v2-sha256:faa82bd2d48123ac220a1fc76de15f5b938f43e101d3fb33d3a92fc6be25cca1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-928b532db91876bd5ee92cf8"
+  ]
+}

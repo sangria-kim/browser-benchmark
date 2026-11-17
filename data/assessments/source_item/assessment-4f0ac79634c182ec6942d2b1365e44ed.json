@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: As a result, zkLogin never establishes that the JWT payload is a well-formed JSON object, let alone that it has a unique or unambiguous interpretation. The proof attests only that there exists a way to extract certain su"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4f0ac79634c182ec6942d2b1365e44ed",
+  "subject_kind": "source_item",
+  "subject_id": "src-f48db9ec90b01eb0861e1035",
+  "input_hash": "e966d5d8d54ce0e7bb280e0484c3116bd268245015275255ae8d0d22de5b0654",
+  "input_revision": "semantic-v2-sha256:5833511abacae526bbf3372a359d72d35df6bc0937372bc92b0bcf0e7c265be8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f48db9ec90b01eb0861e1035"
+  ]
+}

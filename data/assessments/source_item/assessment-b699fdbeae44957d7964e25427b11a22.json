@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes OOB write in CRAS via unsigned underflow in cras_audio_area_copy"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b699fdbeae44957d7964e25427b11a22",
+  "subject_kind": "source_item",
+  "subject_id": "src-209c5bc14f5c953f3856f84c",
+  "input_hash": "31f10254ce0357a6ff49eacfb7f3c56752416a44a6369341d668cc84e308254a",
+  "input_revision": "semantic-v2-sha256:8feb503c51eb81725637df15d025b37719fd4d2c09a8f74e00f0ad7517279ef4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-209c5bc14f5c953f3856f84c"
+  ]
+}

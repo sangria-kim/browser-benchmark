@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A local user may be able to read kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fbac01444098cd39bfb45e610f7b4f15",
+  "subject_kind": "source_item",
+  "subject_id": "src-c07808ed5dab7ca45a5fd8f5",
+  "input_hash": "7f5345ffee4f37bc3055f527ec797a34b4b46a78a9c3c2991609cf4dc998c932",
+  "input_revision": "semantic-v2-sha256:5d2b5ef667abfa2bead5a6f932967bfbbcf8dac2d993a4b901dc52e4bf32e689",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c07808ed5dab7ca45a5fd8f5"
+  ]
+}

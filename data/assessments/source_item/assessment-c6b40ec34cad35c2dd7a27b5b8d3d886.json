@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a5b74671e47f2b104d4fd89f: Fixed an issue where reading a file-backed Blob range larger than 2GB truncated the read length due to an integer overflow. (187207663) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c6b40ec34cad35c2dd7a27b5b8d3d886",
+  "subject_kind": "source_item",
+  "subject_id": "src-a5b74671e47f2b104d4fd89f",
+  "input_hash": "d0179dff0e08d6745ce1e4f04197574d34c79fdc97a07033524ce4b12091e616",
+  "input_revision": "semantic-v2-sha256:2cefef450f62202fc1192f3865fb91d66cb695fe3809921435098b018e31e66c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-7dc4d9783438427657d9fb23fbd1a8cd",
+  "evidence_source_item_ids": [
+    "src-a5b74671e47f2b104d4fd89f"
+  ]
+}

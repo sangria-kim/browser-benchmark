@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-237bee252305b626dd4d42a1: Fixed an issue where a greedy or non-greedy non-BMP character class in a regular expression could advance the index past the end of input. ( [contact omitted] ) (172978772) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-41f53f6c9f41de5c95872b5c545fd838",
+  "subject_kind": "source_item",
+  "subject_id": "src-237bee252305b626dd4d42a1",
+  "input_hash": "af6c2beb5992c6eb9cba63435befe9d243feac9e403659a1cc33db5acc84e4a4",
+  "input_revision": "semantic-v2-sha256:8fe60f4e83f515d9021d0f32bb8acc882afbc7ac6f4ebce6c65254ec10452fc6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-237bee252305b626dd4d42a1"
+  ]
+}

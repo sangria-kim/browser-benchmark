@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a2d78fbc867ca2f595f73b42: Source baseline: optimization-guide-debug-logs A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-86c357127a349ce9aa368069c58b70f0",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a2d78fbc867ca2f595f73b42",
+  "input_hash": "06ea0bf84e9ca45f0b8969fea6219656e9793b33952bde3fc36b5b80ad3232ee",
+  "input_revision": "semantic-v2-sha256:d2cef6b40c229979f0b7d0b2bba8a48b82560f4ba8f4c00576e2694140e6aa32",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-8d3230f433f2e98b280a6911740f14dd",
+  "evidence_source_item_ids": [
+    "src-chromium-502967260e59527afb5d4f79",
+    "src-legacy-8c2fe2c799ee27d849645d2d"
+  ]
+}

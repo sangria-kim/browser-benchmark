@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to read arbitrary files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d73382286cc364d3fb22f8572e91a2b3",
+  "subject_kind": "source_item",
+  "subject_id": "src-e078c23517271ed9b4413c02",
+  "input_hash": "f4068499a52c363438c8715a084637bf83f700497aef27e1130ba9cb1a61d6a6",
+  "input_revision": "semantic-v2-sha256:feaa9a59162484fcccb2dbc3422adf53ac108c9cd395dff5a61ca72ce73b2f92",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e078c23517271ed9b4413c02"
+  ]
+}

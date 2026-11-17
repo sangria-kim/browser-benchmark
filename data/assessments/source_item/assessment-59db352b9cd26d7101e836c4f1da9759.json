@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A remote attacker may be able to view leaked DNS queries with Private Relay turned on"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-59db352b9cd26d7101e836c4f1da9759",
+  "subject_kind": "source_item",
+  "subject_id": "src-48cb4cd05640789b170c76b2",
+  "input_hash": "1afcdf7be76c7197635a601bb7c78839fe44453362849f55b10ef33f0934b59a",
+  "input_revision": "semantic-v2-sha256:e3412d7f5772510c47e916b91f053536d7a7907941209d2e4aa12aab5e610e75",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-48cb4cd05640789b170c76b2"
+  ]
+}

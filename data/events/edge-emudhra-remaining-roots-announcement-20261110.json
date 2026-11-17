@@ -43,15 +43,15 @@
   "delta": "11월16일부터 PKI Metadata 구성요소로 네 잔여 루트의 기본 신뢰를 제거할 예정. 신규 브라우저 버전 설치와 별개인 구성요소 전달이며 장치 확인 주기는 약10시간 또는 앱 시작 직후. 10월의 중간 인증서 차단·7개 루트 제거와 다른 후속 단계다.",
   "verification_status": "official_body_verified_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "watch",
-  "selection_reason": "일반 보안 패치와 달리 기존 사이트 인증서 호환성에 영향을 주는 후속 신뢰 변경. 미래 적용과 안전한 비교 환경 미확보로 watch.",
+  "selection_status": "pending_verification",
+  "selection_reason": "Evidence retained for edge-emudhra-remaining-roots-announcement-20261110: Edge·WebView2의 잔여 eMudhra 루트 기본 신뢰 제거 예고 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "동일 인증서 체인에서 브라우저별 차단·설명 UX와 사이트 운영자 이관 안내는 어떻게 다른가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "11월16일 이후 구성요소 적용 근거와 안전한 인증서 시험 환경",
-  "assessed_at": "2026-11-11T22:39:34.161576+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "source_item_ids": [
     "src-legacy-c20d4506e2574b1c05d7b10a",
     "src-legacy-56c29387261d51d84e62c41f"
@@ -60,5 +60,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-10",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

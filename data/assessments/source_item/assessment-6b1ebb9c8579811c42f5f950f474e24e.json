@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0cb156c3ecd85010463459ae: Fixed an issue where the Network Monitor could miss WebSocket messages if they arrived immediately after a connection was established. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6b1ebb9c8579811c42f5f950f474e24e",
+  "subject_kind": "source_item",
+  "subject_id": "src-0cb156c3ecd85010463459ae",
+  "input_hash": "899550c1a072b8be3de007bb1936f150461386af2ce357c139414e0919f26b5d",
+  "input_revision": "semantic-v2-sha256:4d6bf629a677d02301903b3d5d9d8de90951bf20fddd37c4e1976545b2c06748",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0cb156c3ecd85010463459ae"
+  ]
+}

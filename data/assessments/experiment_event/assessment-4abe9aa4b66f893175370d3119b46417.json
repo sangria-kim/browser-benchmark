@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f41b22a8ff8a226eb231ebe5: Source baseline: SanitizerJavascriptURLs A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4abe9aa4b66f893175370d3119b46417",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f41b22a8ff8a226eb231ebe5",
+  "input_hash": "489185b3987d490084c90bad219d65079f4cb8e75be4e5d707cdd76134f627f2",
+  "input_revision": "semantic-v2-sha256:ada3d8cef3efb53f94474fcee13d95421f0d6df986665079b35c35617dbdd7d9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-b10bbf5aeab4c7d5fd7edce7"
+  ]
+}

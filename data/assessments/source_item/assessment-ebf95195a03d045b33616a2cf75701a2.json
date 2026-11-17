@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-5bafa679edf1b1a184d2d409: Model inference routes exclusively through Amazon Bedrock in your configured AWS Regions. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ebf95195a03d045b33616a2cf75701a2",
+  "subject_kind": "source_item",
+  "subject_id": "src-5bafa679edf1b1a184d2d409",
+  "input_hash": "3c30528800466f622b31d892f41820d62f5b9c3d207bf170def33e89369c9164",
+  "input_revision": "semantic-v2-sha256:c79b66ff9d99027e2d24350dcc27360f65dfc2b8186fec9daab1dd1fcaca19f7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5bafa679edf1b1a184d2d409"
+  ]
+}

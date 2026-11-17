@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 497047552 High CVE-2026-7357 Use after free in GPU"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0a274cc85739639a4eec64cb75aa44c4",
+  "subject_kind": "source_item",
+  "subject_id": "src-31e6342e3abb19c8ff90d08b",
+  "input_hash": "31b661d6dda8f5c5f3fbfd685592ae0348de093621bbadd15852f8d431f410ad",
+  "input_revision": "semantic-v2-sha256:ed5b860ae9c5b6f73b805ad538327078a53c61c8a1dbd1789b57c5754bcb7a24",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-31e6342e3abb19c8ff90d08b"
+  ]
+}

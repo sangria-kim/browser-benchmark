@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-be23c0bd6cb16dfe2011da32: Source baseline: WebAuthnFilterSmartCardTransport A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ba58be857d14134384b35b965eb64dbd",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-be23c0bd6cb16dfe2011da32",
+  "input_hash": "68a994cf3eaa4f708e8fd9442b613602a28912d8ca738b37d1df21147234dd11",
+  "input_revision": "semantic-v2-sha256:8c270f83e04d88c6f0fa947dccf136b5dab8ad0c94ef59b10c972d3d34977170",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-8b6d7b6e635503d411ede347"
+  ]
+}

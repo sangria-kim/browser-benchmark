@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome will apply Windows security Access Control Lists (ACLs) to prevent other applications from reading or injecting into Chrome's memory space. This may cause interoperability issues with older antivirus, DLP, or acce"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-57e44a81716da2266b51daee6b187bc5",
+  "subject_kind": "source_item",
+  "subject_id": "src-3ded5bfa7637f699506aca4c",
+  "input_hash": "c864b2618ef3378e8085413b8b477b65833ad4f0f4d647bde3972b3aae4146df",
+  "input_revision": "semantic-v2-sha256:2a30d75eec69590ab38dc0623fd513c74a8b8068e4f3955c19087708e66d47ad",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3ded5bfa7637f699506aca4c"
+  ]
+}

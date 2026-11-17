@@ -35,15 +35,15 @@
   "delta": "첫 비경고 ACTING/REFLECTING 알림만 소리를 낼 수 있도록 상태를 추적한다. 준비·후속 진행·일시정지·사용자 입력 요청·경고·완료 알림은 무음으로 만들며 완료·clearAll 때 추적을 초기화한다.",
   "verification_status": "source_diff_and_snapshot_verified",
   "previous_event_id": null,
-  "selection_status": "selected",
-  "selection_reason": "등록뿐 아니라 구현·단위 테스트 변경이 확인되어 알림 소음 감소와 개입 요청 인지의 상충을 비교할 수 있다.",
-  "priority": "P2",
-  "priority_reason": "실험적으로 시작한 AI 작업의 알림 방해와 개입 요청 인지를 함께 비교할 가치가 있다. 전체 알림 정책이 아닌 특정 작업 흐름의 사용성 개선이므로 P2로 둔다.",
-  "comparison_question": "Android에서 AI 작업의 소리·진동 알림 수를 줄이면서 사용자 입력 요청·경고를 놓치지 않도록 하는 방식은 무엇인가? 동일한 작업과 알림 설정으로 비교할 수 있는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "해당 revision을 포함한 설치본·계정·지역 조건을 확보하면 flag 노출과 과제 동작을 확인한다.",
-  "assessed_at": "2026-11-05T22:53:24Z",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "flag_ids": [
     "actor-silence-notifications-after-first-working"
   ],
@@ -64,5 +64,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

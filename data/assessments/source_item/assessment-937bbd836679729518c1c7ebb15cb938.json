@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9071c6e7c3718888d5223f1a: Fixed an issue where changing the id attribute of an element targeted by aria-owns did not update the accessibility tree. (107644248) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-937bbd836679729518c1c7ebb15cb938",
+  "subject_kind": "source_item",
+  "subject_id": "src-9071c6e7c3718888d5223f1a",
+  "input_hash": "ab205919124eb6723de5dbcd3faf217614c3433dae0fe882a9bf56c15e335c2f",
+  "input_revision": "semantic-v2-sha256:e410d47c5719005c0cb46676dcc920ab5e250390d1a7cdbd6bee7df33c1664ea",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9071c6e7c3718888d5223f1a"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-83c44bc2bb92fa3f7bbdd83b: Source baseline: IOSDownloadSanitizeFilename A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2e4eb1f3b1c26eaec9cb9b8e1f632ab8",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-83c44bc2bb92fa3f7bbdd83b",
+  "input_hash": "4db879c1e2b0b99d4dcfafa7b8a68b79333daa53abf7a3b61b1dba14899dfbd0",
+  "input_revision": "semantic-v2-sha256:fd8e9536c4e2e7d2b902ba0c11400b1059020a99ffa8659782a942f7bf0e80c5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-cca79fde630bbaffc4d1ae33"
+  ]
+}

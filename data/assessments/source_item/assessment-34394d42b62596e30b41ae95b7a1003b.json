@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d8283822333e77bd03dbaaa2: Update the Launch Handler implementation to ensure LaunchParams.targetURL is populated when a PWA is launched via File Handling. Previously, this property was null when a file launch was directed to an existing window. T A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-34394d42b62596e30b41ae95b7a1003b",
+  "subject_kind": "source_item",
+  "subject_id": "src-d8283822333e77bd03dbaaa2",
+  "input_hash": "96c6f2267dc5e24ca415878a397a2c134430066fd3f9dec1881c5de29d2ec387",
+  "input_revision": "semantic-v2-sha256:2aced941c6c0d91663c6eac197df1c57f38213f48fac0dc7ea01b097a8b42a5f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d8283822333e77bd03dbaaa2"
+  ]
+}

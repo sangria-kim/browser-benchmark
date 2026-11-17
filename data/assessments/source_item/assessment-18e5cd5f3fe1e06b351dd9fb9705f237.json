@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: - [세로 탭] 탭 목록이 떠 있는 상태에서 탭 그룹을 만들면 브라우저가 종료되던 문제를 수정했어요. - [보안] 크로미움 보안 취약점(CVE-2026-85046)을 해결했어요. - [보안] 웨일 브라우저 보안 취약점 20건을 해결했어요. - [확장앱] Claude 확장앱이 정상 동작하지 않던 문제를 수정했어요. - [번역] 번역할 때 영어에 다른 나라 국기가 표시되던 문제를 수정했어요. -"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-18e5cd5f3fe1e06b351dd9fb9705f237",
+  "subject_kind": "source_item",
+  "subject_id": "src-c53ec2d8aff28ea23242552e",
+  "input_hash": "7163da2bc8cb5c2838a9649d0d25177ce33e486a7a673bf39fa9f73bdbdb4f01",
+  "input_revision": "semantic-v2-sha256:29a853032510f1bc925fc31ea1038ed5ed81549ba7cde7339d263ef25923dee3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c53ec2d8aff28ea23242552e"
+  ]
+}

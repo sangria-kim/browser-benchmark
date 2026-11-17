@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-307058b51c63ab2cacd6fa8c: Keys tied to the enclave. It records a signing key only if that key is bound into a verified hardware attestation. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6e132abb29f1a482f8fd216b80c6c159",
+  "subject_kind": "source_item",
+  "subject_id": "src-307058b51c63ab2cacd6fa8c",
+  "input_hash": "0cc3e34f3bf6684b34007180b34ee5694b85f947f307614b44a7e2f0eb628800",
+  "input_revision": "semantic-v2-sha256:43a0c264b5087a615c393a3cdc4c6fa0c9c0b13863cf623c7514c70ebbda1cff",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-307058b51c63ab2cacd6fa8c"
+  ]
+}

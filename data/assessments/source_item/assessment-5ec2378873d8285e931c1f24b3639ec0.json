@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: As early as Chrome 148, admins can configure a risk threshold in the Google Admin console [Apps and Extensions]( settings to automatically block extensions using third-party risk assessments ([Spin.Ai]( and [LayerX]( Thi"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5ec2378873d8285e931c1f24b3639ec0",
+  "subject_kind": "source_item",
+  "subject_id": "src-101dfb20ff0d3089af5135a9",
+  "input_hash": "ccd9895c4a9f4345adf42bad4525914505f65d908e168446592cd756de37a62e",
+  "input_revision": "semantic-v2-sha256:23f1092f54e27111135c8d71e78f02a8efbc071056fc08ffd974f859a0be4e9b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-101dfb20ff0d3089af5135a9"
+  ]
+}

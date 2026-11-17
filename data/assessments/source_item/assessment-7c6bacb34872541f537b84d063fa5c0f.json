@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$10000][ 503850012 ] High CVE-2026-13791: Insufficient validation of untrusted input in Downloads. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7c6bacb34872541f537b84d063fa5c0f",
+  "subject_kind": "source_item",
+  "subject_id": "src-50afd6a27ce4453bedf66d3e",
+  "input_hash": "ad45b1eb7346b76c23098f819b65a77d6e75f4812bebe803fd1a8148ec87ad7a",
+  "input_revision": "semantic-v2-sha256:35104064ca96cfb571898ebf3858e719b950f26a63652cd20c080bc5df484544",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-50afd6a27ce4453bedf66d3e"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 520157118 Critical CVE-2026-12441 Use after free in File Input"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bebf6bcce3c5195363a25025d3bfe030",
+  "subject_kind": "source_item",
+  "subject_id": "src-27d85c59f06aeb15847ff828",
+  "input_hash": "8342c9f65ea84331dc77293525b24e13dda48e18208d7839a872c10b66890784",
+  "input_revision": "semantic-v2-sha256:34decfa0bd3ab63f059563708665db6e20811724d600b102c87a64d8f8ff6eb8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-27d85c59f06aeb15847ff828"
+  ]
+}

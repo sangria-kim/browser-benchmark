@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-384b7bfd50002c01679a01ad: Source baseline: Android Tab Search Recent Tabs A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-030180ef80b729e507f936f0fe152dd1",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-384b7bfd50002c01679a01ad",
+  "input_hash": "edacaa1d5b70f627c64b655b70278c40d32900d170ce714e121cfb26e676368a",
+  "input_revision": "semantic-v2-sha256:7baa206490e6cb3d332e63caab56e0aaf1446ad43283650fd8ce34a262a4b15f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-b8cd5a81fca1b39b0c50984ddbe86bcd",
+  "evidence_source_item_ids": [
+    "src-chromium-bd6d57973855110372d8c40d",
+    "src-legacy-b408ddd4ad67ecbd84a87d81"
+  ]
+}

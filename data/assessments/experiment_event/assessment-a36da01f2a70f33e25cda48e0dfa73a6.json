@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b972aa5acf86c669c18f33c8: Source baseline: UseSha256ForExtensionHashes A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a36da01f2a70f33e25cda48e0dfa73a6",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b972aa5acf86c669c18f33c8",
+  "input_hash": "73ed4fdbd6a860d63dba426dba0a84df652eeee7b095bcd8cf878db220458d63",
+  "input_revision": "semantic-v2-sha256:96659f6f8f81c3a93ae1ae2d6ba5150aaa9f1d426abd81f3392d176707567fb2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-9173b60e45f42ea25b4abb6d"
+  ]
+}

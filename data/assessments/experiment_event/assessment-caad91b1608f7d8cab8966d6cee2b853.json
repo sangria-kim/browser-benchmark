@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-7c707ad7227d821cf0bedb24: Source baseline: UseDnsHttpsSvcbAddressHints A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-caad91b1608f7d8cab8966d6cee2b853",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-7c707ad7227d821cf0bedb24",
+  "input_hash": "0683bebb56af3eb1f5ca7eeb0fd97657eef3adb37ca9a2a8971208da0e0d8f6e",
+  "input_revision": "semantic-v2-sha256:17e934a87a7ce5d00f3883bdd333d571243031641d5d0c9aba1a4628962eda18",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-e5b8603ca0cf3a3c500edf0a"
+  ]
+}

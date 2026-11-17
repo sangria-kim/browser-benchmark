@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$3000][ 503420438 ] High CVE-2026-10906: Use after free in WebAuthentication. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f6f652301dfc6f3c93ab352cc04518dd",
+  "subject_kind": "source_item",
+  "subject_id": "src-b55f97ded78d1d7781af2c39",
+  "input_hash": "78932b4d3566e2485a7cda7a854a27e8fa8f10fe20795beb7d8cc3ef3a94e39d",
+  "input_revision": "semantic-v2-sha256:710d274b9107e06c4a6d753208dc0d71fa689007f6715b74a2338b52eba8d859",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b55f97ded78d1d7781af2c39"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a9b8202ae20a2f32d6ceb24a: Fixed a regression where RGB gain map images were decoded to 8 bits per channel, causing a color shift and incorrect brightness. ( [contact omitted] ) (179152566) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-26b3aca4fbfcf503f69c331e8dcecaa5",
+  "subject_kind": "source_item",
+  "subject_id": "src-a9b8202ae20a2f32d6ceb24a",
+  "input_hash": "661f91e0e5586a2d80d3e3f649106f6bf47101543c9a7e9559f0f85009930f6f",
+  "input_revision": "semantic-v2-sha256:0a3f755b983e52acb0653ac85c5bc00908c5c241bc15bb921ab81b6f9e262477",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a9b8202ae20a2f32d6ceb24a"
+  ]
+}

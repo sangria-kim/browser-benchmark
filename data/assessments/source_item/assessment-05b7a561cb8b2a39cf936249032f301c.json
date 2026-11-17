@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [ 490254124 ] High CVE-2026-4460: Out of bounds read in Skia."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-05b7a561cb8b2a39cf936249032f301c",
+  "subject_kind": "source_item",
+  "subject_id": "src-11cce4ac2dab750e67f627bf",
+  "input_hash": "4148af2828b5cc3c64aad2131fed920cce1098e53297a574b4716df412a113bf",
+  "input_revision": "semantic-v2-sha256:f665e18dd120c416a8518b8b0fa47d7f87765c49d0c6bb47a8e2fa24f502aa31",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-11cce4ac2dab750e67f627bf"
+  ]
+}

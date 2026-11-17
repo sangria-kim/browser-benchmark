@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e8888256c6a226a1c87a629a: Confidential LLM inference, protected by hardware . The GLM 5.3 Flash model runs inside a sealed, Nvidia-backed hardware enclave, operated by NEAR AI. Hardware-enforced isolation protects your prompts and responses from  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f2686db667676201e352d639a6019629",
+  "subject_kind": "source_item",
+  "subject_id": "src-e8888256c6a226a1c87a629a",
+  "input_hash": "fc4213b6b83ab86ee5b264d526885454a19d45894252b328db613f02c8069564",
+  "input_revision": "semantic-v2-sha256:074ff9a0f7e9fe4a7bdbdd16d31b83b15fbc207280a5f1bd23a790aca3f57c4e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e8888256c6a226a1c87a629a"
+  ]
+}

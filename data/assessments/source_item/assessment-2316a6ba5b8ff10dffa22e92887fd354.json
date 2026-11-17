@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted 3D model may lead to memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2316a6ba5b8ff10dffa22e92887fd354",
+  "subject_kind": "source_item",
+  "subject_id": "src-b6b51296d6f035668b66e54c",
+  "input_hash": "98df9150c974366dd0879c0ce578284720ee7b70fcb7772b32d26d6fdcfb3ccc",
+  "input_revision": "semantic-v2-sha256:0b948a6a4369c7b614cd789cc6106523031c8bb423c0a11ef3d13cf7ec0240ef",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b6b51296d6f035668b66e54c"
+  ]
+}

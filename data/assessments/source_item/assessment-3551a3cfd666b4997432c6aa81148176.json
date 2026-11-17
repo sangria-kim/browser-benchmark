@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [N/A][ 495782021 ] Critical CVE-2026-8512: Use after free in FileSystem. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3551a3cfd666b4997432c6aa81148176",
+  "subject_kind": "source_item",
+  "subject_id": "src-2e69f372d554ff09642e9e03",
+  "input_hash": "37798d3eab74a1441e39e9a51b8a8ed287bb09e3261c3d9f591aac9c2cd4f9b1",
+  "input_revision": "semantic-v2-sha256:f811612e62aa7f184ff9cebf33c91de11e7868d92a75a5d750d7edf7e3ebeffc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2e69f372d554ff09642e9e03"
+  ]
+}

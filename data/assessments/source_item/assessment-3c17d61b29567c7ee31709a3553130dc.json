@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Token handling at these external services is opaque. The documentation offers no guarantees about JWT retention, inspection, aggregation, or the linkability of derived salts or keys across applications. Users are not inf"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3c17d61b29567c7ee31709a3553130dc",
+  "subject_kind": "source_item",
+  "subject_id": "src-9035081628250c75389808d6",
+  "input_hash": "3c9d78f960ce55e732bb0063dad34f575c8500a82b8701b110a0cec40b839cdd",
+  "input_revision": "semantic-v2-sha256:1f83ffb2b75056510f8a4b4f25b1e458a3b4b624239d4b66ba1655d5cf2255f3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9035081628250c75389808d6"
+  ]
+}

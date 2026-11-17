@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: The response we received addressed only client-side key exposure, asserting that TLS and JWT scoping provide sufficient protection. Our analysis shows this to be incorrect: API keys are bearer credentials whose possessio"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c6837e5b5898cb435b1654642a73cca8",
+  "subject_kind": "source_item",
+  "subject_id": "src-83a4913088cfc6ef130dbe94",
+  "input_hash": "e98a77a01765bf3cfb7f8b4f637d3f847b1c000937f7c42f75bd6084f41ff761",
+  "input_revision": "semantic-v2-sha256:c047a2fed8c5c551025eb322bb83c291786880b17d73a39008fa4ff160259433",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-83a4913088cfc6ef130dbe94"
+  ]
+}

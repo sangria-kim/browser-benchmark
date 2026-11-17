@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7be34f66fe9a45fd210a49df: Fixed an issue where a stack frame for a script loaded from a data: URL included the entire script in Error.stack instead of a truncated URL. ( [contact omitted] ) (186614179) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-60de866ba8628e8c619cda38304171cc",
+  "subject_kind": "source_item",
+  "subject_id": "src-7be34f66fe9a45fd210a49df",
+  "input_hash": "c5a12981f1dd31a542f026a7b7c2c9f085704f399b4de6bcda4a5c5d06fb327b",
+  "input_revision": "semantic-v2-sha256:dcf78fe613fc06a5649c84588ca7946b4c036b8dbac0187a6c9f7b6d365611cd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7be34f66fe9a45fd210a49df"
+  ]
+}

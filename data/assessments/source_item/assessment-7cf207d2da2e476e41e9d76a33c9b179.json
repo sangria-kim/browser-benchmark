@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 516942828 Critical CVE-2026-12008 Use after free"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7cf207d2da2e476e41e9d76a33c9b179",
+  "subject_kind": "source_item",
+  "subject_id": "src-d0bc7d2a44b745a75c9a12ec",
+  "input_hash": "58f1fe66bee0e8896d11408003663c6fcb475892c18424686a2a6333e00761a7",
+  "input_revision": "semantic-v2-sha256:4e0b9c41c1d995375b33a87bcb9628b817f1ca5c6ee4559e6a9574300250f044",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d0bc7d2a44b745a75c9a12ec"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-5730b757e4dada6c3f819ac3: Fixed a layout regression where absolutely positioned elements inside block-in-inline containers were incorrectly overlapping adjacent content. (171732203) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-afff0450a5ad7c390533d60dad5e7604",
+  "subject_kind": "source_item",
+  "subject_id": "src-5730b757e4dada6c3f819ac3",
+  "input_hash": "252ea73a1973e41e6954bf51cd0d9d33973c908ac0195d4c045e899a022e8dbf",
+  "input_revision": "semantic-v2-sha256:d8fdfc254b8f6d4cb0c4be1babb3b82dea513ed3de23193be1dcc2b74405f0a2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5730b757e4dada6c3f819ac3"
+  ]
+}

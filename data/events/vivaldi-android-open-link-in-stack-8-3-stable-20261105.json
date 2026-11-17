@@ -26,15 +26,15 @@
     "https://vivaldi.com/changelog-vivaldi-browser-8-2-on-android/"
   ],
   "verification_status": "official_release_and_changelog_verified_no_device_test",
-  "selection_status": "selected",
-  "selection_reason": "8.3의 명시적 변경과 이전 Stable/사전배포 이력을 구분했고 재현 가능한 사용자 과제가 있다.",
-  "priority": "P2",
-  "priority_reason": "반복 조작·작업 전환 또는 확장 호환성 비교 가치.",
-  "comparison_question": "자료 탐색 중 탭을 다시 분류하는 조작이 줄어드는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "동일 플랫폼의 설치본 노출·한국 조건·실제 동작 검증",
-  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "pending_verification",
+  "selection_reason": "Evidence retained for vivaldi-android-open-link-in-stack-8-3-stable-20261105: 링크를 지정한 탭 스택으로 열기 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "scope": {
     "release_stage": "stable",
     "builds": {
@@ -94,5 +94,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-05",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

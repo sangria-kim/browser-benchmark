@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b298c8a6c9e62c50716b3d6d: Genuine hardware . It verifies Intel’s signature on the TEE’s hardware attestation (a TDX quote), proving the CPU enclave is real Intel TDX hardware. It verifies the GPUs’ attestation with Nvidia’s Remote Attestation Ser A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7d4d75d757204c80c33f69e4bca67eec",
+  "subject_kind": "source_item",
+  "subject_id": "src-b298c8a6c9e62c50716b3d6d",
+  "input_hash": "61e42d17b0253d096f4c36848faa47ee61961b6c12dfbd7715a0ae81785b90a4",
+  "input_revision": "semantic-v2-sha256:6c453c9220916dbe479f76d3aeab4c9deb857cdaf72aef6467bebd1289ff72da",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b298c8a6c9e62c50716b3d6d"
+  ]
+}

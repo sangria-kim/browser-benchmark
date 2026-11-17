@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-5b87dabb98b41332655df7b1: After a full server compromise, a determined attacker can eventually mount an offline per-user dictionary attack. OPAQUE makes that dramatically slower and unparallelizable across users, but it doesn’t make it impossible A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c2ea9c88a6fef03bf8b46329d3f025e5",
+  "subject_kind": "source_item",
+  "subject_id": "src-5b87dabb98b41332655df7b1",
+  "input_hash": "34df66442752590d473e38613036dc59daa75c2e0eb4ffa859eea0766fb7baf1",
+  "input_revision": "semantic-v2-sha256:320400a88b9bf2ca2c61943a7ee267fe8e07ee08e1363cf910a7846de0d854df",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5b87dabb98b41332655df7b1"
+  ]
+}

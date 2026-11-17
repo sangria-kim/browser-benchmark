@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Memory safety bugs present in Firefox 148.0.2. Some of these bugs showed evidence of memory corruption and we presume that with enough effort some of these could have been exploited to run arbitrary code."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d6789287db06d6a86c4c861b369470da",
+  "subject_kind": "source_item",
+  "subject_id": "src-3fb0456945eb310c5a42c12a",
+  "input_hash": "4c98aa4c79246eeb571ea3b907df0e00e82e4642d7104a7a83f21950321f0bf2",
+  "input_revision": "semantic-v2-sha256:d0ccf71f21641aa1e0f696354da087bf894d92d482fe7b977266fa50a9baff84",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3fb0456945eb310c5a42c12a"
+  ]
+}

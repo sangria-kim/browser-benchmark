@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e6c3beffc291666a0026bdae: Changes the LCP algorithm to emit candidates based on the largest painted image instead of the largest pending-but-not-yet-painted image. This might cause more intermediate candidates to be emitted to the performance tim A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-735ea9d331af82c938237b128fe5a28f",
+  "subject_kind": "source_item",
+  "subject_id": "src-e6c3beffc291666a0026bdae",
+  "input_hash": "fd1276c3d597316384d97aaa7f50fd84a4279c5e1fc29bd5152f78a38d1bb25e",
+  "input_revision": "semantic-v2-sha256:41fa830516875c7476c861928389aac7227db82350826dce03ef7b6d103759f9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e6c3beffc291666a0026bdae"
+  ]
+}

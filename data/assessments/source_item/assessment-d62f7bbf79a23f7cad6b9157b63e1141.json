@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Starting in Chrome 160, Chrome will remove support for the `RTCPeerConnection.createDTMFSender()` method on Windows, macOS, Linux, ChromeOS, and Android. This is a legacy, non-standard method that is obsolete and no long"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d62f7bbf79a23f7cad6b9157b63e1141",
+  "subject_kind": "source_item",
+  "subject_id": "src-acfa1bf40637de69e670e7ec",
+  "input_hash": "996d25e268288fc6f4d08feee9f3050a98b370b5f2a49f4136b48aaf99a7a5a4",
+  "input_revision": "semantic-v2-sha256:60aca294f0c63f31fd5247431dd4e4ba247cd469dd8aad91e58422529c80d466",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-acfa1bf40637de69e670e7ec"
+  ]
+}

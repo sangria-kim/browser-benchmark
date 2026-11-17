@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-63ea8d586eeee81275d8b047: Fixed an issue where the WebAssembly debugger had no source bytes for modules compiled via WebAssembly.instantiateStreaming , preventing source-level debugging in LLDB. (174362152) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ef1366c07c828aa7c88f0a3f8b0a8b98",
+  "subject_kind": "source_item",
+  "subject_id": "src-63ea8d586eeee81275d8b047",
+  "input_hash": "77e933f1a035215519c2e7a3f8876e9b3c009cefbdd37d7af9afdff9baaa29b8",
+  "input_revision": "semantic-v2-sha256:0f565b8e5fd188304f862597759c8f8010bdde4389d0728f08da3aaffe81108a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-63ea8d586eeee81275d8b047"
+  ]
+}

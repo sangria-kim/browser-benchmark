@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-cdc39748d85718404357da0e: Source baseline: WebAuthnICloudKeychainUseDeviceConfiguredForPasskeys A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0e4d18160a8866c0418e86a5d0ef56d6",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-cdc39748d85718404357da0e",
+  "input_hash": "56081fda4c2615d4be672ea30a269ac781e94f60220360f7db9aa11f1e50cda9",
+  "input_revision": "semantic-v2-sha256:85db72a2d10863b3e50e226478e412124104ea18c44f41239ff3b5c9322af763",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-df6305159ba8c40bf40ab64d"
+  ]
+}

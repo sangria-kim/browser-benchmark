@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-4e98729c7aabf4b758f743a7: Source baseline: iOS Device Trust Connector A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c5bc5e6702b80538eace25ee92b5ba1d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-4e98729c7aabf4b758f743a7",
+  "input_hash": "d24be906be680b9dfcb2ff21f4155843204731d5d5907769e0e0154fbd21849d",
+  "input_revision": "semantic-v2-sha256:2fb8b614d9f16b027223a18e4463faea52ee8ce7142bc14c1c5528214730fa23",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-7162e25fe298f070dfe1acac364a16b3",
+  "evidence_source_item_ids": [
+    "src-chromium-8d64fbd41b276f5b02f1db66"
+  ]
+}

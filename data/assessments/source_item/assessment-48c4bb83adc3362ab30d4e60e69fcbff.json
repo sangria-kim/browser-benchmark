@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fed9554a78a89002b71a9cd5: Chrome 145 introduced more granular permissions for websites requesting access to a user's local network. The previous single local-network-access permission is being split into two distinct permissions: A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-48c4bb83adc3362ab30d4e60e69fcbff",
+  "subject_kind": "source_item",
+  "subject_id": "src-fed9554a78a89002b71a9cd5",
+  "input_hash": "792881591232bb40fe3f44524b6b056759202669c28606644a3af5af5f6bf7aa",
+  "input_revision": "semantic-v2-sha256:3d56baa39761469ee183e0ddc1e4721f1172e0418f53d7cf133098a733514c5f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fed9554a78a89002b71a9cd5"
+  ]
+}

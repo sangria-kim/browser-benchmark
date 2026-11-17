@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c72ee9c1c0a3ffc726882f55: Fixed an issue where inline-level boxes with calc() margins or padding lost the fixed component during intrinsic width computation. (175669222) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-053779c4266d351fa1b7cd18cc3a7bf8",
+  "subject_kind": "source_item",
+  "subject_id": "src-c72ee9c1c0a3ffc726882f55",
+  "input_hash": "95d9cadccb101a5a332cb4e3b3cb11965a2a927aa5596c16928b6309d8f3ccb3",
+  "input_revision": "semantic-v2-sha256:7dcba94956fe91cabb107f486b6a5327bca4027ab3b27bfdd9d2467f5c1ac1cf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c72ee9c1c0a3ffc726882f55"
+  ]
+}

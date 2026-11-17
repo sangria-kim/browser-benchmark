@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Mounting a maliciously crafted SMB network share may lead to system termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3697ac4a7e116ee63e0cb0738e3440ed",
+  "subject_kind": "source_item",
+  "subject_id": "src-eb39704bfe366fb816c78da4",
+  "input_hash": "bd33eed0a97af374a06179f5a32e9c7d09101a558d2f66ce7071d6837238cef7",
+  "input_revision": "semantic-v2-sha256:a115a53647691c7f717885be57f85f1f79d926138b05cd855fcae671be50c5bd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-eb39704bfe366fb816c78da4"
+  ]
+}

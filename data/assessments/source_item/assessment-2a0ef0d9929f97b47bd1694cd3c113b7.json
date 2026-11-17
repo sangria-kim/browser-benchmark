@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-cac53af69cf29e8e25ad3438: Allow same-document available-image reuse to bypass Cache-Control: no-store reload when the same src value is reassigned to an <img> element. Previously, Blink would re-fetch the image even though it was already decoded  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2a0ef0d9929f97b47bd1694cd3c113b7",
+  "subject_kind": "source_item",
+  "subject_id": "src-cac53af69cf29e8e25ad3438",
+  "input_hash": "f9fab50aec81043e24f91be1a260c3a10a183fb62a75b0b2589f9ea236133493",
+  "input_revision": "semantic-v2-sha256:644b4daeb2e21adc16acffad7490f4ab8330b5f923c9a66393fda91b5bed9bf8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cac53af69cf29e8e25ad3438"
+  ]
+}

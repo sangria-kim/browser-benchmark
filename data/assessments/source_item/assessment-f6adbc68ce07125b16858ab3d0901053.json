@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-07167d9762c300421b3a8a16: This feature changes the attribution data (`prevRect` and `currentRect`) in the [LayoutShift API]( to be reported in CSS pixels instead of physical pixels. The current behavior is inconsistent with other layout-related A A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f6adbc68ce07125b16858ab3d0901053",
+  "subject_kind": "source_item",
+  "subject_id": "src-07167d9762c300421b3a8a16",
+  "input_hash": "b515e293207d58013ad22055ae47f31a0075af84f17a655113e66b2f4c53a1c6",
+  "input_revision": "semantic-v2-sha256:03b311ed96cee77ef264cca178cfb60a37bedef8f8b6293e0e3fc3ee1af1d297",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-07167d9762c300421b3a8a16"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted contact may leak sensitive data"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cb41c616e21c6f4707bc9b9b66a3e69e",
+  "subject_kind": "source_item",
+  "subject_id": "src-883c6a8dd1d426194c908dba",
+  "input_hash": "9c097670fcf74df837859eb6e1e818b9a75fdc79bba7756cdea3a10c5f5421bd",
+  "input_revision": "semantic-v2-sha256:378281fcb0051926c50b74e2c7bd191c5db8d99a986908dc01a87ce6c548c55c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-883c6a8dd1d426194c908dba"
+  ]
+}

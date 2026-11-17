@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Non-canonical encodings and parser differentials: The circuit’s parsing logic tolerates arbitrary characters inside quoted strings. It does not validate escape sequences, Unicode normalization, control characters, or emb"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-acaccd3816960baefb267ba3e652613f",
+  "subject_kind": "source_item",
+  "subject_id": "src-31d5d65dca4d8ec4ca83d0be",
+  "input_hash": "039b3445f14fb81f868a57f785656d36ce003b6dd31dd3907a0b00c2c53445bb",
+  "input_revision": "semantic-v2-sha256:1763561cec84d9416c6f3e62a3e720c31611460cc22b6688aa585214be5cd6df",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-31d5d65dca4d8ec4ca83d0be"
+  ]
+}

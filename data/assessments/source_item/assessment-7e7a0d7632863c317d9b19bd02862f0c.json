@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-50fe2f4a27f3d734f75796c5: Fixed an issue where an orthogonal block-level box inside an inline box made its container as wide as the box instead of as wide as its content. (185890940) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7e7a0d7632863c317d9b19bd02862f0c",
+  "subject_kind": "source_item",
+  "subject_id": "src-50fe2f4a27f3d734f75796c5",
+  "input_hash": "2c19a98e8eeec50ec2fa0eabed971a3f55aad9fbc61254ef058ed48d73b34d5b",
+  "input_revision": "semantic-v2-sha256:4a4f18c190deb8713ad5426c5db857828e4d50576ea3c7ca64e57cbb44e2ac21",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-17fd4869a2252fee22bd61e4a012a2fe",
+  "evidence_source_item_ids": [
+    "src-50fe2f4a27f3d734f75796c5"
+  ]
+}

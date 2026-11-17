@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted font file may lead to unexpected app termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-dd876b6511e316591d2e14966c94a192",
+  "subject_kind": "source_item",
+  "subject_id": "src-d90baafaccdb14361ead19c4",
+  "input_hash": "a6da3e67221784526bd057b40eac33e8777a3610a2f29ea499008c989b21c950",
+  "input_revision": "semantic-v2-sha256:1ac23feee08136336ff612f1a3bcaa6a38eb5aa6a736f60a9343290de1ea50c9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d90baafaccdb14361ead19c4"
+  ]
+}

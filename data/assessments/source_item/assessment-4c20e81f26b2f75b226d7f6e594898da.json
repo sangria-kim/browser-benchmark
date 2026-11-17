@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chromium uses the libxslt library to process these transformations, and libxslt was unmaintained for ~6 months of 2025. Libxslt is a complex, aging C codebase of the type notoriously susceptible to memory safety vulnerab"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4c20e81f26b2f75b226d7f6e594898da",
+  "subject_kind": "source_item",
+  "subject_id": "src-ef4a1f37605770b5a73f0161",
+  "input_hash": "bf607ba9c374109f05fadfb8a34aa7f6aa7bd4197b1fbcb2d4607362df8655e5",
+  "input_revision": "semantic-v2-sha256:1a89e8b727365902afc2423c795ced211383953f5ec16e8dca534732fe30788c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ef4a1f37605770b5a73f0161"
+  ]
+}

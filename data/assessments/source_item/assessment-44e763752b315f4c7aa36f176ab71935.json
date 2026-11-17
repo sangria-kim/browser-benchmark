@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: With this update, Chrome now supports Data Loss Prevention (DLP) scanning for these virtual files during user-initiated file uploads, drag-and-drop actions, and clipboard pastes. To perform the scan, ChromeOS securely st"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-44e763752b315f4c7aa36f176ab71935",
+  "subject_kind": "source_item",
+  "subject_id": "src-c8b3dd95f1eba183e971d90f",
+  "input_hash": "304b6af4f95b31f3bf77c90878edf6de2b83b76f6be1b273f92174737b42aa6b",
+  "input_revision": "semantic-v2-sha256:b4968e401ad9cc1cc9a69b74e87d08b21fccb0651896142b98e8cc1e21bb821d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c8b3dd95f1eba183e971d90f"
+  ]
+}

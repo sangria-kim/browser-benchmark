@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Low Fixes CVE-2024-58093 Use After Free vulnerability in Linux kernel PCI/ASPM link state handling."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-66f4e2f2aa53caab8c39cedd57223048",
+  "subject_kind": "source_item",
+  "subject_id": "src-7af880e4abaafb566a396904",
+  "input_hash": "c53424ce8e3b47d0e8388eed66436830e5ae8e885de2f3d5841c9368f3144382",
+  "input_revision": "semantic-v2-sha256:91fe26bc948ccf518083e145c871580c197e01820e5715703f45daf628e3d524",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7af880e4abaafb566a396904"
+  ]
+}

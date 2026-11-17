@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker in a privileged network position may be able to leak sensitive user information"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0d07c224291cc2f030ff297ff4e1fde7",
+  "subject_kind": "source_item",
+  "subject_id": "src-ee59368336b6e1974cd72c41",
+  "input_hash": "079541ff688517f299dc809e49cc136e8cd58546cd8ca519a652919788183a21",
+  "input_revision": "semantic-v2-sha256:f75ef1508881ec772af72f5adcd5cdf7382b66a430783ed85ce76e6f913597cb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ee59368336b6e1974cd72c41"
+  ]
+}

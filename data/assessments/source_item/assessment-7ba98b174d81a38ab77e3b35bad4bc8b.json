@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Indirect prompt injection is a context-composition problem. Any system that ingests content from an external or untrusted source, composes that content with trusted instructions in a shared context window, and uses a lan"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7ba98b174d81a38ab77e3b35bad4bc8b",
+  "subject_kind": "source_item",
+  "subject_id": "src-604ecf968b6175e6ef35fce4",
+  "input_hash": "cf3512e9a6aab095273c3c74ad30044e9a14e9f00d26739eb86bc54ade01a24d",
+  "input_revision": "semantic-v2-sha256:abe4cee2c090dfd1c30b5d082ce9ccfe9b9bf6c8738cba57fdf467986a097d25",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-604ecf968b6175e6ef35fce4"
+  ]
+}

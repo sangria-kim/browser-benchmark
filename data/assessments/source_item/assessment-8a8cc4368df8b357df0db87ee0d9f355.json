@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2e24bbb01dd2d8288d6831d1: Fixed an issue where some policies requiring a domain-joined or MDM-managed device incorrectly displayed the error message \"This policy is blocked, its value will be ignored.\" A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8a8cc4368df8b357df0db87ee0d9f355",
+  "subject_kind": "source_item",
+  "subject_id": "src-2e24bbb01dd2d8288d6831d1",
+  "input_hash": "c65a8fbf550bf4d323f9fb57fa6497490bc704fc0a06e084a52daa82d14bac9d",
+  "input_revision": "semantic-v2-sha256:882cf85484515a6198d9cf43d646c7cea7326e3afafd5b29fa17a436152d43ff",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2e24bbb01dd2d8288d6831d1"
+  ]
+}

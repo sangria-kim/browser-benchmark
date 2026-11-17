@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fdf774b2734bc08d6ef82e38: Fixed CORS preflight requests hanging indefinitely when the server’s OPTIONS response body never finished, by deciding the preflight from the response headers. (184231090) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-caec065bbe1b142b5920b6ace828154d",
+  "subject_kind": "source_item",
+  "subject_id": "src-fdf774b2734bc08d6ef82e38",
+  "input_hash": "59243409fb1665d9f5759905cfca5bad8d21b333bef68be11ac2a06351bc9cd7",
+  "input_revision": "semantic-v2-sha256:3bc78454bcf53a4a7f300a6a2b48dbbf5dade0bdb500720a15c0ca8dde892e82",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-8480ae32d8363bc5856425805addb5a0",
+  "evidence_source_item_ids": [
+    "src-fdf774b2734bc08d6ef82e38"
+  ]
+}

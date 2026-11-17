@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-00fe776fef7b7149f763bcc0: Source baseline: V8MemoryReducerDelay A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b5fdc4995ad7e55573037aaf96f710fe",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-00fe776fef7b7149f763bcc0",
+  "input_hash": "fa2c23f2f6f91f0dd459063f31d5d34086dd49723e159960a09d764472fc253b",
+  "input_revision": "semantic-v2-sha256:794e56e3d6269e065649be150a54baf2fa2cadd94182fd643c25c96f4e0a3a1a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-93ef9f5f6288539199bb5a57"
+  ]
+}

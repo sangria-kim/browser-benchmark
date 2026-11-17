@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4f89f7bd5819a1e63edf068b: Fixed an issue where non-replaced elements with aspect-ratio enforced the automatic minimum size even when min-width was explicitly set to 0 . (156837730) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-567bf61bcd7c15fa2495288917f42c6b",
+  "subject_kind": "source_item",
+  "subject_id": "src-4f89f7bd5819a1e63edf068b",
+  "input_hash": "371f4bc925c48d249db13e267ccbfad50d7e7a39f3acd3d041cfae725cf33f57",
+  "input_revision": "semantic-v2-sha256:68ef7d8ec22ec885d9e325f88289c1ec14ac4a232e8be81998a9ab9402682365",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4f89f7bd5819a1e63edf068b"
+  ]
+}

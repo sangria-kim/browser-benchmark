@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-21f541f9879a57fa4685de82: Fixed GPU memory for a destroyed GPUTexture not being released while a GPUBindGroup that referenced it still exists. ( [contact omitted] ) (189420456) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-37c59cf27a45d7b9ff16e5bef7cffd67",
+  "subject_kind": "source_item",
+  "subject_id": "src-21f541f9879a57fa4685de82",
+  "input_hash": "921136994b5b68c13b9ea4215f3da65a96bdeb707995d8c587844b4ea850181b",
+  "input_revision": "semantic-v2-sha256:1172e53139853e5b6e23fa42bec72c479eef5120495bd7e8b7051f6026f92362",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-21f541f9879a57fa4685de82"
+  ]
+}

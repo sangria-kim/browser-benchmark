@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1e4d49a22ff5b84e1714564f: Chromium's IndexedDB implementation is rewritten on top of SQLite, to replace the previous implementation that uses a hybrid of LevelDB and flat files. There is no change to the Web API. This is expected to improve relia A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f49bdc71c8a416149dffe3e5bf9ff55b",
+  "subject_kind": "source_item",
+  "subject_id": "src-1e4d49a22ff5b84e1714564f",
+  "input_hash": "3e90f7d33cd110624ebc80de40366557d67a3ffc95349f94b70b7c9ce1434ffa",
+  "input_revision": "semantic-v2-sha256:47121fee37f9831402d7ad26401eff90d1120013d0f1f9a8844ec86d2e5b4338",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1e4d49a22ff5b84e1714564f"
+  ]
+}

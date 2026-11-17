@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-13671469f543d1e062663f01: Source baseline: FileSystemAccessAllowWslHomeSubfolders A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f0021ed8d72bb127d6583215bd8361a5",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-13671469f543d1e062663f01",
+  "input_hash": "3623c8ee67e88e98316f627c9f59612d9cd2a3bb4dc86c52628800253911fce3",
+  "input_revision": "semantic-v2-sha256:38f545951e846139ec58ca9ffdb119f98bf86bfd61ba55620094a8938a5f9d1e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-d9001c1c6fdb45975057c952"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7e44b7e52b7267320e8592c8: Fixed content placed outside a misnested <table> being inserted in the wrong place, or dropped, when script moved the table while the page was still being parsed. (186340113) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c44faac147316417e7a8de4c02ceb55f",
+  "subject_kind": "source_item",
+  "subject_id": "src-7e44b7e52b7267320e8592c8",
+  "input_hash": "0a93320baa11872e0cf66b2b841fda8a7d4d4585110456c11370307cac82f109",
+  "input_revision": "semantic-v2-sha256:00e04b477fe606467c8b332889dfca7de56c10ab2bff5fe9e3208f853570213c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-fcfe938247fd2cf3b125ed58f04c8a69",
+  "evidence_source_item_ids": [
+    "src-7e44b7e52b7267320e8592c8"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome 142 introduces a shift in the process isolation policy from locking processes to a site like ` to locking them to a specific origin, such as, ` To further enhance security, Chrome is moving to a more granular proc"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-74fcfa76783d78c9fc4695104e3a36af",
+  "subject_kind": "source_item",
+  "subject_id": "src-93f47a6fc71fb3ecdd7fb9e0",
+  "input_hash": "dc1d133d378a65cd7fa0243d48a2d9ae29f92f23d3c563bb130865f8b604fa84",
+  "input_revision": "semantic-v2-sha256:a0560339565a486a90cb7c1210a3b8d8ff1f0c11b28c1d9aad96db3ae5496ec5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-93f47a6fc71fb3ecdd7fb9e0"
+  ]
+}

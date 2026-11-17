@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed an issue where Content Security Policy incorrectly applied script-src to JSON module imports instead of connect-src . (180006320)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9dfa7e20604523d2e5aea6082a18bb4e",
+  "subject_kind": "source_item",
+  "subject_id": "src-7522eea334b2772e90e1702e",
+  "input_hash": "81a2ef333f05d7c2e1745fa374133e4aebcdf39bd134e4fce6f78f0f8b9422a3",
+  "input_revision": "semantic-v2-sha256:f709010da56130b9468f90d72e03157de46ecc5330828ce22cc1320899115953",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7522eea334b2772e90e1702e"
+  ]
+}

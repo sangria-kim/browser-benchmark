@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted file may result in unexpected app termination or disclosure of process memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-156e02eb5b7aca67b5f791175acd82c7",
+  "subject_kind": "source_item",
+  "subject_id": "src-d58578b5e6a74109a302ba70",
+  "input_hash": "477a9eb6ea5f1d4674908a9501c6729af8ca2ba11e7e530461c9c353fc5bd982",
+  "input_revision": "semantic-v2-sha256:f23c2088a92ec31747f03a3447f5935c7bdda3cb7fa7aca13225131e7f8065c7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d58578b5e6a74109a302ba70"
+  ]
+}

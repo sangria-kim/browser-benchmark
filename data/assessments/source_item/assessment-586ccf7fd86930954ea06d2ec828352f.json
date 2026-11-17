@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1a49a43d6aa75cc1aea5ad7c: Fixed animation-range-start and animation-range-end resolving incorrectly when zoom is applied, including when the value is inherited from an element with a different zoom factor. (185760120) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-586ccf7fd86930954ea06d2ec828352f",
+  "subject_kind": "source_item",
+  "subject_id": "src-1a49a43d6aa75cc1aea5ad7c",
+  "input_hash": "8130403a4063d84676e50785aa685e9193e94647445cb68114d1b79cdd9ef36b",
+  "input_revision": "semantic-v2-sha256:adafcc96e835d224eeb3f3014402274400b53c9434770f11c75f071627a6203a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-d37a93df036047b1006b9bdbe1f11472",
+  "evidence_source_item_ids": [
+    "src-1a49a43d6aa75cc1aea5ad7c"
+  ]
+}

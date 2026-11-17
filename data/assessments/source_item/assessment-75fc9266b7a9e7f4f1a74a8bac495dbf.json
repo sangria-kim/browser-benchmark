@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3fefaa7f6035474413b19e34: Fixed an issue where RTCPeerConnection.addIceCandidate() did not reject when the connection was already closed. (170470988) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-75fc9266b7a9e7f4f1a74a8bac495dbf",
+  "subject_kind": "source_item",
+  "subject_id": "src-3fefaa7f6035474413b19e34",
+  "input_hash": "2901462d26c2c544e633d3068a06c4b15eac297b00157566b7f36ea2ce0caaba",
+  "input_revision": "semantic-v2-sha256:75a9bf9658ad7f394b7b0a026d8f3f4ada65ddaa1e6528b55949c8a20f95d2b4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3fefaa7f6035474413b19e34"
+  ]
+}

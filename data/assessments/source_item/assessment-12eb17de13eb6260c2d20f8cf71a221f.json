@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1c1681daee097a8abf9648aa: Fixed an issue where ::first-letter styles caused Range.getClientRects() and Range.getBoundingClientRect() to return incorrect dimensions. (71546397) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-12eb17de13eb6260c2d20f8cf71a221f",
+  "subject_kind": "source_item",
+  "subject_id": "src-1c1681daee097a8abf9648aa",
+  "input_hash": "3febcd841133dd84536eee1266428fbd2bf60f5441ced0b387f7bd179b3c2e80",
+  "input_revision": "semantic-v2-sha256:d4816167a9f5f144ab1e9a37a43c32af6330e2c02095625e752e11c187dd5330",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1c1681daee097a8abf9648aa"
+  ]
+}

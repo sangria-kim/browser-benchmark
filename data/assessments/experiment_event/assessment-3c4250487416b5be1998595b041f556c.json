@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-74f1a99662e749810bad50f9: Source baseline: WebAuthnEnclaveAssertNoJsonNull A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3c4250487416b5be1998595b041f556c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-74f1a99662e749810bad50f9",
+  "input_hash": "e71ffca958c765e873ffa924b248e50deaafce4db2b8dcbc7d0f66daefb15b24",
+  "input_revision": "semantic-v2-sha256:9661ab860fcc22f86a46a362813113de04bc2007d7410aaefa733c47f594dc78",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-26803289357141e73718d386"
+  ]
+}

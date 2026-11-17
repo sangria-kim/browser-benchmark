@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-04d10d8fbf52f6122d79e92a: Fixed an issue where outside list markers were only repositioned after layout when their first formatted line was in a descendant block, instead of for every outside list marker. (185529863) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e2f3ee8256248a2fd73f817d15c89607",
+  "subject_kind": "source_item",
+  "subject_id": "src-04d10d8fbf52f6122d79e92a",
+  "input_hash": "bdf79f10224712515f1808a57b731d79739a60f22e6bc096c5486ff10b283ad3",
+  "input_revision": "semantic-v2-sha256:ec3312429858d29a228f016bf8bd0dcdb2c3ea2df38bea8214335415d9e14fd9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-b9d8c936e6356ae5841d5653dae6cb66",
+  "evidence_source_item_ids": [
+    "src-04d10d8fbf52f6122d79e92a"
+  ]
+}

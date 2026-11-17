@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-097fd32e2ecebee095e6d6a7: Fixed an issue affecting tenants using Conditional Access (CA) where users in a degraded Microsoft Entra ID sign-in state were unable to use Single Sign-on (SSO) to access CA-protected resources. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ca45885c97408a6274fb2645f3f53144",
+  "subject_kind": "source_item",
+  "subject_id": "src-097fd32e2ecebee095e6d6a7",
+  "input_hash": "5ab396ab433bc19e233585bf3b37c4a91ec154ca2da20b6d149e1a838f8b590b",
+  "input_revision": "semantic-v2-sha256:aa417103e850a8fd1804a3a7e74938559514152f8a313f52c967410753e53d9e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-097fd32e2ecebee095e6d6a7"
+  ]
+}

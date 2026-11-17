@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-050155f36e661f25145cde4f: Fixed an issue where absolutely-positioned elements inside inline containers did not correctly account for the margin of a preceding block when determining their static position. (170934098) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ccf567a9cbd166e85f0f0ded9c872f7a",
+  "subject_kind": "source_item",
+  "subject_id": "src-050155f36e661f25145cde4f",
+  "input_hash": "414e79f018d0152c26568a3520715c50229d00968533fdd56e1b93616fbb66ed",
+  "input_revision": "semantic-v2-sha256:87aa86636c0a50b90d32599d7289ae97f625a06aa4592a9917573ff4fb8c63f5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-050155f36e661f25145cde4f"
+  ]
+}

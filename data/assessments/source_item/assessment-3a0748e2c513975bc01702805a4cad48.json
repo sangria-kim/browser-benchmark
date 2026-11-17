@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f964acc8be57839d4b2ec2f6: Fixed NavigateEvent.canIntercept to correctly return false when navigating to a URL with a different port, aligning with the Navigation API specification. (169845691) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3a0748e2c513975bc01702805a4cad48",
+  "subject_kind": "source_item",
+  "subject_id": "src-f964acc8be57839d4b2ec2f6",
+  "input_hash": "f076abc1d27eaeeea90803988d89679f5ad57aa4acae8c572b49214675378302",
+  "input_revision": "semantic-v2-sha256:79fb7fbcb126760ae23109a1a74f484334e8385ab217f17a99714ef0557451e3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f964acc8be57839d4b2ec2f6"
+  ]
+}

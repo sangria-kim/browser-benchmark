@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted image may result in memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-61ddd402ef2c64145ca6dcb8460511c9",
+  "subject_kind": "source_item",
+  "subject_id": "src-9e71f4e03eb7ee8e5b98e260",
+  "input_hash": "1bee669a90b5b96dc232b61b8d68ee5d85b22941ebc72ca0445dcd105715fe31",
+  "input_revision": "semantic-v2-sha256:3f054e51f9102b29ab82f29cefa36a1de64149a5b4ec807d43d03375d7badfa4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9e71f4e03eb7ee8e5b98e260"
+  ]
+}

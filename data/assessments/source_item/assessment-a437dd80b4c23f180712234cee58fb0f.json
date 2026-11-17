@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b9c6665e9ae008f40f7ceeaa: Fixed DataTransfer.getData(\"url\") returning the whole text/uri-list instead of only its first URL. (184988378) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a437dd80b4c23f180712234cee58fb0f",
+  "subject_kind": "source_item",
+  "subject_id": "src-b9c6665e9ae008f40f7ceeaa",
+  "input_hash": "eadb0375ed4e3fa5d3edc7abccc23e68fd9ff0ab98e6205bff76d8bb05e9f78b",
+  "input_revision": "semantic-v2-sha256:1d165d5572f6b1367734a4beb5dfc9cd703fc2dfe473e9117fc30a8c4e84e73a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-6d9df954236da688f7076b2c1809e1eb",
+  "evidence_source_item_ids": [
+    "src-b9c6665e9ae008f40f7ceeaa"
+  ]
+}

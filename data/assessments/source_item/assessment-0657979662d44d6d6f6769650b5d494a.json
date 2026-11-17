@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Starting in Chrome 150, Chrome introduces randomization to the connection limits for TCP socket proxy pools. This security enhancement is designed to mitigate cross-site state leakage. Currently, by exploiting limits in "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0657979662d44d6d6f6769650b5d494a",
+  "subject_kind": "source_item",
+  "subject_id": "src-0ed8cc32dbef34a8a9571499",
+  "input_hash": "4ba323c1a65625cb3908b70f698c74bb7228fca745ed124e742db154cf6ced21",
+  "input_revision": "semantic-v2-sha256:6ccd7e8702c8a87ad66abb49e8f4cbe1c02135464ef7837101ee9e66a54fbb8a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0ed8cc32dbef34a8a9571499"
+  ]
+}

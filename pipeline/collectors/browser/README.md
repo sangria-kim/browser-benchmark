@@ -15,6 +15,14 @@ The collectors write validated arrays to `data/source-items/<browser>/<source_id
 
 HTML adapters use publisher-specific product body boundaries. They retain list entries, table rows and prose, including security and fixes. Unrecognized text or image-only entries get minimal unresolved records. Apple uses official DocC topic sections and structured content. ChromeStatus uses `/api/v0/features` and checks `total_count`. GitHub uses its release API and follows the Link header. The Whale homepage embeds the official notice board; its public script uses the `whalehomepage` service and section 199 at `notice.naver.com`.
 
+The collector replaces explicit image-credit fields and contributor links after a
+photo-credit label with a neutral marker. A line break can start a photo credit.
+Standalone paragraphs labeled `Written by:`, `Authored by:` or `Posted by:` can
+contain inline markup such as author links. Standalone bold bylines with the role
+`Product Manager` or `Product Director` also use a neutral marker. The collector
+keeps the source unit and surrounding product text. It removes the attribution
+before reading headings and parent blocks.
+
 The private directory contains source checkpoints, pinned response metadata and raw response bytes. It must be outside the repository. Keep it out of exports. Discovered observations reconcile into processed, duplicate and unparsed counts. Stored record counts are separate. Unknown layouts, missing documents, changed API totals, truncated responses or HTML indexes, pagination loops and circuit-breaker limits leave coverage partial. Last successful source records survive failures. Source absence never creates a removal claim.
 
 Resume uses the same explicit cutoff and cached response bytes. It reparses successful HTML inputs locally and continues the remaining page/document budget. Mutable ChromeStatus and Google blog API pages are refreshed as one enumeration; they are not mixed with earlier partial pages. The Google feed definition is also refreshed. Cached article evidence can still be reused. Changed totals or repeated IDs leave coverage partial. Start a new run to use changed collector code. The daily runner's `--browser-cache-from` verifies raw response hashes and copies no parsed status or output records. No adapter can prove completeness of unpublished source items.

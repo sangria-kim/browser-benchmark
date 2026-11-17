@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A local attacker may gain access to user's Keychain items"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-691c9c1ad8fc6bef70fd7c6dddd4882e",
+  "subject_kind": "source_item",
+  "subject_id": "src-9672dbd6016db66efe451274",
+  "input_hash": "63de556448e9ee308d872f32658a7f45fc7e986edf46edee38334be18feb8d16",
+  "input_revision": "semantic-v2-sha256:1e6c87e8701073f92f898dec20df3d38b134426cbe6aeb17090abbf3a3299b61",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9672dbd6016db66efe451274"
+  ]
+}

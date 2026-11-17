@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$500.0] [503346647 ] Low CVE-2026-11225 I identified that the Chrome browser’s Reading List feature introduces an origin confusion issue by reordering domain names. This behavior can mislead users about the true origin "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9bad7ebef376dd77f3476fb6a33641ab",
+  "subject_kind": "source_item",
+  "subject_id": "src-1b57fb7cb445cde9e0b4ddfb",
+  "input_hash": "a123c37358166de1985e43e88cb8513e38b58c8a48c408a949320399f5ea7847",
+  "input_revision": "semantic-v2-sha256:6c8b613bce403fed571e5d328c7828188aaf9a3e759215386da977084f3c0a7b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-1b57fb7cb445cde9e0b4ddfb"
+  ]
+}

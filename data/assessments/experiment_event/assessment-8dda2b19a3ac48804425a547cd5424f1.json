@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a11a7eaa67f2eacb16907c34: Source baseline: FileSystemAccessCheckHidden A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8dda2b19a3ac48804425a547cd5424f1",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a11a7eaa67f2eacb16907c34",
+  "input_hash": "76aa92f80f4d25ba5b9e3bdb770da811568d67c07025e0a5780f2391d233c131",
+  "input_revision": "semantic-v2-sha256:f0d1ec7c37cbedb6ac544745e69074db8ca56ddf6e94da90cbbf806e2d404f61",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ff0192c13caa94b6c306bc51"
+  ]
+}

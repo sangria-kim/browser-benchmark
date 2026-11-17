@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4911cf295a37ec4e239412f8: Fixed the String.prototype.localeCompare() collator cache going stale after a language change. (184096794) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-707e63e6159ce08a58b15f1da32eccd1",
+  "subject_kind": "source_item",
+  "subject_id": "src-4911cf295a37ec4e239412f8",
+  "input_hash": "61103e5c03b9fe16caf8f55dc3a5e73de58fdf6aa423c0251b5fc1225792aab9",
+  "input_revision": "semantic-v2-sha256:6cbd7ea0f1e81e465fcbe2467cdc48c1ef72eeca5c09907749dc3f792b328d05",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-822b982079effefb961a6ea4c5d1f984",
+  "evidence_source_item_ids": [
+    "src-4911cf295a37ec4e239412f8"
+  ]
+}

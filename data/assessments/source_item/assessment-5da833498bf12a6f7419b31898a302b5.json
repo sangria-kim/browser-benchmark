@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f6e6b14ec1ad9b978e578d9c: Fixed: Changed calc() simplification so that clamp(none, a, b) becomes max(a, b) and clamp(a, b, none) becomes min(a, b) . ( [contact omitted] ) (185531467) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5da833498bf12a6f7419b31898a302b5",
+  "subject_kind": "source_item",
+  "subject_id": "src-f6e6b14ec1ad9b978e578d9c",
+  "input_hash": "f93802a01507ebc113f6e53bcd61796f5a06da7ebfe1a3efde59e08ef7fb4c6f",
+  "input_revision": "semantic-v2-sha256:f18b7ae413d62db8abcfcad040b0a4f1db4abe909fe5b18e48e5683f4833a3a2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f6e6b14ec1ad9b978e578d9c"
+  ]
+}

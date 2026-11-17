@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d378c344979921bd2f901c94: These steps have been heavily optimized in order to limit the overhead on top of normal search to a minimum. In practice we observe a total latency under 500ms at p90 for calls to LLM Context. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ea8c29ab6155a7e5234bfa77591e29d0",
+  "subject_kind": "source_item",
+  "subject_id": "src-d378c344979921bd2f901c94",
+  "input_hash": "fefd60291e7c2fd97c5c0fdb536c77e83d051fe1d09a58df93b6d771989f584d",
+  "input_revision": "semantic-v2-sha256:86bb7a2fc509dbd8642cab76ca55a8c3c30d2dd9a7eebb02ff2c8e5645f43743",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d378c344979921bd2f901c94"
+  ]
+}

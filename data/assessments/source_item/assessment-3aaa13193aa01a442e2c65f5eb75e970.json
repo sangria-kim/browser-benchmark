@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-42c290bab7b1ad70cdb18844: Fixed an issue where explicitly setting a font size that matched a legacy <font> size would be incorrectly substituted with the legacy size, causing inconsistent rendering across different default font size configuration A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3aaa13193aa01a442e2c65f5eb75e970",
+  "subject_kind": "source_item",
+  "subject_id": "src-42c290bab7b1ad70cdb18844",
+  "input_hash": "aad6224e1884094bad36682d16e3ac7224e45465dd01c14d9024a40e52b5600c",
+  "input_revision": "semantic-v2-sha256:41b7fbce6bda16adca6a0d12d53310c67ddcf247211b027324f379b54505ab47",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-42c290bab7b1ad70cdb18844"
+  ]
+}

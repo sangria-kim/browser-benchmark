@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e0c97885dd48c6646d32a88a: Fixed an issue where CSS math functions produced an incorrect signed zero for subtraction, min() , max() , clamp() , and mod() . ( [contact omitted] ) (179534440) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8d89f21b1f78c64d41224eb6d9c43906",
+  "subject_kind": "source_item",
+  "subject_id": "src-e0c97885dd48c6646d32a88a",
+  "input_hash": "cad70ad78e7856e7883fd28431eb96b1d81a44d8f4fb932ac91dbd719fb40a32",
+  "input_revision": "semantic-v2-sha256:f2aafa71ed0fd39d7ca0cf8bb85ed98fa0d34ac1fdfdfc632ff2389e6a3f36db",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e0c97885dd48c6646d32a88a"
+  ]
+}

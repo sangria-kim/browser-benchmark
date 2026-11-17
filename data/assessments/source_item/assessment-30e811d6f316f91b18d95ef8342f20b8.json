@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e12c01f0d74a3b71a3159d0e: Exposes a shared MessagePort on AudioWorklet and AudioWorkletGlobalScope. This lets web applications communicate directly between the main thread AudioWorklet and the AudioWorkletGlobalScope without creating a bootstrap  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-30e811d6f316f91b18d95ef8342f20b8",
+  "subject_kind": "source_item",
+  "subject_id": "src-e12c01f0d74a3b71a3159d0e",
+  "input_hash": "8134917aed5c6f6949a62e5406a8c07ab9921c23266829019ea95eacb5ed8bdd",
+  "input_revision": "semantic-v2-sha256:957028d5e967da10e1e67b2af4a768ead0fda1fa16c15890f2c50edcd2ed58a4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e12c01f0d74a3b71a3159d0e"
+  ]
+}

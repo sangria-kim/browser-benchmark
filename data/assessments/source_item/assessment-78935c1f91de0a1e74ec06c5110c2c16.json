@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-46611b99d90c2feb7bbb0bb5: Returns null from CSSImportRule.styleSheet when an @import rule has no associated stylesheet, including when its supports() condition is false. This lets developers check whether a stylesheet is associated with the rule  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-78935c1f91de0a1e74ec06c5110c2c16",
+  "subject_kind": "source_item",
+  "subject_id": "src-46611b99d90c2feb7bbb0bb5",
+  "input_hash": "ac266bd5523e3145892f2d3600766616c9ded86d3ce6b9eab87de975cbe9a2d3",
+  "input_revision": "semantic-v2-sha256:798ebb209755486d71a1fde81c3874ea41702ddaac066085f794d5856fc357b0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-46611b99d90c2feb7bbb0bb5"
+  ]
+}

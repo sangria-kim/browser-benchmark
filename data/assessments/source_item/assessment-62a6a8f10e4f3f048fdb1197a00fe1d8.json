@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0cb78423fc216b01dcbe01ad: Fixed pathFromEllipseElement to honor auto values for rx and ry , so APIs such as getTotalLength() return the correct length for ellipses. (178959205) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-62a6a8f10e4f3f048fdb1197a00fe1d8",
+  "subject_kind": "source_item",
+  "subject_id": "src-0cb78423fc216b01dcbe01ad",
+  "input_hash": "5c8ee2b1951401dc5263004cdeb3ab3f22351fee6cdd2dceb3858194b19fdc62",
+  "input_revision": "semantic-v2-sha256:acd1f07eda4383e1c6cb7ac15d03cd1659c754333b3b533daa8f33a5d892c6e6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0cb78423fc216b01dcbe01ad"
+  ]
+}

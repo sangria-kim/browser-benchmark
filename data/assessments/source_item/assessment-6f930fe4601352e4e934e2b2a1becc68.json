@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Internally found bugs present in Firefox 153. Some of these bugs showed evidence of memory corruption or another security-relevant defect and we presume that with enough effort some of these could have been exploited."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6f930fe4601352e4e934e2b2a1becc68",
+  "subject_kind": "source_item",
+  "subject_id": "src-bc0f18f5df8720b4a2f8a4c4",
+  "input_hash": "4f120da12593dc11127ae0841cd86b4552a6c443be12bdff15edd9c600ae1a0f",
+  "input_revision": "semantic-v2-sha256:e2d5ea579c1a61a280c609dce5474ca60749052b18a5d9c8519f858301b24260",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bc0f18f5df8720b4a2f8a4c4"
+  ]
+}

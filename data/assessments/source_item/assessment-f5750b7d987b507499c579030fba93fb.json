@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes CVE-2026-46242 (Bad epoll) - Linux Local Privilege Escalation"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f5750b7d987b507499c579030fba93fb",
+  "subject_kind": "source_item",
+  "subject_id": "src-3bf8720da2d62b9ab9798c79",
+  "input_hash": "788eff30afba9ce060ee0afccc479ab2bf83a4d0268db78d6172cab9db86c6bb",
+  "input_revision": "semantic-v2-sha256:482a496f79b8146757f2d8e56762f5bc650aaa1f69a24aec7f965728eb06c33d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3bf8720da2d62b9ab9798c79"
+  ]
+}

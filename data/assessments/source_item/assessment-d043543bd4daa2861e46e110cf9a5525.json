@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$TBD] [516986556 ] High CVE-2026-11678 Integer overflow in libyuv on 2026-05-26"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d043543bd4daa2861e46e110cf9a5525",
+  "subject_kind": "source_item",
+  "subject_id": "src-d58def9a52f319f422a46c6d",
+  "input_hash": "cfbff4711f8fd2c9bf34718fab5938e3605ba1d880382183783baa55d5fb1f8e",
+  "input_revision": "semantic-v2-sha256:c7eec080e7dcf11898f61c7efb908d53d16176f0c38b6e1be9a763fe09944eca",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d58def9a52f319f422a46c6d"
+  ]
+}

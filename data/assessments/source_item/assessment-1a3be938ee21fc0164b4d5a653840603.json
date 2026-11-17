@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fc87bdc8f1dd1991a0255009: Fixed an issue in JavaScriptCore where a stale inline cache for a custom accessor on a previously flattened dictionary could persist after the accessor was shadowed, which could cause code that replaces built-in properti A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1a3be938ee21fc0164b4d5a653840603",
+  "subject_kind": "source_item",
+  "subject_id": "src-fc87bdc8f1dd1991a0255009",
+  "input_hash": "19896a104584c7766d2caff4810d0709d67c18fc39edcd8b7345104621b925b8",
+  "input_revision": "semantic-v2-sha256:afef268f5d52c89238cca31ae692c80650932d78d6152d0277053517cd383fd4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fc87bdc8f1dd1991a0255009"
+  ]
+}

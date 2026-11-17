@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: - [Engine] Updated the Chromium engine to version 148. - [Tab] Added the ability to free up memory used by other tabs. : Right-click a tab and select \"Free Up Memory from Other Tabs\" to release memory from background tab"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2ec7aee580bd119b09fe400a6baeef39",
+  "subject_kind": "source_item",
+  "subject_id": "src-a71a2526e9533fa55437e6ef",
+  "input_hash": "4e9b15592b20a969ac0afcccf316bbb72eb9b1f12e00661a9479ae236f2eecab",
+  "input_revision": "semantic-v2-sha256:0598d10d99661d0de94e9ff74abf65e3246d59d765aa5c88fa8854f2b553c1d4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a71a2526e9533fa55437e6ef"
+  ]
+}

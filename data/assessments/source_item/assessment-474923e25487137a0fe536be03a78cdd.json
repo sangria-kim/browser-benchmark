@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Low Fixes CVE-2023-53731 Kernel Deadlock (IRQ lock inversion) vulnerability in the Netlink interface."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-474923e25487137a0fe536be03a78cdd",
+  "subject_kind": "source_item",
+  "subject_id": "src-0600efbb83af576a0972a0b3",
+  "input_hash": "425601a6a957113be9bd5fbdb79334be62f558aa4d57e700465d75fc3758c693",
+  "input_revision": "semantic-v2-sha256:bf045ffbf9b0a74603841184b212552c1b13c4127fcf3e3f900ba97b78c1a0eb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0600efbb83af576a0972a0b3"
+  ]
+}

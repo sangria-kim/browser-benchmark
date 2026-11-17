@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 574911589 High CVE-2026-118347 Use after free in FileSystem"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-381a54d563f3f9fb1e2354cd066862f3",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a3f17a14b5c79ccc827aa0f",
+  "input_hash": "9358570dfb5cfb446b145385a8484246274eea71205f3460f761c7df9dce6ef8",
+  "input_revision": "semantic-v2-sha256:cf8d2e39e6c0568cdae627be9e0dadce417c4bed56c74e88603c718561f34ab1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2a3f17a14b5c79ccc827aa0f"
+  ]
+}

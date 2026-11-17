@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e262a98b070c4332fa404c49: Fixed an issue where Intl.DurationFormat in digital style included a stray separator when minutesDisplay was set to \"auto\" and minutes ended up hidden. ( [contact omitted] ) (180722012) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1717d235111fc2ce223d854761cc60ea",
+  "subject_kind": "source_item",
+  "subject_id": "src-e262a98b070c4332fa404c49",
+  "input_hash": "0d82429fbc165cde23fff5c3a9a15ac12036c0f477a2f406b872a9e3278bbfe2",
+  "input_revision": "semantic-v2-sha256:93228bd9f1dc526b2aba01faa3bf44ab9cf84dbe0f487bb87e0934a7ae4350fe",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e262a98b070c4332fa404c49"
+  ]
+}

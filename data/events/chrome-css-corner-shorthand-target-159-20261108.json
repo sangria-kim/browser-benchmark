@@ -41,15 +41,15 @@
   },
   "verification_status": "official_bodies_read_list_move_confirmed_release_novelty_unresolved",
   "previous_event_id": null,
-  "selection_status": "pending_verification",
-  "selection_reason": "공식 목록 이동 자체는 전일 색인과 대조해 확인했다. 그러나 Proposed 상태와 is_released=false가 유지되고 상세 목표 159의 최초 변경 시점·실제 shipping 승인은 미확인이다. 목록의 Enabled by default 표제를 Stable 제공으로 해석하지 않으며 새 기능 출시·배포 확대·철회로 선정하지 않음.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "지원 단계가 확정되면 동일 플랫폼에서 corner 단축 선언과 기존 border-radius/corner-shape 조합의 렌더링·호환성 및 작성 오류를 비교할 수 있는가?",
+  "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "명시적 shipping 승인 또는 Stable 배포 근거, 상세 단계 이력과 목표 변경 시점, 설치본 지원 검증",
-  "assessed_at": "2026-11-07T23:10:44.967536+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "korea": {
     "availability": "미확인",
     "korean_language": "미확인",
@@ -69,5 +69,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: An out-of-bounds write issue was addressed with improved bounds checking."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ac5c4d587cdd364b4f5864f863db1ebe",
+  "subject_kind": "source_item",
+  "subject_id": "src-7f4afcaf224f242cc3d71cbe",
+  "input_hash": "1c141dc812a6f43ecc09b49634c3c21d15464eb9ed0a36e1b8e9f91077fb404a",
+  "input_revision": "semantic-v2-sha256:b6794bd10e3c8816fa8b2d188e0659dd79cf4690eb1c62e7c08e427bb17f54ac",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7f4afcaf224f242cc3d71cbe"
+  ]
+}

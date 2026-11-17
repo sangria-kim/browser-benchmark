@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted image may lead to arbitrary code execution"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-df8a3fc7e62e3e45d1f1f86f3134fc59",
+  "subject_kind": "source_item",
+  "subject_id": "src-78025ce9d6846ec44821e48d",
+  "input_hash": "c1d1929b0438696ee37d64cca82177479861fcb55d18c077096c87e6abdd9704",
+  "input_revision": "semantic-v2-sha256:97bc6fc4eb532ac6679410903136c8c6a697020513884f7eaa262a7e17701fdc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-78025ce9d6846ec44821e48d"
+  ]
+}

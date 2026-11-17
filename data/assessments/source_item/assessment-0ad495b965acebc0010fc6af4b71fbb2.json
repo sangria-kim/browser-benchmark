@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-483bed0309fe676a08f481e6: Fixed CSSStyleDeclaration.setProperty() failing to apply !important priority to an existing inline style property when the value was an integer of 255 or lower. (176099619) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0ad495b965acebc0010fc6af4b71fbb2",
+  "subject_kind": "source_item",
+  "subject_id": "src-483bed0309fe676a08f481e6",
+  "input_hash": "9d937ad929ba381a5ecfbe7b561c33b15be5cfca5b6b257ec6ed5b536fa3e62d",
+  "input_revision": "semantic-v2-sha256:59d761c56ea10fb34926807acbdc95450f7541b67e5fa267334fe1adedd8cd5b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-483bed0309fe676a08f481e6"
+  ]
+}

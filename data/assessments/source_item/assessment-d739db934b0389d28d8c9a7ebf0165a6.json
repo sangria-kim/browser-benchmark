@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Low Fixes CVE-2024-58051 Memory Safety (NULL pointer dereference) vulnerability in the IPMI/IPMB driver."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d739db934b0389d28d8c9a7ebf0165a6",
+  "subject_kind": "source_item",
+  "subject_id": "src-ce85a729227c262932ff8bef",
+  "input_hash": "0178aefde341dd7ec4659ab8a95722a4bb70f21acca6d5d957b68d1c327da34f",
+  "input_revision": "semantic-v2-sha256:d461ea3c481f5b98e93bc42620ba37d501d90d55b7c6e4e7c086775605069a3e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ce85a729227c262932ff8bef"
+  ]
+}

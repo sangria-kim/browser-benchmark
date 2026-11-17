@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Mounting a maliciously crafted exFAT volume may cause unexpected system termination or kernel memory disclosure"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2599e4b21ca5323e31a296196cbf16a7",
+  "subject_kind": "source_item",
+  "subject_id": "src-42fb750a5a68e1c679eb4e97",
+  "input_hash": "8c35d733c7f5010d7634e89cd393d7f5e513c73b92ff49f004a5fd783239e308",
+  "input_revision": "semantic-v2-sha256:e4e3353998d97a0904eb4bab08aee857f0aea9181a75258a63b4723d78062d3b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-42fb750a5a68e1c679eb4e97"
+  ]
+}

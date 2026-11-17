@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-01ff81187d79e599315ef6aa: Fixed an issue where changing a list attribute detached the SVGNumber , SVGLength , and SVGPoint objects held by a script instead of updating them. ( [contact omitted] ) (186835842) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2ddd20bc9235c67a92703d4b9ffab6de",
+  "subject_kind": "source_item",
+  "subject_id": "src-01ff81187d79e599315ef6aa",
+  "input_hash": "7aaea89d02e5043e91d78900da529687f9e8c82081a946e581731c02b853fb4a",
+  "input_revision": "semantic-v2-sha256:4ca9f7d6a84857cfa431f35c940f866d88fa6c17f9e12cded56daf6ab9a49033",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-01ff81187d79e599315ef6aa"
+  ]
+}

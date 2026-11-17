@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-8dbb2e03363f51a350839f8d: Fixed an IndexedDB put() that fails a unique index constraint deleting the record it would have overwritten, leaving the object store with neither the old nor the new record. ( [contact omitted] ) (181513905) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-89f8f4a86ccafc2ab82bc166754ecb3a",
+  "subject_kind": "source_item",
+  "subject_id": "src-8dbb2e03363f51a350839f8d",
+  "input_hash": "14cd7db66e04a97118c15de0c097c161886ed5dfced1017c4821f41989a26106",
+  "input_revision": "semantic-v2-sha256:015ed952270d9e7f72da397f8a691c103aa9c6720e225308a099a73235c3e98f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8dbb2e03363f51a350839f8d"
+  ]
+}

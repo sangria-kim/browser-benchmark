@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-80f170244d6fa7729e0dc802: Added support for the Origin-Agent-Cluster header. document.domain remains accessible by default, and the header can be used to disable it. (182112072) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f3324b4b76adb0ca973c5c36f4057dcd",
+  "subject_kind": "source_item",
+  "subject_id": "src-80f170244d6fa7729e0dc802",
+  "input_hash": "de0f567679f299f6d7b7d72988b5ffe9abe03e74f32bbf7d4bad6a8a52e3e189",
+  "input_revision": "semantic-v2-sha256:aaadef55abc573fcc29b942682ce0be53a7568301abfece213ebd304a3957306",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-5d0f7cfe448acf71edaee763704972b5",
+  "evidence_source_item_ids": [
+    "src-80f170244d6fa7729e0dc802"
+  ]
+}

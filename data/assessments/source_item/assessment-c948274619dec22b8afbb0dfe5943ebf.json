@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome 150 will be the last release to support macOS 12; Chrome 151+ will no longer support macOS 12, which is outside of its support window with Apple. Running on a supported operating system is essential to maintaining"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c948274619dec22b8afbb0dfe5943ebf",
+  "subject_kind": "source_item",
+  "subject_id": "src-ce1d2f444d7cb2f08ad77179",
+  "input_hash": "c66fabcd96fe72a7ad49d4d1a738c7265ab67d0a51601c9cb01e79baf75fda40",
+  "input_revision": "semantic-v2-sha256:722c167c4f823b05d4b472f8d4a18e4dce38fee8ef6de03d8cd8ac6fd6f52fd5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ce1d2f444d7cb2f08ad77179"
+  ]
+}

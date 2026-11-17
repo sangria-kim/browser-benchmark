@@ -5,11 +5,11 @@
   "effective_at": null,
   "verification_status": "official_sources_verified_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "selected",
-  "priority": "P2",
-  "benchmark_readiness": "conditional",
-  "assessed_at": "2026-11-05T22:52:24.712Z",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "pending_verification",
+  "priority": null,
+  "benchmark_readiness": "unknown",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "event_id": "brave-split-view-edge-drag-restore-stable-1-99-55-20261105",
   "feature_id": "brave-split-view-edge-drag",
   "browser": "brave",
@@ -58,11 +58,11 @@
     "stable_notes_date": "2026-11-05",
     "date_note": "API 생성·수정일, 공식 노트 날짜와 실제 개별 사용자 활성화일을 구분한다."
   },
-  "selection_reason": "탭을 창 가장자리로 끌어 두 페이지를 나란히 보는 직접 조작 경로가 정식 채널에 돌아온다.",
-  "priority_reason": "두 문서를 나란히 보는 반복 과제의 직접 조작 경로가 바뀌어 P2 비교 과제로 선정한다. 기존 기능 복귀이며 대규모 새 범주 도입은 아니다.",
-  "comparison_question": "동일한 두 문서 비교 과제에서 가장자리 드래그와 메뉴 기반 분할 방식은 조작 수·오작동·소요 시간에 어떤 차이가 있는가?",
+  "selection_reason": "Evidence retained for brave-split-view-edge-drag-restore-stable-1-99-55-20261105: 창 좌우 가장자리 드래그로 분할 보기를 여는 설정이 Desktop 1.99.55에서 복귀 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
+  "priority_reason": null,
+  "comparison_question": null,
   "benchmark_plan": "Windows 정식 1.99.55에서 설정 노출·초기값 기록→좌우 가장자리 각각 드래그→끄기/켜기→가로·세로 탭에서 반복. 탭 그룹 분리 후 충돌 유무를 관찰하되 이전 취약 버전을 설치하지 않는다.",
-  "revisit_trigger": "정식 설치본의 설정 노출·초기값·좌우 드래그 동작과 한국 환경 제공 여부 확인. 모바일은 독립 공식 Stable 근거 확인 후 재검토.",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
   "source_item_ids": [
     "src-legacy-1e2e11584860e6a16bfa847f",
     "src-legacy-2493dd6b530900c474f777a1",
@@ -73,5 +73,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-05",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

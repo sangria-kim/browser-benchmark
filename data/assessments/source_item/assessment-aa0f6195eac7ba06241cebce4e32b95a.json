@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0a06e4d361443193cb04af63: Prevent the launchQueue from re-sending the last LaunchParams (including file handles) when a user reloads the page. Currently, a page refresh triggers the launch consumer again with the data from the original launch. Th A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-aa0f6195eac7ba06241cebce4e32b95a",
+  "subject_kind": "source_item",
+  "subject_id": "src-0a06e4d361443193cb04af63",
+  "input_hash": "875c42c8730bcf0f350ca5f900fc12bb448372fcdcec93fe16b9d01f20f5d64a",
+  "input_revision": "semantic-v2-sha256:ab8f50e80309a07e4c0d2d1024987e01a041fa94e057441cc3fced7b356a673c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0a06e4d361443193cb04af63"
+  ]
+}

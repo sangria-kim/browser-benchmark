@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$TBD] [525317502 ] High CVE-2026-15772 Use after free in GPU on Android via GLTextureHolder::ReadbackToMemory on 2026-06-18"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5c2a906ec3ae6997704198935c29a7d9",
+  "subject_kind": "source_item",
+  "subject_id": "src-cf3c73a3d5494e73f929d374",
+  "input_hash": "051144694dd77f7cc126c66b4065062407ad4816ae66d6a726f27f13d693d12a",
+  "input_revision": "semantic-v2-sha256:d764433150a2055a3d3dedc7cd33d7e927e7ff76ac25ec60305f55cff7cad7fd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cf3c73a3d5494e73f929d374"
+  ]
+}

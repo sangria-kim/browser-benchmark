@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-012a57ea424cfa339cfe7c03: Source baseline: BundledSecuritySettingsAskBeforeHttp A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7a7332b0b0ccbc72afbbe0303a62c173",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-012a57ea424cfa339cfe7c03",
+  "input_hash": "5e3373c240f252ca25c97044c3493e6d872f5af93e1cb70988052221aeaa946b",
+  "input_revision": "semantic-v2-sha256:f14f67416fc467b93b28937308cc2b16d26d3721c118a7eb6beffe2de1e0f8e9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-39332746eb6af5589d6bfb23"
+  ]
+}

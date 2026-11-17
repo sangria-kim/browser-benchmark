@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2a27285d6d389f1a53b342e0: Fixed an issue where position-area for elements in scrollable containers only used the initial scrollport bounds instead of the entire scrollable area. (170503694) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8b45369a241d33ba75430d0689ecbe85",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a27285d6d389f1a53b342e0",
+  "input_hash": "268fda845a26d32e9ebf120482f6587974f3d9cd7e762ef46d9173074c1d19ca",
+  "input_revision": "semantic-v2-sha256:1e713fa6f229148a3cbd18618bc697077b39d89aca588c25e25222a5b4d8dce8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2a27285d6d389f1a53b342e0"
+  ]
+}

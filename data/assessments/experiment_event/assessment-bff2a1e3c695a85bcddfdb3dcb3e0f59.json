@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a81cc4cc8a3f5590b6572892: Source baseline: DeferMainFrameBeforeCommitWithPendingTree A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bff2a1e3c695a85bcddfdb3dcb3e0f59",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a81cc4cc8a3f5590b6572892",
+  "input_hash": "f9bc276dc0fa0dbd01b64c6ba6792e035a9c5b90c1918a872440c0b7eccd553b",
+  "input_revision": "semantic-v2-sha256:7961fbc2d96d135ed94bdc8e9e5b4ab14ff9705b5e5dae00668c51a13619ee35",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-f1b8f1ff5c4d84158d736722"
+  ]
+}
