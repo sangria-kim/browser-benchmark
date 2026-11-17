@@ -56,25 +56,7 @@ function renderCards(selection=data.selected, selectionDate='', pending=false){
  const dateCount=$('dated-selection-count');
  dateCount.hidden=!selectionDate;
  dateCount.textContent=!selectionDate?'':selection?`선정 기능 ${featureCount}개 · Chrome 실험 ${experimentCount}개`:pending?'선정 수를 불러오는 중…':'선정 수를 불러오지 못했습니다.';
- $('overview').innerHTML=`
-  <div class="metric">
-   <span class="metric-label">${basis} 선정 · 기능 / 실험</span>
-   <div class="metric-line"><strong>${featureCount} / ${experimentCount}</strong><small>PM 판단 기준</small></div>
-  </div>
-  <div class="metric">
-   <span class="metric-label">기능 카탈로그</span>
-   <div class="metric-line"><strong>${data.counts.feature.toLocaleString('ko-KR')}</strong><small>개 기능</small></div>
-  </div>
-  <div class="metric">
-   <span class="metric-label">수집한 근거 항목</span>
-   <div class="metric-line"><strong>${data.counts.source_item.toLocaleString('ko-KR')}</strong><small>건</small></div>
-   <p class="metric-caption">릴리스 노트·정책·보안 공지의 개별 기록과 Chromium 소스 정의</p>
-  </div>
-  <div class="metric">
-   <span class="metric-label">Chrome 실험 카탈로그</span>
-   <div class="metric-line"><strong>${data.counts.experiment.toLocaleString('ko-KR')}</strong><small>개 실험</small></div>
-   <p class="metric-caption">${Object.entries(kindNames).map(([k,n])=>`${n} ${(data.experiment_counts[k]||0).toLocaleString('ko-KR')}`).join(' · ')}</p>
-  </div>`;
+ $('source-totals').textContent=`전체 자료 · 기능 카탈로그 ${data.counts.feature.toLocaleString('ko-KR')}개 · 수집한 근거 항목 ${data.counts.source_item.toLocaleString('ko-KR')}건 · Chrome 실험 카탈로그 ${data.counts.experiment.toLocaleString('ko-KR')}개`;
 }
 function updateURL(){const p=new URLSearchParams();if(view!=='features')p.set('view',view);if(browser!=='all')p.set('browser',browser);for(const id of controls){const el=$(id),v=el.type==='checkbox'?(el.checked?'1':''):el.value;if(v&&!['new','current','source_item'].includes(v))p.set(id,v);}if(view==='reports'){p.set('report-date',$('report-date').value);p.set('report-revision',$('report-revision').value);}history.replaceState(null,'',location.pathname+(p.size?'?'+p:'')+location.hash);}
 function options(id,values,label){const old=$(id).value;$(id).innerHTML=`<option value="">${label}</option>`+values.map(v=>`<option value="${esc(v)}">${esc(changeNames[v]||v)}</option>`).join('');$(id).value=old;}

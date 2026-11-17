@@ -47,8 +47,7 @@ test('actual renderer applies only visible filters after switching data layers',
  node('sort').value='new';node('membership').value='current';node('all-kind').value='source_item';node('ai').checked=true;
  await vm.runInContext('render()',context);
  assert.equal(node('result-count').textContent,'근거 항목 0건');
- assert.match(node('overview').innerHTML,/수집한 근거 항목<\/span>\s*<div class="metric-line"><strong>119,959<\/strong><small>건/);
- assert.match(node('overview').innerHTML,/기능 카탈로그<\/span>\s*<div class="metric-line"><strong>3,853<\/strong><small>개 기능/);
+ assert.equal(node('source-totals').textContent,'전체 자료 · 기능 카탈로그 3,853개 · 수집한 근거 항목 119,959건 · Chrome 실험 카탈로그 1개');
  // The user changes only the layer. Hidden stale values must not affect results.
  node('all-kind').value='experiment';node('status').value='done';
  await vm.runInContext('render()',context);
