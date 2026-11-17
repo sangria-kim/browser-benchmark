@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-cb20595642f0825502d84bd5: Figure 1: Power draw and temperature across a single coding task on an Apple M1 Max, powered by Qwen3-Coder-30B-A3B. Each power spike corresponds to a new LLM inference call; the sustained thermal load above 90°C reflect A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-16e5e5cf520f2b26dc87180b5fe0a22c",
+  "subject_kind": "source_item",
+  "subject_id": "src-cb20595642f0825502d84bd5",
+  "input_hash": "825a57348e3e69a6c34595a69890674d84c9c56f3e53d8e1731d0e2d538c0309",
+  "input_revision": "semantic-v2-sha256:da7b6a7551cd33306524f5a514a4d0a92dfd83a598807505ff5b576a2911ee2f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cb20595642f0825502d84bd5"
+  ]
+}

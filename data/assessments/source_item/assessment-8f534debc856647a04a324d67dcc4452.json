@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to execute arbitrary code out of its sandbox or with certain elevated privileges"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8f534debc856647a04a324d67dcc4452",
+  "subject_kind": "source_item",
+  "subject_id": "src-70824db2d57958b7334986c2",
+  "input_hash": "6218c6e4a407379e4e0ce06a0a26a4a8458785f2937c0a5711327b38f8874c0d",
+  "input_revision": "semantic-v2-sha256:f6841618a98f7d6523fcf723514458adbcb27624557faa688d6a420fc1f56918",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-70824db2d57958b7334986c2"
+  ]
+}

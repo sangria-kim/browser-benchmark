@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0c52aec408ebb54ad9e1fd2f: Fixed an issue where an inline-flex container with flex-direction: column did not update its width to match the intrinsic size of a child image when the image was not cached. (150260401) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5ef73f3a8c4188a888691993b11b4698",
+  "subject_kind": "source_item",
+  "subject_id": "src-0c52aec408ebb54ad9e1fd2f",
+  "input_hash": "f03d100a87b59c1dc835f79b0d36e0247fccda9ca42aafdbe83973aeaa0c7639",
+  "input_revision": "semantic-v2-sha256:992e17c69433ab65cb6d2aa460e1fd8803718e6830896262ce3ace44eba0bd17",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0c52aec408ebb54ad9e1fd2f"
+  ]
+}

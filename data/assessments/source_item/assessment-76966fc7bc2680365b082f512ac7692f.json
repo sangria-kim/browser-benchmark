@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4bf7e2de285fdec6a96b7b0f: Fixed an issue where i18n.getMessage() dropped non-string substitution arguments instead of coercing them to strings. (149855718) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-76966fc7bc2680365b082f512ac7692f",
+  "subject_kind": "source_item",
+  "subject_id": "src-4bf7e2de285fdec6a96b7b0f",
+  "input_hash": "c41d3de4ada6c336ee37c5b866b36c64d92aa80c51206f516b74efd315b6e05b",
+  "input_revision": "semantic-v2-sha256:41456029719322a1911322a95d76cf15bf5f14d16047a3c42074ef00afad2a63",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-06327465c2f8f8c1f326a14df3caf807",
+  "evidence_source_item_ids": [
+    "src-4bf7e2de285fdec6a96b7b0f"
+  ]
+}

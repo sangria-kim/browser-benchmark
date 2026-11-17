@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-8b7473cafd90d06a8505b17a: Web apps launched with the third-party PWAsForFirefox tool may fail to start in Firefox 158 and show the error \"The installation seems to be incomplete.\" Updating PWAsForFirefox to version 2.20.1 or later fixes the issue A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-465b70e6fb6bc65c497fcaa2ce5cccdf",
+  "subject_kind": "source_item",
+  "subject_id": "src-8b7473cafd90d06a8505b17a",
+  "input_hash": "5bef8a02fa28370b0f4be76750fcb47a7060d6d6d9b31411bbf2b4988f4822ee",
+  "input_revision": "semantic-v2-sha256:304ad9ae63da3f2ccb0e8774a8e9b3a6a0c379793445c6bba4aaea4fa5bf72d2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8b7473cafd90d06a8505b17a"
+  ]
+}

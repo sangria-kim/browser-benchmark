@@ -39,15 +39,15 @@
   },
   "verification_status": "official_body_read",
   "previous_event_id": null,
-  "selection_status": "watch",
-  "selection_reason": "개별 API의 desktop/android/webview 목표 milestone이 159로 확인되며 Proposed 유지. 158 목록 누락은 목표 버전 이동에 부합하나 정식 출시 증거 아님.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
   "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "공식 배포 상태·일정과 개별 본문 추가 확인",
-  "assessed_at": "2026-11-02T23:31:17Z",
-  "selection_rule_version": "pm-selection-v2",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "korea": {
     "availability": "미확인",
     "korean_language": "미확인",
@@ -65,5 +65,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

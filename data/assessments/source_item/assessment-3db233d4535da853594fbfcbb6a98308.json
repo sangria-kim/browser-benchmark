@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker may tamper with code-signed applications to execute arbitrary code in the application's context"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3db233d4535da853594fbfcbb6a98308",
+  "subject_kind": "source_item",
+  "subject_id": "src-6ebb22e1948bfb283f317945",
+  "input_hash": "733b0207ba8478b70fd85a8ca5d9f592dc4e4d28c5e6d899dacf884fe4451626",
+  "input_revision": "semantic-v2-sha256:0bab8756945a344c93ddc99d8cca396a1b61dbb01c3e7b0ab2cd4a52837c9530",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6ebb22e1948bfb283f317945"
+  ]
+}

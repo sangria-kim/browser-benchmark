@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-517cd98d698f84def0338c41: Source baseline: SpeechRecognitionSandboxHardening A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0aeb324ea45e800665d5ba324aa284b8",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-517cd98d698f84def0338c41",
+  "input_hash": "8974122742e11a4d50b92cde3329baa2b3ef2d26c017acd78b7c4d5afc30fd83",
+  "input_revision": "semantic-v2-sha256:8c8985e905af4ecc6bb866e14c219c4c842eb69e9ef7ed61168e1d1c5bb84f23",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-627090e04141fa3a12e391dc"
+  ]
+}

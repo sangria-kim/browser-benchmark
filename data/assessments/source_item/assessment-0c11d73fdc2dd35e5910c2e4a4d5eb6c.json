@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4ea9ee7971b2882bf1ae7b1e: Fire a focusreset event on the document when the focus was reset due to an element being removed. This will eventually replace firing `blur` on removal, which is currently a chromium-only behavior. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0c11d73fdc2dd35e5910c2e4a4d5eb6c",
+  "subject_kind": "source_item",
+  "subject_id": "src-4ea9ee7971b2882bf1ae7b1e",
+  "input_hash": "cad4707803894222e38a7b8dfb5cfc949deced8723132d3ed3efb3a21398773a",
+  "input_revision": "semantic-v2-sha256:a98cbacb299778ba4a3bb033348862a696eec4194e2bdc8d829e091d07a24cc1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4ea9ee7971b2882bf1ae7b1e"
+  ]
+}

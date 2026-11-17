@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-62dfd32e77f0611c9de27122: Fixed an issue where RTCDataChannel did not check the SCTP buffered amount synchronously. (172386678) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f68d77ebd65354af76dea2d3bb76a376",
+  "subject_kind": "source_item",
+  "subject_id": "src-62dfd32e77f0611c9de27122",
+  "input_hash": "824008b6a33de7f9454f7ebef2643e6ea2ada3d62e9e7200081bd0350e639dd7",
+  "input_revision": "semantic-v2-sha256:1f92ff4e67f9ff6fccfcc379fdb87f88db4959fb2cc3d99687556a8b7bb3c92c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-62dfd32e77f0611c9de27122"
+  ]
+}

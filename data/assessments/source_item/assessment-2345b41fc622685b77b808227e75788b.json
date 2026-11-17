@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A remote attacker may be able to bypass firewall rules"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2345b41fc622685b77b808227e75788b",
+  "subject_kind": "source_item",
+  "subject_id": "src-febc4114c7f4fd2df334f3c2",
+  "input_hash": "0209e6e444413b8ea315dfe066e80ecca887937f0a8b3efad222df42dd229771",
+  "input_revision": "semantic-v2-sha256:109050d0fa37c02c61814b33bf10cd3cbffe42474091bfb752fd14245fbb7bfd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-febc4114c7f4fd2df334f3c2"
+  ]
+}

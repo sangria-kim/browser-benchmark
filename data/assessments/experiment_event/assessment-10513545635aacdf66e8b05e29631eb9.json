@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e2e191847ba7176ea6c8d58c: Source baseline: enterprise-proxy-error-handling A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-10513545635aacdf66e8b05e29631eb9",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e2e191847ba7176ea6c8d58c",
+  "input_hash": "65c5ce09b0a4b9b65b0e8363198d40034ed69696ad10654538aa7216effcd91b",
+  "input_revision": "semantic-v2-sha256:662206f9e020e6ab1002dfade4904f4cca2661db314409578f4331872be0fde8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-f12d221e8c41a34cf82bfe88777479b9",
+  "evidence_source_item_ids": [
+    "src-chromium-37953d024fd0e1232143b890",
+    "src-legacy-51321ac0e65c614e8a519fd7"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c944131b2c5d63339cf7eedb: Fixed a performance issue where IntersectionObserver became sluggish over time when observing many elements due to O(n²) iteration. (172727210) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6ec2002e4338fdb5bcc258cb6d1166c8",
+  "subject_kind": "source_item",
+  "subject_id": "src-c944131b2c5d63339cf7eedb",
+  "input_hash": "ee6f1ebdf2a9033bc032cebc3f3d62f5f3e75a746a7ea875968fabf91c9e59dd",
+  "input_revision": "semantic-v2-sha256:93729ccaf48f8ab52b8c0e2ce61ab02401eb931f24479a6c9c5d0174d9dc287a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c944131b2c5d63339cf7eedb"
+  ]
+}

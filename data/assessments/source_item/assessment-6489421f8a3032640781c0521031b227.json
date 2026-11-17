@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-696a8bcb67b7f4a6cfc0996f: Fixed an issue where window.open() calls from web extensions would incorrectly open “about:blank” instead of the intended URL by ensuring each extension URL loads in a fresh tab configuration. (143901129) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6489421f8a3032640781c0521031b227",
+  "subject_kind": "source_item",
+  "subject_id": "src-696a8bcb67b7f4a6cfc0996f",
+  "input_hash": "6b1f7985b3b4270ec2237b9390d82646c7df8b0b4dbddec102230755b438d4f6",
+  "input_revision": "semantic-v2-sha256:33d1482be6f8ba22a495599c40958059a16e4f94d233b34420e7a87718cf6f1b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-696a8bcb67b7f4a6cfc0996f"
+  ]
+}

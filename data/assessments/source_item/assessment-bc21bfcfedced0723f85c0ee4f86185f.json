@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious SMB share may disclose kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bc21bfcfedced0723f85c0ee4f86185f",
+  "subject_kind": "source_item",
+  "subject_id": "src-dc480d7e5f805794c9aef2fe",
+  "input_hash": "a38eb4c00a7eca16771639aabc0c6e5423b802051ad29c5e5f80903bff4d35a9",
+  "input_revision": "semantic-v2-sha256:08c746c8c383949364788e923cad9ef4151367c85dd3aaf9a7e9e4f33f36978b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-dc480d7e5f805794c9aef2fe"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A sandboxed app may be able to access the System Keychain"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b02053ba847024fac5893f122b2952a3",
+  "subject_kind": "source_item",
+  "subject_id": "src-ee2291b20486ab29fd1dceb9",
+  "input_hash": "0069b044920128fe22eb346e2b5bbb5a6e98afb2eb41e341a03138ab1e6088ab",
+  "input_revision": "semantic-v2-sha256:291030626e26dd9f4328b0cdf56fb3199b640927788594a2ebfa23c363ed8906",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ee2291b20486ab29fd1dceb9"
+  ]
+}

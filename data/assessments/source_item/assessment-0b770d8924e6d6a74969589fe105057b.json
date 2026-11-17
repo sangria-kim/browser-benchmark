@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-dadea7698aebc747f221c04d: Before your browser can encrypt anything, it needs the TEE’s public key, and that key is only handed out after the TEE proves what it is. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0b770d8924e6d6a74969589fe105057b",
+  "subject_kind": "source_item",
+  "subject_id": "src-dadea7698aebc747f221c04d",
+  "input_hash": "3e86f4bda0c8b541dc8775423639fd328241e6e447ce393f2c644701023db6d6",
+  "input_revision": "semantic-v2-sha256:7d8323d0ab0985e8f057efc962d048bdc4007aa4c44c7ea524ef3f79ef23b53f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-dadea7698aebc747f221c04d"
+  ]
+}

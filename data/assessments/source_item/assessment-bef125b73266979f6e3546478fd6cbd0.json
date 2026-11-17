@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-57b50410ff55f67f27c4e281: Adds support for WebAssembly instructions for wide 128-bit integer arithmetic (i64.add128, i64.sub128, and widening multiplications i64.mul_wide_s/u) using pairs of 64-bit integer operands and results. This allows compil A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bef125b73266979f6e3546478fd6cbd0",
+  "subject_kind": "source_item",
+  "subject_id": "src-57b50410ff55f67f27c4e281",
+  "input_hash": "fea95f5b4ac5190ddc23d854c6137810aafae2b6141ed43c80b5247d2ed7700e",
+  "input_revision": "semantic-v2-sha256:486f693e1bdb95841f12cf9851862124b957061a315f24eb83d1a8e7630263b6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-57b50410ff55f67f27c4e281"
+  ]
+}

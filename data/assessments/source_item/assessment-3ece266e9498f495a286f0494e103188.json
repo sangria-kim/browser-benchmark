@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Local models are usually less powerful, putting them at higher risk in not being able to distinguish malicious instructions from trusted instructions. However, the blast radius of Cotypist is smaller as it cannot take au"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3ece266e9498f495a286f0494e103188",
+  "subject_kind": "source_item",
+  "subject_id": "src-8e222f9b6327d59b692ab159",
+  "input_hash": "f33c16dacebca8fac7bd004b58f99e519f70357bda675da409509d5f38568293",
+  "input_revision": "semantic-v2-sha256:e2f6a09cba5d0f7232d21bbf47c549f0bf321372d11b3dedd3af587d58994f5b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8e222f9b6327d59b692ab159"
+  ]
+}

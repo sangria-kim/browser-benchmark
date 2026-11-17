@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious USB device may be able to cause unexpected system termination or read kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-61a76336303ce1926e559e4c79cb8efe",
+  "subject_kind": "source_item",
+  "subject_id": "src-4374ef268aa48af6e630cc0a",
+  "input_hash": "34095bf13dd8d672d18e7bfa73851785417d83faedda9f404f00b5be6962ffe4",
+  "input_revision": "semantic-v2-sha256:4ab91ad1ceddd5e5dc656873949d73ea652fcdfbea694a591cbcb410e58cde25",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4374ef268aa48af6e630cc0a"
+  ]
+}

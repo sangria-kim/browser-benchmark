@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Medium Fixes CVE-2024-36342 Improper input validation in the GPU driver could allow an attacker to exploit a heap overflow potentially resulting in arbitrary code execution."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-86658d895ac41d03b014513f3ccc5515",
+  "subject_kind": "source_item",
+  "subject_id": "src-12caf5e71897593d893c1574",
+  "input_hash": "3ef46582e7b737a8c2bd25cadcb086b6f133d85cda9c20cc1a590f4ca750ebcb",
+  "input_revision": "semantic-v2-sha256:3a30fd7e3e747a1f3e58a706c39d4992e7beeeeacbf72115b27bca2a6bd5e066",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-12caf5e71897593d893c1574"
+  ]
+}

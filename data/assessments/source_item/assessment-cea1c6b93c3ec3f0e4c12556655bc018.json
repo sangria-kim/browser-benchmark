@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7d735cd9221ebb4c9bd30d43: Fixed an issue where IntersectionObserver computed the root rectangle incorrectly when overflow clipping was present. (117143395) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cea1c6b93c3ec3f0e4c12556655bc018",
+  "subject_kind": "source_item",
+  "subject_id": "src-7d735cd9221ebb4c9bd30d43",
+  "input_hash": "4c8a4cec0ed439525076eb8020b4733592a8d7ba25140ae53754092a0df59af6",
+  "input_revision": "semantic-v2-sha256:b0d19fe149f5df765e210e8c8d9bc208a694be3576add291136cb2c9d7ef48c7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7d735cd9221ebb4c9bd30d43"
+  ]
+}

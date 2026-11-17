@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Firefox now supports the Sanitizer API , which provides new methods for HTML manipulation. The element.setHTML() method enables developers to insert HTML content similarly to element.innerHTML , but without the security "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0ef579535fb8c45f6628462d029af191",
+  "subject_kind": "source_item",
+  "subject_id": "src-c43937ac3cafd25c7cd1ed86",
+  "input_hash": "bf2ace536f4ca665a189b1bd5495736b1901516436a96d7d81a6ff5426e8acd7",
+  "input_revision": "semantic-v2-sha256:2060f6aea3959af5fab87e4dc26037169ed9569609a0cee4e88093c30ee30db6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c43937ac3cafd25c7cd1ed86"
+  ]
+}

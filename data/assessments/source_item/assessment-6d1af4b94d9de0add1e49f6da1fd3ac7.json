@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to use the Sign In With Apple authentication flow to access the user's Apple Account"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6d1af4b94d9de0add1e49f6da1fd3ac7",
+  "subject_kind": "source_item",
+  "subject_id": "src-25f91f8f5cef2f9d60614869",
+  "input_hash": "3c9cb4956eb093624c3fc4cc015d0b7cd932936c09dc1d55a2dc4425435064cb",
+  "input_revision": "semantic-v2-sha256:1d35d2f356d205052dbb4029a5d7eca0538cfe2c4768f43df715e76d4cf87995",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-25f91f8f5cef2f9d60614869"
+  ]
+}

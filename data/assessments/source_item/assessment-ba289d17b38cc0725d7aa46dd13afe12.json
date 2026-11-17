@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Medium Fixes CVE-2026-7639 [PSP-452][KMD] Page UAF read in `PMMETA_PROTECT` heap memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ba289d17b38cc0725d7aa46dd13afe12",
+  "subject_kind": "source_item",
+  "subject_id": "src-6b1ed760e95521303c7e3fb4",
+  "input_hash": "e7ff1e73860f1c48da8f19c66fae45de53418bbbaf90d7db7a20c2265d8377ce",
+  "input_revision": "semantic-v2-sha256:08a254c7148971e0a197ffb81053ec02c25c7fe9f927f25af6da7cd9ed19e481",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6b1ed760e95521303c7e3fb4"
+  ]
+}

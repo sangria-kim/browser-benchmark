@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6d8317072be91f98c9e6f45a: Source baseline: crashpad-handler-pid A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bff43ff3d9f129f9e944ac79693bc1ed",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6d8317072be91f98c9e6f45a",
+  "input_hash": "3d9258a118bc6fa1d69dc76dd40adf866a8251bff98ebc9c37c90079bd902247",
+  "input_revision": "semantic-v2-sha256:c6a6f404562fb9018e079da90a39158f134f6db60dfb7679bd380797038c782c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-2ccaae1481cc55a365f523ac"
+  ]
+}

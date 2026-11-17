@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f6b83989163564f208e4f71d: Fixed a performance issue where String.prototype.toLowerCase and String.prototype.toUpperCase did not scan strings inline in the DFG and FTL JIT tiers. ( [contact omitted] ) (186301688) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-06dbdd54dcc0b0dc92d776d7a09d68fb",
+  "subject_kind": "source_item",
+  "subject_id": "src-f6b83989163564f208e4f71d",
+  "input_hash": "c429b9da51a2ffc7e6350775e45eae0f649a6470bf47bd59b18184e97b93de6a",
+  "input_revision": "semantic-v2-sha256:e8b966476ab80b5f55c275d924c31c66e867ed97ded211630b7fba333d2af56f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f6b83989163564f208e4f71d"
+  ]
+}

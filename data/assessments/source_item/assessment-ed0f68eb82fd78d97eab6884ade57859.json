@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$2000][ 505045913 ] High CVE-2026-10908: Use after free in FullScreen. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ed0f68eb82fd78d97eab6884ade57859",
+  "subject_kind": "source_item",
+  "subject_id": "src-cc19bc4d0c7123b78eef124f",
+  "input_hash": "bce425d8ff727a3cd8bc29ecfb85dfde58b4e624145d7334685be9cda64df9a7",
+  "input_revision": "semantic-v2-sha256:f0306eb61072b368ed3ef3c8dfe3270e0c4146f817b3a1a347bf57eaa567214e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cc19bc4d0c7123b78eef124f"
+  ]
+}

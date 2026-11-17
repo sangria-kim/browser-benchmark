@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes mali_kbase: use-after-free write in delete_hoarded_chunks allows GPU-process to kernel memory corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0bcddaff8c248f8a707488f7a3544c8e",
+  "subject_kind": "source_item",
+  "subject_id": "src-f5bb0578ca3f07d1ccf66183",
+  "input_hash": "281c7e316513342e23f2d0bcb3f7541bdb7bea048429af4720dfcfb6d0b42623",
+  "input_revision": "semantic-v2-sha256:8dd7d95ae57b9b4259f0d524bc62e8a562572c06e5d4e13ffc4f33e5c0866992",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f5bb0578ca3f07d1ccf66183"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d862d2f9c0c13065f7828626: Fixed an issue where history.replaceState() on a traversed history entry incorrectly changed navigation.currentEntry.key to a new UUID instead of preserving the original key. ( [contact omitted] ) (173388766) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-42559225c2b7d436759725412330f09b",
+  "subject_kind": "source_item",
+  "subject_id": "src-d862d2f9c0c13065f7828626",
+  "input_hash": "7931134640237cb887fa945912ecbaa4609b5b5b270f9dae5fd7074b2e678bce",
+  "input_revision": "semantic-v2-sha256:f8c1808e2c83f9e790cd152556aa189dc5bd42266f6a6a278557a3a7a5b428b0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d862d2f9c0c13065f7828626"
+  ]
+}

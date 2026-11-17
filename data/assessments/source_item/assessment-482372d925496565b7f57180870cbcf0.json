@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6c90eaa3e995fbf83415c5c0: Fixed re-exporting an imported immutable WebAssembly.Global so that the exports object returns the same object instead of a new wrapper. ( [contact omitted] ) (185184951) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-482372d925496565b7f57180870cbcf0",
+  "subject_kind": "source_item",
+  "subject_id": "src-6c90eaa3e995fbf83415c5c0",
+  "input_hash": "33d3365f35174f534344aa7eee4ab6adf48ec52250cf136a696900abd2c409e6",
+  "input_revision": "semantic-v2-sha256:775bd05f46102cb58fab712c2ac58fef3aea1e76c91c362f5025f22eb2e1a658",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6c90eaa3e995fbf83415c5c0"
+  ]
+}

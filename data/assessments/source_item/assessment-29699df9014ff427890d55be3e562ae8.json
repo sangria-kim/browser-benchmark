@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-dabd306eb9ec006368026a0c: Fixed cookies with non-ASCII characters set using document.cookie or cookieStore.set() getting truncated, and changed reading them to decode as UTF-8 to match other browsers. ( [contact omitted] ) (124266311) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-29699df9014ff427890d55be3e562ae8",
+  "subject_kind": "source_item",
+  "subject_id": "src-dabd306eb9ec006368026a0c",
+  "input_hash": "2b364d7574cf19929d7682eefe0269c8b5742846a3d964a3d95010f3211cf714",
+  "input_revision": "semantic-v2-sha256:196101132055c29ebb62308be8a1ad212c487e6463ad6527444bcd4dd7ab9b99",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-dabd306eb9ec006368026a0c"
+  ]
+}

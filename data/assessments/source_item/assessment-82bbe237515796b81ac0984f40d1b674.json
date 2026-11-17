@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3d523817a91e5724d9526c89: Fixed an issue where text changes that did not modify the text element’s size in a flex layout on a new compositing layer did not trigger re-rendering. (179292409) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-82bbe237515796b81ac0984f40d1b674",
+  "subject_kind": "source_item",
+  "subject_id": "src-3d523817a91e5724d9526c89",
+  "input_hash": "191c091b1758ad3cafc483454db4906540d325336a05199e31dd4280fd58cbb2",
+  "input_revision": "semantic-v2-sha256:719221bf1a920b408f6da7332f7218e12f4fe402dd3c0a5df95d2eb6f91ac94f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3d523817a91e5724d9526c89"
+  ]
+}

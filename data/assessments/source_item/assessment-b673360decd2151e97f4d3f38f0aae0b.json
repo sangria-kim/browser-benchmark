@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2806f6ff45ec561648dcaa09: CSS border-shape enables creating non-rectangular borders, with any arbitrary shape (polygon, circle, shape(), etc). Though border-shape accepts the same shapes as clip-path, it is fundamentally different: border-shape d A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b673360decd2151e97f4d3f38f0aae0b",
+  "subject_kind": "source_item",
+  "subject_id": "src-2806f6ff45ec561648dcaa09",
+  "input_hash": "84510ec7b8f9408859f43fdd1afc92859f584b3af8f865e25864cd60c01160d9",
+  "input_revision": "semantic-v2-sha256:c8c1bede827f30c96ea9c05ffc44760edd93f34fc6e2750a893f40cc88dec5f9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2806f6ff45ec561648dcaa09"
+  ]
+}

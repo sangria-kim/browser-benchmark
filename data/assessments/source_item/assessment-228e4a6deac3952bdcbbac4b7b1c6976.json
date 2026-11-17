@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious app may be able to read or write to protected files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-228e4a6deac3952bdcbbac4b7b1c6976",
+  "subject_kind": "source_item",
+  "subject_id": "src-662e234b8e29cab8ea5eb01b",
+  "input_hash": "d1f4020c1e0fe6c07c0606b4bb7aeb2d66090e3164696d6bc7bb35160550b600",
+  "input_revision": "semantic-v2-sha256:77cf40cbbc62e40d9b18d748feeeefc29ed7afea772ee67a0872ba103c95c060",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-662e234b8e29cab8ea5eb01b"
+  ]
+}

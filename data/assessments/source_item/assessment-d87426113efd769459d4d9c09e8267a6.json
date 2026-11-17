@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Mozilla blocked compromised intermediate eMudhra certificates via OneCRL on the 17th of October which was distributed to clients via RemoteSettings the same day. This update contains the updated OneCRL block list, ensuri"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d87426113efd769459d4d9c09e8267a6",
+  "subject_kind": "source_item",
+  "subject_id": "src-ba18f37bb23257b420f9bbaa",
+  "input_hash": "cc3cc5a4d5c0301ea03f553bfee02c94a1533f8fc0644f06a450c2c034c290d1",
+  "input_revision": "semantic-v2-sha256:a967cd12e6b7f6cadb7432442dab65c371cabbc49f6e346d879b1b07d68f7a45",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ba18f37bb23257b420f9bbaa"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: At the core of zkLogin lies a subtle but critical design choice: the system does not prove statements about JWTs as defined by OIDC or the JWT standard . Instead, it proves statements about how a particular circuit parse"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4e512bed58006414b011ad9fe8ead168",
+  "subject_kind": "source_item",
+  "subject_id": "src-4f434c27503e46975bc40463",
+  "input_hash": "9690b8ea3a44297532567f8dc2d625f48d189a96a4d59d6d147de4a4844867df",
+  "input_revision": "semantic-v2-sha256:5bb16f2ac30d938cab78326b08ca6df590be4f512a2a7c3f4dbd66ba1bc7b45a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4f434c27503e46975bc40463"
+  ]
+}

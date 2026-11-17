@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 524045160 Critical CVE-2026-15129 Use after free in Views"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-870abe509a8bf8ab5c0ed2fd833e0843",
+  "subject_kind": "source_item",
+  "subject_id": "src-9a43e72c22f573e7a9e31f2b",
+  "input_hash": "f984a37203c8fd117e1d293f5a11ce141444b92eb39ce068382f9cf8ad655155",
+  "input_revision": "semantic-v2-sha256:b699efb06a3388624ba6f31be57cf4a764ef482def07c730646bce59ce714fbd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9a43e72c22f573e7a9e31f2b"
+  ]
+}

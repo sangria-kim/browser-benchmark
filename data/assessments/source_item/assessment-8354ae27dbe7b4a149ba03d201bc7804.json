@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c8898b8e5617b2cacf24fda8: Extended lifetime shared workers This update adds a new option, extendedLifetime: true , to the SharedWorker constructor. This requests that the shared worker be kept alive even after all current clients have unloaded. T A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8354ae27dbe7b4a149ba03d201bc7804",
+  "subject_kind": "source_item",
+  "subject_id": "src-c8898b8e5617b2cacf24fda8",
+  "input_hash": "c899e4a6469c1d0c8969c985c7928b2bbb35ffb428aa1a164b62c4d792fea612",
+  "input_revision": "semantic-v2-sha256:fa6f3196784eb9badc4e964102e554492f5f4b036459b7b979f223e42e8ab46b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c8898b8e5617b2cacf24fda8"
+  ]
+}

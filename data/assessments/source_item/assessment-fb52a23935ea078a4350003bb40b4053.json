@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0719a4e6b52ecc6226849983: Fixed the ArrayBuffer constructor to throw a RangeError for an invalid length before reading the prototype of newTarget . ( [contact omitted] ) (188822488) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fb52a23935ea078a4350003bb40b4053",
+  "subject_kind": "source_item",
+  "subject_id": "src-0719a4e6b52ecc6226849983",
+  "input_hash": "1d36f4a569fe1f6b68ac132eb5fbaeb6203d5813d179310d7cbe4a86a13d1688",
+  "input_revision": "semantic-v2-sha256:b3008012a9e1045c3f941a753d07f58d1f3090ad11aea59d58bf29154698f839",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0719a4e6b52ecc6226849983"
+  ]
+}

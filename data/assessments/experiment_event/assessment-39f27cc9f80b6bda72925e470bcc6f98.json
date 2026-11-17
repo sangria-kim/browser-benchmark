@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-08f0e25ef0682893852eed5e: Source baseline: WebHID on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-39f27cc9f80b6bda72925e470bcc6f98",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-08f0e25ef0682893852eed5e",
+  "input_hash": "bfa2cfb8e7b203027703b627cc12ee4a2a8806bfb6501c2a21f79100433660c8",
+  "input_revision": "semantic-v2-sha256:dafde95055ba12674fd3c7477a5eeffdb2609ad64f5032fbf2904a7c1598db3e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-ade09152414e7218a50ed4167ab98089",
+  "evidence_source_item_ids": [
+    "src-chromium-a569122c71b175fded49ced8",
+    "src-legacy-2177626840ab002e407ba477"
+  ]
+}

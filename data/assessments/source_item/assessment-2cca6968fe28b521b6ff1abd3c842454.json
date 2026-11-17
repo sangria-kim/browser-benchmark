@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [N/A][ 518063436 ] Medium CVE-2026-14023: Insufficient validation of untrusted input in SanitizerAPI. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2cca6968fe28b521b6ff1abd3c842454",
+  "subject_kind": "source_item",
+  "subject_id": "src-aa9bd5dc35f3662749574639",
+  "input_hash": "d0359ee91e84ffb7c9ca1b34aca04fe447061bcc82a0c3af3034c3b9769b022a",
+  "input_revision": "semantic-v2-sha256:fe3706527312c2a31477a29d7623bd987cd64d9c2eafce82f1131d2fc6e557ec",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-aa9bd5dc35f3662749574639"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Extracting a maliciously crafted archive may allow an attacker to write arbitrary files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-38fc9a9ce355c9027f53e73de1f82fa3",
+  "subject_kind": "source_item",
+  "subject_id": "src-bca0087fc11516444e382564",
+  "input_hash": "f554489863ac4b9bf63bfb30206206c7c366bb3ecaff38bdd305e22d41db508a",
+  "input_revision": "semantic-v2-sha256:f932641367971085643c36d7aee63a666bfe3ed6ff10e45b05c9f575bc795a42",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bca0087fc11516444e382564"
+  ]
+}

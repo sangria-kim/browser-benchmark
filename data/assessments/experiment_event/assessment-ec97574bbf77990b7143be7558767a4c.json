@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ca92fbe2072d950b2a95d256: Source baseline: Mobile safe area emulation in DevTools A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ec97574bbf77990b7143be7558767a4c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ca92fbe2072d950b2a95d256",
+  "input_hash": "443ea1a9c184b8b5ec47b30779c04a1debcac433eb5e743648557ad8c623a81c",
+  "input_revision": "semantic-v2-sha256:4789cf0bed6c01b7967ea531089a7e4448c4081a58539f7e2ebadf9570e6c62f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-c77ad3454ba0464a06bdacb207d1a730",
+  "evidence_source_item_ids": [
+    "src-chromium-bf8c2b98268121c64e50bd17",
+    "src-legacy-7bfc0a48ad22a8a96047e7b1"
+  ]
+}

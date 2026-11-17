@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-43adcc33f90522d3bacd1e6b: Fixed the Array ToPrimitive fast path incorrectly ignoring overrides of Object.prototype.valueOf . (175122250) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-96745e77bdd6a236ed9efa5c486f0521",
+  "subject_kind": "source_item",
+  "subject_id": "src-43adcc33f90522d3bacd1e6b",
+  "input_hash": "d81f818661a383feefaa4c71086bc5c30f34e18b247ce6cda69bebcf926e6eb6",
+  "input_revision": "semantic-v2-sha256:2f6cf2ed3a3949dd9df586d0f9b52190d3e476db92aa2117f79f71a57a48bd86",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-43adcc33f90522d3bacd1e6b"
+  ]
+}

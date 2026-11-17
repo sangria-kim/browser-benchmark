@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$TBD] [502598424 ] Low CVE-2026-11299 Out of bounds read in Fonts on 32-bit via integer wraparound in Buffer::ReadU8 bounds check with crafted TTC font offset. on 2026-04-14"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3c9c817997e6d6535386dc9b5d439190",
+  "subject_kind": "source_item",
+  "subject_id": "src-eeac87176aed072095437555",
+  "input_hash": "7e09854be4839a48ed789c18c910e040be26b21c2c8984077ec0f0dba87c4348",
+  "input_revision": "semantic-v2-sha256:64be813125355a5fd0b1d0db44f89b1a788bb1534768088335e21cf4b109acae",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-eeac87176aed072095437555"
+  ]
+}

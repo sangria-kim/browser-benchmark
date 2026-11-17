@@ -1,0 +1,31 @@
+{
+  "status": "selected",
+  "reasons": [
+    "Deterministic task-template match permission-consent: Understand and control a site request before access is granted.",
+    "Evidence clause: requests now require that the service worker's origin has the necessary Local Network Access (LNA) permission",
+    "Material change: The official item explicitly describes a changed user action. This is selection of documented evidence, not a claim that the feature launched on assessment day.",
+    "Benchmark: Use a synthetic site that requests only the documented resource → Record the prompt, deny access and retry → Allow access then find and revoke the site permission",
+    "Measure: Prompt visibility; Unintended access; Steps to reverse a choice",
+    "Completion: Repeat each supported condition three times and record outcomes. The benchmark is not executed.",
+    "Conditions: Official document observation. Confirm the stated channel, OS, account and regional availability before testing. Use identical synthetic data and an available Samsung Browser build. Record unsupported paths; no installation, rollout or completed test is inferred."
+  ],
+  "priority": "P1",
+  "comparison_question": "For the documented resource request, can a user allow, deny and reverse the choice consistently across browsers?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Official document observation. Confirm the stated channel, OS, account and regional availability before testing. Use identical synthetic data and an available Samsung Browser build. Record unsupported paths; no installation, rollout or completed test is inferred.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f91aa4f74ad77694a047b474aa71b742",
+  "subject_kind": "source_item",
+  "subject_id": "src-e4381df11e821f72c25e02d9",
+  "input_hash": "1c12f000d84c462636bcb18ced8c4e5fb8dc8746d254524cc3b9950ad1f85698",
+  "input_revision": "semantic-v2-sha256:2e4e13017a047e625822b38bd587dd434bbdc8c26338de9bc639a99a6f2895f2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e4381df11e821f72c25e02d9"
+  ]
+}

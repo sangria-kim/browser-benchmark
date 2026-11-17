@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-8a84bc4ab7aedb7c1909ac56: Fixed incorrect handling of invalid UTF-8 sequences in the TextDecoder streaming decoder to properly manage partial sequence buffers. ( [contact omitted] ) (166583808) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0c285157b30bb69735c451cf7a7b2734",
+  "subject_kind": "source_item",
+  "subject_id": "src-8a84bc4ab7aedb7c1909ac56",
+  "input_hash": "adba0afed41bc15d95bcdcc439c7414d97b48df234e49794f0e219074c86ff9f",
+  "input_revision": "semantic-v2-sha256:be630acd320252ba0fec294726ad4e1223ac74286a85ccf2af7c30d9268c7bde",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8a84bc4ab7aedb7c1909ac56"
+  ]
+}

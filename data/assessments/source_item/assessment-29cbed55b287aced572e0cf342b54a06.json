@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Crucially, OIDC validation is stateful and contextual: it depends on external configuration (e.g., client identifiers, issuer metadata), session-binding values (such as nonce and state), and time-varying data like key ro"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-29cbed55b287aced572e0cf342b54a06",
+  "subject_kind": "source_item",
+  "subject_id": "src-eda5746f1a77d8f0379687a6",
+  "input_hash": "f6e2a968379e895df33c78bbeced9d1f4ebbe71d1af268039944c1ad4a0921d2",
+  "input_revision": "semantic-v2-sha256:5e699c1764d25201d9f71ad1a6c8f5fa3d07ced0e3a951bf1c4e78ed88df82b1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-eda5746f1a77d8f0379687a6"
+  ]
+}

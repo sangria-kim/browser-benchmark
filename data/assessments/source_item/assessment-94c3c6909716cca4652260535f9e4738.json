@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fc6cdfe7f3734b310e29a24a: Fixed an issue where calling preventDefault() on pointerdown events did not prevent page scrolling when only passive touch event listeners are installed. (173988278) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-94c3c6909716cca4652260535f9e4738",
+  "subject_kind": "source_item",
+  "subject_id": "src-fc6cdfe7f3734b310e29a24a",
+  "input_hash": "be632f1935b2d1d2f2e33cdd0086d839b97a64830900d2dd727e80ce78aed8c6",
+  "input_revision": "semantic-v2-sha256:07d83a0e8871747cb9ca2c7912660017d66f6a3e150ae9d8c49414505207ff65",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fc6cdfe7f3734b310e29a24a"
+  ]
+}

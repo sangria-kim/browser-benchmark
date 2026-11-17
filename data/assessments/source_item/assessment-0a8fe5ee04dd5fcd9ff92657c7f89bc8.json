@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-06f4baabeef95c80ac311957: Chrome 142 restricted the ability to make requests to the user's local network, gated behind a permission prompt. A local network request is any request from a public website to a local IP address or loopback, or from a  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0a8fe5ee04dd5fcd9ff92657c7f89bc8",
+  "subject_kind": "source_item",
+  "subject_id": "src-06f4baabeef95c80ac311957",
+  "input_hash": "101b2df8df4eef65b3ea99bfb87b537cdba1083b214088afa29b134494fd8ace",
+  "input_revision": "semantic-v2-sha256:41dc03971ed5872597af271180670ae441f8ffac4e7836a882cf827c684f484c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-06f4baabeef95c80ac311957"
+  ]
+}

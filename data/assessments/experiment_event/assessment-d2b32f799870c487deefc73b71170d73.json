@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6998c838cfdb02b90f1c6702: Source baseline: ThreadPoolForegroundBlockingTimeouts A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d2b32f799870c487deefc73b71170d73",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6998c838cfdb02b90f1c6702",
+  "input_hash": "96d73145a981ea1138817c6bcafa4e2dfc82954e5b492ade39b67b3bc5837ea6",
+  "input_revision": "semantic-v2-sha256:1ccac13dcaa6ddae4af6f0d8eab5357e4819fcdf314e66e26b8b409563b255a7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-326f5d18fad816354558b5d6"
+  ]
+}

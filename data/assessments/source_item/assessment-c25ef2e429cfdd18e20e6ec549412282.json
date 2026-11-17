@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3ecc9a0b65bca3de91ddb9ca: Fixed an issue where decoding WebM audio files with more than two channels would fail. (82160691) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c25ef2e429cfdd18e20e6ec549412282",
+  "subject_kind": "source_item",
+  "subject_id": "src-3ecc9a0b65bca3de91ddb9ca",
+  "input_hash": "d1e3deb27847704eb9629d9e9e3cdd689f78b7c41dcc9d18c2cc04dc2dd38f44",
+  "input_revision": "semantic-v2-sha256:7ffbff0eeff59a53d317d0522b6c28f3f6c11cff93417fd5d22de0193243729e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3ecc9a0b65bca3de91ddb9ca"
+  ]
+}

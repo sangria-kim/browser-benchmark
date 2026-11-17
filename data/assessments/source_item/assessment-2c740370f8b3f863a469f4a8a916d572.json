@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-17ca7f41f2627e0f6bb0fbe9: The value of the window.name property is currently preserved throughout the lifetime of a tab, even with navigation that switches browsing context groups, which can leak information and potentially be used as a tracking  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2c740370f8b3f863a469f4a8a916d572",
+  "subject_kind": "source_item",
+  "subject_id": "src-17ca7f41f2627e0f6bb0fbe9",
+  "input_hash": "9c5b39a8f24cb1c40ff235f0280642051ad049e43ecedfc577821833e107febb",
+  "input_revision": "semantic-v2-sha256:30c8af3b12462a4bf0ad7d02ef27225f194ed69ea32828c413dacb965013edc0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-17ca7f41f2627e0f6bb0fbe9"
+  ]
+}

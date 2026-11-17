@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-efa6fb57d3cb4f0963387649: Fixed an issue where regular expression captures were not properly cleared when backtracking out of fixed-count parenthesized groups and negative lookaheads. (174201284) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e45c0dbef69b8edefae3d98d36851063",
+  "subject_kind": "source_item",
+  "subject_id": "src-efa6fb57d3cb4f0963387649",
+  "input_hash": "d811b4cbb155c5e11eb14f0777a4937054aa17328c2c92d729f3febe434a4c28",
+  "input_revision": "semantic-v2-sha256:1604406c4d9b506c479156e764faa880ff0c250f59d2e13a1d1bd5e7409a72ae",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-efa6fb57d3cb4f0963387649"
+  ]
+}

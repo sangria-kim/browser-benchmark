@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-056c2992ecad97345abc2f7d: To avoid this, we added a feature that spoofs a higher version number at the end of an ESR cycle. The first version of this feature leaked the real Chromium version in some cases, but we believe those issues are now fixe A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7fcd600f50fd612dda8791d5ff4f1e5c",
+  "subject_kind": "source_item",
+  "subject_id": "src-056c2992ecad97345abc2f7d",
+  "input_hash": "1e8dc33d9e0d9d529e134b864ac45d3db34084f8630bb8ea981cdf7a11c70bec",
+  "input_revision": "semantic-v2-sha256:214f80727ba474dd541b89bb607077a587256caa39648d5f92bcf02cc1a79fe0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-056c2992ecad97345abc2f7d"
+  ]
+}

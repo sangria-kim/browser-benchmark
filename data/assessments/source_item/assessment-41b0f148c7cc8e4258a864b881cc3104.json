@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes arc-keymaster: fall-off-end UB in CrosKeyFactory::GetOperationFactory allows guest-to-host wild indirect call"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-41b0f148c7cc8e4258a864b881cc3104",
+  "subject_kind": "source_item",
+  "subject_id": "src-0c4f5d6ec72f5eff98e557d3",
+  "input_hash": "14e9b160bf53fe25fc5d06df6b1faaae3da1ed25b900e61f7842ea71badec135",
+  "input_revision": "semantic-v2-sha256:291b439f1c845f7b5c12531a1fe890bd7ea628893a5c2c74a717c3fa5c138929",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0c4f5d6ec72f5eff98e557d3"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-28e195f1d0fb2f0a523f6b53: Fixed a regression where sticky-positioned elements inside overflow containers could appear in front of content that should overlap them. (171179878) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-df605889aa71efe73d32c43d6009a77b",
+  "subject_kind": "source_item",
+  "subject_id": "src-28e195f1d0fb2f0a523f6b53",
+  "input_hash": "0a6166161b1bb4cc5c26f0b4cc0c5695489dc6064b8f095b6d2cfb1d35547ed7",
+  "input_revision": "semantic-v2-sha256:7da2da7b407c95906c3992946bf0e50a80eaef9b987ba8c2b83360aff147f191",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-28e195f1d0fb2f0a523f6b53"
+  ]
+}

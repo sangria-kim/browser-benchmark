@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-498f5805be4c3af074fa5d88: The CSS Typed OM spec exposes the CSSStyleValue hierarchy to worker global scopes ([Exposed=(Window, Worker, PaintWorklet, LayoutWorklet)]), but Blink only exposed CSSStyleValue, CSSKeywordValue, CSSNumericValue, CSSUnit A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1bf70f776addede9e36a9202ef614b72",
+  "subject_kind": "source_item",
+  "subject_id": "src-498f5805be4c3af074fa5d88",
+  "input_hash": "abb91142c4cd9ee6d83ac7df53912925bdbb7b5f0bbbca2e7d683c3ceef5e094",
+  "input_revision": "semantic-v2-sha256:c1d5ca814878344c57a02290172c9886e1a243a3bfbe699494116bf37ce446ac",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-498f5805be4c3af074fa5d88"
+  ]
+}

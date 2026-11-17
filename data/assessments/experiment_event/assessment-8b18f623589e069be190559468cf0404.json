@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5821ac65d83f076140b37cfb: Source baseline: Decisions API A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8b18f623589e069be190559468cf0404",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5821ac65d83f076140b37cfb",
+  "input_hash": "437a754038655757f37f43329919ceb501f959239c338069baaf88d478175b50",
+  "input_revision": "semantic-v2-sha256:5a81c448328ff266c172db58c6e4b537c3ccb9760baabcbc081a01e4bc8dbd48",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-97fb67fb57077d5c768d769de49b1113",
+  "evidence_source_item_ids": [
+    "src-chromium-90a358e32758ec4112a09757",
+    "src-legacy-2140676b669328049991fa02"
+  ]
+}

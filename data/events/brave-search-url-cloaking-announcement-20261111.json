@@ -38,15 +38,15 @@
   "delta": "향후 며칠 내 검색 결과 링크를 암호화된 중계 주소로 바꿀 예정. 복사한 주소는 원래 목적지가 아니며 만료될 수 있다. JavaScript가 켜진 경우 POPRF로 클릭 목적지를 숨긴다고 설명하지만 JS 비활성화 시 일반 리디렉션으로 서버가 목적지를 볼 수 있다.",
   "verification_status": "official_body_verified_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "watch",
-  "selection_reason": "링크 복사·장기 저장·JavaScript 조건의 개인정보 차이는 비교 가치가 있다. 다만 Brave Search 서비스 예고이며 Brave 브라우저 릴리스가 아니고 실제 배포·OS별 지원·한국 조건 미확인으로 watch.",
+  "selection_status": "pending_verification",
+  "selection_reason": "Evidence retained for brave-search-url-cloaking-announcement-20261111: Brave Search 결과 링크 URL cloaking 도입 예고 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "동일 검색 결과의 주소 복사·공유·북마크 과제에서 원래 URL 보존과 만료 안내, JS 설정별 프라이버시 설명은 어떻게 다른가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "Official rollout or reproducible test environment",
-  "assessed_at": "2026-11-11T22:39:34.161576+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "source_item_ids": [
     "src-legacy-643be0bd75dc563e65ee64f9"
   ],
@@ -54,5 +54,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-11",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Internally found bugs present in Firefox 154. Some of these bugs showed evidence of memory corruption or another security-relevant defect and we presume that with enough effort some of these could have been exploited."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e39198a3e67f0916bee7e9b63390dfa2",
+  "subject_kind": "source_item",
+  "subject_id": "src-043eba1c8b583eaae11ff242",
+  "input_hash": "fb01fc57f367481bd968f8b1e27083b41b6b68747234200e51bfb4126c06eede",
+  "input_revision": "semantic-v2-sha256:9ce14c83d86f9f1c705f26418ddeba0895ce55d0efa94729fe3db4ed637bedca",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-043eba1c8b583eaae11ff242"
+  ]
+}

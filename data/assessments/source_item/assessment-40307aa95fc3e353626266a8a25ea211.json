@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: A logic issue existed resulting in memory corruption. This was addressed with improved state management."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-40307aa95fc3e353626266a8a25ea211",
+  "subject_kind": "source_item",
+  "subject_id": "src-58193853c692609821c1602e",
+  "input_hash": "d522573f7b021a43ee2545aee031e99567b65e8d61abec96a1da85d44a1a0a6e",
+  "input_revision": "semantic-v2-sha256:05f1169b3a949888ebd538524514e29c1569dc75130e2dd5f68f3f120c8e7ece",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-58193853c692609821c1602e"
+  ]
+}

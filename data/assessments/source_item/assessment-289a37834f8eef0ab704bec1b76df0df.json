@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0124bd83ba3661826ca1acbc: Fixed an issue where IndexedDB could incorrectly return a version 0 database after an abort during the initial onupgradeneeded event. ( [contact omitted] ) (176195526) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-289a37834f8eef0ab704bec1b76df0df",
+  "subject_kind": "source_item",
+  "subject_id": "src-0124bd83ba3661826ca1acbc",
+  "input_hash": "397ab44a7e5843c1f0ac9b7b30c2e9358fc4ed9d7f5c9ac709eb798c8feca69a",
+  "input_revision": "semantic-v2-sha256:d9c67a72a6ac496732170d78f4e3c91319ba19e2f031e444cff608bbb2287124",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0124bd83ba3661826ca1acbc"
+  ]
+}

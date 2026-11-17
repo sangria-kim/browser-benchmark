@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-18ff8032ed424d15821ac793: Fixed Array.prototype.concat to correctly handle arrays with indexed accessors, preventing getter reentry from bypassing Symbol.isConcatSpreadable checks. ( [contact omitted] ) (172237596) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5ff2ef877761b7168c08736b35855802",
+  "subject_kind": "source_item",
+  "subject_id": "src-18ff8032ed424d15821ac793",
+  "input_hash": "599f464648b00462461a7c217b137259e006c43ddf38ed6c81586a5c601e97c4",
+  "input_revision": "semantic-v2-sha256:3c9e38a19b455ece46b2e49be911940433d31f873fbfdc98ce5317937d456246",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-18ff8032ed424d15821ac793"
+  ]
+}

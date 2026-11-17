@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious SMB server may cause unexpected system termination or corrupt kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fbe121f459d7764ddc815154f18b3c94",
+  "subject_kind": "source_item",
+  "subject_id": "src-7479829029fe018089d0988b",
+  "input_hash": "611ad179c7691996e7aefe045724bc141fcb08a1133bb12883a7335fef0e9424",
+  "input_revision": "semantic-v2-sha256:f65926bca9023fdb9441950fbaf1e66682889a5a5856c43f31e5b450c115562b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7479829029fe018089d0988b"
+  ]
+}

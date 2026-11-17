@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Previously, these events were restricted solely to Google Security Operations (SecOps). With this update, enterprise administrators can route these high-fidelity security signals to their preferred external SIEM provider"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c47ca52c0c9e803b2eeceb9ad1d14dbb",
+  "subject_kind": "source_item",
+  "subject_id": "src-d81550908532af65f2044c5a",
+  "input_hash": "f2af474db11e6d8d3f67ea2f31afac41054002e0bf0215f127c35bbc2b7b264b",
+  "input_revision": "semantic-v2-sha256:7fb0f44afc5e061d3e37535b77ef0288d34fc7c180507b3ae2858b64aca37d96",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d81550908532af65f2044c5a"
+  ]
+}

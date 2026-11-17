@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e3dfdae37a8cbf388155a330: Source baseline: Session Encryption A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9daf34e896740c370da64395eb39ad14",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e3dfdae37a8cbf388155a330",
+  "input_hash": "41d46828bfe4eb58ce8cdcf3f173f59fcc0f4c83ddc9eff1860357fe3de9dd2c",
+  "input_revision": "semantic-v2-sha256:054cfea3faa597fc968e9f6f5e7f85bbbe4bb3941c0a4b5574e879c3161fe46d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-5ff353384c1d5f5853afa7b1db61d835",
+  "evidence_source_item_ids": [
+    "src-chromium-8a209048fa75152d53d19d9f",
+    "src-legacy-5b0b4b48978941646d0a6cfa"
+  ]
+}

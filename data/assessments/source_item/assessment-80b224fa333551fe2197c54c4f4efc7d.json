@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4472332b0baa0a38a86790f1: Encrypted at the source before leaving your device. Your Brave browser encrypts each prompt using Oblivious HTTP (OHTTP) before it leaves your device, ensuring that only the attested TEE can decrypt it. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-80b224fa333551fe2197c54c4f4efc7d",
+  "subject_kind": "source_item",
+  "subject_id": "src-4472332b0baa0a38a86790f1",
+  "input_hash": "e1c5d272b0a3adb248edb1a58125876a2a6b3072735a7839fa28135a62959370",
+  "input_revision": "semantic-v2-sha256:b7710bd1a3de9d554475b1082edd9c661b47eeba66cdb122cf81cc484945110d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4472332b0baa0a38a86790f1"
+  ]
+}

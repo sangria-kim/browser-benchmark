@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c211cca31ce04b81cb4a8b60: Fixed an inefficiency in the WebAssembly in-place interpreter by making its instruction handlers smaller, improving performance by about 5% on Apple silicon. ( [contact omitted] ) (187291986) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-99fdda2ae2e4b98efe47cd76e7ac110d",
+  "subject_kind": "source_item",
+  "subject_id": "src-c211cca31ce04b81cb4a8b60",
+  "input_hash": "471aa9d203d31ff14f986eb9f5c159a80b88df3f84c8c92ee7b56eb7caf6989d",
+  "input_revision": "semantic-v2-sha256:107b129b3e3067059a023e9cea5ee2dfde7d80d67c06fb2631640141bf37ff6a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c211cca31ce04b81cb4a8b60"
+  ]
+}

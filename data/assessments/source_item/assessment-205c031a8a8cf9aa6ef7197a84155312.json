@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: On browser trust assumptions: zkLogin deployments frequently store (and encourage to do so) long-lived authorization material (including API keys, salts, and cryptographic state) in insecure browser-accessible storage (l"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-205c031a8a8cf9aa6ef7197a84155312",
+  "subject_kind": "source_item",
+  "subject_id": "src-bf2cc3e2d122e4d51465d52a",
+  "input_hash": "1e75bb25eb0b11c5e5f88296b22b4f9f24d68349d4979dff5d57617302473ca6",
+  "input_revision": "semantic-v2-sha256:29b7d59727f3238a3613ef82bdae38b1cd970350ec7236d3203d947a7504616a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bf2cc3e2d122e4d51465d52a"
+  ]
+}

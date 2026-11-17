@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ab7a74a58d4bf90b8eb77219: Fixed an issue where SVGLength resolved ex units by rounding the font’s x-height up to a whole pixel, causing the SVG DOM and getComputedStyle to disagree. (185984854) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b38f32fd2d985ab8794ac1afbe7efc84",
+  "subject_kind": "source_item",
+  "subject_id": "src-ab7a74a58d4bf90b8eb77219",
+  "input_hash": "d6aaa1a0cd9c24b516832c1fcd9f935596fd499c09f4a525820f61d30605c63f",
+  "input_revision": "semantic-v2-sha256:45168bb8b65cca40906fbedb3c872dc13a663e5733c3370efc350d39429c7ef7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-112e77fc0e634cb439a9050508241e4e",
+  "evidence_source_item_ids": [
+    "src-ab7a74a58d4bf90b8eb77219"
+  ]
+}

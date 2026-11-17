@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-eb25bd2d613cde23ea67e8cd: Source baseline: CapStringBuilderLengthTo1GiB A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-83a82097f9f9cb53529b86fe18c5fdcf",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-eb25bd2d613cde23ea67e8cd",
+  "input_hash": "4cda0e33ee0a84a5abd20673e3bca9317926220bc9f3263c46304c18d4883266",
+  "input_revision": "semantic-v2-sha256:207a12c41f6f8fe85f75144c256377ce464dbdff47c771093b7a1cc2c5370511",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-35ba4d7f6b24552f3d051684"
+  ]
+}

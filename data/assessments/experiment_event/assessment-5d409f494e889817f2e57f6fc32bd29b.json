@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6432d8c551253daf8346a63a: Source baseline: AndroidFirstRunLaunchBounds A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5d409f494e889817f2e57f6fc32bd29b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6432d8c551253daf8346a63a",
+  "input_hash": "67576b0061add60c404e4d3e5236faa927cc305d9429721f6aed3055109ddf08",
+  "input_revision": "semantic-v2-sha256:30f63f4e9e1062f555ed821b028aaddaaefaa0e9f39380c2833c278c85daf47f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-ec2cf94bbfd93cbf8c730abd"
+  ]
+}

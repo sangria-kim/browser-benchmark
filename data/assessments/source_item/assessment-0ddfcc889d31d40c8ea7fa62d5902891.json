@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c8cfc0075a7a46949d106c37: Chrome 146 introduces two new enterprise policies for managing local network access restrictions: LocalNetworkAccessIpAddressSpaceOverrides and LocalNetworkAccessPermissionsPolicyDefaultEnabled . These policies can be se A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0ddfcc889d31d40c8ea7fa62d5902891",
+  "subject_kind": "source_item",
+  "subject_id": "src-c8cfc0075a7a46949d106c37",
+  "input_hash": "de5abc43aaf23ade0474e9085113674a44f711adf469636a8382fc94fbf841d0",
+  "input_revision": "semantic-v2-sha256:b9d9d89b7cf9a972a6bd60f519fb4194cfd762b3d13da31bcd628cd9cec52736",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c8cfc0075a7a46949d106c37"
+  ]
+}

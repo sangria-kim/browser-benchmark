@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8637d31b0e108523e4d17f6b: Source baseline: password-save-in-context-error-resolution A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-689bca9269db33eaa88f7d8a2c873c39",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8637d31b0e108523e4d17f6b",
+  "input_hash": "bb6c383ccd6cad5bcfbf06c9aa348c5aecb89050138b520598810604b00dcbd0",
+  "input_revision": "semantic-v2-sha256:0e623d1e067486e480206774d8efb90538f55b3a30eca7ec50d985d6e8369c79",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-b18ebc3765e8dcde749b78a0065613a5",
+  "evidence_source_item_ids": [
+    "src-chromium-171c5d3cfc82fa2f38fa6ae9",
+    "src-legacy-ad69d3d6bab7553523911bbe"
+  ]
+}

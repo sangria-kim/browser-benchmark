@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d4a54262730db6cb50f176af: Fixed requestIdleCallback() idle period scheduling by using the actual frame period at 60Hz, so idle periods are no longer scheduled right before the frame deadline. ( [contact omitted] ) (190768899) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d6e42a7f78d19bc81231ad4ba82361b2",
+  "subject_kind": "source_item",
+  "subject_id": "src-d4a54262730db6cb50f176af",
+  "input_hash": "48a07e6a59a10c3a336e45ef60a86877caba39d2388ce1ce6af2a4cfb9593a89",
+  "input_revision": "semantic-v2-sha256:0c95b588047078323dc9d4983cb26178c89d9b208d3b224630abc732cdbd1ddd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d4a54262730db6cb50f176af"
+  ]
+}

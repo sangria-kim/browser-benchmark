@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A local attacker may be able to overwrite restricted files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7cda4778b8cc363d1a3a1db808d73a47",
+  "subject_kind": "source_item",
+  "subject_id": "src-dd79bb5774f2e91119d13b82",
+  "input_hash": "0908c0a93def1e9bdcb287497a90b42b944cfcc5ae4a256ab3e5f175d62bfa14",
+  "input_revision": "semantic-v2-sha256:89748c953ab63a5f70bc91d6f50a43534b6d72764001e07c858577ced79d121c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-dd79bb5774f2e91119d13b82"
+  ]
+}

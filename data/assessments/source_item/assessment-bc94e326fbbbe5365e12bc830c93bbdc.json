@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bbc32af70058b30561c02a1f: Fixed a regression where RegisterSet::normalizeWidths() lost vector-width information, causing v128 argument corruption in WebAssembly SIMD thunks. (176035764) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bc94e326fbbbe5365e12bc830c93bbdc",
+  "subject_kind": "source_item",
+  "subject_id": "src-bbc32af70058b30561c02a1f",
+  "input_hash": "e10b2ad3c4071023debc43cc78469a010ba7e08ef8ee7821cf69ac2e4bc6cd26",
+  "input_revision": "semantic-v2-sha256:84d5ce725123a3ec60ca8e5d9e856b8aea03698323c9b8f2d2203714d4557073",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bbc32af70058b30561c02a1f"
+  ]
+}

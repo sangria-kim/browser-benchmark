@@ -29,15 +29,15 @@
     "https://blogs.opera.com/desktop/changelog-for-140/"
   ],
   "verification_status": "official_bodies_verified_no_device_test",
-  "selection_status": "selected",
-  "selection_reason": "창마다 다른 레이아웃을 유지하는 명시적 동작 변화.",
-  "priority": "P2",
-  "priority_reason": "다중 창 배치에서 반복 조작 감소를 확인할 수 있음.",
-  "comparison_question": "한 창은 접고 다른 창은 펼친 상태가 창 이동 후에도 독립적으로 유지되는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "설치본에서 상태 독립성과 재시작 범위 확인",
-  "assessed_at": "2026-11-05T22:56:51.940747+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "pending_verification",
+  "selection_reason": "Evidence retained for opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104: 창별 세로 탭 접힘 상태 유지 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "scope": {
     "source_issue_ids": [
       "RNA-5392"
@@ -91,5 +91,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "in_period",
+    "basis": "legacy_event",
+    "evidence_date": "2026-11-04",
+    "precision": "day",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "Official item date."
+  }
 }

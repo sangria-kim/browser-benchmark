@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-194112dd20ec56a46ee1e789: Fixed an issue where the per-character rotate attribute was discarded on a <textPath> , so it now composes with the path tangent angle. (178044478) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-291081d0b3b043ec1435f881911994ea",
+  "subject_kind": "source_item",
+  "subject_id": "src-194112dd20ec56a46ee1e789",
+  "input_hash": "fcb3647611e9eff883101d3f0118ff7bba4d8cafdbc4374c2c6ad92ce5c2d7bf",
+  "input_revision": "semantic-v2-sha256:6b130a9a338f9f765d7e992230512cbf2c3b6a742fda56686a3899f17e8a1608",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-194112dd20ec56a46ee1e789"
+  ]
+}

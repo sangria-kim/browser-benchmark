@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "selection_rule_version": "pm-selection-v2",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "report_date": "2026-11-06",
   "observed_at": "2026-11-05T22:59:15.196038+00:00",
   "event_id": "chrome-subframe-removal-events-trial-observed-20261106",
@@ -41,14 +41,14 @@
   },
   "verification_status": "official_body_read_no_installed_test",
   "previous_event_id": null,
-  "selection_status": "watch",
-  "selection_reason": "개별 API가 개발자 시험 상태와 Desktop/Android 156–158 범위의 Finch 실험 계획·호환성 위험을 명시합니다. 첫 관찰이며 최초 대외 발표일은 미확인입니다.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
   "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
-  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
   "korea": {
     "availability": "미확인",
     "korean_language": "미확인",
@@ -70,5 +70,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

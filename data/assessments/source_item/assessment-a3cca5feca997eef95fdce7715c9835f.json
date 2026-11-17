@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c59fa076d735357420346923: `AccentColor` and `AccentColorText` reflect the element's effective `accent-color` value instead of only platform-provided system accent colors. This allows CSS to reference the same colors used by `accent-color` styling A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a3cca5feca997eef95fdce7715c9835f",
+  "subject_kind": "source_item",
+  "subject_id": "src-c59fa076d735357420346923",
+  "input_hash": "1fb8c566428aa183ad42a1a60cc61c720a202dd4f8908f4af31275ae492a865a",
+  "input_revision": "semantic-v2-sha256:1acff75dc278028dd49f9dd81164ee120c0884b6a74b4360e7288d98ac04f620",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c59fa076d735357420346923"
+  ]
+}

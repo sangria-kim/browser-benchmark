@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: As early as Chrome 146, the risk assessment scores for Spin.AI in the Admin Console will reflect [recent changes made by Spin.AI]( The scoring still follows the 0 to 100 scale. However, a score of 0 will reflect low risk"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b77b3f613ec34c78daf341256de25bd5",
+  "subject_kind": "source_item",
+  "subject_id": "src-3fd43a3b81a28b31268e7620",
+  "input_hash": "dd1c8138249b1b5e0f8f8808cb7aa437c388d896a9761dab522a97f5ed4dfe5d",
+  "input_revision": "semantic-v2-sha256:cc18dd2de16a81f94d2b2f72fa230b255819805b14b288cb0d579e5a6a612af9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3fd43a3b81a28b31268e7620"
+  ]
+}

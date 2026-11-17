@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: CUP secures communication with the update server, which delivers critical executable code like security patches and recovery components."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-57fcf9ae792c595962503b4ccaa7ecd6",
+  "subject_kind": "source_item",
+  "subject_id": "src-3e419573e766a1dccfb8fe50",
+  "input_hash": "f3d8d9f2c01d2c66c5117bd845fef76bc96d9f0ff05b7731a57104a97f270db5",
+  "input_revision": "semantic-v2-sha256:925027f9bba1541c7fcae28fc9f2ca9d8ad7f98e624b9c7cba53fc6b5017c251",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3e419573e766a1dccfb8fe50"
+  ]
+}

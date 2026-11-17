@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker with physical access to an iOS device with Stolen Device Protection enabled may be able to access biometrics-gated Protected Apps with the passcode"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5fd76e9a93c535bff05a532371249390",
+  "subject_kind": "source_item",
+  "subject_id": "src-ab25e2ec589551ca7ae27b45",
+  "input_hash": "76d1e44e99dc0fe622a861289f7ce5411d1235fdad0aa5b6318ed83db07aa130",
+  "input_revision": "semantic-v2-sha256:ea48f348093894d1e8a9f0bf143f11f22a21b3132c4ae4b33b9ef65a50077bf1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ab25e2ec589551ca7ae27b45"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ea5ca7ea2a86f625bad0cf45: Allows the use of 64-bit atomic minimum and maximum operations on `atomic<vec2u>` in WGSL. This provides WebGPU shader authors with a way to implement certain algorithms that use 64-bit atomics without requiring full sup A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e1d98067fed29ce9d031bcf5701d9030",
+  "subject_kind": "source_item",
+  "subject_id": "src-ea5ca7ea2a86f625bad0cf45",
+  "input_hash": "628486642115578a3e4aa9c87ca46f9ca6cb38474866ab8fe921dd1cee733974",
+  "input_revision": "semantic-v2-sha256:6dcc80a2e282dba56d71f2491b9c40e0e1df05ce55a0bbf9b35251c6fa3caf6c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ea5ca7ea2a86f625bad0cf45"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-67eb1456bf516763a89d5577: Chrome 152, deprecates the [RestrictBackgroundFetchFromServiceWorkerEnabled]( policy. Previously, Chrome 149 restricted the ability for a Service Worker to perform downloads using the [Background Fetch API]( The [Restric A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0b928fb94000e29d0acecf6c1c970f48",
+  "subject_kind": "source_item",
+  "subject_id": "src-67eb1456bf516763a89d5577",
+  "input_hash": "ca4f4710c0d07e0380d049865060a3172c13b8d80d9b25605e6ed3d30b41984b",
+  "input_revision": "semantic-v2-sha256:e27939ea133d85b553b64616af6fd1c8566e4792ca22511dbfb50bfd464dab1b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-67eb1456bf516763a89d5577"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3ed3cc4bbfe5a2d20e24a128: Fixed the FontFace constructor to reject with a SyntaxError instead of a NetworkError when a BufferSource fails to parse, per the CSS Font Loading specification. (174669738) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d9a7ae7b819758525c2409bed3ee15d6",
+  "subject_kind": "source_item",
+  "subject_id": "src-3ed3cc4bbfe5a2d20e24a128",
+  "input_hash": "9373792fc96559cf9ad01b8d3dd5a160420b43bc5ab51e9956153fe5a77b2a1d",
+  "input_revision": "semantic-v2-sha256:13944004e3c8d24eaa0fc86ee82b60cf10f0a770488170c46e8daec2b2c5cc0e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3ed3cc4bbfe5a2d20e24a128"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d840851227050333b5f433ad: Fixed moveBefore() leaving selectors that depend on the child list, such as :has() and :empty , stale after a move. ( [contact omitted] ) (189461850) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c086cb5128de87c1c85b223e09c45db0",
+  "subject_kind": "source_item",
+  "subject_id": "src-d840851227050333b5f433ad",
+  "input_hash": "f281e5f6caac8c4643f65077ff15718a5b6c73a90532a4483d4ed9de300fb59f",
+  "input_revision": "semantic-v2-sha256:61c0b9b49222e8c354922023e57cf0fefcdcda6db52fa8c9122067045600dd52",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d840851227050333b5f433ad"
+  ]
+}

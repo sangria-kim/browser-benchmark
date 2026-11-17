@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0ea0c9bf4498fa3483dcdb4b: Source baseline: HardwareSecureDecryptionVp9 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-dbd6ec4559dcbf53d8240eafb8be559a",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0ea0c9bf4498fa3483dcdb4b",
+  "input_hash": "7d15b7c7f58d0b245236c11ef059739acaace4b2e6229b12a5e4ba53c1ad4a9a",
+  "input_revision": "semantic-v2-sha256:15d07d37c9cef092c22d90cc23171198bd777f98f87aa3156b924c273b995a91",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-65802cf8cb81ac5e83cf8f27"
+  ]
+}

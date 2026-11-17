@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-593cf2fee4822f87e56ff0dc: Source baseline: GlicIgnoreDogfoodClient A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4e4998c4d64d3600285f5a75fb322c5c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-593cf2fee4822f87e56ff0dc",
+  "input_hash": "13ef54f37d9acade8b3ce9f8ad2323d4f6e272f8530298caced6f4083b4dba23",
+  "input_revision": "semantic-v2-sha256:91d150ca94c33ab106647b2ad95c7156c32e92b57c51ea398fd61928dc0da8ca",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-da3f53899d81c72edbe380b6"
+  ]
+}

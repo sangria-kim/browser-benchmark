@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome Enterprise now offers custom HTTP header injection, a feature that injects custom headers into network requests matching configured URL patterns. This generic capability allows enterprises to reduce their reliance"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c35249ce72f4bc4a16a61d1a6de86d97",
+  "subject_kind": "source_item",
+  "subject_id": "src-9ebfb30486a1f7ba9508ca9e",
+  "input_hash": "9a45574cd51a9797a619ccc1fa44f2a705b238bdb485ed0c0df633c7cf12d6df",
+  "input_revision": "semantic-v2-sha256:2482d1e5d49f16fae9beee68a9243af49caf903e644fc9ef8356f4723e9589a7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9ebfb30486a1f7ba9508ca9e"
+  ]
+}

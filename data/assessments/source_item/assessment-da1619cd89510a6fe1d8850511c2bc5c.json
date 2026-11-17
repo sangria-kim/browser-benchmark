@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed an issue where CSPViolationReportBody did not include the source line number in Content Security Policy violation reports. ( [contact omitted] ) (152607402)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-da1619cd89510a6fe1d8850511c2bc5c",
+  "subject_kind": "source_item",
+  "subject_id": "src-f3d137518b0197b4c806e6a3",
+  "input_hash": "e91860e9d80c0c482c5fb9de1581eb4c7944769def48c04b28de32c10e8a2a60",
+  "input_revision": "semantic-v2-sha256:64c58e3c02fc5511820c5aa65d6ad2e46daca9dd7c299f4ba39509c33976aaa8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f3d137518b0197b4c806e6a3"
+  ]
+}

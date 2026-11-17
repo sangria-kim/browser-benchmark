@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e0d41758913303d4d5405010: Fixed an issue on iPadOS where closing the sidebar or resizing the window could cause the page to remain zoomed in by recalculating the target scale to automatically match the new minimum scale. (157676989) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a3d6c0b9b72e49cb5c636ce637b4f1c9",
+  "subject_kind": "source_item",
+  "subject_id": "src-e0d41758913303d4d5405010",
+  "input_hash": "0c21bcc8ab402f4109bd85519dc61189c296a2e21a13b7c4892961579be9b508",
+  "input_revision": "semantic-v2-sha256:56c15c90344270a8de043aa7a5b559d1571eb1c94f5addd83f6e3c162b65a4d5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e0d41758913303d4d5405010"
+  ]
+}

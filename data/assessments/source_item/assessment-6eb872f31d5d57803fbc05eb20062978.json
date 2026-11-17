@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious application may be able to determine a user's current location"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6eb872f31d5d57803fbc05eb20062978",
+  "subject_kind": "source_item",
+  "subject_id": "src-91baa5925d12616453952580",
+  "input_hash": "e949bf4d15697cc0b6ab6a7ea1c69320880d1b9ac367f6c3a671729ae3717724",
+  "input_revision": "semantic-v2-sha256:64211d6fb3d94d23e3e173bb24b1bf1895627c6cd2346f7406053134db5863e9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-91baa5925d12616453952580"
+  ]
+}

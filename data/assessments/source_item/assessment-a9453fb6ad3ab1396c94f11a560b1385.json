@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker with physical access to a trust-paired device may be able to read and write arbitrary files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a9453fb6ad3ab1396c94f11a560b1385",
+  "subject_kind": "source_item",
+  "subject_id": "src-d18036b35253f54acbe3c55b",
+  "input_hash": "9be7637a40d5866f4bc8d35b2c8910aa6c952a34d86b9e95f64deafe3918a4e7",
+  "input_revision": "semantic-v2-sha256:298fe21f5ab8a68da192600dbb268b5b31229dcc39f039f372af042b19254bf4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d18036b35253f54acbe3c55b"
+  ]
+}

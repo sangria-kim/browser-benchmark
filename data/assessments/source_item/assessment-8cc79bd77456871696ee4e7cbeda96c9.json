@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app with root privileges may be able to access private information"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8cc79bd77456871696ee4e7cbeda96c9",
+  "subject_kind": "source_item",
+  "subject_id": "src-d26d9da62836bcbea59df127",
+  "input_hash": "c76f22481b1089f1e600481a709274a4ba7f72e1757266240b43a9affec0c6b8",
+  "input_revision": "semantic-v2-sha256:bd5f275aae3782df4c3fe7ded9f60fdd209737b7def67cfe8a94cd88c9c498be",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d26d9da62836bcbea59df127"
+  ]
+}

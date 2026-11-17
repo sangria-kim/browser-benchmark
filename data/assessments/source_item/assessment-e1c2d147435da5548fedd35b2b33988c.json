@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e737e179d1af2791d4e362fc: Fixed an issue where class instance field initializers did not have the correct evaluation context when used inside arrow functions and nested scopes. (173296563) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e1c2d147435da5548fedd35b2b33988c",
+  "subject_kind": "source_item",
+  "subject_id": "src-e737e179d1af2791d4e362fc",
+  "input_hash": "6deef0deaf580e0d305388d27de0612a400d023f00e9150fb5fc17ff694942d2",
+  "input_revision": "semantic-v2-sha256:ccb755dfe6fa4f503004ad8b97bcf9d34b23f1094794bcb8722eae6931d9cd1a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e737e179d1af2791d4e362fc"
+  ]
+}

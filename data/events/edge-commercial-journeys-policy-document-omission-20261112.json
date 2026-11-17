@@ -43,15 +43,15 @@
   "delta": "이전에 공개된 정책 항목이 현재 158 Beta 노트와 정책 색인에는 표시되지 않는다. 명시적인 철회 설명이나 설치본 동작 근거가 없어 제품 기능 제거 또는 출시 취소로 해석하지 않는다.",
   "verification_status": "official_document_observation_not_device_tested",
   "previous_event_id": "edge-commercial-journeys-policy-158-20261106",
-  "selection_status": "pending_verification",
-  "selection_reason": "과거 watch 판단의 문서 근거가 현재 목록에 없지만 제품 상태는 확정할 수 없다.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "삼성 브라우저와 비교할 때, 업무 과제 제안과 guided flow에서 허용되는 행동 범위, 사용자 승인과 중단, 작업 기록 확인 및 로컬 데이터 보관은 어떻게 다른가?",
+  "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "문서 복구 또는 명시적인 공식 정책 변경 설명",
-  "assessed_at": "2026-11-12T23:24:54.740586+00:00",
-  "selection_rule_version": "pm-selection-v2",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "source_item_ids": [
     "src-legacy-0a47a10ef85607da30935591",
     "src-legacy-75f67f76e77d60904acdf10a"
@@ -60,5 +60,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

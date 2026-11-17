@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e941efe842ade691970db644: Source baseline: FileSystemAccessBlockHomeDotFiles A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e546bcf6e305b17389a54d59806902fe",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e941efe842ade691970db644",
+  "input_hash": "ba2440fe57379b203326091c5a293d993e54e0b269a29547a909637d48a1d2b2",
+  "input_revision": "semantic-v2-sha256:acc03707a680610adc002a96bf2071b774939b69c9b0cddd0c173dffe0bfcefc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-81ef47eb9ab2711379927ba8"
+  ]
+}

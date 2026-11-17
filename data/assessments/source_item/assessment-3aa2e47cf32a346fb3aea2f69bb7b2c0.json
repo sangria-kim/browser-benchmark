@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2a4e90b52eea5726e0376ffd: Fixed an issue in WebGPU where an array value constructor referenced through a type alias could generate invalid Metal Shading Language, silently producing incorrect compute results. ( [contact omitted] ) (186803296) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3aa2e47cf32a346fb3aea2f69bb7b2c0",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a4e90b52eea5726e0376ffd",
+  "input_hash": "07d37a85a920de8b45e9e63e3c63f00069c1c2416f2828e78fe16f8407b0799c",
+  "input_revision": "semantic-v2-sha256:1a5286b55c577459a5f8a02673e1606a9e6dabf05744f7f30e9613eb7adbd5c4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2a4e90b52eea5726e0376ffd"
+  ]
+}

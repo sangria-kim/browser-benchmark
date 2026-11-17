@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Many of our security bugs are detected using AddressSanitizer , MemorySanitizer , UndefinedBehaviorSanitizer , Control Flow Integrity , libFuzzer , or AFL ."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-41d09d91a4d8910d2afeeebe29ef3cce",
+  "subject_kind": "source_item",
+  "subject_id": "src-a8389989f9acc8a1dec96a14",
+  "input_hash": "369f4fd0bb92d273bf670cc8afae35c2f2765232f93b6e37455ccd5e9230d8ff",
+  "input_revision": "semantic-v2-sha256:a66dd65042ebd2fd36d7e210272345887a976ac6dad0a73704f77b00d4f7dfa0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a8389989f9acc8a1dec96a14"
+  ]
+}

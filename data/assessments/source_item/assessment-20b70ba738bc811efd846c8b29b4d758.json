@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9633ff8bbd02c80c2967cf29: Provide Uint8Array chunks for binary messages received by WebSocketStream. Previously, WebSocketStream provided ArrayBuffer chunks for binary messages, however this was not aligned with modern practices or with the propo A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-20b70ba738bc811efd846c8b29b4d758",
+  "subject_kind": "source_item",
+  "subject_id": "src-9633ff8bbd02c80c2967cf29",
+  "input_hash": "8595b8dbc6b9bf8ece80f5f215d3c752f6fa4574ca075f9920d85f18ce24d36e",
+  "input_revision": "semantic-v2-sha256:76fb421ff289f0d31eabc918157576e22edc230ffbf61fa2d3f3277979e1075f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9633ff8bbd02c80c2967cf29"
+  ]
+}

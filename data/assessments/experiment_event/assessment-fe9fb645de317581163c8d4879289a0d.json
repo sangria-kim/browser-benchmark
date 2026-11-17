@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f0f9988086fbc404da2fcff8: Source baseline: Debounce Keyboard Visibility A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fe9fb645de317581163c8d4879289a0d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f0f9988086fbc404da2fcff8",
+  "input_hash": "3ccee6ef6ee2a342461bb9b52deaff130f0d81ddf2098ecce547e2e742146471",
+  "input_revision": "semantic-v2-sha256:a89013ac6233396c58c0206aafe642d8620126d2aed4342265b54b3785c081a4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-2d76d513fdfee0f9c37daa0b0c86b7e1",
+  "evidence_source_item_ids": [
+    "src-chromium-70a338cd4fe6c0966bd03117",
+    "src-legacy-6332a6964c0a878edccf957d"
+  ]
+}

@@ -7,15 +7,15 @@
     "pc"
   ],
   "ai_related": false,
-  "selection_status": "watch",
-  "selection_reason": "watch: exact source delta confirmed and concrete comparison question recorded; installed exposure/test access is unverified, so no release or benchmark-completion claim.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "For an eligible supervised account in pending reauthentication, does the flow avoid repeated identifier entry and retain safe fallback?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "Eligible DICE-enabled installed build and supervised test account with reproducible pending reauth state.",
-  "assessed_at": "2026-10-30T22:49:00Z",
-  "selection_rule_version": "pm-selection-v2",
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "schema_version": 2,
   "event_id": "chrome-reauth-skip-identifier-page-followup-added-703ba63f0515",
   "feature_id": "chrome-reauth-skip-identifier-page-followup",
@@ -71,5 +71,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

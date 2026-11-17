@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "selection_rule_version": "pm-selection-v2",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "report_date": "2026-11-06",
   "observed_at": "2026-11-05T22:49:05.197904+00:00",
   "event_id": "chrome-gemini-enterprise-list-restored-20261106",
@@ -35,14 +35,14 @@
   },
   "verification_status": "official_body_read_no_installed_test",
   "previous_event_id": "chrome-gemini-enterprise-list-omission-20261103",
-  "selection_status": "pending_verification",
-  "selection_reason": "현재 공식 문서 근거이며 기능의 최초 발표·실제 출시 또는 단계 변경을 입증하지 않음. 목록 분류·문서 수정일을 출시 증거로 일반화하지 않음.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
   "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "공식 배포 단계·지원 조건과 실제 설치본을 확인하고 최초 발표 이력 및 기존 사건과 대조",
-  "assessed_at": "2026-11-05T23:01:38.014993+00:00",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
   "korea": {
     "availability": "미확인",
     "korean_language": "미확인",
@@ -64,5 +64,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

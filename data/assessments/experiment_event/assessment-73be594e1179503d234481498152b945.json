@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-35b484a75f4e04c02e7f05c1: Source baseline: PreventReentrantInternalSetBounds A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-73be594e1179503d234481498152b945",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-35b484a75f4e04c02e7f05c1",
+  "input_hash": "d89368ad0907ec76ea169198f9162209edddfc55d9cb456379828eccbd2a799d",
+  "input_revision": "semantic-v2-sha256:7a15b74e732585231aacdf8250ec84790506b153c9693cc9e120f4199e150132",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-662d6a32f642f235579b76ab"
+  ]
+}

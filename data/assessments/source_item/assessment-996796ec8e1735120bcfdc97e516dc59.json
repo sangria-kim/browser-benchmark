@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 517585486 High CVE-2026-11691 Insufficient validation of untrusted input in New Tab Page"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-996796ec8e1735120bcfdc97e516dc59",
+  "subject_kind": "source_item",
+  "subject_id": "src-e8b7cfa83ccf198a366eab1a",
+  "input_hash": "02378050e000d295cb37d218f9b9666cf17062bc520f1a24ee4321813995d14c",
+  "input_revision": "semantic-v2-sha256:be94a5d32deccb3597515dcfcbc25cfdd6752cbfa2efe274d62b4f138519a260",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e8b7cfa83ccf198a366eab1a"
+  ]
+}

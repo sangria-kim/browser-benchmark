@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3b557b460eb1a892d6f83a0d: Source baseline: WebAuthnU2fFallbackRequiresPreferredEs256 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9d74bcb2430fd8e2530ee9062754ad4f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3b557b460eb1a892d6f83a0d",
+  "input_hash": "c6ec813f82bf87bdd3c70db659670ebf8dbfa122134f508a1bb69bcf5e0d5fae",
+  "input_revision": "semantic-v2-sha256:eacc3c762b90d036398764cbd4c1c14245ec813db501b3e42dd84d6ee7e76803",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-a40944a1bd3f340685ec73f4"
+  ]
+}

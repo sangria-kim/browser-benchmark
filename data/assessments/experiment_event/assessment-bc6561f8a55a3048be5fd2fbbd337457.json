@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f51fa260ea5dc9a8382e5722: Source baseline: HeapVectorPromptlyFree A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bc6561f8a55a3048be5fd2fbbd337457",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f51fa260ea5dc9a8382e5722",
+  "input_hash": "47735bff49cf1d0e1acfa7adbb07c41b5d65faf0b7f739b33b11cfaefe4f7aed",
+  "input_revision": "semantic-v2-sha256:95f4b945514ca19a3c0af6189bc28d59e504003c90f7d1ecd1e3045c24370d00",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-bba24018abf704bf5007d871"
+  ]
+}

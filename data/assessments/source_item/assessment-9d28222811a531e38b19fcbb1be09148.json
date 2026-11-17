@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app with root privileges may be able to read uninitialized kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9d28222811a531e38b19fcbb1be09148",
+  "subject_kind": "source_item",
+  "subject_id": "src-75a120f4d2a3309bea5e8ebd",
+  "input_hash": "4d27dd6eed63cef6d44698a7a86c5a7bcfbcbb705d9a8aa252282c9fa403e4e6",
+  "input_revision": "semantic-v2-sha256:3c166430a53b942f3de7c49ddc7fd2e1cf10ab033da293423d5c50fe1e12f4aa",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-75a120f4d2a3309bea5e8ebd"
+  ]
+}

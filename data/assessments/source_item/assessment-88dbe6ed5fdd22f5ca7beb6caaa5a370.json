@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Our analysis shows that _zkLogin’_s core security assumptions do not hold under realistic adversarial conditions. The vulnerabilities we identify undermine the guarantees zkLogin claims to provide, including issuer-bound"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-88dbe6ed5fdd22f5ca7beb6caaa5a370",
+  "subject_kind": "source_item",
+  "subject_id": "src-b333dba4bd53b201615d1faf",
+  "input_hash": "5442c8981ead5dafb70d2c3cbe729abd3089da10b034b962c8b1caa17b3ac397",
+  "input_revision": "semantic-v2-sha256:2de9dae1762a1ba0f19090b283bc9646a057dfd2f77541d590a8d59ad3dbddea",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b333dba4bd53b201615d1faf"
+  ]
+}

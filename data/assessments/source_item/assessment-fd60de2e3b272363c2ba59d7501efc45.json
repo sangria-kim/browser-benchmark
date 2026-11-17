@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Mounting a maliciously crafted volume may lead to unexpected system termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fd60de2e3b272363c2ba59d7501efc45",
+  "subject_kind": "source_item",
+  "subject_id": "src-865ccd967692be833c0473dd",
+  "input_hash": "2d7af4511a4b7518d65fca501a192bc46ad6906bb61eefde04c679946527e2a9",
+  "input_revision": "semantic-v2-sha256:8ff985d457596fd02d02223eae3dff5665a07d0dc4e0b16f9bc39b4f1655fd59",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-865ccd967692be833c0473dd"
+  ]
+}

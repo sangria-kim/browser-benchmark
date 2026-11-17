@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ba4599fd52cd99983d512054: Fixed a re-exported imported WebAssembly.Tag not being the same object as the one that was imported. (185121644) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-82be2995757f55732d76399121f22ec2",
+  "subject_kind": "source_item",
+  "subject_id": "src-ba4599fd52cd99983d512054",
+  "input_hash": "eaee12c928ad923c5c4da5b658e40560b4730b44e1e13d7f5d56eb2a6279595f",
+  "input_revision": "semantic-v2-sha256:8343cd297758f188eba0416f9a6c310e8c151ad22a65e677e5a14e96d4163085",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-2d11fe4af2dd7d5aed0ac32caaec00fb",
+  "evidence_source_item_ids": [
+    "src-ba4599fd52cd99983d512054"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Medium Fixes CVE-2026-49745 [PSP-598][PP-174017] Unvalidated sHWPerfCtlDMABuf GPU-VA, DMA-write into FW privdata via MMU ctx 0"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cec3131a62e928ffdbe6211d3029c571",
+  "subject_kind": "source_item",
+  "subject_id": "src-ac07d20a1ab223b3034e364c",
+  "input_hash": "6ee3e9ef88f8a79bacbd06528cd3682c13bec573fef3555fad78a644f517cfd2",
+  "input_revision": "semantic-v2-sha256:0a355899c612bfbf0db358c0dc912f8c0ae6aaebedf3274a5e9d9ba926fa99d6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ac07d20a1ab223b3034e364c"
+  ]
+}

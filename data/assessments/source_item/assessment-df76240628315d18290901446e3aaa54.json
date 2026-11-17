@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: On macOS, the Chrome process can continue running even when all browser windows are closed. This is a feature of macOS applications, for which the underlying process can stay active even after all windows are closed. Chr"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-df76240628315d18290901446e3aaa54",
+  "subject_kind": "source_item",
+  "subject_id": "src-35a48833fd3d7b31bbd3ae10",
+  "input_hash": "6a821b32832e786abde0e37c913a8e3504ff565daa8406a241d182ad4c52d860",
+  "input_revision": "semantic-v2-sha256:a2bb74278a3337cfadea08dbc5a9882f1c0b656e59f079b990c4a53c2f37dd7c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-35a48833fd3d7b31bbd3ae10"
+  ]
+}

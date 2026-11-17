@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed navigator.hardwareConcurrency returning unusual core counts to known fingerprinting scripts, which could trigger bot detection challenges, by alternating between 4 and 8 instead. ( [contact omitted] ) (177211562)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0e09fea29bec8bf9857d014e9537bc5c",
+  "subject_kind": "source_item",
+  "subject_id": "src-2bb11ab4a93139c5ac9c84a0",
+  "input_hash": "477077cfbd3eccd5b7c6def32081d7f38cd061f89b1cf87d9e137cc56ed35766",
+  "input_revision": "semantic-v2-sha256:465044fb1872a636527f027316bee84c23bf1eb55cbc686e6569f1be431b296f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2bb11ab4a93139c5ac9c84a0"
+  ]
+}

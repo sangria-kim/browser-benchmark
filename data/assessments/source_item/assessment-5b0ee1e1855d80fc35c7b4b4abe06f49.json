@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2082fd4749ad9ee0df311092: Fixed an issue where @font-face rules with different styles could incorrectly fall back to glyphs from other faces in the same family, rather than proceeding to the next family as specified by the font matching algorithm A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5b0ee1e1855d80fc35c7b4b4abe06f49",
+  "subject_kind": "source_item",
+  "subject_id": "src-2082fd4749ad9ee0df311092",
+  "input_hash": "1474b0bb58c26607ae8efa11e01606e1132e05102389f2a6e4b72865d14a94cf",
+  "input_revision": "semantic-v2-sha256:2beda57f73125ec2486f6c9b3af4eda85e324e7373aa91f1ff446eee654d03b6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2082fd4749ad9ee0df311092"
+  ]
+}

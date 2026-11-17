@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4171067e8d25fe851e09e092: Fixed an issue where a grid item with an aspect-ratio could keep a stale inline size contribution when the grid container shrank. (186101273) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-05f90b5449f6f633c06e2e5934faef07",
+  "subject_kind": "source_item",
+  "subject_id": "src-4171067e8d25fe851e09e092",
+  "input_hash": "427f025c90a18fcfb1db51b55c03b092edfa73d0c0279eb8ca83669fc6581316",
+  "input_revision": "semantic-v2-sha256:ea9b559cfc0c2d664bc55280dcf9587b6f9b3ee76cec0ea5e673b3449ed0880a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-34dfe0050ca8315928b0682a9955d460",
+  "evidence_source_item_ids": [
+    "src-4171067e8d25fe851e09e092"
+  ]
+}

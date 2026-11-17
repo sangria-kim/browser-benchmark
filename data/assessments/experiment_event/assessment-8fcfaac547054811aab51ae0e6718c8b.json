@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-875f725ec9545b04811e0a0c: Source baseline: Android Force TextInputState Update Upon Focus A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8fcfaac547054811aab51ae0e6718c8b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-875f725ec9545b04811e0a0c",
+  "input_hash": "c075ea98c636778fc2f9e50538f9b4c95341dc9f392e91923683e7ddc79d650c",
+  "input_revision": "semantic-v2-sha256:77eff61026bc2fb82bf7c6f09ea87eba1212314d9b61afa800560cee1ad84f8e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-4cf33e2b59bbee4810dc4d171e56250e",
+  "evidence_source_item_ids": [
+    "src-chromium-a468de1e461ad4cc1749b690"
+  ]
+}

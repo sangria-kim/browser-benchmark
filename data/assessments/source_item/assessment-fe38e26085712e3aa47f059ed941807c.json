@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9063c44d42028a4740799b1a: Chrome is changing its behavior to allow pages with active WebSocket connections to enter the Back/Forward Cache. To achieve this, active WebSockets are now disconnected when a page is cached. Previously, active WebSocke A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fe38e26085712e3aa47f059ed941807c",
+  "subject_kind": "source_item",
+  "subject_id": "src-9063c44d42028a4740799b1a",
+  "input_hash": "85ae6a8f54d81fe3e492c323ddddd6bcb52da75e9c3baafa015cd5d215995f4b",
+  "input_revision": "semantic-v2-sha256:57402822fd8bd5bd9bd3abfc8dbbfe5cc2c21ed68f0d7717d7a3ccd7105325cb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9063c44d42028a4740799b1a"
+  ]
+}

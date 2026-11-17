@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-323d57d930e7673611fbcc88: It runs an elliptic-curve Diffie–Hellman (ECDH) key exchange between that ephemeral key and the TEE’s public key, producing a shared secret. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b030bbea14bca67be4c74abf06484185",
+  "subject_kind": "source_item",
+  "subject_id": "src-323d57d930e7673611fbcc88",
+  "input_hash": "32b696c70eb49824da2002c7c6d653b3d40d5ac912d78205419c682ad32e92d8",
+  "input_revision": "semantic-v2-sha256:1371c50eb9212fa43de70e4c880cfcee0e00abfb1c44a4821d21bc815379d3ca",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-323d57d930e7673611fbcc88"
+  ]
+}

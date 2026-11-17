@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: **PreferSlowKEXAlgorithms** and **PreferSlowCiphers** are two new, experimental enterprise policies that configure Chrome to order its preferred key agreement algorithms (supported groups) and encryption cipher algorithm"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b44fa26d26f533d5b6ffe267c835dad1",
+  "subject_kind": "source_item",
+  "subject_id": "src-440a87ddc280ab325fd19fde",
+  "input_hash": "f8d12cf3d0dba697555f1ff4dc07b3fe5bf928940c52bc0b42857e7e64ccf5ad",
+  "input_revision": "semantic-v2-sha256:f2a646b5d7fe8fc0bac6dc60e237eb29e8c024160253cd0c6a0c9ab02a0ca644",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-440a87ddc280ab325fd19fde"
+  ]
+}

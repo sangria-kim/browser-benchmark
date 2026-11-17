@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-50b4acdbc3e95d0b683b9387: Fixed an issue where execCommand('FormatBlock') did not preserve inline styles of replaced block elements, causing text formatting to be lost when pasting content. ( [contact omitted] ) (157657531) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-31957663477953c0ca8e9fab5ce19a27",
+  "subject_kind": "source_item",
+  "subject_id": "src-50b4acdbc3e95d0b683b9387",
+  "input_hash": "522953309034ba9a8dea30de11bda75fe67ed39bd7d845c3b0362bfc4d54c890",
+  "input_revision": "semantic-v2-sha256:4a1049aca58e42c64fb704425c858186cde747b778e3caf13ab60603e89c9df5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-50b4acdbc3e95d0b683b9387"
+  ]
+}

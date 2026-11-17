@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A maliciously crafted disk image may bypass Gatekeeper checks"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d4a444119d84dbbf7ccca17d8baa2d5c",
+  "subject_kind": "source_item",
+  "subject_id": "src-9a35135ecf22ba85b8c889f2",
+  "input_hash": "c4f48720441877c998e55bfac00e0b1c2dcbf5e0700ef11a73a96b231a0e8b4b",
+  "input_revision": "semantic-v2-sha256:07465018a70d980d251e7e84f6037c603e0851b51c4109912b03216b3f220799",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9a35135ecf22ba85b8c889f2"
+  ]
+}

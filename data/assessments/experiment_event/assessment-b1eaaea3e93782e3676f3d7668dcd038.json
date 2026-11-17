@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-969742e22225c3cd920ff322: Source baseline: Enable OS updates in shimless RMA A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b1eaaea3e93782e3676f3d7668dcd038",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-969742e22225c3cd920ff322",
+  "input_hash": "d3c2f3f02bf2d90f491c0388edf0377ef98483d5ab5e1fc45550399a5a7b7004",
+  "input_revision": "semantic-v2-sha256:619a4f0a297d52029ae3b3c0c6d3d5cc010656fd224f8800bbb4652be25cb8ad",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-45a38ca82ac66efdba01bf0752063eac",
+  "evidence_source_item_ids": [
+    "src-chromium-1b0cc193dd2a11cd5d5c3e86"
+  ]
+}

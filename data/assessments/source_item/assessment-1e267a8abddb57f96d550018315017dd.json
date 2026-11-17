@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-72705c44b27216de1cb29727: Fixed setting valueAsNumber to throw a TypeError for infinite values and to clear the value when set to NaN , instead of throwing a NotSupportedError for both. ( [contact omitted] ) (188047421) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1e267a8abddb57f96d550018315017dd",
+  "subject_kind": "source_item",
+  "subject_id": "src-72705c44b27216de1cb29727",
+  "input_hash": "3389753752d3241df317e6093acda93d6cf4b6860c7f7fefd6d1f84af9abc296",
+  "input_revision": "semantic-v2-sha256:b3a0a1b2f1547a61c1d3881f9ce66c9c0b6bb0f71ff5d96926e96f19e179c6a4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-72705c44b27216de1cb29727"
+  ]
+}

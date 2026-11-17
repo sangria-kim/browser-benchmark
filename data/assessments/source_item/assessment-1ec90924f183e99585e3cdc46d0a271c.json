@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted document may lead to an out-of-bounds read"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1ec90924f183e99585e3cdc46d0a271c",
+  "subject_kind": "source_item",
+  "subject_id": "src-78950de28609b6d7d93e438a",
+  "input_hash": "a7155bcecba83df684509c4e51fa6a8114f2655c6c0b32c6c0650558945d849e",
+  "input_revision": "semantic-v2-sha256:b6eec0ba8f773744d18670334e7012a441778615a982dce7d43e14f51d911c15",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-78950de28609b6d7d93e438a"
+  ]
+}

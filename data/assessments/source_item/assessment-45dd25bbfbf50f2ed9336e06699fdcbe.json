@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-755fe57c2026faf9e587f68a: Fixed getBoundingClientRect and getClientRects to return scaled lengths according to CSS zoom instead of unscaled values, aligning with the CSS Viewport specification. (162325730) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-45dd25bbfbf50f2ed9336e06699fdcbe",
+  "subject_kind": "source_item",
+  "subject_id": "src-755fe57c2026faf9e587f68a",
+  "input_hash": "114447086ee02983fb9f7a16a7c2e19d20d79bfcd3a3289ec4077860a6b87f20",
+  "input_revision": "semantic-v2-sha256:74d7c0f6676708a9ea40e71d4dccc55d9fc9a56285ac1ce867e6086cb36a96cd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-755fe57c2026faf9e587f68a"
+  ]
+}

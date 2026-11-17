@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d9d58bb6ac0b3c1fb6bcc4a8: overscroll-behavior currently has 3 values: none, auto, and contain. These values affect 2 independent effects: scroll propagation and local border effect (e.g. overscroll stretch). none: no propagation, no local effect  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5ce746835bd8175b55492e01d88174fc",
+  "subject_kind": "source_item",
+  "subject_id": "src-d9d58bb6ac0b3c1fb6bcc4a8",
+  "input_hash": "9b7d5585c71c3c589f191ac987fc4ad2aa4860eb14f808fce392cee5b9261cb4",
+  "input_revision": "semantic-v2-sha256:a2a84443fcf4f04d98c3e4753580f6787928284c6b5823de9e140cf0bd56ae14",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d9d58bb6ac0b3c1fb6bcc4a8"
+  ]
+}

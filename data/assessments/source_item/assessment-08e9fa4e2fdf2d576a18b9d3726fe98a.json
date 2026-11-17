@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed crashes on Windows that could occur with some antivirus or other security software installed, in some cases also leaving WebGL disabled. ( Bug 2083648 )"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-08e9fa4e2fdf2d576a18b9d3726fe98a",
+  "subject_kind": "source_item",
+  "subject_id": "src-728272d6a12de4f52fffa0ed",
+  "input_hash": "7f230bb57a3759d1134fe1629d64a862c7455b64d373642c0c531053049f4dfe",
+  "input_revision": "semantic-v2-sha256:c7367ef0296528b3782ccd3116b81768c0d22f1430f861512c65a795548e1c6d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-728272d6a12de4f52fffa0ed"
+  ]
+}

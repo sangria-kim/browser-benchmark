@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-31f6476f3dbd53cdd534dfb3: Fixed an issue where using WebGPU render bundles on some GPUs could cause the device to be unexpectedly lost. (186688781) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5039ecd843524ef40cfc745d350b954d",
+  "subject_kind": "source_item",
+  "subject_id": "src-31f6476f3dbd53cdd534dfb3",
+  "input_hash": "96bbfaf0d6839d7d2d1ff505765ea360c6ab846a19fbcdda31fa6dd614b2b61f",
+  "input_revision": "semantic-v2-sha256:f968957229c0630c98da0e23d91137cc85c3fb9dc8b50dc967dcda293e67cf6c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-42a3cb0aea38c0b7086d47e399dc6a28",
+  "evidence_source_item_ids": [
+    "src-31f6476f3dbd53cdd534dfb3"
+  ]
+}

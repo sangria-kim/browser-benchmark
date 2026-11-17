@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-cd8611fd0f21664e399f553c: Fixed %TypedArray%.prototype.includes to correctly check that the index is less than the array length, aligning its behavior with ECMA-262 ( [contact omitted] ). (166578170) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4153590bd763337d3fe2aed16aaf9c17",
+  "subject_kind": "source_item",
+  "subject_id": "src-cd8611fd0f21664e399f553c",
+  "input_hash": "c426804c3fc3731615b8c485e43326151df030bc8f0b04a1231f7003b433b3b2",
+  "input_revision": "semantic-v2-sha256:23179447dde62ba0289ea5ed39442abc96bb3493a951fe870327518445e61557",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cd8611fd0f21664e399f553c"
+  ]
+}

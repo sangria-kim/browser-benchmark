@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bbacb8f6e24b48541627bcad: Previously, Chrome registered PDF files under the ChromeHTML ProgID, causing PDFs to share the same icon and description as web pages. Chrome now registers under a dedicated ChromePDF ProgID. This separates PDF files vis A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-12251d40ccf29b5f2b17b77a4fd3b008",
+  "subject_kind": "source_item",
+  "subject_id": "src-bbacb8f6e24b48541627bcad",
+  "input_hash": "b770bfcc98acdad235f293e2d0d3d21c84ef687d5b32d2e298e116c59ceee0ba",
+  "input_revision": "semantic-v2-sha256:82044251a53e1d1372e33796506c72ee1d272e460a9d7f68f240eea620b6fbcc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bbacb8f6e24b48541627bcad"
+  ]
+}

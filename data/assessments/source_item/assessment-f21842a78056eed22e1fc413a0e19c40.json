@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 558036280 High CVE-2026-91737 Use after free in PDF"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f21842a78056eed22e1fc413a0e19c40",
+  "subject_kind": "source_item",
+  "subject_id": "src-4db5ce649d381c32e26ade55",
+  "input_hash": "0e62a9fe32717f779f37458f462f94a7cf34230e823baf11e6334730cf0a5f89",
+  "input_revision": "semantic-v2-sha256:a3e85ecd4034393fcb559e9718637588597fb8cc86f8aea2a36e392cd8e915be",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4db5ce649d381c32e26ade55"
+  ]
+}

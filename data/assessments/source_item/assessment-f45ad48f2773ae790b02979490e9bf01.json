@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A remote user may be able to cause unexpected system termination or corrupt kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f45ad48f2773ae790b02979490e9bf01",
+  "subject_kind": "source_item",
+  "subject_id": "src-c04b08a553dddae58bbf5696",
+  "input_hash": "df8c62cc6c8f0d4fd129bdd7dbf05b20ce2a5c486e4c3991ae698ceedb13599f",
+  "input_revision": "semantic-v2-sha256:618056159c78e0ad3c77ba9db17a89f45cc1c9339b8983bd3e1b4b9f1ae2b7b0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c04b08a553dddae58bbf5696"
+  ]
+}

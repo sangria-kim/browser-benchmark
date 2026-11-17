@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious NFS server may cause unexpected system termination or corrupt kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8e10704e7b99083e3f5765bac3963155",
+  "subject_kind": "source_item",
+  "subject_id": "src-214c31be642c03e1e9275456",
+  "input_hash": "3665f910b96126cb441b308883e21d6c838540aa20b0b50ac6dec32843ce6754",
+  "input_revision": "semantic-v2-sha256:7e797006780559eb2a56e09b7fa6a487ad2f1bf6e9c174bc5fa2a8038d2742eb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-214c31be642c03e1e9275456"
+  ]
+}

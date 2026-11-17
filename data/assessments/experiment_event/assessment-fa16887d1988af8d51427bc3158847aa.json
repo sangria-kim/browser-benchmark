@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-fdd081b91182d1375e46bedc: Source baseline: Disable CancelAllTouches() A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fa16887d1988af8d51427bc3158847aa",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-fdd081b91182d1375e46bedc",
+  "input_hash": "e4419b3ff51acd52ff8e8bcdce44c094297553c9ea1aab0a40914f0148884b1d",
+  "input_revision": "semantic-v2-sha256:aaa5f2b210162d5dc24b131cbc8ad38736197784d849ac8e1455f69cf8cc5fac",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-610374909bb8d39eab55e85949e90ed9",
+  "evidence_source_item_ids": [
+    "src-chromium-f36c7a74b176ed718d566a2c"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a1ee8d6fbfe30dd0f5528596: Fixed over-aggressive clipping of child layers in multicolumn layouts to prevent visual overflow issues with position: relative elements and transform:scale() text. (126413036) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ed357eff314dedaa8d11b315b001fe4a",
+  "subject_kind": "source_item",
+  "subject_id": "src-a1ee8d6fbfe30dd0f5528596",
+  "input_hash": "ffbe843d9f93cefebf4b82056a3375a554bbf76ab2ff0d416065f9de8f729536",
+  "input_revision": "semantic-v2-sha256:782d9cd9f3c7d510113804f741859741c4724c604901223bd02a1bad505bd5e5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a1ee8d6fbfe30dd0f5528596"
+  ]
+}

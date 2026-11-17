@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Medium Fixes virtio-gpu object-creation cleanup double-free/UAF"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e2054d383d2e631b8afa21286ec09650",
+  "subject_kind": "source_item",
+  "subject_id": "src-9bc0442f06da80ca4ecddd97",
+  "input_hash": "e9bfd180c7edc316f71353b8edfe3fbce8c3558e7707ed2f55a0f4e168f43b03",
+  "input_revision": "semantic-v2-sha256:45b9d6e3f3ee6d6bd79cb992f08c30fe2383487c75e174bb2a2947162286014b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9bc0442f06da80ca4ecddd97"
+  ]
+}

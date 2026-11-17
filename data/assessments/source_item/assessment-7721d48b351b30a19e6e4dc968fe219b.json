@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f8cdf7fc245fd1fc1c785a48: Fixed worker.terminate() and page reloads not terminating a worker that is blocked in Atomics.wait or a WebAssembly atomic.wait . ( [contact omitted] ) (147482360) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7721d48b351b30a19e6e4dc968fe219b",
+  "subject_kind": "source_item",
+  "subject_id": "src-f8cdf7fc245fd1fc1c785a48",
+  "input_hash": "93c34b433a5328997e3f540a8a7052bd6da9a7ac352857f237961732f1c54244",
+  "input_revision": "semantic-v2-sha256:9070c1b156af571c64e008a500035676746c71320222beb76ecd14768c36eebf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f8cdf7fc245fd1fc1c785a48"
+  ]
+}

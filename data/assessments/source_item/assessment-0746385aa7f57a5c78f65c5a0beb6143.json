@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app with App Sandbox restrictions may be able to escape the sandbox and execute code with root privileges"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0746385aa7f57a5c78f65c5a0beb6143",
+  "subject_kind": "source_item",
+  "subject_id": "src-187d9e849566c476406dc3ae",
+  "input_hash": "6a002776f9e099911e985a3d9b91dd206a33e38ebac2bb02b49cb4b2befbf7aa",
+  "input_revision": "semantic-v2-sha256:e68ed23db854d9caa80af4234b87a73641a8b4f7a76671a3f1bf4a8945850472",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-187d9e849566c476406dc3ae"
+  ]
+}

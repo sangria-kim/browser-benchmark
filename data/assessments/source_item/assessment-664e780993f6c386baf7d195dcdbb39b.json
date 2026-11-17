@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-25ffe9da84cafdb459bc112e: Fixed an issue where String.prototype.at and String.prototype.codePointAt could return an incorrect value for an out-of-bounds or negative index because the JIT compiler could eliminate their bounds check. (187336661) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-664e780993f6c386baf7d195dcdbb39b",
+  "subject_kind": "source_item",
+  "subject_id": "src-25ffe9da84cafdb459bc112e",
+  "input_hash": "9e97df67db17cdccca85e0cf8d428646c4369a1eeb6e483b29bb92e40051adc1",
+  "input_revision": "semantic-v2-sha256:5b104283df01bb5ece2aedca33cb48e4d0c367eda8e3f16aa103dc394f93b3bb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-eb713f58cdc6c549fafad2f99f1cb0ba",
+  "evidence_source_item_ids": [
+    "src-25ffe9da84cafdb459bc112e"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [N/A][ 514072607 ] Low CVE-2026-14140: Insufficient validation of untrusted input in Input. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a140617d37f24c5e784605cbcf820ad5",
+  "subject_kind": "source_item",
+  "subject_id": "src-36b1f4f16e6fb491476409fd",
+  "input_hash": "9cd8f8a3b062660c04aac65fe570a1373b120985e23b4b91f936c0d381f5f7d7",
+  "input_revision": "semantic-v2-sha256:479cbe0aa4aa26c78a6d285ecc0d78e90b802ebd7bd4d08935bbe96cd59b8328",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-36b1f4f16e6fb491476409fd"
+  ]
+}

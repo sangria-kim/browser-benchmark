@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 504710769 High CVE-2026-9961 Use after free in SurfaceCapture"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6e86436576ea1df6568cfd30bc313d82",
+  "subject_kind": "source_item",
+  "subject_id": "src-e5151b6a05b1361c9407da48",
+  "input_hash": "714bcf258b82f8c6c948f2381907b00615814465ec286c47a10b78cb2ec3a796",
+  "input_revision": "semantic-v2-sha256:baad5626e411733b866dce101779e8e96e8cb70db8bca841e715ef6b4315929b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e5151b6a05b1361c9407da48"
+  ]
+}

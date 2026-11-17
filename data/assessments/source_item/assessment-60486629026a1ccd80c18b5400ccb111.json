@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: A use-after-free issue was addressed with improved memory management."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-60486629026a1ccd80c18b5400ccb111",
+  "subject_kind": "source_item",
+  "subject_id": "src-e9ad7e736081834f323578c8",
+  "input_hash": "65d19c0d21376ae2181a370e2eb2b0c55b7e7d83f6acd604f0b15cf357b8d613",
+  "input_revision": "semantic-v2-sha256:77bdd8262446b5a3da9694424156f93d1172b171af38b9c7f5f739a8d87b3235",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e9ad7e736081834f323578c8"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed an issue on macOS where smart cards and security keys could fail to load certificates automatically. ( Bug 2041208 )"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-22ea3bcec623625a400ed3e2b62791db",
+  "subject_kind": "source_item",
+  "subject_id": "src-5ad6248bade9aea165067f01",
+  "input_hash": "155b70532ef186c28b6cab5594bc22a1dc245b712384272844e12caf0f7cb3cb",
+  "input_revision": "semantic-v2-sha256:e78278cd03a9ead653869cbac77309917fd83011d287dfad7957532d2269d804",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5ad6248bade9aea165067f01"
+  ]
+}

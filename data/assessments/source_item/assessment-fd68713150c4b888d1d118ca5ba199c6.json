@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$500][ 535000102 ] High CVE-2026-19556: Use after free in V8. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fd68713150c4b888d1d118ca5ba199c6",
+  "subject_kind": "source_item",
+  "subject_id": "src-3c09f4ea49ee1aa006d0e9e2",
+  "input_hash": "edbf80fd947333b69893b11a9fef31c1ea2e23f14424be7a3873ac33ed40e93a",
+  "input_revision": "semantic-v2-sha256:cde1499c7bda9df7e2c2d8ce03ba6233f01d7cf6b678192a4c3c08a0e811b7f1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3c09f4ea49ee1aa006d0e9e2"
+  ]
+}

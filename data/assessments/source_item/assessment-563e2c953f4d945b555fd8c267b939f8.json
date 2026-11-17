@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker may be able to cause unexpected system termination or corrupt kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-563e2c953f4d945b555fd8c267b939f8",
+  "subject_kind": "source_item",
+  "subject_id": "src-7029a17172b32be7b88e9241",
+  "input_hash": "8fe3dd707073f3b1639cd934a51dc9dd854575465dcd275c666ff99010675969",
+  "input_revision": "semantic-v2-sha256:fdf6cbcc10feb6409a85cf05dc1a54c77dac1980fd63d48565c9e73929b7161c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7029a17172b32be7b88e9241"
+  ]
+}

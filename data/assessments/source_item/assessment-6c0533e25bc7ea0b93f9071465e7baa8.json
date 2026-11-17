@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [Android] Fixed a security issue where AppProxy redirects could be overridden across origins by untrusted requests."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6c0533e25bc7ea0b93f9071465e7baa8",
+  "subject_kind": "source_item",
+  "subject_id": "src-75f5198e46c22c6e618581d6",
+  "input_hash": "faa07f26c72f216319b7e857cf0903e6c5b68acc272e8c5bbd60b28c8bbcd7ef",
+  "input_revision": "semantic-v2-sha256:2195f14e24e40e11165c254200d33e62e4ecc12381a7b7b3263d6973c335ea45",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-5374321e7c28c8c975ca3187a081ed02",
+  "evidence_source_item_ids": [
+    "src-75f5198e46c22c6e618581d6"
+  ]
+}

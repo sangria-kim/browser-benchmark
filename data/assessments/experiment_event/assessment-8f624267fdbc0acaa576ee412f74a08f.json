@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-09b45a585ab73b150151d09b: Source baseline: EnableMtlsTokenBinding A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8f624267fdbc0acaa576ee412f74a08f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-09b45a585ab73b150151d09b",
+  "input_hash": "edcd0b59419d17a810a609a39a4b5e102f0b856e12ba28072321a4202efa83b5",
+  "input_revision": "semantic-v2-sha256:a32f30771b9fc72b9b182074c34adf1ea71c8aca5b23b571809774079a9d3a17",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-a26cfd4711c8f0009f2e8421"
+  ]
+}

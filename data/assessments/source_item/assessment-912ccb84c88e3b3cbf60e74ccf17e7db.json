@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9521f55835797873f8432730: Fixed a MediaSource issue where the decode-key cleanup in coded frame processing was incorrectly removing non-orphaned samples. (176971800) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-912ccb84c88e3b3cbf60e74ccf17e7db",
+  "subject_kind": "source_item",
+  "subject_id": "src-9521f55835797873f8432730",
+  "input_hash": "d7f6c362e858d39f2167163b8451037cd572ee81660475bbef58fc08f7d6c6ba",
+  "input_revision": "semantic-v2-sha256:c6aabaed388f6c0c339a05c2f1012a2a994d3232210b2e80dcfa8599c724b4ab",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9521f55835797873f8432730"
+  ]
+}

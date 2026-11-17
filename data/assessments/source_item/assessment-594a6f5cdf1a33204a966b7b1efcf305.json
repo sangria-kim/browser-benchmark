@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Note : We have changed how we publish advisories. We no longer roll all internally identified memory safety vulnerabilities into a single CVE and are now issuing an advisory for every individual bug."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-594a6f5cdf1a33204a966b7b1efcf305",
+  "subject_kind": "source_item",
+  "subject_id": "src-9a24aabd08c55f32811a0a9c",
+  "input_hash": "7e30e98f83758d98d728d22872dc4fc0c4a72597377efa5c6c229a1813bc318a",
+  "input_revision": "semantic-v2-sha256:4281a2465f5e7463af05a41be50b1a9280f7ba9d7dfcec914adca6139bedfedd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9a24aabd08c55f32811a0a9c"
+  ]
+}

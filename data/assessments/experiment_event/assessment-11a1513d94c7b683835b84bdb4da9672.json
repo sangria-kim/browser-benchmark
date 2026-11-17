@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-68ab95e6a9e0f92886b14c87: Source baseline: Android startup improvements A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-11a1513d94c7b683835b84bdb4da9672",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-68ab95e6a9e0f92886b14c87",
+  "input_hash": "081dfb01932c26ce6055262e7dec2687791f6e463c7af06c341b3ac1cec5f39c",
+  "input_revision": "semantic-v2-sha256:daa5a67e14b247fd43fe713d5a3638b75c712639eb4183c41b24ed271c1cc341",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-49184eaa4301e4f93e3216fbba2041c9",
+  "evidence_source_item_ids": [
+    "src-chromium-d8d0e31e70099c63ee8a81fc",
+    "src-legacy-b3741ade6d7ec0820d23e4c4"
+  ]
+}

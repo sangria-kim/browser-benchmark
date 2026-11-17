@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A local attacker may be able to elevate their privileges"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ab8c31bf3062fc4559b9161d53071851",
+  "subject_kind": "source_item",
+  "subject_id": "src-2e6824d70bad613ecc327897",
+  "input_hash": "1122a65a8763995006431a84f5446817c02db415618a205d05ac310ccad46075",
+  "input_revision": "semantic-v2-sha256:7c346bbbb24a0d5df428f3c924a95ae03bf4ab18775490af307c2d2b818a01f4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2e6824d70bad613ecc327897"
+  ]
+}

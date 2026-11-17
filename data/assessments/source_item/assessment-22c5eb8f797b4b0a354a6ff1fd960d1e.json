@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7cad0b3186c65c4d5430aa13: Fixed CSSMatrixComponent.toMatrix() returning the component’s internal DOMMatrix for 3D matrices, so mutating the result no longer changes the component. ( [contact omitted] ) (189653766) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-22c5eb8f797b4b0a354a6ff1fd960d1e",
+  "subject_kind": "source_item",
+  "subject_id": "src-7cad0b3186c65c4d5430aa13",
+  "input_hash": "3786e9d93000042ddb609fdafef122061d3524b5bb1862ae04402c4e24bfe2bd",
+  "input_revision": "semantic-v2-sha256:8f837bf8e051f012744e936e408c770be616974acd932a02bbbed7f5d40f74f5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7cad0b3186c65c4d5430aa13"
+  ]
+}

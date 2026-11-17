@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-48ddc78c8b060cfc6019d33b: Fixed innerText on tables to no longer emit spurious trailing newlines and to preserve row-exit newlines after empty rows. (176635985) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0e6491ef88cdc22f5c8df99436e597cf",
+  "subject_kind": "source_item",
+  "subject_id": "src-48ddc78c8b060cfc6019d33b",
+  "input_hash": "ffe7cadafe88b0855b9a4152a809881261e0b87171c464ebf75afa1532513bab",
+  "input_revision": "semantic-v2-sha256:2dc231111f68882638c0c54bd9172a61aeb42fd33cb8e0d4c20e7a7f107cfaeb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-48ddc78c8b060cfc6019d33b"
+  ]
+}

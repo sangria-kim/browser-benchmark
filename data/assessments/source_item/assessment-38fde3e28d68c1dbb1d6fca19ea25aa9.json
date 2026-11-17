@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious app may be able to access notifications from other iCloud devices"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-38fde3e28d68c1dbb1d6fca19ea25aa9",
+  "subject_kind": "source_item",
+  "subject_id": "src-06a66ebb5953519683dff909",
+  "input_hash": "0ea4fd3eff8c3edd5cd8614b83f8402edc5ab465a056337c4e916b47d4720ddc",
+  "input_revision": "semantic-v2-sha256:41a1a78305f84c02c3000875f0d8e938b386209d60772fa27056a6e95648daac",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-06a66ebb5953519683dff909"
+  ]
+}

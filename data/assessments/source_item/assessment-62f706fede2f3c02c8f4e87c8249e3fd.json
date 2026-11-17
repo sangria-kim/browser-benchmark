@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a403c64993cff29840a76d3c: Fixed an issue where a layer with clip-path or mask could be treated as fully opaque, causing incorrect rendering. (186722177) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-62f706fede2f3c02c8f4e87c8249e3fd",
+  "subject_kind": "source_item",
+  "subject_id": "src-a403c64993cff29840a76d3c",
+  "input_hash": "fc6bdd54aa6bc31ca0a71b9f3f71509d2e8570f4564231b62edaf43c8702d440",
+  "input_revision": "semantic-v2-sha256:a4642f3d2b3a4cce009b34069d3f1cbd9a18deadbfe5fb00ba1b74af723d1acb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-bc2d5f2c8de00d6d4af34eb08c823d74",
+  "evidence_source_item_ids": [
+    "src-a403c64993cff29840a76d3c"
+  ]
+}

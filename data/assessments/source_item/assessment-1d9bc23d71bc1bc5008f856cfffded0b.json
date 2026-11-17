@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e354ad95ffaa208e26293936: Fixed a crash in AudioData.copyTo() when copying the last channel of 3-channel audio. (164730320) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1d9bc23d71bc1bc5008f856cfffded0b",
+  "subject_kind": "source_item",
+  "subject_id": "src-e354ad95ffaa208e26293936",
+  "input_hash": "f51a9be4f7182ca248e94565d6d485830c336ea313190c900c9f68cdc3413958",
+  "input_revision": "semantic-v2-sha256:1d26f4c649818c5d0839c8ec6165ae6729fd7088c6fa4a04719aad3e7439cf93",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e354ad95ffaa208e26293936"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$10000][ 457771782 ] High CVE-2026-13790: Side-channel information leakage in Scroll. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-05ce012612de3747a1cfabbc096f35f5",
+  "subject_kind": "source_item",
+  "subject_id": "src-b0c0fa20710ee0b986e0fd30",
+  "input_hash": "6bb38509fcb0f598350a28e4875cc2c0bfb461e35510755b6981a0fc6378061c",
+  "input_revision": "semantic-v2-sha256:11fe81d0bcf83d2bab01aab2428ffbaff1b5af2aa9510c1058f49ebe2d8b33d4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b0c0fa20710ee0b986e0fd30"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker on the local network may be able to cause unexpected process termination or disclose process memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-530d93c626cbdaa9739b9711c0701ac4",
+  "subject_kind": "source_item",
+  "subject_id": "src-6b371ec204798ae1f32d1f90",
+  "input_hash": "1e2bfe43c6e796d78546960b3a8605f6599e27236e2e20cd61c732703396d12c",
+  "input_revision": "semantic-v2-sha256:84e7c8afd0ffc24362435c557b60370c978614e064ffa34b9f831ee00e5990c8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6b371ec204798ae1f32d1f90"
+  ]
+}

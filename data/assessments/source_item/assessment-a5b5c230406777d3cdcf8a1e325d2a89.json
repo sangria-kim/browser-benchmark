@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a7960d5eb3ca81b044d056cc: We tested on two datasets: FRAMES (824 multi-hop reasoning questions) and SimpleQA (4,326 factual questions), with agents powered by Qwen3-30B-A3B and given access to web search via the Brave Search API. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a5b5c230406777d3cdcf8a1e325d2a89",
+  "subject_kind": "source_item",
+  "subject_id": "src-a7960d5eb3ca81b044d056cc",
+  "input_hash": "ecaf2c259b0e77bbb8b32487101221ae64f002eb3b8bf2db4828221bddc93b11",
+  "input_revision": "semantic-v2-sha256:7dd6d781efebad19620c732be284e08d0e5677b9c2042a29f14ab494d4efe3d2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a7960d5eb3ca81b044d056cc"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes mali: page-migration UAF in kbase_vmap_phy_pages allows unprivileged kernel memory corruption on mt8196"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f8fe61aa070973103f982f2e8825bee7",
+  "subject_kind": "source_item",
+  "subject_id": "src-ff95f34d63b51129ceea0b4f",
+  "input_hash": "4df1f0df6068d5ede89515ae1b84a77fceae1d7cc4d3a19b4483e714bb639455",
+  "input_revision": "semantic-v2-sha256:85d10aaf9ae271b75814dd940a5fb6f6ee81f11cef43f05eefad9e457f9ce4fd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ff95f34d63b51129ceea0b4f"
+  ]
+}

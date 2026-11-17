@@ -162,15 +162,15 @@
   "device_test": "not_run",
   "korea_availability": "unknown",
   "korean_language_support": "unknown",
-  "selection_status": "selected",
-  "selection_reason": "질의·첨부파일·탭·Drive 조합에 따라 검색/AI 작업 경로가 달라지는 구체적 비교 과제가 있습니다. 소스 실험으로만 선정합니다.",
-  "priority": "P2",
-  "priority_reason": "검색과 AI 전환의 탐색적 비교 가치가 크지만 실제 접근 조건과 설치본 노출이 확인되지 않았습니다.",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "공식 시험 빌드에서 flag·기기·관리 정책 조건과 실제 동작을 확인할 수 있거나 공식 출시·범위 변경 근거가 나오면 갱신합니다.",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
+  "priority": null,
+  "priority_reason": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": null,
+  "selection_rule_version": "pm-selection-v3.0.0",
   "observed_at": "2026-11-12T23:16:03Z",
-  "assessed_at": "2026-11-12T23:20:54.575005+00:00",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
   "change_types": [
     "description_changed",
     "metadata_added",
@@ -178,7 +178,7 @@
     "registration_added"
   ],
   "summary": "Composebox 질의를 일반 검색 결과 또는 AI Mode로 보내는 dynamic AIM fulfillment flag와 입력조합 7개를 등록합니다. Omnibox와 NTP Realbox를 별도로 켜며 주 스위치도 필요합니다. 기존 feature를 chrome://flags UI에 노출하는 등록 사건입니다. 라우팅 구현의 최초 도입이나 일반 사용자 활성화를 뜻하지 않습니다. 주 스위치와 해당 surface flag를 함께 켜야 합니다. Main/Realbox는 kOsDesktop | kOsAndroid, Omnibox는 kOsDesktop으로 등록되어 있습니다.",
-  "comparison_question": "Chrome과 삼성 브라우저를 같은 플랫폼·조건으로 비교할 때, 같은 질의와 입력 조합에서 일반 검색과 AI Mode 중 어느 경로로 연결되며, 사용자가 결과를 예측하고 선택할 수 있는가?",
+  "comparison_question": null,
   "feature_id": "chrome-dynamic-aim-fulfillment",
   "event_type": "flag_registration",
   "workstreams": [
@@ -269,5 +269,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-33c2494c06de24a1b54dab43: Fixed evaluation of calc() expressions to correctly apply the used zoom factor to length values, ensuring properties like line-height and box dimensions scale properly. (163141549) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a1f2224bd26903c3e2abf8f6701f3e5d",
+  "subject_kind": "source_item",
+  "subject_id": "src-33c2494c06de24a1b54dab43",
+  "input_hash": "f2c0d1f4f132003ab6c69e29e276870e9b20a8d739acc3844ef07f0e2f1fe9e4",
+  "input_revision": "semantic-v2-sha256:e899440989f2f3531c303b81efb161020673eda92fc9196ec759fe13719bc0ea",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-33c2494c06de24a1b54dab43"
+  ]
+}

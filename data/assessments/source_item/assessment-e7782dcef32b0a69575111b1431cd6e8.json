@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b82bbe40a64a9fecf1d42b66: Only a verified TEE gets your words. Before your browser receives a key, Brave’s open-source verifier checks the TEE’s attestation: approved builds, and a key signed from inside the TEE. If the check fails, Brave won’t h A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e7782dcef32b0a69575111b1431cd6e8",
+  "subject_kind": "source_item",
+  "subject_id": "src-b82bbe40a64a9fecf1d42b66",
+  "input_hash": "731b2dc5832f1c08a38fcc2ef9dcbd825a6a12d9b8fb2833ef156f1168c026f9",
+  "input_revision": "semantic-v2-sha256:6df812007c1d3dbc6515f73a717c419e0e63a2a884f37d6c9832219a171e1891",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b82bbe40a64a9fecf1d42b66"
+  ]
+}

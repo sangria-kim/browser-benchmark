@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted file may lead to heap corruption"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1c97eace3f1eb5402dc51df0ad06de34",
+  "subject_kind": "source_item",
+  "subject_id": "src-755488cab44e59aa3aaa6f0a",
+  "input_hash": "c6f16942f712c1524c60ce0867dc9b8150c53328fcdacd8a664da30c3eaeaabe",
+  "input_revision": "semantic-v2-sha256:4bc1445986da0be80e436002bea5deaf664eab880c9a443d9cffea5fb5cab0d2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-755488cab44e59aa3aaa6f0a"
+  ]
+}

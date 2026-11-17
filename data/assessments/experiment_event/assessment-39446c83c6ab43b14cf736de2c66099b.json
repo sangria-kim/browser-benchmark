@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-41c1eb84ffc1b2cdce469f89: Source baseline: HttpChunkedDecoderInRust A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-39446c83c6ab43b14cf736de2c66099b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-41c1eb84ffc1b2cdce469f89",
+  "input_hash": "38556e789973da5d8cd85d5257d287fe8d58d9bd2010fd312b330d77caacb92b",
+  "input_revision": "semantic-v2-sha256:057d13410977f25e7d9c976770cd17af0ece6601bd792c9b8bed4083bd4632d6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-210ca9a78cfea064b1034cc5"
+  ]
+}

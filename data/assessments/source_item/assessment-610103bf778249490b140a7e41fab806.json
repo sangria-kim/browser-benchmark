@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious app may be able to gain root privileges"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-610103bf778249490b140a7e41fab806",
+  "subject_kind": "source_item",
+  "subject_id": "src-cf8d4c78cd22d3ddae52090f",
+  "input_hash": "b43c1cd5df9dbf37921f0373bb53d287c3121374bae524b0ab95eb85b935aa10",
+  "input_revision": "semantic-v2-sha256:a8c1a9405eef7b7ed73bfb2cd7dc0ce55c8a5391ad3505e692a798c8350e256c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cf8d4c78cd22d3ddae52090f"
+  ]
+}

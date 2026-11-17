@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ab1388c4dbbbdd0000535755: Use of CssPixels in LayoutShift API This feature changes the attribution data ( prevRect and currentRect ) in the LayoutShift API to be reported in CSS pixels instead of physical pixels. The current behavior is inconsist A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-966111a139b89f9fe6e69aad21f7a80e",
+  "subject_kind": "source_item",
+  "subject_id": "src-ab1388c4dbbbdd0000535755",
+  "input_hash": "56888b2f68285f9cff127487bb0db1a9bb6403afee52183ff2cdcd835fcc99b1",
+  "input_revision": "semantic-v2-sha256:74e5a71abb2d6445532ebfe756bcd452e1a005396c1cde946daf00a60c704acd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ab1388c4dbbbdd0000535755"
+  ]
+}

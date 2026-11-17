@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-70811fd92c52c843442966f3: Fixed time zone identifiers to return primary IANA time zone IDs instead of legacy ICU identifiers. (175098682) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-674fea2c4d47518660239ed06ce8b9fd",
+  "subject_kind": "source_item",
+  "subject_id": "src-70811fd92c52c843442966f3",
+  "input_hash": "e494398d7244fa5def1109f2a2f3af9f0322f1e1b35b7108c6e799027315c225",
+  "input_revision": "semantic-v2-sha256:1cdb0c2bd31e7ac28a00e8193a9ec2f805833cae4914f9f103795b8fe32c9783",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-70811fd92c52c843442966f3"
+  ]
+}

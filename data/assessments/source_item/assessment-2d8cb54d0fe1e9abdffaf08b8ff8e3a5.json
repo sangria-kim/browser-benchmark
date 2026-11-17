@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: As a result, an RP (or attacker) holding an API key can request proofs for arbitrary subjects or RPs, without demonstrating control over the corresponding JWT, an active session at the issuer, or consistency with the int"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2d8cb54d0fe1e9abdffaf08b8ff8e3a5",
+  "subject_kind": "source_item",
+  "subject_id": "src-00d9b7cc7560834e0699bb1b",
+  "input_hash": "da5bc8de7d386f0a70d0da557b9c0d04fe0b4f0811550b9f69d8a2488e1903e6",
+  "input_revision": "semantic-v2-sha256:d8f1fa8ebbef4ef39e4afdee5cb447bde179e3160c1c3a9bdca4571e02ac65e8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-00d9b7cc7560834e0699bb1b"
+  ]
+}

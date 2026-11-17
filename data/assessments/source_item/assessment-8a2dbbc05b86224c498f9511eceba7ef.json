@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: 496282147 High CVE-2026-6303: Use after free in Codecs."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8a2dbbc05b86224c498f9511eceba7ef",
+  "subject_kind": "source_item",
+  "subject_id": "src-fa355645d15dc03b9b1db54b",
+  "input_hash": "5cb40c10cb36e0d377668317c742dcc337adf0a96be173988af62fd3a3a469d3",
+  "input_revision": "semantic-v2-sha256:5ba5fe6811e8853c6b0ae39d857efa349646307a6545b51f9b2d7cdc79bd62d4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fa355645d15dc03b9b1db54b"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a7eb422bb715df140ec42a11: Fixed some sites, such as Slack, failing to load instead of falling back to HTTP/2 when the site rejected an HTTP/3 request. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-991187278d8a582849e87a1ded864418",
+  "subject_kind": "source_item",
+  "subject_id": "src-a7eb422bb715df140ec42a11",
+  "input_hash": "cf3f00390e8dfb3af753433cb1ea5cc24fd49bb301369dfc82cda2f15680b31e",
+  "input_revision": "semantic-v2-sha256:81107bff078ed2740a7b1babc71dcb9e0fc082a5e3112b52cdc6a75fb220f534",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a7eb422bb715df140ec42a11"
+  ]
+}

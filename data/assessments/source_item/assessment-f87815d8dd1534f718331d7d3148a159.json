@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: To enhance user security and combat session cookie theft, Chrome is introducing [Device Bound Session Credentials (DBSC)]( This feature allows websites to bind a user's session to their specific device, which makes it si"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f87815d8dd1534f718331d7d3148a159",
+  "subject_kind": "source_item",
+  "subject_id": "src-9620b50192a2c841b7040d4d",
+  "input_hash": "e44f3764911d2da8d7f239524b3c8019439183b717f42108572be4ec70029809",
+  "input_revision": "semantic-v2-sha256:aba82dcb791efcc966b84aec52da24c954380dd047f3a36b4b36f80b14f53487",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9620b50192a2c841b7040d4d"
+  ]
+}

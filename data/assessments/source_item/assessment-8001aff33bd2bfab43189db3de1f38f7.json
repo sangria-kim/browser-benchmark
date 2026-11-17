@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-92318f969cba4d85b6b3dd53: Fixed HTMLImageElement.currentSrc to return an empty string for <img src=\"\"> instead of resolving to the document base URL. ( [contact omitted] ) (167229274) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8001aff33bd2bfab43189db3de1f38f7",
+  "subject_kind": "source_item",
+  "subject_id": "src-92318f969cba4d85b6b3dd53",
+  "input_hash": "868947c7c1a0ba94b098bf904c3158d49f0b6e0db40815ece036733e478b337a",
+  "input_revision": "semantic-v2-sha256:77c4d87780989a3d553417fe7beb51282b1b6af6cfbd18d0379bd43a89ad13ae",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-92318f969cba4d85b6b3dd53"
+  ]
+}

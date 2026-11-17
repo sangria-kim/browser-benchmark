@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-63be706e0d7147fe98f08cf5: Dialog elements can be closed through a variety of mechanisms, sometimes developers want to have the ability to prevent closure. To achieve this dialogs fire a cancel event. Originally this was only fired via a close req A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-adea65173468fdbaca06262d97b02c59",
+  "subject_kind": "source_item",
+  "subject_id": "src-63be706e0d7147fe98f08cf5",
+  "input_hash": "5f7e5b00e36e090d2620bf859cc02924bfb75488bb489ee366d76f0518e064c3",
+  "input_revision": "semantic-v2-sha256:3573d4654d44d2628c22802a2368bc13ca717ed59329759f24690ff964fe17f7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-63be706e0d7147fe98f08cf5"
+  ]
+}

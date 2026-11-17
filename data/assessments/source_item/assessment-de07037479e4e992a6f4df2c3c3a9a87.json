@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-cb4986cbdb529b4ce18b3f32: Fixed an issue where tail-call optimization was skipped for eval calls that didn’t resolve to the real eval function, and incorrectly applied inside generator and async function bodies, which could produce incorrect resu A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-de07037479e4e992a6f4df2c3c3a9a87",
+  "subject_kind": "source_item",
+  "subject_id": "src-cb4986cbdb529b4ce18b3f32",
+  "input_hash": "8cd8c4f0fe94fc6b71f78a54bddf44ea7eae6a26af8175fd510ce7459fb580cd",
+  "input_revision": "semantic-v2-sha256:a0261a1ce26d294c1dff708ad44ad69eacf4146a7d6939074221dc276d635bf3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cb4986cbdb529b4ce18b3f32"
+  ]
+}

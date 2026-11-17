@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker in Bluetooth range may be able to bypass the rate limit on pairing code attempts and pair with a device without user interaction"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4f72f41c9c1595573ff541bcf1e6ab2e",
+  "subject_kind": "source_item",
+  "subject_id": "src-d72eda7659c306530b82bde8",
+  "input_hash": "00e524d39f444fb14f9f23b7f984ba6d45e18878df324cd6b8d444d26ca5dc7c",
+  "input_revision": "semantic-v2-sha256:cbac1c9f6b2bbc3017efe022e0bb117ee4edf47a753cfc91d3a69d0972ba45ac",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d72eda7659c306530b82bde8"
+  ]
+}

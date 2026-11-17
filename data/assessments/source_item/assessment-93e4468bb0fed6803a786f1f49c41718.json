@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to cause unexpected system termination or read kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-93e4468bb0fed6803a786f1f49c41718",
+  "subject_kind": "source_item",
+  "subject_id": "src-f241bc774fe3e7d3eaf42fae",
+  "input_hash": "dca2ca9569c8a4898f17b882acb15a1c306bff66ed8979899f10f53fe0b62337",
+  "input_revision": "semantic-v2-sha256:932f02961454377a5f40e17964c8399c900c7fbda5f9d9177e07e56648a5f5b2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f241bc774fe3e7d3eaf42fae"
+  ]
+}

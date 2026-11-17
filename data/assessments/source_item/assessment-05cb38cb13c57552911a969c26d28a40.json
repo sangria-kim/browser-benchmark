@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A malicious app may be able to access the camera without user permission"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-05cb38cb13c57552911a969c26d28a40",
+  "subject_kind": "source_item",
+  "subject_id": "src-534b5e4bf29a66c81c8a709f",
+  "input_hash": "474a6d9b1e31fe388b015e517e20dfd501f1f87be6da1415c763d558cdfb763f",
+  "input_revision": "semantic-v2-sha256:244553281d10e6bf6fa9e59a899e5e0df8706c7bfbecacb5d72a63cc255b70a1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-534b5e4bf29a66c81c8a709f"
+  ]
+}

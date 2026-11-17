@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to execute arbitrary code with kernel privileges. This fix associated with the Coruna exploit was shipped in iOS 17 on September 18, 2023. This update brings that fix to devices that cannot upd"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-640e2d214cd700b5d9d32e69b847443d",
+  "subject_kind": "source_item",
+  "subject_id": "src-8c1428d7152549a8bd6d275d",
+  "input_hash": "2a15f3439ea24e9a727457811688a0d71be09da8210208707e8e56e005c1faf5",
+  "input_revision": "semantic-v2-sha256:25ba7ceb1c58d018edb1e3682081c58d6975a349e7242aa140670925d2a015b2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8c1428d7152549a8bd6d275d"
+  ]
+}

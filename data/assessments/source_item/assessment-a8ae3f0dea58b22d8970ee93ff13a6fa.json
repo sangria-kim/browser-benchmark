@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: The result is a valid zkLogin proof attesting to an identity and RP context unrelated to the legitimate authorization flow. The vulnerability arises entirely from missing bindings between RP identity, issuer trust, subje"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a8ae3f0dea58b22d8970ee93ff13a6fa",
+  "subject_kind": "source_item",
+  "subject_id": "src-68db3491fcc9dff3bd7edb95",
+  "input_hash": "b119c2cf3ba50f55aad713ea1e5b9c2634a0e5bf1b22f36493ae4a481195a3a4",
+  "input_revision": "semantic-v2-sha256:e32b50bb0e064918ebe50481edc86d8c661bf20d2188172d95c34d0e0fbed962",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-68db3491fcc9dff3bd7edb95"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-270dc712b5062acd37513109: Source baseline: BundledSecuritySettingsSecureDnsV2 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ae3f9ef14e6cafeff757e646c7b9db24",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-270dc712b5062acd37513109",
+  "input_hash": "78665a0b474dbdc576ce407a69b63503f928dee2449ce30403cef88204177061",
+  "input_revision": "semantic-v2-sha256:5933387d40ae97e74081605dbbb43c4a54018ac262a4b3c18e59d790ef417353",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-f2c2305f2356ee3efcf277a0"
+  ]
+}

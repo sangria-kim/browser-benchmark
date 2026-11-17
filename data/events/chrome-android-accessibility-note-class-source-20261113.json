@@ -48,15 +48,15 @@
   "delta": "이전에는 note 역할이 일반 View className과 roleDescription에 의존했습니다. 활성화하면 새 className과 빈 roleDescription을 반환합니다. 역할 매핑·트리 기대값 소스와 테스트 변경을 확인했으나 실제 TalkBack 발화와 한국어 인식은 시험하지 않았습니다.",
   "verification_status": "source_verified_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "selected",
-  "selection_reason": "웹 콘텐츠의 주석 의미를 보조기술이 전달하는지, 중복·누락 안내가 있는지 비교할 구체적인 접근성 과제입니다.",
-  "priority": "P2",
-  "priority_reason": "주석 역할 인식의 접근성 비교 가치가 있으나 적용 대상과 접근성 서비스 조합에 따라 효과가 제한됩니다.",
-  "comparison_question": "같은 Android·TalkBack·언어·웹 페이지에서 삼성 브라우저와 Chrome이 note 역할을 어떻게 읽고 탐색하게 하는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "공식 시험 빌드와 동일 조건에서 노출·동작을 확인하거나 공식 배포 범위가 확인되면 갱신합니다.",
-  "assessed_at": "2026-11-13T22:57:51Z",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "flag_ids": [
     "enable-accessibility-map-to-new-class-names"
   ],
@@ -84,5 +84,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

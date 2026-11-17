@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: - [브라우저] 크래시 오류를 해결했어요. - [보안] 보안 취약점( CVE-2026-11645 )을 해결했어요. - [보안] 웨일 다운로드 보안 경고를 우회할 수 있던 취약점을 해결했어요. - [사이드바] 자동 숨김 상태에서 사이드바가 어색하게 표시되거나 덜컥거리던 문제를 수정했어요. - [사이드바] 구분선을 옮긴 위치가 브라우저를 다시 시작하면 되돌아가던 문제를 수정했어요. - [인터페이"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e13167e587e734077a2a8e0b69ee41b1",
+  "subject_kind": "source_item",
+  "subject_id": "src-75f1f2c83af48763beca6fc4",
+  "input_hash": "01f4217d87f075d34c365112272caffe82c5fe8d7009a18ad22fef0ac2ce474f",
+  "input_revision": "semantic-v2-sha256:c55d8310d66ad6fa18fd2c5eac7d4a9d0bc51ad049694f9d99bd856ce6c98499",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-75f1f2c83af48763beca6fc4"
+  ]
+}

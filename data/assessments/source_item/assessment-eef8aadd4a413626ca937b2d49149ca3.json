@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-05781895f2aa83a99d51b0c0: Fixed an incorrect result in optimized code for the integer conversion used by operations such as Math.trunc() and array index handling. ( [contact omitted] ) (189876905) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-eef8aadd4a413626ca937b2d49149ca3",
+  "subject_kind": "source_item",
+  "subject_id": "src-05781895f2aa83a99d51b0c0",
+  "input_hash": "6d92e127a299ccef7f1d47024717f2b0a35a5852bcb604d9464ca4e386eecf6d",
+  "input_revision": "semantic-v2-sha256:5b28bcad3233bbdcdc65e42bba843091673311a7ef5953ecb2755a261cfd02d2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-05781895f2aa83a99d51b0c0"
+  ]
+}

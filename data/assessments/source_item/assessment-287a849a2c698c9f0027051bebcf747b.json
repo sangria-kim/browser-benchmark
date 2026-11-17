@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes Use-After-Free in CRAS HFP SLC due to leaked timer in AT+CMER handler"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-287a849a2c698c9f0027051bebcf747b",
+  "subject_kind": "source_item",
+  "subject_id": "src-021e93b4ac81e9dcc30f8b10",
+  "input_hash": "27aaf2176abf4f353b275d9a94c68116c3e9e6280e899b33d3eb33de883121d7",
+  "input_revision": "semantic-v2-sha256:522bbd6f934c0390edcdbb95a44d2d23acb7edf16add89122ae2c424ac8a45b8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-021e93b4ac81e9dcc30f8b10"
+  ]
+}

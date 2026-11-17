@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a7152122b92568105933d34e: Added getCookiesForURL: to WKHTTPCookieStore as public API, allowing applications to efficiently retrieve cookies matching a specific URL instead of fetching the entire cookie store. (168165666) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-edb2a179bf30ad04474e8ea96d788de6",
+  "subject_kind": "source_item",
+  "subject_id": "src-a7152122b92568105933d34e",
+  "input_hash": "34947dd952dbb19c5c32adef16bc59394502eda0095f3d3f58c0365d17168522",
+  "input_revision": "semantic-v2-sha256:d6f34426fe9716fb0511d4bf536b237869c572bf390cc71b48ff0ac2df9ba5dc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a7152122b92568105933d34e"
+  ]
+}

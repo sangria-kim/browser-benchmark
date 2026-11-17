@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0bfef561f51d9d151729c653: The `anchors-valid` value was implemented as part of but subsequently reverted, due to spec questions about the exact definition of the value. Since that time, the value has been renamed to `anchor-valid` (see and also b A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6126b0fad4c6dfc947f38b8ecbe62161",
+  "subject_kind": "source_item",
+  "subject_id": "src-0bfef561f51d9d151729c653",
+  "input_hash": "442e9a8bbe526aabf137cb1ce2c390f0de693719165000652a59d46306df3152",
+  "input_revision": "semantic-v2-sha256:a4b41af751dafd7b9709da28429fab419ba2a16389356fee66685c4b34af221d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0bfef561f51d9d151729c653"
+  ]
+}

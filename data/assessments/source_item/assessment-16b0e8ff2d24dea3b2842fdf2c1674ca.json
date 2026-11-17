@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6423185a64447644327f6d9a: Fixed an issue where WebKit refused to load valid ASCII domains starting with xn-- that did not pass strict IDNA 2008 validation, aligning behavior with the WHATWG URL Standard. xn-- is the prefix of a punycode-encoded n A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-16b0e8ff2d24dea3b2842fdf2c1674ca",
+  "subject_kind": "source_item",
+  "subject_id": "src-6423185a64447644327f6d9a",
+  "input_hash": "6b50e1b4e94b6f93cff4f6a1ef0d7b13710cfa69c7a9a42c0ff7bf95beba36e6",
+  "input_revision": "semantic-v2-sha256:8eaf1e575dc55f31ba80a12aa930ee5846ca37e88045abcc6298d772714f6292",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6423185a64447644327f6d9a"
+  ]
+}

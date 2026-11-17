@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b09f8c45beab636130f0eb10: Fixed the HTML parser fast path to correctly process escaped attribute values longer than one character. (173673581) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5cffdb8cbef1761568f53112f549304f",
+  "subject_kind": "source_item",
+  "subject_id": "src-b09f8c45beab636130f0eb10",
+  "input_hash": "04fb0bbc14f18dba0ad7113a5936484f4867a845daeaf43a0bd316e0f5ab6f6e",
+  "input_revision": "semantic-v2-sha256:678014ab52c103ebac4cb507c51b64e4410b9dea68c8e4df62c19e930f42f257",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b09f8c45beab636130f0eb10"
+  ]
+}

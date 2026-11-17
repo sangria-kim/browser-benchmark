@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7427865940e138bdaa0ced65: Fixed an issue where navigation could redundantly parse and decode a page’s URL multiple times, causing significant hangs for pages with very long URLs. ( [contact omitted] ) (185796614) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9d3afbc621e5ee2ee695faf5008852e3",
+  "subject_kind": "source_item",
+  "subject_id": "src-7427865940e138bdaa0ced65",
+  "input_hash": "a78e9f42b3a9a22802f2f4ca891e31e2a5132d767cd6e614d9ce99ce69e11318",
+  "input_revision": "semantic-v2-sha256:d8285335fa9ab56cf3768d8e3f7d3e310508346fc5b57636d97ef1783a06fb27",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7427865940e138bdaa0ced65"
+  ]
+}

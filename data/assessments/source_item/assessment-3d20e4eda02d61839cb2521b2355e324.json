@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-460c812d32028b2aa991be54: Fixed Blob.slice() to correctly clamp fractional start and end parameters using round-half-to-even rounding per the File API specification, which may change how edge-case fractional values like 0.5 are rounded. (17455533 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3d20e4eda02d61839cb2521b2355e324",
+  "subject_kind": "source_item",
+  "subject_id": "src-460c812d32028b2aa991be54",
+  "input_hash": "5fd68be7502fed7847c7d4d8e0d1b18a0886ac9e8240728663b11a0bd805d502",
+  "input_revision": "semantic-v2-sha256:6487474102d49fea2a44de79ffa5d6f29926387f5c7f8ca803b36ab01635fb36",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-460c812d32028b2aa991be54"
+  ]
+}

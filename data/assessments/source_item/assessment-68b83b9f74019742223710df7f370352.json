@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-430f33452101ea677c316aec: Fixed multiple crashes related to background-thread UIKit access, alert/WKWebView completion handlers, and main-thread handling issues, improving overall stability. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-68b83b9f74019742223710df7f370352",
+  "subject_kind": "source_item",
+  "subject_id": "src-430f33452101ea677c316aec",
+  "input_hash": "cfdf9c9bc3f12726f2afac3c7b712ed3b7574334295f69451a3a4bf634fc1439",
+  "input_revision": "semantic-v2-sha256:040e76ceaf8831065f1b3835949ee142bbe28d87fec9874aae7459be1059efb5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-430f33452101ea677c316aec"
+  ]
+}

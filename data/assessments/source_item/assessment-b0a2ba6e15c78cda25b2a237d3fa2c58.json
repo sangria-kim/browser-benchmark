@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to read files outside of its sandbox"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b0a2ba6e15c78cda25b2a237d3fa2c58",
+  "subject_kind": "source_item",
+  "subject_id": "src-c6e5735dd3a07ee8936c7a91",
+  "input_hash": "5115e13152d17837e56a403e3634ae576f136701c705546e964972b3475b6eb1",
+  "input_revision": "semantic-v2-sha256:39c52d9db9c229201aafca2fbd9a5fd27394f82d9746ca927acc0af39b26491f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c6e5735dd3a07ee8936c7a91"
+  ]
+}

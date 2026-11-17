@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-c73145b76a2d7814697e7bc3: Fixed ImageCapture to correctly queue takePhoto() and applyConstraints() requests to avoid concurrent capture session reconfiguration. (174950018) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-da4ed7bc96612e27b97a6ca72674eee1",
+  "subject_kind": "source_item",
+  "subject_id": "src-c73145b76a2d7814697e7bc3",
+  "input_hash": "0803dbdbad27245b0cd0df60486a26dccb1e4a1f5102f5eed4b048ac048e1636",
+  "input_revision": "semantic-v2-sha256:8c215b218ff44d57ed3134ba4408d83790355c4ce42a62f2e2a24a4ad15146eb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-c73145b76a2d7814697e7bc3"
+  ]
+}

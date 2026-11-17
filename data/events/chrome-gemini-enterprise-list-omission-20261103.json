@@ -38,15 +38,15 @@
   },
   "verification_status": "official_body_read",
   "previous_event_id": null,
-  "selection_status": "pending_verification",
-  "selection_reason": "Enterprise 목록 누락이나 개별 API는 publish_ready/reviewed 및 156/157 Enterprise 단계를 유지. Android 설명에 Googlebook OS 문구가 추가됐으나 별도 배포일·범위는 미확인. 일반 Proposed 상태로 Enterprise 출시를 부정하지 않음.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
   "comparison_question": null,
   "benchmark_readiness": "unknown",
-  "revisit_trigger": "공식 배포 상태·일정과 개별 본문 추가 확인",
-  "assessed_at": "2026-11-02T23:31:17Z",
-  "selection_rule_version": "pm-selection-v2",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "korea": {
     "availability": "미확인",
     "korean_language": "미확인",
@@ -66,5 +66,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e245e27d389f8aa65ebe57c5: Fixed an issue where I420 BT709 VideoFrame was encoded in an incorrect color space when encoding to VP9. (169425608) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e84ec2faa53609674a2d4fc1878ecff3",
+  "subject_kind": "source_item",
+  "subject_id": "src-e245e27d389f8aa65ebe57c5",
+  "input_hash": "699bb3d2b6cce137a7d698660571bba319b5e75cde8930500b94a7d2530fd6f0",
+  "input_revision": "semantic-v2-sha256:4da36fcbcd21977f7fc8250828f9fa3f95479a639463ed6edcd1987850e7af78",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e245e27d389f8aa65ebe57c5"
+  ]
+}

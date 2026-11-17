@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: High Fixes Heap UAF in shill P2PManager via stale raw P2PDevice pointer"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8f0458583fb22771378ad1c737eed619",
+  "subject_kind": "source_item",
+  "subject_id": "src-9ef1319dc2acc8b8e8964c80",
+  "input_hash": "dc586c1ada395be0b257299beb2a256fc6eae46a29fb26e0416f2ae6344a06c8",
+  "input_revision": "semantic-v2-sha256:b938473c4cd5aef377f54900ffe82e6478cb7676db181bee8ac36463319a6e06",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9ef1319dc2acc8b8e8964c80"
+  ]
+}

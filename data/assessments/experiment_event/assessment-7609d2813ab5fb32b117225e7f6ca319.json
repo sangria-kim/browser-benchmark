@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-13abfa8c927138ad8bf8d665: Source baseline: WebCrypto PQC A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7609d2813ab5fb32b117225e7f6ca319",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-13abfa8c927138ad8bf8d665",
+  "input_hash": "a269f21baaffa5f3a03d8a0287bdad5b59acf3a22edf85464ff59d9f90e66c23",
+  "input_revision": "semantic-v2-sha256:9f720f1873e79fbdc381d70905c3db99d0c1ec74a61dad2c64f9a68c313de0ae",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-d2c4c7255788648a2aa971a7e582b626",
+  "evidence_source_item_ids": [
+    "src-chromium-af00d751b7ca61a4449e66dc"
+  ]
+}

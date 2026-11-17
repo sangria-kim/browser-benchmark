@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to leak sensitive kernel state"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-23975473f58e9bb2ff35314f7c41f544",
+  "subject_kind": "source_item",
+  "subject_id": "src-91aeda63f84b3aa1266e794d",
+  "input_hash": "95143021a5e82af2cd06a8883b37a9424f3525b8b250a323df3b3dc530b07110",
+  "input_revision": "semantic-v2-sha256:9baf2f70b6fc564158a1c8f9caf61d3b26485b89cb88b8985326f65d42913cdb",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-91aeda63f84b3aa1266e794d"
+  ]
+}

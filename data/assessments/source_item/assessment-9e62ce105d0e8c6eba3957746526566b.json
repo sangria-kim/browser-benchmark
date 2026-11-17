@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-027635ddfea4fb4722dac450: Fixed an issue where the Big5 TextDecoder failed to recover and emit ASCII characters after encountering an invalid leading byte. (166672674) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9e62ce105d0e8c6eba3957746526566b",
+  "subject_kind": "source_item",
+  "subject_id": "src-027635ddfea4fb4722dac450",
+  "input_hash": "a9787014c4359196835a7e7b5f391a88f654eac4fcd9109b3f6bb9f13e6ba321",
+  "input_revision": "semantic-v2-sha256:43e1a313a133a82affec07358d19d193b753b4159553d5ea2c72d4eb77b46336",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-027635ddfea4fb4722dac450"
+  ]
+}

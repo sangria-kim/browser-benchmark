@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An attacker with root privileges may be able to access protected user data"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4625d169e7f47715a0fda1658d494d1e",
+  "subject_kind": "source_item",
+  "subject_id": "src-2fa3742912672b4c5ec8120c",
+  "input_hash": "f268314459dd832087cbea3c0e431fbb93c7cbcb1a1ce72eb87b1df35dff5c2f",
+  "input_revision": "semantic-v2-sha256:96b6357d0f8f9fcdc4ef0ed3418ba4bedd88be102a07b5a6cb184367efe2868c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2fa3742912672b4c5ec8120c"
+  ]
+}

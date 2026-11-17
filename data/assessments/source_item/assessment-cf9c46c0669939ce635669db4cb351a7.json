@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f67c4890a058b6ccefe9bcd6: Following the retirement of Google Cloud Print, Chrome 145 removes the [CloudPrintProxyEnabled]( policy. This policy previously allowed administrators to enable or disable the Google Cloud Print proxy in Chrome. Since th A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cf9c46c0669939ce635669db4cb351a7",
+  "subject_kind": "source_item",
+  "subject_id": "src-f67c4890a058b6ccefe9bcd6",
+  "input_hash": "61e3092b41f982eb317fec2d645373cd46d2d6f5622cd032fa6238d1582852fa",
+  "input_revision": "semantic-v2-sha256:d39b15db120109d70f83523a0620c10e452188e910e4851490786cd18cf2ffad",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f67c4890a058b6ccefe9bcd6"
+  ]
+}

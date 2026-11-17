@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome 153 now detects and reports user-input command-line flags to provide administrators with visibility into browser launch configurations. Historically, users could use command-line options (such as `SSLKEYLOGFILE` o"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cf8d5d901d701be3d607001be8c27e37",
+  "subject_kind": "source_item",
+  "subject_id": "src-005da4ee30af8d61f5406612",
+  "input_hash": "ef6605dacdebfc82ce74e99a2826a20f53786bcaf0ed01681c3d22202f92c54a",
+  "input_revision": "semantic-v2-sha256:2e608a339bbd392cb20ce41823732d78096990c361dee13181a4beab8b6d1121",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-005da4ee30af8d61f5406612"
+  ]
+}

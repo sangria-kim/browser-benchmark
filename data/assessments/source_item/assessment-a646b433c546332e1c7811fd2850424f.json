@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: A null pointer dereference was addressed with improved input validation."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a646b433c546332e1c7811fd2850424f",
+  "subject_kind": "source_item",
+  "subject_id": "src-e701d95ddf8bacc210f3e83c",
+  "input_hash": "cf6a04b1feeb2882e6d3d160a7da040da48c12f57e4dc250418c4678c44ef5fb",
+  "input_revision": "semantic-v2-sha256:c1cc049ee5b1254fb33bc900eb422666e65a94e257435b01b7136b2664de83b5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e701d95ddf8bacc210f3e83c"
+  ]
+}

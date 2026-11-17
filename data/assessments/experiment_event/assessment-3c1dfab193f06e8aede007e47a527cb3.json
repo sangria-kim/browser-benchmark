@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-9c87d0e3d4bc11de2dda27a2: Source baseline: app-bound-test-encrypt A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3c1dfab193f06e8aede007e47a527cb3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-9c87d0e3d4bc11de2dda27a2",
+  "input_hash": "9f85e9ab6ae1b0ea6f49e6b83083126af25b5f9a7088835bff0af48bf7d62f09",
+  "input_revision": "semantic-v2-sha256:1083ea3a8d5d8b72619c5652bdc56a920880eae36a4b7343450e0ee7bae647ca",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-82a291374e2e93e6b8b2793f"
+  ]
+}

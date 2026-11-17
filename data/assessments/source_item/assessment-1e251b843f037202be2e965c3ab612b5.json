@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-01326e66e28095fa83b1780d: Fixed an issue where AudioContext.decodeAudioData() failed with an EncodingError on valid AAC/M4A audio files. (183474728) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1e251b843f037202be2e965c3ab612b5",
+  "subject_kind": "source_item",
+  "subject_id": "src-01326e66e28095fa83b1780d",
+  "input_hash": "12be0759c3c284a157a15bd4eb840489cf2bd01a5e65c21de1bc6221f50f07f1",
+  "input_revision": "semantic-v2-sha256:46ff0df03e71193a95fded31ad50a95db797182e519346a82567364dd245897e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-3b90e6398f8a8aa389d5bee778f53abe",
+  "evidence_source_item_ids": [
+    "src-01326e66e28095fa83b1780d"
+  ]
+}

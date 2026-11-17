@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2ed09a0cb4a3c1523e14b9fe: Fixed setting innerHTML on SVG or MathML elements dropping NULL characters at the start of the content instead of replacing them with U+FFFD, and treating a leading CDATA section as a comment. (187185909) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-aba6983738f96c572e87d99bed635206",
+  "subject_kind": "source_item",
+  "subject_id": "src-2ed09a0cb4a3c1523e14b9fe",
+  "input_hash": "b91efb998daf3c0fc7872bad197d7f9e33ccc9dc403a6cf11b518dd5722c68e3",
+  "input_revision": "semantic-v2-sha256:e14bde397e9757cf3544833acf11724598e692998d826fdcbfbc59f358a003b8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-37b021d9f9f8d5ec064bba9df409c67e",
+  "evidence_source_item_ids": [
+    "src-2ed09a0cb4a3c1523e14b9fe"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2f3cb3e72c00e14b0c5aa093: Fixed an issue where async functions using module-scoped variables could fail when the DFG JIT optimized scope resolution. ( [contact omitted] ) (174626957) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ac458765994009d3388531d33a9932b4",
+  "subject_kind": "source_item",
+  "subject_id": "src-2f3cb3e72c00e14b0c5aa093",
+  "input_hash": "c5bb5c427f45c49bd2a1ff5518740e8d9d78310a7a93251e009d75545cfd7875",
+  "input_revision": "semantic-v2-sha256:7152c3dc2b11257001705761ebe6932b29bba567bb820824d36007d435319426",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2f3cb3e72c00e14b0c5aa093"
+  ]
+}

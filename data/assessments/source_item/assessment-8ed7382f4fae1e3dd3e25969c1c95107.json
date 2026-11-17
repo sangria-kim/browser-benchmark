@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6d0aabd2d85bb04c48f8a28f: Makes named scroll and view timelines tree-scoped across Shadow DOM boundaries. A timeline defined in an outer tree can be referenced from a descendant shadow tree, while a timeline defined inside a shadow tree cannot be A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8ed7382f4fae1e3dd3e25969c1c95107",
+  "subject_kind": "source_item",
+  "subject_id": "src-6d0aabd2d85bb04c48f8a28f",
+  "input_hash": "f138444cbdd8c1ad4f2d71d40fa4e809d2776675281878281aed9a7a1a44b7bd",
+  "input_revision": "semantic-v2-sha256:9e7af6a4bb318d2a935beb30fc2d95d1d3962e331b04c693c12502f25c659d56",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6d0aabd2d85bb04c48f8a28f"
+  ]
+}

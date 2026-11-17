@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6efc76ce64182efb84815549: macOS Firefox now uses a dedicated GPU process by default, improving stability by allowing graphics failures to recover without restarting the browser. WebGPU is now enabled by default on Apple Silicon Macs. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-abf8c69664ad3489ff5492dd301f5769",
+  "subject_kind": "source_item",
+  "subject_id": "src-6efc76ce64182efb84815549",
+  "input_hash": "a246f2948aa37c5dc19eb1528eb63a970edbe9c48f2abd4ed7b2d530b9c5f329",
+  "input_revision": "semantic-v2-sha256:777ef375b545285b4bbd9be3b017e32e4e2df7d64bc67175a94e67d9ecb6ae75",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6efc76ce64182efb84815549"
+  ]
+}

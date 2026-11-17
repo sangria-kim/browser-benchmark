@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A remote user may be able to write arbitrary files"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1926d1c99a780b570863a8fddadd360b",
+  "subject_kind": "source_item",
+  "subject_id": "src-955119f9537c9672f4ff4f01",
+  "input_hash": "edd1eaa3ff416f5b8f6f66ec21be0a8e73e0499be304cb3d886c81e2ddd3deee",
+  "input_revision": "semantic-v2-sha256:ee1baddfff981cc4b8b0a9038fa2ee79f81324ab5259a4c02358f6642b967039",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-955119f9537c9672f4ff4f01"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-68f3422a367ce7101b114d71: Fixed an issue where regular expression lookbehind assertions could fail to match, or match at an invalid position, due to incorrect handling of surrogate pairs in the regular expression interpreter. ( [contact omitted]  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-478f7706d877a3d62b417763ffb63d75",
+  "subject_kind": "source_item",
+  "subject_id": "src-68f3422a367ce7101b114d71",
+  "input_hash": "4cf39c610cde2a801f144486388b66eec53fadda6baf3598826a11c793f01a85",
+  "input_revision": "semantic-v2-sha256:4dc5081e875a06a500c14e9cdab1881f4912fe5390295b4d0ad131358b7b9d4e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-68f3422a367ce7101b114d71"
+  ]
+}

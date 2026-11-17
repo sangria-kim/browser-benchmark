@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$TBD] [513006636 ] Medium CVE-2026-13934 Insufficient validation of untrusted input in Dawn on Android leads to GPU process UB on 2026-05-13"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-42ad897f08aaceeb126b4fc93f617acf",
+  "subject_kind": "source_item",
+  "subject_id": "src-5f527586efc465c6dcc45201",
+  "input_hash": "e64ac8fee08b8c5c940cbefe42e076254f1d8ea55137cb989fceb9ef503a3743",
+  "input_revision": "semantic-v2-sha256:d8963c72af10c10106eeffed51aa02b0e9b3e8bd7f843ec7ae11bf250034f3f6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5f527586efc465c6dcc45201"
+  ]
+}

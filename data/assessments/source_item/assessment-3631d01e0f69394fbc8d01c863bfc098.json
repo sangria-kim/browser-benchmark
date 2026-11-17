@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: As early as Chrome 152, Chrome calls into the [SafeBrowsing v4 API]( will be migrated to call into the [v5 API]( instead. The method names are also different between v4 and v5. If admins have any v4-specific URL allowlis"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3631d01e0f69394fbc8d01c863bfc098",
+  "subject_kind": "source_item",
+  "subject_id": "src-8c868f7c780624b8730dda93",
+  "input_hash": "260590d26cea54d5e8978c4b8f10727c8e9524b76fc4cc46f79dfd6a716f32e4",
+  "input_revision": "semantic-v2-sha256:0845278d54ba3044719053a4a063e98847134c26597b6e44b6c669f0b05970e5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8c868f7c780624b8730dda93"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-284bb09a37691e403966ac15: Fixed color serialization so that sRGB colors with none components serialize using color(srgb ...) , and hsl() and hwb() colors serialize their saturation, lightness, whiteness, and blackness components as percentages. ( A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-27640b4f59fbe4079d8c8ffb2e0561fc",
+  "subject_kind": "source_item",
+  "subject_id": "src-284bb09a37691e403966ac15",
+  "input_hash": "1934f7d9b51a127afaa56cb3ea40390af1d0cd20a430dceb7ab8c3e3b0b8421d",
+  "input_revision": "semantic-v2-sha256:f8ac94458336afe4acb080d9220e288ef471060856485a64c8d245ce8320ea5a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-284bb09a37691e403966ac15"
+  ]
+}

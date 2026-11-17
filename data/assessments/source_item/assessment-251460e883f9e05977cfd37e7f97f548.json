@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to execute arbitrary code with kernel privileges"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-251460e883f9e05977cfd37e7f97f548",
+  "subject_kind": "source_item",
+  "subject_id": "src-b563e58287bfd8594635ec46",
+  "input_hash": "d577c90d8eac2d1eae458477498e513e8b9fe5b29f98ecac8c5ab98eca5c1753",
+  "input_revision": "semantic-v2-sha256:18805e783770a33f0d8bd063941b93579a633eddae2a5e3c2f08ef703047e164",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b563e58287bfd8594635ec46"
+  ]
+}

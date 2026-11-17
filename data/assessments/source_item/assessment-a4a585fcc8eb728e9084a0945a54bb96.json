@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9c31a95666cfceae65574124: Fixed an issue where pointer events would fail to dispatch after a parent view’s custom gesture recognizer blocked touchesEnded: or touchesCancelled: . (169109808) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a4a585fcc8eb728e9084a0945a54bb96",
+  "subject_kind": "source_item",
+  "subject_id": "src-9c31a95666cfceae65574124",
+  "input_hash": "be86196e697f0c4375647f5e70705a15b825d0fca656c524995bcf5dbe8ba392",
+  "input_revision": "semantic-v2-sha256:edc8e1b8470916c7d281962d492c3aa70464fb36855de21a338c85abde9670b7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9c31a95666cfceae65574124"
+  ]
+}

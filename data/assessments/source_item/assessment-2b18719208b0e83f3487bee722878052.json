@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bc69da20e94a2617be375bd5: Adds a new interface called MediaStreamTrackHandle which can be both constructed and transferred to dedicated workers. This handle is connected to a MediaStreamTrack on the main thread and acts as its proxy. This can be  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2b18719208b0e83f3487bee722878052",
+  "subject_kind": "source_item",
+  "subject_id": "src-bc69da20e94a2617be375bd5",
+  "input_hash": "b878e97395cc24105c914ab539fafe3782a381bea57e07313434a9fbb53994af",
+  "input_revision": "semantic-v2-sha256:69d025b0f64c3e1a315ec6dfa956adfd1afd2a578285dfb5e0682d8b0caa9aac",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bc69da20e94a2617be375bd5"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b2d2da2bab1760cd7bb11544: Fixed an incorrect optimization in the DFG compiler for right shift operations, which could produce wrong results when the shift count exceeds the 32-bit mask. ( [contact omitted] ) (189886500) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c1050e397e723a0ba78b15cf9524ff5b",
+  "subject_kind": "source_item",
+  "subject_id": "src-b2d2da2bab1760cd7bb11544",
+  "input_hash": "d3b11ac0491e08f47d7114fb90e38a90471f24bbe5f1848860e21c6bef36c17a",
+  "input_revision": "semantic-v2-sha256:74e2413efd93738a99d86fce7af29cee45fedf97e8f995d0b9ce7c54ce475805",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b2d2da2bab1760cd7bb11544"
+  ]
+}

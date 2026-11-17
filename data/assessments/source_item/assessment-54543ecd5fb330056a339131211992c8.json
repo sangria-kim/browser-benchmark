@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious NFS server may disclose kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-54543ecd5fb330056a339131211992c8",
+  "subject_kind": "source_item",
+  "subject_id": "src-8cca154b74a91c9b6d57a884",
+  "input_hash": "3ff7adf38f5760f3381b377c5102048fb8a9c55ffd6f0dedb4aa9639f770ac49",
+  "input_revision": "semantic-v2-sha256:d19abc5b617c6f14eadb895418bb9028735715f64bb3a2039bb2b779ffc35239",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-8cca154b74a91c9b6d57a884"
+  ]
+}

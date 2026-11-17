@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1be7fb7f846ad29ef2ebb1b7: Source baseline: Android Multi-Profile A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1b6c9e88eadf9f7582a9f7279c70ef64",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1be7fb7f846ad29ef2ebb1b7",
+  "input_hash": "3bf31ae7d25c53012f8cc6a61f145f15c8ac3b52dfd029bcd78507fa0b183306",
+  "input_revision": "semantic-v2-sha256:dbb52785ecbd9a681f101b8ab4a0e9a7a6856ac1aecbf140c09fc23d8792752e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-9882184e67bad34a2b8e21a32b44a9b5",
+  "evidence_source_item_ids": [
+    "src-chromium-9f78077ae209a052110e4e82",
+    "src-legacy-f739cc90fe90dbfce2e38cd6"
+  ]
+}

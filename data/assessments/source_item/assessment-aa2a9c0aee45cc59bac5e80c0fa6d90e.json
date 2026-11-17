@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2d77c6b57d81c1de09fcb354: Fixed feGaussianBlur not applying when stdDeviation contains a 0 in the second component. (177906905) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-aa2a9c0aee45cc59bac5e80c0fa6d90e",
+  "subject_kind": "source_item",
+  "subject_id": "src-2d77c6b57d81c1de09fcb354",
+  "input_hash": "cfd179206a60add05f4c9fd26b1017bf661be2fd22797f67b02895d4941f981d",
+  "input_revision": "semantic-v2-sha256:be788ab31baca74eb47cc7a17bc3b995f6a298d3b70265529d9a8f0121835cc7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2d77c6b57d81c1de09fcb354"
+  ]
+}

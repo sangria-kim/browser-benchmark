@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-18f48aa9252227b9214cd6b6: CSSPageRule.style now returns a CSSPageDescriptors object instead of a generic CSSStyleDeclaration. The new interface exposes the @page descriptors — size, page-orientation and the margin family — as named attributes in  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-808d8f0a6c7ff748febcb79b16335d9a",
+  "subject_kind": "source_item",
+  "subject_id": "src-18f48aa9252227b9214cd6b6",
+  "input_hash": "202501172d512241263a4515b3bf562e0a831adb2ac2e96b9048d235850e4fe8",
+  "input_revision": "semantic-v2-sha256:99679f6695a569d6aaadacec3439d2301f7aacb7a9c55f56bbd8175d34024382",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-18f48aa9252227b9214cd6b6"
+  ]
+}

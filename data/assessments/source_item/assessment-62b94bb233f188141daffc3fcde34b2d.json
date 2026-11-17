@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome 159 will offer custom HTTP header injection for Android, a feature that injects custom headers into network requests matching configured URL patterns. This generic capability allows enterprises to reduce their rel"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-62b94bb233f188141daffc3fcde34b2d",
+  "subject_kind": "source_item",
+  "subject_id": "src-251c19cbbef93ea882aa6d72",
+  "input_hash": "c3f0e3ef72028d9f68375b120fe27ce0ad5e57f321443778413e1954e8a72b65",
+  "input_revision": "semantic-v2-sha256:319f9555ea54c701973dce2f92e4ae1f32a0385d81973d5e53bf97f380c3977b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-251c19cbbef93ea882aa6d72"
+  ]
+}

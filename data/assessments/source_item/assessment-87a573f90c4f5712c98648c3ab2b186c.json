@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bf0ea74c99d28e87e6e00326: Fixed an issue where tables with collapsed borders incorrectly calculated the first row width, causing excess border width to spill into the table’s margin area. (149675907) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-87a573f90c4f5712c98648c3ab2b186c",
+  "subject_kind": "source_item",
+  "subject_id": "src-bf0ea74c99d28e87e6e00326",
+  "input_hash": "3c237b6deaf53e7e58ed2665569151b15a34e855892c0b258da7a9512ec13865",
+  "input_revision": "semantic-v2-sha256:0934e1e2206702458026c56c76cddb05cec4a554ac29f8d4abdab8b6274a541f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bf0ea74c99d28e87e6e00326"
+  ]
+}

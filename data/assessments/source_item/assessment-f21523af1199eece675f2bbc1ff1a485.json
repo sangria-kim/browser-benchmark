@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$500][ 508811474 ] High CVE-2026-9896: Out of bounds write in V8. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f21523af1199eece675f2bbc1ff1a485",
+  "subject_kind": "source_item",
+  "subject_id": "src-4bc86d35bc76f6168def9b8d",
+  "input_hash": "83038a9f39e08d418a8e33b8467a8b0acb2c396a6661dbc6bbe2f81cb9c92dbd",
+  "input_revision": "semantic-v2-sha256:fc0b315335f34b611164bfbb7c6a64d5583680521556d11e4b6eb689f947f8c2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4bc86d35bc76f6168def9b8d"
+  ]
+}

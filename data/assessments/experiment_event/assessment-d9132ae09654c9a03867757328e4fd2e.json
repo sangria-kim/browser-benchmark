@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-2e8bbbc395c39041bde09683: Source baseline: Mac Sandbox Logging A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d9132ae09654c9a03867757328e4fd2e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-2e8bbbc395c39041bde09683",
+  "input_hash": "e916af9a5be08f9935993d77e7d7c791ab552dd150a5bc7261be9bda359d7578",
+  "input_revision": "semantic-v2-sha256:f00d8bbf258e130e36f9ef6aa46e94dd62fbce04fe63ff98dae46ab11ddf3027",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-a6dca694563e9433fbae6babebf44bf2",
+  "evidence_source_item_ids": [
+    "src-chromium-81d27148beb4de6883a77c82",
+    "src-legacy-110d136edc1f4f3806df8ad4"
+  ]
+}

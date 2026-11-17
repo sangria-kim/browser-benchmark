@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b0493294fdd24bdc23301994: Fixed an issue where event.target was not set after dispatching an event in a shadow tree with no listeners. (174136382) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-893fbc9e9fab399800183ba156c07dfd",
+  "subject_kind": "source_item",
+  "subject_id": "src-b0493294fdd24bdc23301994",
+  "input_hash": "a14ee4d471e157cf1e9ef107bad4300b5c5856b8c42bb5320b1710bfc5781b14",
+  "input_revision": "semantic-v2-sha256:433a7d13322579e8ec69e63c93e27fcbf6b19d64ff4af8a954afec7a0174e905",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b0493294fdd24bdc23301994"
+  ]
+}

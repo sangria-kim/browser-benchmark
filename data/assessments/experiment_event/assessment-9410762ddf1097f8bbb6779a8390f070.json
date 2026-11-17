@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0eb15b456508f62866488f17: Source baseline: AndroidDisplayCursor A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9410762ddf1097f8bbb6779a8390f070",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0eb15b456508f62866488f17",
+  "input_hash": "c12ff14efcad1a3721ec93a3ba7deb931d9ad78cfc79c71951316d52a8faae25",
+  "input_revision": "semantic-v2-sha256:72f70b15cc0c3e6bd4bf9073e5fcf7c3a814bf83459c88b80ab523a4e33e56a7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-3842cf7f121457991e91f038"
+  ]
+}

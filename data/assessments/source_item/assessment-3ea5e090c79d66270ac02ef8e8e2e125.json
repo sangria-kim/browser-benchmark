@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Mounting a maliciously crafted disk image may cause unexpected system termination or corrupt kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3ea5e090c79d66270ac02ef8e8e2e125",
+  "subject_kind": "source_item",
+  "subject_id": "src-673d577d85ffce9da3f49a0b",
+  "input_hash": "0eed9b82a8510bfd75a47aadc277a9c1aaaa99fa3bd762d5486a1a45212b1993",
+  "input_revision": "semantic-v2-sha256:e9bd1c80598c3ab472c81bec645c0096435e53835098a296e063e0caf81600c6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-673d577d85ffce9da3f49a0b"
+  ]
+}

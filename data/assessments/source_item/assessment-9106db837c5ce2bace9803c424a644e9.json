@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Processing a maliciously crafted file may lead to a denial-of-service or potentially disclose memory contents"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9106db837c5ce2bace9803c424a644e9",
+  "subject_kind": "source_item",
+  "subject_id": "src-b5adeb17e2328e4337ccd4b0",
+  "input_hash": "f4cab1efcffb62791ccd7f3bc34437b473fceb08202e45e2e5ef4a559a21cf2f",
+  "input_revision": "semantic-v2-sha256:a443a5a2ba9c9e9bb52b72dfaf4908bd476227c3d25b74187c8520c2176b138f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b5adeb17e2328e4337ccd4b0"
+  ]
+}

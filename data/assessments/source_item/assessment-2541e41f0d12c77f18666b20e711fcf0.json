@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-10b78559507fa17a6aad5ee4: Fixed an issue where flex items with explicit min-height: min-content were incorrectly treated as scrollable, zeroing out their minimum size. (176173688) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2541e41f0d12c77f18666b20e711fcf0",
+  "subject_kind": "source_item",
+  "subject_id": "src-10b78559507fa17a6aad5ee4",
+  "input_hash": "4766bd2b709cac06d702154aeef95bd72122ff8c8c26c735c45dd28ac1f120f1",
+  "input_revision": "semantic-v2-sha256:bceb7526522b374e789d481fcf9a875b6f9c280a319b82491e5069ae0ba51d7c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-10b78559507fa17a6aad5ee4"
+  ]
+}

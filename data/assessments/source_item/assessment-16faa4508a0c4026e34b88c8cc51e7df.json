@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-e958cf5b7b240bb659676d55: Fixed an issue where a character following a class set operand in a /v mode regular expression class incorrectly added U+0000 to the class. ( [contact omitted] ) (186319779) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-16faa4508a0c4026e34b88c8cc51e7df",
+  "subject_kind": "source_item",
+  "subject_id": "src-e958cf5b7b240bb659676d55",
+  "input_hash": "596512a05b596eb714d5519cb407521df15142ff343bc6284a7b2ccb282ae8f3",
+  "input_revision": "semantic-v2-sha256:1fd4e5954383706230cfb143bf04b31cd52616546df3dfaf14f70a231355c651",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e958cf5b7b240bb659676d55"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-54419121a5558cadb7df5955: Fixed a performance regression that could slow down sites performing many encryption and decryption operations at once, such as Proton Drive. ( Bug 2046401 ) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9b92d91994bb6dd5389aa62f567d5ec2",
+  "subject_kind": "source_item",
+  "subject_id": "src-54419121a5558cadb7df5955",
+  "input_hash": "d308df6f9906ef9f0c4b63505fc6a72271fcabb26fc0cbc21ee05673a2bfa450",
+  "input_revision": "semantic-v2-sha256:f48d48d5dcffaddd9f8564986fe4bed27d3757fc41fb8f4be17b0b9cd06edff0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-54419121a5558cadb7df5955"
+  ]
+}

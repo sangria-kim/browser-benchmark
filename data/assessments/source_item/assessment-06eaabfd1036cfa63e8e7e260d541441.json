@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-03e39638b29f320a3479ee74: Chrome 154 includes an optional browser optimization mode that changes existing service worker behavior. In ServiceWorkerAutoPreload mode, the browser issues the network request in parallel with the service worker bootst A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-06eaabfd1036cfa63e8e7e260d541441",
+  "subject_kind": "source_item",
+  "subject_id": "src-03e39638b29f320a3479ee74",
+  "input_hash": "7157836d2d96d4eb7003acc4e2bf7338fbf9c629188eba5a7f9c8ac47a0f9f2c",
+  "input_revision": "semantic-v2-sha256:89d484155d3a934242fc36e8fd161b09e6a8afc4dd31f17a847467d9cd2cfcd7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-03e39638b29f320a3479ee74"
+  ]
+}

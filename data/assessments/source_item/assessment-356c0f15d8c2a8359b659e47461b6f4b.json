@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: zkLogin also centralizes identity around issuer-managed user accounts. Participation requires users to hold accounts at specific platforms, embedding existing web identity providers directly into the authorization layer "
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-356c0f15d8c2a8359b659e47461b6f4b",
+  "subject_kind": "source_item",
+  "subject_id": "src-33a001230a2edff841ea90ba",
+  "input_hash": "36c79f69823ce5de885ce55f280ec3e417b380b6f7762f3dcd0b62b84ecb1727",
+  "input_revision": "semantic-v2-sha256:6176db7dec8a524972dff1adf285c6a8ae9d8c3bea3a2b04a3ebc3c58574772c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-33a001230a2edff841ea90ba"
+  ]
+}

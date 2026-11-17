@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-039769fcddbed048e09a372f: On ChromeOS, files stored in non-native virtual folders (such as Microsoft OneDrive via extension-based File System Providers) were previously bypassed during enterprise file scans because they lacked a native local path A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-addcf010e9e1b828dd5d129064299035",
+  "subject_kind": "source_item",
+  "subject_id": "src-039769fcddbed048e09a372f",
+  "input_hash": "0426fc4142556175cf1c5d45113a76f349313ac43d3842fd55ddd1ed7c8ee202",
+  "input_revision": "semantic-v2-sha256:5d2b11e9a18b93eb36d271e640cd64883a4c6f2db07cb5d46d84ab5862e55a46",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-039769fcddbed048e09a372f"
+  ]
+}

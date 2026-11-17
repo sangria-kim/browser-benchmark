@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Opening a file referencing a network share may lead to unexpected software execution"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9ad91d8c8769223ebe309afe5ead05f0",
+  "subject_kind": "source_item",
+  "subject_id": "src-6220712f5c75bd4b4c090616",
+  "input_hash": "be15c06696c055aa29a2e6e3678d8f4ef7ac77425d3bd785bcc51f393bdcff04",
+  "input_revision": "semantic-v2-sha256:9cfe8800a736fcef2d614995be363b6a93914a8961d15b42c4b3a5f6ac78b747",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6220712f5c75bd4b4c090616"
+  ]
+}

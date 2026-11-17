@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Description: A memory corruption issue was addressed by removing the vulnerable code."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-493e3357b58656161320c887a851b791",
+  "subject_kind": "source_item",
+  "subject_id": "src-05db6e284532e54797dd6980",
+  "input_hash": "f5c64e33cc8b1c5053ac74f01a0f706f182a73168f673f4b714c0e508038826a",
+  "input_revision": "semantic-v2-sha256:9be1549118122a0c18c993e912002d7c1969fbd3bfad5f24be34b0c76f6b1116",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-05db6e284532e54797dd6980"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Medium Fixes [PSP-490][PowerVR] Read UAF in GrowMipLevelArray() due to incorrect texture array iteration during image copy"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e7f7f69c633838926aa8663026085303",
+  "subject_kind": "source_item",
+  "subject_id": "src-48c947d06e48eb406c85e740",
+  "input_hash": "a54c190d83174e91f2feab922203afcbfd63e1f158afc5971b851898c805fc4d",
+  "input_revision": "semantic-v2-sha256:bf247f460e6a40ec9a1190767f024db1b6069b6520f0aa67a8d3204591991068",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-48c947d06e48eb406c85e740"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Starting in Chrome 157, the Background Fetch API now enforces Cross-Origin Resource Sharing (CORS). This update aligns Chromium's implementation with the intent of the [Background Fetch spec]( This ensures that Backgroun"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-78328a9f5dfa22fa85b0bcde256bce46",
+  "subject_kind": "source_item",
+  "subject_id": "src-9d5bf48dbe89f71cef6d4d4c",
+  "input_hash": "1612a994957e41f7192e6f258dbcd63d308be6a9b26202e57a37f2e61b17e64e",
+  "input_revision": "semantic-v2-sha256:35baeaa31b2eb0fd82d12ab82c3e2e1b787a03504b60d5d2893e7ff8a8e8a72b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-9d5bf48dbe89f71cef6d4d4c"
+  ]
+}

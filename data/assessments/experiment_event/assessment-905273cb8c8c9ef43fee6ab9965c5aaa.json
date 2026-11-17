@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f58ad2965456fabf744410a2: Source baseline: Device Bound Session Credentials (Standard) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-905273cb8c8c9ef43fee6ab9965c5aaa",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f58ad2965456fabf744410a2",
+  "input_hash": "5a362349871c38e308d5390fc5fbd0329a5ed395a5916abc08949f55cfb4843d",
+  "input_revision": "semantic-v2-sha256:6e19a7b152993074f8d8faa1441ff3d5067a6d31e8ed39d29f20974763c175c9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-dd844f3177302bd1d5fd673343d18fe2",
+  "evidence_source_item_ids": [
+    "src-chromium-c739c4de95565449f553f399"
+  ]
+}

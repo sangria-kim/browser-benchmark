@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: An app may be able to disclose kernel memory"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-15e064b0b2884c47d21c43616c693c89",
+  "subject_kind": "source_item",
+  "subject_id": "src-e4105cf8470a582524a77f4b",
+  "input_hash": "28b38522dbfd4e18ab961c212e67abdbb1ac04cf72163f12654a7e792283d04a",
+  "input_revision": "semantic-v2-sha256:087278b7266ef44a50a1f1cc7bcedbd13e1e8d51f990b1ece32fb5cb9f58296c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-e4105cf8470a582524a77f4b"
+  ]
+}

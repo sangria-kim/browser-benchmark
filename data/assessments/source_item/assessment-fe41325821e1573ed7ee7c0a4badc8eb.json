@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fd1fbeabf7417f786a737143: Fixed an issue where render pipelines created from an already-used GPUShaderModule always missed the shader cache, making repeated pipeline creation as slow as a cold compile. ( [contact omitted] ) (188501171) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fe41325821e1573ed7ee7c0a4badc8eb",
+  "subject_kind": "source_item",
+  "subject_id": "src-fd1fbeabf7417f786a737143",
+  "input_hash": "94bb3f311c555de2f4f03d3668c3d4a66b3cacf40566ad62801dac4586db86e8",
+  "input_revision": "semantic-v2-sha256:bd4f282d41dde71136e20c15133b5b5731ad5a7d3d20b33e96661d3db090c225",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fd1fbeabf7417f786a737143"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f1b8917f84e6226262527078: Fixed a bug where if Safe Browsing queried for an entry on the Public Suffix List, and a Safe Browsing vendor responded that the whole effective TLD was unsafe, the whole site would be marked as unsafe. (168155375) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-306a00d88811c1272b12e2f2ad4053c9",
+  "subject_kind": "source_item",
+  "subject_id": "src-f1b8917f84e6226262527078",
+  "input_hash": "1a428b74a3ae33ae7bb03dd3125331e63623af426351ab799881edb69480ff55",
+  "input_revision": "semantic-v2-sha256:86937b3929284c7bd79e19af46d4567f4b543b3bee9b721978be5574db6f297e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f1b8917f84e6226262527078"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [N/A][ 568899705 ] High CVE-2026-110138: Use after free in ShapeDetection. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ad586e9403f208331a9c6ab4c13ebd15",
+  "subject_kind": "source_item",
+  "subject_id": "src-be9cc5db9f1f55eb5cb81868",
+  "input_hash": "a92c547b30b61c86f8be61433113a1a66561eaed1865297f82827105610c69da",
+  "input_revision": "semantic-v2-sha256:b619c576c0b7511503dee430d256efc42dd161ab9760bae820d802acb0fb585a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-be9cc5db9f1f55eb5cb81868"
+  ]
+}

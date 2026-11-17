@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f1bb17d97b611c8c1024bfd0: In Chrome 149, Chrome Enterprise Premium optimizes how it processes files larger than 50MB during Data Loss Prevention (DLP) scans. This update moves the file hash computation to a background process, thereby significant A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f32b68a5250a6b2bfad3dcfdccd6cb54",
+  "subject_kind": "source_item",
+  "subject_id": "src-f1bb17d97b611c8c1024bfd0",
+  "input_hash": "a7e80490da51310f9adf7c42d5a9bcbebd767b3f926e819a6c7320a061b7726d",
+  "input_revision": "semantic-v2-sha256:c3c7b618ba764bb9bed22ec3253bfc0a6a1ccb8801df503e50fce14e28aba05c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f1bb17d97b611c8c1024bfd0"
+  ]
+}

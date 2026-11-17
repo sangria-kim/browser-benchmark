@@ -38,15 +38,15 @@
   "delta": "기존에는 명령행으로 제어하던 feature에 chro-menu-search 등록·설명·metadata를 추가했다. 메뉴 검색 자체의 최초 구현·정식 출시는 아니다.",
   "verification_status": "source_diff_and_snapshot_verified",
   "previous_event_id": null,
-  "selection_status": "selected",
-  "selection_reason": "새 기능 출시가 아니라 실험 접근 경로 추가로 한정한다. 메뉴 탐색과 검색의 과제 비교를 구체화할 수 있다.",
-  "priority": "P2",
-  "priority_reason": "메뉴 명령을 발견하고 실행하는 한정된 탐색 과제에서 클릭 수·검색 정확도·완료 시간을 비교할 가치가 있다. 브라우저 전반의 기본 동작 변경보다 범위가 좁아 P2로 둔다.",
-  "comparison_question": "Windows에서 동일 메뉴 명령을 계층 탐색과 검색으로 찾을 때 입력·클릭 수와 완료 시간은 어떻게 다른가? 삼성 브라우저의 동등 검색 기능 여부는 별도 확인한다.",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "해당 revision을 포함한 설치본·계정·지역 조건을 확보하면 flag 노출과 과제 동작을 확인한다.",
-  "assessed_at": "2026-11-05T22:53:24Z",
-  "selection_rule_version": "pm-selection-v2",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
+  "priority": null,
+  "priority_reason": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "flag_ids": [
     "chro-menu-search"
   ],
@@ -67,5 +67,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d37f50767cc24f3f9feba179: Fixed an issue where RegExp::deleteCode() cleared a regular expression’s cached pattern atom, which could cause incorrect values from static RegExp properties such as leftContext and rightContext after the compiled code  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-775be4f0e653e66dd93ac592f7d83b53",
+  "subject_kind": "source_item",
+  "subject_id": "src-d37f50767cc24f3f9feba179",
+  "input_hash": "c31e1ec7c8929403e116391bba3985604173c526a095b36b1530ed71755b0136",
+  "input_revision": "semantic-v2-sha256:aa4234ddb78738ad1d9ec5e77e53d069d0ff9e6cfdeefcbd40cb6c0e93907707",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d37f50767cc24f3f9feba179"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A buffer overflow may result in memory corruption and unexpected app termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4481b15a7c4ce0cca9cd508a561066f0",
+  "subject_kind": "source_item",
+  "subject_id": "src-0a5c57d36b94a28da2b8811c",
+  "input_hash": "8113986e7d289c339151c0d2501c1375b448af9d3620a7589ddfc015cd09038b",
+  "input_revision": "semantic-v2-sha256:46bb0a7f19eb3d466060b6095e9dd9294fbb7c88bae4c484822f5ae3c1d3d38e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-0a5c57d36b94a28da2b8811c"
+  ]
+}

@@ -35,15 +35,15 @@
   "delta": "Gemini SDK 헤더를 Chrome 네이티브 헤더로 교체하는 iOS 실험 flag 등록. iOS Gemini Bottom Sheet Migration이 함께 활성화되어야 함.",
   "verification_status": "source_observed_not_device_tested",
   "previous_event_id": null,
-  "selection_status": "watch",
-  "selection_reason": "UI 변경 목적과 의존성은 공식 소스로 확인되지만 이 commit은 flag·설명·판정 helper만 추가한다. 실제 header 렌더링 변경·설치본 노출·사용자 영향은 미확인.",
+  "selection_status": "excluded",
+  "selection_reason": "Outside the confirmed collection projection (unknown): No supported item date. This is not evidence of product removal.",
   "priority": null,
   "priority_reason": null,
-  "comparison_question": "Gemini 대화에서 Chrome 네이티브 헤더가 이동·닫기·되돌리기 조작과 브라우저/AI 구분에 어떤 차이를 만드는가?",
-  "benchmark_readiness": "conditional",
-  "revisit_trigger": "실제 UI 연결 구현 또는 설치본 노출·공식 배포 근거 확보",
-  "assessed_at": "2026-11-15T22:57:00Z",
-  "selection_rule_version": "pm-selection-v2",
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": null,
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "selection_rule_version": "pm-selection-v3.0.0",
   "source_item_ids": [
     "src-legacy-0e54c2a16f8b955be56acdcc"
   ],
@@ -51,5 +51,18 @@
   "after": null,
   "origin": "legacy",
   "correction_of": null,
-  "revision": 1
+  "revision": 1,
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-16T12:53:40.560982+00:00",
+    "status": "unknown",
+    "basis": "unknown",
+    "evidence_date": null,
+    "precision": "unknown",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "No supported item date."
+  }
 }

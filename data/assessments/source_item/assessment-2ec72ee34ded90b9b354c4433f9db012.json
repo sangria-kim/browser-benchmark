@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-510b6fa181ac972a2653a874: Currently web developers cannot retry failed module loads, as these failures are being cached (and retries just result in immediate failures). This change to the module loading behavior enables failed module loads to be  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2ec72ee34ded90b9b354c4433f9db012",
+  "subject_kind": "source_item",
+  "subject_id": "src-510b6fa181ac972a2653a874",
+  "input_hash": "c3bbbe1ec4a1c4aae06a3e448990e2f611ffe556b2e7062a1ea7ac5df4374306",
+  "input_revision": "semantic-v2-sha256:efee9d348a4d62e96e11cef04ed24217d06123d2781c907db58e8764b4a30c88",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-510b6fa181ac972a2653a874"
+  ]
+}

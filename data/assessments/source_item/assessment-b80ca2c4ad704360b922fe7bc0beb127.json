@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: [$2000][ 487300831 ] Low CVE-2026-11220: Insufficient validation of untrusted input in Navigation. [reporter attribution omitted]"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b80ca2c4ad704360b922fe7bc0beb127",
+  "subject_kind": "source_item",
+  "subject_id": "src-3f2fb5d0cdeec4c51453938f",
+  "input_hash": "e8f881389dfba8b19caa20e7ea1c23f90342ad19e2356117adae50525b5e75a8",
+  "input_revision": "semantic-v2-sha256:48161e2569dc1be09b381bd24b91c6693e1ccd4fcc7d0c7e3ab83a844f55898f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3f2fb5d0cdeec4c51453938f"
+  ]
+}

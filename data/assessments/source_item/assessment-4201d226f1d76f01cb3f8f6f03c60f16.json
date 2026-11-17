@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: We are aware that exploit code for this is public however we are not aware of any attacks in the wild abusing this flaw."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4201d226f1d76f01cb3f8f6f03c60f16",
+  "subject_kind": "source_item",
+  "subject_id": "src-ec3c1f95bce58bae8b411391",
+  "input_hash": "a74046bb78e4c0cfeee748fa6943172c34f8b7140d8c886e67c87dc18cf804c0",
+  "input_revision": "semantic-v2-sha256:5020499090b752fa666cc6782f4ad94371d592d82ec65ee809488ecda8fccf19",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ec3c1f95bce58bae8b411391"
+  ]
+}

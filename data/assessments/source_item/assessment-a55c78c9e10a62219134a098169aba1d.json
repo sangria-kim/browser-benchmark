@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7744b93059cb26fd9e2625ea: According to the [URL Standard specification]( URL hosts cannot contain the space character, but currently URL parsing in Chromium allows spaces in the host. This causes Chromium to fail several tests included in the [In A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a55c78c9e10a62219134a098169aba1d",
+  "subject_kind": "source_item",
+  "subject_id": "src-7744b93059cb26fd9e2625ea",
+  "input_hash": "1f40b37b16f748b770f08694862cda600beed63a6d587e4c97500956aef17590",
+  "input_revision": "semantic-v2-sha256:21b039f0c8970a5ea44239de6ff50056e868a2c9600e1055ae8d1dabb6b1e3ad",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7744b93059cb26fd9e2625ea"
+  ]
+}

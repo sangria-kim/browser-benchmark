@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b6093617db82c8fe9022e16a: Fixed ManagedMediaSource not firing the startstreaming event when seeking to a time that is not buffered, which could stall playback. (185166787) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-716fb058c5040c80f752024719c26def",
+  "subject_kind": "source_item",
+  "subject_id": "src-b6093617db82c8fe9022e16a",
+  "input_hash": "f773cfdd6fa3a7a5c5445097782807c78c7027891f97a0e9b04b8162379e3ab0",
+  "input_revision": "semantic-v2-sha256:d7444b625a7be47ddcb1e4acbe94a51739b4b51f3c8aa5f1db3a27d8102863af",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-e8f21492ba82c275c1050b9c8d69c049",
+  "evidence_source_item_ids": [
+    "src-b6093617db82c8fe9022e16a"
+  ]
+}

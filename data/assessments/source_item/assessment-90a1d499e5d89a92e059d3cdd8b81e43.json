@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b1a9022649b7628febe5dc53: Fixed RTCConfiguration.iceServers to be a non-optional sequence with an empty array as the default, improving spec compliance and ensuring RTCPeerConnection behaves correctly when iceServers is undefined. ( [contact omit A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-90a1d499e5d89a92e059d3cdd8b81e43",
+  "subject_kind": "source_item",
+  "subject_id": "src-b1a9022649b7628febe5dc53",
+  "input_hash": "c52e3ff6e06951c3b14b664d6e4e20d78ab366ca81ee71b1a246875a987d2c10",
+  "input_revision": "semantic-v2-sha256:ec1a07eba61d3b928f46f8f7977d4b9540d9708f38afc2340d961a1ceea61ebf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b1a9022649b7628febe5dc53"
+  ]
+}

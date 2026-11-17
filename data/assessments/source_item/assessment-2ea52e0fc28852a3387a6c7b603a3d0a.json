@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7fe8dd1810668f62fb2eff82: Fixed an issue where a display: grid subgrid inside a grid-lanes container incorrectly contributed its items’ intrinsic sizes to the parent’s track sizing algorithm. (171230544) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2ea52e0fc28852a3387a6c7b603a3d0a",
+  "subject_kind": "source_item",
+  "subject_id": "src-7fe8dd1810668f62fb2eff82",
+  "input_hash": "4070bc9f688626349e68f0fcc460408bf914d6036346bec3d900b2d44740eb7e",
+  "input_revision": "semantic-v2-sha256:ea0cae76d515c082d96db61e6749dea01874059a2fec3c0e36c2145c81ea7f12",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7fe8dd1810668f62fb2eff82"
+  ]
+}

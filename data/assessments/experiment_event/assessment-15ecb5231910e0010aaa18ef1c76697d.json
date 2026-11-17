@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-135320762a1e7bfe0fea6640: Source baseline: Remove bulk password deletion from Delete Browsing Data on Android. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-15ecb5231910e0010aaa18ef1c76697d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-135320762a1e7bfe0fea6640",
+  "input_hash": "f5af5b0580170a77b049b095503ddd5242f013ef9812abfe2c1707e3b6ee1ba9",
+  "input_revision": "semantic-v2-sha256:9167b3592b1933e38f14fcffdd24039bdeb65e77d4635b619dfbd9d4ddd30e8f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-3b1d7523e014950a83ec81beaf1cba51",
+  "evidence_source_item_ids": [
+    "src-chromium-f216bab087405093fa2b1d28",
+    "src-legacy-5b86e8081e2691209240d58e"
+  ]
+}

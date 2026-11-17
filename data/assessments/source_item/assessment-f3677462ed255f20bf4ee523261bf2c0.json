@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-bb1cc3aeb00b41c1392a5eb0: Since Chrome 151 dropped support for macOS 12, we updated the version constraint to block AU on unsupported systems. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f3677462ed255f20bf4ee523261bf2c0",
+  "subject_kind": "source_item",
+  "subject_id": "src-bb1cc3aeb00b41c1392a5eb0",
+  "input_hash": "0c23b1385a5eeded562ec0ca8e52cdb21c51b1e3fe60f54372aa0ec28fcdfd95",
+  "input_revision": "semantic-v2-sha256:aced436c1d128650bf8c9c532e2c66546bc6534f11f7976f82517c808f62db0d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-bb1cc3aeb00b41c1392a5eb0"
+  ]
+}

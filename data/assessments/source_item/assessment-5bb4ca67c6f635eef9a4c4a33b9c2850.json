@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-53c3b70ea78945a3d68265f6: On-mass precomputation of passwords is dead. Because part of the derivation depends on a secret key held by the server, attackers can’t build dictionaries of passwords in advance. They have to steal the database and the  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5bb4ca67c6f635eef9a4c4a33b9c2850",
+  "subject_kind": "source_item",
+  "subject_id": "src-53c3b70ea78945a3d68265f6",
+  "input_hash": "6838f9328f527b31e95befd7343643782dc2f1650e6e9f6eaeb4e4af21beb206",
+  "input_revision": "semantic-v2-sha256:7740b72014dd8200dd5db7f518f8ec6e5352241b485b62c320cc7fd44da381df",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-53c3b70ea78945a3d68265f6"
+  ]
+}

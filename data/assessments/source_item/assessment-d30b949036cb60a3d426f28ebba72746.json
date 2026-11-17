@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: To improve security and reliability, the network service, already running in its own process, is now sandboxed on Windows. As part of this, third-party code that is currently able to tamper with the network service may b"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d30b949036cb60a3d426f28ebba72746",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a7c46b48812735ba75b71c4",
+  "input_hash": "3b1e224c18260c8d5d0e3d3d019366c90e26116d28995d1089696492d951e1ff",
+  "input_revision": "semantic-v2-sha256:12ce128e40560004f56930ab0737fdf4a9946c7f908b7c29367dbf9f9e7c3b1f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-2a7c46b48812735ba75b71c4"
+  ]
+}

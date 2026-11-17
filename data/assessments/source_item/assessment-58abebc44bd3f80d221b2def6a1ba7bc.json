@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fce1fe907f85df6da1156904: Fixed a performance issue where parsing <select> elements with thousands of <option> children via innerHTML caused O(n²) overhead due to repeated list recalculation. (174244946) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-58abebc44bd3f80d221b2def6a1ba7bc",
+  "subject_kind": "source_item",
+  "subject_id": "src-fce1fe907f85df6da1156904",
+  "input_hash": "b24269469fee57621c57105c992643c6727328ddf4caa0a7387855b69bcfe378",
+  "input_revision": "semantic-v2-sha256:49f8cf252c3ce792b38863d5a182d72eb7ddd2c2c2473fb798c35865fc4ff9a5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fce1fe907f85df6da1156904"
+  ]
+}

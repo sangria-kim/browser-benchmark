@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: Connecting to a malicious SMB server may lead to unexpected system termination"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4584f3f41515056b52afc4a854649c70",
+  "subject_kind": "source_item",
+  "subject_id": "src-5814684b5e937054d91e30ef",
+  "input_hash": "ac3f01b0ef309cd4de7ad0e6a7efd7124d9a6fd7588d05356884bf3274a42481",
+  "input_revision": "semantic-v2-sha256:74e80f4620ccf92883db42a52ae72504d7c99172b6d753effce136d31690a1b9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5814684b5e937054d91e30ef"
+  ]
+}

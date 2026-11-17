@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-794d67dcbc52cc93a6f1d183: Introduces a new Document-Policy value \"js-profiling-mode=eager|lazy\". Setting \"js-profiling-mode=lazy\" authorizes JS Self-Profiling capability without incurring immediate initialization overhead during page load. Relate A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-37e3ebd5121b53cce0beb1183b4b488a",
+  "subject_kind": "source_item",
+  "subject_id": "src-794d67dcbc52cc93a6f1d183",
+  "input_hash": "96b2d32d169ac3a313338d215c2123b3d2feb99ae7a64da3d61650e752662946",
+  "input_revision": "semantic-v2-sha256:8968410b444d9624c27ef62b35dea71ea8497a2480bd18800b4af0369ce684e8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-794d67dcbc52cc93a6f1d183"
+  ]
+}

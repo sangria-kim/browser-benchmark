@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: The security model stays clean throughout. Model inference goes to Amazon Bedrock. MCP server connections go to endpoints you approve. The Brave Search API key lives only in the MCP server configuration. Conversation dat"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ea4ead2b8b09c6888546acc559f8d893",
+  "subject_kind": "source_item",
+  "subject_id": "src-b96049c99593b19b4a92aba9",
+  "input_hash": "959bd47e7e3070ce0b2ed9802b4cfd3daf49c4c4988f93e1dc8c7acc69e39367",
+  "input_revision": "semantic-v2-sha256:ca007f3f3551bcfb1032b3435579924aeb247713e2001f02d1d4ee1b545146fd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b96049c99593b19b4a92aba9"
+  ]
+}

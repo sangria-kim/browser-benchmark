@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Browser isolation mechanisms (SOP, CSP) do not provide the confidentiality or integrity guarantees assumed by zkLogin even though the documentation notes that “the same-origin policy for the proof prevents the JWT obtain"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4973892e3edd4666d0286663fc0bd5f1",
+  "subject_kind": "source_item",
+  "subject_id": "src-f0348fee8983bc4b047a0bb1",
+  "input_hash": "59909f56913c948ab77e793ee4f7c394462f35fb28d6a88a5733a470868fe927",
+  "input_revision": "semantic-v2-sha256:c5f7b04ca5731843baf619505034da1bf9bc81ca5e925aecd45ac392e241ad4e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f0348fee8983bc4b047a0bb1"
+  ]
+}

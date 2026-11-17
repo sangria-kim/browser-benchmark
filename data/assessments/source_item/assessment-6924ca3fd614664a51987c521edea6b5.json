@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Impact: A sandboxed process may be able to circumvent sandbox restrictions"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6924ca3fd614664a51987c521edea6b5",
+  "subject_kind": "source_item",
+  "subject_id": "src-3e015437d90e16c052498f4a",
+  "input_hash": "78b79fb40cf62181965e30be055b0f8c8fb18fea8c0ba088de9a57f947a3a1f6",
+  "input_revision": "semantic-v2-sha256:248cd4e656d6ed0f921a370488ccf26b4427e2b5007f12a5ae5eec443089f503",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-3e015437d90e16c052498f4a"
+  ]
+}

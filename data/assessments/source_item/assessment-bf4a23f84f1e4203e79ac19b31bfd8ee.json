@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Increased concurrent file upload limit for content analysis Chrome has increased the maximum number of files that can be scanned concurrently for content analysis from 15 to 30. This update significantly reduces scanning"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bf4a23f84f1e4203e79ac19b31bfd8ee",
+  "subject_kind": "source_item",
+  "subject_id": "src-d98273cb2eddd463fc3ad7a0",
+  "input_hash": "41f686534d51e541e3d26c7dcf2941b7f52f6594a92871eac3d5be5477e472b2",
+  "input_revision": "semantic-v2-sha256:917f03b53b00707e51512b973ff1c268181a40f99e8fb2d4d70a526d553cb5db",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-d98273cb2eddd463fc3ad7a0"
+  ]
+}

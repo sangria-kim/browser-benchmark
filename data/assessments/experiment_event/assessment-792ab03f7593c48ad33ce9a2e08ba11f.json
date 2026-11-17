@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-bffe466ff88bb427957d1281: Source baseline: DeviceAuthorizationPasskeyEncryption A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-792ab03f7593c48ad33ce9a2e08ba11f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-bffe466ff88bb427957d1281",
+  "input_hash": "73932b02e6b22a99819557c81b413d9f038ae4ed9d4f278e2a442bf5194dbfe7",
+  "input_revision": "semantic-v2-sha256:cf4a76ca8980bf5bdba5ac23c9463048b1e106b42885b44a166424d7df9612d8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-25179cdade24e89e972f8eaa"
+  ]
+}

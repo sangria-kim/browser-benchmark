@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a15529b070288624eebba314: Fixed an issue where regular expressions with non-BMP characters could skip valid match positions when alternating between patterns. (174200307) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-eba8dd5a60beb0f4e1c768b7186f5c38",
+  "subject_kind": "source_item",
+  "subject_id": "src-a15529b070288624eebba314",
+  "input_hash": "7ceaa085416d52a1c859b237dcfd342ce66fc281a90d0554d1fcd74a0eabb86d",
+  "input_revision": "semantic-v2-sha256:3e2482ae50939d2689b7928e9d37fbf8cbbc82a42138bb38251bdb4932982c4e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a15529b070288624eebba314"
+  ]
+}

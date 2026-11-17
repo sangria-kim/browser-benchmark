@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-7e4884b01570857cdd7cb7a2: Source baseline: Forces the minimum Android SDK version to a particular value. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2f80b8d3a4daf86187a82cd1041a2798",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-7e4884b01570857cdd7cb7a2",
+  "input_hash": "4ae6913f77f94e005a73e9fcfa4be3ffce9d1f9250a2646222e19130d2400050",
+  "input_revision": "semantic-v2-sha256:c514f17af766acbed3a8ba148a7ea1c10772b5b040ce7e587b640c0a79cef0c1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": "assessment-92fb20a40184f50b87804f338c147792",
+  "evidence_source_item_ids": [
+    "src-chromium-648e6480716bed6e128f78d6"
+  ]
+}

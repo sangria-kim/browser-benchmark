@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4d7a0e94ad93a291406ecc41: Fixed an issue where View Transition snapshots were incorrectly stored in sRGB, causing rendering issues with non-sRGB colors. (167634138) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ba262d0bee92bb7585a7fa78eebc2201",
+  "subject_kind": "source_item",
+  "subject_id": "src-4d7a0e94ad93a291406ecc41",
+  "input_hash": "964c11b323b8d43f8efe86ff61c765034671ff96201124dcb76829d0b646bf95",
+  "input_revision": "semantic-v2-sha256:df83938d600ae489476f9bfaca939ed90243b3c57cc6537f32bf21f850509d8d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-4d7a0e94ad93a291406ecc41"
+  ]
+}

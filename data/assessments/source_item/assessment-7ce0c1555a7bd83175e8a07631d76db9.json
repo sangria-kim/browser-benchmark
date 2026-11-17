@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6b80c88873f22be69a0376b5: Allows website to open a popup in an always-on-top window by setting the `alwaysOnTop` option in window.open(). When set to true, the browser requests that the operating system keep the newly created window pinned above  A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7ce0c1555a7bd83175e8a07631d76db9",
+  "subject_kind": "source_item",
+  "subject_id": "src-6b80c88873f22be69a0376b5",
+  "input_hash": "9f3caa71955ea53309caec3e674a47f0628719feb4d49f2c97aba8d4ba2d8ca7",
+  "input_revision": "semantic-v2-sha256:c1bba1972c444e8e3f501a642d7f59f5e702f9a78b62b071a33ba6cde6c35f05",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-6b80c88873f22be69a0376b5"
+  ]
+}

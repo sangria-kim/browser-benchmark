@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a1d2d5fbec853ef3e6771e25: Fixed a performance regression where drawing a canvas onto itself with drawImage prevented its backing surface from being recycled. ( [contact omitted] ) (186731221) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8ace2f19fa3f2e1b67b506283ad9028a",
+  "subject_kind": "source_item",
+  "subject_id": "src-a1d2d5fbec853ef3e6771e25",
+  "input_hash": "baeaf19f99ba4e40c4986152bb4c60cd119c886a0777d3d2390891ced15b8b8a",
+  "input_revision": "semantic-v2-sha256:605d96b4aa742154d3533cb1a856bde9523bafc35c94efc826d41fb9896ea11c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a1d2d5fbec853ef3e6771e25"
+  ]
+}

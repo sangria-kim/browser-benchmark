@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-aa7e0e4253c85b0cb4a1b395: Login and Issuance of JWT: Prior to initiating the OIDC login flow, the RP locally generates zkLogin -specific authorization material: an ephemeral key pair ( vk_U , sk_U ), a random value r , and a maximum validity boun A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8e1cc24215f01aa576485e1ccc560874",
+  "subject_kind": "source_item",
+  "subject_id": "src-aa7e0e4253c85b0cb4a1b395",
+  "input_hash": "89ecf30cfef933ea74681bd99a75919bb80456c1ef8bc6455164625cf762f3d1",
+  "input_revision": "semantic-v2-sha256:96cff480d92e0b06b86d4b01f693b3963bc2a40e1443d094fcd0c13c89714c4f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-17T03:06:49.429780+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-aa7e0e4253c85b0cb4a1b395"
+  ]
+}
