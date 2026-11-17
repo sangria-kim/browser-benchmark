@@ -199,6 +199,29 @@ class TemporalTests(unittest.TestCase):
         values, _, _ = parse('demo.cc', '#define DEFINE_DEMO(name) BASE_FEATURE(name, "name", base::FEATURE_ENABLED_BY_DEFAULT)\nDEFINE_DEMO(kDemo);')
         self.assertEqual('name', values[0].value)
 
+    def test_wrapper_redefinition_does_not_change_earlier_calls(self):
+        old = ('#define DEFINE_DEMO(name) BASE_FEATURE(name, base::FEATURE_ENABLED_BY_DEFAULT)\n'
+               'DEFINE_DEMO(kSame);\n')
+        new = (old + '#undef DEFINE_DEMO\n'
+               '#define DEFINE_DEMO(name) BASE_FEATURE(name, base::FEATURE_DISABLED_BY_DEFAULT)\n'
+               'DEFINE_DEMO(kOther);\n')
+        rows = [e for e in self.project(*self.bundles(old, new))['experiments']
+                if e['symbol'] in {'kSame', 'kOther'}]
+        self.assertEqual(2, len(rows))
+        self.assertEqual({'kSame': ('unchanged', 'base::FEATURE_ENABLED_BY_DEFAULT'),
+                          'kOther': ('added', 'base::FEATURE_DISABLED_BY_DEFAULT')},
+                         {e['symbol']: (e['temporal_scope']['change'], e['default_state']) for e in rows})
+
+    def test_wrapper_uses_without_a_proven_definition_are_unknown(self):
+        text = ('DEFINE_DEMO(kBefore);\n'
+                '#define DEFINE_DEMO(name) BASE_FEATURE(name, base::FEATURE_ENABLED_BY_DEFAULT)\n'
+                '#if PLATFORM\n#undef DEFINE_DEMO\n#endif\nDEFINE_DEMO(kConditional);\n'
+                '#undef DEFINE_DEMO\nDEFINE_DEMO(kAfter);\n'
+                '#define DEFINE_DEMO(name) OTHER_FEATURE(name)\nDEFINE_DEMO(kUnsupported);\n')
+        values, _, _ = parse('features.cc', text)
+        self.assertEqual(['kBefore', 'kConditional', 'kAfter', 'kUnsupported'], [v.symbol for v in values])
+        self.assertFalse(any(v.parsed for v in values))
+
     def test_wrapper_macro_ambiguity_undef_and_missing_arms_are_unknown(self):
         for prelude in (
             '#if A\n#define STATE base::FEATURE_ENABLED_BY_DEFAULT\n#endif\n',

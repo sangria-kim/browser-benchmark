@@ -314,7 +314,8 @@ def parse(path, original, *, mojo_default_disabled=False):
         return c
 
     # Macro definitions are templates, not instantiated feature definitions.
-    preprocess = [(m.start(), m.end()) for m in re.finditer(r'^\s*#\s*define\b(?:[^\n\\]|\\\n)*', text, re.M)]
+    directives = list(re.finditer(r'^[ \t]*#[ \t]*(define|undef)[ \t]+([A-Za-z_]\w*)(?:\\\n|[^\n])*', clean, re.M))
+    preprocess = [(m.start(), m.end()) for m in directives if m[1] == 'define']
     for m in re.finditer(r'\b(BASE_FEATURE_WITH_COUNTRY_RESTRICTIONS|BASE_FEATURE|BASE_DECLARE_FEATURE)\s*\(', masked(text)):
         if any(a <= m.start() < b for a, b in preprocess):
             declarations.append({'line': text.count('\n', 0, m.start()) + 1, 'reason': 'macro_template'})
@@ -358,16 +359,40 @@ def parse(path, original, *, mojo_default_disabled=False):
     # This covers country-restricted Autofill and Sync wrappers without guessing
     # the meaning of an arbitrary macro invocation.
     wrappers = {}
-    for directive in re.finditer(r'^\s*#\s*define\b(?:[^\n\\]|\\\n)*', text, re.M):
-        m = re.match(r'\s*#\s*define\s+(\w+)(\(([^)]*)\))?(.*)', directive[0].replace('\\\n', ' '), re.S)
-        body = m[4].strip()
-        if m[2] and re.fullmatch(r'\w+', m[3].strip()) and re.fullmatch(r'BASE_FEATURE(?:_WITH_COUNTRY_RESTRICTIONS)?\s*\(.*\)', body, re.S):
-            wrappers.setdefault(m[1], []).append((m[3].strip(), body, conditions_at(text, directive.start())))
-    for name, definitions in wrappers.items():
-        for use in re.finditer(r'\b' + re.escape(name) + r'\s*\(\s*(' + IDENT + r')\s*\)', masked(text)):
+    definitions = {}
+    for directive in directives:
+        kind, name = directive[1], directive[2]
+        wrapper = None
+        if kind == 'define':
+            tail = text[directive.end(2):directive.end()].replace('\\\n', ' ')
+            m = re.fullmatch(r'\(\s*([A-Za-z_]\w*)\s*\)\s*(BASE_FEATURE(?:_WITH_COUNTRY_RESTRICTIONS)?\s*\(.*\))\s*', tail, re.S)
+            if m:
+                wrapper = (m[1], m[2])
+                wrappers[name] = None
+        definitions.setdefault(name, []).append((directive, wrapper))
+    for name in wrappers:
+        history = [(directive, wrapper, conditions_at(text, directive.start()))
+                   for directive, wrapper in definitions[name]]
+        for use in re.finditer(r'\b' + re.escape(name) + r'\s*\(\s*(' + IDENT + r')\s*\)', clean):
             if any(a <= use.start() < b for a, b in preprocess):
                 continue
-            for parameter, body, conditions in definitions:
+            use_conditions = conditions_at(text, use.start())
+            active = []
+            for directive, wrapper, conditions in history:
+                if directive.start() >= use.start():
+                    break
+                if directive[1] == 'undef' and all(c in use_conditions for c in conditions):
+                    active.clear()
+                elif not impossible_conditions(use_conditions + conditions):
+                    active.append((wrapper, conditions))
+            # Keep mutually exclusive arms. Conditional undef, unsupported
+            # definitions and overlapping redefinitions are not resolved.
+            if (not active or any(wrapper is None for wrapper, _ in active) or
+                    any(not impossible_conditions(use_conditions + left + right)
+                        for i, (_, left) in enumerate(active) for _, right in active[:i])):
+                add('base_feature', use[1], use.start(), use.end())
+                continue
+            for (parameter, body), conditions in active:
                 # Substitute the argument token only. Leave object macro names
                 # for the condition-aware resolver; never pick their last body.
                 expanded = body

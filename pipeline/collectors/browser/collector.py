@@ -16,7 +16,7 @@ from urllib.parse import urljoin, urlparse, urldefrag, urlencode
 from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
-from .html import Tree, boundary, blocks, links, next_links, published, date_value, item_type, unique_unit_keys
+from .html import Tree, boundary, blocks, links, next_links, published, publication_value, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
 from pipeline.temporal import dated_scope
 
@@ -268,10 +268,14 @@ class BrowserCollector:
             return False
         return current or not date or date >= self.since
 
-    def allowed_publication(self, value):
+    def publication_status(self, value):
         # Timestamp evidence must reach the shared KST policy before any
         # calendar-day truncation. Unknown dates remain explicit, not excluded.
-        return dated_scope(self.since, self.cutoff, value, 'publication')['status'] not in ('before_period', 'after_cutoff')
+        return dated_scope(self.since, self.cutoff, value, 'publication')['status']
+
+    def allowed_publication(self, value, current=False):
+        status = self.publication_status(value)
+        return status != 'after_cutoff' and (current or status != 'before_period')
 
     def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None):
         key = unit['key']
@@ -380,8 +384,12 @@ class BrowserCollector:
         # Rolling release/policy pages contain independently dated sections.
         # A page's metadata or first <time> cannot date all of them.
         multi = self.source['source_id'].startswith('edge-') or self.source['source_id'] == 'chrome-enterprise' or '/changelog-for-' in url
-        date = None if multi else publication_date or published(root, self.source['source_id'])
-        if not self.allowed_date(date, current):
+        publication = None if multi else publication_date
+        if not multi and (not publication or len(publication) == 10):
+            page_date = published(root, self.source['source_id'])
+            if not publication or (page_date and len(page_date) > 10):
+                publication = page_date
+        if not self.allowed_publication(publication, current):
             self.state['excluded_by_date'].append(url)
             return root
         reviewed = self.reviewed_attributions.get(digest(response.body), []) if self.source['source_id'] == 'chrome-releases' else ()
@@ -395,9 +403,12 @@ class BrowserCollector:
             self.unresolved(url, response)
             self.problem(url, 'No source units in product content')
         document_title = ' '.join(n.text() for n in root.walk() if n.tag == 'title')
+        timestamp = publication if publication and len(publication) > 10 else None
+        publication_day = date_value(timestamp) if timestamp else publication
         for unit in units:
             version_match = re.search(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', unit['section'] + ' ' + document_title, re.I)
-            self.emit(canonical_url, response, unit, date=unit.get('date') or date_value(unit['section']) or date,
+            section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
+            self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
                       version=version_match[1] if version_match else None)
         return root
 
@@ -420,7 +431,7 @@ class BrowserCollector:
             if ancestor.tag == 'article' or ancestor.has_class('ipsDataItem') or ancestor.has_class('blogcard'):
                 for child in ancestor.walk():
                     if child.tag == 'time' or child.has_class('date'):
-                        date = date_value(child.attrs.get('datetime')) or date_value(child.text())
+                        date = publication_value(child.attrs.get('datetime')) or publication_value(child.text())
                         if date:
                             return date
                 break
@@ -473,18 +484,20 @@ class BrowserCollector:
                         self.unresolved(url, response, key='index')
                         self.problem(url, 'No registered document links in index')
                         enumeration_valid = False
+                index_statuses = []
                 for doc, node in found:
                     date = self.index_date(node, doc)
+                    status = self.publication_status(date)
+                    index_statuses.append(status)
                     year = re.search(r'/mfsa(\d{4})-', doc) if source['source_id'] == 'firefox-security' else None
-                    if (date and not self.allowed_date(date)) or (year and int(year[1]) < int(self.since[:4])):
+                    if status in ('before_period', 'after_cutoff') or (year and int(year[1]) < int(self.since[:4])):
                         self.state['excluded_by_date'].append(doc)
                         continue
                     if doc not in document_set:
                         document_set.add(doc)
                         documents.append((doc, response, date))
-                dated_index = [self.index_date(n, u) for u, n in found]
-                before_window = (source['browser'] in {'opera', 'vivaldi'} and dated_index
-                                 and all(dated_index) and max(dated_index) < self.since)
+                before_window = (source['browser'] in {'opera', 'vivaldi'} and index_statuses
+                                 and all(status == 'before_period' for status in index_statuses))
                 if source['discovery']['pagination'] == 'next_link' and not before_window:
                     for next_url in next_links(root, url, chrome_releases_since):
                         if urlparse(next_url).netloc != urlparse(source['url']).netloc:
@@ -600,10 +613,10 @@ class BrowserCollector:
                 document_url = urljoin('https://blog.google', row['url'])
                 if urlparse(document_url).netloc != 'blog.google':
                     raise ValueError('Unexpected Google blog document host')
-                date = date_value(row.get('published'))
+                date = publication_value(row.get('published'))
                 if date:
-                    dates.append(date)
-                if date and not self.allowed_date(date):
+                    dates.append(date_value(date))
+                if not self.allowed_publication(date):
                     self.state['excluded_by_date'].append(document_url)
                     continue
                 if not self.budget(document_url, 'documents'):

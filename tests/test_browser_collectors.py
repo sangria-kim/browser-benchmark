@@ -49,9 +49,9 @@ class CollectorsTest(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def collect(self, s, mapping, cutoff=CUTOFF):
+    def collect(self, s, mapping, cutoff=CUTOFF, since='2026-10-28'):
         self.transport = Transport(mapping)
-        state = BrowserCollector(self.root, self.private, self.transport).collect(s, cutoff, '2026-10-28')
+        state = BrowserCollector(self.root, self.private, self.transport).collect(s, cutoff, since)
         records = json.loads((self.root / 'data/source-items' / s['browser'] / (s['source_id'] + '.json')).read_text())
         validate_dataset({'source_item': records}, {s['source_id']})
         self.assertEqual(state['discovered'], state['processed'] + state['duplicate'] + state['unparsed'])
@@ -306,6 +306,43 @@ class CollectorsTest(unittest.TestCase):
         self.assertEqual(1, state['temporal_coverage']['in_period'])
         self.assertEqual([urls[0], urls[2]], state['excluded_by_date'])
 
+    def test_html_publication_timestamps_survive_index_and_document_filters(self):
+        s = source('vivaldi-desktop')
+        urls = ['https://vivaldi.com/blog/' + name + '/'
+                for name in ('before', 'start', 'indexed-start', 'cutoff', 'after', 'day', 'naive')]
+        before, start, indexed_start, cutoff, after, day, naive = urls
+        start_time = '2025-12-31T15:00:00Z'
+        cutoff_time = '2026-11-16T12:53:40Z'
+        index_dates = {indexed_start: start_time, cutoff: '2026-11-16'}
+        index = ''.join('<article><h2><a href="%s">Release</a></h2>%s</article>' % (
+            url, '<time datetime="%s"></time>' % index_dates[url] if url in index_dates else '') for url in urls)
+
+        def article(url, metadata, heading=''):
+            return response(url, metadata + '<div class="entry-content">' + heading + '<p>Product change.</p></div>')
+
+        state, rows = self.collect(s, {
+            s['url']: response(s['url'], index),
+            before: article(before, '<meta property="article:published_time" content="2025-12-31T14:59:59Z">'),
+            start: article(start, '<meta property="article:published_time" content="' + start_time + '">',
+                           '<h2>Dec 31, 2025</h2>'),
+            indexed_start: article(indexed_start, ''),
+            cutoff: article(cutoff, '<time datetime="2026-11-16T21:53:40+09:00">Nov 16, 2026</time>'),
+            after: article(after, '<meta property="article:published_time" content="2026-11-16T12:53:41Z">'),
+            day: article(day, '<meta property="article:published_time" content="2026-11-16">'),
+            naive: article(naive, '<meta property="article:published_time" content="2026-11-16T12:53:41">'),
+        }, cutoff=cutoff_time, since='2026-01-01')
+        self.assertEqual('complete', state['status'])
+        self.assertEqual([before, after], state['excluded_by_date'])
+        scopes = {r['evidence']['url']: r['temporal_scope'] for r in rows}
+        self.assertEqual({start, indexed_start, cutoff, day, naive}, set(scopes))
+        for url, value, precision in [(start, start_time, 'timestamp'),
+                                      (indexed_start, start_time, 'timestamp'),
+                                      (cutoff, '2026-11-16T21:53:40+09:00', 'timestamp'),
+                                      (day, '2026-11-16', 'day')]:
+            self.assertEqual(('in_period', value, precision),
+                             tuple(scopes[url][key] for key in ('status', 'evidence_date', 'precision')))
+        self.assertEqual('unknown', scopes[naive]['status'])
+
     def test_nested_docc_code_lists_and_inline_html(self):
         rows = docc_items({'primaryContentSections': [{'kind': 'content', 'content': [
             {'type': 'unorderedList', 'items': [{'content': [{'type': 'paragraph', 'inlineContent': [
@@ -366,16 +403,20 @@ class CollectorsTest(unittest.TestCase):
         article = 'https://blog.google/products-and-platforms/products/chrome/new/'
         mapping = {
             s['url']: response(s['url'], '<uni-latest-news-feed tag-slugs=\'[{"slug":"chrome"}]\' site-id="2"></uni-latest-news-feed>'),
-            api: response(api, {'meta': {'total_count': 2}, 'next_page': None, 'results': [
-                {'page_id': 1, 'url': '/products-and-platforms/products/chrome/old/', 'published': '2025-12-31T12:00:00Z'},
-                {'page_id': 2, 'url': article, 'published': '2026-11-01T12:00:00Z'}]}),
+            api: response(api, {'meta': {'total_count': 3}, 'next_page': None, 'results': [
+                {'page_id': 1, 'url': '/products-and-platforms/products/chrome/old/', 'published': '2025-12-31T14:59:59Z'},
+                {'page_id': 2, 'url': article, 'published': '2025-12-31T15:00:00Z'},
+                {'page_id': 3, 'url': '/products-and-platforms/products/chrome/future/', 'published': '2026-11-16T12:53:41Z'}]}),
             article: response(article, '<section class="uni-article-hero"><p>Personal author.</p></section><section class="article-container"><uni-article-paragraph><p>New browser feature.</p></uni-article-paragraph></section>')}
-        state, rows = self.collect(s, mapping)
+        state, rows = self.collect(s, mapping, cutoff='2026-11-16T12:53:40Z', since='2026-01-01')
         self.assertEqual('complete', state['status'])
-        self.assertEqual(2, state['api_total'])
-        self.assertEqual('2026-11-01', state['latest_publication_date'])
+        self.assertEqual(3, state['api_total'])
+        self.assertEqual('2026-11-16', state['latest_publication_date'])
+        self.assertEqual(2, len(state['excluded_by_date']))
         self.assertEqual('chrome', state['index_evidence']['tag'])
         self.assertEqual(['New browser feature.'], [r['title'] for r in rows])
+        self.assertEqual(('in_period', 'timestamp', '2025-12-31T15:00:00Z'),
+                         tuple(rows[0]['temporal_scope'][key] for key in ('status', 'precision', 'evidence_date')))
 
     def test_google_resume_refreshes_same_total_changed_membership(self):
         s = source('chrome-blog')

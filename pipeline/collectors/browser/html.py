@@ -6,6 +6,8 @@ from html.parser import HTMLParser
 from urllib.parse import parse_qs, urljoin, urldefrag, urlsplit
 from datetime import datetime
 
+from pipeline.temporal import instant
+
 VOID = {'br', 'img', 'meta', 'link', 'hr', 'input', 'source', 'wbr', 'area', 'base', 'embed'}
 SKIP = {'script', 'style', 'nav', 'footer', 'form', 'noscript'}
 
@@ -91,30 +93,45 @@ def date_value(value):
     return None
 
 
+def publication_value(value):
+    """Keep an explicit timestamp intact, or extract a printed calendar date."""
+    value = (value or '').strip()
+    if re.match(r'^20\d{2}-\d{2}-\d{2}[Tt ]\d{2}:', value):
+        if re.fullmatch(r'20\d{2}-\d{2}-\d{2}[Tt]\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})', value):
+            try:
+                instant(value)
+                return value
+            except ValueError:
+                pass
+        # A timestamp with no usable timezone does not date an item.
+        return None
+    return date_value(value)
+
+
 def published(tree, source_id=None):
     for n in tree.walk():
         if n.tag == 'meta' and n.attrs.get('property', n.attrs.get('name')) in (
                 'article:published_time', 'date', 'datePublished', 'publication_date'):
-            found = date_value(n.attrs.get('content'))
+            found = publication_value(n.attrs.get('content'))
             if found:
                 return found
         if source_id == 'firefox-security' and n.tag == 'dt' and n.text() == 'Announced':
             siblings = n.parent.children
             following = next((v for v in siblings[siblings.index(n)+1:] if isinstance(v, Node)), None)
             if following and following.tag == 'dd':
-                return date_value(following.text())
+                return publication_value(following.text())
         if source_id == 'safari-technology-preview' and n.has_class('date'):
-            found = date_value(n.text())
+            found = publication_value(n.text())
             if found:
                 return found
         if n.tag == 'time' or n.has_class('c-release-date'):
-            found = date_value(n.attrs.get('datetime')) or date_value(n.text())
+            found = publication_value(n.attrs.get('datetime')) or publication_value(n.text())
             if found:
                 return found
         if (source_id == 'chrome-releases' and n.has_class('publishdate') and
                 n.attrs.get('itemprop') == 'datePublished' and
                 any(a.has_class('post-header') for a in n.ancestors())):
-            found = date_value(n.text())
+            found = publication_value(n.text())
             if found:
                 return found
     return None
