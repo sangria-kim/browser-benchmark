@@ -283,10 +283,35 @@ class SelectionTests(unittest.TestCase):
         self.assertTrue(all(k in contexts for k in coverage.values()))
         self.assertTrue(all(sid in {s['source_item_id'] for s in contexts[k]['sources']}
                             for sid, k in coverage.items()))
-        self.assertEqual(('feature_event', 'firefox-copy-current-tab-url-shortcut-beta-161-20261109'),
-                         coverage['src-11dc7c934fdf8ce4dfc73895'])
-        self.assertGreater(sum(k[0]=='source_item' for k in contexts), 1200)
-        self.assertGreaterEqual(sum(a['status']=='pending_verification' for a in imported if a['subject_kind']=='source_item'),938)
+        standalone = {subject_id for kind, subject_id in contexts if kind == 'source_item'}
+        self.assertEqual(standalone, {sid for sid, principal in coverage.items()
+                                     if principal == ('source_item', sid)})
+        pending_sources = set()
+        for source in dataset['source_item']:
+            if source['item_key'].startswith('flag-document:'):
+                flag = source['item_key'].split(':', 1)[1]
+                path = ROOT / 'experiments/chrome' / (flag + '.md')
+                if path.exists() and 'PM 선별은 검증 대기입니다.' in path.read_text():
+                    pending_sources.add(source['source_item_id'])
+        imported_pending = {a['subject_id'] for a in imported
+                            if a['subject_kind'] == 'source_item' and a['status'] == 'pending_verification'}
+        self.assertTrue(pending_sources <= imported_pending)
+        for assessment in imported:
+            if assessment['subject_kind'] == 'source_item':
+                self.assertIn(assessment['subject_id'], coverage)
+                self.assertEqual([assessment['subject_id']], assessment['evidence_source_item_ids'])
+
+    def test_shared_source_coverage_follows_latest_event(self):
+        data = copy.deepcopy(self.data)
+        data['experiment'], data['experiment_event'] = [], []
+        later = dict(data['feature_event'][0], event_id='event-later', observed_at=LATER)
+        data['feature_event'].append(later)
+        data['feature'][0]['event_ids'].append(later['event_id'])
+        _, coverage = build_contexts(data)
+        self.assertEqual(('feature_event', 'event-later'), coverage['src-test'])
+        data['feature_event'].reverse()
+        _, reordered = build_contexts(data)
+        self.assertEqual(coverage, reordered)
 
     def test_catalog_only_evidence_is_evaluated_hashed_and_order_stable(self):
         extra = copy.deepcopy(self.data['source_item'][0])

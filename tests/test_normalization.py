@@ -332,7 +332,9 @@ class NormalizationTests(unittest.TestCase):
 
     def test_materialized_graph_and_legacy_files_remain_linked(self):
         graph = validate_graph(ROOT)
-        self.assertEqual(128, len(graph['feature_event']))
+        expected_events = {load_config(path)['event_id']
+                           for path in (ROOT / 'data/events').glob('*.json')}
+        self.assertEqual(expected_events, {event['event_id'] for event in graph['feature_event']})
         self.assertGreaterEqual(len(graph['experiment']), 2198)
         index = load_config(ROOT / 'data/compatibility/legacy-index.json')
         self.assertEqual(1015, len(index['flags']))
