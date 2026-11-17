@@ -521,6 +521,31 @@ class CollectorsTest(unittest.TestCase):
         product = '<p><strong>By default, Product Manager integration is disabled.</strong></p>'
         self.assertNotIn('attribution omitted', json.dumps(blocks(Tree(product).root)))
 
+    def test_attribution_markup_keeps_public_source_units_and_product_links(self):
+        s = source('edge-stable')
+        html = """<div class><p>Change outside the release notes.</p></div>
+        <div class="content">
+          <p class id="release">New tabs<br><em>Photo by</em>
+            <a href="/people/one">Example Person</a> and <a href="/people/two">Another Person</a>.
+            <a href="/help">Read the tab guide.</a></p>
+          <p id="credited"><strong>Written by:</strong> <a href="/people/one">Example Person</a></p>
+          <p id="bold">
+            <strong>By Example Person, Product Manager</strong>
+          </p>
+          <p id="help">Written by: the test renderer<br>New tabs open instantly.</p>
+        </div>"""
+        state, records = self.collect(s, {s['url']: response(s['url'], html)})
+        self.assertEqual('complete', state['status'])
+        summaries = {r['item_key']: r['summary'] for r in records}
+        self.assertEqual({'release', 'credited', 'bold', 'help'}, summaries.keys())
+        self.assertNotIn('Example Person', json.dumps(records))
+        self.assertNotIn('Another Person', json.dumps(records))
+        self.assertIn('New tabs', summaries['release'])
+        self.assertIn('Read the tab guide.', summaries['release'])
+        self.assertIn('New tabs open instantly.', summaries['help'])
+        self.assertEqual('[author attribution omitted]', summaries['credited'])
+        self.assertEqual('[author attribution omitted]', summaries['bold'])
+
     def test_html_page_and_document_caps_resume_without_repeating_requests(self):
         s = source('vivaldi-desktop');s['discovery']['max_pages'] = 1;s['discovery']['max_documents'] = 1
         one, two = 'https://vivaldi.com/blog/one/', 'https://vivaldi.com/blog/two/'

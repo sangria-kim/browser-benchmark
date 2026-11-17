@@ -28,7 +28,7 @@ class Node:
         return ' '.join(' '.join(c.text(excluded) if isinstance(c, Node) else c for c in self.children).split())
 
     def has_class(self, name):
-        return name in self.attrs.get('class', '').split()
+        return name in (self.attrs.get('class') or '').split()
 
     def ancestors(self):
         node = self.parent
@@ -319,19 +319,25 @@ def omit_attributions(body):
     marker = '[image attribution omitted]'
     credit_classes = {'photo-credit', 'image-credit', 'picture-credit',
                       'photo-attribution', 'image-attribution'}
+    byline_tags = {'a', 'b', 'em', 'i', 'small', 'span', 'strong'}
     for node in list(body.walk()):
-        if credit_classes.intersection(node.attrs.get('class', '').split()):
+        if credit_classes.intersection((node.attrs.get('class') or '').split()):
             node.children = [marker]
+            node.attrs.pop('href', None)
+            continue
+        if node.tag != 'p':
+            continue
+        content = [child for child in node.children if isinstance(child, Node) or child.strip()]
         # This is an explicitly labeled, standalone byline field. Do not infer
         # an author from an unmarked name or a sentence elsewhere in prose.
-        if (node.tag == 'p' and len(node.children) == 1 and isinstance(node.children[0], str)
-                and re.match(r'^(?:Written|Authored|Posted) by\s*:', node.text(), re.I)):
+        text = node.text()
+        if (re.match(r'^(?:Written|Authored|Posted) by\s*:', text, re.I)
+                and all(child.tag in byline_tags for child in node.walk() if child is not node)):
             node.children = ['[author attribution omitted]']
         # Opera also uses a standalone bold byline with an explicit product
         # role. The full field must match; "By default" product prose cannot.
-        if (node.tag == 'p' and len(node.children) == 1
-                and isinstance(node.children[0], Node) and node.children[0].tag == 'strong'
-                and re.fullmatch(r'By [^,\n]+, Product (?:Manager|Director)', node.text())):
+        elif (len(content) == 1 and isinstance(content[0], Node) and content[0].tag in {'strong', 'b'}
+                and re.fullmatch(r'By [^,\n]+, Product (?:Manager|Director)', text)):
             node.children = ['[author attribution omitted]']
 
     # Publishers often split a credit label and its linked contributor across
@@ -340,9 +346,11 @@ def omit_attributions(body):
     # is not a credit. No personal-name or unmarked-byline inference is used.
     credit_label = re.compile(
         r'(?:^|[.!?]\s+)(?:(?:main|header|featured|cover)\s+)?'
-        r'(?:photo|image|photograph|illustration)\s+(?:by|credits?\s*:)\s*$', re.I)
+        r'(?:photo|image|photograph|illustration)\s+(?:by|credits?\s*:)\s*'
+        r'(?:' + re.escape(marker) + r'(?:\s*,\s*(?:and\b\s*)?|\s+(?:and\b|&)\s*))*$', re.I)
     containers = {'p', 'li', 'td', 'th', 'figcaption', 'div', 'blockquote',
                   'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'document'}
+    line_boundaries = containers | {'br'}
     for link in list(body.walk()):
         if link.tag != 'a':
             continue
@@ -352,6 +360,9 @@ def omit_attributions(body):
         def before(node):
             if node is link:
                 return True
+            if node is not owner and node.tag in line_boundaries:
+                preceding.clear()
+                return False
             if node.tag in SKIP:
                 return False
             for child in node.children:
@@ -365,6 +376,7 @@ def omit_attributions(body):
         before(owner)
         if credit_label.search(' '.join(' '.join(preceding).split())):
             link.children = [marker]
+            link.attrs.pop('href', None)
 
 
 def blocks(body):
