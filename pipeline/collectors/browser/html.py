@@ -314,6 +314,59 @@ def unique_unit_keys(units):
     return units
 
 
+def omit_attributions(body):
+    """Omit explicit credit fields before ancestor text and headings are read."""
+    marker = '[image attribution omitted]'
+    credit_classes = {'photo-credit', 'image-credit', 'picture-credit',
+                      'photo-attribution', 'image-attribution'}
+    for node in list(body.walk()):
+        if credit_classes.intersection(node.attrs.get('class', '').split()):
+            node.children = [marker]
+        # This is an explicitly labeled, standalone byline field. Do not infer
+        # an author from an unmarked name or a sentence elsewhere in prose.
+        if (node.tag == 'p' and len(node.children) == 1 and isinstance(node.children[0], str)
+                and re.match(r'^(?:Written|Authored|Posted) by\s*:', node.text(), re.I)):
+            node.children = ['[author attribution omitted]']
+        # Opera also uses a standalone bold byline with an explicit product
+        # role. The full field must match; "By default" product prose cannot.
+        if (node.tag == 'p' and len(node.children) == 1
+                and isinstance(node.children[0], Node) and node.children[0].tag == 'strong'
+                and re.fullmatch(r'By [^,\n]+, Product (?:Manager|Director)', node.text())):
+            node.children = ['[author attribution omitted]']
+
+    # Publishers often split a credit label and its linked contributor across
+    # inline tags. Replace the credited link only, keeping product text before
+    # or after it. An ordinary product sentence such as "image by uploading"
+    # is not a credit. No personal-name or unmarked-byline inference is used.
+    credit_label = re.compile(
+        r'(?:^|[.!?]\s+)(?:(?:main|header|featured|cover)\s+)?'
+        r'(?:photo|image|photograph|illustration)\s+(?:by|credits?\s*:)\s*$', re.I)
+    containers = {'p', 'li', 'td', 'th', 'figcaption', 'div', 'blockquote',
+                  'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'document'}
+    for link in list(body.walk()):
+        if link.tag != 'a':
+            continue
+        owner = next((n for n in link.ancestors() if n.tag in containers), body)
+        preceding = []
+
+        def before(node):
+            if node is link:
+                return True
+            if node.tag in SKIP:
+                return False
+            for child in node.children:
+                if isinstance(child, Node):
+                    if before(child):
+                        return True
+                else:
+                    preceding.append(child)
+            return False
+
+        before(owner)
+        if credit_label.search(' '.join(' '.join(preceding).split())):
+            link.children = [marker]
+
+
 def blocks(body):
     """Partition body into source units, retaining unsupported leaf text as unresolved.
 
@@ -321,6 +374,7 @@ def blocks(body):
     separate units. Keys prefer upstream anchors/issue IDs; positional fallback
     is deliberately local to a section, and is not a semantic deduplication key.
     """
+    omit_attributions(body)
     result, counters, section, headings = [], {}, 'document', {}
     heading_dates = {}
     suppressed = set()

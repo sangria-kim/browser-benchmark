@@ -474,6 +474,53 @@ class CollectorsTest(unittest.TestCase):
         self.assertTrue(any('Fixed crash.' in (r['summary'] or '') for r in records))
         self.assertTrue(any('Impact High' in (r['summary'] or '') for r in records))
 
+    def test_explicit_image_credits_preserve_units_and_product_text(self):
+        examples = [
+            '<p><em>Main photo by</em> <a href="https://unsplash.com/@example">Example Person</a></p>',
+            '<p><em>Main photo by <a href="https://unsplash.com/@example"><b>Example Person</b></a></em>.</p>',
+            '<p>New tabs. Photo by <a href="https://example.com/credit">Example Person</a>. Fixed crash.</p>',
+            '<p>New tabs. <span class="image-credit"><b>Example Person</b></span> Fixed crash.</p>',
+            '<div><h2>Photo credit: <a href="https://example.com/credit">Example Person</a></h2><p>New tabs.</p></div>',
+            '<div><h2>Changes <span class="photo-credit">Example Person</span></h2><p>New tabs.</p></div>',
+            '<blockquote><p>Main photo by <a href="https://example.com/credit">Example Person</a></p><p>New tabs.</p></blockquote>',
+        ]
+        for html in examples:
+            with self.subTest(html=html):
+                rows = blocks(Tree(html).root)
+                self.assertEqual(1, len(rows))
+                self.assertNotIn('Example Person', json.dumps(rows))
+                self.assertIn('[image attribution omitted]', json.dumps(rows))
+                self.assertTrue(all(r['parsed'] for r in rows))
+                if 'New tabs.' in html:
+                    self.assertIn('New tabs.', rows[0]['text'])
+                if 'Fixed crash.' in html:
+                    self.assertIn('Fixed crash.', rows[0]['text'])
+        product = '<p>Supply an image by <a href="https://example.com/help">uploading a file</a>.</p><p>Photo by date sorting is available.</p>'
+        self.assertEqual(['Supply an image by uploading a file .', 'Photo by date sorting is available.'],
+                         [r['text'] for r in blocks(Tree(product).root)])
+        s = source('edge-stable')
+        state, records = self.collect(s, {s['url']: response(s['url'], '<div class="content">' + ''.join(examples) + product + '</div>')})
+        self.assertEqual('complete', state['status'])
+        self.assertNotIn('Example Person', json.dumps(records))
+        self.assertTrue(any('Fixed crash.' in (r['summary'] or '') for r in records))
+        self.assertTrue(any('uploading a file' in (r['summary'] or '') for r in records))
+
+    def test_explicit_standalone_byline_preserves_surrounding_product_text(self):
+        html = '<blockquote><p>New tabs.</p><p>Written by: Dr. Example M. Person</p><p>Fixed crash.</p></blockquote>'
+        rows = blocks(Tree(html).root)
+        self.assertEqual(1, len(rows))
+        self.assertEqual('New tabs. [author attribution omitted] Fixed crash.', rows[0]['text'])
+        self.assertNotIn('Example', json.dumps(rows))
+        for label in ('Authored by:', 'Posted by:'):
+            self.assertEqual('[author attribution omitted]', blocks(Tree('<p>' + label + ' Example Person</p>').root)[0]['text'])
+        for role in ('Manager', 'Director'):
+            html = '<p><strong>By Example Person, Product ' + role + '</strong></p><p>New tabs.</p>'
+            self.assertEqual(['[author attribution omitted]', 'New tabs.'], [r['text'] for r in blocks(Tree(html).root)])
+        product = '<p>Code written by extensions now runs in isolation.</p><p>New tabs. Written by extensions, scripts use isolated worlds.</p>'
+        self.assertNotIn('attribution omitted', json.dumps(blocks(Tree(product).root)))
+        product = '<p><strong>By default, Product Manager integration is disabled.</strong></p>'
+        self.assertNotIn('attribution omitted', json.dumps(blocks(Tree(product).root)))
+
     def test_html_page_and_document_caps_resume_without_repeating_requests(self):
         s = source('vivaldi-desktop');s['discovery']['max_pages'] = 1;s['discovery']['max_documents'] = 1
         one, two = 'https://vivaldi.com/blog/one/', 'https://vivaldi.com/blog/two/'
