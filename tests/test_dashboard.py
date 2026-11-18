@@ -40,7 +40,7 @@ class DashboardDataTests(unittest.TestCase):
     def test_flag_timelines_and_relative_deployment(self):
         flag = next(f for f in self.data['flags'] if f['id']=='android-vertical-tabs')
         self.assertTrue(any(h['date']=='2026-07-21' for h in flag['history']))
-        html = (self.output/'index.html').read_text()
+        html = (self.output/'research.html').read_text()
         self.assertIn('href="style.css"',html)
         self.assertIn('src="app.js"',html)
         self.assertEqual(self.data['source']['sha'].__len__(),40)

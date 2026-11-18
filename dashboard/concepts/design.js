@@ -509,6 +509,7 @@ function evidenceLink(value) {
   return link(value, label);
 }
 function showDetail(s, trigger) {
+  document.querySelectorAll('.cinema-evidence video').forEach((video) => video.pause());
   if (trigger) opener = trigger;
   activeStory = s;
   const builds = Object.values(s.builds).join(' / ');

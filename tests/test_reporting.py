@@ -49,6 +49,10 @@ class ReportingTests(unittest.TestCase):
         first = self.report(collection='complete', evaluation='complete')
         self.assertEqual({'features','flags'}, {i['selection_kind'] for i in first['report']['items']})
         self.assertEqual(2, len(first['report']['items']))
+        edition = json.loads((self.repo / 'reports/generated/2026-11-16/newsletter-r1.json').read_text())
+        self.assertEqual('2026-11-16', edition['day'])
+        self.assertEqual(1, edition['revision'])
+        self.assertRegex(edition['generated'], r'^\d{4}-\d{2}-\d{2}$')
         before = {p: p.read_bytes() for p in self.repo.rglob('*') if p.is_file()}
         self.assertFalse(self.report(collection='complete', evaluation='complete')['created'])
         self.assertEqual(before, {p: p.read_bytes() for p in self.repo.rglob('*') if p.is_file()})

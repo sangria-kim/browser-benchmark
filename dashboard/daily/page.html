@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="날짜별 브라우저 기능 카드와 삼성 브라우저를 위한 한 장 뉴스레터">
+  <title>Browser Board · 브라우저 벤치마크</title>
+  <script>
+    // Preserve bookmarks to the original explorer, including its filter-only URLs.
+    const legacy = ['view','browser','search','platform','status','change','sort','ai','membership','judgment-date','all-kind','judgment-status','kind','from-date','to-date','build','report-date','report-revision','report-kind'];
+    if (legacy.some(key => new URLSearchParams(location.search).has(key)) || (location.hash && location.hash !== '#content' && !/^#(board|observatory)(\/|$)/.test(location.hash))) {
+      location.replace('research.html' + location.search + location.hash);
+    }
+  </script>
+  <style><!--STYLE--></style>
+</head>
+<body data-layout="board">
+<a class="skip" href="#content">본문으로 건너뛰기</a>
+<header class="top"><div class="shell top-inner">
+  <span class="brand"><i aria-hidden="true"><b></b><b></b><b></b></i> Browser Benchmark</span>
+  <nav id="layouts" aria-label="대시보드 디자인"></nav>
+  <a class="research-link" href="research.html">자료 탐색 ↗</a>
+</div></header>
+<main class="shell" id="content" tabindex="-1">
+  <div id="hero"></div><div id="switcher"></div>
+  <div class="workspace"><aside id="archive" aria-label="날짜별 보관함"></aside><section id="panel" aria-label="선택한 날짜의 자료"></section></div>
+</main>
+<footer class="shell site-foot"><span>브라우저 벤치마크 · 공개 근거 기준</span><a class="research-link" href="research.html">선정 이력·Chrome 실험·원천 자료 ↗</a></footer>
+<dialog id="detail" aria-labelledby="detail-title"><form method="dialog" class="dialog-head"><strong>기능 상세</strong><button autofocus aria-label="상세 닫기">닫기 ×</button></form><div id="detail-body"></div></dialog>
+<noscript>브라우저 설정에서 JavaScript를 켜세요.</noscript>
+<script type="application/json" id="daily-data"><!--DATA--></script>
+<script><!--APP--></script>
+</body></html>

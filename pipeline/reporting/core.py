@@ -13,6 +13,7 @@ from pipeline.selection import as_of, catalog_transitions
 from pipeline.selection.core import semantic
 from schemas.validate import ContractError, validate_record
 from pipeline.temporal import policy
+from .newsletter import DASHBOARD, issue_file, new_report_issue
 
 KST = ZoneInfo('Asia/Seoul')
 VERSION = 'daily-selected-v1'
@@ -308,7 +309,16 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
         markdown = root / old['markdown_path']
         if not archive.exists() or json.loads(archive.read_text()) != old or not markdown.exists() or markdown.read_text() != render(old):
             raise ContractError('Stored report revision is missing or altered')
-        return {'report': old, 'created': False, 'replacements': {}, 'text_files': {}}
+        issue_path = issue_file(day, old['revision'])
+        text_files = {}
+        if not (root / issue_path).exists():
+            initial = json.loads((DASHBOARD / 'daily/initial-issues.json').read_text())
+            if not any(i['day'] == day and i['revision'] == old['revision'] for i in initial):
+                edition = new_report_issue(dataset, old, selected['features'])
+                text_files[issue_path] = json.dumps(edition, ensure_ascii=False, indent=2) + '\n'
+                if not dry_run:
+                    publish(root, {}, private_dir, text_files=text_files)
+        return {'report': old, 'created': False, 'replacements': {}, 'text_files': text_files}
     if old and instant(cutoff) < instant(old['cutoff']):
         raise ContractError('Cannot move the current daily cutoff backwards; read the stored revision')
     revision = old['revision'] + 1 if old else 1
@@ -319,7 +329,9 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
     replacements[current_path] = report
     replacements[f'data/reports/history/{day}/revision-{revision}.json'] = report
     validate_graph(root, replacements)
-    text_files = {report['markdown_path']: render(report)}
+    edition = new_report_issue(dataset, report, selected['features'])
+    text_files = {report['markdown_path']: render(report),
+                  issue_file(day, revision): json.dumps(edition, ensure_ascii=False, indent=2) + '\n'}
     reports = {r['report_id']: r for r in dataset['report']}
     reports[report['report_id']] = report
     index = ['# 자동 생성 선정 변화 리포트', '', '날짜별 최신 revision입니다. 각 리포트의 고정 데이터와 이전 revision은 보존합니다.', '']

@@ -4,7 +4,7 @@ Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi·Safari의 공개 기능 변
 
 ## 대시보드와 리포트
 
-- [공개 대시보드](https://sangria-kim.github.io/browser-benchmark/)에서 현재 선정 기능, Chrome 실험, 전체 수집 자료, 판정 이력과 일일 리포트를 볼 수 있습니다. [로컬 실행 및 배포 안내](dashboard/README.md)를 참고하세요.
+- [공개 대시보드](https://sangria-kim.github.io/browser-benchmark/)에서 브라우저 보드와 관측소를 전환하며 일자별 기능 카드와 뉴스레터를 볼 수 있습니다. 자료 탐색에서 기존 선정 기능, Chrome 실험, 원천 자료와 판정 이력을 확인하세요. [로컬 실행 및 배포 안내](dashboard/README.md)를 참고하세요.
 - [자동 생성 일일 리포트](reports/generated/README.md)는 선정 변화, 과거 자료 보강, 사실 정정을 날짜와 리포트 버전별로 보여 줍니다. [기존 수동 분석](reports/README.md)과 [PC](reports/pc/README.md)·[Mobile](reports/mobile/README.md)·[AI](reports/ai/README.md) 색인도 제공합니다.
 - [브라우저별 릴리스](releases/README.md), [기능별 이력](features/README.md), [기능 사건](data/events/README.md), [기존 Chrome flag 문서](experiments/chrome/README.md)에서 원래 자료를 볼 수 있습니다.
 

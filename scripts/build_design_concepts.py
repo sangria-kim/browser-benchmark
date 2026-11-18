@@ -10,7 +10,7 @@ KST = timezone(timedelta(hours=9))
 
 
 def build_design_concepts(output):
-    editorial = json.loads((CONCEPTS / "stories.json").read_text())
+    editorial = json.loads((ROOT / "dashboard/daily/featured.json").read_text())
     catalog = json.loads((ROOT / "dashboard/catalog.json").read_text())["events"]
     stories = []
     for event_id, copy in editorial.items():

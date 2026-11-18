@@ -75,8 +75,8 @@ function calendarIssue(day, items) {
   const issue = issueOf(day);
   const lines = items
     .map(
-      (s) => `<section class="slip-item"><p>${browserName(s)} · ${esc(version(s))} · ${esc(s.stage)}</p>
-    <h3><button class="headline" data-story="${esc(s.id)}">${esc(s.title)}</button></h3></section>`,
+      (s, i) => `<section class="slip-item"><p>${browserName(s)} · ${esc(s.platform.join(' / '))} · ${esc(version(s))} · ${esc(s.stage)}</p>
+    <h3><button class="headline" data-story="${esc(s.id)}">${esc(s.title)}</button></h3>${i === 0 ? `<p>${esc(s.brief)}</p>` : ''}</section>`,
     )
     .join('');
   return `<article class="letter date-slip"><div class="slip-date"><span>예시 발행일</span><strong>${issue.slice(8)}</strong>
@@ -105,7 +105,7 @@ function observatoryResults(items) {
     (s) =>
       (roundTwoState.browser === 'all' || s.browser === roundTwoState.browser) &&
       (!missingOnly || !mediaOf(s).length) &&
-      [s.title, obsNames[s.browser], s.topic, version(s), ...s.platform]
+      [s.title, obsNames[s.browser], browsers[s.browser], s.topic, version(s), ...s.platform]
         .join(' ')
         .toLocaleLowerCase()
         .includes(query),
@@ -182,7 +182,7 @@ function cinemaLetter(d, day, items) {
   <h2>사용 장면 브리핑</h2><div class="programme-items">${items
     .map(
       (s, i) => `<section><small>장면 ${i + 1} · ${esc(s.topic)}</small>
-  <h3><button class="headline" data-story="${esc(s.id)}">${esc(s.title)}</button></h3><p>${browserName(s)} · ${esc(version(s))} · ${esc(s.stage)}</p><p>${esc(s.brief)}</p></section>`,
+  <h3><button class="headline" data-story="${esc(s.id)}">${esc(s.title)}</button></h3><p>${browserName(s)} · ${esc(s.platform.join(' / '))} · ${esc(version(s))} · ${esc(s.stage)}</p><p>${esc(s.brief)}</p></section>`,
     )
     .join('')}</div>
   <div class="letter-questions"><h3>삼성 브라우저에서 짚어볼 점</h3>${items
