@@ -19,7 +19,7 @@ const brands = {
 const brand = (id) => brands[id]?.[0] || id;
 const byId = new Map(data.cards.map((c) => [c.id, c]));
 for (const c of data.cards) {
-  for (const alias of c.aliases || []) byId.set(alias, c);
+  for (const source of c.related_sources || []) byId.set(source.id, source);
 }
 const byDay = new Map();
 for (const c of data.cards) {
@@ -95,9 +95,23 @@ function localMedia(c) {
     return null;
   }
 }
+function evidenceMedia(card) {
+  const items = [];
+  for (const owner of [card, ...(card.related_sources || [])]) {
+    for (const media of owner.media) items.push({ media, owner, local: false });
+    const saved = localMedia(owner);
+    if (saved) items.push({ media: saved, owner, local: true });
+  }
+  return items;
+}
 function mediaLabel(c) {
-  const m = c.media[0] || localMedia(c);
-  return m ? (c.media.length ? '공식 ' : '내 ') + (m.type === 'video' ? '영상' : '화면') : '화면 미확보';
+  const item = evidenceMedia(c)[0];
+  if (!item) return '화면 미확보';
+  return (
+    (item.owner.id === c.id ? '' : '원천 ') +
+    (item.local ? '내 ' : '공식 ') +
+    (item.media.type === 'video' ? '영상' : '화면')
+  );
 }
 function archive() {
   const { layout, section, day, issue } = state;
@@ -196,7 +210,7 @@ function results() {
   const found = rows.filter(
     (c) =>
       (!browserFilter || c.browser === browserFilter) &&
-      (!missing || (!c.media.length && !localMedia(c))) &&
+      (!missing || !evidenceMedia(c).length) &&
       [c.title, c.original, c.browser, ...(brands[c.browser] || []), scopeLine(c), c.stage]
         .join(' ')
         .toLocaleLowerCase()
@@ -388,7 +402,7 @@ function showDetails(c, button) {
   if (button) opener = button;
   opened = c;
   const local = localMedia(c);
-  const media = c.media.length ? c.media : local ? [local] : [];
+  const media = evidenceMedia(c);
   const facts = [
     ['버전', c.version],
     ['플랫폼', c.platform.join(' / ')],
@@ -409,16 +423,35 @@ function showDetails(c, button) {
   }
   if (c.builds) facts.push(['빌드', c.builds]);
   const figures = media
-    .map(
-      (m) =>
+    .map((item) => {
+      const { media: m, owner } = item;
+      const origin = item.local ? '이 브라우저에 저장한 자료' : '공식 제품 자료';
+      const scope =
+        owner.id !== c.id || owner.media_version
+          ? '원천 자료 · ' +
+            brand(owner.browser) +
+            ' · ' +
+            (owner.media_version || owner.version) +
+            ' · ' +
+            owner.platform.join(' / ') +
+            ' · ' +
+            owner.stage
+          : '';
+      const remove = item.local
+        ? '<button type="button" data-remove="' + esc(owner.id) + '">이 브라우저의 등록 해제</button>'
+        : '';
+      return (
         '<figure>' +
-        player(m.type, m.url, m.label || c.title) +
+        player(m.type, m.url, m.label || owner.title) +
         '<figcaption>' +
-        esc(m.note || (c.media.length ? '공식 제품 자료' : '이 브라우저에 저장한 자료')) +
+        esc([scope, origin, m.note].filter(Boolean).join(' · ')) +
         ' · ' +
         external(m.url, '원본') +
-        '</figcaption></figure>',
-    )
+        '</figcaption>' +
+        remove +
+        '</figure>'
+      );
+    })
     .join('');
   const attach =
     '<details class="attach"><summary>화면 자료 ' +
@@ -431,7 +464,6 @@ function showDetails(c, button) {
     '를 확인하세요. 카드 ID <code>' +
     esc(c.id) +
     '</code></p>' +
-    (local ? '<button data-remove>이 브라우저의 등록 해제</button>' : '') +
     '</details>';
   const records = c.records || [c.record];
   $('detail-body').innerHTML =
@@ -512,9 +544,14 @@ $('detail').addEventListener('close', () => {
 });
 $('detail').addEventListener('click', (e) => {
   if (e.target === $('detail')) $('detail').close();
-  if (e.target.closest('[data-remove]') && opened) {
+  const remove = e.target.closest('[data-remove]');
+  const owner =
+    remove &&
+    opened &&
+    [opened, ...(opened.related_sources || [])].find((c) => c.id === remove.dataset.remove);
+  if (owner) {
     try {
-      localStorage.removeItem(key(opened));
+      localStorage.removeItem(key(owner));
       redrawAfterMedia('로컬 등록을 해제했습니다.');
     } catch {
       redrawAfterMedia('저장소에 접근할 수 없습니다. 브라우저 설정을 확인하세요.');

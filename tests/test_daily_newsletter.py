@@ -89,8 +89,14 @@ class DailyNewsletterTests(unittest.TestCase):
         event = dict(self.events[0], event_id='later-event', source_item_ids=[sid], observed_at='2026-12-01T00:00:00Z')
         cards = make_cards([event], self.reports, {'events': {}}, source_owners(self.selection))
         self.assertEqual('2026-11-17', next(c['day'] for c in cards if c['id'] == sid))
-        same_day = make_cards([dict(event, observed_at='2026-11-17T00:00:00Z')], self.reports, {'events': {}})
-        self.assertIn(sid, next(c['aliases'] for c in same_day if c['id'] == 'later-event'))
+        media = {'type': 'image', 'url': 'https://example.org/official.png', 'label': '공식 원천 화면'}
+        catalog = {'events': {}, 'sources': {sid: {'media': [media]}}}
+        same_day = make_cards([dict(event, observed_at='2026-11-17T00:00:00Z')], self.reports, catalog)
+        merged = next(c for c in same_day if c['id'] == 'later-event')
+        original = next(s for s in merged['related_sources'] if s['id'] == sid)
+        self.assertEqual([media], original['media'])
+        self.assertIn('과거 보강', original['stage'])
+        self.assertEqual([], merged['media'])
         self.assertNotIn(sid, {c['id'] for c in same_day})
 
     def test_planned_milestones_use_only_current_individual_api_targets(self):

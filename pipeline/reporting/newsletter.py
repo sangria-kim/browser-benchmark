@@ -42,6 +42,10 @@ def read(path):
     return json.loads(path.read_text(encoding='utf-8'))
 
 
+def read_if_present(path, default):
+    return read(path) if path.is_file() else default
+
+
 def kst_day(stamp):
     return datetime.fromisoformat(stamp.replace('Z', '+00:00')).astimezone(KST).date().isoformat()
 
@@ -69,11 +73,11 @@ def short_title(identifier, candidates, overrides, summaries):
     candidates = [v for v in candidates if isinstance(v, str) and v.strip()]
     if identifier in overrides:
         return overrides[identifier]
-    specific = summaries['subjects'].get('feature_event:' + identifier, {})
+    specific = summaries.get('subjects', {}).get('feature_event:' + identifier, {})
     for title in candidates:
         if title and specific.get('title') == title:
             return specific['summary']
-        if title in summaries['titles']:
+        if title in summaries.get('titles', {}):
             return summaries['titles'][title]
     for title in candidates:
         sentence = re.split(r'[.!?]\s|\n', title)[0].strip()
@@ -128,15 +132,15 @@ def latest_reports(reports):
 
 
 def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
-    featured = read(board / 'daily/featured.json')
-    overrides = read(board / 'daily/titles.json')
-    source_copy = read(board / 'daily/source-copy.json')
-    summaries = read(board / 'card-summaries.json')
+    featured = read_if_present(board / 'daily/featured.json', {})
+    overrides = read_if_present(board / 'daily/titles.json', {})
+    source_copy = read_if_present(board / 'daily/source-copy.json', {})
+    summaries = read_if_present(board / 'card-summaries.json', {'subjects': {}, 'titles': {}})
     cards = []
-    event_sources = defaultdict(dict)
+    event_sources = defaultdict(set)
     for event in events:
         for sid in event.get('source_item_ids', []):
-            event_sources[kst_day(event['observed_at'])][sid] = event['event_id']
+            event_sources[kst_day(event['observed_at']), sid].add(event['event_id'])
     for e in events:
         ident = e['event_id']
         copy = featured.get(ident, {})
@@ -157,13 +161,13 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
                           announced=e.get('announced_at'), effective=e.get('effective_at'), delta=text_value(e.get('delta')),
                           device_test=text_value(scope.get('real_test')) or '실기 확인 기록 없음', sources=[u for u in source_list if safe_url(u)],
                           record='data/events/' + ident + '.json', featured=bool(copy),
-                          media=catalog['events'].get(ident, {}).get('media', [])))
+                          media=catalog.get('events', {}).get(ident, {}).get('media', [])))
         q = e.get('comparison_question') or ''
         cards[-1]['question'] = question_for(cards[-1], copy.get('question') or (q if re.search('[가-힣]', q) else ''))
 
     # Freeze the observation on first selection. Routine source rechecks must not move older cards.
     source_ids = set()
-    source_groups = {}
+    source_groups = defaultdict(list)
     for report in sorted(reports, key=lambda r: (r['date'], r['revision'])):
         for item in report['items']:
             ident = item['subject_id']
@@ -172,10 +176,6 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
                 continue
             source_ids.add(ident)
             day = kst_day(item['observed_at'] or item['discovered_at'])
-            duplicate = event_sources[day].get(ident)
-            if duplicate:
-                next(c for c in cards if c['id'] == duplicate).setdefault('aliases', []).append(ident)
-                continue
             fact = item['details']
             urls = [url for url in item['source_urls'] if safe_url(url)]
             copy = source_copy.get(fact['title'], {})
@@ -201,27 +201,38 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
                         media=catalog.get('sources', {}).get(ident, {}).get('media', []))
             owner = (owners or {}).get(ident)
             group = (owner or ident, card['day'], fact['title'], fact['summary'], stage, basis, tuple(card['platform']), item['announced_at'])
-            if group in source_groups:
-                grouped = source_groups[group]
-                grouped.setdefault('aliases', []).append(ident)
-                grouped['sources'] = list(dict.fromkeys(grouped['sources'] + urls))
-                if version and version not in grouped['document_versions']:
-                    grouped['document_versions'].append(version)
-                if card['record'] not in grouped['records']:
-                    grouped['records'].append(card['record'])
-                continue
-            card['document_versions'] = [version] if version else []
-            card['records'] = [card['record']]
             card['question'] = question_for(card, copy.get('question'))
-            source_groups[group] = card
-            cards.append(card)
-    for card in source_groups.values():
-        if card['document_versions']:
-            card['version'] = '문서 ' + ' / '.join(sorted(card['document_versions']))
-    for card in cards:
+            source_groups[group].append(card)
+
+    event_cards = {c['id']: c for c in cards}
+    for source_rows in source_groups.values():
+        first = source_rows[0]
+        targets = set().union(*(event_sources[c['day'], c['id']] for c in source_rows))
+        if len(targets) == 1:
+            primary = event_cards[targets.pop()]
+            related = source_rows
+        else:
+            # Keep the individual observation for media captions before combining versions.
+            primary = dict(first, media_version=first['version'])
+            versions = sorted({c['version'].removeprefix('문서 ') for c in source_rows if c['version'] != '미확인'})
+            if versions:
+                primary['version'] = '문서 ' + ' / '.join(versions)
+            cards.append(primary)
+            related = source_rows[1:]
+        if related:
+            primary.setdefault('related_sources', []).extend(related)
+            primary['sources'] = list(dict.fromkeys(primary['sources'] + [u for c in related for u in c['sources']]))
+            primary['records'] = list(dict.fromkeys(primary.get('records', [primary['record']]) + [c['record'] for c in related]))
+
+    def prepare(card):
         card['title_pending'] = card['title'] == PENDING_TITLE
         card['media'] = [m for m in card['media'] if m['type'] in ('image', 'video') and safe_url(m['url'])]
         card['platform'] = ['플랫폼 미확인' if p == 'unknown' else p for p in card['platform']] or ['플랫폼 미확인']
+
+    for card in cards:
+        prepare(card)
+        for source in card.get('related_sources', []):
+            prepare(source)
     return sorted(cards, key=lambda c: (not c['featured'], c['stage'] != '정식판', not c['media'], c['browser'], c['id']))
 
 
@@ -263,7 +274,9 @@ def newsletter_files(root, dataset, report, selection):
     cutoff = datetime.fromisoformat(report['cutoff'].replace('Z', '+00:00'))
     events = [e for e in dataset['feature_event']
               if datetime.fromisoformat(e['observed_at'].replace('Z', '+00:00')) <= cutoff]
-    cards = make_cards(events, reports, read(DASHBOARD / 'catalog.json'), source_owners(selection))
+    board = root / 'dashboard'
+    catalog = read_if_present(board / 'catalog.json', {'events': {}})
+    cards = make_cards(events, reports, catalog, source_owners(selection), board)
     previous_reports = {r['date'] for r in reports}
     to_publish = {c['day']: None for c in cards if c['day'] < day and c['day'] not in previous_reports}
     to_publish[day] = report

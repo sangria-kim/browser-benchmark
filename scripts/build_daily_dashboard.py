@@ -4,7 +4,7 @@ from pipeline.reporting.newsletter import DASHBOARD, latest_reports, make_cards,
 
 
 def write_home(output, root, payload, reports, selection):
-    cards = make_cards(payload['events'], reports, payload['catalog'], source_owners(selection))
+    cards = make_cards(payload['events'], reports, payload['catalog'], source_owners(selection), root / 'dashboard')
     daily = DASHBOARD / 'daily'
     current = latest_reports(reports)
     initial = root / 'dashboard/daily/initial-issues.json'

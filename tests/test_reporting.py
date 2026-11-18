@@ -61,6 +61,24 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual('no_changes', later['outcome'])
         validate_graph(self.repo)
 
+    def test_publication_and_homepage_share_the_requested_repository_copy(self):
+        from scripts.build_daily_dashboard import write_home
+        board = self.repo / 'dashboard/daily'
+        board.mkdir(parents=True)
+        event = self.data['feature_event'][0]
+        headline = '다른 저장소에서 편집한 기능 제목'
+        (board/'titles.json').write_text(json.dumps({event['event_id']: headline}))
+        self.selected()
+        self.report()
+        editions = [json.loads(p.read_text()) for p in self.repo.glob('reports/generated/*/newsletter-r*.json')]
+        self.assertIn(headline, [s['title'] for i in editions for s in i['stories']])
+        out = self.base/'preview'
+        out.mkdir()
+        write_home(out, self.repo, dict(events=[event], catalog={'events':{}}, source={'sha':'1'*40}), [], {})
+        data = json.loads((out/'index.html').read_text().split('id="daily-data">')[1].split('</script>')[0])
+        self.assertEqual(headline, data['cards'][0]['title'])
+        self.assertEqual(len(editions), len(data['issues']))
+
     def test_structured_legacy_delta_remains_readable_report_text(self):
         from pipeline.reporting.core import judged_subject
         self.selected()
