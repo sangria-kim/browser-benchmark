@@ -105,3 +105,36 @@ test('card rendering shows a Korean summary and retains the escaped source title
  assert.match(html,/aria-label="로컬 네트워크 접근 권한 통합 상세 보기"/);
  assert.match(html,/title="Permission Policy Merger: &quot;direct-sockets-private&quot;/);
 });
+
+test('report cards resolve subject-specific summaries and preserve frozen titles',async()=>{
+ const nodes=new Map();
+ const node=id=>{
+  if(!nodes.has(id))nodes.set(id,{value:'',innerHTML:'',textContent:''});
+  return nodes.get(id);
+ };
+ const context=vm.createContext({URL,URLSearchParams,Intl,Date,ResearchModel:model,
+  location:{search:'',pathname:'/'},history:{replaceState(){}},document:{getElementById:node}});
+ const copy=require('../dashboard/card-summaries.json');
+ const items=Object.entries(copy.subjects).map(([key,entry])=>{
+  const [subject_kind,subject_id]=key.split(':');
+  return {subject_kind,subject_id,selection_kind:'features',timing:'backfill',action:'selected',
+   details:{title:entry.title,browser:'whale'}};
+ });
+ items.push({...items[0],details:{title:'Changed source title',browser:'whale'}});
+ items.push({...items[0],subject_id:'unmapped-event'});
+ const report={date:'2026-11-16',revision:1,cutoff:'2026-11-16T12:00:00Z',outcome:'Fixture',
+  completeness:{collection:'complete',evaluation:'complete'},items,catalog_transitions:[]};
+ const original=JSON.stringify(report);
+ context.fetch=async()=>({ok:true,json:async()=>report});
+ context.input={card_summaries:copy,reports:[{date:report.date,revision:1,path:'report.json',markdown:'https://example.org/report'}]};
+ vm.runInContext(fs.readFileSync('dashboard/resources.js','utf8'),context);
+ vm.runInContext(fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,''),context);
+ vm.runInContext("data=input;view='reports';browser='all'",context);
+ node('report-date').value=report.date;
+ node('report-revision').value='1';
+ await vm.runInContext('renderReport()',context);
+ const titles=[...node('report-content').innerHTML.matchAll(/class="card-title" title="([^"]*)">([^<]*)<\/span>/g)];
+ assert.deepEqual(titles.map(match=>match[2]),[...Object.values(copy.subjects).map(entry=>entry.summary),'Changed source title','퀵서치']);
+ assert.deepEqual(titles.map(match=>match[1]),items.map(item=>item.details.title));
+ assert.equal(JSON.stringify(report),original);
+});
