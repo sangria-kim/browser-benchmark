@@ -49,6 +49,10 @@ class ReportingTests(unittest.TestCase):
         first = self.report(collection='complete', evaluation='complete')
         self.assertEqual({'features','flags'}, {i['selection_kind'] for i in first['report']['items']})
         self.assertEqual(2, len(first['report']['items']))
+        edition = json.loads((self.repo / 'reports/generated/2026-11-16/newsletter-r1.json').read_text())
+        self.assertEqual('2026-11-16', edition['day'])
+        self.assertEqual(1, edition['revision'])
+        self.assertRegex(edition['generated'], r'^\d{4}-\d{2}-\d{2}$')
         before = {p: p.read_bytes() for p in self.repo.rglob('*') if p.is_file()}
         self.assertFalse(self.report(collection='complete', evaluation='complete')['created'])
         self.assertEqual(before, {p: p.read_bytes() for p in self.repo.rglob('*') if p.is_file()})
@@ -56,6 +60,37 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual([], later['items'])
         self.assertEqual('no_changes', later['outcome'])
         validate_graph(self.repo)
+
+    def test_publication_and_homepage_share_the_requested_repository_copy(self):
+        from scripts.build_daily_dashboard import write_home
+        board = self.repo / 'dashboard/daily'
+        board.mkdir(parents=True)
+        event = self.data['feature_event'][0]
+        headline = '다른 저장소에서 편집한 기능 제목'
+        (board/'titles.json').write_text(json.dumps({event['event_id']: headline}))
+        self.selected()
+        self.report()
+        editions = [json.loads(p.read_text()) for p in self.repo.glob('reports/generated/*/newsletter-r*.json')]
+        self.assertIn(headline, [s['title'] for i in editions for s in i['stories']])
+        out = self.base/'preview'
+        out.mkdir()
+        write_home(out, self.repo, dict(events=[event], catalog={'events':{}}, source={'sha':'1'*40}), [], {})
+        data = json.loads((out/'index.html').read_text().split('id="daily-data">')[1].split('</script>')[0])
+        self.assertEqual(headline, data['cards'][0]['title'])
+        self.assertEqual(len(editions), len(data['issues']))
+
+    def test_next_report_recovers_edition_for_a_legacy_report(self):
+        self.selected()
+        first = self.report()['report']
+        path = self.repo/'reports/generated/2026-11-16/newsletter-r1.json'
+        path.unlink()
+        self.report('2026-11-17', '2026-11-17T06:00:00Z')
+        recovered = json.loads(path.read_text())
+        self.assertEqual((first['date'], first['revision']), (recovered['day'], recovered['revision']))
+        self.assertTrue(recovered['generated'])
+        saved = path.read_bytes()
+        self.report('2026-11-17', '2026-11-17T06:00:00Z')
+        self.assertEqual(saved,path.read_bytes())
 
     def test_structured_legacy_delta_remains_readable_report_text(self):
         from pipeline.reporting.core import judged_subject

@@ -1,0 +1,705 @@
+[
+  {
+    "day": "2026-10-30",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 11,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "chrome-android-multiprofile-startup-data-registration-b967e34f97b2",
+        "browser": "chrome",
+        "title": "앱 시작 시 프로필 데이터 분리 실험",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "프로필을 바꿔 앱을 열 때 이전 계정의 탭이나 기록이 잠시 노출될 수 있을까?"
+      },
+      {
+        "id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
+        "browser": "edge",
+        "title": "기존 프로세스로 브라우저 실행 단축",
+        "platform": [
+          "Windows"
+        ],
+        "version": "150+",
+        "stage": "정식판 · Windows 미리보기 필요",
+        "question": "같은 기기에서 브라우저를 다시 열 때 첫 페이지를 조작할 수 있기까지 얼마나 기다릴까?"
+      },
+      {
+        "id": "opera-web-ai-local-apis-stable-139-inclusion-20261027",
+        "browser": "opera",
+        "title": "기기 내 AI 호출 API 미리보기 수록",
+        "platform": [
+          "Windows",
+          "macOS"
+        ],
+        "version": "139.0.6053.15",
+        "stage": "정식판 내 초기 미리보기",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-10-31",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 9,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "chrome-composebox-persistent-aim-button-realbox-modified-f117b891e09e",
+        "browser": "chrome",
+        "title": "검색창 AI 버튼 유지 실험의 기기 범위 변경",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      },
+      {
+        "id": "chrome-composebox-persistent-aim-button-with-x-modified-f117b891e09e",
+        "browser": "chrome",
+        "title": "닫기 가능한 AI 버튼 실험의 기기 범위 변경",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      },
+      {
+        "id": "chrome-composebox-personalized-hint-text-modified-f117b891e09e",
+        "browser": "chrome",
+        "title": "검색 힌트 개인화 실험의 기기 범위 변경",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-01",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 2,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "chrome-glic-print-menu-item-removal-835ee59ef722",
+        "browser": "chrome",
+        "title": "Gemini 인쇄 메뉴 실험 플래그 정리",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      },
+      {
+        "id": "chrome-seccomp-filter-gpu-sandbox-registration-bbc7faad4959",
+        "browser": "chrome",
+        "title": "안드로이드 그래픽 프로세스 격리 실험",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "격리 설정을 바꾸면 지원 기기에서 영상 재생과 페이지 그리기의 안정성이 어떻게 달라질까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-02",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 1,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "chrome-svg-textpath-side-list-omission-20261102",
+        "browser": "chrome",
+        "title": "SVG 글자 경로 방향 속성의 목록 근거 재확인",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "미확인",
+        "stage": "단계 미확인",
+        "question": "지원 범위가 바뀔 때 영향을 받는 사용자를 어떻게 식별하고 대체 경로를 언제 안내할까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-03",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 7,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "brave-android-1-98-60-release-note-date-clarification-20261103",
+        "browser": "brave",
+        "title": "안드로이드 정식판 공지 날짜 정정",
+        "platform": [
+          "Android"
+        ],
+        "version": "1.98.60",
+        "stage": "정식판",
+        "question": "공지 날짜 정정을 실제 업데이트와 구별해 사용자에게 어떻게 보여줄까?"
+      },
+      {
+        "id": "chrome-gemini-enterprise-list-omission-20261103",
+        "browser": "chrome",
+        "title": "기업용 Gemini 배포 목록에서 항목 누락",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "미확인",
+        "stage": "단계 미확인",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      },
+      {
+        "id": "edge-webview2-filesystem-document-omission-20261103",
+        "browser": "edge",
+        "title": "WebView2 폴더 접근 정책의 문서 근거 재확인",
+        "platform": [
+          "Windows"
+        ],
+        "version": "미확인",
+        "stage": "단계 미확인",
+        "question": "‘WebView2 폴더 접근 정책의 문서 근거 재확인’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-04",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 14,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "edge-notification-scam-auto-revocation-156",
+        "browser": "edge",
+        "title": "사기 알림 사이트의 권한 자동 해제",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "156",
+        "stage": "정식판",
+        "question": "허용 또는 차단의 영향을 선택 전에 알 수 있을까? 잘못 고른 설정을 되돌리는 데 몇 단계가 필요할까?"
+      },
+      {
+        "id": "firefox-related-origin-passkey-fix-159-0-1",
+        "browser": "firefox",
+        "title": "관련 사이트 간 패스키 로그인 오류 수정",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux",
+          "Android"
+        ],
+        "version": "159.0.1",
+        "stage": "정식판",
+        "question": "다른 기기나 계정에서 다시 로그인할 때 어느 인증 수단을 선택해야 하는지 알 수 있을까?"
+      },
+      {
+        "id": "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
+        "browser": "chrome",
+        "title": "북마크바 구역별 키보드 탐색 실험",
+        "platform": [
+          "Windows",
+          "Linux",
+          "ChromeOS"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "키보드만 사용할 때 같은 작업을 끝낼 수 있을까? 시스템 단축키나 보조 기술과 충돌하는 단계는 어디일까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-06",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 26,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "vivaldi-android-open-in-app-8-3-stable-20261105",
+        "browser": "vivaldi",
+        "title": "원래 탭을 남겨 두고 앱으로 열기",
+        "platform": [
+          "Android"
+        ],
+        "version": "8.3",
+        "stage": "정식판",
+        "question": "외부 앱에서 돌아온 사용자가 원래 읽던 위치를 찾는 데 몇 단계가 필요할까?",
+        "brief": "연결할 앱이 있는 페이지에서 이번 한 번만 앱으로 이동하고, 원래 브라우저 탭은 유지한다."
+      },
+      {
+        "id": "brave-leo-clarification-choices-stable-1-99-55-20261105",
+        "browser": "brave",
+        "title": "모호한 AI 요청에 선택지로 되묻기",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "version": "1.99.55",
+        "stage": "정식판",
+        "question": "AI가 되물어야 할 때 직접 다시 쓰는 방식과 선택지를 고르는 방식 중 어느 쪽이 재질문을 줄일까?",
+        "brief": "Leo가 뜻이 여러 가지인 요청을 받으면 사용자가 의도를 고를 수 있게 선택지를 제시한다."
+      },
+      {
+        "id": "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104",
+        "browser": "opera",
+        "title": "세로 탭을 접은 상태를 창마다 기억",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "version": "139.0.6053.38",
+        "stage": "정식판",
+        "question": "여러 창을 오갈 때 탭 목록의 너비와 상태를 다시 맞추는 일이 얼마나 잦을까?",
+        "brief": "각 창이 세로 탭 패널의 접힘 상태를 따로 기억한다."
+      }
+    ]
+  },
+  {
+    "day": "2026-11-07",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 15,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "edge-oneauth-migration-completed-stable-157-20261105",
+        "browser": "edge",
+        "title": "윈도우 로그인 인증을 OneAuth로 전환",
+        "platform": [
+          "Windows"
+        ],
+        "version": "157.0.4341.42",
+        "stage": "정식판",
+        "question": "다른 기기나 계정에서 다시 로그인할 때 어느 인증 수단을 선택해야 하는지 알 수 있을까?"
+      },
+      {
+        "id": "chrome-annotated-default-browser-setter-20261106",
+        "browser": "chrome",
+        "title": "기본 브라우저 지정 안내 실험",
+        "platform": [
+          "Windows"
+        ],
+        "version": "미확인",
+        "stage": "소스 관찰",
+        "question": "시스템 설정으로 이동한 사용자가 기본 브라우저 지정을 마치고 원래 탭으로 돌아올 수 있을까?"
+      },
+      {
+        "id": "whale-desktop-address-bar-ai-query-5-41-429-3-20261106",
+        "browser": "whale",
+        "title": "주소창에서 AI에 질문 바로 전송",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "5.41.429.3",
+        "stage": "정식·베타",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-08",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 6,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "chrome-css-corner-shorthand-target-159-20261108",
+        "browser": "chrome",
+        "title": "CSS 모서리 단축 속성 목표 버전 변경",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "목표 159",
+        "stage": "제안",
+        "question": "지원 범위가 바뀔 때 영향을 받는 사용자를 어떻게 식별하고 대체 경로를 언제 안내할까?",
+        "targets": {
+          "Desktop": "159",
+          "Android": "159",
+          "iOS": "159",
+          "WebView": "159"
+        }
+      },
+      {
+        "id": "edge-agent-profile-policy-158-20261106",
+        "browser": "edge",
+        "title": "외부 AI 에이전트별 격리 프로필 정책 수록",
+        "platform": [
+          "Windows"
+        ],
+        "version": "158.0.4370.7",
+        "stage": "베타",
+        "question": "다른 기기나 계정에서 다시 로그인할 때 어느 인증 수단을 선택해야 하는지 알 수 있을까?"
+      },
+      {
+        "id": "firefox-render-blocking-pref-160-20261108",
+        "browser": "firefox",
+        "title": "페이지 표시를 미루는 웹 속성 실험",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "160",
+        "stage": "베타",
+        "question": "‘페이지 표시를 미루는 웹 속성 실험’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-10",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 1,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "edge-entra-passkey-sync-mobile-stable-157-20261109",
+        "browser": "edge",
+        "title": "업무용 패스키를 모바일에서도 동기화",
+        "platform": [
+          "Android",
+          "iOS"
+        ],
+        "version": "157.0.4341.42",
+        "stage": "정식판",
+        "question": "휴대폰을 바꾼 뒤, 사용자는 업무용 패스키를 어느 계정에서 찾을지 알 수 있을까?",
+        "brief": "Entra 업무·학교 계정의 패스키 동기화를 모바일 정식판에 확대했다. 조직 정책에 따라 이용 조건이 다르다."
+      }
+    ]
+  },
+  {
+    "day": "2026-11-11",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 9,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "firefox-pip-playback-speed-stable-160-20261110",
+        "browser": "firefox",
+        "title": "작은 영상 창에서 바로 배속 조절",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "version": "160.0",
+        "stage": "정식판",
+        "question": "삼성 브라우저에서 강의를 보다가 배속을 바꾸려면 원래 탭으로 몇 번 돌아가야 할까?",
+        "brief": "중간 크기 이상의 PiP 창에서 원래 탭으로 돌아가지 않고 0.25~2배속을 고른다."
+      },
+      {
+        "id": "edge-contextual-product-comparison-rollout-20261109",
+        "browser": "edge",
+        "title": "비슷한 상품 탭끼리 AI 비교 제안",
+        "platform": [
+          "Windows",
+          "macOS"
+        ],
+        "version": "미확인",
+        "stage": "배포 발표",
+        "question": "여러 탭을 비교할 때, 어떤 페이지를 AI가 읽을지 사용자가 미리 알 수 있을까?",
+        "brief": "Copilot이 비슷한 상품 탭을 발견하면 비교를 제안한다. 사용자가 선택하면 페이지를 읽는다."
+      },
+      {
+        "id": "whale-macos-13-minimum-support-announcement-20261110",
+        "browser": "whale",
+        "title": "최소 지원 환경을 macOS 13으로 상향 예고",
+        "platform": [
+          "macOS"
+        ],
+        "version": "미확인",
+        "stage": "변경 예고",
+        "question": "OS 지원이 끝나는 사용자에게 언제, 어디에서 다음 선택지를 알려야 할까?",
+        "brief": "웨일이 최소 지원 OS를 macOS 12에서 13으로 올릴 계획을 알렸다. 적용일은 당시 미공개였다."
+      }
+    ]
+  },
+  {
+    "day": "2026-11-12",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 8,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "whale-macos13-5414295-support-evidence-20261111",
+        "browser": "whale",
+        "title": "최소 지원 환경을 macOS 13으로 명시",
+        "platform": [
+          "macOS"
+        ],
+        "version": "5.41.429.5",
+        "stage": "정식판",
+        "question": "지원 범위가 바뀔 때 영향을 받는 사용자를 어떻게 식별하고 대체 경로를 언제 안내할까?"
+      },
+      {
+        "id": "brave-search-url-cloaking-announcement-20261111",
+        "browser": "brave",
+        "title": "검색 결과 링크 주소 가리기 예고",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "미확인",
+        "stage": "단계 미확인",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      },
+      {
+        "id": "chrome-source-542d7914a86f0915025d40e699fa2de876d36e7d",
+        "browser": "chrome",
+        "title": "사이트 로그인 동의 링크의 출처 변경",
+        "platform": [
+          "ChromeOS",
+          "Linux",
+          "Windows",
+          "macOS"
+        ],
+        "version": "미확인",
+        "stage": "소스 관찰",
+        "question": "다른 기기나 계정에서 다시 로그인할 때 어느 인증 수단을 선택해야 하는지 알 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-13",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 10,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "opera-site-permission-removal-restored-stable-140-20261110",
+        "browser": "opera",
+        "title": "사이트 권한 삭제 기능 복구",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "version": "140.0.6074.17",
+        "stage": "정식판",
+        "question": "허용 또는 차단의 영향을 선택 전에 알 수 있을까? 잘못 고른 설정을 되돌리는 데 몇 단계가 필요할까?"
+      },
+      {
+        "id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+        "browser": "vivaldi",
+        "title": "영상 종료 후 전체화면 유지 오류 수정",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "8.3",
+        "stage": "정식판",
+        "question": "탭이나 출력 기기를 바꿔도 현재 재생 상태를 알 수 있고 같은 위치에서 이어볼 수 있을까?"
+      },
+      {
+        "id": "chrome-android-enterprise-file-upload-analysis-source-20261112",
+        "browser": "chrome",
+        "title": "기업용 파일 업로드 검사 실험",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 관찰",
+        "question": "‘기업용 파일 업로드 검사 실험’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-14",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 4,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "opera-ios-data-saver-nov12-announcement-20261112",
+        "browser": "opera",
+        "title": "아이폰 데이터 절약 기능 공식 소개",
+        "platform": [
+          "iOS"
+        ],
+        "version": "미확인",
+        "stage": "정식판",
+        "question": "데이터 절약을 켰을 때 절약량과 페이지 품질의 변화를 사용자가 확인할 수 있을까?"
+      },
+      {
+        "id": "brave-webmcp-default-nightly-11022-20261112",
+        "browser": "brave",
+        "title": "나이틀리 웹 도구 기본값 소스 변경",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux"
+        ],
+        "version": "1.102.2",
+        "stage": "나이틀리",
+        "question": "AI가 페이지 도구를 호출하기 전에 사용자가 대상 사이트와 수행할 작업을 확인할 수 있을까?"
+      },
+      {
+        "id": "chrome-android-accessibility-note-class-source-20261113",
+        "browser": "chrome",
+        "title": "웹 주석을 읽는 접근성 매핑 실험",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 관찰",
+        "question": "키보드만 사용할 때 같은 작업을 끝낼 수 있을까? 시스템 단축키나 보조 기술과 충돌하는 단계는 어디일까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-15",
+    "generated": "2026-11-19",
+    "revision": 0,
+    "completeness": null,
+    "count": 1,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "chrome-android-headphone-disconnect-pause-source-20261114",
+        "browser": "chrome",
+        "title": "오디오 연결 해제 시 재생 중지 소스 변경",
+        "platform": [
+          "Android"
+        ],
+        "version": "미확인",
+        "stage": "소스 관찰",
+        "question": "탭이나 출력 기기를 바꿔도 현재 재생 상태를 알 수 있고 같은 위치에서 이어볼 수 있을까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-16",
+    "generated": "2026-11-19",
+    "revision": 1,
+    "completeness": {
+      "collection": "partial",
+      "evaluation": "complete"
+    },
+    "count": 5,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "src-82284d6c37170a8065617d7d",
+        "browser": "firefox",
+        "title": "시스템에서 지정한 메뉴 단축키 우선 적용",
+        "platform": [
+          "macOS"
+        ],
+        "version": "문서 161.0beta",
+        "stage": "과거 보강 · 베타",
+        "question": "시스템에서 메뉴 단축키를 바꾸면 기존 조합과 웹페이지 입력의 충돌을 피할 수 있을까?",
+        "brief": "Firefox 메뉴의 기본 단축키를 macOS 시스템 설정에서 지정한 조합으로 바꿀 수 있다."
+      },
+      {
+        "id": "chrome-context-menu-gemini-search-order-source-20261113",
+        "browser": "chrome",
+        "title": "페이지 메뉴의 AI·검색 위치 조정 실험",
+        "platform": [
+          "Windows",
+          "macOS",
+          "Linux",
+          "ChromeOS"
+        ],
+        "version": "미확인",
+        "stage": "소스 실험",
+        "question": "검색과 AI 중 어느 동작이 실행되는지, 어떤 페이지 내용이 전달되는지 실행 전에 알 수 있을까?"
+      },
+      {
+        "id": "safari-adaptive-dark-mode-beta-273-20261103",
+        "browser": "safari",
+        "title": "밝은 웹사이트를 다크 모드로 보기",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "27.3",
+        "stage": "베타",
+        "question": "야간에 밝은 페이지를 열 때 글자와 이미지의 가독성을 어떻게 유지할까?"
+      }
+    ]
+  },
+  {
+    "day": "2026-11-17",
+    "generated": "2026-11-19",
+    "revision": 1,
+    "completeness": {
+      "collection": "partial",
+      "evaluation": "complete"
+    },
+    "count": 2,
+    "pending": 0,
+    "stories": [
+      {
+        "id": "src-7c79c98a33925d760454e795",
+        "browser": "chrome",
+        "title": "로컬망·루프백 연결 권한을 구분",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "미확인",
+        "stage": "과거 보강 · 단계 미확인",
+        "question": "기기 내부 서비스와 같은 네트워크의 다른 기기에 접근하는 경우를 권한 안내에서 구별할 수 있을까?",
+        "brief": "격리 웹 앱이 직접 소켓으로 연결할 때 로컬망과 루프백 주소에 맞는 권한 정책을 선언하도록 바뀌었다."
+      },
+      {
+        "id": "src-e4381df11e821f72c25e02d9",
+        "browser": "chrome",
+        "title": "백그라운드 다운로드의 내부망 접근 제한",
+        "platform": [
+          "플랫폼 미확인"
+        ],
+        "version": "문서 152 / 153 / 154",
+        "stage": "과거 보강 · 단계 미확인",
+        "question": "다운로드 도중 내부망 접근이 필요할 때, 사용자는 요청한 사이트와 허용 범위를 알 수 있을까?",
+        "brief": "백그라운드 다운로드가 로컬 서버에 연결하려면 서비스 워커 출처에 로컬 네트워크 접근 권한이 필요하다."
+      }
+    ]
+  },
+  {
+    "day": "2026-11-18",
+    "generated": "2026-11-19",
+    "revision": 1,
+    "completeness": {
+      "collection": "partial",
+      "evaluation": "complete"
+    },
+    "count": 0,
+    "pending": 0,
+    "stories": []
+  }
+]

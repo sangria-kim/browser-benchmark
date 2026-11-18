@@ -189,7 +189,8 @@ def build_research(output, legacy, base):
         write(path, {'date':d, 'cutoff':cutoff, 'rows':rows})
         date_index.append({'date':d, 'path':path, 'count':len(rows)})
     report_index, report_links = [], defaultdict(list)
-    for report in records('data/reports/history/*/*.json'):
+    reports = records('data/reports/history/*/*.json')
+    for report in reports:
         path = 'reports/' + report['date'] + '-r' + str(report['revision']) + '.json.gz'
         write(path, report)
         entry = {k:report[k] for k in ('report_id','date','revision','cutoff','completeness','outcome')}
@@ -246,6 +247,8 @@ def build_research(output, legacy, base):
     if policy(dataset):
         initial['collection_scope'] = policy(dataset)
     write('data.json',initial)
+    from scripts.build_daily_dashboard import write_home
+    write_home(output, ROOT, legacy, reports, projections.get('features', {}))
     return initial
 
 
@@ -314,7 +317,8 @@ def build(output):
     for name in ('details', 'indexes', 'dates', 'reports'):
         if (output / name).exists():
             shutil.rmtree(output / name)
-    for name in ('index.html', 'style.css', 'app.js', 'webtoon-feed.js', 'research-model.js', 'resources.js'):
+    shutil.copy2(ROOT / 'dashboard/index.html', output / 'research.html')
+    for name in ('style.css', 'app.js', 'webtoon-feed.js', 'research-model.js', 'resources.js'):
         shutil.copy2(ROOT / 'dashboard' / name, output / name)
     payload = {'events': events, 'flags': flags, 'catalog': extras, 'source': {'ref': ref, 'sha': sha},
                'built_at': datetime.now(timezone.utc).isoformat(),

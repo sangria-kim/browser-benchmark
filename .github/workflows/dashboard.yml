@@ -24,12 +24,33 @@ jobs:
           python -m unittest discover -s schemas/tests -v
           python -m unittest discover -s tests -v
           python scripts/build_dashboard.py
+          node --check dashboard/daily/app.js
           node --check dashboard/app.js
           node --check dashboard/research-model.js
           node --test tests/*.test.cjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+      - name: Attach the production dashboard to this PR run
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: daily-dashboard
+          path: dist/index.html
+          if-no-files-found: error
+      - name: Build the design review preview
+        if: github.event_name == 'pull_request'
+        run: |
+          node --check dashboard/concepts/directions.js
+          node --check dashboard/concepts/design.js
+          python scripts/build_design_concepts.py
+      - name: Attach the standalone HTML to this PR run
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-design-preview
+          path: dist/concepts/index.html
+          if-no-files-found: error
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
