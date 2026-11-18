@@ -33,6 +33,7 @@ jobs:
       - name: Build the design review preview
         if: github.event_name == 'pull_request'
         run: |
+          node --check dashboard/concepts/directions.js
           node --check dashboard/concepts/design.js
           python scripts/build_design_concepts.py
       - name: Attach the standalone HTML to this PR run

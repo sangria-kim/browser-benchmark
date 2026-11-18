@@ -60,6 +60,7 @@ const designs = [
     url: 'https://www.gov.uk/service-manual/user-research/plan-user-research-for-your-service',
     influence: '제품에 대한 가정을 사용자 과제로 검증할 수 있는 질문으로 바꾸는 방식.',
   },
+  ...extraDesigns,
 ];
 const app = document.querySelector('#app');
 const dialog = document.querySelector('#detail');
@@ -159,6 +160,9 @@ function header(design) {
   );
 }
 function art(id) {
+  if (id === 'observatory') return '<i class="obs-mini"></i>';
+  if (id === 'calendar') return '<i class="calendar-mini">11</i>';
+  if (id === 'cinema') return '<i class="film-mini">▶</i>';
   if (id === 'edition') return '<i class="sun"></i><i class="horizon"></i>';
   if (id === 'log') return '<i class="wave"></i><i class="pulse"></i>';
   if (id === 'board')
@@ -181,7 +185,7 @@ function cover(d) {
 }
 function references() {
   return (
-    '<details id="references"><summary>디자인 참고 자료 <span>5개 사이트</span></summary><div class="refs">' +
+    '<details id="references"><summary>디자인 참고 자료 <span>8개 사이트</span></summary><div class="refs">' +
     designs
       .map(
         (d) =>
@@ -192,25 +196,29 @@ function references() {
   );
 }
 function gallery() {
-  const tiles = designs
-    .map(
-      (d, i) => `<a class="choice" href="${route(d, 'cards', days[0])}">
-  ${cover(d)}
-  <div class="choice-body">
-    <div class="choice-title"><span class="choice-index">${String(i + 1).padStart(2, '0')}</span><h2>${d.name}</h2><span class="circle-arrow" aria-hidden="true">↗</span></div>
-    <p>${d.description}</p>
-  </div></a>`,
-    )
-    .join('');
+  function tiles(list) {
+    return list
+      .map(
+        (d) => `<a class="choice" href="${route(d, 'cards', days[0])}">
+      ${cover(d)}<div class="choice-body"><div class="choice-title">
+      <span class="choice-index">${String(designs.indexOf(d) + 1).padStart(2, '0')}</span><h2>${d.name}</h2><span class="circle-arrow" aria-hidden="true">↗</span>
+      </div><p>${d.description}</p></div></a>`,
+      )
+      .join('');
+  }
+  const candidates = designs.filter((d) => ['edition', 'board'].includes(d.id));
+  const archive = designs.slice(0, 5).filter((d) => !candidates.includes(d));
   return (
     header() +
     `<main id="main" tabindex="-1" class="gallery wrap">
-  <div class="gallery-head">
-    <div><div class="eyebrow">BROWSER BENCHMARK</div><h1>대시보드 디자인 시안</h1></div>
-    <p>같은 업데이트를 읽는 다섯 가지 방식.<br>시안을 열어 카드와 한 장 뉴스레터를 비교하세요.</p>
-  </div>
-  <div class="collection-label"><strong>시안 둘러보기</strong><span>${days[0].slice(0, 7).replace('-', '.')} &nbsp; / &nbsp; 수집 자료 ${stories.length}건 발췌</span></div>
-  <div class="covers">${tiles}</div>${references()}</main>`
+  <div class="gallery-head"><div><div class="eyebrow">BROWSER BENCHMARK</div><h1>대시보드 디자인 시안</h1></div>
+  <p>같은 날짜의 카드와 뉴스레터를 열어<br>세 가지 새 구성과 우선 후보를 비교하세요.</p></div>
+  <div class="collection-label"><strong>추가 시안</strong><span>2026.11 · 수집 자료 ${stories.length}건 발췌</span></div>
+  <div class="covers new-directions">${tiles(extraDesigns)}</div>
+  <div class="collection-label"><strong>우선 후보</strong><span>1차 시안에서 선택</span></div>
+  <div class="covers candidates">${tiles(candidates)}</div>
+  <details class="earlier"><summary>이전 시안 02 · 04 · 05</summary><div class="covers new-directions">${tiles(archive)}</div></details>
+  ${references()}</main>`
   );
 }
 function dateNav(d, view, day) {
@@ -392,7 +400,7 @@ function cardsView(d, day, items) {
     '</section></div>'
   );
 }
-function newsletter(d, day, items) {
+function issueSheet(d, day, items) {
   const [lead, ...others] = items;
   const issue = issueOf(day);
   const headlines = others
@@ -404,10 +412,7 @@ function newsletter(d, day, items) {
     .slice(0, 2)
     .map((s) => `<p><b>${esc(s.topic)}</b> ${esc(s.question)}</p>`)
     .join('');
-  return `<div class="workspace letter-space">${dateNav(d, 'letter', day)}
-  <section class="letter-wrap">
-    <div class="letter-tools"><span>다음 날 아침 발행을 가정한 예시입니다.</span><button data-print>인쇄 / PDF</button></div>
-    <article class="letter">
+  return `<article class="letter">
       <div class="letter-top"><span>브라우저 관측소</span><span>${issue.replaceAll('-', '.')}호</span></div>
       <div class="letter-heading">
         <div class="eyebrow">${d.en.toUpperCase()} &nbsp; / &nbsp; DAILY BRIEF</div>
@@ -418,8 +423,10 @@ function newsletter(d, day, items) {
       ${headlines ? `<div class="brief-list"><h3>함께 볼 변화</h3>${headlines}</div>` : ''}
       <div class="letter-questions"><h3>삼성 브라우저에서 짚어볼 점</h3>${questions}</div>
       <footer class="letter-foot"><span>수집 ${day} · 발췌 카드 ${items.length}건</span><span>1 / 1</span></footer>
-    </article>
-  </section></div>`;
+    </article>`;
+}
+function newsletter(d, day, items) {
+  return `<div class="workspace letter-space">${dateNav(d, 'letter', day)}${printableIssue(d, day, items)}</div>`;
 }
 function viewState() {
   const [id, mode, day] = location.hash.slice(1).split('/');
@@ -448,14 +455,17 @@ function render() {
     return;
   }
   const items = stories.filter((s) => s.day === day);
+  const newPage = { observatory, calendar: calendarView, cinema }[d.id];
+  const content = newPage
+    ? newPage(d, view, day, items)
+    : mast(d, view, day) + (view === 'letter' ? newsletter(d, day, items) : cardsView(d, day, items));
   app.innerHTML =
     header(d) +
     '<main class="studio wrap" id="main" tabindex="-1">' +
-    mast(d, view, day) +
-    (view === 'letter' ? newsletter(d, day, items) : cardsView(d, day, items)) +
+    content +
     '<footer class="design-foot"><span>디자인 참고 · ' +
     link(d.url, d.source) +
-    '</span><a href="#gallery">다섯 시안 비교 ↗</a></footer></main>';
+    '</span><a href="#gallery">시안 비교 ↗</a></footer></main>';
 }
 function mediaTag(type, url, label) {
   return type === 'video'
@@ -474,7 +484,9 @@ function mediaPanel(s) {
     <label>형식 <select name="kind"><option value="image">이미지</option><option value="video">동영상</option></select></label>
     <label>자료 주소 <input name="url" type="url" required placeholder="https://" autocomplete="off"></label>
     <button type="submit">미리 보기</button><div id="candidate" aria-live="polite"></div>
-  </form></details>`;
+  </form>
+  ${media.length ? '<button type="button" data-clear-media>이 기기의 등록 해제 · 미확보로 되돌리기</button><p data-clear-error role="status"></p>' : ''}
+  </details>`;
   const figures = media
     .map(
       (m) => `<figure class="evidence">${mediaTag(m.type, m.url, m.label || s.title)}
@@ -488,6 +500,14 @@ function mediaPanel(s) {
 }
 let activeStory;
 let opener;
+function evidenceLink(value) {
+  const url = new URL(value);
+  const release = url.pathname.match(/\/firefox\/(?:android\/)?([\d.]+)(beta)?\/releasenotes/);
+  const label = release
+    ? `Firefox ${release[1]} ${release[2] ? '베타' : '정식판'} 릴리스 노트`
+    : url.hostname;
+  return link(value, label);
+}
 function showDetail(s, trigger) {
   if (trigger) opener = trigger;
   activeStory = s;
@@ -508,7 +528,7 @@ function showDetail(s, trigger) {
    <p class="intro">${esc(s.brief)}</p><dl class="facts">${facts}</dl>
    <p class="condition">${esc(s.condition)}</p>${mediaPanel(s)}
    <section class="detail-question"><h3>삼성 브라우저 검토 질문</h3><p>${esc(s.question)}</p></section>
-   <div class="official"><h3>공식 근거</h3>${s.sources.map((url) => link(url, new URL(url).hostname)).join(' ')}</div>
+   <div class="official"><h3>공식 근거</h3>${s.sources.map(evidenceLink).join(' ')}</div>
  </div>`;
   if (!dialog.open) dialog.showModal();
   dialog.scrollTop = 0;
@@ -521,6 +541,15 @@ dialog.addEventListener('close', () => {
 });
 dialog.addEventListener('click', (event) => {
   if (event.target === dialog || event.target.closest('[data-close]')) dialog.close();
+  if (event.target.closest('[data-clear-media]') && activeStory && !activeStory.media.length) {
+    try {
+      localStorage.removeItem(localKey(activeStory));
+      refreshAfterMediaEdit(activeStory);
+    } catch {
+      dialog.querySelector('[data-clear-error]').textContent =
+        '등록을 해제할 수 없습니다. 브라우저 저장 권한을 확인하세요.';
+    }
+  }
 });
 document.addEventListener(
   'error',
@@ -536,6 +565,24 @@ document.addEventListener(
   },
   true,
 );
+function refreshAfterMediaEdit(s) {
+  dialog.close();
+  // Refresh counts after closing. Restore focus even if the filter removed this card.
+  dialog.addEventListener(
+    'close',
+    () => {
+      render();
+      const trigger = [...document.querySelectorAll('[data-story]')].find(
+        (el) => el.dataset.story === s.id,
+      );
+      (trigger || document.querySelector('#missing') || document.querySelector('#main')).focus({
+        preventScroll: true,
+      });
+      if (trigger) showDetail(s, trigger);
+    },
+    { once: true },
+  );
+}
 dialog.addEventListener('submit', (event) => {
   if (!event.target.matches('#attach')) return;
   event.preventDefault();
@@ -576,22 +623,7 @@ dialog.addEventListener('submit', (event) => {
       status.textContent = '이 브라우저에서 저장할 수 없습니다. 저장 권한을 확인하세요.';
       return;
     }
-    dialog.close();
-    // Refresh counts after closing. Restore focus even if the filter removed this card.
-    dialog.addEventListener(
-      'close',
-      () => {
-        render();
-        const trigger = [...document.querySelectorAll('[data-story]')].find(
-          (el) => el.dataset.story === s.id,
-        );
-        (trigger || document.querySelector('#missing') || document.querySelector('#main')).focus({
-          preventScroll: true,
-        });
-        if (trigger) showDetail(s, trigger);
-      },
-      { once: true },
-    );
+    refreshAfterMediaEdit(s);
   });
   region.replaceChildren(preview, status, confirm);
   preview.src = url;
@@ -601,6 +633,18 @@ dialog.addEventListener('input', (event) => {
     dialog.querySelector('#candidate').replaceChildren();
 });
 app.addEventListener('click', (event) => {
+  const option = event.target.closest('[data-obs], [data-scene]');
+  if (option) {
+    if (option.dataset.obs) roundTwoState.browser = option.dataset.obs;
+    if (option.dataset.scene) roundTwoState.sceneId = option.dataset.scene;
+    render();
+    document
+      .querySelector(
+        option.dataset.obs ? '[data-obs][aria-pressed="true"]' : '[data-scene][aria-pressed="true"]',
+      )
+      .focus({ preventScroll: true });
+    return;
+  }
   const button = event.target.closest('[data-story]');
   if (button)
     showDetail(
@@ -610,8 +654,15 @@ app.addEventListener('click', (event) => {
   if (event.target.closest('[data-print]')) window.print();
   if (event.target.closest('a[href="#references"]') && location.hash === '#references') render();
 });
+app.addEventListener('input', (event) => {
+  if (event.target.id !== 'obs-query') return;
+  roundTwoState.query = event.target.value;
+  const items = stories.filter((s) => s.day === viewState().day);
+  document.querySelector('#obs-results').innerHTML = observatoryResults(items);
+});
 app.addEventListener('change', (event) => {
-  const { view, day } = viewState();
+  const { design, view, day } = viewState();
+  if (event.target.id === 'round-date') location.hash = route(design, view, event.target.value);
   if (event.target.id === 'switch-design')
     location.hash = route(
       designs.find((d) => d.id === event.target.value),
@@ -630,6 +681,7 @@ document.querySelector('.skip').addEventListener('click', (event) => {
 });
 window.addEventListener('hashchange', () => {
   missingOnly = false;
+  resetDirection();
   render();
   if (location.hash !== '#references') {
     window.scrollTo(0, 0);

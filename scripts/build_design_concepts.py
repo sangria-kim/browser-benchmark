@@ -1,5 +1,6 @@
 """Build the portable design gallery from the published benchmark events."""
 import json
+import re
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
@@ -32,8 +33,18 @@ def build_design_concepts(output):
     template = (CONCEPTS / "page.html").read_text()
     # Keep source text inert inside a script element, including a literal closing tag.
     data = json.dumps(stories, ensure_ascii=False, separators=(",", ":")).replace("<", r"\u003c")
-    template = template.replace("<!--STYLES-->", (CONCEPTS / "design.css").read_text())
-    template = template.replace("<!--SCRIPT-->", (CONCEPTS / "design.js").read_text())
+    # Reuse the deployed dashboard CSS only inside the observatory preview.
+    production_css = (ROOT / "dashboard/style.css").read_text()
+    production_css = re.sub(r"^@import[^\n]+\n", "", production_css)
+    production_css = production_css.replace(":root{", ":scope{", 1)
+    styles = [
+        (CONCEPTS / "design.css").read_text(),
+        "@scope (.observatory-ui) {" + production_css + "}",
+        (CONCEPTS / "directions.css").read_text(),
+    ]
+    template = template.replace("<!--STYLES-->", "\n".join(styles))
+    scripts = [(CONCEPTS / name).read_text() for name in ("directions.js", "design.js")]
+    template = template.replace("<!--SCRIPT-->", "\n".join(scripts))
     target = output / "concepts" / "index.html"
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(template.replace("<!--STORIES-->", data), encoding="utf-8")
