@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b1c5bc6802a87ac86cc5acd6: Fixed an issue where JS string builtins and imported string constants were not applied when compiling WebAssembly modules loaded as ES modules. (186037843) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5a8284406d9b660d6259ce79cb5ef939",
+  "subject_kind": "source_item",
+  "subject_id": "src-b1c5bc6802a87ac86cc5acd6",
+  "input_hash": "9eac63d4b483a6641a54ba2302ce97f11ec0404550fd0492b427e1ce93ec8d65",
+  "input_revision": "semantic-v2-sha256:c4a14dd96c0b257e51516e5f52f5c109832f637b0ea347cbaea47ed395db1598",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-39fab0b9e6381694f6ecffa24f7c0cc1",
+  "evidence_source_item_ids": [
+    "src-b1c5bc6802a87ac86cc5acd6"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e1272effed496afb80ad7bad: Source baseline: Android Auto Projected A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ad921df10845b8e1b1050d8a7cc5e54d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e1272effed496afb80ad7bad",
+  "input_hash": "3da09394ab90c73d055e57c0e2d933e116f1569efcdbbceecd7cc9f020e56a4f",
+  "input_revision": "semantic-v2-sha256:94b586c334e0ed66b85c189393f34a72bdfa78c65577e7f679f02df6e66f2da5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-2f5ad8ea16521eacc00dab0e80645fca",
+  "evidence_source_item_ids": [
+    "src-chromium-2b896c0582d5fe47e46ead98",
+    "src-legacy-8eafaefa04696038de7aeb86"
+  ]
+}

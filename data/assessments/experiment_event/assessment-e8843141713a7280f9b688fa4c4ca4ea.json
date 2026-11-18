@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d74551449441d15b6c60ebda: Source baseline: DisablePartialStorageCleanupForGPUDiskCache A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e8843141713a7280f9b688fa4c4ca4ea",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d74551449441d15b6c60ebda",
+  "input_hash": "27a6665e3410ac560869bc07fed67c1024cba532a65fb1232c4be3ae7efe37fc",
+  "input_revision": "semantic-v2-sha256:04f0e877c29fbe9881f8dae70b1522db74c934f990692f1606f6f05ee0ef3b36",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-f0e43210fe6ecee229387268c9907487",
+  "evidence_source_item_ids": [
+    "src-chromium-4531fa79dafade5348d24b72"
+  ]
+}

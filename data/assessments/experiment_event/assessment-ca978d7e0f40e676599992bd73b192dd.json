@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1a8311f908e7a10054f349ca: Source baseline: Enable VP9 video encoding for Cast Streaming A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ca978d7e0f40e676599992bd73b192dd",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1a8311f908e7a10054f349ca",
+  "input_hash": "9f5834953e0ca904003e545f65742154e7dc8cb42378525c30cfb2669a0187f1",
+  "input_revision": "semantic-v2-sha256:e6a83b2c60ab5f35d5942fca8b29fd394f5c1ea0190b126e4974ce679babdf06",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-5c4349edc7f423fd0c14fa72a64f4e2c",
+  "evidence_source_item_ids": [
+    "src-chromium-d6318caa87808967a2690125"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a6ce0dc70a6b377c2a245098: Source baseline: contextual-tasks-rearchitecture A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-822009080c268ecffad6d0c36d024d30",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a6ce0dc70a6b377c2a245098",
+  "input_hash": "00ae474136ea411acfed0d14f376712a298c5cc490c9299aa20e8968d6a753a1",
+  "input_revision": "semantic-v2-sha256:d603a69fc986b59daa969217b9485b7bdb633f0140a4cece973feedcb76091a0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-a08084cf4f115ed8ccac37ca8b443b55",
+  "evidence_source_item_ids": [
+    "src-chromium-8695646d9d312d355e2d15ba",
+    "src-legacy-7f0b0c7dfa053684e8245138"
+  ]
+}

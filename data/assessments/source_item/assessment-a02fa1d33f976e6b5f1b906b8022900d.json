@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b04d8fbc87bf2cf21c7a187b: Adds a \"defaultindeterminate\" attribute to <input type=\"checkbox\"> to allow specifying indeterminateness statically. Today, the IDL attribute must be invoked via JavaScript, which blocks static HTML generators and server A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a02fa1d33f976e6b5f1b906b8022900d",
+  "subject_kind": "source_item",
+  "subject_id": "src-b04d8fbc87bf2cf21c7a187b",
+  "input_hash": "f8f4121a79e0c7e0aa8bbb502e13d3a6535ef827996d4bf95ec57cb4f2a31ae6",
+  "input_revision": "semantic-v2-sha256:1dc5f676c674aedf092ecd25ba9d2b26097d8e77a04e052891b9abd278122295",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-88b8012fc3f69b3882e176201ddd81a1",
+  "evidence_source_item_ids": [
+    "src-b04d8fbc87bf2cf21c7a187b"
+  ]
+}

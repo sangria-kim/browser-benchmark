@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1b76dd6b248ecb055109d86f: Source baseline: Autofill Keyboard Accessory Hover Preview on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7b0f5b914d915bccca587aac464e94cd",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1b76dd6b248ecb055109d86f",
+  "input_hash": "1c7a1f1fc742127fe0d28b551ee3b2b15534765c6dc13914b22d1b72f5b12cd2",
+  "input_revision": "semantic-v2-sha256:c43e043eef9da4a903217dadc352e81c555ebfa902cd9afeaf54a6805e2eb9d3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-ff1fcd84c622d7edb0fc21b27b819028",
+  "evidence_source_item_ids": [
+    "src-chromium-f72a76182c806235aa39fcd4",
+    "src-legacy-e8934e4bd225c14b32d86c23"
+  ]
+}

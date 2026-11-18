@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d2a48dc0b8ac5445c387dc24: Fixed String.prototype.replace with a unicode regular expression splitting a surrogate pair after an empty match. (186143674) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-70bca9f78d82447041ec5be97fa71e1f",
+  "subject_kind": "source_item",
+  "subject_id": "src-d2a48dc0b8ac5445c387dc24",
+  "input_hash": "8e14cd880d9ec5f3fd7f3e132bd5d7fcf2e4504b0cd4f2b71179cffe42badf5c",
+  "input_revision": "semantic-v2-sha256:218dbfd534d8b1a44c6e7942794c67c8a94bb727cd79edc2d0a75fc03ea34a13",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-57301e19fec8f7140ceff04e3d35aeef",
+  "evidence_source_item_ids": [
+    "src-d2a48dc0b8ac5445c387dc24"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-dbcbc372f2891dd12e1625a3: Fixed an issue where autocompleting a vendor-prefixed value in Styles could duplicate the prefix, for example producing -apple--apple-system . (182178871) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8208cd2b22d5ecb4bd23c5cf8effb9f1",
+  "subject_kind": "source_item",
+  "subject_id": "src-dbcbc372f2891dd12e1625a3",
+  "input_hash": "c9d5104e2a068b85cccd9e1c9dc79e63b763b287969e34f43695e1c1192dfcde",
+  "input_revision": "semantic-v2-sha256:b6a7fb07fb4955421342379b0aec4c5943ed5d462f47683ecbefcbc0c1dace2e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-5c3a12e1ce395bb6fea98f77058b2820",
+  "evidence_source_item_ids": [
+    "src-dbcbc372f2891dd12e1625a3"
+  ]
+}

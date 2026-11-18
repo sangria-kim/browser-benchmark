@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-9be4383f61abe1e7f6a06c5c: Fixed an issue where an SVG transform change could leave an ancestor layer’s cached repaint rects stale, resulting in incorrect repainting. (187005898) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0ed935b159f3439ac568e93164941d7c",
+  "subject_kind": "source_item",
+  "subject_id": "src-9be4383f61abe1e7f6a06c5c",
+  "input_hash": "470522b0dcad3bed5f0a25534884bc7f5f8ccf8c338234a718d9a1d0ea5e2ea8",
+  "input_revision": "semantic-v2-sha256:8bae7bdae6b1a9241433d74e3529d3893629bfa5087c91488d6a92d9593b2457",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-d04eed800583f9606b334b73cb02153f",
+  "evidence_source_item_ids": [
+    "src-9be4383f61abe1e7f6a06c5c"
+  ]
+}

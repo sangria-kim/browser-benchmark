@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-740589a8cfde6b21329a30c6: Source baseline: AndroidReplayDelKeyEvent A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6538e5f4cc72b3f9b764e64c35ce2f7b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-740589a8cfde6b21329a30c6",
+  "input_hash": "428d2822e1c80445bc75daac58c1b4d5b0a15936044ecdd97ca93477478725d4",
+  "input_revision": "semantic-v2-sha256:471e22e4d44538459e89e704ca096cca5ac398e77b9e55f53b3cafe5d2908805",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-0eb89a74da623eceb3f8a1d1bc00348c",
+  "evidence_source_item_ids": [
+    "src-chromium-453fe5308009fbe58ac06921"
+  ]
+}

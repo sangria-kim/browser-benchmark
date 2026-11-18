@@ -49,6 +49,85 @@ class TemporalTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             attach_accepted_chrome_history(stale, sources)
 
+    def test_incremental_handoff_attaches_only_exact_accepted_suffix(self):
+        from pipeline.normalize.core import attach_accepted_chrome_history, merge_sources
+        a, b = self.bundles('BASE_FEATURE(kSame, base::FEATURE_ENABLED_BY_DEFAULT);',
+                            'BASE_FEATURE(kSame, base::FEATURE_DISABLED_BY_DEFAULT);')
+        projected = self.project(a, b)
+        accepted = merge_sources(a['source_items'],
+                                attach_accepted_chrome_history(projected, a['source_items'])['source_items'])
+        files = fixture_files(False)
+        files['components/temporal.cc'] = 'BASE_FEATURE(kSame, "NewName", base::FEATURE_DISABLED_BY_DEFAULT);'
+        with tempfile.TemporaryDirectory() as tmp:
+            c = collect(load_config(ROOT / 'config/chrome-source-scope.yml'), MemoryProvider(files, 'c' * 40), tmp,
+                        previous=projected, observed_at='2026-11-16T01:00:00Z')
+        incoming = self.project(a, c)
+        result = attach_accepted_chrome_history(incoming, accepted)
+        old = {i['source_item_id']: i for i in accepted}
+        for row in result['source_items']:
+            history = old[row['source_item_id']]['revisions']
+            self.assertEqual(history, row['revisions'][:len(history)])
+        self.assertEqual(result, attach_accepted_chrome_history(result, accepted))
+        for mode in ('tampered', 'unrelated', 'stale', 'wrong_endpoint', 'altered_replay'):
+            bad = copy.deepcopy(incoming)
+            row = bad['source_items'][0]
+            if mode == 'tampered':
+                row['revisions'][0]['title'] = 'altered snapshot'
+            elif mode == 'unrelated':
+                row['revisions'][0]['revision_id'] = 'unrelated'
+            elif mode == 'wrong_endpoint':
+                row['evidence']['source_revision'] = 'd' * 40
+            elif mode == 'altered_replay':
+                row['revisions'] = row['revisions'][:1]
+                row['revisions'][0]['title'] = 'altered accepted snapshot'
+            else:
+                row['observed_at'] = '2025-01-01T00:00:00Z'
+            with self.subTest(mode=mode), self.assertRaises(ValueError):
+                attach_accepted_chrome_history(bad, accepted)
+
+    def test_carried_identity_is_context_not_current_endpoint_change(self):
+        from pipeline.normalize.core import attach_accepted_chrome_history, merge_sources
+        a, b = self.bundles('', 'BASE_FEATURE(kCarried, base::FEATURE_ENABLED_BY_DEFAULT);')
+        projected = self.project(a, b)
+        accepted = merge_sources(a['source_items'],
+                                attach_accepted_chrome_history(projected, a['source_items'])['source_items'])
+        with tempfile.TemporaryDirectory() as tmp:
+            c = collect(load_config(ROOT / 'config/chrome-source-scope.yml'),
+                        MemoryProvider(fixture_files(False), 'c' * 40, False), tmp,
+                        previous=projected, observed_at='2026-11-16T01:00:00Z')
+        result = attach_accepted_chrome_history(self.project(a, c), accepted)
+        carried = next(e for e in result['experiments'] if e['symbol'] == 'kCarried')
+        self.assertEqual('context', carried['temporal_scope']['status'])
+        self.assertEqual('unknown', carried['temporal_scope']['change'])
+        old = {s['source_item_id']: s for s in accepted}
+        source = next(s for s in result['source_items'] if s['source_item_id'] in carried['source_item_ids'])
+        self.assertEqual(old[source['source_item_id']]['revisions'], source['revisions'])
+        self.assertEqual('context', source['temporal_scope']['status'])
+
+    def test_carried_fact_cannot_affect_current_family_or_satisfy_dependency(self):
+        text = 'BASE_FEATURE(kSame, base::FEATURE_ENABLED_BY_DEFAULT);'
+        a, b = self.bundles(text, text)
+        fact = next(f for f in b['facts'] if f['semantic']['symbol'] == 'kSame')
+        source = next(s for s in b['source_items'] if s['source_item_id'] == fact['source_item_id'])
+        experiment = next(e for e in b['experiments'] if e['experiment_id'] == fact['experiment_id'])
+        carried_fact, carried_source, carried_experiment = map(copy.deepcopy, (fact, source, experiment))
+        carried_fact['source_item_id'] = carried_source['source_item_id'] = 'carried-source'
+        carried_fact['experiment_id'] = carried_experiment['experiment_id'] = 'carried-experiment'
+        carried_experiment['source_item_ids'] = ['carried-source']
+        carried_source['evidence']['source_revision'] = a['revision']
+        carried_fact['semantic']['default'] = 'base::FEATURE_DISABLED_BY_DEFAULT'
+        b['facts'].append(carried_fact)
+        b['source_items'].append(carried_source)
+        b['experiments'].append(carried_experiment)
+        result = self.project(a, b)
+        scopes = {e['experiment_id']: e['temporal_scope'] for e in result['experiments']}
+        self.assertEqual('unchanged', scopes[fact['experiment_id']]['status'])
+        self.assertEqual('context', scopes['carried-experiment']['status'])
+        fact['semantic']['references'].append({'kind': 'depends_on', 'target_id': 'carried-experiment'})
+        result = self.project(a, b)
+        scope = next(e['temporal_scope'] for e in result['experiments'] if e['experiment_id'] == fact['experiment_id'])
+        self.assertEqual('unknown', scope['status'])
+
     def test_enum_initializers_and_masked_comment_references(self):
         values = auxiliary_definitions('enum class Mode { kFirst = 7, kNext, kReset = 20, kLast };')
         self.assertEqual(['7', '(7) + 1', '20', '(20) + 1'],

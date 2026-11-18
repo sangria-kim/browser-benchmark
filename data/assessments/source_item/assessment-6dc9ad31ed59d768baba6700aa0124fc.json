@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-8b4ced5900dcefbe8bad97d1: Fixed a regression where the line-height quirk in quirks mode was not applied to line boxes inside a nested inline-block element that had no line-height of its own. (186614663) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6dc9ad31ed59d768baba6700aa0124fc",
+  "subject_kind": "source_item",
+  "subject_id": "src-8b4ced5900dcefbe8bad97d1",
+  "input_hash": "8a017fea2387079274b961d6da6b391ffc286661fcb8915cf6909bf4da8c39d5",
+  "input_revision": "semantic-v2-sha256:59e7b7c89c2f70b5e6671af8df503a5ffe5743f0efa3a0fbb35562f56bbcec97",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-d426015ae130db7460fd66fa8af5a678",
+  "evidence_source_item_ids": [
+    "src-8b4ced5900dcefbe8bad97d1"
+  ]
+}

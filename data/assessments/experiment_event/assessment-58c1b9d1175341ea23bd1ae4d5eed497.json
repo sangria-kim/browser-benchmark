@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-12007ce109795901407e22c5: Source baseline: AppBarDisableLongPress A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-58c1b9d1175341ea23bd1ae4d5eed497",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-12007ce109795901407e22c5",
+  "input_hash": "ada7fb91bf25960ff3e8854651ffdb43b0b8710857b4b415a34f93a77189ba93",
+  "input_revision": "semantic-v2-sha256:c1a68a81a4e3ecef413b954a258ed5d2c5c9d0ffb805e1f055524718deeed73c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-ca8a7ebb0f01ddef12da9dfde7b31b14",
+  "evidence_source_item_ids": [
+    "src-chromium-e01e29b1a2c8675cd838d19a"
+  ]
+}

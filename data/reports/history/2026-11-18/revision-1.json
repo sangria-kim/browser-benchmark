@@ -1,0 +1,327 @@
+{
+  "schema_version": 2,
+  "report_id": "daily-2026-11-18",
+  "date": "2026-11-18",
+  "timezone": "Asia/Seoul",
+  "cutoff": "2026-11-18T01:44:57.088524Z",
+  "previous_cutoff": "2026-11-17T03:11:14.766612Z",
+  "generator_version": "daily-selected-v1",
+  "rule_version": "daily-selected-v1",
+  "items": [
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-5eb94af241708f8869909b7173ce5ddd",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "change_id": "selection-e7993e7652ddd9d8db3610d9daf910b5",
+      "timing": "reclassification",
+      "announced_at": null,
+      "observed_at": "2026-11-16T02:06:29.504381Z",
+      "source_urls": [
+        "https://chromium.googlesource.com/chromium/src/+/c714c7f60bf03932174577d560ebce0f16881fcb/chrome/browser/about_flags.cc#L10825"
+      ],
+      "selection_kind": "flags",
+      "action": "changed",
+      "discovered_at": "2026-11-18T01:39:53.362847+00:00",
+      "effective_at": null,
+      "evidence": [
+        {
+          "source_item_id": "src-chromium-020c9a0390955bd679839457",
+          "revision_id": "rev-a666c438d6934a6520c0e7b7",
+          "content_sha256": "07e28cd5ea86f075b36384ad5427320e4239c73c3ddf60a67527a7a18e0028d5",
+          "source_revision": "c714c7f60bf03932174577d560ebce0f16881fcb",
+          "url": "https://chromium.googlesource.com/chromium/src/+/c714c7f60bf03932174577d560ebce0f16881fcb/chrome/browser/about_flags.cc#L10825",
+          "observed_at": "2026-11-17T23:31:42.629297Z",
+          "section": "chrome/browser/about_flags.cc:10825",
+          "excerpt": "{\"actor-observe-screenshot-default\", flag_descriptions::kActorObserveScreenshotDefaultName, flag_descriptions::kActorObserveScreenshotDefaultDescription, kOsDesktop, FEATURE_VALUE_TYPE(actor::kActorObserveScreenshotDefault)}",
+          "record_path": "data/source-items/chrome-experiments/initial-source-sample.json"
+        }
+      ],
+      "details": {
+        "title": "Source baseline: Actor observe screenshot default",
+        "summary": "Source baseline: Actor observe screenshot default",
+        "browser": "chrome",
+        "channel": "unknown",
+        "platform": [
+          "kOsDesktop"
+        ],
+        "workstreams": [],
+        "ai_related": null,
+        "event_type": "baseline",
+        "subject_revision": 1,
+        "status": "selected",
+        "priority": "P1",
+        "assessment_rule_version": "pm-selection-v3.0.0",
+        "reasons": [
+          "Evidence-gated deterministic profile actor-observe-screenshot-default-benchmark: An agent framework can capture page screenshots by default when requested. The default capture surface raises a concrete user-control and sensitive-page comparison task.",
+          "Evidence: If enabled, the actor framework will capture screenshots by default when requested.",
+          "Material change: An active registration is documented at the pinned source baseline. This selects an existing experiment for research; it does not date its introduction or claim a new product release.",
+          "Benchmark: Build or obtain an accessible revision with this registration and confirm the actor path is present → Use synthetic pages with visible and off-screen markers → Request observation with the option enabled and disabled → Inspect captured markers and available user controls; compare another browser agent only if it supports the same task",
+          "Measure: Captured marker coverage; Capture events per request; User-visible controls and cancellation outcome",
+          "Completion: Three repetitions for each supported condition; record setup and failures. No execution is claimed.",
+          "Conditions: Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment."
+        ],
+        "comparison_question": "In a controlled browser-agent task, what page content enters a screenshot when observation is requested, and can the user inspect or stop that transfer?",
+        "benchmark_readiness": "conditional",
+        "benchmark": null,
+        "subject_path": "data/experiment-events/events.json",
+        "assessment_path": "data/assessments/experiment_event/assessment-5eb94af241708f8869909b7173ce5ddd.json",
+        "selection_path": "data/selected/flags/current.json",
+        "documentation_paths": []
+      },
+      "related_change_ids": []
+    }
+  ],
+  "catalog_transitions": [],
+  "completeness": {
+    "collection": "partial",
+    "evaluation": "complete"
+  },
+  "outcome": "changes",
+  "selection_snapshot_paths": [
+    "data/selected/history/2026-11-18/features-71ff05d8d97cc3550347341fac4247bbeb1005a38ebd2e061e9dab8b5ebce9e4.json",
+    "data/selected/history/2026-11-18/flags-61ecc1b0deb9502e676cf80229e2c743b06b04b62b21ee133afa93194e09a466.json"
+  ],
+  "collection_scope": {
+    "version": "dated-endpoints-v1",
+    "since": "2026-01-01",
+    "cutoff": "2026-11-17T23:30:24.003777+00:00",
+    "timezone": "Asia/Seoul",
+    "source_windows": [
+      {
+        "source_id": "brave-android-changelog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-enterprise",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-platform-status",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chromium-source",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "chromium-source",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-beta-archive",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-mobile-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-mobile-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-stable-archive",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-ios",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "legacy",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "opera-desktop",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "opera-mobile",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "opera-news",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-technology-preview",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "vivaldi-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "vivaldi-desktop",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "vivaldi-ios",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "whale-notices",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "whale-release-history",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      }
+    ],
+    "chrome_endpoints": [
+      {
+        "baseline_revision": "d6855ba8c6f271ee35a39ecf9dd4b009ef3075be",
+        "current_revision": "c714c7f60bf03932174577d560ebce0f16881fcb",
+        "baseline_committed_at": "2025-12-31T14:00:34Z",
+        "current_committed_at": "2026-11-17T23:27:43Z"
+      }
+    ]
+  },
+  "revision": 1,
+  "supersedes_revision": null,
+  "input_hash": "fc074db3d88ea6934b9c0c144a80375cdda8fb285be4dc5909edb889e0fc9700",
+  "markdown_path": "reports/generated/2026-11-18/r1.md"
+}

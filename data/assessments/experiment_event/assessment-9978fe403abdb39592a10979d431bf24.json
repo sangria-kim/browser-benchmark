@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f4174ce005f8418bebf28e02: Source baseline: Customize WebUI Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9978fe403abdb39592a10979d431bf24",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f4174ce005f8418bebf28e02",
+  "input_hash": "90c7bdc4b6430fafd34042cf04eeaaa7ab3399c9e383561ba928e674f2e0bd33",
+  "input_revision": "semantic-v2-sha256:070c64a7029ddef447fb716226cada59c64b9df3920f1bbb1fb9729f92389fb1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-883d285e6de4fe63619c91d7fd31be24",
+  "evidence_source_item_ids": [
+    "src-chromium-371c34f3c80ab315262ac183",
+    "src-legacy-2a376151e252d0d03afa8816"
+  ]
+}

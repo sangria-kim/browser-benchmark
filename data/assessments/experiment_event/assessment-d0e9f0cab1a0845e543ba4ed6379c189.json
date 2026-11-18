@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-bd78efa077b45f5a25279de7: Source baseline: Toggle hardware accelerated AV1 video encoding for Cast Streaming A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d0e9f0cab1a0845e543ba4ed6379c189",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-bd78efa077b45f5a25279de7",
+  "input_hash": "c27ec3a3550e79c980ce57524ebb589cce11a6c9c3e273bd78c7b3844db2ac53",
+  "input_revision": "semantic-v2-sha256:4cdccaddf0178d55833a5ba824490546bc54cb4d00ac1056a07c2dac7b333843",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-e7a3de9b4e98726ba7131d53bfe86503",
+  "evidence_source_item_ids": [
+    "src-chromium-fe2ff584d4b825befe429a1b",
+    "src-legacy-cd1b5cbe759a470b54ada527"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8416e8de47152f2f5c3c0562: Source baseline: Pause media on headphone unplug A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fbca571aac36884067a040ff905a18fa",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8416e8de47152f2f5c3c0562",
+  "input_hash": "bd842db5b3bd785dd6601c71e5a38730108d9e637481f9da33507f2a14f244ae",
+  "input_revision": "semantic-v2-sha256:b98af40c07a4d20a062c302fb757ed0a38000ccb577df66f0eac9822dc102768",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-adde146f30940b0bfa6818a07bc2b4d0",
+  "evidence_source_item_ids": [
+    "src-chromium-fd9bc8f9c965dcb58fbee9a0",
+    "src-legacy-90abfe0c1c62f47ad90513cf"
+  ]
+}

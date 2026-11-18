@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1b7bee20e3448b06d9542092: Source baseline: Variable system font support on Windows A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-39ddc0fc2da9bba1e7cf71e96257862e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1b7bee20e3448b06d9542092",
+  "input_hash": "4698b8ce1b361f14362f16c7842e67e3beb2e91987b26356ee76c9eba5a7903d",
+  "input_revision": "semantic-v2-sha256:aeca064215bedd0cb3cdaf2531e97aef924828229c4ce01b5767ab074a931aa7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-ebca9d370b42c244627b98384d9d8c53",
+  "evidence_source_item_ids": [
+    "src-chromium-322bb3d2b6d8b8422247f74a",
+    "src-legacy-fe9ca6444145b3c4a20f01be"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-4f2e2baec0e5a3f4b6fcc0a9: Fixed an issue where CredentialStorage::removeCredentialsWithOrigin failed to purge HTTPS credentials that used the default port. (187210150) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f9354cdd5567b82c699a7a6804d2f826",
+  "subject_kind": "source_item",
+  "subject_id": "src-4f2e2baec0e5a3f4b6fcc0a9",
+  "input_hash": "14436c547a7f038a04d8c3b4d8ba3d7630a88226f08c625a8baf30aaef76bddf",
+  "input_revision": "semantic-v2-sha256:5258120175dcc3229c60e0d385a6630b20165688e04c37d9761d89c3cfbb65c1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-0bc623ecea2389316d263a8f92ded4a7",
+  "evidence_source_item_ids": [
+    "src-4f2e2baec0e5a3f4b6fcc0a9"
+  ]
+}

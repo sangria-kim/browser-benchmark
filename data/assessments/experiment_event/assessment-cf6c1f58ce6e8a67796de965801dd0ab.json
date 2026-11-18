@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6564eb232e45ca267a790908: Source baseline: VerifyRequestInitiatorForMirrorHeaders A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cf6c1f58ce6e8a67796de965801dd0ab",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6564eb232e45ca267a790908",
+  "input_hash": "9923620d499a23de65ff06f650a4195f44f16d584571ee02b4f75f0a77f39bb3",
+  "input_revision": "semantic-v2-sha256:c9abfe0df8715b870a1b434e58b0f8987c1d852fc292ce362de674d8c7c66441",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-45fb69a5832a7e00ee479f43899c42b4",
+  "evidence_source_item_ids": [
+    "src-chromium-f8c45e36f0818a71a59e5cf0"
+  ]
+}

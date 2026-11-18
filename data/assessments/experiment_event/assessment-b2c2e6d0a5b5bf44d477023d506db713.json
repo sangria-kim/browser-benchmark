@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8563dd1f8a42726844c8fe63: Source baseline: autofill-ignore-payments-churned-users-strikes-for-testing A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b2c2e6d0a5b5bf44d477023d506db713",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8563dd1f8a42726844c8fe63",
+  "input_hash": "54075e11374bc7c8114b494166eab4399d1f265713b9d2f9dbb380700a7acf3e",
+  "input_revision": "semantic-v2-sha256:c53430e833b32f5ecdb40154392c1c275dc587d3e384ea430218ecea8b232cd9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-e0bd0c805f1d042da9e506a43b7e3fb3",
+  "evidence_source_item_ids": [
+    "src-chromium-0a77b6c6da0a660d78bbbe8b",
+    "src-legacy-18e4589551c00db87460af20"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1225164fa1dc8e078141e05e: Removed the non-standard DataTransferItemList.prototype.item() method to match the HTML specification; use index access such as items[0] instead. (185019165) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-216e7332ce2f35677fd3921b89a3e38a",
+  "subject_kind": "source_item",
+  "subject_id": "src-1225164fa1dc8e078141e05e",
+  "input_hash": "97c8ff63e00c1472eab85ea834bae066f1f4e75f2c5a924aebe6091103e2149b",
+  "input_revision": "semantic-v2-sha256:58ceae436825b19443aea32d683b51d356e1978d36ba6172f5ac89d6a611a0ea",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-3bdae471225141d0ee79c403b345e45c",
+  "evidence_source_item_ids": [
+    "src-1225164fa1dc8e078141e05e"
+  ]
+}

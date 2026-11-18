@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-7052aa951666f260b791531a: Fixed TURN server URLs containing query-string parameters such as ?transport=tcp being rejected, which prevented relay ICE candidates from being gathered. (184556197) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d12ac7033ee595e072a5df775f52ee8b",
+  "subject_kind": "source_item",
+  "subject_id": "src-7052aa951666f260b791531a",
+  "input_hash": "aae4b48026c26f7af69d69f76eca4078cc5af3699b45f1144cf3abdbf8d1938f",
+  "input_revision": "semantic-v2-sha256:7b85f876bb83c0d77ad2e5c5e40cc2dcdc665be4e6000e93f9eb406312d2c441",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-ac07e2c41a0c28da0365ce47e3ec57bf",
+  "evidence_source_item_ids": [
+    "src-7052aa951666f260b791531a"
+  ]
+}

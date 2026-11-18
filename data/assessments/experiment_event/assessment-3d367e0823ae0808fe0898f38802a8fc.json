@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-620eb97a2042fbb02471aba4: Source baseline: contextual-tasks-allow-signed-out-user-in-desktop-android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3d367e0823ae0808fe0898f38802a8fc",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-620eb97a2042fbb02471aba4",
+  "input_hash": "9e139a7ff7a405ff7251c9bed5e4e7bbb008d89edb18c34b815d55dec48f5203",
+  "input_revision": "semantic-v2-sha256:b7ba33295ca67b4d45a1e52d7a86da762061c951a552b3afc10d3846800c44ce",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-b1a767bc15a2e867a1c31f8773a2c576",
+  "evidence_source_item_ids": [
+    "src-chromium-4f72f718e4c4992ee2170c16",
+    "src-legacy-a9f5fba29184944d3ec29287"
+  ]
+}

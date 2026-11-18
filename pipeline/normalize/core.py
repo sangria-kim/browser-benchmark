@@ -22,20 +22,29 @@ def attach_accepted_chrome_history(bundle, accepted):
         old = previous.get(item['source_item_id'])
         if not old or item['revisions'][:len(old['revisions'])] == old['revisions']:
             continue
-        if (len(item['revisions']) != 1 or item['evidence']['source_revision'] != bundle['revision']
-                or instant(item['observed_at']) < instant(old['observed_at'])):
+        if instant(item['observed_at']) < instant(old['observed_at']):
             raise ContractError('Fresh endpoint observation required to attach accepted source history')
-        snapshot = item['revisions'][0]
-        existing = [r['revision_id'] for r in old['revisions']]
-        if snapshot['revision_id'] in existing:
-            if snapshot['revision_id'] != existing[-1]:
-                raise ContractError('Endpoint observation would replay an older accepted snapshot')
+        incoming = item['revisions']
+        existing = old['revisions']
+        # A private handoff can omit snapshots attached during publication.
+        # Join only an exact suffix/prefix overlap, never revision IDs alone.
+        overlap = max((n for n in range(1, min(len(existing), len(incoming)) + 1)
+                       if existing[-n:] == incoming[:n]), default=0)
+        if overlap == len(incoming):
             retained = copy.deepcopy(old)
             retained['temporal_scope'] = copy.deepcopy(item['temporal_scope'])
             result['source_items'][index] = retained
-        else:
-            item['revisions'] = copy.deepcopy(old['revisions']) + item['revisions']
-            validate_transition('source_item', old, item)
+            continue
+        if ((len(incoming) != 1 and not overlap)
+                or item['evidence']['source_revision'] != bundle['revision']
+                or instant(item['observed_at']) < instant(old['observed_at'])):
+            raise ContractError('Fresh endpoint observation required to attach accepted source history')
+        additions = incoming[overlap:]
+        known = {r['revision_id'] for r in existing}
+        if any(r['revision_id'] in known for r in additions):
+            raise ContractError('Endpoint observation would replay or alter an accepted snapshot')
+        item['revisions'] = copy.deepcopy(existing) + additions
+        validate_transition('source_item', old, item)
     return result
 
 

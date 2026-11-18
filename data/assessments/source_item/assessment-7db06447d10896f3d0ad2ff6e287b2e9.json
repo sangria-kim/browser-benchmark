@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-fbe08b9700d0fc66de7048f3: Fixed an issue where webRequest.onBeforeRequest reported the resource type main_frame instead of sub_frame for subframe document loads. (167403388) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7db06447d10896f3d0ad2ff6e287b2e9",
+  "subject_kind": "source_item",
+  "subject_id": "src-fbe08b9700d0fc66de7048f3",
+  "input_hash": "3841d01680963fe06dc921a7c24a1850325544ffe26d2fe2720f820e54253607",
+  "input_revision": "semantic-v2-sha256:e5ce7cd6c19cf644bbf606e7531a3a01b3a1fdce0e472ad3111af6cdb61c101d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-fbe08b9700d0fc66de7048f3"
+  ]
+}

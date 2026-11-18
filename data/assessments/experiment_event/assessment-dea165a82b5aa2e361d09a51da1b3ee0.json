@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b273700ceeb766bf1680dfe2: Source baseline: AppBarAssistantCustomization A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-dea165a82b5aa2e361d09a51da1b3ee0",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b273700ceeb766bf1680dfe2",
+  "input_hash": "91319c556bd64b94a74653a2b6831856a7beef4107b0b07594a98ac5c1e2a7ca",
+  "input_revision": "semantic-v2-sha256:1b72049ee6807c800c3331fc53dfd2e5c04f36fc7e0c1377f8033b0a53812755",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-cbf6cd762ad97305ed3ad254e3ed4dac",
+  "evidence_source_item_ids": [
+    "src-chromium-89e88c80b1af3a2e3babfaa2"
+  ]
+}

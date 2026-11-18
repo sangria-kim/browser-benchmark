@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a2c9a71d5a866f42c8e93650: Source baseline: direct-sockets-udp-send-require-multicast-permission-policy A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0e5ef0a7b33790e7ae6baa33860ad2c3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a2c9a71d5a866f42c8e93650",
+  "input_hash": "0004f2726aacb606606f86347471ed6d909810fec88184cf54012706105a76f8",
+  "input_revision": "semantic-v2-sha256:9bbc81eeeb18409f975b3576ae3a4053377866956492547f06b5924cdc92c1f3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-84438a88b62eeb23305d4105926a6e4e",
+  "evidence_source_item_ids": [
+    "src-chromium-b88f5b96a146c496b4de2773",
+    "src-legacy-582194c47b06594acecaf7ac"
+  ]
+}

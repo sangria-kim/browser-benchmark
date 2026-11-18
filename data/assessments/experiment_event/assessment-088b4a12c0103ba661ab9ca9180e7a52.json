@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8ab870d1401e963ce58db08c: Source baseline: AndroidSettingsUrl A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-088b4a12c0103ba661ab9ca9180e7a52",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8ab870d1401e963ce58db08c",
+  "input_hash": "6a56be9cd8c4c97c1fd497fa352f7ed6dde6c8b7129e86488bfe59965f16c53b",
+  "input_revision": "semantic-v2-sha256:d622607b3b851ac5510f6f4bc8e01d85a74382e0f859c95f3c6666bc51a6351e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-36fb8ef0fe9ae1d9ebca8064d1340d0f",
+  "evidence_source_item_ids": [
+    "src-chromium-310319313064b36c37c536b3"
+  ]
+}

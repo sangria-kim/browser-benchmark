@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1225e9e1e37c223e0e406392: Fixed an issue where Cache.delete() and Cache.keys() swallowed exceptions thrown while constructing a Request from a URL string. (186636105) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-912fa70f9be790aef9a24da4401891bf",
+  "subject_kind": "source_item",
+  "subject_id": "src-1225e9e1e37c223e0e406392",
+  "input_hash": "8e601cb91c040da676d2a92961e66072bceb5129f802c06365850b0b72152dd1",
+  "input_revision": "semantic-v2-sha256:3c72ca3f1c3c02110d891bd4246f50dfe134b4a6ec67558b91e7e7bbcdc37cec",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-d8d321226150806392e4565f223083ff",
+  "evidence_source_item_ids": [
+    "src-1225e9e1e37c223e0e406392"
+  ]
+}

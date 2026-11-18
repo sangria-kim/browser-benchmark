@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-097727dbc72a5d700d944cd1: Source baseline: WebUI Rounded Icons A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-faf0a64a9176297436b5f60a1b6ea97c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-097727dbc72a5d700d944cd1",
+  "input_hash": "4494a13eb8dc24046a01d6deea1612e92651741167463c4981590a186001338c",
+  "input_revision": "semantic-v2-sha256:b64016fd56957ed9ed112a43317d859777fcf07d8f2904ced5caff5813ce5eef",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-001db746e1fd0fe98e6d0cddbce20dab",
+  "evidence_source_item_ids": [
+    "src-chromium-febfbb6d4e9cd36fd8869266",
+    "src-legacy-c73eb8a3ff5079ea6409e291"
+  ]
+}

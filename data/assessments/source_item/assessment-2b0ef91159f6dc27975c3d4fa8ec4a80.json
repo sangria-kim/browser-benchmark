@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ba866c060f4ab1f5fa1170f9: Fixed an issue where hovering links could trigger unnecessarily wide repaints, by repainting ink-overflow-only style changes without running inline layout. (186104270) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2b0ef91159f6dc27975c3d4fa8ec4a80",
+  "subject_kind": "source_item",
+  "subject_id": "src-ba866c060f4ab1f5fa1170f9",
+  "input_hash": "7040e23562ba2a89385c2401b6c294cf4052dcbdd6ddbc1efaae637acddd3232",
+  "input_revision": "semantic-v2-sha256:d37cdadaca5fa25dcd70bb3db59ebfde78a12870e4cc23ffbf5b2ad91f198965",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ba866c060f4ab1f5fa1170f9"
+  ]
+}

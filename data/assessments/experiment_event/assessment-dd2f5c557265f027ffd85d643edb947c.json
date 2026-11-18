@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-49ed88365ddc5af668779553: Source baseline: Android Vertical Tabs A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-dd2f5c557265f027ffd85d643edb947c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-49ed88365ddc5af668779553",
+  "input_hash": "abee7e579661c98cc85e04041de80979dcdd768923b037043fd9c33a50926b32",
+  "input_revision": "semantic-v2-sha256:272d29f2f02e75e8d8ce16c4228224226dcc476493b0f27d677ac57f0f953211",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-6b3a7c393e39a91377834f4d2c142663",
+  "evidence_source_item_ids": [
+    "src-chromium-6367e936ba5f46c961956680",
+    "src-legacy-16a156c1600d5cb70a3f3a32"
+  ]
+}

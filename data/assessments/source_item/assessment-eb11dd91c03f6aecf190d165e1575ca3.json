@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-82f8f1c7466d3d090e708732: Fixed inconsistent CompileError messages when compiling a WebAssembly module with more than one invalid function by always reporting the error for the lowest function index. (140651602) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-eb11dd91c03f6aecf190d165e1575ca3",
+  "subject_kind": "source_item",
+  "subject_id": "src-82f8f1c7466d3d090e708732",
+  "input_hash": "011eb422fc86f5f641ca42a4a93d10fa92ddf6c3cf37a5a63dde9d6a59c03133",
+  "input_revision": "semantic-v2-sha256:9b9e8d526271e0411bd78ad5e21919efd4fbfd2229c2acc3f99af246d760e208",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-333c1585b4a1c033b177f4aa913ef925",
+  "evidence_source_item_ids": [
+    "src-82f8f1c7466d3d090e708732"
+  ]
+}

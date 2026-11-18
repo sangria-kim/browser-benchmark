@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a42a310002788409d0a89c14: Fixed Uint8Array.prototype.setFromBase64() so that nothing is read and no error is thrown when the target array has zero length. (185073630) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a9f73f9d522b3d975b6fa0f45373ec5e",
+  "subject_kind": "source_item",
+  "subject_id": "src-a42a310002788409d0a89c14",
+  "input_hash": "837952c5270a4f7c225f5adb9cd4f4250b434219c9aefe9f5d3d9b3478f52c1f",
+  "input_revision": "semantic-v2-sha256:4aa13f916e2ed8a2533e4c4aa06ffbc5e3b3b617400bbca25c8eff29beab27a8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a42a310002788409d0a89c14"
+  ]
+}

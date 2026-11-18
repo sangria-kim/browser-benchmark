@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d07b7ba74202b1d9c97601c6: Source baseline: AndroidSurfaceControlPartialDamage A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7a82177c372b2e5d4ef56db71ab92ecb",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d07b7ba74202b1d9c97601c6",
+  "input_hash": "53b0283270158352011ea1575352974d6f12d46bb87881f3d46c11318931e7cb",
+  "input_revision": "semantic-v2-sha256:064ae6e94d7013271d8515e914d9186e89ed4679eac55f69fe4c9aa4beec88f2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-f741de878e7e0526fddf25e829d14bab",
+  "evidence_source_item_ids": [
+    "src-chromium-fe46d538306778fd6f0eccf0"
+  ]
+}

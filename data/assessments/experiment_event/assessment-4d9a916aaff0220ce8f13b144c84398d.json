@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1b0a554f02eb901d71fe680c: Source baseline: Enable Perfetto system tracing A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4d9a916aaff0220ce8f13b144c84398d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1b0a554f02eb901d71fe680c",
+  "input_hash": "0077b13803bbd0a1987823c2a7e6002e6dd91cc5d6fd8d3acfa8ae20c582493c",
+  "input_revision": "semantic-v2-sha256:d79a948cbe27e36952c1923125edf907a237fc619d26f30a4eeae740c5802b8f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-06185dec9efa44267ffaf0e5e4cd786e",
+  "evidence_source_item_ids": [
+    "src-chromium-b445403bac470c38bf19d820"
+  ]
+}

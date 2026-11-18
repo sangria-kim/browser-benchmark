@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5f615985b2fb2fa090e8a08f: Source baseline: Android Desktop Bookmark Layout A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-880050457cdb2e471d7abc63e3ba5c84",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5f615985b2fb2fa090e8a08f",
+  "input_hash": "34aafa294d63f69bed694f8467ca27e72b7b058d6c3e47f9aac2f418cc754f0b",
+  "input_revision": "semantic-v2-sha256:e68d3ad4606b69167e3578232fd1e269e796636e019bd1561797e496f78703d0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-567e5ed89495f103af78161ea2281f75",
+  "evidence_source_item_ids": [
+    "src-chromium-2d73194660c89aba1eba103f",
+    "src-legacy-9e717067b23d6547f5039b82"
+  ]
+}

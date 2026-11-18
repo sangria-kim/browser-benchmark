@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-00d45e3012eb0f0cb4da003f: Source baseline: MaliciousApkDownloadCheck A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-aa08d1b71ccddc98c171aa4355c26cf4",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-00d45e3012eb0f0cb4da003f",
+  "input_hash": "deb0da805d2ae1a54d8d040e709f6fe4d8a0a112471c86fb8c8489ede880c0b7",
+  "input_revision": "semantic-v2-sha256:079da6cfbbfb5b6bada8d808932a9f005194ef3d7954fcf4c5cc4385bd125351",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-61817513f706da82ba2e91ac86245da7",
+  "evidence_source_item_ids": [
+    "src-chromium-599e8f5f5c4af7694c027695"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-938f36bf8925e23025b1e045: Source baseline: ResponsiveIframesAsyncResize A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b1af234a79b7d54cfec3836144246892",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-938f36bf8925e23025b1e045",
+  "input_hash": "45405e2c79ec0574b46485d3a25e00edcb75d325d82fb5a7e3881c8db2588cea",
+  "input_revision": "semantic-v2-sha256:fd55cd5c9dae3debd345546b50f8d86b73b88d3f25e03243397a755ef62401a3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-50c9cd41467bafa875313f2ada6a9cbf",
+  "evidence_source_item_ids": [
+    "src-chromium-d2d0615b0dfe188c288f1a59"
+  ]
+}

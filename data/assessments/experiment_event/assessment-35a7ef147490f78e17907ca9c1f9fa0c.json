@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8bbb6de90a1844555d0072fc: Source baseline: omnibox-ml-url-piecewise-mapped-search-blending A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-35a7ef147490f78e17907ca9c1f9fa0c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8bbb6de90a1844555d0072fc",
+  "input_hash": "ee57d20af6a384fa256f9405ed7095a1895d917bcf8d9672cfb644ddb02bac18",
+  "input_revision": "semantic-v2-sha256:1499cc19261ea70395175cd5646067b13465b161ae30af8129c895e49a02b9e1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-81a424c841963ac507507aa9d10881c0",
+  "evidence_source_item_ids": [
+    "src-chromium-ca31e33f2771acd65481fa50"
+  ]
+}

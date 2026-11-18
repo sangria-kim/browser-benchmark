@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b2ab4367567152813dd68acb: Source baseline: Omnibox AIM Image Downscaling A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f1463c3c9517ee519273d67d3432814c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b2ab4367567152813dd68acb",
+  "input_hash": "740d395836d9c4fb8df6c3007dd67eff5f9a9583c172b6cac62ef3bc1f0d8158",
+  "input_revision": "semantic-v2-sha256:1e1b74d16e3c8c915d4d1089dc3f3fc43bdbcafb2ed2ac156d4efda51022c3f5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-69df07de785fe65e61df117250e5f47e",
+  "evidence_source_item_ids": [
+    "src-chromium-9811a988767cc2a514fe66e3",
+    "src-legacy-7ab2bc268327c0be2196339b"
+  ]
+}

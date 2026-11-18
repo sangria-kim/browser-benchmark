@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1158910bd7b568da41eaee8c: Fixed an issue where validation of an HTTP header value did not check its final character, allowing control characters and DEL to be accepted as valid. (187288970) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cfc0d9869ad0e78ce53adb44f10a29ff",
+  "subject_kind": "source_item",
+  "subject_id": "src-1158910bd7b568da41eaee8c",
+  "input_hash": "c804ab9b59880be9c5a437473bc36409b1fdd5c97be0fa41ccce1f0cd95b1d3e",
+  "input_revision": "semantic-v2-sha256:5a845b77e98a1c142222e97831013849a45e7e8fbd4d5c3e432faa6b9c92d82f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-20742014747f6b624a847ad20105cd7c",
+  "evidence_source_item_ids": [
+    "src-1158910bd7b568da41eaee8c"
+  ]
+}

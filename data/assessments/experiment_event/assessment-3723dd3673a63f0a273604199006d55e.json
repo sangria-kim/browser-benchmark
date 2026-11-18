@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-feb6c4dfb5ee1c855f81ce4f: Source baseline: Enable occlusion tracking on Android. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3723dd3673a63f0a273604199006d55e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-feb6c4dfb5ee1c855f81ce4f",
+  "input_hash": "80768d0b18febfc5c972bf8a294ec1ba1d1494151204c83f566255d4f966fb1b",
+  "input_revision": "semantic-v2-sha256:a80bc627d1ed7f7b22d9c3a485e7f37da2b30eae53c140b7e1c335832190cec0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-cf3732f7f0ea61a69b28491548f3dc8c",
+  "evidence_source_item_ids": [
+    "src-chromium-ebd50804584a5ff70915f1b6",
+    "src-legacy-06b00e998ba53238ada60d65"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d22ef7f2918047d5ea9c7d6a: Source baseline: Android beforeunload support A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7baa9381a8a3b0954798920005259029",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d22ef7f2918047d5ea9c7d6a",
+  "input_hash": "fd58c990cd048cffbf5977dc2985fe71607ce9b7813fe97368145452d59b3cd8",
+  "input_revision": "semantic-v2-sha256:52a3d4f6e4c00bc4a07f257fc250b97ce13e4c7b026e59e90b88961c2b4a9c5e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-0912e98c2f6c136d05afda23c664c241",
+  "evidence_source_item_ids": [
+    "src-chromium-303bab0c7b5e577499cb5e06",
+    "src-legacy-66dddf9184c2346da8680c1a"
+  ]
+}
