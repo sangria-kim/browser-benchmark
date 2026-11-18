@@ -1,4 +1,5 @@
 """Project public feature evidence into Korean cards and a compact daily edition."""
+from collections import defaultdict
 import json
 import re
 from datetime import datetime
@@ -17,6 +18,13 @@ CHANNELS = {
     'stable_browser_with_optional_windows_preview_update': '정식판 · Windows 미리보기 필요',
 }
 QUESTIONS = (
+    ('프로필 데이터 분리', '프로필을 바꿔 앱을 열 때 이전 계정의 탭이나 기록이 잠시 노출될 수 있을까?'),
+    ('브라우저 실행 단축', '같은 기기에서 브라우저를 다시 열 때 첫 페이지를 조작할 수 있기까지 얼마나 기다릴까?'),
+    ('그래픽 프로세스 격리', '격리 설정을 바꾸면 지원 기기에서 영상 재생과 페이지 그리기의 안정성이 어떻게 달라질까?'),
+    ('공지 날짜 정정', '공지 날짜 정정을 실제 업데이트와 구별해 사용자에게 어떻게 보여줄까?'),
+    ('기본 브라우저 지정', '시스템 설정으로 이동한 사용자가 기본 브라우저 지정을 마치고 원래 탭으로 돌아올 수 있을까?'),
+    ('데이터 절약', '데이터 절약을 켰을 때 절약량과 페이지 품질의 변화를 사용자가 확인할 수 있을까?'),
+    ('웹 도구 기본값', 'AI가 페이지 도구를 호출하기 전에 사용자가 대상 사이트와 수행할 작업을 확인할 수 있을까?'),
     ('로컬 네트워크|내부망|주변 기기', '사이트가 주변 기기에 접근하려는 이유를 허용 전에 알 수 있을까? 한 번 준 권한은 어디서 되돌릴까?'),
     ('단축키|키보드|접근성', '키보드만 사용할 때 같은 작업을 끝낼 수 있을까? 시스템 단축키나 보조 기술과 충돌하는 단계는 어디일까?'),
     ('다크 모드|웹사이트를 어둡게', '야간에 밝은 페이지를 열 때 글자와 이미지의 가독성을 어떻게 유지할까?'),
@@ -54,7 +62,11 @@ def text_value(value):
     return str(value or '')
 
 
+PENDING_TITLE = '한글 기능 제목 편집 대기'
+
+
 def short_title(identifier, candidates, overrides, summaries):
+    candidates = [v for v in candidates if isinstance(v, str) and v.strip()]
     if identifier in overrides:
         return overrides[identifier]
     specific = summaries['subjects'].get('feature_event:' + identifier, {})
@@ -64,10 +76,38 @@ def short_title(identifier, candidates, overrides, summaries):
         if title in summaries['titles']:
             return summaries['titles'][title]
     for title in candidates:
-        if title and re.search('[가-힣]', title):
-            return re.split(r'[.!?]\s|\n', title)[0][:70]
-    topic = next((t for t in reversed(candidates) if t), identifier)
-    return f'{topic[:48]} · 공식 문서 변경'
+        sentence = re.split(r'[.!?]\s|\n', title)[0].strip()
+        if len(sentence) <= 48 and re.search('[가-힣]', sentence):
+            return sentence
+        # Translate only the documented action. Negations, removals and other
+        # operations require their own copy instead of inheriting an addition.
+        addition = r'^(?:adds?|introduces?) (?:a |an |the )?(?:new )?'
+        if re.match(addition + r'(?:button|control) (?:that |to |for )(?:switch(?:es|ing)?|chang(?:e|es|ing)|adjust(?:s|ing)?) (?:the )?(?:video )?playback (?:speed|rate)\b', sentence, re.I):
+            return '재생 속도 조절 버튼 추가'
+        if re.match(addition + r'(?:keyboard )?shortcut to copy (?:the )?(?:current )?tab (?:URL|address)\b', sentence, re.I):
+            return '현재 탭 주소 복사 단축키 추가'
+        if re.match(addition + r'support for (?:using )?vertical tabs\b', sentence, re.I):
+            return '세로 탭 지원 추가'
+    return PENDING_TITLE
+
+
+def event_scope(event):
+    version = event.get('version')
+    platforms = event.get('platform') or []
+    if event['event_type'] == 'planned_retirement':
+        return ('예고 문서 ' + version if version else '버전 미확인'), platforms, {}
+    if not (event['event_type'].startswith('planned_milestone') or event.get('channel') in ('Proposed', 'Planned')):
+        return version or '미확인', platforms, {}
+    delta = event.get('delta') or {}
+    delta = delta if isinstance(delta, dict) else {}
+    fields = delta.get('current_individual_api_state') or delta.get('individual_api_status') or delta.get('current_individual_state') or {}
+    fields = fields if isinstance(fields, dict) else {}
+    names = {'desktop': 'Desktop', 'android': 'Android', 'ios': 'iOS', 'webview': 'WebView'}
+    targets = {name: str(fields[key]) for key, name in names.items()
+               if isinstance(fields.get(key), int) and fields[key] > 0}
+    milestones = list(dict.fromkeys(targets.values()))
+    target = version or delta.get('current_target_milestone') or ' / '.join(milestones)
+    return (f'목표 {target}' if target else '목표 미확인'), platforms, targets
 
 
 def question_for(card, preferred):
@@ -93,27 +133,26 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
     source_copy = read(board / 'daily/source-copy.json')
     summaries = read(board / 'card-summaries.json')
     cards = []
-    event_sources = {sid for e in events for sid in e.get('source_item_ids', [])}
+    event_sources = defaultdict(dict)
+    for event in events:
+        for sid in event.get('source_item_ids', []):
+            event_sources[kst_day(event['observed_at'])][sid] = event['event_id']
     for e in events:
         ident = e['event_id']
         copy = featured.get(ident, {})
         scope = e.get('scope') or {}
         scope = scope if isinstance(scope, dict) else {'conditions': scope}
-        candidates = [e.get('summary'), (e.get('after') or {}).get('title') if isinstance(e.get('after'), dict) else None]
+        candidates = [e.get('summary'), e.get('title'), (e.get('after') or {}).get('title') if isinstance(e.get('after'), dict) else None]
         title = copy.get('title') or short_title(ident, candidates, overrides, summaries)
         channel = e.get('channel')
         stage = copy.get('stage') or CHANNELS.get(channel)
         if not stage and 'source' in (e.get('verification_status') or '') and e.get('source_revision'):
             stage = '소스 관찰'
-        version = e.get('version') or '미확인'
-        if e['event_type'].startswith('planned_milestone') or channel in ('Proposed', 'Planned'):
-            version = f'목표 {version}' if e.get('version') else '목표 미확인'
-        elif e['event_type'] == 'planned_retirement':
-            version = f'예고 문서 {version}'
+        version, platforms, targets = event_scope(e)
         source_list = [s if isinstance(s, str) else s.get('url') for s in e['sources']]
         cards.append(dict(id=ident, browser=e['browser'], title=title, day=kst_day(e['observed_at']),
                           original=e.get('summary'), brief=copy.get('brief') or e.get('summary') or title,
-                          stage=stage or '단계 미확인', version=version, platform=e.get('platform') or [],
+                          stage=stage or '단계 미확인', version=version, platform=platforms, targets=targets,
                           builds=text_value(scope.get('builds')), condition=copy.get('condition') or text_value(scope.get('conditions')),
                           announced=e.get('announced_at'), effective=e.get('effective_at'), delta=text_value(e.get('delta')),
                           device_test=text_value(scope.get('real_test')) or '실기 확인 기록 없음', sources=[u for u in source_list if safe_url(u)],
@@ -129,9 +168,14 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
         for item in report['items']:
             ident = item['subject_id']
             if (item['selection_kind'] != 'features' or item['subject_kind'] != 'source_item'
-                    or item['action'] != 'selected' or ident in event_sources or ident in source_ids):
+                    or item['action'] != 'selected' or ident in source_ids):
                 continue
             source_ids.add(ident)
+            day = kst_day(item['observed_at'] or item['discovered_at'])
+            duplicate = event_sources[day].get(ident)
+            if duplicate:
+                next(c for c in cards if c['id'] == duplicate).setdefault('aliases', []).append(ident)
+                continue
             fact = item['details']
             urls = [url for url in item['source_urls'] if safe_url(url)]
             copy = source_copy.get(fact['title'], {})
@@ -149,7 +193,7 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
             stage = CHANNELS.get(fact.get('channel'), '단계 미확인')
             basis = {'backfill': '과거 보강', 'initial': '초기 기준선'}.get(item['timing'], '원천 문서')
             card = dict(id=ident, browser=fact['browser'], title=title, original=fact['title'], brief=copy.get('brief') or fact['summary'],
-                        day=kst_day(item['observed_at'] or item['discovered_at']), stage=basis + ' · ' + stage,
+                        day=day, stage=basis + ' · ' + stage,
                         version=f'문서 {version}' if version else '미확인', platform=platform, builds='',
                         condition='공식 문서에서 확인한 내용입니다. 설치본의 적용 여부는 미확인입니다.',
                         announced=item['announced_at'], effective=item['effective_at'], delta='', device_test='실기 확인 기록 없음',
@@ -159,6 +203,7 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
             group = (owner or ident, card['day'], fact['title'], fact['summary'], stage, basis, tuple(card['platform']), item['announced_at'])
             if group in source_groups:
                 grouped = source_groups[group]
+                grouped.setdefault('aliases', []).append(ident)
                 grouped['sources'] = list(dict.fromkeys(grouped['sources'] + urls))
                 if version and version not in grouped['document_versions']:
                     grouped['document_versions'].append(version)
@@ -174,6 +219,7 @@ def make_cards(events, reports, catalog, owners=None, board=DASHBOARD):
         if card['document_versions']:
             card['version'] = '문서 ' + ' / '.join(sorted(card['document_versions']))
     for card in cards:
+        card['title_pending'] = card['title'] == PENDING_TITLE
         card['media'] = [m for m in card['media'] if m['type'] in ('image', 'video') and safe_url(m['url'])]
         card['platform'] = ['플랫폼 미확인' if p == 'unknown' else p for p in card['platform']] or ['플랫폼 미확인']
     return sorted(cards, key=lambda c: (not c['featured'], c['stage'] != '정식판', not c['media'], c['browser'], c['id']))
@@ -185,15 +231,17 @@ def make_issue(day, cards, generated, report=None):
     picked, titles, browsers = [], set(), set()
     for first_pass in (True, False):
         for c in rows:
-            if len(picked) == 3 or c['title'] in titles or (first_pass and c['browser'] in browsers):
+            if c['title_pending'] or len(picked) == 3 or c['title'] in titles or (first_pass and c['browser'] in browsers):
                 continue
             picked.append({k: c[k] for k in ('id', 'browser', 'title', 'platform', 'version', 'stage', 'question')})
+            if c.get('targets'):
+                picked[-1]['targets'] = c['targets']
             if c['featured']:
                 picked[-1]['brief'] = c['brief']
             titles.add(c['title'])
             browsers.add(c['browser'])
     return dict(day=day, generated=generated, revision=report['revision'] if report else 0,
-                completeness=report.get('completeness') if report else None, count=len(rows), stories=picked)
+                completeness=report.get('completeness') if report else None, count=len(rows), pending=sum(c['title_pending'] for c in rows), stories=picked)
 
 
 def source_owners(selection):
@@ -205,10 +253,26 @@ def issue_file(day, revision):
     return f'reports/generated/{day}/newsletter-r{revision}.json'
 
 
-def new_report_issue(dataset, report, selection):
-    reports = [r for r in dataset['report'] if r['date'] < report['date']] + [report]
+def newsletter_files(root, dataset, report, selection):
+    """Freeze the current report and earlier card days that have no edition yet."""
+    day = report['date']
+    initial = root / 'dashboard/daily/initial-issues.json'
+    stored = {(i['day'], i['revision']) for i in read(initial)} if initial.is_file() else set()
+    reports = [read(p) for p in sorted(root.glob('data/reports/history/*/*.json')) if p.parent.name <= day]
+    reports.append(report)
     cutoff = datetime.fromisoformat(report['cutoff'].replace('Z', '+00:00'))
     events = [e for e in dataset['feature_event']
               if datetime.fromisoformat(e['observed_at'].replace('Z', '+00:00')) <= cutoff]
     cards = make_cards(events, reports, read(DASHBOARD / 'catalog.json'), source_owners(selection))
-    return make_issue(report['date'], cards, datetime.now(KST).date().isoformat(), report)
+    previous_reports = {r['date'] for r in reports}
+    to_publish = {c['day']: None for c in cards if c['day'] < day and c['day'] not in previous_reports}
+    to_publish[day] = report
+    generated = datetime.now(KST).date().isoformat()
+    files = {}
+    for issue_day, frozen_report in sorted(to_publish.items()):
+        rev = frozen_report['revision'] if frozen_report else 0
+        path = issue_file(issue_day, rev)
+        if (issue_day, rev) not in stored and not (root / path).is_file():
+            issue = make_issue(issue_day, cards, generated, frozen_report)
+            files[path] = json.dumps(issue, ensure_ascii=False, indent=2) + '\n'
+    return files

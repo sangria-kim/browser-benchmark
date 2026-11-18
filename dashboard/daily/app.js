@@ -18,13 +18,17 @@ const brands = {
 };
 const brand = (id) => brands[id]?.[0] || id;
 const byId = new Map(data.cards.map((c) => [c.id, c]));
+for (const c of data.cards) {
+  for (const alias of c.aliases || []) byId.set(alias, c);
+}
 const byDay = new Map();
 for (const c of data.cards) {
   if (!byDay.has(c.day)) byDay.set(c.day, []);
   byDay.get(c.day).push(c);
 }
 const days = [...byDay.keys()].sort().reverse();
-const issueDays = [...new Set(data.issues.map((i) => i.day))];
+const editions = [...data.drafts, ...data.issues];
+const issueDays = [...new Set(editions.map((i) => i.day))].sort().reverse();
 const layoutNames = { board: '브라우저 보드', observatory: '관측소' };
 const sections = { updates: '기능 카드', letter: '뉴스레터' };
 const weekday = (day) =>
@@ -37,7 +41,11 @@ const href = (layout, section, day, rev) =>
 const mark = (browser) =>
   '<span class="browser-name"><i class="dot ' + esc(browser) + '"></i>' + esc(brand(browser)) + '</span>';
 const chip = (value) => '<span class="chip">' + esc(value) + '</span>';
-const scopeLine = (c) => [c.version === '미확인' ? '버전 미확인' : c.version, ...c.platform].join(' · ');
+function scopeLine(c) {
+  const targets = Object.keys(c.targets || {});
+  const platforms = targets.length ? ['목표 ' + targets.join(' / ')] : c.platform;
+  return [c.version === '미확인' ? '버전 미확인' : c.version, ...platforms].join(' · ');
+}
 let state,
   query = '',
   browserFilter = '',
@@ -57,8 +65,8 @@ function parseRoute() {
   const dates = section === 'letter' ? issueDays : days;
   const day = dates.includes(date) ? date : dates[0];
   const issue =
-    data.issues.find((i) => i.day === day && String(i.revision) === revision) ||
-    data.issues.find((i) => i.day === day);
+    editions.find((i) => i.day === day && String(i.revision) === revision) ||
+    editions.find((i) => i.day === day);
   return { layout, section, day, issue };
 }
 function navLink(url, label, active) {
@@ -122,6 +130,9 @@ function archive() {
     '<label class="compact-date">' +
     (section === 'letter' ? '호 선택' : '수집일 선택') +
     '<select id="compact-day">' +
+    (section === 'letter' && issue && !issue.generated
+      ? option(href(layout, section, day, issue.revision), day + ' · 발행 전', true)
+      : '') +
     dates.map((i) => option(i.url, i.label, i.active)).join('') +
     '</select></label><nav class="dates" aria-label="날짜 선택">' +
     dates
@@ -290,9 +301,13 @@ function letter() {
       ' · 평가 ' +
       (completeness[i.completeness.evaluation] || '미확인')
     : '공개 자료 기준';
+  const publication = i.generated ? '생성 ' + i.generated : '발행 전 미리보기';
+  const emptyText = i.pending
+    ? '한글 기능 제목을 편집하고 있습니다.'
+    : '이 호에 연결된 기능 카드가 없습니다.';
   $('panel').innerHTML =
-    '<div class="letter-tools"><span>생성 ' +
-    esc(i.generated) +
+    '<div class="letter-tools"><span>' +
+    esc(publication) +
     ' · 한국시간</span><button data-print>인쇄 / PDF</button></div><article class="letter"><header><p class="kicker">BROWSER BENCHMARK / DAILY BRIEF</p><h2>브라우저 데일리</h2><div class="issue-line"><b>' +
     esc(i.day) +
     '호' +
@@ -301,8 +316,10 @@ function letter() {
     i.count +
     '건 · 주요 변화 ' +
     i.stories.length +
-    '건</span></div></header>' +
-    (lines || '<p class="empty">이 호에 연결된 기능 카드가 없습니다.</p>') +
+    '건' +
+    (i.pending ? ' · 한글 제목 대기 ' + i.pending + '건' : '') +
+    '</span></div></header>' +
+    (lines || '<p class="empty">' + emptyText + '</p>') +
     (qs.length
       ? '<section class="questions"><h3>삼성 브라우저에서 짚어볼 점</h3>' +
         qs.map((q) => '<p>' + esc(q) + '</p>').join('') +
@@ -310,8 +327,8 @@ function letter() {
       : '') +
     '<footer><span>' +
     esc(note) +
-    ' · 생성 ' +
-    esc(i.generated) +
+    ' · ' +
+    esc(publication) +
     '</span><span>1 / 1</span></footer></article>';
 }
 function render() {
@@ -381,6 +398,15 @@ function showDetails(c, button) {
     ['발표일', c.announced || '미확인'],
     ['적용일', c.effective || '미확인'],
   ];
+  if (Object.keys(c.targets || {}).length) {
+    facts.push([
+      '확인된 플랫폼별 목표',
+      Object.entries(c.targets)
+        .map(([name, value]) => name + ' ' + value)
+        .join(' / '),
+    ]);
+    facts.push(['출시 버전', '미확인']);
+  }
   if (c.builds) facts.push(['빌드', c.builds]);
   const figures = media
     .map(
@@ -417,7 +443,18 @@ function showDetails(c, button) {
     esc(c.title) +
     '</h2><p class="detail-brief">' +
     esc(c.brief) +
-    '</p><dl>' +
+    '</p>' +
+    (c.title_pending
+      ? '<p>' +
+        external(
+          'https://github.com/sangria-kim/browser-benchmark/blob/work/browser-benchmark/dashboard/daily/titles.json',
+          '한글 제목 등록',
+        ) +
+        ' · <code>' +
+        esc(c.id) +
+        '</code></p>'
+      : '') +
+    '<dl>' +
     facts.map(([k, v]) => '<div><dt>' + esc(k) + '</dt><dd>' + esc(v) + '</dd></div>').join('') +
     '</dl>' +
     (c.condition ? '<p>' + esc(c.condition) + '</p>' : '') +
@@ -426,7 +463,7 @@ function showDetails(c, button) {
     (c.media.length ? '' : attach) +
     '</section>' +
     '<section class="detail-question"><h3>삼성 브라우저 검토 질문</h3><p>' +
-    esc(c.question) +
+    esc(c.title_pending ? '한글 요약과 함께 검토 질문을 정리할 예정입니다.' : c.question) +
     '</p></section><section><h3>근거와 변경 내용</h3>' +
     (c.delta ? '<p>' + esc(c.delta) + '</p>' : '') +
     '<ul>' +

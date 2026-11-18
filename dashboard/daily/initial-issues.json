@@ -5,6 +5,7 @@
     "revision": 0,
     "completeness": null,
     "count": 11,
+    "pending": 0,
     "stories": [
       {
         "id": "chrome-android-multiprofile-startup-data-registration-b967e34f97b2",
@@ -15,7 +16,7 @@
         ],
         "version": "미확인",
         "stage": "소스 실험",
-        "question": "다른 기기나 계정에서 다시 로그인할 때 어느 인증 수단을 선택해야 하는지 알 수 있을까?"
+        "question": "프로필을 바꿔 앱을 열 때 이전 계정의 탭이나 기록이 잠시 노출될 수 있을까?"
       },
       {
         "id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
@@ -26,7 +27,7 @@
         ],
         "version": "150+",
         "stage": "정식판 · Windows 미리보기 필요",
-        "question": "‘기존 프로세스로 브라우저 실행 단축’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+        "question": "같은 기기에서 브라우저를 다시 열 때 첫 페이지를 조작할 수 있기까지 얼마나 기다릴까?"
       },
       {
         "id": "opera-web-ai-local-apis-stable-139-inclusion-20261027",
@@ -48,6 +49,7 @@
     "revision": 0,
     "completeness": null,
     "count": 9,
+    "pending": 0,
     "stories": [
       {
         "id": "chrome-composebox-persistent-aim-button-realbox-modified-f117b891e09e",
@@ -90,6 +92,7 @@
     "revision": 0,
     "completeness": null,
     "count": 2,
+    "pending": 0,
     "stories": [
       {
         "id": "chrome-glic-print-menu-item-removal-835ee59ef722",
@@ -113,7 +116,7 @@
         ],
         "version": "미확인",
         "stage": "소스 실험",
-        "question": "‘안드로이드 그래픽 프로세스 격리 실험’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+        "question": "격리 설정을 바꾸면 지원 기기에서 영상 재생과 페이지 그리기의 안정성이 어떻게 달라질까?"
       }
     ]
   },
@@ -123,6 +126,7 @@
     "revision": 0,
     "completeness": null,
     "count": 1,
+    "pending": 0,
     "stories": [
       {
         "id": "chrome-svg-textpath-side-list-omission-20261102",
@@ -143,6 +147,7 @@
     "revision": 0,
     "completeness": null,
     "count": 7,
+    "pending": 0,
     "stories": [
       {
         "id": "brave-android-1-98-60-release-note-date-clarification-20261103",
@@ -153,7 +158,7 @@
         ],
         "version": "1.98.60",
         "stage": "정식판",
-        "question": "‘안드로이드 정식판 공지 날짜 정정’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+        "question": "공지 날짜 정정을 실제 업데이트와 구별해 사용자에게 어떻게 보여줄까?"
       },
       {
         "id": "chrome-gemini-enterprise-list-omission-20261103",
@@ -185,6 +190,7 @@
     "revision": 0,
     "completeness": null,
     "count": 14,
+    "pending": 0,
     "stories": [
       {
         "id": "edge-notification-scam-auto-revocation-156",
@@ -232,6 +238,7 @@
     "revision": 0,
     "completeness": null,
     "count": 26,
+    "pending": 0,
     "stories": [
       {
         "id": "vivaldi-android-open-in-app-8-3-stable-20261105",
@@ -281,6 +288,7 @@
     "revision": 0,
     "completeness": null,
     "count": 15,
+    "pending": 0,
     "stories": [
       {
         "id": "edge-oneauth-migration-completed-stable-157-20261105",
@@ -302,7 +310,7 @@
         ],
         "version": "미확인",
         "stage": "소스 관찰",
-        "question": "‘기본 브라우저 지정 안내 실험’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+        "question": "시스템 설정으로 이동한 사용자가 기본 브라우저 지정을 마치고 원래 탭으로 돌아올 수 있을까?"
       },
       {
         "id": "whale-desktop-address-bar-ai-query-5-41-429-3-20261106",
@@ -323,6 +331,7 @@
     "revision": 0,
     "completeness": null,
     "count": 6,
+    "pending": 0,
     "stories": [
       {
         "id": "chrome-css-corner-shorthand-target-159-20261108",
@@ -331,9 +340,15 @@
         "platform": [
           "플랫폼 미확인"
         ],
-        "version": "목표 미확인",
+        "version": "목표 159",
         "stage": "제안",
-        "question": "지원 범위가 바뀔 때 영향을 받는 사용자를 어떻게 식별하고 대체 경로를 언제 안내할까?"
+        "question": "지원 범위가 바뀔 때 영향을 받는 사용자를 어떻게 식별하고 대체 경로를 언제 안내할까?",
+        "targets": {
+          "Desktop": "159",
+          "Android": "159",
+          "iOS": "159",
+          "WebView": "159"
+        }
       },
       {
         "id": "edge-agent-profile-policy-158-20261106",
@@ -365,6 +380,7 @@
     "revision": 0,
     "completeness": null,
     "count": 1,
+    "pending": 0,
     "stories": [
       {
         "id": "edge-entra-passkey-sync-mobile-stable-157-20261109",
@@ -387,6 +403,7 @@
     "revision": 0,
     "completeness": null,
     "count": 9,
+    "pending": 0,
     "stories": [
       {
         "id": "firefox-pip-playback-speed-stable-160-20261110",
@@ -435,6 +452,7 @@
     "revision": 0,
     "completeness": null,
     "count": 8,
+    "pending": 0,
     "stories": [
       {
         "id": "whale-macos13-5414295-support-evidence-20261111",
@@ -480,6 +498,7 @@
     "revision": 0,
     "completeness": null,
     "count": 10,
+    "pending": 0,
     "stories": [
       {
         "id": "opera-site-permission-removal-restored-stable-140-20261110",
@@ -524,6 +543,7 @@
     "revision": 0,
     "completeness": null,
     "count": 4,
+    "pending": 0,
     "stories": [
       {
         "id": "opera-ios-data-saver-nov12-announcement-20261112",
@@ -534,7 +554,7 @@
         ],
         "version": "미확인",
         "stage": "정식판",
-        "question": "‘아이폰 데이터 절약 기능 공식 소개’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+        "question": "데이터 절약을 켰을 때 절약량과 페이지 품질의 변화를 사용자가 확인할 수 있을까?"
       },
       {
         "id": "brave-webmcp-default-nightly-11022-20261112",
@@ -547,7 +567,7 @@
         ],
         "version": "1.102.2",
         "stage": "나이틀리",
-        "question": "‘나이틀리 웹 도구 기본값 소스 변경’에서 달라지는 사용 단계를 삼성 브라우저에서도 확인할 수 있을까?"
+        "question": "AI가 페이지 도구를 호출하기 전에 사용자가 대상 사이트와 수행할 작업을 확인할 수 있을까?"
       },
       {
         "id": "chrome-android-accessibility-note-class-source-20261113",
@@ -568,6 +588,7 @@
     "revision": 0,
     "completeness": null,
     "count": 1,
+    "pending": 0,
     "stories": [
       {
         "id": "chrome-android-headphone-disconnect-pause-source-20261114",
@@ -591,6 +612,7 @@
       "evaluation": "complete"
     },
     "count": 5,
+    "pending": 0,
     "stories": [
       {
         "id": "src-82284d6c37170a8065617d7d",
@@ -640,6 +662,7 @@
       "evaluation": "complete"
     },
     "count": 2,
+    "pending": 0,
     "stories": [
       {
         "id": "src-7c79c98a33925d760454e795",
@@ -676,6 +699,7 @@
       "evaluation": "complete"
     },
     "count": 0,
+    "pending": 0,
     "stories": []
   }
 ]
