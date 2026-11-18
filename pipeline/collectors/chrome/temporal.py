@@ -20,8 +20,9 @@ def compare(current, baseline, *, since, cutoff, boundary_time, current_time):
         raise ValueError('Endpoint revisions must differ')
     result = copy.deepcopy(current)
 
-    def index(bundle):
-        facts = {f['experiment_id']: f for f in bundle['facts']}
+    def index(bundle, source_ids=None):
+        facts = {f['experiment_id']: f for f in bundle['facts']
+                 if source_ids is None or f['source_item_id'] in source_ids}
         groups, symbols = defaultdict(list), defaultdict(set)
         for f in facts.values():
             d = f['definition']
@@ -31,7 +32,9 @@ def compare(current, baseline, *, since, cutoff, boundary_time, current_time):
         return facts, groups, symbols
 
     before, old_groups, old_symbols = index(baseline)
-    after, new_groups, new_symbols = index(current)
+    observed = {s['source_item_id'] for s in current['source_items']
+                if s['evidence']['source_revision'] == current['revision']}
+    after, new_groups, new_symbols = index(current, observed)
     boundary_unresolved = {ref for fact in before.values() for ref in fact['semantic']['unresolved_references']}
 
     def signature(fact, facts, stack=()):
@@ -111,6 +114,16 @@ def compare(current, baseline, *, since, cutoff, boundary_time, current_time):
                      baseline_committed_at=boundary_time, current_committed_at=current_time,
                      change=change, reason=reason)
         for fact in facts:
+            scopes[fact['experiment_id']] = scope
+    # Retained evidence is not an observation of the current endpoint.
+    for fact in result['facts']:
+        if fact['source_item_id'] not in observed:
+            scope = dated_scope(since, cutoff)
+            scope.update(status='context', basis='endpoint_comparison', precision='interval',
+                         baseline_revision=baseline['revision'], current_revision=current['revision'],
+                         baseline_committed_at=boundary_time, current_committed_at=current_time,
+                         change='unknown',
+                         reason='Retained identity was not observed at the current endpoint.')
             scopes[fact['experiment_id']] = scope
     for experiment in result['experiments']:
         experiment['temporal_scope'] = copy.deepcopy(scopes[experiment['experiment_id']])
