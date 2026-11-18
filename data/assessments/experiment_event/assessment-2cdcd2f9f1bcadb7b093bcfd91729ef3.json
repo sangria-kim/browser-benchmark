@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-be91db78c0ffc74a25fc8908: Source baseline: browsing-history-filter-by-device A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2cdcd2f9f1bcadb7b093bcfd91729ef3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-be91db78c0ffc74a25fc8908",
+  "input_hash": "b580b517cc2ebaf135412ed5dd44404574b74a3335c7ba3ba225749f2ace4c04",
+  "input_revision": "semantic-v2-sha256:56aff942d73fcbde3aa6c36f21ade7f6add403c14ebe55327f3e86421e6d29b2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-e429990877e3f73a1d28e76ace9e8055",
+  "evidence_source_item_ids": [
+    "src-chromium-bdc47aa0975bf78f0d9f83fa",
+    "src-legacy-e8e1961b9b946c3ace251b8f"
+  ]
+}

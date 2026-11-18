@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-5ea27dc67d5df4707c603329: Fixed non-ASCII Last-Event-ID request header values being UTF-8 encoded twice, including for EventSource reconnects through a redirect. (190165073) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d3f1280265758818b745a4bbe54c62cf",
+  "subject_kind": "source_item",
+  "subject_id": "src-5ea27dc67d5df4707c603329",
+  "input_hash": "49c351ba86d8475a23710876bbea563822ad0941d427aec40676e3d9c6b65f32",
+  "input_revision": "semantic-v2-sha256:af6062128f00e64e9b7809d8c685d7f9d06404af23d6ef6329e018e7323863e8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-c33bbaabc1fc03d52c18c47c74fda08a",
+  "evidence_source_item_ids": [
+    "src-5ea27dc67d5df4707c603329"
+  ]
+}

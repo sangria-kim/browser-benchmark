@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-840abfb855db77f441127ea0: Source baseline: HttpsFirstModeDefaultSettingPairsWithEsb A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d782ff717e5204fe473a8fc0631bd850",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-840abfb855db77f441127ea0",
+  "input_hash": "e799cbd8bec32505678f50a0643d220aa32268befdb4421b9fd6dcb99ebbf84e",
+  "input_revision": "semantic-v2-sha256:69f3ef193326a1d4247fbc16c45711c4bb49acfe491fb584a59dc07bbfb9bda5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-ed4dfbee119786ec295b3ee90ce16dfb",
+  "evidence_source_item_ids": [
+    "src-chromium-04c6c61dc5bb553f4a2f8eec"
+  ]
+}

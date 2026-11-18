@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-745a917f64909b12da4059bd: Source baseline: Android Desktop Bookmark Dialog A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-32c00935ba0df4fa8bf24609f20eefc5",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-745a917f64909b12da4059bd",
+  "input_hash": "bf8ac8c84b8edccb385ff2fc2ad021de14c41b26d0f1f313458a2aefdfd6afd0",
+  "input_revision": "semantic-v2-sha256:651426058342be99ad3ba476141b4b15e477b78802bce70fac7e7a29619d922b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-9a313cbd57913e18398b8ea61f79b929",
+  "evidence_source_item_ids": [
+    "src-chromium-407efb8b4c88528292c6c64b",
+    "src-legacy-7904cca2fb00d258b9891f4a"
+  ]
+}

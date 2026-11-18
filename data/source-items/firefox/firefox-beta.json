@@ -6,22 +6,22 @@
     "browser": "firefox",
     "item_key": "note-792525",
     "item_type": "general",
-    "title": "Firefox now supports the CSS Typed Object Model, which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such",
-    "summary": "Firefox now supports the CSS Typed Object Model, which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet.",
+    "title": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, suc",
+    "summary": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet.",
     "channel": "beta",
     "platform": [
       "unknown"
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Web Platform",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
-      "excerpt": "Firefox now supports the CSS Typed Object Model, which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet."
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
+      "excerpt": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet."
     },
     "record_status": "parsed",
     "origin": "baseline",
@@ -95,6 +95,32 @@
         "revision_id": "sr-3fa921b44d25681faaa0cebb",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, suc",
+        "summary": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Web Platform",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "9a9705f23876ff26d5a956ceacdcd5f87df6baadc2f3f053a1468cb725d56f7a",
+        "revision_id": "sr-c445e4ac143ab77b4c302f42",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -103,7 +129,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -113,7 +139,7 @@
       "change": null,
       "reason": "Official item date."
     },
-    "item_content_sha256": "6e416e274776b57fa256e536747d211d3104b63045373ce7f01791202c90a05a"
+    "item_content_sha256": "9a9705f23876ff26d5a956ceacdcd5f87df6baadc2f3f053a1468cb725d56f7a"
   },
   {
     "schema_version": 2,
@@ -130,13 +156,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Fixed Firefox hanging on macOS 26+ when opening Spotlight with a large number of bookmarks."
     },
     "record_status": "parsed",
@@ -211,6 +237,32 @@
         "revision_id": "sr-f46c9222026430b6aecf1c1d",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Fixed Firefox hanging on macOS 26+ when opening Spotlight with a large number of bookmarks.",
+        "summary": "Fixed Firefox hanging on macOS 26+ when opening Spotlight with a large number of bookmarks.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Fixed Firefox hanging on macOS 26+ when opening Spotlight with a large number of bookmarks."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "b9082dce37a1bb8c5dde06bcbd828f40d51a3aa796e2d1520e53df56f286eaff",
+        "revision_id": "sr-fcb23a523bc536ee996a750a",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -219,7 +271,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -246,13 +298,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "New",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "On Firefox for Android , Extension users now see a more prominent message when an extension has an update pending that requires approval for new permissions or data collection consent."
     },
     "record_status": "parsed",
@@ -327,6 +379,32 @@
         "revision_id": "sr-dc9d3e64ef50a12b212a4707",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "On Firefox for Android , Extension users now see a more prominent message when an extension has an update pending that requires approval for new permissions or ",
+        "summary": "On Firefox for Android , Extension users now see a more prominent message when an extension has an update pending that requires approval for new permissions or data collection consent.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "New",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "On Firefox for Android , Extension users now see a more prominent message when an extension has an update pending that requires approval for new permissions or data collection consent."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "e6ae6dec4ec788e2b754f9cb632c4eed04e069ea5226f476c6cbdb56f7b94c40",
+        "revision_id": "sr-7c415285f00aeddc10665363",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -335,7 +413,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -362,13 +440,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "New",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "You can now copy the current tab's URL with a keyboard shortcut. No shortcut is assigned by default, so you can choose your own key combination in Customize keyboard shortcuts in Firefox Settings. Learn more"
     },
     "record_status": "parsed",
@@ -443,6 +521,32 @@
         "revision_id": "sr-38e7ae8563cf766cf97c84c0",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "You can now copy the current tab's URL with a keyboard shortcut. No shortcut is assigned by default, so you can choose your own key combination in Customize key",
+        "summary": "You can now copy the current tab's URL with a keyboard shortcut. No shortcut is assigned by default, so you can choose your own key combination in Customize keyboard shortcuts in Firefox Settings. Learn more",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "New",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "You can now copy the current tab's URL with a keyboard shortcut. No shortcut is assigned by default, so you can choose your own key combination in Customize keyboard shortcuts in Firefox Settings. Learn more"
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "3d837bb81a12f920e3b17127e97a37c2d1be414403405c8706a76f6656d82fc9",
+        "revision_id": "sr-8421002703c86a1e7a9969e4",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -451,7 +555,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -478,13 +582,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Web Platform",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Firefox now supports web custom formats in the Async Clipboard API ( navigator.clipboard.read() and write() ), letting websites copy and paste their own data formats between pages of the same origin."
     },
     "record_status": "parsed",
@@ -559,6 +663,32 @@
         "revision_id": "sr-f2268458f17343fa36202386",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Firefox now supports web custom formats in the Async Clipboard API ( navigator.clipboard.read() and write() ), letting websites copy and paste their own data fo",
+        "summary": "Firefox now supports web custom formats in the Async Clipboard API ( navigator.clipboard.read() and write() ), letting websites copy and paste their own data formats between pages of the same origin.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Web Platform",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Firefox now supports web custom formats in the Async Clipboard API ( navigator.clipboard.read() and write() ), letting websites copy and paste their own data formats between pages of the same origin."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "e715ca8327397bd490ea9b3637a083dcd018f06602182b1d6cab30f5524224b1",
+        "revision_id": "sr-5b2c004c5646ece62afefcb1",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -567,7 +697,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -594,13 +724,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Fixed the Windows taskbar staying visible over full-screen Firefox windows after switching back from another application."
     },
     "record_status": "parsed",
@@ -675,6 +805,32 @@
         "revision_id": "sr-1603dac24f64ec51d6017536",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Fixed the Windows taskbar staying visible over full-screen Firefox windows after switching back from another application.",
+        "summary": "Fixed the Windows taskbar staying visible over full-screen Firefox windows after switching back from another application.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Fixed the Windows taskbar staying visible over full-screen Firefox windows after switching back from another application."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "f753835ef5e2ff60622d626f1653b8a591529b19031280b7d3c905312270debf",
+        "revision_id": "sr-2811bf2fea9c5ce9c20a4d10",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -683,7 +839,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -710,13 +866,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Significantly improved rendering performance for backdrop-filter on certain Android devices."
     },
     "record_status": "parsed",
@@ -791,6 +947,32 @@
         "revision_id": "sr-8f7513a1bf699efa796b7d22",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Significantly improved rendering performance for backdrop-filter on certain Android devices.",
+        "summary": "Significantly improved rendering performance for backdrop-filter on certain Android devices.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Significantly improved rendering performance for backdrop-filter on certain Android devices."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "495d0f921f3e3ee1fe648a5c0fd04d8729cbf7011a9798131d0f9829376acad3",
+        "revision_id": "sr-4e1cdc105a02ee676e73ef3b",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -799,7 +981,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -826,13 +1008,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Fixed typing with an input method, such as for Japanese or Korean, stopping after the first character in Canva Docs."
     },
     "record_status": "parsed",
@@ -907,6 +1089,32 @@
         "revision_id": "sr-e2813f93e7df1f2c2a129e13",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Fixed typing with an input method, such as for Japanese or Korean, stopping after the first character in Canva Docs.",
+        "summary": "Fixed typing with an input method, such as for Japanese or Korean, stopping after the first character in Canva Docs.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Fixed typing with an input method, such as for Japanese or Korean, stopping after the first character in Canva Docs."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "39113a7710d95a55960301822870026a31578582f9dd67fbc51471fd490d1edf",
+        "revision_id": "sr-d6dd172993c8ca52d1803515",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -915,7 +1123,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -942,13 +1150,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Changed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Browsing history imported from Chrome now includes how often you visited each page, so the sites you use most rank higher in address bar suggestions and shortcuts."
     },
     "record_status": "parsed",
@@ -1023,6 +1231,32 @@
         "revision_id": "sr-47e34e51d7ad33d678d72d98",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Browsing history imported from Chrome now includes how often you visited each page, so the sites you use most rank higher in address bar suggestions and shortcu",
+        "summary": "Browsing history imported from Chrome now includes how often you visited each page, so the sites you use most rank higher in address bar suggestions and shortcuts.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Changed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Browsing history imported from Chrome now includes how often you visited each page, so the sites you use most rank higher in address bar suggestions and shortcuts."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "f8c6349bf8c2fc00c7e0b798729e83c75c20c67f38aae7a13f28233a28b6dd86",
+        "revision_id": "sr-99fd850c5d4396f475904206",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1031,7 +1265,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1042,6 +1276,79 @@
       "reason": "Official item date."
     },
     "item_content_sha256": "f8c6349bf8c2fc00c7e0b798729e83c75c20c67f38aae7a13f28233a28b6dd86"
+  },
+  {
+    "schema_version": 2,
+    "source_item_id": "src-6b2d93449b6545528033b5cb",
+    "source_id": "firefox-beta",
+    "browser": "firefox",
+    "item_key": "note-792561",
+    "item_type": "general",
+    "title": "On Firefox for Android, default homepage shortcuts other than Google now make room for the sites visited most often, more regions get their own set of default s",
+    "summary": "On Firefox for Android, default homepage shortcuts other than Google now make room for the sites visited most often, more regions get their own set of default shortcuts, and there is no longer a limit on how many shortcu",
+    "channel": "beta",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": "2026-11-09",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
+    "evidence": {
+      "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+      "section": "Changed",
+      "source_revision": null,
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
+      "excerpt": "On Firefox for Android, default homepage shortcuts other than Google now make room for the sites visited most often, more regions get their own set of default shortcuts, and there is no longer a limit on how many shortcu"
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "On Firefox for Android, default homepage shortcuts other than Google now make room for the sites visited most often, more regions get their own set of default s",
+        "summary": "On Firefox for Android, default homepage shortcuts other than Google now make room for the sites visited most often, more regions get their own set of default shortcuts, and there is no longer a limit on how many shortcu",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Changed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "On Firefox for Android, default homepage shortcuts other than Google now make room for the sites visited most often, more regions get their own set of default shortcuts, and there is no longer a limit on how many shortcu"
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "dddc3bcc8e4dea6565a2dbaaade503c651082f193b42aadcc67a38adf95a4a1b",
+        "revision_id": "sr-619944856c2c12c6c1c128c7",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/#note-792561",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-09",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "item_content_sha256": "dddc3bcc8e4dea6565a2dbaaade503c651082f193b42aadcc67a38adf95a4a1b"
   },
   {
     "schema_version": 2,
@@ -1058,13 +1365,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Changed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items."
     },
     "record_status": "parsed",
@@ -1139,6 +1446,32 @@
         "revision_id": "sr-2d9ff7effa1d0ca7f5eda395",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+        "summary": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Changed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "8306ed7573ab1c38dd48cda8edec336ddfa71cbafc2f97f22297162c7658ff0c",
+        "revision_id": "sr-96caa2cc5568c811c430b263",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1147,7 +1480,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1174,13 +1507,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "New",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "The Themes page in the Add-ons Manager now includes a Classic themes section, with the Proton theme from earlier versions of Firefox, a Firefox OLED theme, and a selection of solid-colored themes."
     },
     "record_status": "parsed",
@@ -1255,6 +1588,32 @@
         "revision_id": "sr-341e1171a800244c9d7e52a2",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "The Themes page in the Add-ons Manager now includes a Classic themes section, with the Proton theme from earlier versions of Firefox, a Firefox OLED theme, and ",
+        "summary": "The Themes page in the Add-ons Manager now includes a Classic themes section, with the Proton theme from earlier versions of Firefox, a Firefox OLED theme, and a selection of solid-colored themes.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "New",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "The Themes page in the Add-ons Manager now includes a Classic themes section, with the Proton theme from earlier versions of Firefox, a Firefox OLED theme, and a selection of solid-colored themes."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "8b40c68ead70adc1a8097b86f2a01e5d3604d1000dad50fbfc707fe315015e81",
+        "revision_id": "sr-39aacd02930d897e725b3496",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1263,7 +1622,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1290,13 +1649,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Fixed WebRTC video calls with some services sending low-resolution H.264 video since Firefox 158."
     },
     "record_status": "parsed",
@@ -1371,6 +1730,32 @@
         "revision_id": "sr-be695f9d772b4b3a3a4da1e4",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Fixed WebRTC video calls with some services sending low-resolution H.264 video since Firefox 158.",
+        "summary": "Fixed WebRTC video calls with some services sending low-resolution H.264 video since Firefox 158.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Fixed WebRTC video calls with some services sending low-resolution H.264 video since Firefox 158."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "ba910131394b138ca12cf9860119b7e17b8bea59c75f820e4940d5de7614b1db",
+        "revision_id": "sr-b4057e489390b31539e7b907",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1379,7 +1764,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1406,13 +1791,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Developer",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Fixed the Developer Tools eyedropper showing the wrong colors after the page is scrolled."
     },
     "record_status": "parsed",
@@ -1487,6 +1872,32 @@
         "revision_id": "sr-58d26d12b086e61a95b0811f",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Fixed the Developer Tools eyedropper showing the wrong colors after the page is scrolled.",
+        "summary": "Fixed the Developer Tools eyedropper showing the wrong colors after the page is scrolled.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Developer",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Fixed the Developer Tools eyedropper showing the wrong colors after the page is scrolled."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "a1fb87e552a9babc5f5619c939567ed0e4e51e81c9a1ba1b7abca9df77753793",
+        "revision_id": "sr-5e6c8d6719b52970c7ba87af",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1495,7 +1906,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1522,13 +1933,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Fixed some tabs not being restored after a restart when the saved session referred to a tab group that no longer existed."
     },
     "record_status": "parsed",
@@ -1603,6 +2014,32 @@
         "revision_id": "sr-a6d7077ee57f8da87b77152d",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Fixed some tabs not being restored after a restart when the saved session referred to a tab group that no longer existed.",
+        "summary": "Fixed some tabs not being restored after a restart when the saved session referred to a tab group that no longer existed.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Fixed some tabs not being restored after a restart when the saved session referred to a tab group that no longer existed."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "fcd5410a83fbaa552a1ea76ad2423de0b5b7f6720f412d4cafea8c540e606255",
+        "revision_id": "sr-1667c61fa2d9f8f8318986e8",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1611,7 +2048,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1638,13 +2075,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Web Platform",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Firefox now supports the random() CSS function, which allows authors to introduce randomness into their styles, generating a random value in a given range (with an optional increment) that is usable anywhere that math fu"
     },
     "record_status": "parsed",
@@ -1719,6 +2156,32 @@
         "revision_id": "sr-8ca164130fb27d8f43d2fef8",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Firefox now supports the random() CSS function, which allows authors to introduce randomness into their styles, generating a random value in a given range (with",
+        "summary": "Firefox now supports the random() CSS function, which allows authors to introduce randomness into their styles, generating a random value in a given range (with an optional increment) that is usable anywhere that math fu",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Web Platform",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Firefox now supports the random() CSS function, which allows authors to introduce randomness into their styles, generating a random value in a given range (with an optional increment) that is usable anywhere that math fu"
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "1abb52af28a2dfa2a39c30339fb9bfc131bcb0737a764c98c2dde3dee7c6532d",
+        "revision_id": "sr-74dbf88e5a40af68edde1f2d",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1727,7 +2190,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1754,13 +2217,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Fixed",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "On Firefox for Android, fixed pages that request landscape orientation being saved as shrunken portrait pages when printing or saving to PDF."
     },
     "record_status": "parsed",
@@ -1835,6 +2298,32 @@
         "revision_id": "sr-9e531aa90243a022ec6071ec",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "On Firefox for Android, fixed pages that request landscape orientation being saved as shrunken portrait pages when printing or saving to PDF.",
+        "summary": "On Firefox for Android, fixed pages that request landscape orientation being saved as shrunken portrait pages when printing or saving to PDF.",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Fixed",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "On Firefox for Android, fixed pages that request landscape orientation being saved as shrunken portrait pages when printing or saving to PDF."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "fix",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "991e82d9c4a874190605da06d4d4aa591aee36a98ca3cb63b93785bc568fef61",
+        "revision_id": "sr-3cd6afe0e6e8337be9e06300",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1843,7 +2332,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1870,13 +2359,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Developer",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Developer Information"
     },
     "record_status": "parsed",
@@ -1951,6 +2440,32 @@
         "revision_id": "sr-48828b999617ea9d4791c029",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Developer Information",
+        "summary": "Developer Information",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Developer",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Developer Information"
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "4fe60f50cbe524914c65c512876897efe8c125bd6b137ae63084e86a2adbbe1e",
+        "revision_id": "sr-6d876f9ab6e3724fc173e0c6",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -1959,7 +2474,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",
@@ -1986,13 +2501,13 @@
     ],
     "version": null,
     "published_at": "2026-11-09",
-    "observed_at": "2026-11-17T02:51:56.565237+00:00",
+    "observed_at": "2026-11-18T01:19:15.684878+00:00",
     "evidence": {
       "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
       "section": "Web Platform",
       "source_revision": null,
-      "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
-      "observed_at": "2026-11-17T02:51:56.565237+00:00",
+      "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+      "observed_at": "2026-11-18T01:19:15.684878+00:00",
       "excerpt": "Firefox now supports nested arbitrary substitution functions in the primary parameters of var() , attr() , and env() ; for example, var(attr(data-theme-prop type(<custom-ident>))) and env(var(--safe-area-block-start)) ."
     },
     "record_status": "parsed",
@@ -2067,6 +2582,32 @@
         "revision_id": "sr-e1d01f4efd54f55d83d8b9c7",
         "content_sha256": "99a6350af11ccce44355ce6ed63f38436a6f44ffe56e1a71842c1568184bcdba",
         "source_revision": null
+      },
+      {
+        "title": "Firefox now supports nested arbitrary substitution functions in the primary parameters of var() , attr() , and env() ; for example, var(attr(data-theme-prop typ",
+        "summary": "Firefox now supports nested arbitrary substitution functions in the primary parameters of var() , attr() , and env() ; for example, var(attr(data-theme-prop type(<custom-ident>))) and env(var(--safe-area-block-start)) .",
+        "evidence": {
+          "url": "https://www.firefox.com/en-US/firefox/161.0beta/releasenotes/",
+          "section": "Web Platform",
+          "source_revision": null,
+          "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+          "observed_at": "2026-11-18T01:19:15.684878+00:00",
+          "excerpt": "Firefox now supports nested arbitrary substitution functions in the primary parameters of var() , attr() , and env() ; for example, var(attr(data-theme-prop type(<custom-ident>))) and env(var(--safe-area-block-start)) ."
+        },
+        "published_at": "2026-11-09",
+        "observed_at": "2026-11-18T01:19:15.684878+00:00",
+        "channel": "beta",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "0e652d118f9a7a3fff559e5f2333ca089b08502bf666a51e311c0f3c74292a1a",
+        "revision_id": "sr-8ad9bccdc410b742d7360817",
+        "content_sha256": "5a008c59f81d1e21ea69e9ede18e6795809221e9f127f9990faf813dc79b6647",
+        "source_revision": null
       }
     ],
     "experiment_kind": null,
@@ -2075,7 +2616,7 @@
     "temporal_scope": {
       "version": 1,
       "since": "2026-01-01",
-      "cutoff": "2026-11-16T12:53:40.560982+00:00",
+      "cutoff": "2026-11-17T23:30:24.003777+00:00",
       "status": "in_period",
       "basis": "publication",
       "evidence_date": "2026-11-09",

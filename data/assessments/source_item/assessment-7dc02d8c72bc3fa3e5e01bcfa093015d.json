@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-720fa0a2f7df6d0e9676b2f1: Fixed an issue where an AV1 sequence header that exactly filled the buffer was incorrectly rejected due to an off-by-one bounds check. (187306821) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7dc02d8c72bc3fa3e5e01bcfa093015d",
+  "subject_kind": "source_item",
+  "subject_id": "src-720fa0a2f7df6d0e9676b2f1",
+  "input_hash": "632e88bdbcb9dbf651e9b00a071a727eda082ed9e1f3bc9e3598616812354296",
+  "input_revision": "semantic-v2-sha256:1ffd346f20475238f24dcc6da4d3a2b40e7af6597ceb42ba4055360822f7ec63",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-720fa0a2f7df6d0e9676b2f1"
+  ]
+}

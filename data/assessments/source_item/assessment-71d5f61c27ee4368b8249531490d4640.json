@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-abccc087e9c75e593b67170b: Fixed an issue where the WebAssembly validator rejected i31.get_s and i31.get_u when the operand’s static type was a bottom reference type. (186660590) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-71d5f61c27ee4368b8249531490d4640",
+  "subject_kind": "source_item",
+  "subject_id": "src-abccc087e9c75e593b67170b",
+  "input_hash": "faa7dc81e9717401859da1966533fbddee90bbe864648b21612e6f1eccfd51b3",
+  "input_revision": "semantic-v2-sha256:789bc2058969dc659e68c24c976f0f1524e8631637a63694b9bd067f57e5a1cc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-abccc087e9c75e593b67170b"
+  ]
+}

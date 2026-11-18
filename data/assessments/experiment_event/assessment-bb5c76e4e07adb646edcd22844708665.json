@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5f3587d46e09e5fe5f1bc811: Source baseline: SessionRestoreAfterCrash A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bb5c76e4e07adb646edcd22844708665",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5f3587d46e09e5fe5f1bc811",
+  "input_hash": "79d43d0f9a96f809c4bf7f0d7472901d8eeb1c283e0073a8ce4253f661f4600f",
+  "input_revision": "semantic-v2-sha256:1e3c9d704dedaf2f0d772616f085e2e855dc1c25a4cda50bef42aa15b8012e9c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-a1d99fd7f985dae680c46d442859da9b",
+  "evidence_source_item_ids": [
+    "src-chromium-5fdec1a3497c3f96f881c43d"
+  ]
+}

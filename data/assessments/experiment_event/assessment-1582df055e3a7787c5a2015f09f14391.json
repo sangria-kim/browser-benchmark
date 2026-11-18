@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-14bac189b72e27134914a533: Source baseline: Enable location provider manager for Geolocation API A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1582df055e3a7787c5a2015f09f14391",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-14bac189b72e27134914a533",
+  "input_hash": "fd25e781bc34d01928fa022f5577481280058e0ce3a95209e5e9fba765fe2f9f",
+  "input_revision": "semantic-v2-sha256:cd77f1c79ca4bc9c25bf07254b91467d4a2431bc63a38a5c8edcfb1c89be972b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-6660ad22105098b71a20d9cca0104e96",
+  "evidence_source_item_ids": [
+    "src-chromium-b4c9645f505ee00edeb65526",
+    "src-legacy-e3a6aad34cdd2a8daa6df03a"
+  ]
+}

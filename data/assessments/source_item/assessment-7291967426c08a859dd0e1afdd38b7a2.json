@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-16697c028869e41b9e2b6176: Fixed a streaming fetch() response body being withheld from the reader until the next network chunk arrived. (185883588) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7291967426c08a859dd0e1afdd38b7a2",
+  "subject_kind": "source_item",
+  "subject_id": "src-16697c028869e41b9e2b6176",
+  "input_hash": "6a924c346e8cba88919bca0657d9aeee180b24f557f1d23eced0a67d8a7e31e2",
+  "input_revision": "semantic-v2-sha256:c0b9c3a8ab9260242988e11624720d1696e7959f46f33641ac5002a62ff64dc0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-c0b7e61f0a9e5b2aa43d500800a16d81",
+  "evidence_source_item_ids": [
+    "src-16697c028869e41b9e2b6176"
+  ]
+}

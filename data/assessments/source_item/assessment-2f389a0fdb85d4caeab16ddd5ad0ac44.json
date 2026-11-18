@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-f22cdf6a9254320599191242: Allows PerformanceObserver.observe({ type: \"long-animation-frame\", durationThreshold }) to use the existing durationThreshold option (currently supported only for Event Timing) instead of a hardcoded 50ms threshold. Subj A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2f389a0fdb85d4caeab16ddd5ad0ac44",
+  "subject_kind": "source_item",
+  "subject_id": "src-f22cdf6a9254320599191242",
+  "input_hash": "df00209a3685d95635040447d8f7b56cc90d736b0b6eb14866da64160d860a87",
+  "input_revision": "semantic-v2-sha256:7fa824b98e3fc7facabd4b8f7cb05af804876f3f37c9e144e2527665add6a72c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-f22cdf6a9254320599191242"
+  ]
+}

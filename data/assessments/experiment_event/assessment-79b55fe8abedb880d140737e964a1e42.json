@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a37e38e587b23a8c306451fe: Source baseline: Device Trust Connector on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-79b55fe8abedb880d140737e964a1e42",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a37e38e587b23a8c306451fe",
+  "input_hash": "449cb32d80eb29c7c3337cf4c32c24600b262068027394dc182e7dfbd041cdf1",
+  "input_revision": "semantic-v2-sha256:3ff4d7b00f29285f5a9f16e90d0c05f3176962c2a4c30dd8ec803965e6466be1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-055aa6badd377faff7e3cfe4329cb8a8",
+  "evidence_source_item_ids": [
+    "src-chromium-864436db48c54c77b328d5b7",
+    "src-legacy-934c539e393bdcc83cbc5c4f"
+  ]
+}

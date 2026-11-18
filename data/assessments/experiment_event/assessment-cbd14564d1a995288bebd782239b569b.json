@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-41dd9cd43d931733951334e3: Source baseline: DiceInterceptSanitizeGaiaUrl A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cbd14564d1a995288bebd782239b569b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-41dd9cd43d931733951334e3",
+  "input_hash": "e58820ce9f64169017649529faa47177720b0a6a061d11752bca764fb7bb5e29",
+  "input_revision": "semantic-v2-sha256:eb8d2790e7bd170cead0eedf02fb3e00dc0511f4ce3a36c63219d1cdc5ef4a38",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-c1cf9e40469910f21b0cbcba531cfc9d",
+  "evidence_source_item_ids": [
+    "src-chromium-5215e6e36ab76846b0232acf"
+  ]
+}

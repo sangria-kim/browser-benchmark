@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6d6111333affc01272a0f2d2: Fixed getAttribLocation() and getUniformLocation() not reporting an INVALID_OPERATION error when querying an unlinked program with a reserved name prefix. (185565011) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-24ad752e81116c1636142acd641d69a0",
+  "subject_kind": "source_item",
+  "subject_id": "src-6d6111333affc01272a0f2d2",
+  "input_hash": "31d7e78613c5ccc994a86477b594325dd5a64aa18613970cae931dc3a7c7228d",
+  "input_revision": "semantic-v2-sha256:b617b4b096526d4b16a7a2e532201ce94255b8878fb86967d7650b4d92322e2d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-bddaffe8208a69e4acf7388a744baead",
+  "evidence_source_item_ids": [
+    "src-6d6111333affc01272a0f2d2"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6f888a2ffbf476d32af64b93: Source baseline: SetHTMLCanRunScripts A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e7af14d4fec83367b2a6b5302ba82786",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6f888a2ffbf476d32af64b93",
+  "input_hash": "130d4aaf1f52f07dce8779497e6ded276eef2a510355134c0b60c375a74da4c9",
+  "input_revision": "semantic-v2-sha256:96801286b65f1646f67d192c37c136d79b6e1edad6f32f70791db828c2ef35b5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-cae46c855a70281630926dad16f884bd",
+  "evidence_source_item_ids": [
+    "src-chromium-6f6cdf94487667c30f542243"
+  ]
+}

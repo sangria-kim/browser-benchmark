@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-2a765aac8d74a8867ab9e548: Fixed NULL characters being dropped instead of replaced with U+FFFD when setting innerHTML on elements such as <textarea> , <title> , and <style> . (187277178) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ca9b38e4939fea4429f89628b8407ffa",
+  "subject_kind": "source_item",
+  "subject_id": "src-2a765aac8d74a8867ab9e548",
+  "input_hash": "9558a907bd2ea7f60860db5607abdf0be79b04130392ece6c06de6cdbf8436cc",
+  "input_revision": "semantic-v2-sha256:c5f80f4fb92ad798ba18de593536b6c5613c0e92c9e57e6188ee9a182d25c113",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-9fc80c2e36057bd90b5bad2ea96ceeb2",
+  "evidence_source_item_ids": [
+    "src-2a765aac8d74a8867ab9e548"
+  ]
+}

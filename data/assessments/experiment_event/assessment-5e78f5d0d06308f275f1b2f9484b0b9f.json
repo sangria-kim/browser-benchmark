@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-471d7f5e5855c690de36284d: Source baseline: persist-across-reboots A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5e78f5d0d06308f275f1b2f9484b0b9f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-471d7f5e5855c690de36284d",
+  "input_hash": "ad99a21e9e4b2ff86ab37bab9c742174af6c506432a44f5c6e403e68b0cf04c4",
+  "input_revision": "semantic-v2-sha256:b23325ecac64fde2cd4262874eec7795243b17599ab4607d156144ffb4b71813",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-9fd48e098435cf558c6a8e0bcf001bc7",
+  "evidence_source_item_ids": [
+    "src-chromium-401e949e3500951dff488625"
+  ]
+}

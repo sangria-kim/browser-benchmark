@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-965ed6ea032efb3e6a577f7d: Fixed an issue where black video-range pixel buffers were produced with super-black values instead of legal black. (187309125) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-946fc477949d3fb734b5fd00562a85d5",
+  "subject_kind": "source_item",
+  "subject_id": "src-965ed6ea032efb3e6a577f7d",
+  "input_hash": "682474021368a85f5ee62e9da3201d3632248232b14712a15e52f3ff76de0fdf",
+  "input_revision": "semantic-v2-sha256:9680ff748bf423e8aae0a1907ca642849df7241739afd2b01c73712856beb216",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-658dcd9e91ddb9e081f36ed7057863d0",
+  "evidence_source_item_ids": [
+    "src-965ed6ea032efb3e6a577f7d"
+  ]
+}

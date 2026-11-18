@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-1bb84a70710ad5fcc5d28db2: Source baseline: ClientSideDetectionTrickToBill A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8be15b32b312108f385dd9726720031c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-1bb84a70710ad5fcc5d28db2",
+  "input_hash": "13fc004fb8e9b5d99ee542b848ac5b55e40382570b3a55b9b24930e42f66e350",
+  "input_revision": "semantic-v2-sha256:6975a0b16dcba88d48089780313005a90786de71ff71c16a51b1f09a0a8b2c43",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-a10c223416c73a3856cc658127022825",
+  "evidence_source_item_ids": [
+    "src-chromium-2e73a19ae0be175f2935bef5"
+  ]
+}

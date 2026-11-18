@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-3dd977e901648d530e351e9e: Fixed scroll-driven animations with a zero-length attachment range, such as contain 50% contain 50% , producing infinite computed keyframe offsets. (185204758) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-91c88bbb8c27eb11026ca8c97fa8dff5",
+  "subject_kind": "source_item",
+  "subject_id": "src-3dd977e901648d530e351e9e",
+  "input_hash": "bb7dd9e76b60eb6420744a27631479aa9353e8e985767822d2d40f1b78dfbd91",
+  "input_revision": "semantic-v2-sha256:c9c1af7901bb888e81b46034f50eb512c2590476426175445e6187c909db978b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-56ee1bdbbf86b7f21c12a4fb7d5db5dc",
+  "evidence_source_item_ids": [
+    "src-3dd977e901648d530e351e9e"
+  ]
+}

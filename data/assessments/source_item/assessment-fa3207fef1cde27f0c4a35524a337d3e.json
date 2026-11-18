@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6df193efa7cff1b9f108e5fd: Fixed an issue where regular expression lookbehind assertions could fail to match, or match at an invalid position, due to incorrect handling of surrogate pairs in the regular expression interpreter. (186536137) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fa3207fef1cde27f0c4a35524a337d3e",
+  "subject_kind": "source_item",
+  "subject_id": "src-6df193efa7cff1b9f108e5fd",
+  "input_hash": "1fb1e6b144e888e29e2d46effa7bc6836dee80f5622641a418ca8a7729f87163",
+  "input_revision": "semantic-v2-sha256:a7a90abb229a3439ca8461116b0d2fc27838da2134d8f1a0044565a3ae53a56a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-5e30b8f51f328d4ffabbdaf7db270d84",
+  "evidence_source_item_ids": [
+    "src-6df193efa7cff1b9f108e5fd"
+  ]
+}

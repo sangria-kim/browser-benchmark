@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-cd9fa9540e6dd0e12c0851c1: Source baseline: Secure Payment Confirmation Credential Discovery Mode A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c189df4dca69c544e912f0a5ac248442",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-cd9fa9540e6dd0e12c0851c1",
+  "input_hash": "c9c4ebbffa72a7631dec29fe00c97ac8581e1844e52e6126abda6ee2d12b264d",
+  "input_revision": "semantic-v2-sha256:f3fabbd727a76122686938cb35db421e9372d1029dc751564d6624617fe45452",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-e25c22ccfb6a1e8df4d92444646ebf01",
+  "evidence_source_item_ids": [
+    "src-chromium-e82b29de340d820bd8dbad10",
+    "src-legacy-49b2630d9bc7ae9c5c70249d"
+  ]
+}

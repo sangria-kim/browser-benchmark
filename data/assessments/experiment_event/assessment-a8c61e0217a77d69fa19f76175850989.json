@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-770939d559a33dbea9d94d76: Source baseline: ClientSideDetectionServerModelRolloutAndroid A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a8c61e0217a77d69fa19f76175850989",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-770939d559a33dbea9d94d76",
+  "input_hash": "8cd54301b3785a6f4345e23258de8c11b4431c3fb3e2298fa0a83a3da7ff2111",
+  "input_revision": "semantic-v2-sha256:8c00cf7bf79cb2f1c44915d1897a353f6841a446af925fce39085509b6748dbd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-a957417dde6bc3abab64c598cecfb2e5",
+  "evidence_source_item_ids": [
+    "src-chromium-5850e5053b147d80aa36842b"
+  ]
+}

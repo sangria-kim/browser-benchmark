@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a7611b75e490146597dc1eac: Source baseline: SecurePaymentConfirmationCapabilities A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f27fc88fb47e4cf3162e7db23775bf6f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a7611b75e490146597dc1eac",
+  "input_hash": "4f9a63e551d60bff6c61a77a4a3e0607985cb2208611a2aaa64cd777ee5914cb",
+  "input_revision": "semantic-v2-sha256:56a828f1c29cc71acbbdda43270ed33bbaf6e5c1e525162a27ef3c596fc286d7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-15c6692d1c9437b527cac1123d9a01e0",
+  "evidence_source_item_ids": [
+    "src-chromium-15766059cd35abcf4ff39a68"
+  ]
+}

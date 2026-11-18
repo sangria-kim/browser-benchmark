@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-bf44dc10c2e53fb38410154a: Source baseline: EditContextCodePointDeletion A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d82e807c85e130aae3302d9b76c86af9",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-bf44dc10c2e53fb38410154a",
+  "input_hash": "c4e76cedacb8335bdd820f4700f94d3a0f4a709c40e229688d6207a6c8dfeed8",
+  "input_revision": "semantic-v2-sha256:6fe9aca7af0c8689716e621e6537aedfd7e87234c18c240c421dfcdafb3476be",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-fbb56697b4b441afdb71c85376684dc0",
+  "evidence_source_item_ids": [
+    "src-chromium-b40186dc81f9c83e2b03afec"
+  ]
+}

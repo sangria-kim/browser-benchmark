@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d101c37f24bbec3a072bb653: Fixed content in flex containers being cut off, by reverting a change to the flex base size of items with min-width or max-width . (191245011) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c93ab7fc5e25222f5171dd8d191bfa83",
+  "subject_kind": "source_item",
+  "subject_id": "src-d101c37f24bbec3a072bb653",
+  "input_hash": "49fba8a7b5cabefc85517835f0b58ca502c03542552df89eec4ff5f77cc0ebc2",
+  "input_revision": "semantic-v2-sha256:4cd07e0d2d2c2eafb55ed4cc57d238923b4abfba098201cd23ccea76177fee88",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-1b3663779dcc2a0dc3a792b9786b1207",
+  "evidence_source_item_ids": [
+    "src-d101c37f24bbec3a072bb653"
+  ]
+}

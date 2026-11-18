@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-680e96642fb7740ff1025d8b: Fixed an issue where an off-by-one error in the bottom-row check caused canvas noise injection to misclassify the bottom-left pixel. (186640624) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-92ea2d7ec62ec4032206b0031d1a058c",
+  "subject_kind": "source_item",
+  "subject_id": "src-680e96642fb7740ff1025d8b",
+  "input_hash": "b104d16980ec28594cc6b7789a7e03412a97289658e2379f74f11ea5ebda5ed4",
+  "input_revision": "semantic-v2-sha256:f3c5f2fb4a3f4c9a4103c880ef2d1fcbba9a58f5b84ccf8888934f69bd6de67e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-f99bd595686b1c7f6ab928788e03c0d9",
+  "evidence_source_item_ids": [
+    "src-680e96642fb7740ff1025d8b"
+  ]
+}

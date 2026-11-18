@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-00e15bc68dd82b8bb85ffb82: Source baseline: Enable Save As system file dialog on Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5a6a98345a1e11cfc715f4eb6783d02e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-00e15bc68dd82b8bb85ffb82",
+  "input_hash": "3abd096e96951b0dfdd453e2bfdd0733085d2397273d468d88392445c8d6f277",
+  "input_revision": "semantic-v2-sha256:c64b7d90e133fa52ae0d6c68657787ef54f861efee7c8ff0d86abc994a08a6fc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-9aad20c9e94ee503e31209051534a20f",
+  "evidence_source_item_ids": [
+    "src-chromium-bcdf7ae29f64b8db4df25644",
+    "src-legacy-30e006f1533f15616805dbff"
+  ]
+}

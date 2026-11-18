@@ -1,0 +1,327 @@
+{
+  "schema_version": 2,
+  "selection_kind": "flags",
+  "as_of": "2026-11-18T01:39:53.362847+00:00",
+  "input_hash": "19ddbe2492901ab5b40a56f3a4c6838ac1c6fe9062f3e18b87f3801139bac259",
+  "rule_version": "pm-selection-v3.0.0",
+  "current": [
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-5eb94af241708f8869909b7173ce5ddd",
+      "catalog_id": "exp-chromium-020c9a0390955bd679839457",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "experiment_kind": "flag_entry"
+    }
+  ],
+  "history": [
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-8dd2099c32c619c966da0a22",
+      "assessment_id": "assessment-73c19a5d939f58e2984883a794dc796a",
+      "catalog_id": "exp-chromium-681d22ecc3663c3ea87d9d73",
+      "event_ids": [
+        "event-8dd2099c32c619c966da0a22"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-387d5eeb7aa6dcee03b142ec6d932799",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-16T03:05:09Z"
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-fd7d947d568ffafd39ff292e751905ae",
+      "catalog_id": "exp-chromium-020c9a0390955bd679839457",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-7017fffa21cbb1da40f7a657fdbdc32a",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-16T03:05:09Z"
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-0db854749b764739f198dd82aea58aa9",
+      "catalog_id": "exp-chromium-020c9a0390955bd679839457",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-6b39f963da6be34bf791b4c251794d86",
+      "previous_assessment_id": "assessment-fd7d947d568ffafd39ff292e751905ae",
+      "action": "changed",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-8dd2099c32c619c966da0a22",
+      "assessment_id": "assessment-77fb36ca839cec247d0774d5bef15778",
+      "catalog_id": "exp-chromium-681d22ecc3663c3ea87d9d73",
+      "event_ids": [
+        "event-8dd2099c32c619c966da0a22"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-ae28775db1ddac506b15df99adc9716d",
+      "previous_assessment_id": "assessment-73c19a5d939f58e2984883a794dc796a",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "experiment_event",
+      "subject_id": "event-00038b3b82de04c8632ce44c",
+      "assessment_id": "assessment-5eb94af241708f8869909b7173ce5ddd",
+      "catalog_id": "exp-chromium-020c9a0390955bd679839457",
+      "event_ids": [
+        "event-00038b3b82de04c8632ce44c"
+      ],
+      "experiment_kind": "flag_entry",
+      "change_id": "selection-e7993e7652ddd9d8db3610d9daf910b5",
+      "previous_assessment_id": "assessment-0db854749b764739f198dd82aea58aa9",
+      "action": "changed",
+      "effective_at": "2026-11-18T01:39:53.362847+00:00"
+    }
+  ],
+  "collection_scope": {
+    "version": "dated-endpoints-v1",
+    "since": "2026-01-01",
+    "cutoff": "2026-11-17T23:30:24.003777+00:00",
+    "timezone": "Asia/Seoul",
+    "source_windows": [
+      {
+        "source_id": "brave-android-changelog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-enterprise",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-platform-status",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chromium-source",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "chromium-source",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-beta-archive",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-mobile-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-mobile-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-stable-archive",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-ios",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "firefox-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "legacy",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "opera-desktop",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "opera-mobile",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "opera-news",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-technology-preview",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "vivaldi-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "vivaldi-desktop",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "vivaldi-ios",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "whale-notices",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "whale-release-history",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      }
+    ],
+    "chrome_endpoints": [
+      {
+        "baseline_revision": "d6855ba8c6f271ee35a39ecf9dd4b009ef3075be",
+        "current_revision": "c714c7f60bf03932174577d560ebce0f16881fcb",
+        "baseline_committed_at": "2025-12-31T14:00:34Z",
+        "current_committed_at": "2026-11-17T23:27:43Z"
+      }
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c86600667708a420795af276: Source baseline: Prerender2ReuseHost A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d8234333ce31d2c8758730785fa18e0f",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c86600667708a420795af276",
+  "input_hash": "d5a00d5edd81e54c532970e0de1a71b413a44ce61cda2ce0f20817d4b9aa5b99",
+  "input_revision": "semantic-v2-sha256:1f976501ea8029d42ded2e9b6b9d8d90db151ba9408d8091c7b32cebc8b9d902",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-c28f8e586fd55b7a386880211e9a5b3a",
+  "evidence_source_item_ids": [
+    "src-chromium-96806cedc17686966f247922"
+  ]
+}

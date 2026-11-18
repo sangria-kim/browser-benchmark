@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-9789bac40015935a3b07ebfd: Source baseline: AudioRendererMixer Immediate Pause A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-fbf39d7a508df495788ad54d9ebcccfe",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-9789bac40015935a3b07ebfd",
+  "input_hash": "334dbeb68803d99c81907e349f203b54f1898d8e34bc37968e4b5d032b6ed057",
+  "input_revision": "semantic-v2-sha256:a17afe8add4c71585f872162749348a992f5bc825995ac3ed10813b0bd7a653e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-31d87ac5b7bd072589364cded14434e4",
+  "evidence_source_item_ids": [
+    "src-chromium-9ddc4d09faf805b3bc0c806e",
+    "src-legacy-0025795638b13c40554f2093"
+  ]
+}

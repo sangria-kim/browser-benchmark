@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-11c618a8440682847c4eb9f7: Fixed document.fonts.ready never resolving when an unused @font-face has a failing local() source followed by a url() source. (191158203) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0cc0796e6e062eb6411e7678929c5035",
+  "subject_kind": "source_item",
+  "subject_id": "src-11c618a8440682847c4eb9f7",
+  "input_hash": "329b9bf315174e32d5713d128aff771a09dfb34da4dc1f96141a355d0b7a8acd",
+  "input_revision": "semantic-v2-sha256:5461de226c785d5ba46fb5c8097053166c4c430a24f9d2fad79ced4957690a85",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-7c402d8375f031ecd8ac4a429e885cc1",
+  "evidence_source_item_ids": [
+    "src-11c618a8440682847c4eb9f7"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-1c2ab0733b5b95e5bb231ba5: Fixed an issue where deleting a property of a dictionary prototype in place did not invalidate the megamorphic store cache. (186513123) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d2b78585f1535a4d3d3af5f98a88e190",
+  "subject_kind": "source_item",
+  "subject_id": "src-1c2ab0733b5b95e5bb231ba5",
+  "input_hash": "020638f59572386f70b345c37fef85ce29b1bad5013b6b754cb83d2b001c4431",
+  "input_revision": "semantic-v2-sha256:c66eb9862dee62b8d9ad0bb6c86547be5994f5fa92e2f13289ca2ef03fde2aee",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-3494b9197db133cc775ddb3fdececdad",
+  "evidence_source_item_ids": [
+    "src-1c2ab0733b5b95e5bb231ba5"
+  ]
+}

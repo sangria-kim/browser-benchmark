@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c6b4dfae93c8041b559537a7: Source baseline: Global Privacy Control API A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-895c1e9f747fdd21c1c530dd050bd2bd",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c6b4dfae93c8041b559537a7",
+  "input_hash": "a9905ce2a81dc0a965d44609bf48fb974e6b8f60387da048a06c7c0904367898",
+  "input_revision": "semantic-v2-sha256:3abff07a60fbee805481b14bf20b488bbcaa55c267fb04a6b9c0d8cce0be2224",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-6b8c5a2476dd5e6a0672759915c10015",
+  "evidence_source_item_ids": [
+    "src-chromium-d7bde838e841fbad1b390e44",
+    "src-legacy-0c59646e283af9d10d588656"
+  ]
+}

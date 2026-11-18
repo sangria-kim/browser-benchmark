@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-d3a15f05fb2c12b5094cc365: Fixed an issue where a WebGPU external texture imported from a video element using WebM or MSE playback rendered as a black placeholder instead of the video frame. (186470526) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-70fde623ccee51f9513886a5183b86e9",
+  "subject_kind": "source_item",
+  "subject_id": "src-d3a15f05fb2c12b5094cc365",
+  "input_hash": "cc1bc13c785c11c43522a5005fd0d171e22b5f25ad8ed173f62f9afe86c584e3",
+  "input_revision": "semantic-v2-sha256:1088b4ad9e5d9a2018b676ffc92acbe6d524532f662731ba0fa58e1e6bd928a7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-4998eff12fe47ffdfe1de396be6d0e41",
+  "evidence_source_item_ids": [
+    "src-d3a15f05fb2c12b5094cc365"
+  ]
+}

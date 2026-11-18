@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-47a2eeafa92547e5b50198c5: Fixed an issue where MediaRecorder could hold back a lone video keyframe indefinitely instead of using it to start a new recording segment. (186229843) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c0a55c05163fb6703d118da98656a408",
+  "subject_kind": "source_item",
+  "subject_id": "src-47a2eeafa92547e5b50198c5",
+  "input_hash": "47c41dd7c3add5ec7fa05cb4e36a7e1fe10313955b2ddba930d05d6e152bfac9",
+  "input_revision": "semantic-v2-sha256:172218275fab3dbd24010598427f63aa389d531079e329be40e874f71dcefe45",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-e5e2f1e45a9c397a691aaa0976aab707",
+  "evidence_source_item_ids": [
+    "src-47a2eeafa92547e5b50198c5"
+  ]
+}

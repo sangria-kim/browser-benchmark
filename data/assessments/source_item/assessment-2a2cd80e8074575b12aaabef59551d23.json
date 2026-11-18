@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-89a68757cc6714fef162a23c: Fixed an issue where Atomics.isLockFree() converted its argument with a 32-bit integer conversion instead of ToIntegerOrInfinity , which could cause it to incorrectly return true for large size values. (186610789) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2a2cd80e8074575b12aaabef59551d23",
+  "subject_kind": "source_item",
+  "subject_id": "src-89a68757cc6714fef162a23c",
+  "input_hash": "fc733aeedbc1e096f3ac4b13aa1b61bf0f61c4e1ff154446f08b2431759c453f",
+  "input_revision": "semantic-v2-sha256:3a69f4dd6213e62388daaf373c5863bee3a0ca24a9d38edfa2da53275ff9daa9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-7f268c4c7ea1c836337e5def6cbd1d9e",
+  "evidence_source_item_ids": [
+    "src-89a68757cc6714fef162a23c"
+  ]
+}

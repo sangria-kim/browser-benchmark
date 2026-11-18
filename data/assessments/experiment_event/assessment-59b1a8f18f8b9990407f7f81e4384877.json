@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b321654ac4a2941e57dca617: Source baseline: ChildProcessSecurityPolicyRustProcessState A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-59b1a8f18f8b9990407f7f81e4384877",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b321654ac4a2941e57dca617",
+  "input_hash": "bccbc7d4998e360f02d7af5cb6b32ec7bcf405095b84cfb254fabbe3c4e341cc",
+  "input_revision": "semantic-v2-sha256:87db108733c8ab605c25e56b3f19a62844c531d5f3e874394f3a3c33b670bbdf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-5c9177e2f7c21a7aa783692afd9d738c",
+  "evidence_source_item_ids": [
+    "src-chromium-1b0588526efa63b0da65d1a0"
+  ]
+}

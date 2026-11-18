@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-0762e54e4d8721e1d60bb920: Fixed an issue where calling play() on a finite scroll-driven animation timeline did not reset its start time to the current time. (181712713) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e23d8c5c5f806c9d394a8a0625f770ec",
+  "subject_kind": "source_item",
+  "subject_id": "src-0762e54e4d8721e1d60bb920",
+  "input_hash": "ec131ae117997f67695fe3790ffaf4edf19c6f069d61c435e8ccc49faa82fbcc",
+  "input_revision": "semantic-v2-sha256:007bc3ac4eeddb78a85364c0985123856d8da3bca8c06c3d6d6ec595559454b4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-64d55b6dc715261945a11fe9f7080a39",
+  "evidence_source_item_ids": [
+    "src-0762e54e4d8721e1d60bb920"
+  ]
+}

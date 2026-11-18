@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-32dd70def8d173551f4f3a42: Source baseline: VisitedAnimationTaintedSubstitution A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-adfc238fc489790a90fc9d413f8da35d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-32dd70def8d173551f4f3a42",
+  "input_hash": "cad18e367a46a06bae14ea43b696fc7a8fa9e0befbbfd48577727a063f43218c",
+  "input_revision": "semantic-v2-sha256:a9c2351d411f913ea83da8c3b07115138e36cf2821041fed9068e08298a0327f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-8e9858d970b99106c1fb830a57630ba9",
+  "evidence_source_item_ids": [
+    "src-chromium-583641072e5fcd8daeca37c1"
+  ]
+}

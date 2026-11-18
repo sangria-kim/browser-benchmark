@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
   "selection_kind": "features",
-  "as_of": "2026-11-17T03:06:49.429780+00:00",
-  "input_hash": "f28fb23ab98c83c9f8f65820f5b7cfb74a492691bffbeeaf92f517c57ecb2997",
+  "as_of": "2026-11-18T01:39:53.362847+00:00",
+  "input_hash": "c3797488619534ae98ecddf88f547718bc061cbcf44283a1849c31117ddc6eac",
   "rule_version": "pm-selection-v3.0.0",
   "current": [
     {
@@ -2219,7 +2219,7 @@
   "collection_scope": {
     "version": "dated-endpoints-v1",
     "since": "2026-01-01",
-    "cutoff": "2026-11-16T15:10:29Z",
+    "cutoff": "2026-11-17T23:30:24.003777+00:00",
     "timezone": "Asia/Seoul",
     "source_windows": [
       {
@@ -2233,24 +2233,34 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "brave-releases",
         "since": "2026-01-01",
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "chrome-blog",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "chrome-enterprise",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "chrome-platform-status",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "chrome-releases",
@@ -2258,6 +2268,11 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "chromium-source",
         "since": "2026-01-01",
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
@@ -2265,7 +2280,7 @@
       {
         "source_id": "chromium-source",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T15:10:29Z"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "edge-beta",
@@ -2273,19 +2288,24 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "edge-beta-archive",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "edge-mobile-beta",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "edge-mobile-stable",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "edge-policies",
@@ -2293,9 +2313,19 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "edge-security",
         "since": "2026-01-01",
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "edge-stable",
@@ -2303,9 +2333,14 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "edge-stable-archive",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "firefox-android",
@@ -2313,24 +2348,29 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "firefox-beta",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "firefox-ios",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "firefox-releases",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "firefox-security",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "legacy",
@@ -2340,17 +2380,17 @@
       {
         "source_id": "opera-desktop",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "opera-mobile",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "opera-news",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "safari-release-notes",
@@ -2358,9 +2398,19 @@
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
       },
       {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
         "source_id": "safari-security",
         "since": "2026-01-01",
         "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "safari-technology-preview",
@@ -2370,35 +2420,35 @@
       {
         "source_id": "vivaldi-android",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "vivaldi-desktop",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "vivaldi-ios",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "whale-notices",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       },
       {
         "source_id": "whale-release-history",
         "since": "2026-01-01",
-        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
       }
     ],
     "chrome_endpoints": [
       {
         "baseline_revision": "d6855ba8c6f271ee35a39ecf9dd4b009ef3075be",
-        "current_revision": "e0c6b02f92c423fd7c4bdcb4e9eb0f1e441a1391",
+        "current_revision": "c714c7f60bf03932174577d560ebce0f16881fcb",
         "baseline_committed_at": "2025-12-31T14:00:34Z",
-        "current_committed_at": "2026-11-16T15:10:29Z"
+        "current_committed_at": "2026-11-17T23:27:43Z"
       }
     ]
   }

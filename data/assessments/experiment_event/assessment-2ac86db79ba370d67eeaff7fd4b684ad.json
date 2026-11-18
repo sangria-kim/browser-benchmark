@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a033f36e5359b3b0c4246ac9: Source baseline: contextual-tasks-clobber-active-tab A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2ac86db79ba370d67eeaff7fd4b684ad",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a033f36e5359b3b0c4246ac9",
+  "input_hash": "a4971ac42d408b9144ead04ea0ed5cf3b2ee6264e40954877beed8657032e342",
+  "input_revision": "semantic-v2-sha256:ce67ca79cd57d629593719e43c74e1db691408be3f9cc438dae10782d079ad2e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-917986230eeae00f93f2a56aada36e78",
+  "evidence_source_item_ids": [
+    "src-chromium-84f38db705cf420ce4be70e7",
+    "src-legacy-939470f5e50ca2e7224edd17"
+  ]
+}

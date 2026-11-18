@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-799bde6a292d016caebf46fc: Source baseline: WebAuthenticationDisabledOnAuto A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b62ebdb9c38c3097b6b779342eb210fc",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-799bde6a292d016caebf46fc",
+  "input_hash": "ae465db41ff97ee2b1e5b569f5e267e6842cf056877a7a0410369013def5547f",
+  "input_revision": "semantic-v2-sha256:9b0adb681e034e788faf39b0250566fcb8a71c5fb02d9df45e807f12edf79456",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-8c457734801d2c1aec64df6fd37780a7",
+  "evidence_source_item_ids": [
+    "src-chromium-75533e713e8f62237e3a822d"
+  ]
+}

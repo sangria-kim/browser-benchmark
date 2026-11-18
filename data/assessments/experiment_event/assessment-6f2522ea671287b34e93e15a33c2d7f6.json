@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-096526938b92a8e3ca8710b7: Source baseline: Instrumentation breakpoints A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6f2522ea671287b34e93e15a33c2d7f6",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-096526938b92a8e3ca8710b7",
+  "input_hash": "1fee206e24e2931d08b297298a82b9028ed8caaaf5a51a2d88fe7ed040cb7948",
+  "input_revision": "semantic-v2-sha256:35d21e9e5f9e07d48c277fbbd3ac0af1990c3b6692482d35b4c96d500eeba072",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-71f850ee5efa6e5f973ed3c8b613ec4e",
+  "evidence_source_item_ids": [
+    "src-chromium-8d079799f236f79fa847b351",
+    "src-legacy-7644a83ecff9f0fe2f6649dc"
+  ]
+}

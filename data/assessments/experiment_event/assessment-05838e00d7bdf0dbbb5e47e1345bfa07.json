@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-105d14c11612100911067f17: Source baseline: SanitizeIDNEmailFormInput A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-05838e00d7bdf0dbbb5e47e1345bfa07",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-105d14c11612100911067f17",
+  "input_hash": "084096d5a5cd9781910d81011e794b7de342f1df182f15833987c76ad53fefe6",
+  "input_revision": "semantic-v2-sha256:839dc2bbabcfaa76ba2d9f3aaa6ad4f954d9b1a6fbda75f9535182c3ea6f7ce4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-3c86ad28934eebaac195e464a70b02c5",
+  "evidence_source_item_ids": [
+    "src-chromium-a22a3d5bab223129e464b71e"
+  ]
+}

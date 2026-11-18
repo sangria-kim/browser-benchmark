@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b94442d7512fb10d90e60cb0: Source baseline: Core Animation Backdrop Filters A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c03c5b6acb0e30b113f99eead5c61ee6",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b94442d7512fb10d90e60cb0",
+  "input_hash": "96501149ab751634bad366beae2ae802770ec4621e4cc1aa7ec860560aa759c2",
+  "input_revision": "semantic-v2-sha256:732b77c680ec7cb53f31deee8428d1ed1e15155531ffe9fd4c02dbae77ab2f8a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-20fb01b283eb6d40f344b982c31e30a2",
+  "evidence_source_item_ids": [
+    "src-chromium-1fe8150d6704ea7df485abdd",
+    "src-legacy-ee37cb998ede150b9ddcda9c"
+  ]
+}

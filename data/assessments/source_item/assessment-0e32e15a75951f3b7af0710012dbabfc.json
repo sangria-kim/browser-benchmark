@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6c7fdda45b5a80089932bc61: Fixed an issue where the WebAssembly.Exception constructor rejected null options and incorrectly accepted non-object options. (186319813) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-0e32e15a75951f3b7af0710012dbabfc",
+  "subject_kind": "source_item",
+  "subject_id": "src-6c7fdda45b5a80089932bc61",
+  "input_hash": "cb3e49c2328ec320f03014544dae235597c204628f756edc808c1a8d6e3db52e",
+  "input_revision": "semantic-v2-sha256:508d1996ddb2cb49065cb953ff54b0be75242134ae1528de25d42cc93fbc697a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-18T01:39:53.362847+00:00",
+  "supersedes": "assessment-65d8c28432e9ad61423a1b67679bd837",
+  "evidence_source_item_ids": [
+    "src-6c7fdda45b5a80089932bc61"
+  ]
+}
