@@ -236,6 +236,7 @@ def build_research(output, legacy, base):
     initial = {'format_version':2, 'resource_encoding':'gzip', 'source':legacy['source'], 'built_at':legacy['built_at'],
                'updated_at':max((a['assessed_at'] for a in assessments),default=legacy['updated_at']),
                'catalog':legacy['catalog'], 'selected':selected_rows,
+               'card_summaries':read_json(ROOT / 'dashboard/card-summaries.json'),
                'history':[brief(k) for k in sorted(ever)], 'dates':date_index,
                'reports':sorted(report_index,key=lambda r:(r['date'],r['revision']),reverse=True),
                'counts':{kind:len(rows) for kind,rows in groups.items()},

@@ -11,7 +11,7 @@ test('all-source and experiment filters retain kinds, statuses, platform and KST
  assert.equal(model.matches(r,{query:'source-id'}),true);
 });
 test('malicious fact and report strings are escaped by actual detail renderer',()=>{
- const node=()=>({value:'',innerHTML:'',setAttribute(){}}),context=vm.createContext({URL,URLSearchParams,Intl,Date,location:{search:''},document:{getElementById:node}});
+ const node=()=>({value:'',innerHTML:'',setAttribute(){}}),context=vm.createContext({URL,URLSearchParams,Intl,Date,ResearchModel:model,location:{search:''},document:{getElementById:node}});
  context.fetch=async path=>({ok:true,json:async()=>context.resourceData[path]});
  vm.runInContext(fs.readFileSync('dashboard/resources.js','utf8'),context);
  vm.runInContext(fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,''),context);
@@ -21,7 +21,7 @@ test('malicious fact and report strings are escaped by actual detail renderer',(
  assert.ok(!html.includes('<script>'));assert.ok(!html.includes('<svg onload'));assert.ok(!html.includes('href="javascript:'));assert.match(html,/&lt;script&gt;/);
 });
 test('unmapped cards have no fourth webtoon status; mapped statuses remain exact',()=>{
- const node=()=>({value:''}),context=vm.createContext({URL,URLSearchParams,Intl,Date,location:{search:''},document:{getElementById:node}});
+ const node=()=>({value:''}),context=vm.createContext({URL,URLSearchParams,Intl,Date,ResearchModel:model,location:{search:''},document:{getElementById:node}});
  context.fetch=async path=>({ok:true,json:async()=>context.resourceData[path]});
  vm.runInContext(fs.readFileSync('dashboard/resources.js','utf8'),context);
  vm.runInContext(fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,''),context);
@@ -72,4 +72,36 @@ test('computed hash/report detail paths follow new encoding and old JSON remains
  assert.equal(await vm.runInContext('detailPath("source_item:한글")',context),'details/'+digest+'.json.gz');
  vm.runInContext('data={}',context);
  assert.equal(await vm.runInContext('detailPath("source_item:한글")',context),'details/'+digest+'.json');
+});
+
+test('Korean card summaries are searchable while original titles remain available',()=>{
+ const copy=require('../dashboard/card-summaries.json');
+ const row={title:'Local Network Access restrictions for Background Fetch',key:'source_item:example',id:'example',platform:[]};
+ const original={...row};
+ assert.equal(model.cardTitle(row,copy),'백그라운드 다운로드의 내부망 접근 제한');
+ assert.equal(model.matches(row,{query:'내부망 접근'},'unlinked',copy),true);
+ assert.equal(model.matches(row,{query:'Background Fetch'},'unlinked',copy),true);
+ assert.deepEqual(row,original);
+ assert.equal(model.cardTitle({...row,title:'A new unmapped feature'},copy),'A new unmapped feature');
+ assert.equal(model.cardTitle({...row,title:'constructor'},copy),'constructor');
+});
+test('identical quick-search titles keep the exact event and release stage',()=>{
+ const copy=require('../dashboard/card-summaries.json');
+ const row={title:'퀵서치',key:'feature_event:whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102'};
+ assert.equal(model.cardTitle(row,copy),'선택한 글의 AI 요약·검색 연결 베타');
+ assert.equal(model.cardTitle({...row,key:'feature_event:whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106'},copy),'퀵서치 결과 표시 설정 정식판 수록');
+ assert.equal(model.cardTitle({...row,title:'Changed source title'},copy),'Changed source title');
+});
+test('card rendering shows a Korean summary and retains the escaped source title',()=>{
+ const node=()=>({value:''}),context=vm.createContext({URL,URLSearchParams,Intl,Date,ResearchModel:model,location:{search:''},document:{getElementById:node}});
+ context.fetch=async()=>{throw Error('Unexpected request');};
+ vm.runInContext(fs.readFileSync('dashboard/resources.js','utf8'),context);
+ vm.runInContext(fs.readFileSync('dashboard/app.js','utf8').replace(/init\(\);\s*$/,''),context);
+ context.copy=require('../dashboard/card-summaries.json');
+ context.row={title:'Permission Policy Merger: "direct-sockets-private" with "local-network" and "loopback-network"',key:'source_item:x',id:'x',browser:'chrome',platform:[],date:'2026-11-17'};
+ vm.runInContext('data={catalog:{events:{}},card_summaries:copy}',context);
+ const html=vm.runInContext('featureCard(row)',context);
+ assert.match(html,/>로컬 네트워크 접근 권한 통합<\/span>/);
+ assert.match(html,/aria-label="로컬 네트워크 접근 권한 통합 상세 보기"/);
+ assert.match(html,/title="Permission Policy Merger: &quot;direct-sockets-private&quot;/);
 });
