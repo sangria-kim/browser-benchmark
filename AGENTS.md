@@ -28,7 +28,8 @@ These rules apply to all agents that work in this repository, including Podo and
 4. Push to `work/browser-benchmark`.
 5. Create or update a pull request from `work/browser-benchmark` to `main`.
 6. State the changes, validation results, and known limits in the pull request.
-7. Leave the pull request open for the owner. Do not enable automatic merge.
+7. For Codex delivery, run the `browser-benchmark-pr-review` skill after creating or updating the PR. The owner authorizes an independent review and a COMMENT review posted by `sangria-review-bot` for each new head commit. Read the skill from the local Codex skills directory. If it is unavailable, report the review step as pending.
+8. Leave the pull request open for the owner. Do not enable automatic merge.
 
 Use clear, short sentences in repository documents and pull requests. Follow ASD-STE100 principles where practical, at the requested approximate 80% level. Do not claim certified compliance.
 
