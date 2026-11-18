@@ -30,6 +30,18 @@ jobs:
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
+      - name: Build the design review preview
+        if: github.event_name == 'pull_request'
+        run: |
+          node --check dashboard/concepts/design.js
+          python scripts/build_design_concepts.py
+      - name: Attach the standalone HTML to this PR run
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-design-preview
+          path: dist/concepts/index.html
+          if-no-files-found: error
   deploy:
     if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     needs: build
