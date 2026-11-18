@@ -134,3 +134,36 @@ class DailyNewsletterTests(unittest.TestCase):
             self.assertEqual([], saved['drafts'])
             self.assertEqual({'2026-12-01','2026-12-02'}, {i['day'] for i in saved['issues']})
             self.assertTrue(all(i['generated'] for i in saved['issues']))
+
+    def test_missing_previous_report_revisions_use_their_own_cutoff(self):
+        with TemporaryDirectory() as temp:
+            root = Path(temp)
+            first = dict(self.events[0], event_id='morning', observed_at='2026-12-01T00:00:00Z',
+                         revision=1, summary='오전의 원래 기능', title=None, after=None)
+            updated = dict(first, revision=2, summary='나중에 정정된 기능')
+            later = dict(first, event_id='afternoon', observed_at='2026-12-01T05:01:00Z', summary='오후의 기능')
+            fact_archive = root/'data/event-revisions/morning/revision-1.json'
+            fact_archive.parent.mkdir(parents=True)
+            fact_archive.write_text(json.dumps(first))
+            item = dict(subject_kind='feature_event', subject_id='morning', selection_kind='features',
+                        details={'subject_revision':1})
+            r1 = dict(date='2026-12-01', revision=1, cutoff='2026-12-01T01:00:00Z', items=[item],
+                      completeness={'collection':'partial','evaluation':'complete'})
+            r2 = dict(r1, revision=2, cutoff='2026-12-01T06:00:00Z')
+            for report in [r1, r2]:
+                path = root / ('data/reports/history/2026-12-01/revision-%s.json' % report['revision'])
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps(report))
+            current = dict(date='2026-12-02', revision=1, cutoff='2026-12-02T04:00:00Z', items=[])
+            dataset = {'feature_event':[updated,later], 'report':[r2]}
+            editions = newsletter_files(root,dataset,current,{})
+            early = json.loads(editions['reports/generated/2026-12-01/newsletter-r1.json'])
+            late = json.loads(editions['reports/generated/2026-12-01/newsletter-r2.json'])
+            self.assertEqual(['오전의 원래 기능'], [s['title'] for s in early['stories']])
+            self.assertEqual(2, late['count'])
+            self.assertEqual(r1['completeness'], early['completeness'])
+            for name, contents in editions.items():
+                path = root/name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(contents)
+            self.assertEqual({}, newsletter_files(root,dataset,current,{}))

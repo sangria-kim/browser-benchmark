@@ -79,6 +79,19 @@ class ReportingTests(unittest.TestCase):
         self.assertEqual(headline, data['cards'][0]['title'])
         self.assertEqual(len(editions), len(data['issues']))
 
+    def test_next_report_recovers_edition_for_a_legacy_report(self):
+        self.selected()
+        first = self.report()['report']
+        path = self.repo/'reports/generated/2026-11-16/newsletter-r1.json'
+        path.unlink()
+        self.report('2026-11-17', '2026-11-17T06:00:00Z')
+        recovered = json.loads(path.read_text())
+        self.assertEqual((first['date'], first['revision']), (recovered['day'], recovered['revision']))
+        self.assertTrue(recovered['generated'])
+        saved = path.read_bytes()
+        self.report('2026-11-17', '2026-11-17T06:00:00Z')
+        self.assertEqual(saved,path.read_bytes())
+
     def test_structured_legacy_delta_remains_readable_report_text(self):
         from pipeline.reporting.core import judged_subject
         self.selected()

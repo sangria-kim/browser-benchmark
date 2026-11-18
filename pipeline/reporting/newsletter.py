@@ -46,8 +46,12 @@ def read_if_present(path, default):
     return read(path) if path.is_file() else default
 
 
+def instant(stamp):
+    return datetime.fromisoformat(stamp.replace('Z', '+00:00'))
+
+
 def kst_day(stamp):
-    return datetime.fromisoformat(stamp.replace('Z', '+00:00')).astimezone(KST).date().isoformat()
+    return instant(stamp).astimezone(KST).date().isoformat()
 
 
 def safe_url(value):
@@ -264,28 +268,77 @@ def issue_file(day, revision):
     return f'reports/generated/{day}/newsletter-r{revision}.json'
 
 
+def events_for_edition(root, events, visible_reports, cutoff):
+    """Resolve corrections to the revision known in the retained report window."""
+    items = {i['subject_id']: i for r in visible_reports for i in r['items']
+             if i['subject_kind'] == 'feature_event'}
+    for event in events:
+        item = items.get(event['event_id'])
+        details = item['details'] if item else {}
+        revision = details.get('subject_revision')
+        if revision and revision != event.get('revision'):
+            archive_dir = Path('data/event-revisions') / event['event_id']
+            pinned = Path(details.get('subject_path') or '')
+            archive = root / archive_dir / f'revision-{revision}.json'
+            if pinned.parent == archive_dir and (root / pinned).is_file():
+                archive = root / pinned
+            if archive.is_file():
+                event = read(archive)
+                if 'source_item_ids' not in event:
+                    event['source_item_ids'] = [e['source_item_id'] for e in item.get('evidence', [])]
+            else:
+                # Old imports can retain only the report evidence. Do not use
+                # versions or release scope introduced by a subsequent correction.
+                event = dict(event_id=event['event_id'], revision=revision, browser=details['browser'],
+                             event_type=details.get('event_type') or 'unknown', version=details.get('version'),
+                             channel=details.get('channel'), platform=details.get('platform') or [],
+                             observed_at=item['observed_at'], announced_at=item.get('announced_at'),
+                             effective_at=item.get('effective_at'), summary=details['title'],
+                             delta=details.get('summary'), sources=item['source_urls'],
+                             source_item_ids=[e['source_item_id'] for e in item['evidence']])
+        if instant(event['observed_at']) <= cutoff:
+            yield event
+
+
 def newsletter_files(root, dataset, report, selection):
-    """Freeze the current report and earlier card days that have no edition yet."""
-    day = report['date']
-    initial = root / 'dashboard/daily/initial-issues.json'
-    stored = {(i['day'], i['revision']) for i in read(initial)} if initial.is_file() else set()
-    reports = [read(p) for p in sorted(root.glob('data/reports/history/*/*.json')) if p.parent.name <= day]
-    reports.append(report)
-    cutoff = datetime.fromisoformat(report['cutoff'].replace('Z', '+00:00'))
-    events = [e for e in dataset['feature_event']
-              if datetime.fromisoformat(e['observed_at'].replace('Z', '+00:00')) <= cutoff]
+    """Publish missing editions atomically with this report, including earlier revisions."""
     board = root / 'dashboard'
     catalog = read_if_present(board / 'catalog.json', {'events': {}})
-    cards = make_cards(events, reports, catalog, source_owners(selection), board)
-    previous_reports = {r['date'] for r in reports}
-    to_publish = {c['day']: None for c in cards if c['day'] < day and c['day'] not in previous_reports}
-    to_publish[day] = report
+    initial = read_if_present(board / 'daily/initial-issues.json', [])
+    stored = {(i['day'], i['revision']) for i in initial}
+    current_key = report['date'], report['revision']
+    history = {(r['date'], r['revision']): r for r in dataset.get('report', [])}
+    for path in sorted(root.glob('data/reports/history/*/*.json')):
+        if path.parent.name <= report['date']:
+            r = read(path)
+            history[r['date'], r['revision']] = r
+    history[current_key] = report
+    history = {key: r for key, r in sorted(history.items())
+               if key <= current_key and instant(r['cutoff']) <= instant(report['cutoff'])}
     generated = datetime.now(KST).date().isoformat()
     files = {}
-    for issue_day, frozen_report in sorted(to_publish.items()):
-        rev = frozen_report['revision'] if frozen_report else 0
-        path = issue_file(issue_day, rev)
-        if (issue_day, rev) not in stored and not (root / path).is_file():
-            issue = make_issue(issue_day, cards, generated, frozen_report)
-            files[path] = json.dumps(issue, ensure_ascii=False, indent=2) + '\n'
+
+    def cards_at(key):
+        cutoff = instant(history[key]['cutoff'])
+        visible = [r for k, r in history.items() if k <= key and instant(r['cutoff']) <= cutoff]
+        events = list(events_for_edition(root, dataset['feature_event'], visible, cutoff))
+        changes = [r for r in selection.get('history', []) if instant(r['effective_at']) <= cutoff]
+        return make_cards(events, visible, catalog, source_owners({'history': changes}), board)
+
+    def missing(key):
+        return key not in stored and not (root / issue_file(*key)).is_file()
+
+    def save(day, revision, cards, basis):
+        issue = make_issue(day, cards, generated, basis)
+        files[issue_file(day, revision)] = json.dumps(issue, ensure_ascii=False, indent=2) + '\n'
+
+    current_cards = cards_at(current_key)
+    for key, basis in history.items():
+        if missing(key):
+            save(*key, current_cards if key == current_key else cards_at(key), basis)
+
+    report_days = {key[0] for key in history}
+    for day in sorted({c['day'] for c in current_cards} - report_days):
+        if day < report['date'] and missing((day, 0)):
+            save(day, 0, current_cards, None)
     return files

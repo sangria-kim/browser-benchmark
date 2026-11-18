@@ -55,7 +55,7 @@ references, linked selection snapshots and typed catalog transitions.
 - `data/reports/current/daily-YYYY-MM-DD.json`: latest metadata per logical report.
 - `data/reports/history/YYYY-MM-DD/revision-N.json`: immutable metadata revisions.
 - `reports/generated/YYYY-MM-DD/rN.md`: immutable Markdown revisions.
-- `reports/generated/YYYY-MM-DD/newsletter-rN.json` stores the Korean one-page edition, its creation date in Korea, the collection date and the report revision. The dashboard archives editions by both dates. The next report also saves older card days without a report as newsletter-r0.json. Unsaved previews do not have a publication date.
+- `reports/generated/YYYY-MM-DD/newsletter-rN.json` stores the Korean one-page edition, its creation date in Korea, the collection date and the report revision. The dashboard archives editions by both dates. The next report fills missing older editions using each retained report revision and cutoff. It saves older card days without a report as newsletter-r0.json. Unsaved previews do not have a publication date.
 - `reports/generated/README.md`: latest revision index.
 - `data/selected/history/YYYY-MM-DD/<kind>-<hash>.json`: fixed judgment-time snapshots.
 
