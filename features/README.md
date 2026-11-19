@@ -4,6 +4,7 @@
 
 ## brave
 
+- [Brave Leo Workspace inline file preview (Nightly source, watch)](brave/leo-workspace-inline-file-preview.md) · `feature-6fb0b80cc22ad6810a9ee5b2`
 - [Leo가 모호한 요청에 선택지를 제시하는 흐름을 Desktop 1.99.55 정식 노트에 포함](brave/leo-clarification-choices.md) · `brave-leo-clarification-choices`
 - [Leo의 문맥 기반 후속 질문 제안을 Desktop 1.99.55 정식 노트에 포함](brave/leo-followup-suggestions.md) · `brave-leo-followup-suggestions`
 - [창 좌우 가장자리 드래그로 분할 보기를 여는 설정이 Desktop 1.99.55에서 복귀](brave/split-view-edge-drag.md) · `brave-split-view-edge-drag`
