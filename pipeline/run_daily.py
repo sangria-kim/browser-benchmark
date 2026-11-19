@@ -1,4 +1,4 @@
-"""One serialized daily candidate. State, logs and validation exports stay private.
+"""Validate one collection or one report job in a private snapshot.
 
 Run ``python -m pipeline.run_daily --help``. No Git delivery or scheduler changes.
 """
@@ -17,11 +17,12 @@ import subprocess
 import sys
 import tempfile
 
-STAGES = ('collect', 'select', 'report', 'validate')
+STAGES = ('collect', 'validate')
+REPORT_STAGES = ('select', 'report', 'validate')
 # Only these outputs may replace public files. All other inputs are read-only.
 OUTPUTS = ('data/', 'reports/generated/')
 INPUTS = ('config', 'data', 'features', 'experiments', 'releases', 'rules',
-          'schemas', 'pipeline', 'scripts', 'templates', 'reports', 'docs', 'dashboard', 'AGENTS.md')
+          'schemas', 'pipeline', 'scripts', 'templates', 'reports', 'docs', 'AGENTS.md')
 
 
 def digest(value):
@@ -203,6 +204,8 @@ def publish_candidate(root, run_dir, state, *, allow_partial=False, replace=dura
         raise RuntimeError('Dirty worktree; start a new candidate')
     candidate = run_dir / 'validate'
     after = inventory(candidate)
+    if after != state['stages']['validate']['outputs']:
+        raise ValueError('Validated candidate checksum mismatch')
     changes = {p for p in set(state['inputs']) | set(after) if state['inputs'].get(p) != after.get(p)}
     if any(not p.startswith(OUTPUTS) for p in changes):
         raise ValueError('Stage modified an input outside managed output paths')
@@ -271,38 +274,27 @@ def worker(stage, root, run_dir, options):
                 'created': len(result['created']), 'sources': len(result['coverage'])}
     if stage == 'report':
         from pipeline.reporting import run
-        state = read(run_dir / 'state.json')
         result = run(root, run_dir / 'reporting', day=options['day'], cutoff=options['report_cutoff'],
             previous_cutoff=options['previous_cutoff'],
-            collection='complete' if state['stages']['collect']['result']['complete'] else 'partial',
-            evaluation='complete' if state['stages']['select']['result']['complete'] else 'partial')
+            collection=options['collection_status'],
+            evaluation='complete' if read(run_dir / 'state.json')['stages']['select']['result']['complete'] else 'partial')
         return {'report_id': result['report']['report_id'], 'revision': result['report']['revision'],
                 'items': len(result['report']['items'])}
     if stage == 'validate':
         from pipeline.normalize import validate_graph
-        from scripts.build_dashboard import build, read_resource as read_dashboard_json
-        from scripts.export_dataset import export
         graph = validate_graph(root)
-        sha = commit_candidate(root)
-        build(root / 'dist')
-        payload = read(root / 'dist/data.json')
-        for kind in ('features', 'flags'):
-            selected = read(root / ('data/selected/' + kind + '/current.json'))
-            expected = {(r['subject_kind'], r['subject_id'], r['assessment_id']) for r in selected['current']}
-            actual = {(r['subject_kind'], r['id'], r['assessment_id']) for r in payload['selected'][kind]}
-            if expected != actual:
-                raise ValueError('Dashboard/selected mismatch')
-        for entry in payload['reports']:
-            rendered = read_dashboard_json(root / 'dist' / entry['path'])
-            original = read(root / ('data/reports/history/%s/revision-%s.json' % (entry['date'], entry['revision'])))
-            if rendered != original:
-                raise ValueError('Dashboard/report mismatch')
-        package = run_dir / 'validation-export'
-        if package.exists():
-            shutil.rmtree(package)
-        result = export(root, sha, package, source_repository='https://example.invalid/private-validation-only')
-        return {'counts': {k: len(v) for k, v in graph.items()}, 'export': result,
-                'provenance': 'synthetic private validation only; export the actual delivery commit separately'}
+        result = {'counts': {kind: len(rows) for kind, rows in graph.items()}}
+        if options.get('job') != 'report':
+            largest = {}
+            for path in sorted((root / 'data/source-items').glob('*/*.json')):
+                browser = path.parent.name
+                if browser == 'chrome-experiments':
+                    browser = 'chrome'
+                size = path.stat().st_size
+                if size > largest.get(browser, {}).get('bytes', -1):
+                    largest[browser] = {'path': path.relative_to(root).as_posix(), 'bytes': size}
+            result['largest_source_files'] = largest
+        return result
     raise ValueError('Unknown stage')
 
 
@@ -315,6 +307,84 @@ def subprocess_stage(stage, root, run_dir, options, *, lock_fd=None):
     return read(run_dir / (stage + '-result.json'))
 
 
+def collection_facts(files):
+    return {path: sha for path, sha in files.items() if path.startswith('data/')
+            and not path.startswith(('data/assessments/', 'data/selected/', 'data/reports/'))}
+
+
+def verify_collection_input(root, checkpoint, expected, current):
+    expected, current = collection_facts(expected), collection_facts(current)
+    changed = {p for p in expected.keys() | current.keys() if expected.get(p) != current.get(p)}
+    for path in changed:
+        if not (path.startswith('data/events/') and path in expected and path in current):
+            raise ValueError('Collection checkpoint differs from input data')
+        # The evaluator maintains PM compatibility fields on legacy event records.
+        from pipeline.normalize.storage import records
+        from pipeline.selection.core import PM_FIELDS
+        def facts(content):
+            return [{k: v for k, v in row.items() if row.get('origin') != 'legacy' or k not in PM_FIELDS}
+                    for row in records(json.loads(content))]
+        original = (checkpoint / 'validate' / path).read_bytes()
+        if digest(original) != expected[path] or facts(original) != facts((root / path).read_bytes()):
+            raise ValueError('Collection checkpoint differs from event facts')
+
+
+def collection_handoff(root, checkpoint, current):
+    from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS, edge_policy_shards, read_edge_policies
+    from pipeline.collectors.browser.collector import json_bytes
+    state = read(checkpoint / 'state.json')
+    if (state.get('version') not in (1, 2) or 'collect' not in state['stages']
+            or state['status'] not in ('complete', 'partial') or state['stages']['validate']['status'] != 'done'):
+        raise ValueError('A validated collection checkpoint is required')
+    expected = state['stages']['validate']['outputs'].copy()
+    if EDGE_POLICY in expected and EDGE_SHARDS[0] in current:
+        snapshot = checkpoint / 'validate'
+        if digest((snapshot / EDGE_POLICY).read_bytes()) != expected.pop(EDGE_POLICY):
+            raise ValueError('Legacy Edge policy checkpoint changed')
+        rows, _ = read_edge_policies(snapshot)
+        expected.update({p: digest(json_bytes(group)) for p, group in edge_policy_shards(rows).items()})
+    verify_collection_input(root, checkpoint, expected, current)
+    if 'source_baselines' in state:
+        sources = state['source_baselines']
+    else:
+        state['stages']['validate']['outputs'] = expected
+        sources = source_baselines(state)
+    status = 'complete' if state['stages']['collect']['result']['complete'] else 'partial'
+    return sources, status
+
+
+def source_baselines(state):
+    """Advance only complete source windows and retain unrequested or partial sources."""
+    baselines = dict(state['options'].get('prior_sources', {}))
+    output = state['stages']['validate']['outputs']
+    result = state['stages']['collect']['result']
+    for status in result.get('browser', []):
+        if status['status'] != 'complete':
+            continue
+        source = status['source_id']
+        files = {p: h for p, h in output.items() if p.startswith('data/source-items/')
+                 and (Path(p).name == source + '.json' or Path(p).name.startswith(source + '.part-'))}
+        if not files and status.get('stored_records', 0):
+            raise ValueError('Validated source files are missing for ' + source)
+        if source in baselines:
+            from pipeline.temporal import instant
+            if instant(status['cutoff']) < instant(baselines[source]['cutoff']):
+                raise ValueError('Source cutoff moved backwards for ' + source)
+        baselines[source] = {'cutoff': status['cutoff'], 'sha256': digest(encoded(files))}
+    if result.get('chrome') and result['chrome']['complete']:
+        files = {p: h for p, h in output.items() if p.startswith('data/source-items/chrome-experiments/')}
+        baselines['chromium-source'] = dict(cutoff=state['options']['collection_cutoff'],
+                                            revision=result['chrome_revision'], sha256=digest(encoded(files)))
+    return baselines
+
+
+def recover_pending(root, writer):
+    writer.seek(0)
+    pending = writer.read().strip()
+    if pending:
+        recover_publication(root, Path(json.loads(pending)['run_dir']))
+
+
 def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_partial=False, retry_collection=False,
         options=None, input_files=None, execute=subprocess_stage, browser_cache_from=None):
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
@@ -323,18 +393,10 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
         raise ValueError('Unsafe run ID')
     private.mkdir(parents=True, exist_ok=True, mode=0o700)
     run_dir = private / run_id
-    with run_lock(root) as lock:
-        # The global lock also identifies an interrupted publisher, even when a
-        # subsequent caller chooses a different private state directory.
-        lock.seek(0)
-        pending = lock.read().strip()
-        if pending:
-            recover_publication(root, Path(json.loads(pending)['run_dir']))
-        # Recover every journal in this state root before any new run.
-        for old in private.glob('*/publication.json'):
-            metadata = read(old.parent / 'state.json')
-            if metadata['repository'] == str(root):
-                recover_publication(root, old.parent)
+    with run_lock(run_dir) as lock:
+        if publish:
+            with run_lock(root) as writer:
+                recover_pending(root, writer)
         path = run_dir / 'state.json'
         if path.exists():
             if not resume:
@@ -342,31 +404,42 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
             state = read(path)
             if state['repository'] != str(root):
                 raise ValueError('Run belongs to another repository')
+            if state.get('version') != 2:
+                raise ValueError('Resume a legacy run with its original runner')
             options = state['options']
             if state.get('published') or (run_dir / 'publication.json').exists() and read(run_dir / 'publication.json')['status'] == 'published':
                 state['published'] = True
                 durable(path, encoded(state))
                 return state
+            if retry_collection and options.get('job') == 'report':
+                raise ValueError('A report run cannot retry collection')
             if retry_collection:
                 state['stages'] = {}
                 state['status'] = 'running'
-                # Retry keeps the source snapshot/cache/revision but uses actual
-                # new evaluation/report time, never backdates new judgments.
-                options['assessed_at'] = None
-                options['report_cutoff'] = None
         else:
             if resume:
                 raise ValueError('No checkpoint to resume')
             if run_dir.exists():
                 raise ValueError('Incomplete initialization; use a new run ID')
-            run_dir.mkdir(mode=0o700)
             options = dict(options or {})
             initial = inventory(root)
-            state = {'version': 1, 'repository': str(root), 'source_commit': git(root, 'rev-parse', 'HEAD'),
+            if options.get('job') == 'report' and not options.get('collection_run'):
+                raise ValueError('A report job needs a validated collection run')
+            if options.get('collection_run'):
+                checkpoint = Path(options['collection_run']).resolve()
+                require_external(root, checkpoint)
+                sources, status = collection_handoff(root, checkpoint, initial)
+                options['prior_sources'] = sources
+            if options.get('job') == 'report':
+                options['collection_status'] = status
+                if not options.get('report_cutoff') or not options.get('assessed_at'):
+                    raise ValueError('Report time must be fixed for this data version')
+            state = {'version': 2, 'repository': str(root), 'source_commit': git(root, 'rev-parse', 'HEAD'),
                      'started_clean': not git(root, 'status', '--porcelain'), 'inputs': initial,
                      'options': options, 'stages': {}, 'status': 'running', 'published': False}
             if publish and not state['started_clean']:
                 raise ValueError('Publication requires a clean starting worktree')
+            run_dir.mkdir(mode=0o700)
             base = run_dir / 'base'
             for rel in initial:
                 durable(base / rel, (root / rel).read_bytes())
@@ -387,7 +460,8 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
             raise ValueError('Pinned base snapshot changed')
         verify_private_inputs(run_dir, state)
         previous = run_dir / 'base'
-        for stage in STAGES:
+        report_job = options.get('job') == 'report'
+        for stage in REPORT_STAGES if report_job else STAGES:
             verify_private_inputs(run_dir, state)
             completed = state['stages'].get(stage, {})
             target = run_dir / stage
@@ -396,11 +470,6 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
                     raise ValueError('Completed snapshot changed: ' + stage)
                 previous = target
                 continue
-            if stage == 'select' and not options.get('assessed_at'):
-                options['assessed_at'] = datetime.now(timezone.utc).isoformat()
-            if stage == 'report' and not options.get('report_cutoff'):
-                options['report_cutoff'] = datetime.now(timezone.utc).isoformat()
-                options['day'] = (datetime.fromisoformat(options['report_cutoff']) + timedelta(hours=9)).date().isoformat()
             state['stages'][stage] = {'status': 'running'}
             durable(path, encoded(state))
             copy_snapshot(previous, target)
@@ -422,15 +491,22 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
                 durable(path, encoded(state))
                 raise
             previous = target
-        state['status'] = 'complete' if all(state['stages'][s]['result']['complete'] for s in ('collect', 'select')) else 'partial'
+        if report_job:
+            complete = options['collection_status'] == 'complete' and state['stages']['select']['result']['complete']
+        else:
+            complete = state['stages']['collect']['result']['complete']
+            state['source_baselines'] = source_baselines(state)
+        state['status'] = 'complete' if complete else 'partial'
         durable(path, encoded(state))
         if publish:
-            lock.seek(0)
-            lock.truncate()
-            lock.write(json.dumps({'run_dir': str(run_dir)}))
-            lock.flush()
-            os.fsync(lock.fileno())
-            state['published_files'] = publish_candidate(root, run_dir, state, allow_partial=allow_partial)
+            with run_lock(root) as writer:
+                recover_pending(root, writer)
+                writer.seek(0)
+                writer.truncate()
+                writer.write(json.dumps({'run_dir': str(run_dir)}))
+                writer.flush()
+                os.fsync(writer.fileno())
+                state['published_files'] = publish_candidate(root, run_dir, state, allow_partial=allow_partial)
             state['published'] = True
             durable(path, encoded(state))
         return state
@@ -446,6 +522,9 @@ def main():
     parser.add_argument('--repository', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--private-dir', type=Path, required=True)
     parser.add_argument('--run-id', required=True)
+    parser.add_argument('--job', choices=['collect', 'report'], default='collect')
+    parser.add_argument('--collection-run', type=Path, help='Prior validated collection run with matching input facts and source-specific watermarks')
+    parser.add_argument('--report-cutoff', help='Fixed evaluation and report time for this input version')
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--retry-collection', action='store_true')
     parser.add_argument('--publish', action='store_true', help='Publish only a complete validated candidate from clean inputs')
@@ -473,10 +552,17 @@ def main():
         parser.error('--retry-collection requires --resume')
     if bool(args.decisions) != bool(args.model_id):
         parser.error('--decisions and its actual --model-id are required together')
-    options = dict(kind=args.kind, sources=args.source, origin=args.origin,
+    if args.job == 'report' and not args.resume and not (args.collection_run and args.report_cutoff):
+        parser.error('--job report requires --collection-run and --report-cutoff')
+    if args.report_cutoff:
+        report_time = datetime.fromisoformat(args.report_cutoff.replace('Z', '+00:00'))
+        if report_time.tzinfo is None:
+            parser.error('--report-cutoff requires a timezone')
+    options = dict(job=args.job, collection_run=str(args.collection_run.resolve()) if args.collection_run else None, kind=args.kind, sources=args.source, origin=args.origin,
         collection_cutoff=args.cutoff or datetime.now(timezone.utc).isoformat(), previous_cutoff=args.previous_cutoff,
         sample_paths=args.sample_path, max_files=args.max_files, max_trees=args.max_trees,
-        model_id=args.model_id, assessed_at=None, report_cutoff=None, day=None)
+        model_id=args.model_id, assessed_at=args.report_cutoff, report_cutoff=args.report_cutoff,
+        day=report_time.astimezone(timezone(timedelta(hours=9))).date().isoformat() if args.report_cutoff else None)
     state = run(args.repository, args.private_dir, args.run_id, resume=args.resume, publish=args.publish,
         browser_cache_from=args.browser_cache_from,
         retry_collection=args.retry_collection, allow_partial=args.allow_partial, options=options,

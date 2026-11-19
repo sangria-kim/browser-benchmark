@@ -301,11 +301,14 @@ def events_for_edition(root, events, visible_reports, cutoff):
 
 
 def newsletter_files(root, dataset, report, selection):
-    """Publish missing editions atomically with this report, including earlier revisions."""
+    """Render missing editions for the standalone dashboard archive job."""
     board = root / 'dashboard'
     catalog = read_if_present(board / 'catalog.json', {'events': {}})
     initial = read_if_present(board / 'daily/initial-issues.json', [])
     stored = {(i['day'], i['revision']) for i in initial}
+    for archive in board.glob('daily/editions/*/newsletter-r*.json'):
+        issue = read(archive)
+        stored.add((issue['day'], issue['revision']))
     current_key = report['date'], report['revision']
     history = {(r['date'], r['revision']): r for r in dataset.get('report', [])}
     for path in sorted(root.glob('data/reports/history/*/*.json')):

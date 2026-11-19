@@ -253,6 +253,16 @@ class BrowserCollector:
             temporal['date_unknown' if status == 'unknown' else status] += 1
         self.state['temporal_coverage'] = temporal
         self.state['temporal_basis'] = 'Item publication date; ChromeStatus also uses its item updated timestamp. Unknown dates do not establish an in-period change.'
+        if source['source_id'] == 'edge-policies':
+            # Keep the current observation set separate from retained historical rows.
+            self.state['observed_ids'] = sorted(self.seen)
+            parsed_urls = {self.records[ident]['evidence']['url'] for ident in self.seen
+                           if self.records[ident]['record_status'] == 'parsed'}
+            documents = parsed_urls.intersection(self.progress['documents'])
+            self.state['documents_seen'] = {
+                url: digest(self.cache[url].body) for url in sorted(documents)
+                if url in self.cache and self.cache[url].url == url
+            }
         atomic_json(state_path, self.state)
         return copy.deepcopy(self.state)
 
@@ -282,6 +292,8 @@ class BrowserCollector:
             cache_path.write_bytes(response.body)
         self.cache[url] = response
         self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
+        if self.source['source_id'] == 'edge-policies':
+            self.progress['responses'][url]['observed_at'] = self.observed_at
         atomic_json(self.progress_path, self.progress)
         return response
 
@@ -317,6 +329,9 @@ class BrowserCollector:
         return status != 'after_cutoff' and (current or status != 'before_period')
 
     def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None):
+        observed_at = self.observed_at
+        if self.source['source_id'] == 'edge-policies':
+            observed_at = self.progress['responses'].get(url, {}).get('observed_at', observed_at)
         key = unit['key']
         ident = identity('src', [self.source['source_id'], url, key])
         fingerprint = digest(canonical([self.source['source_id'], url, key, unit,
@@ -333,7 +348,7 @@ class BrowserCollector:
         content_hash = digest(response.body)
         evidence = {'url': url, 'section': minimal(unit['section']) or None,
                     'source_revision': revision, 'content_sha256': content_hash,
-                    'observed_at': self.observed_at, 'excerpt': minimal(unit['text']) if parsed else ''}
+                    'observed_at': observed_at, 'excerpt': minimal(unit['text']) if parsed else ''}
         source_channels = self.source['channels']
         source_platforms = self.source['platforms']
         record = {'schema_version': 2, 'source_item_id': ident, 'source_id': self.source['source_id'],
@@ -343,7 +358,7 @@ class BrowserCollector:
                   'summary': minimal(unit['text']) or None,
                   'channel': channel or (source_channels[0] if len(source_channels) == 1 else 'unknown'),
                   'platform': platform or (source_platforms if len(source_platforms) == 1 else ['unknown']),
-                  'version': version, 'published_at': date, 'observed_at': self.observed_at,
+                  'version': version, 'published_at': date, 'observed_at': observed_at,
                   'evidence': evidence, 'record_status': 'parsed' if parsed else 'unparsed',
                   'origin': self.origin, 'lifecycle': 'unknown', 'revisions': [],
                   'experiment_kind': None, 'source_location': url + '#' + key, 'source_symbol': None}

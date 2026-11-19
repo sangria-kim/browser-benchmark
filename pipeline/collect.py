@@ -76,6 +76,7 @@ def collect_sources(repository, private_dir, *, kind='browser', source_ids=None,
                 chrome_bundle['removed_candidates'] = []
                 chrome_bundle['coverage'].update(complete=False, temporal_complete=False)
             result['chrome'] = chrome_bundle['coverage']
+            result['chrome_revision'] = chrome_bundle.get('revision')
         changes = prepare(stage, chrome_bundle if kind in ('chrome', 'all') else None, cutoff)
         result['counts'] = publish(repository, changes, private_dir / 'publication')
     result['complete'] = (all(r['status'] == 'complete' for r in result['browser'])

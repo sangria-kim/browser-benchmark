@@ -9,7 +9,9 @@ def write_home(output, root, payload, reports, selection):
     current = latest_reports(reports)
     initial = root / 'dashboard/daily/initial-issues.json'
     editions = {(i['day'], i['revision']): i for i in read(initial)} if initial.is_file() else {}
-    for archive in sorted(root.glob('reports/generated/*/newsletter-r*.json')):
+    archives = sorted(root.glob('reports/generated/*/newsletter-r*.json'))
+    archives.extend(sorted(root.glob('dashboard/daily/editions/*/newsletter-r*.json')))
+    for archive in archives:
         issue = read(archive)
         editions[issue['day'], issue['revision']] = issue
     drafts = []

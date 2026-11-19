@@ -59,7 +59,7 @@ class DailyTests(unittest.TestCase):
     def test_failed_stage_restarts_from_previous_snapshot(self):
         real = self.execute
         def fail(stage, root, run_dir, opts):
-            if stage == 'select':
+            if stage == 'validate':
                 (root / 'data/value.json').write_text('broken')
                 raise RuntimeError('interrupt')
             return real(stage, root, run_dir, opts)
@@ -69,22 +69,20 @@ class DailyTests(unittest.TestCase):
         state = self.run_candidate(resume=True)
         self.assertEqual('complete', state['status'])
         self.assertEqual(1, self.calls.count('collect'))
-        self.assertEqual('[2]\n', (self.private / 'fixture/select/data/value.json').read_text())
+        self.assertEqual('[2]\n', (self.private / 'fixture/validate/data/value.json').read_text())
 
-    def test_partial_and_assessment_failure_keep_public_last_good(self):
-        for stage_to_fail in ('collect', 'select'):
-            with self.subTest(stage=stage_to_fail):
-                private = self.base / stage_to_fail
-                def partial(stage, root, run_dir, opts):
-                    result = self.execute(stage, root, run_dir, opts)
-                    result['complete'] = stage != stage_to_fail
-                    return result
-                result = daily.run(self.root, private, 'partial', options=options(), execute=partial)
-                self.assertEqual('partial', result['status'])
-                self.assertIn('report', result['stages'])
-                self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
-                with self.assertRaises(ValueError):
-                    daily.run(self.root, private, 'partial', resume=True, publish=True, execute=partial)
+    def test_partial_collection_keeps_public_last_good(self):
+        private = self.base / 'collection'
+        def partial(stage, root, run_dir, opts):
+            result = self.execute(stage, root, run_dir, opts)
+            result['complete'] = stage != 'collect'
+            return result
+        result = daily.run(self.root, private, 'partial', options=options(), execute=partial)
+        self.assertEqual('partial', result['status'])
+        self.assertNotIn('report', result['stages'])
+        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
+        with self.assertRaises(ValueError):
+            daily.run(self.root, private, 'partial', resume=True, publish=True, execute=partial)
 
     def test_explicit_partial_publish_keeps_partial_status(self):
         def partial(stage, root, run_dir, opts):
@@ -115,7 +113,7 @@ class DailyTests(unittest.TestCase):
     def test_concurrent_lock_is_shared_across_private_directories(self):
         with daily.run_lock(self.root):
             with self.assertRaisesRegex(RuntimeError, 'lock'):
-                daily.run(self.root, self.base / 'other-private', 'other', options=options(), execute=self.execute)
+                daily.run(self.root, self.base / 'other-private', 'other', options=options(), execute=self.execute, publish=True)
 
     def test_snapshot_and_private_input_tampering_refused(self):
         self.run_candidate()
@@ -223,8 +221,8 @@ class DailyTests(unittest.TestCase):
             raise KeyboardInterrupt()
         with self.assertRaises(KeyboardInterrupt):
             daily.publish_candidate(self.root, run_dir, state, replace=crash)
-        daily.run(self.root, self.base / 'new-state', 'new', options=options(), execute=self.execute)
-        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
+        daily.run(self.root, self.base / 'new-state', 'new', options=options(), execute=self.execute, publish=True)
+        self.assertEqual('rolled_back', daily.read(run_dir / 'publication.json')['status'])
 
     def test_unrelated_edit_during_publication_rolls_back_only_our_outputs(self):
         state = self.run_candidate()
@@ -268,15 +266,28 @@ class DailyTests(unittest.TestCase):
             daily.recover_publication(self.root, self.private / 'fixture')
         self.assertEqual('user edit', (self.root / 'data/value.json').read_text())
 
-    def test_real_fixture_collection_selection_report_build_export(self):
+    def test_source_baselines_advance_only_complete_sources(self):
+        old = {'cutoff': '2026-11-12T00:00:00Z', 'sha256': 'previous'}
+        cutoff = '2026-11-13T00:00:00Z'
+        statuses = [{'source_id': 'edge-policies', 'status': 'complete', 'cutoff': cutoff},
+                    {'source_id': 'safari-security', 'status': 'partial', 'cutoff': cutoff}]
+        state = {'options': {'prior_sources': {'safari-security': old, 'whale-notices': old}},
+                 'stages': {'validate': {'outputs': {'data/source-items/edge/edge-policies.part-00.json': 'new'}},
+                            'collect': {'result': {'browser': statuses}}}}
+        baseline = daily.source_baselines(state)
+        self.assertEqual(old, baseline['safari-security'])
+        self.assertEqual(old, baseline['whale-notices'])
+        self.assertEqual(cutoff, baseline['edge-policies']['cutoff'])
+        self.assertNotEqual('previous', baseline['edge-policies']['sha256'])
+
+    def test_real_collection_then_report_without_dashboard(self):
         # Reuse the minimal contract fixture, but exercise actual subprocess
-        # stage code, transport parsing, normalization, evaluation and exporter.
+        # stage code, transport parsing, normalization, evaluation and reporting.
         shutil.rmtree(self.root / 'data')
-        for name in ('pipeline', 'scripts', 'schemas', 'rules', 'config', 'dashboard'):
+        for name in ('pipeline', 'scripts', 'schemas', 'rules', 'config'):
             shutil.copytree(ROOT / name, self.root / name, ignore=shutil.ignore_patterns('__pycache__'))
         for doc in (self.root / 'pipeline').rglob('README.md'):
             doc.write_text('# Fixture documentation\n')
-        (self.root / 'dashboard/catalog.json').write_text('{"events":{}}')
         (self.root / 'docs').mkdir()
         (self.root / 'docs/dataset-contract.md').write_text('# Fixture\n')
         fixture = json.loads((ROOT / 'schemas/tests/fixtures/valid-dataset.json').read_text())
@@ -293,28 +304,27 @@ class DailyTests(unittest.TestCase):
         self.assertEqual('partial', result['status']) # A bounded source is not full registered coverage.
         validation = result['stages']['validate']['result']
         self.assertGreater(validation['counts']['source_item'], 1)
-        self.assertGreaterEqual(validation['counts']['assessment'], 2)
-        self.assertEqual(1, validation['counts']['report'])
-        self.assertIn('synthetic', validation['provenance'])
-        manifest = daily.read(self.private / 'real/validation-export/manifest.json')
-        self.assertEqual(validation['export']['source_commit'], manifest['source_commit'])
-        snapshot = daily.inventory(self.private / 'real/report')
-        again = daily.run(self.root, self.private, 'real', resume=True)
-        self.assertEqual(result, again)
-        self.assertEqual(snapshot, daily.inventory(self.private / 'real/report'))
-        self.assertFalse((self.root / 'data/reports').exists())
-        # Accept the fixture candidate in its isolated repository, then observe
-        # identical bytes again and finally a real evidence text change.
+        self.assertEqual(0, validation['counts']['assessment'])
+        self.assertEqual(0, validation['counts']['report'])
+        self.assertEqual(result, daily.run(self.root, self.private, 'real', resume=True))
         daily.run(self.root, self.private, 'real', resume=True, publish=True, allow_partial=True)
         daily.commit_candidate(self.root)
-        second = daily.run(self.root, self.private, 'same-bytes', options=options(), input_files={'responses':responses})
-        self.assertEqual(0, second['stages']['select']['result']['created'])
-        self.assertEqual(validation['counts']['feature_event'], second['stages']['validate']['result']['counts']['feature_event'])
+        report_options = dict(options(), job='report', collection_run=str(self.private / 'real'))
+        reports = daily.run(self.root, self.private, 'reports', options=report_options,
+                            publish=True, allow_partial=True)
+        self.assertEqual(set(daily.REPORT_STAGES), set(reports['stages']))
+        self.assertFalse((self.private / 'reports/collection').exists())
+        self.assertEqual(1, reports['stages']['validate']['result']['counts']['report'])
+        self.assertFalse(list(self.root.glob('reports/generated/*/newsletter-*.json')))
+        daily.commit_candidate(self.root)
+        again = daily.run(self.root, self.private, 'reports-again', options=report_options)
+        self.assertEqual(0, again['stages']['select']['result']['created'])
+        self.assertEqual(1, again['stages']['report']['result']['revision'])
         response_map = json.loads(responses.read_text())
         response_map[source['url']]['body'] = response_map[source['url']]['body'].replace('Feature one', 'Feature one changed')
         # Ensure this fixture changes actual response content, not only its time.
         response_map[source['url']]['body'] += '<p>Additional evidence.</p>'
         responses.write_text(json.dumps(response_map))
         changed = daily.run(self.root, self.private, 'changed-bytes', options=options(), input_files={'responses':responses})
-        self.assertGreater(changed['stages']['select']['result']['created'], 0)
+        self.assertEqual(set(daily.STAGES), set(changed['stages']))
         self.assertEqual(validation['counts']['feature_event'], changed['stages']['validate']['result']['counts']['feature_event'])
