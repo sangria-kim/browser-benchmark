@@ -40,7 +40,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
     private.mkdir(mode=0o700, parents=True, exist_ok=True)
     state_path = private / 'feature-run.json'
     work = private / 'work'
-    with run_lock(private):
+    with run_lock(private), run_lock(root) as writer:
+        pending_recovery(root, writer)
         if work.is_symlink() or state_path.is_symlink():
             raise ValueError('Invalid collection workspace')
         if resume:
@@ -178,6 +179,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                 if target not in changes:
                     changes[target] = {r['source_item_id']: r for r in existing(target)}
                 prior = changes[target].get(ident)
+                if prior is None and len(row['revisions']) != 1:
+                    raise ValueError('Source history changed since collection. Collect again.')
                 if prior:
                     validate_transition('source_item', prior, row)
                     prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')

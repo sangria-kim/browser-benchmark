@@ -394,7 +394,13 @@ class BrowserCollector:
             if not parsed and old['record_status'] == 'parsed':
                 return
             comparison = ['title', 'summary', 'published_at', 'record_status', 'channel', 'platform', 'version', 'item_type', 'item_content_sha256']
-            if (all(old.get(k) == record.get(k) for k in comparison) and
+            same_item = all(old.get(k) == record.get(k) for k in comparison)
+            if not self.write_records and parsed and same_item:
+                # The daily classifier needs item changes, not a sibling edit or a new page hash.
+                self.state['processed'] -= 1
+                self.state['duplicate'] += 1
+                return
+            if (same_item and
                     old['evidence']['content_sha256'] == content_hash and old['evidence']['source_revision'] == revision):
                 if parsed:
                     self.parsed_ids.add(ident)

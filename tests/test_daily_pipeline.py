@@ -315,6 +315,40 @@ class DailyTests(unittest.TestCase):
             with self.assertRaisesRegex(RuntimeError, 'lock'):
                 self.save(self.choose())
 
+    def test_page_only_edit_does_not_resave_a_feature(self):
+        self.scan()
+        self.save(self.choose())
+        before = self.evidence.read_bytes(), self.catalog.read_bytes()
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('Navigation must not become evidence', 'Changed navigation')
+        self.scan()
+        self.assertNotIn('feature-a', [r['item_key'] for r in run_daily.read(self.candidates)])
+        self.assertEqual(0, self.save([]))
+        self.assertEqual(before, (self.evidence.read_bytes(), self.catalog.read_bytes()))
+        self.private = self.private.parent / 'changed'
+        self.body = self.body.replace('Tab grouping added.', 'Share your tab groups.')
+        self.scan()
+        self.assertEqual(1, self.save(self.choose()))
+        self.assertEqual(2, len(run_daily.read(self.evidence)[0]['revisions']))
+
+    def test_new_collection_recovers_an_interrupted_writer_before_reading(self):
+        self.scan()
+        def crash(*args):
+            def interrupt(path, raw):
+                run_daily.durable(path, raw)
+                raise KeyboardInterrupt()
+            run_daily.store_changes(*args, replace=interrupt)
+        with patch.object(collect, 'store_changes', crash), self.assertRaises(KeyboardInterrupt):
+            self.save(self.choose())
+        self.assertTrue(self.evidence.exists())
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('Tab grouping added.', 'Share your tab groups.')
+        self.scan()
+        self.assertFalse(self.evidence.exists())
+        self.save(self.choose())
+        row, = run_daily.read(self.evidence)
+        self.assertEqual(['Share your tab groups.'], [r['summary'] for r in row['revisions']])
+
     def test_resume_recovers_interrupted_write(self):
         self.scan()
         decisions = self.choose()
