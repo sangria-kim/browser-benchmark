@@ -1,0 +1,102 @@
+{
+  "schema_version": 2,
+  "event_id": "event-e1e65854d55611ed155400c5",
+  "feature_id": "feature-6fb0b80cc22ad6810a9ee5b2",
+  "browser": "brave",
+  "event_type": "source_behavior_change",
+  "version": "1.102.21",
+  "channel": "nightly",
+  "platform": [
+    "unknown"
+  ],
+  "observed_at": "2026-11-19T12:23:34.905608+00:00",
+  "announced_at": null,
+  "effective_at": null,
+  "sources": [
+    {
+      "url": "https://github.com/brave/brave-browser/releases/tag/v1.102.21",
+      "section": "document",
+      "source_revision": "v1.102.21",
+      "content_sha256": "283af41a6b7ee5a5c60f610bb806213f15410fa3658c90f9010fc8efe140c2cf",
+      "observed_at": "2026-11-19T06:20:50.123164+00:00"
+    },
+    {
+      "url": "https://github.com/brave/brave-core/pull/41796",
+      "section": "Merged inline workspace file viewer",
+      "source_revision": "0aa6c67f4c5ba6dc7feac35fa775aeb9cc1231b4",
+      "observed_at": "2026-11-19T12:23:34.905608+00:00"
+    },
+    {
+      "url": "https://github.com/brave/brave-core/compare/v1.102.20...v1.102.21",
+      "section": "Nightly tag comparison",
+      "observed_at": "2026-11-19T12:23:34.905608+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brave/brave-core/b24cafc9666eb37b0e70a2070358250a28dd1c7b/components/ai_chat/resources/untrusted_conversation_frame/components/markdown_renderer/remark_directives.tsx",
+      "section": "Previous Nightly tag: existing button",
+      "source_revision": "b24cafc9666eb37b0e70a2070358250a28dd1c7b",
+      "content_sha256": "3f658d3843fb3392558f63b11f1f1bbca85522cf7131a5cdbea42717444985ac",
+      "observed_at": "2026-11-19T12:23:34.905608+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brave/brave-core/e54bcd287f99acb684956d8e8149888ab49a4627/components/ai_chat/resources/untrusted_conversation_frame/components/markdown_renderer/remark_directives.tsx",
+      "section": "Nightly v1.102.21 tag: inline preview directive and existing button",
+      "source_revision": "e54bcd287f99acb684956d8e8149888ab49a4627",
+      "content_sha256": "a181a7d100afddb36c24a6320342d40282d4bc5b59bebfafbdea333e7d038d1f",
+      "observed_at": "2026-11-19T12:23:34.905608+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brave/brave-core/173cb38ef50e4ef2389eb0745202845a70ee5e47/components/ai_chat/resources/untrusted_conversation_frame/components/markdown_renderer/remark_directives.tsx",
+      "section": "Beta v1.101.52: existing button, no inline directive",
+      "source_revision": "173cb38ef50e4ef2389eb0745202845a70ee5e47",
+      "content_sha256": "3f658d3843fb3392558f63b11f1f1bbca85522cf7131a5cdbea42717444985ac",
+      "observed_at": "2026-11-19T12:23:34.905608+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/brave/brave-core/bd6d26d1bced03c17a98baa86d2cd3425d543d1b/components/ai_chat/resources/untrusted_conversation_frame/components/markdown_renderer/remark_directives.tsx",
+      "section": "Stable v1.100.58: existing button, no inline directive",
+      "source_revision": "bd6d26d1bced03c17a98baa86d2cd3425d543d1b",
+      "content_sha256": "3f658d3843fb3392558f63b11f1f1bbca85522cf7131a5cdbea42717444985ac",
+      "observed_at": "2026-11-19T12:23:34.905608+00:00"
+    }
+  ],
+  "source_item_ids": [
+    "src-4b07b5fabd561d088f598b2c"
+  ],
+  "summary": "The Nightly source can show a workspace file inside the conversation. It keeps the button that opens a separate preview.",
+  "before": {
+    "workspace_file_display": "A button opens a separate preview."
+  },
+  "after": {
+    "workspace_file_display": "An inline directive can show a preview in the conversation. The existing button remains."
+  },
+  "verification_status": "official_source_only_not_device_tested",
+  "origin": "daily",
+  "correction_of": null,
+  "revision": 1,
+  "source_revision": "e54bcd287f99acb684956d8e8149888ab49a4627",
+  "ai_related": true,
+  "workstreams": [],
+  "scope": {
+    "installed_availability": "unknown",
+    "default_state": "unknown",
+    "platform_availability": "unknown",
+    "korea_availability": "unknown",
+    "real_test": "not_run",
+    "release_published_at": "2026-11-19T01:11:32Z",
+    "channel_comparison": "The inspected Beta v1.101.52 and Stable v1.100.58 source files keep the prior behavior."
+  },
+  "temporal_scope": {
+    "version": 1,
+    "since": "2026-01-01",
+    "cutoff": "2026-11-19T05:37:24Z",
+    "status": "in_period",
+    "basis": "publication",
+    "evidence_date": "2026-11-19T01:11:32Z",
+    "precision": "timestamp",
+    "baseline_revision": null,
+    "current_revision": null,
+    "change": null,
+    "reason": "The official Nightly tag publication dates source inclusion, not installed availability."
+  }
+}
