@@ -388,7 +388,7 @@ class DailyTests(unittest.TestCase):
         path = self.root / 'data/source-items/chrome/chrome-platform-status.json'
         before = self.catalog.read_bytes(), path.read_bytes()
         for day in ('02', '03'):
-            row['updated']['when'] = '2026-11-' + day
+            row['updated']['when'] = '2026-11-' + day + ' 09:30:00'
             self.assertEqual([], self.scan_status('clock-' + day, row))
             self.assertEqual(0, self.save([]))
             self.assertFalse((self.private / 'work').exists())

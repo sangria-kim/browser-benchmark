@@ -25,6 +25,11 @@ from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
 DOCUMENT_VERSION = re.compile(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', re.I)
 
 
+def chromestatus_date(revision):
+    # The API also returns local timestamps without an offset. Only the printed day is known.
+    return revision if re.search(r'(Z|[+-]\d\d:\d\d)$', revision) else date_value(revision)
+
+
 def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
 
@@ -381,7 +386,7 @@ class BrowserCollector:
         record['temporal_scope'] = dated_scope(self.since, self.cutoff, date_evidence or date, 'publication')
         if self.source['source_id'] == 'chrome-platform-status' and revision:
             # This API timestamp belongs to one feature, not its enclosing page.
-            value = revision if re.search(r'(Z|[+-]\d\d:\d\d)$', revision) else date_value(revision)
+            value = chromestatus_date(revision)
             record['temporal_scope'] = dated_scope(self.since, self.cutoff, value, 'item_change',
                 'Official per-feature update; a timestamp without timezone supplies its printed calendar day only.')
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
@@ -884,7 +889,7 @@ class BrowserCollector:
         for legacy_text in (summary, stage_text + summary):
             if old.get('item_content_sha256') != digest(canonical(['feature', legacy_text])):
                 continue
-            if revision and self.publication_status(revision) == 'after_cutoff':
+            if revision and self.publication_status(chromestatus_date(revision)) == 'after_cutoff':
                 return unit
             old_head = old['revisions'][-1]['revision_id']
             first = self.chrome_status_baselines.setdefault(old_head, {'cutoff': self.cutoff, 'facts': facts})
