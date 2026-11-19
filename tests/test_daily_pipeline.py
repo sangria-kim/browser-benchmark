@@ -8,6 +8,8 @@ from unittest.mock import patch
 
 from pipeline import collect, run_daily
 from pipeline.collectors.browser import Response
+from schemas.validate import ContractError
+from scripts import build_dashboard
 
 ROOT = Path(__file__).resolve().parents[1]
 CUTOFF = '2026-11-16T06:00:00Z'
@@ -23,7 +25,10 @@ class DailyTests(unittest.TestCase):
         self.body = (ROOT / 'tests/fixtures/browser/releases.html').read_text().replace('entry-content', 'c-release-notes')
         self.evidence = self.root / 'data/source-items/firefox/firefox-beta.json'
         self.catalog = self.root / 'data/catalog/features/catalog.json'
-        self.candidates = self.private / 'work/candidates/firefox-beta.json'
+
+    @property
+    def candidates(self):
+        return self.private / 'work/candidates/firefox-beta.json'
 
     def scan(self, **kw):
         return collect.collect_sources(self.root, self.private, source_ids=['firefox-beta'], cutoff=CUTOFF,
@@ -66,6 +71,75 @@ class DailyTests(unittest.TestCase):
         self.save([])
         self.assertEqual(before, (self.evidence.read_bytes(), self.catalog.read_bytes()))
         self.assertFalse((self.private / 'work').exists())
+
+    def test_one_source_revision_can_support_two_features(self):
+        self.body = self.body.replace('Tab grouping added.', 'Share tab groups and customize captions per site.')
+        self.scan()
+        first, = self.choose()
+        second = dict(first, canonical_key='site-captions', title='Site captions')
+        with self.assertRaises(ValueError):
+            self.save([first, first])
+        self.assertEqual(2, self.save([first, second]))
+        self.assertEqual(1, len(run_daily.read(self.evidence)))
+        catalog = run_daily.read(self.catalog)
+        self.assertEqual({'tab-groups', 'site-captions'}, {f['canonical_key'] for f in catalog})
+        for feature in catalog:
+            self.assertEqual({first['source_item_id']: [first['revision_id']]}, feature['source_revision_ids'])
+
+    def test_reused_anchor_displays_the_revision_confirmed_for_each_feature(self):
+        self.scan()
+        first, = self.choose()
+        self.save([first])
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('Tab grouping added.', 'Translate a PDF.')
+        self.scan()
+        second = dict(self.choose()[0], canonical_key='pdf-translation', title='PDF translation')
+        self.assertEqual(first['source_item_id'], second['source_item_id'])
+        self.assertNotEqual(first['revision_id'], second['revision_id'])
+        self.save([second])
+
+        (self.root / 'dashboard').mkdir()
+        (self.root / 'dashboard/card-summaries.json').write_text('{}')
+        legacy = dict(events=[], flags=[], source={}, built_at=CUTOFF, updated_at=CUTOFF, catalog={})
+        output = self.root.parent / 'site'
+        with patch.object(build_dashboard, 'ROOT', self.root):
+            build_dashboard.build_research(output, legacy, '')
+        rows = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        evidence = {r['title']: build_dashboard.read_resource(output / r['detail'])['evidence'] for r in rows}
+        for decision, excerpt in [(first, 'Tab grouping added.'), (second, 'Translate a PDF.')]:
+            citation, = evidence[decision['title']]
+            self.assertEqual(excerpt, citation['excerpt'])
+            self.assertEqual(decision['revision_id'], citation['revision_id'])
+
+    def test_existing_feature_without_pins_keeps_its_last_displayed_revision(self):
+        self.scan()
+        first, = self.choose()
+        self.save([first])
+        legacy = run_daily.read(self.catalog)
+        legacy[0].pop('source_revision_ids')
+        self.catalog.write_text(json.dumps(legacy))
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('Tab grouping added.', 'Translate a PDF.')
+        self.scan()
+        second = dict(self.choose()[0], canonical_key='pdf-translation', title='PDF translation')
+        self.save([second])
+        expected = {choice['canonical_key']: {choice['source_item_id']: [choice['revision_id']]}
+                    for choice in [first, second]}
+        self.assertEqual(expected, {f['canonical_key']: f['source_revision_ids'] for f in run_daily.read(self.catalog)})
+
+    def test_empty_classification_detects_missing_evidence_and_can_retry(self):
+        self.scan()
+        self.save(self.choose())
+        self.private = self.private.parent / 'next'
+        self.scan()
+        previous = self.evidence.read_bytes()
+        self.evidence.unlink()
+        with self.assertRaisesRegex(ContractError, 'Missing source_item'):
+            self.save([])
+        self.assertTrue(self.candidates.exists())
+        self.evidence.write_bytes(previous)
+        self.assertEqual(0, self.save([]))
+        self.assertFalse(self.candidates.exists())
 
     def test_unfinished_and_corrupt_inputs_remain_for_retry(self):
         self.scan()

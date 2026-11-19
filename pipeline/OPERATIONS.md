@@ -8,7 +8,7 @@ Python 3.9 이상과 `schemas/requirements.txt`를 설치합니다. 브라우저
    python -m pipeline.collect --private-dir "$PRIVATE_RUN" --source firefox-beta
    ```
 
-2. 수집 에이전트가 `$PRIVATE_RUN/work/candidates/<source-id>.json`에 있는 항목을 [기능 기준](../docs/collection-policy.md)에 따라 분류합니다. 기능으로 확인한 항목만 아래 형식의 JSON 배열에 넣고 작업 디렉터리의 `features.json`으로 저장합니다. ID는 후보의 `source_item_id`와 마지막 `revisions` 항목의 `revision_id`를 사용합니다. 같은 기능을 다시 관찰하면 카탈로그에 있는 해당 브라우저의 `canonical_key`를 사용합니다.
+2. 수집 에이전트가 `$PRIVATE_RUN/work/candidates/<source-id>.json`에 있는 항목을 [기능 기준](../docs/collection-policy.md)에 따라 분류합니다. 기능으로 확인한 항목만 아래 형식의 JSON 배열에 넣고 작업 디렉터리의 `features.json`으로 저장합니다. ID는 후보의 `source_item_id`와 마지막 `revisions` 항목의 `revision_id`를 사용합니다. 한 원문이 여러 기능을 설명하면 각 기능 키에 같은 출처 항목과 리비전을 지정합니다. 같은 기능을 다시 관찰하면 카탈로그에 있는 해당 브라우저의 `canonical_key`를 사용합니다.
 
    ```json
    [
@@ -21,7 +21,7 @@ Python 3.9 이상과 `schemas/requirements.txt`를 설치합니다. 브라우저
    ]
    ```
 
-3. 분류한 기능과 공식 근거를 저장합니다. 이 단계는 수집한 원문 버전으로 오프라인에서 실행됩니다. 빈 배열은 기존 자료를 그대로 유지합니다.
+3. 분류한 기능과 공식 근거를 저장합니다. 이 단계는 수집한 원문 버전으로 오프라인에서 실행됩니다. 빈 배열도 기존 카탈로그와 근거를 검증합니다. 참조가 끊어지면 후보를 보존하므로 근거를 복구한 뒤 다시 저장할 수 있습니다.
 
    ```sh
    python -m pipeline.collect --private-dir "$PRIVATE_RUN" --save-features "$PRIVATE_RUN/features.json"

@@ -1,5 +1,6 @@
 """Collect registered browser updates privately and save classified features."""
 import argparse
+from collections import defaultdict
 import json
 from datetime import datetime, timezone
 from pathlib import Path
@@ -127,9 +128,10 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             if not isinstance(choice, dict) or not all(isinstance(choice.get(k), str) and choice[k].strip() for k in fields):
                 raise ValueError('Feature classification needs a source item, revision, key and title')
             ident = choice['source_item_id']
-            if ident in requested:
-                raise ValueError('Repeated source item classification')
-            requested[ident] = choice
+            by_feature = requested.setdefault(ident, {})
+            if choice['canonical_key'] in by_feature:
+                raise ValueError('Repeated feature classification for this source item')
+            by_feature[choice['canonical_key']] = choice
         before = {}
 
         def existing(path):
@@ -140,6 +142,11 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
 
         catalog = existing(catalog_path)
         features = {(row['browser'], row['canonical_key']): row for row in catalog}
+        unpinned_owners = defaultdict(list)
+        for feature in catalog:
+            for ident in feature['source_item_ids']:
+                if ident not in feature.get('source_revision_ids', {}):
+                    unpinned_owners[ident].append(feature)
         changes = {}
         for source in sources:
             sid = source['source_id']
@@ -151,9 +158,9 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                 raise ValueError('Private candidates differ from the collected content')
             candidates = {r['source_item_id']: r for r in json.loads(raw)}
             for ident in sorted(requested.keys() & candidates.keys()):
-                choice, row = requested.pop(ident), candidates[ident]
+                choices, row = requested.pop(ident).values(), candidates[ident]
                 revision = row['revisions'][-1]['revision_id']
-                if (revision != choice['revision_id']
+                if (any(choice['revision_id'] != revision for choice in choices)
                         or row['source_id'] != sid or row['browser'] != source['browser']
                         or row['record_status'] != 'parsed'):
                     raise ValueError('Classification does not match the observed source revision')
@@ -169,19 +176,26 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                     prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')
                     if prior_cutoff and instant(row['temporal_scope']['cutoff']) < instant(prior_cutoff):
                         raise ValueError('A newer source window is already saved')
+                    # Older catalogs displayed the then-current source. Freeze that view before replacing it.
+                    for owner in unpinned_owners[ident]:
+                        owner.setdefault('source_revision_ids', {})[ident] = [prior['revisions'][-1]['revision_id']]
                 changes[target][ident] = row
-                key = (row['browser'], choice['canonical_key'])
-                if key not in features:
-                    feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
-                        canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
-                        event_ids=[], lifecycle='unknown', legacy=False)
-                    features[key] = feature
-                    catalog.append(feature)
-                feature = features[key]
-                # An undated citation cannot displace known in-period evidence.
-                if feature.get('temporal_scope', {}).get('status') != 'in_period' or row['temporal_scope']['status'] == 'in_period':
-                    feature['temporal_scope'] = row['temporal_scope']
-                feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
+                for choice in choices:
+                    key = (row['browser'], choice['canonical_key'])
+                    if key not in features:
+                        feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
+                            canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
+                            event_ids=[], lifecycle='unknown', legacy=False)
+                        features[key] = feature
+                        catalog.append(feature)
+                    feature = features[key]
+                    # An undated citation cannot displace known in-period evidence.
+                    if feature.get('temporal_scope', {}).get('status') != 'in_period' or row['temporal_scope']['status'] == 'in_period':
+                        feature['temporal_scope'] = row['temporal_scope']
+                    feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
+                    revisions = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
+                    if revision not in revisions:
+                        revisions.append(revision)
         if requested:
             raise ValueError('Classification refers to an unobserved source item')
         if changes:
@@ -189,8 +203,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             changes[catalog_path] = sorted(catalog, key=lambda row: row['feature_id'])
         state.update(status='saving', decisions=signature, saved_items=len(decisions))
         durable(state_path, encoded(state))
-        if changes:
-            store_changes(root, txn, changes, before, writer)
+        store_changes(root, txn, changes, before, writer)
         return finish_run(state_path, work, state, signature)
 
 

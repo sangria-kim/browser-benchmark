@@ -183,6 +183,15 @@ def validate_dataset(records_by_kind, source_ids=None):
         for record in records_by_kind.get(kind, []):
             for ident in record['source_item_ids']:
                 require('source_item', ident)
+            if kind == 'feature':
+                for ident, pins in record.get('source_revision_ids', {}).items():
+                    if ident not in record['source_item_ids']:
+                        raise ContractError('Feature revision references an uncited source item')
+                    source = require('source_item', ident)
+                    confirmed = set(pins)
+                    ordered = [r['revision_id'] for r in source['revisions'] if r['revision_id'] in confirmed]
+                    if source['browser'] != record['browser'] or ordered != pins:
+                        raise ContractError('Feature revision references must match the cited source history')
             if kind == 'feature_event':
                 feature = require('feature', record['feature_id'])
                 if feature['browser'] != record['browser']:

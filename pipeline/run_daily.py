@@ -173,6 +173,8 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     validate_graph(root, changes)
     payloads = {p: json_bytes(rows) for p, rows in changes.items()}
     payloads = {p: raw for p, raw in payloads.items() if digest(raw) != before[p]}
+    if not payloads:
+        return
     after = {p: digest(raw) for p, raw in payloads.items()}
     inputs = {p: before[p] for p in payloads}
     for rel in payloads:

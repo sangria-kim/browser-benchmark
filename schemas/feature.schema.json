@@ -195,6 +195,23 @@
         "reason"
       ],
       "additionalProperties": false
+    },
+    "source_revision_ids": {
+      "description": "Confirmed source revisions per cited item, oldest first. Older records can omit pins.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+        },
+        "minItems": 1,
+        "uniqueItems": true
+      }
     }
   },
   "required": [

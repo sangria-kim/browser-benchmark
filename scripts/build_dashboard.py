@@ -97,6 +97,18 @@ def build_research(output, legacy, base):
             catalogs[cid] = (kind, c)
             for sid in c['source_item_ids']:
                 source_owners[sid].append(cid)
+    # Feature summaries and detail cards must use the same confirmed source snapshots.
+    catalog_evidence = {}
+    for cid, (_, catalog) in catalogs.items():
+        refs = []
+        for sid in catalog['source_item_ids']:
+            source = objects[key('source_item', sid)]
+            pins = catalog.get('source_revision_ids', {}).get(sid)
+            if pins:
+                source = next(r for r in reversed(source['revisions']) if r['revision_id'] == pins[-1])
+            refs.append((sid, source))
+        catalog_evidence[cid] = refs
+
     def owner(k):
         fact = objects[k]
         if k.startswith('feature_event:'):
@@ -149,13 +161,13 @@ def build_research(output, legacy, base):
             after = {}
         title = fact.get('feature_title') or after.get('title') or fact.get('title') or fact.get('summary') or fact.get('symbol') or k.split(':', 1)[1]
         platforms = fact.get('platform') or after.get('platform') or catalog.get('platform') or []
-        versions = sorted({objects[key('source_item', sid)].get('version') for sid in catalog.get('source_item_ids', [])
-                           if objects[key('source_item', sid)].get('version')})
+        refs = catalog_evidence.get(cid, [])
+        versions = sorted({source['version'] for _, source in refs if source.get('version')})
         if not versions and fact.get('version'):
             versions = [fact['version']]
         dates = [fact.get('observed_at')]
-        if not k.startswith(('feature_event:', 'experiment_event:')):
-            dates += [objects.get(key('source_item', s), {}).get('observed_at') for s in fact.get('source_item_ids', [])]
+        if k.startswith(('feature:', 'experiment:')):
+            dates += [source['observed_at'] for _, source in refs]
         return {'key': k, 'id': k.split(':',1)[1], 'subject_kind': k.split(':',1)[0],
                 'title': title, 'browser': fact.get('browser') or catalog.get('browser') or 'chrome',
                 'platform': platforms if isinstance(platforms,list) else [platforms],
@@ -211,11 +223,17 @@ def build_research(output, legacy, base):
         cid = owner(k)
         pk = principal(k)
         related = owner_subjects.get(cid, [])
-        source_ids = fact.get('source_item_ids', [])
-        if k.startswith('source_item:'):
-            source_ids = [fact['source_item_id']]
-        evidence = [{'key':key('source_item', sid), 'detail':resource(key('source_item',sid)),
-                     **objects[key('source_item',sid)]['evidence']} for sid in source_ids]
+        if k.startswith(('feature:', 'experiment:')):
+            refs = catalog_evidence[cid]
+        else:
+            source_ids = [fact['source_item_id']] if k.startswith('source_item:') else fact['source_item_ids']
+            refs = [(sid, objects[key('source_item', sid)]) for sid in source_ids]
+        evidence = []
+        for sid, source in refs:
+            citation = dict(source['evidence'], key=key('source_item', sid), detail=resource(key('source_item', sid)))
+            if 'revision_id' in source:
+                citation['revision_id'] = source['revision_id']
+            evidence.append(citation)
         revisions = []
         if k.startswith(('feature_event:', 'experiment_event:')):
             for p in sorted((ROOT/'data/event-revisions'/fact['event_id']).glob('*.json')):
