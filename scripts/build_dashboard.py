@@ -115,7 +115,9 @@ def build_research(output, legacy, base):
     recorded_owners = {}
     for projection in projections.values():
         for row in projection['history'] + projection['current']:
-            recorded_owners[key(row['subject_kind'], row['subject_id'])] = row['catalog_id']
+            subject = key(row['subject_kind'], row['subject_id'])
+            # An omitted historical owner preserves any earlier explicit association.
+            recorded_owners[subject] = row.get('catalog_id', recorded_owners.get(subject))
 
     # Imported judgments can predate any daily archive. Restore their source-only
     # selection contexts when current catalog links point at a different owner.

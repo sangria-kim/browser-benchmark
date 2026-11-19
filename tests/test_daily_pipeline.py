@@ -141,6 +141,11 @@ class DailyTests(unittest.TestCase):
         current = historical['selected']['features']['current']
         self.assertEqual(2, len(current))
         expected = {(r['subject_id'], r['assessment_id'], r['catalog_id']) for r in current}
+        selection_path = self.root / 'data/selected/features/current.json'
+        selection = run_daily.read(selection_path)
+        for change in selection['history']:
+            del change['catalog_id']
+        selection_path.write_text(json.dumps(selection))
         decisions = [dict(canonical_key='tab-groups', title='Tab groups', source_item_id=r['source_item_id'],
                           revision_id=r['revisions'][-1]['revision_id']) for r in rows]
         self.assertEqual(2, self.save(decisions))
@@ -153,6 +158,15 @@ class DailyTests(unittest.TestCase):
         feature, = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
         detail = build_dashboard.read_resource(output / feature['detail'])
         self.assertEqual({r['evidence']['excerpt'] for r in rows}, {e['excerpt'] for e in detail['evidence']})
+
+        # Imported assessments can precede the first published snapshot.
+        for path in (self.root / 'data/selected').rglob('*.json'):
+            snapshot = run_daily.read(path)
+            snapshot['as_of'] = '2026-11-17T06:00:00Z'
+            path.write_text(json.dumps(snapshot))
+        output = self.dashboard()
+        past = build_dashboard.read_resource(output / day['path'])
+        self.assertEqual(expected, {(r['id'], r['assessment_id'], r['catalog_id']) for r in past['rows']})
 
     def test_two_feature_quotes_survive_cleanup_including_text_after_character_220(self):
         start = 'Tab grouping added.'
