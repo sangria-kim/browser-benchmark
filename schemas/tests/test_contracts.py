@@ -78,6 +78,15 @@ class ContractTests(unittest.TestCase):
                 feature['source_revision_ids'] = pins
                 validate_dataset(self.dataset)
 
+    def test_feature_excerpt_requires_its_confirmed_revision(self):
+        feature = self.dataset['feature'][0]
+        feature['source_revision_ids'] = {'src-test': ['rev-test']}
+        feature['source_revision_excerpts'] = {'rev-test': 'Synthetic test evidence.'}
+        validate_dataset(self.dataset)
+        feature['source_revision_excerpts']['other-revision'] = 'Unconfirmed quote.'
+        with self.assertRaisesRegex(ContractError, 'excerpt must cite'):
+            validate_dataset(self.dataset)
+
     def test_selected_requires_selected_assessment(self):
         self.dataset['assessment'][0]['status'] = 'excluded'
         with self.assertRaisesRegex(ContractError, 'Current selection'):

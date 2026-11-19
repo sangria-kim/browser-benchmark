@@ -79,7 +79,10 @@ def write_edge_shards(root, candidate, *, write=atomic_bytes):
         raise
 
 
-def minimal(text, limit=220):
+EXCERPT_LIMIT = 220
+
+
+def minimal(text, limit=EXCERPT_LIMIT):
     # Do not expose API owners, handles, author signatures or contact addresses.
     text = re.sub(r'\S+@\S+', '[contact omitted]', text)
     text = re.sub(r'(?i)\breported by\b.*', '[reporter attribution omitted]', text)
@@ -207,6 +210,7 @@ class BrowserCollector:
         self.records = {r['source_item_id']: r for r in self.previous}
         self.seen = {}
         self.parsed_ids = set()
+        self.classification_text = {}
         state_path = self.private_dir / (source['source_id'] + '.json')
         prior_state = json.loads(state_path.read_text()) if state_path.exists() else {}
         self.state = {'source_id': source['source_id'], 'cutoff': cutoff, 'since': since,
@@ -354,16 +358,19 @@ class BrowserCollector:
         parsed = unit['parsed']
         self.state['processed' if parsed else 'unparsed'] += 1
         content_hash = digest(response.body)
+        text = minimal(unit['text'], None) if parsed else ''
+        if not self.write_records and len(text) > EXCERPT_LIMIT:
+            self.classification_text[ident] = text
         evidence = {'url': url, 'section': minimal(unit['section']) or None,
                     'source_revision': revision, 'content_sha256': content_hash,
-                    'observed_at': observed_at, 'excerpt': minimal(unit['text']) if parsed else ''}
+                    'observed_at': observed_at, 'excerpt': text[:EXCERPT_LIMIT]}
         source_channels = self.source['channels']
         source_platforms = self.source['platforms']
         record = {'schema_version': 2, 'source_item_id': ident, 'source_id': self.source['source_id'],
                   'browser': self.source['browser'], 'item_key': key,
                   'item_type': item_type(unit['section'] + ' ' + unit['text']) if parsed else 'unknown',
                   'title': minimal(title or unit['text'], 160) or None,
-                  'summary': minimal(unit['text']) or None,
+                  'summary': evidence['excerpt'] or None,
                   'channel': channel or (source_channels[0] if len(source_channels) == 1 else 'unknown'),
                   'platform': platform or (source_platforms if len(source_platforms) == 1 else ['unknown']),
                   'version': version, 'published_at': date, 'observed_at': observed_at,

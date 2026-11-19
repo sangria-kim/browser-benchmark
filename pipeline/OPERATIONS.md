@@ -10,13 +10,16 @@ Python 3.9 이상과 `schemas/requirements.txt`를 설치합니다. 브라우저
 
 2. 수집 에이전트가 `$PRIVATE_RUN/work/candidates/<source-id>.json`에 있는 항목을 [기능 기준](../docs/collection-policy.md)에 따라 분류합니다. 기능으로 확인한 항목만 아래 형식의 JSON 배열에 넣고 작업 디렉터리의 `features.json`으로 저장합니다. ID는 후보의 `source_item_id`와 마지막 `revisions` 항목의 `revision_id`를 사용합니다. 한 원문이 여러 기능을 설명하면 각 기능 키에 같은 출처 항목과 리비전을 지정합니다. 같은 기능을 다시 관찰하면 카탈로그에 있는 해당 브라우저의 `canonical_key`를 사용합니다.
 
+   공개 미리보기(`evidence.excerpt`)가 220자이면 기능별로 `evidence_quote`를 지정합니다. 긴 항목은 비공개 후보의 `classification_text`에서 해당 기능을 설명하는 연속된 구절을 최대 1,200자까지 그대로 복사합니다. 더 짧은 항목은 인용을 생략하면 미리보기 전체를 사용합니다. 이전 실행의 후보에 긴 본문이 없으면 새 실행으로 다시 수집해 뒷부분을 인용합니다.
+
    ```json
    [
      {
        "source_item_id": "<source_item_id>",
        "revision_id": "<revision_id>",
        "canonical_key": "shared-tab-groups",
-       "title": "탭 그룹 공유"
+       "title": "탭 그룹 공유",
+       "evidence_quote": "You can now share tab groups."
      }
    ]
    ```

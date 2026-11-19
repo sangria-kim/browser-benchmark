@@ -9,7 +9,7 @@ import re
 import uuid
 
 from pipeline.collectors.browser import BrowserCollector
-from pipeline.collectors.browser.collector import atomic_json
+from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, read, require_external, run_lock, store_changes
@@ -73,8 +73,13 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
         for source in sources:
             result = collector.collect(source, state['cutoff'], since, state['origin'])
             statuses.append({k: result[k] for k in ('source_id', 'status', 'cutoff')})
-            rows = [collector.records[k] for k in sorted(collector.parsed_ids)
-                    if collector.records[k]['temporal_scope']['status'] in ('in_period', 'unknown')]
+            rows = []
+            for ident in sorted(collector.parsed_ids):
+                row = collector.records[ident]
+                if row['temporal_scope']['status'] in ('in_period', 'unknown'):
+                    if ident in collector.classification_text:
+                        row = dict(row, classification_text=collector.classification_text[ident])
+                    rows.append(row)
             path = work / 'candidates' / source_path(source).name
             atomic_json(path, rows)
             observed[source['source_id']] = digest(path.read_bytes())
@@ -164,6 +169,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                         or row['source_id'] != sid or row['browser'] != source['browser']
                         or row['record_status'] != 'parsed'):
                     raise ValueError('Classification does not match the observed source revision')
+                excerpt = row['evidence']['excerpt']
+                classification_text = row.pop('classification_text', excerpt)
                 validate_record('source_item', row)
                 target = rel.as_posix()
                 if target == EDGE_POLICY and (root / EDGE_SHARDS[0]).exists():
@@ -181,6 +188,11 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                         owner.setdefault('source_revision_ids', {})[ident] = [prior['revisions'][-1]['revision_id']]
                 changes[target][ident] = row
                 for choice in choices:
+                    quote = choice.get('evidence_quote', excerpt)
+                    if len(excerpt) == EXCERPT_LIMIT and 'evidence_quote' not in choice:
+                        raise ValueError('Choose an evidence_quote for each feature in a long item')
+                    if not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in classification_text:
+                        raise ValueError('The evidence_quote must be a passage of up to 1200 characters from this item')
                     key = (row['browser'], choice['canonical_key'])
                     if key not in features:
                         feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
@@ -194,6 +206,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                         feature['temporal_scope'] = row['temporal_scope']
                     feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
                     revisions = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
+                    if 'evidence_quote' in choice:
+                        feature.setdefault('source_revision_excerpts', {})[revision] = quote
                     if revision not in revisions:
                         revisions.append(revision)
         if requested:

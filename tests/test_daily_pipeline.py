@@ -8,6 +8,8 @@ from unittest.mock import patch
 
 from pipeline import collect, run_daily
 from pipeline.collectors.browser import Response
+from pipeline.selection import run as run_selection
+from pipeline.selection.core import decision
 from schemas.validate import ContractError
 from scripts import build_dashboard
 
@@ -41,6 +43,15 @@ class DailyTests(unittest.TestCase):
 
     def save(self, decisions, **kw):
         return collect.save_features(self.root, self.private, decisions, **kw)
+
+    def dashboard(self):
+        (self.root / 'dashboard').mkdir(exist_ok=True)
+        (self.root / 'dashboard/card-summaries.json').write_text('{}')
+        legacy = dict(events=[], flags=[], source={}, built_at=CUTOFF, updated_at=CUTOFF, catalog={})
+        output = self.root.parent / 'site'
+        with patch.object(build_dashboard, 'ROOT', self.root):
+            build_dashboard.build_research(output, legacy, '')
+        return output
 
     def test_collect_and_save_only_feature_evidence(self):
         self.assertTrue(self.scan()['complete'])
@@ -98,18 +109,75 @@ class DailyTests(unittest.TestCase):
         self.assertNotEqual(first['revision_id'], second['revision_id'])
         self.save([second])
 
-        (self.root / 'dashboard').mkdir()
-        (self.root / 'dashboard/card-summaries.json').write_text('{}')
-        legacy = dict(events=[], flags=[], source={}, built_at=CUTOFF, updated_at=CUTOFF, catalog={})
-        output = self.root.parent / 'site'
-        with patch.object(build_dashboard, 'ROOT', self.root):
-            build_dashboard.build_research(output, legacy, '')
+        output = self.dashboard()
         rows = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
         evidence = {r['title']: build_dashboard.read_resource(output / r['detail'])['evidence'] for r in rows}
         for decision, excerpt in [(first, 'Tab grouping added.'), (second, 'Translate a PDF.')]:
             citation, = evidence[decision['title']]
             self.assertEqual(excerpt, citation['excerpt'])
             self.assertEqual(decision['revision_id'], citation['revision_id'])
+
+    def test_two_selected_sources_keep_their_dashboard_cards_after_linking_one_feature(self):
+        self.body = self.body.replace('Tab grouping added.</li>',
+            'You can now group tabs into named workspaces.</li>'
+            '<li id="feature-b">Users can now share saved tab groups with other users.</li>')
+        self.scan()
+        rows = [r for r in run_daily.read(self.candidates) if r['item_key'] in ('feature-a', 'feature-b')]
+        self.evidence.parent.mkdir(parents=True)
+        self.evidence.write_text(json.dumps(rows))
+
+        def select(context, rules):
+            result = decision('selected', 'Tab groups changed.', priority='P2',
+                              question='Can users group their tabs?', readiness='conditional')
+            source, = context['sources']
+            result['evidence_source_item_ids'] = [source['source_item_id']]
+            result['benchmark'] = dict(user_impact='Group tabs.', material_change='Named groups.',
+                steps=['Create a group'], metrics=['Completion'], conditions='Beta channel',
+                completion='Group exists', evidence_quotes=[source['evidence']['excerpt']])
+            return result
+
+        historical = run_selection(self.root, self.root.parent / 'selection', assessed_at=CUTOFF,
+                                   provider=select, model_id='fixture')
+        current = historical['selected']['features']['current']
+        self.assertEqual(2, len(current))
+        expected = {(r['subject_id'], r['assessment_id'], r['catalog_id']) for r in current}
+        decisions = [dict(canonical_key='tab-groups', title='Tab groups', source_item_id=r['source_item_id'],
+                          revision_id=r['revisions'][-1]['revision_id']) for r in rows]
+        self.assertEqual(2, self.save(decisions))
+        output = self.dashboard()
+        dashboard = build_dashboard.read_resource(output / 'data.json')
+        day, = dashboard['dates']
+        for cards in (dashboard['selected']['features'], build_dashboard.read_resource(output / day['path'])['rows']):
+            self.assertEqual(expected, {(r['id'], r['assessment_id'], r['catalog_id']) for r in cards})
+            self.assertTrue(all(r['current_selected'] for r in cards))
+        feature, = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        detail = build_dashboard.read_resource(output / feature['detail'])
+        self.assertEqual({r['evidence']['excerpt'] for r in rows}, {e['excerpt'] for e in detail['evidence']})
+
+    def test_two_feature_quotes_survive_cleanup_including_text_after_character_220(self):
+        start = 'Tab grouping added.'
+        end = 'PDF documents can now be translated.'
+        filler = 'Release background. ' * 15
+        self.body = self.body.replace(start, start + ' ' + filler + end)
+        self.scan()
+        first, = self.choose()
+        first['evidence_quote'] = start
+        second = dict(first, canonical_key='translate-pdf', title='Translate PDF', evidence_quote=end)
+        for invalid in ({k: v for k, v in second.items() if k != 'evidence_quote'},
+                        dict(second, evidence_quote='Text from a different item.')):
+            with self.assertRaisesRegex(ValueError, 'evidence_quote'):
+                self.save([first, invalid])
+            self.assertTrue(self.candidates.exists())
+            self.assertFalse(self.evidence.exists())
+        self.assertEqual(2, self.save([first, second]))
+        self.assertFalse((self.private / 'work').exists())
+        self.assertNotIn(filler, self.catalog.read_text() + self.evidence.read_text())
+        output = self.dashboard()
+        rows = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        for r in rows:
+            citation, = build_dashboard.read_resource(output / r['detail'])['evidence']
+            self.assertEqual(start if r['title'] == first['title'] else end, citation['excerpt'])
+            self.assertEqual(first['revision_id'], citation['revision_id'])
 
     def test_existing_feature_without_pins_keeps_its_last_displayed_revision(self):
         self.scan()

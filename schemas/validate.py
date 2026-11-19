@@ -184,7 +184,11 @@ def validate_dataset(records_by_kind, source_ids=None):
             for ident in record['source_item_ids']:
                 require('source_item', ident)
             if kind == 'feature':
-                for ident, pins in record.get('source_revision_ids', {}).items():
+                pins_by_source = record.get('source_revision_ids', {})
+                pinned = {revision for pins in pins_by_source.values() for revision in pins}
+                if record.get('source_revision_excerpts', {}).keys() - pinned:
+                    raise ContractError('Feature excerpt must cite a confirmed source revision')
+                for ident, pins in pins_by_source.items():
                     if ident not in record['source_item_ids']:
                         raise ContractError('Feature revision references an uncited source item')
                     source = require('source_item', ident)

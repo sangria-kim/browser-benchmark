@@ -8,7 +8,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -39,8 +39,7 @@ def read_json(path):
 def build_research(output, legacy, base):
     """Emit small entry data and lazy immutable-ID detail/report resources.
 
-    No collector or evaluator runs here. Dated membership uses assessment time,
-    with the same latest-successful owner ordering as selection.core.project.
+    Use stored selections for published dates and assessment history for earlier imports.
     """
     import hashlib
     sys.path.insert(0, str(ROOT))
@@ -48,7 +47,6 @@ def build_research(output, legacy, base):
     from pipeline.temporal import policy
     from pipeline.normalize.storage import load_source_items
     from collections import defaultdict, Counter
-    from datetime import timedelta
 
     def records(pattern):
         result = []
@@ -83,7 +81,8 @@ def build_research(output, legacy, base):
               'experiment':'experiment_id', 'experiment_event':'event_id'}
     objects = {key(kind, r[fields[kind]]): r for kind, rows in groups.items() for r in rows}
     assessments = records('data/assessments/*/*.json')
-    dataset = dict(groups, assessment=assessments, selected=records('data/selected/*/current.json'))
+    projections = {p['selection_kind']: p for p in records('data/selected/*/current.json')}
+    dataset = dict(groups, assessment=assessments, selected=list(projections.values()))
     contexts, coverage = build_contexts(dataset)
     histories = defaultdict(list)
     for a in assessments:
@@ -106,8 +105,26 @@ def build_research(output, legacy, base):
             pins = catalog.get('source_revision_ids', {}).get(sid)
             if pins:
                 source = next(r for r in reversed(source['revisions']) if r['revision_id'] == pins[-1])
+                quote = catalog.get('source_revision_excerpts', {}).get(pins[-1])
+                if quote is not None:
+                    source = dict(source, evidence=dict(source['evidence'], excerpt=quote))
             refs.append((sid, source))
         catalog_evidence[cid] = refs
+
+    # A later catalog association must not change the owner of an assessed selection.
+    recorded_owners = {}
+    for projection in projections.values():
+        for row in projection['history'] + projection['current']:
+            recorded_owners[key(row['subject_kind'], row['subject_id'])] = row['catalog_id']
+
+    # Imported judgments can predate any daily archive. Restore their source-only
+    # selection contexts when current catalog links point at a different owner.
+    for k, cid in recorded_owners.items():
+        if k.startswith('source_item:'):
+            kind, ident = k.split(':', 1)
+            source = objects[k]
+            contexts[kind, ident] = dict(subject_kind=kind, subject_id=ident, subject=source,
+                                         catalog=catalogs.get(cid, (None, None))[1], sources=[source])
 
     def owner(k):
         fact = objects[k]
@@ -115,6 +132,8 @@ def build_research(output, legacy, base):
             return fact['feature_id']
         if k.startswith('experiment_event:'):
             return fact['experiment_id']
+        if k in recorded_owners:
+            return recorded_owners[k]
         if k.startswith('source_item:'):
             owners = source_owners[fact['source_item_id']]
             return owners[0] if len(owners) == 1 else None
@@ -140,7 +159,8 @@ def build_research(output, legacy, base):
         return {cid: (k, a) for cid, (_, k, a) in active.items()}
     heads = heads_at()
     active = active_at(heads)
-    current_keys = {k for k, a in active.values() if a['status'] == 'selected'}
+    current_keys = {key(r['subject_kind'], r['subject_id']) for p in projections.values() for r in p['current']}
+    assessments_by_id = {a['assessment_id']: a for a in assessments}
     # Principal evidence mapping includes T5's exact cross-document matches.
     principals = {sid:key(*k) for sid,k in coverage.items()}
     def principal(k):
@@ -150,11 +170,11 @@ def build_research(output, legacy, base):
             return principals.get(objects[k]['source_item_id'], k)
         cid = owner(k)
         return active.get(cid, (k, None))[0]
-    def brief(k, chosen=None):
+    def brief(k, selection=None):
         fact = objects[k]
         pk = principal(k)
-        a = chosen or heads.get(pk)
-        cid = owner(k)
+        a = assessments_by_id[selection['assessment_id']] if selection else heads.get(pk)
+        cid = selection['catalog_id'] if selection else owner(k)
         catalog = catalogs.get(cid, (None, {}))[1]
         after = fact.get('after') or {}
         if not isinstance(after, dict):
@@ -182,22 +202,30 @@ def build_research(output, legacy, base):
                 'temporal_scope': ((catalog.get('temporal_scope') or fact.get('temporal_scope')) if fact.get('experiment_kind')
                                    else (fact.get('temporal_scope') or catalog.get('temporal_scope'))),
                 'detail': resource(k)}
-    projections = {p['selection_kind']: p for p in records('data/selected/*/current.json')}
-    actual_keys = {key(r['subject_kind'],r['subject_id']) for p in projections.values() for r in p['current']}
-    if actual_keys != current_keys:
-        raise ValueError('Dashboard projection differs from current selected contract')
+    def selected_card(row):
+        k = key(row['subject_kind'], row['subject_id'])
+        return brief(k, row)
+
     changes = defaultdict(list)
     for p in projections.values():
         for change in p['history']:
             changes[key(change['subject_kind'],change['subject_id'])].append(change)
     # Use current histories once. Dated archives repeat history, so never union them.
     ever = set(changes)
+    # Prefer published end-of-day membership. Early imported assessments predate the first archive.
+    snapshots = {}
+    for snapshot in records('data/selected/history/*/*.json') + list(projections.values()):
+        slot = day(snapshot['as_of']), snapshot['selection_kind']
+        if slot not in snapshots or stamp(snapshot['as_of']) >= stamp(snapshots[slot]['as_of']):
+            snapshots[slot] = snapshot
     date_index = []
     for d in sorted({day(a['assessed_at']) for a in assessments}, reverse=True):
         cutoff = d + 'T23:59:59.999999+09:00'
-        dated = project(dataset, contexts, assessments, load_rules(), cutoff, as_of=cutoff)
-        date_heads = heads_at(cutoff)
-        rows = [brief(key(r['subject_kind'],r['subject_id']), date_heads[key(r['subject_kind'],r['subject_id'])]) for p in dated.values() for r in p['current']]
+        dated = {kind: snapshots[d, kind] for kind in ('features', 'flags') if (d, kind) in snapshots}
+        if len(dated) < 2:
+            derived = project(dataset, contexts, assessments, load_rules(), cutoff, as_of=cutoff)
+            dated = {**derived, **dated}
+        rows = [selected_card(r) for p in dated.values() for r in p['current']]
         path = 'dates/' + d + '.json.gz'
         write(path, {'date':d, 'cutoff':cutoff, 'rows':rows})
         date_index.append({'date':d, 'path':path, 'count':len(rows)})
@@ -252,7 +280,7 @@ def build_research(output, legacy, base):
     all_rows = {kind:[brief(key(kind,r[fields[kind]])) for r in groups[kind]] for kind in ('source_item','feature','experiment')}
     for kind, rows in all_rows.items():
         write('indexes/'+kind+'.json.gz', rows)
-    selected_rows = {kind:[brief(key(r['subject_kind'],r['subject_id'])) for r in projections.get(kind,{}).get('current',[])] for kind in ('features','flags')}
+    selected_rows = {kind:[selected_card(r) for r in projections.get(kind,{}).get('current',[])] for kind in ('features','flags')}
     initial = {'format_version':2, 'resource_encoding':'gzip', 'source':legacy['source'], 'built_at':legacy['built_at'],
                'updated_at':max((a['assessed_at'] for a in assessments),default=legacy['updated_at']),
                'catalog':legacy['catalog'], 'selected':selected_rows,

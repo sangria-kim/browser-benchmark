@@ -212,6 +212,20 @@
         "minItems": 1,
         "uniqueItems": true
       }
+    },
+    "source_revision_excerpts": {
+      "description": "Feature-specific passages verified against the indicated source revision during classification.",
+      "type": "object",
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"
+      },
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 1200,
+        "pattern": "\\S"
+      }
     }
   },
   "required": [
