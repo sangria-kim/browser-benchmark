@@ -2,6 +2,7 @@
 import argparse
 from collections import defaultdict
 import json
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 import shutil
@@ -40,7 +41,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
     private.mkdir(mode=0o700, parents=True, exist_ok=True)
     state_path = private / 'feature-run.json'
     work = private / 'work'
-    with run_lock(private):
+    with run_lock(private), run_lock(root) as writer:
+        pending_recovery(root, writer)
         if work.is_symlink() or state_path.is_symlink():
             raise ValueError('Invalid collection workspace')
         if resume:
@@ -71,7 +73,22 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata,
             write_records=False)
         for source in sources:
+            if source['source_id'] == 'chrome-platform-status':
+                # Retain only the first comparison facts for old summary-only records.
+                # The shared state survives cleanup of individual run directories.
+                folder = private.parent / ('.browser-benchmark-comparison-' + str(os.getuid()))
+                folder.mkdir(mode=0o700, exist_ok=True)
+                if folder.is_symlink() or folder.stat().st_uid != os.getuid() or folder.stat().st_mode & 0o077:
+                    raise ValueError('Unsafe private comparison directory')
+                baseline = folder / (digest(str(root).encode()) + '.json')
+                if baseline.is_symlink():
+                    raise ValueError('Linked ChromeStatus comparison file')
+                initial = read(baseline) if baseline.exists() else {}
+                collector.chrome_status_baselines = dict(initial)
             result = collector.collect(source, state['cutoff'], since, state['origin'])
+            if (source['source_id'] == 'chrome-platform-status' and result['status'] == 'complete'
+                    and collector.chrome_status_baselines != initial):
+                durable(baseline, encoded(collector.chrome_status_baselines))
             statuses.append({k: result[k] for k in ('source_id', 'status', 'cutoff')})
             rows = []
             for ident in sorted(collector.parsed_ids):
@@ -178,6 +195,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                 if target not in changes:
                     changes[target] = {r['source_item_id']: r for r in existing(target)}
                 prior = changes[target].get(ident)
+                if prior is None and len(row['revisions']) != 1:
+                    raise ValueError('Source history changed since collection. Collect again.')
                 if prior:
                     validate_transition('source_item', prior, row)
                     prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')
