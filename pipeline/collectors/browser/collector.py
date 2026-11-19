@@ -18,8 +18,11 @@ from urllib.error import HTTPError
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, publication_value, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
-from pipeline.temporal import dated_scope
+from pipeline.temporal import dated_scope, instant
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
+
+
+DOCUMENT_VERSION = re.compile(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', re.I)
 
 
 def canonical(value):
@@ -209,9 +212,15 @@ class BrowserCollector:
                       'unparsed': 0, 'documents': 0, 'pages': 0, 'errors': [], 'pending': [],
                       'excluded_by_date': [], 'pagination_exhausted': False,
                       'last_successful_cutoff': prior_state.get('last_successful_cutoff')}
+        self.edge_content, self.edge_documents = {}, {}
         self.cache = {}
         self.state_path = state_path
         try:
+            if source['source_id'] == 'edge-policies':
+                for cached in self.progress['responses'].values():
+                    if not isinstance(cached.get('observed_at'), str):
+                        raise ValueError('Edge response cache has no observation time. Start a fresh collection.')
+                    instant(cached['observed_at'])
             parser = source['parser']
             if source['source_id'] == 'whale-release-history':
                 self.collect_whale()
@@ -253,6 +262,11 @@ class BrowserCollector:
             temporal['date_unknown' if status == 'unknown' else status] += 1
         self.state['temporal_coverage'] = temporal
         self.state['temporal_basis'] = 'Item publication date; ChromeStatus also uses its item updated timestamp. Unknown dates do not establish an in-period change.'
+        if source['source_id'] == 'edge-policies':
+            # Keep the current observation set separate from retained historical rows.
+            self.state['observed_ids'] = sorted(self.seen)
+            self.state['documents_seen'] = self.edge_documents
+            self.state['visible_content'] = self.edge_content
         atomic_json(state_path, self.state)
         return copy.deepcopy(self.state)
 
@@ -267,7 +281,7 @@ class BrowserCollector:
             raw = (self.private_dir / 'cache' / cached['sha256']).read_bytes()
             if digest(raw) != cached['sha256']:
                 raise ValueError('Cached response checksum mismatch')
-            response = Response(cached['url'], raw, 200, cached['headers'])
+            response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
         response = self.transport(url)
@@ -282,6 +296,9 @@ class BrowserCollector:
             cache_path.write_bytes(response.body)
         self.cache[url] = response
         self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
+        if self.source['source_id'] == 'edge-policies':
+            response.observed_at = self.observed_at
+            self.progress['responses'][url]['observed_at'] = response.observed_at
         atomic_json(self.progress_path, self.progress)
         return response
 
@@ -317,6 +334,9 @@ class BrowserCollector:
         return status != 'after_cutoff' and (current or status != 'before_period')
 
     def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None):
+        observed_at = self.observed_at
+        if self.source['source_id'] == 'edge-policies':
+            observed_at = response.observed_at or observed_at
         key = unit['key']
         ident = identity('src', [self.source['source_id'], url, key])
         fingerprint = digest(canonical([self.source['source_id'], url, key, unit,
@@ -333,7 +353,7 @@ class BrowserCollector:
         content_hash = digest(response.body)
         evidence = {'url': url, 'section': minimal(unit['section']) or None,
                     'source_revision': revision, 'content_sha256': content_hash,
-                    'observed_at': self.observed_at, 'excerpt': minimal(unit['text']) if parsed else ''}
+                    'observed_at': observed_at, 'excerpt': minimal(unit['text']) if parsed else ''}
         source_channels = self.source['channels']
         source_platforms = self.source['platforms']
         record = {'schema_version': 2, 'source_item_id': ident, 'source_id': self.source['source_id'],
@@ -343,7 +363,7 @@ class BrowserCollector:
                   'summary': minimal(unit['text']) or None,
                   'channel': channel or (source_channels[0] if len(source_channels) == 1 else 'unknown'),
                   'platform': platform or (source_platforms if len(source_platforms) == 1 else ['unknown']),
-                  'version': version, 'published_at': date, 'observed_at': self.observed_at,
+                  'version': version, 'published_at': date, 'observed_at': observed_at,
                   'evidence': evidence, 'record_status': 'parsed' if parsed else 'unparsed',
                   'origin': self.origin, 'lifecycle': 'unknown', 'revisions': [],
                   'experiment_kind': None, 'source_location': url + '#' + key, 'source_symbol': None}
@@ -437,7 +457,10 @@ class BrowserCollector:
             self.unresolved(url, response)
             self.problem(url, 'Recognized product content boundary missing')
             return root
-        units = blocks(body)
+        edge_policy = self.source['source_id'] == 'edge-policies'
+        if edge_policy and not re.fullmatch(self.source['discovery']['include_url_pattern'], canonical_url):
+            raise ValueError('Unexpected final Edge policy URL')
+        units = blocks(body, visible_sections=edge_policy)
         if not units:
             self.unresolved(url, response)
             self.problem(url, 'No source units in product content')
@@ -445,10 +468,21 @@ class BrowserCollector:
         timestamp = publication if publication and len(publication) > 10 else None
         publication_day = date_value(timestamp) if timestamp else publication
         for unit in units:
-            version_match = re.search(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', unit['section'] + ' ' + document_title, re.I)
+            version_match = DOCUMENT_VERSION.search(unit['section'] + ' ' + document_title)
             section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
                       version=version_match[1] if version_match else None)
+            if edge_policy and unit['parsed']:
+                # Use visible source text for comparison. Preserve the public location key and row hash.
+                headings = unit['visible_headings']
+                visible_version = DOCUMENT_VERSION.search(' '.join([*headings, document_title]))
+                ident = identity('src', [self.source['source_id'], canonical_url, unit['key']])
+                self.edge_content[ident] = digest(canonical([headings, unit['text'], unit.get('date'),
+                                                            visible_version[1] if visible_version else None]))
+        if edge_policy and units and all(unit['parsed'] for unit in units):
+            content_hash = digest(response.body)
+            if self.edge_documents.setdefault(canonical_url, content_hash) != content_hash:
+                raise ValueError('Inconsistent responses for one Edge policy URL')
         return root
 
     def index_link(self, node):

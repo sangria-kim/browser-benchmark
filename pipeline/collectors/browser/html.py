@@ -379,7 +379,7 @@ def omit_attributions(body):
             link.attrs.pop('href', None)
 
 
-def blocks(body):
+def blocks(body, *, visible_sections=False):
     """Partition body into source units, retaining unsupported leaf text as unresolved.
 
     A list entry or table row is one unit. Paragraphs outside those units are
@@ -388,7 +388,7 @@ def blocks(body):
     """
     omit_attributions(body)
     result, counters, section, headings = [], {}, 'document', {}
-    heading_dates = {}
+    heading_dates, visible_headings = {}, {}
     suppressed = set()
     # Explicit author/reporter fields are outside the public product record.
     for n in body.walk():
@@ -432,6 +432,10 @@ def blocks(body):
             heading_dates = {k: v for k, v in heading_dates.items() if k < level}
             if date_value(text):
                 heading_dates[level] = date_value(text)
+            if visible_sections:
+                visible_headings = {k: v for k, v in visible_headings.items() if k < level}
+                if text:
+                    visible_headings[level] = text
             headings[level] = n.attrs.get('id') or text or section
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
@@ -448,6 +452,8 @@ def blocks(body):
             key = key or prefix + ':' + str(counters[prefix])
             result.append({'key': key, 'text': text, 'section': section, 'parsed': bool(text),
                            'date': heading_dates[max(heading_dates)] if heading_dates else None})
+            if visible_sections:
+                result[-1]['visible_headings'] = list(visible_headings.values())
             covered.add(id(n))
         elif any(isinstance(c, str) and c.strip() for c in n.children):
             # Plain text in an unfamiliar div/span is retained, never dropped.
@@ -459,4 +465,6 @@ def blocks(body):
                 result.append({'key': n.attrs.get('id') or prefix + ':' + str(counters[prefix]),
                                'text': direct if ordinary else '', 'section': section, 'parsed': ordinary,
                                'date': heading_dates[max(heading_dates)] if heading_dates else None})
+                if visible_sections:
+                    result[-1]['visible_headings'] = list(visible_headings.values())
     return unique_unit_keys(result)

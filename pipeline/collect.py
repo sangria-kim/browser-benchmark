@@ -31,6 +31,23 @@ def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, tran
 
 
 
+def chromium_cutoff(bundle):
+    """Bind a comparison window to its pinned revision and the materialized scopes."""
+    from pipeline.temporal import instant
+    comparison = bundle.get('temporal_comparison')
+    if not comparison:
+        return None
+    revision, cutoff = comparison['current_revision'], comparison['cutoff']
+    end = instant(cutoff)
+    if revision != bundle.get('revision') or instant(comparison['current_committed_at']) > end:
+        raise ValueError('Chromium comparison does not match its pinned endpoint')
+    for row in bundle.get('source_items', []) + bundle.get('experiments', []):
+        scope = row['temporal_scope']
+        if scope.get('current_revision') != revision or instant(scope['cutoff']) != end:
+            raise ValueError('Chromium record differs from the comparison window')
+    return cutoff
+
+
 def collect_sources(repository, private_dir, *, kind='browser', source_ids=None, cutoff=None,
                     transport=None, origin='baseline', resume=False, chrome_provider=None,
                     chrome_bundle=None, previous_bundle=None, sample_paths=None, max_files=None, max_trees=None, reviewed_attributions=None, brave_release_metadata=None):
@@ -76,6 +93,8 @@ def collect_sources(repository, private_dir, *, kind='browser', source_ids=None,
                 chrome_bundle['removed_candidates'] = []
                 chrome_bundle['coverage'].update(complete=False, temporal_complete=False)
             result['chrome'] = chrome_bundle['coverage']
+            result['chrome_revision'] = chrome_bundle.get('revision')
+            result['chrome_cutoff'] = chromium_cutoff(chrome_bundle)
         changes = prepare(stage, chrome_bundle if kind in ('chrome', 'all') else None, cutoff)
         result['counts'] = publish(repository, changes, private_dir / 'publication')
     result['complete'] = (all(r['status'] == 'complete' for r in result['browser'])

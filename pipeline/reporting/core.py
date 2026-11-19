@@ -13,7 +13,6 @@ from pipeline.selection import as_of, catalog_transitions
 from pipeline.selection.core import semantic
 from schemas.validate import ContractError, validate_record
 from pipeline.temporal import policy
-from .newsletter import newsletter_files
 
 KST = ZoneInfo('Asia/Seoul')
 VERSION = 'daily-selected-v1'
@@ -297,8 +296,11 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
                    previous_cutoff=previous_cutoff, generator_version=VERSION, rule_version=VERSION,
                    items=items, catalog_transitions=transitions, completeness=completeness, outcome=outcome,
                    selection_snapshot_paths=sorted(snapshot_files))
-    if policy(dataset, cutoff):
-        payload['collection_scope'] = policy(dataset, cutoff)
+    scope = policy(dataset, cutoff)
+    if scope:
+        if instant(scope['cutoff']) > instant(cutoff):
+            raise ContractError('Report cutoff must follow the collection scope')
+        payload['collection_scope'] = scope
     # Include immutable snapshots and normalized cutoff; run IDs and clock time
     # have no role in report identity or input equality.
     input_hash = digest(payload)
@@ -309,10 +311,7 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
         markdown = root / old['markdown_path']
         if not archive.exists() or json.loads(archive.read_text()) != old or not markdown.exists() or markdown.read_text() != render(old):
             raise ContractError('Stored report revision is missing or altered')
-        text_files = newsletter_files(root, dataset, old, selected['features'])
-        if text_files and not dry_run:
-            publish(root, {}, private_dir, text_files=text_files)
-        return {'report': old, 'created': False, 'replacements': {}, 'text_files': text_files}
+        return {'report': old, 'created': False, 'replacements': {}, 'text_files': {}}
     if old and instant(cutoff) < instant(old['cutoff']):
         raise ContractError('Cannot move the current daily cutoff backwards; read the stored revision')
     revision = old['revision'] + 1 if old else 1
@@ -323,8 +322,7 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
     replacements[current_path] = report
     replacements[f'data/reports/history/{day}/revision-{revision}.json'] = report
     validate_graph(root, replacements)
-    text_files = newsletter_files(root, dataset, report, selected['features'])
-    text_files[report['markdown_path']] = render(report)
+    text_files = {report['markdown_path']: render(report)}
     reports = {r['report_id']: r for r in dataset['report']}
     reports[report['report_id']] = report
     index = ['# 자동 생성 선정 변화 리포트', '', '날짜별 최신 revision입니다. 각 리포트의 고정 데이터와 이전 revision은 보존합니다.', '']

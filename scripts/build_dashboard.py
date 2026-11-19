@@ -248,6 +248,16 @@ def build_research(output, legacy, base):
     if policy(dataset):
         initial['collection_scope'] = policy(dataset)
     write('data.json',initial)
+    rendered = read_resource(output / 'data.json')
+    for kind, projection in projections.items():
+        expected = {(r['subject_kind'], r['subject_id'], r['assessment_id']) for r in projection['current']}
+        actual = {(r['subject_kind'], r['id'], r['assessment_id']) for r in rendered['selected'][kind]}
+        if expected != actual:
+            raise ValueError('Dashboard differs from selected ' + kind)
+    for entry in rendered['reports']:
+        source = ROOT / 'data/reports/history' / entry['date'] / f"revision-{entry['revision']}.json"
+        if read_resource(output / entry['path']) != read_json(source):
+            raise ValueError('Dashboard differs from report ' + entry['report_id'])
     from scripts.build_daily_dashboard import write_home
     write_home(output, ROOT, legacy, reports, projections.get('features', {}))
     return initial

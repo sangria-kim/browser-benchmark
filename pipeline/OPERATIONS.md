@@ -1,9 +1,9 @@
 # Daily candidate operations
 
-Use `python -m pipeline.run_daily` as the only scheduled writer. Stop the old
-writer before activation. Do not run the lower-level collection, selection or
-report commands against the same public tree while this runner is active.
-The runner does not create schedules, commit, push, open PRs or merge branches.
+The daily runner defaults to collection and data validation. The report job reads
+a validated collection and writes selections and standard reports. Each job has
+a separate run ID. Dashboard publication and package export have independent
+entry points. Keep the existing schedule until the owner approves the transition.
 
 Install `schemas/requirements.txt`. Use Python 3.9 or later, Git, and a local
 filesystem that supports `flock`, durable file writes and atomic file replacement.
@@ -23,12 +23,26 @@ runs from that snapshot in a separate interpreter. Successful stage checkpoints
 include output hashes. A failed or interrupted stage restarts from its preceding
 snapshot. Completed stages are reused only if their hashes still match.
 
-`--cutoff` fixes the collection window. Assessment time is the actual time that
-assessment starts. Report cutoff and KST date are frozen when reporting starts.
-Thus a long collection cannot backdate a new judgment to its start time. Resume
-uses those stored values; it does not replace them with current CLI defaults.
-`--previous-cutoff` supports a report window after missed runs. A collection that
-crosses midnight uses its actual report completion day in Korea.
+`--cutoff` fixes the collection window. After accepting the collection into a
+worktree, pass its private run directory to the report job. Choose an explicit
+evaluation and report time at or after collection. Reuse that time for a replay.
+The report date uses Asia/Seoul. Use `--previous-cutoff` after missed report days.
+
+```sh
+python -m pipeline.run_daily --job report --run-id report-001 \
+  --private-dir "$PRIVATE_STATE" --collection-run "$PRIVATE_STATE/baseline-001" \
+  --report-cutoff "$REPORT_CUTOFF"
+```
+
+Both jobs default to private output. Publish each accepted job separately.
+The report job checks the collection fact hashes against its input snapshot.
+A later collection can use the same `--collection-run` option to carry forward
+last successful source cutoffs and hashes. A partial source keeps its preceding
+watermark. For older Chromium runs, recover the revision and comparison cutoff from
+the checksum-pinned bundle when its coverage matches. An unverified endpoint
+keeps the previous watermark and makes the handoff partial. Evaluation and
+report times must cover the latest source window in the collected data.
+Without a preceding checkpoint, its last successful window is unknown.
 
 Browser HTTP responses and source revisions stay in private collector caches.
 Chromium pins one commit and resumes that commit. The default Chromium budget is
@@ -42,7 +56,9 @@ To use repaired collector code, start a new run. Never edit the old run's frozen
 code or checkpoint. `--browser-cache-from /private/old-run/collection/browser`
 copies only raw responses after SHA256 checks at the same cutoff. It does not
 copy completion status, parsed records, errors, or document-completion judgments.
-Every document is parsed again. The new run freezes a private handoff manifest.
+Every document is parsed again. For Edge policies, cached responses must retain
+their original observation timestamps. Start a fresh collection if an older
+Edge cache lacks capture times. The new run freezes a private handoff manifest.
 Mutable ChromeStatus and Google blog API pages are refreshed as one enumeration so an old
 partial page set is not mixed with newly shifted pages.
 
@@ -67,9 +83,8 @@ is 2026-01-01T00:00:00+09:00 (2025-12-31T15:00:00Z).
 
 To continue partial source enumeration, use the same run ID with
 `--resume --retry-collection`. This keeps the base inputs and pinned source caches,
-invalidates downstream snapshots, and uses new actual judgment/report times.
-Previously completed private stage snapshots are replaced. An existing public
-report is preserved in the base and receives a new immutable revision when needed.
+rebuilds the private collection and validation snapshots. Report jobs read the
+accepted data separately. Existing standard report revisions remain immutable.
 Do not retry an already published run; start a new run after its commit.
 Use `--previous-bundle` to retain the preceding Chromium handoff on a new revision.
 
@@ -85,11 +100,8 @@ Exit 2 means a valid partial candidate. An exception or nonzero worker failure i
 an execution failure. Inspect private `state.json` and stage logs to distinguish
 these states. A partial report cannot claim that no changes occurred.
 
-The final stage validates the whole graph, builds the dashboard, checks selected
-and report payload consistency, and verifies a fixed-commit data export. That
-commit exists only in the private validation checkout. Its SHA, package and
-built document links are **validation only**. Do not send them to consumers or
-claim they are published source provenance.
+The final stage checks the data graph. Dashboard payload checks run with the
+dashboard build. Export checks run on the selected real Git commit.
 
 Review the candidate under the private `validate` directory. To publish its
 managed data and generated reports to a clean worktree:
@@ -109,20 +121,19 @@ report remain partial; this option does not claim complete collection.
 The runner changes only `data/` and `reports/generated/`. It never deletes accepted
 files. A failed collection or evaluation can produce a partial private candidate;
 public data remains unchanged unless explicit partial publication is requested.
-Whole-graph or export validation failure prevents all publication.
+Graph validation failure prevents publication of the candidate.
 
 After publication, follow repository branch rules: validate, fetch, integrate
 concurrent work, commit to the work branch and open or update its PR. Leave merge
 to the owner. Export again from the actual final commit with
-`scripts/export_dataset.py`. The existing workflow rebuilds Pages from reviewed
-`main`. Keep the consumer ref and imported real SHA explicit.
+`scripts/export_dataset.py`. Dispatch the dashboard workflow from reviewed `main` to rebuild Pages. Keep the consumer ref and imported real SHA explicit.
 
 ## Recovery and limits
 
-A per-user, per-repository global lock serializes runs even when callers choose
-different private state directories. It records the pending publication location.
+A per-run lock protects private checkpoints. All publishers use a common repository
+lock during recovery and publication. It records the pending journal location.
 A durable write-ahead journal records every changed path and a checksum-verified
-backup. A new run rolls back an interrupted publication before doing more work.
+backup. The next publisher rolls back an interrupted publication before writing.
 A crash after the journal marks publication complete is treated as completed
 publication, even if the last checkpoint update was interrupted.
 
@@ -142,3 +153,60 @@ must be able to check out the repository, execute Python/Git, access official
 sources and retain private state. A hosted chat task cannot be assumed to access
 local files. Preserve its existing schedule, model and notification settings until
 those settings are inspected. Do not create a second recurring job as a substitute.
+
+## Edge policy pilot
+
+Use a full 40-character commit ID. After the owner merges the shard migration,
+use its actual main commit. Before that merge, use the local candidate only
+for a private comparison. The baseline run must have complete Edge coverage.
+Its verified policy bytes must match that commit, including all history.
+The initializer accepts the single-file snapshot from before the shard split.
+A checkpoint with observed IDs establishes which items were present at that cutoff.
+If those IDs are unavailable, the first complete comparison records observations
+and compatibility evidence. Semantic comparisons start from that observed set.
+Store private hashes of visible headings and full policy text. If the previous
+checkpoint lacks these hashes, capture them at the next complete observation.
+For positional units, compare content and duplicate counts under the final
+official page URL. Reconcile identical content that moved to another key.
+Store the source revision for each content difference. Handle independent anchors
+as individual items, including on pages that also use positional keys.
+
+
+```sh
+BASE_TIP=$(python -m pipeline.edge_delta --store "$EDGE_STORE" init \
+  --commit "$BASE_SHA" --run "$LAST_GOOD_RUN")
+python -m pipeline.run_daily --job collect --private-dir "$PRIVATE_STATE" \
+  --run-id edge-pilot --source edge-policies --kind browser --origin daily \
+  --collection-run "$LAST_GOOD_RUN" --cutoff "$CUTOFF"
+TIP=$(python -m pipeline.edge_delta --store "$EDGE_STORE" compare \
+  --parent "$BASE_TIP" --run "$PRIVATE_STATE/edge-pilot")
+python -m pipeline.edge_delta --store "$EDGE_STORE" restore --tip "$TIP" --output "$NEW_SNAPSHOT"
+```
+
+The Edge-only collection returns 2 for partial global coverage. Check its Edge
+status before comparison. If that source is partial, retry the same run and
+cutoff with `--resume --retry-collection`. Compare reads the validated full
+collector output and the private observation set. It performs no network requests.
+Preserve the verified tip separately. Use it as the parent of the next interval.
+
+Each receipt identifies the source, parent, window, resulting inventory and
+content-addressed files in application order. A successful no-change window
+has a receipt and no change file. Evidence-only updates retain document hashes
+and the revision tails needed to reproduce historical references. A removal
+records absence from a completely parsed version of the same official page.
+An absent page cannot remove a policy. Retired records remain in compatibility
+shards. A first observation with an earlier publication day is a backfill.
+An undated first observation does not establish a new release.
+
+Replay validates all hashes and writes a fresh private directory. Keep the last
+verified tip and snapshot if any link is missing or invalid. Before public
+cutover, verify historical reports and newsletter editions in a separate build.
+Run `verify-commit --tip "$TIP" --commit "$SOURCE_SHA"` with the same store before
+using that SHA for the dashboard or export. The command checks all reconstructed
+shards against the actual Git blobs. Reproduce the 1.2 package from the owner-merged commit and exercise the
+existing importer. Record local verification and the company Windows import
+separately. The pilot writes only private receipts. Keep the full public shards
+until consumer validation and owner review are complete. Compare
+`stages.validate.result.largest_source_files` in consecutive collection checkpoints
+to monitor all eight browsers. Extend to Safari, Brave and Chrome in that order
+after the Edge pilot is stable.

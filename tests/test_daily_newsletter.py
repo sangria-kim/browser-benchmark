@@ -4,6 +4,8 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from pipeline.reporting.newsletter import DASHBOARD, PENDING_TITLE, kst_day, latest_reports, make_cards, make_issue, newsletter_files, read, source_owners
+import test_reporting
+from scripts.archive_newsletters import archive
 from scripts.build_daily_dashboard import write_home
 
 
@@ -167,3 +169,45 @@ class DailyNewsletterTests(unittest.TestCase):
                 path.parent.mkdir(parents=True, exist_ok=True)
                 path.write_text(contents)
             self.assertEqual({}, newsletter_files(root,dataset,current,{}))
+
+
+class NewsletterArchiveTests(unittest.TestCase):
+    setUp = test_reporting.ReportingTests.setUp
+    write = test_reporting.ReportingTests.write
+    provider = test_reporting.ReportingTests.provider
+    execute = test_reporting.ReportingTests.execute
+    selected = test_reporting.ReportingTests.selected
+    report = test_reporting.ReportingTests.report
+
+    def test_publication_and_homepage_share_the_requested_repository_copy(self):
+        board = self.repo / 'dashboard/daily'
+        board.mkdir(parents=True)
+        event = self.data['feature_event'][0]
+        headline = '다른 저장소에서 편집한 기능 제목'
+        (board/'titles.json').write_text(json.dumps({event['event_id']: headline}))
+        self.selected()
+        self.report()
+        archive(self.repo)
+        editions = [json.loads(p.read_text()) for p in self.repo.glob('dashboard/daily/editions/*/newsletter-r*.json')]
+        self.assertIn(headline, [s['title'] for i in editions for s in i['stories']])
+        out = self.base/'preview'
+        out.mkdir()
+        write_home(out, self.repo, dict(events=[event], catalog={'events':{}}, source={'sha':'1'*40}), [], {})
+        data = json.loads((out/'index.html').read_text().split('id="daily-data">')[1].split('</script>')[0])
+        self.assertEqual(headline, data['cards'][0]['title'])
+        self.assertEqual(len(editions), len(data['issues']))
+
+    def test_next_report_recovers_edition_for_a_legacy_report(self):
+        self.selected()
+        first = self.report()['report']
+        path = self.repo/'dashboard/daily/editions/2026-11-16/newsletter-r1.json'
+        self.assertFalse(path.exists())
+        self.report('2026-11-17', '2026-11-17T06:00:00Z')
+        archive(self.repo)
+        recovered = json.loads(path.read_text())
+        self.assertEqual((first['date'], first['revision']), (recovered['day'], recovered['revision']))
+        self.assertTrue(recovered['generated'])
+        saved = path.read_bytes()
+        self.report('2026-11-17', '2026-11-17T06:00:00Z')
+        self.assertEqual([], archive(self.repo))
+        self.assertEqual(saved,path.read_bytes())
