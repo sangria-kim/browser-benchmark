@@ -6,6 +6,7 @@ import os
 import re
 import tempfile
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 from pipeline.collectors.browser.collector import canonical, digest, json_bytes
 from pipeline.run_daily import durable, git, read, require_external, run_lock
@@ -54,24 +55,36 @@ def document_units(before, after, previous_seen, seen, previous_content, content
     # Keep an unchanged explicit anchor independent of unrelated nearby slots.
     grouped = set()
     endpoints = []
-    same_ids = previous_seen & seen
     for items, ids, hashes in [(before, previous_seen, previous_content), (after, seen, content)]:
         contents = defaultdict(set)
         for ident in ids:
             row = items[ident]
             if POSITION_KEY.search(row['item_key']):
                 grouped.add(ident)
-            if ident in grouped or ident not in same_ids:
-                contents[row['evidence']['url'], policy_fingerprint(row, hashes[ident])].add(ident)
+            # A reused explicit ID can now point to another visible paragraph.
+            contents[row['evidence']['url'], policy_fingerprint(row, hashes[ident])].add(ident)
         endpoints.append(contents)
     old, new = endpoints
+    moves, outgoing, incoming = [], set(), set()
     for key in old.keys() & new.keys():
-        if old[key] - new[key] and new[key] - old[key]:
-            grouped.update(old[key] ^ new[key])
+        left, right = old[key] - new[key], new[key] - old[key]
+        if left and right:
+            moves.append((left, right))
+            outgoing.update(left)
+            incoming.update(right)
+    # When a persistent explicit anchor changes text, retain its identity unless
+    # both texts moved between keys or one side moved to/from a positional unit.
+    positional = grouped.copy()
+    movable = positional | (previous_seen ^ seen) | (outgoing & incoming)
+    for left, right in moves:
+        if (left | right) & positional:
+            grouped.update(left | right)
+        elif left & movable and right & movable:
+            grouped.update((left | right) & movable)
     return grouped
 
 
-def document_changes(before, after, previous_seen, seen, status, grouped, previous_cutoff, previous_content):
+def document_changes(before, after, previous_seen, seen, status, grouped, previous_day, previous_content):
     old_docs, new_docs = defaultdict(list), defaultdict(list)
     for items, ids, docs in [(before, previous_seen, old_docs), (after, seen, new_docs)]:
         for ident in ids & grouped:
@@ -92,7 +105,7 @@ def document_changes(before, after, previous_seen, seen, status, grouped, previo
                      document_sha256=status['documents_seen'][url])
         if event['type'] == 'added':
             dates = [r.get('published_at') for r in new_docs[url]]
-            event['origin'] = 'backfill' if all(d and d < previous_cutoff[:10] for d in dates) else 'first_observed'
+            event['origin'] = 'backfill' if all(d and d < previous_day for d in dates) else 'first_observed'
         for name, diff, refs in [('removed_content', old - new, old_refs), ('added_content', new - old, new_refs)]:
             event[name] = [dict(fingerprint=k, count=diff[k], **refs[k]) for k in sorted(diff)]
         changes.append(event)
@@ -111,6 +124,7 @@ def compare(before, after, status, retired, previous_cutoff, previous_seen, prev
         raise ContractError('Edge policy source is incomplete. Retain the last successful cutoff.')
     if instant(status['cutoff']) <= instant(previous_cutoff):
         raise ContractError('Edge policy window must advance')
+    previous_day = instant(previous_cutoff).astimezone(ZoneInfo('Asia/Seoul')).date().isoformat()
     seen = set(status['observed_ids'])
     if before.keys() - after.keys() or seen - after.keys() or not seen:
         raise ContractError('Missing policy history or observations')
@@ -122,7 +136,7 @@ def compare(before, after, status, retired, previous_cutoff, previous_seen, prev
     if comparable:
         validate_content(previous_content, previous_seen)
         grouped = document_units(before, after, previous_seen, seen, previous_content, content)
-        changes = document_changes(before, after, previous_seen, seen, status, grouped, previous_cutoff, previous_content)
+        changes = document_changes(before, after, previous_seen, seen, status, grouped, previous_day, previous_content)
     evidence = []
     for ident, row in sorted(after.items()):
         old = before.get(ident, {})
@@ -155,7 +169,7 @@ def compare(before, after, status, retired, previous_cutoff, previous_seen, prev
             # Discovery time cannot establish a release date.
             patch.update(type='added', origin='restored' if ident in retired else 'first_observed')
             published = row.get('published_at')
-            if published and published < previous_cutoff[:10] and ident not in retired:
+            if published and published < previous_day and ident not in retired:
                 patch['origin'] = 'backfill'
         elif policy_fingerprint(old, previous_content[ident]) != policy_fingerprint(row, content[ident]):
             patch['type'] = 'changed'

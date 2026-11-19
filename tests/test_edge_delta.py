@@ -201,6 +201,45 @@ class PolicyDeltaTests(unittest.TestCase):
         changes, _ = delta.compare(renamed, edited, seventh, set(), sixth['cutoff'], set(sixth['observed_ids']), None)
         self.assertEqual([], changes)
 
+    def test_backfill_uses_korean_calendar_day_for_the_same_instant(self):
+        before = delta.indexed([self.one])
+        fixed = dict(self.record('3'), published_at='2026-11-18')
+        positional = dict(self.record('4'), item_key='Example:p:1', published_at='2026-11-18',
+                          evidence={'url': 'https://example.org/another', 'content_sha256': 'a'*64})
+        after = delta.indexed([self.one, fixed, positional])
+        hashes = {k: delta.checksum(v['item_key']) for k, v in after.items()}
+        end = '2026-11-20T00:00:00Z'
+        status = dict(status='complete', cutoff=end, last_successful_cutoff=end, observed_ids=list(after),
+                      visible_content=hashes, documents_seen={r['evidence']['url']: 'a'*64 for r in after.values()})
+        for since in ('2026-11-18T15:00:00Z', '2026-11-19T00:00:00+09:00'):
+            with self.subTest(since=since):
+                changes, _ = delta.compare(before, after, status, set(), since, set(before),
+                                           {k: hashes[k] for k in before})
+                self.assertEqual(['backfill', 'backfill'], [c['origin'] for c in changes])
+                self.assertEqual({'policy_document', 'record'}, {c.get('scope', 'record') for c in changes})
+
+    def test_anchor_reassigned_between_paragraphs_matches_visible_content(self):
+        cfg = source('edge-policies')
+        url = cfg['url'] + '/reused-anchor'
+        repo = self.root / 'anchor-reassignment'
+        def collect(day, fixed):
+            def transport(target):
+                if target == cfg['url']:
+                    return Response(target, f'<a href="{url}">Policy</a>'.encode())
+                body = ''.join('<p' + (' id="fixed"' if i == fixed else '') + '>' + text + '</p>'
+                               for i, text in enumerate(['First definition', 'Second definition']))
+                return Response(url, f'<div class="content">{body}</div>'.encode())
+            status = BrowserCollector(repo, self.root / f'anchor-{day}', transport).collect(
+                cfg, f'2026-11-{day}T00:00:00Z', '2026-01-01')
+            self.assertEqual('complete', status['status'])
+            return status, delta.indexed(delta.read_edge_policies(repo)[0])
+        first, before = collect(18, 0)
+        second, after = collect(19, 1)
+        changes, evidence = delta.compare(before, after, second, set(), first['cutoff'],
+                                          set(first['observed_ids']), first['visible_content'])
+        self.assertEqual([], changes)
+        self.assertEqual(after, delta.replay(before, set(), changes, evidence)[0])
+
     def test_legacy_edge_cache_without_capture_time_stops_before_replay(self):
         cfg = source('edge-policies')
         repo, cache = self.root / 'capture', self.root / 'old-cache'
