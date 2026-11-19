@@ -283,37 +283,58 @@ class DailyTests(unittest.TestCase):
     def test_legacy_chromium_checkpoint_with_and_without_a_pinned_bundle(self):
         checkpoint = self.private / 'v1'
         opts = options()
+        current = daily.inventory(self.root)
         coverage = {'complete': True}
         state = dict(version=1, status='complete', options=opts, private_inputs={}, stages={
             'collect': {'result': {'complete': True, 'chrome': coverage}},
-            'validate': {'status': 'done', 'outputs': {}}})
+            'validate': {'status': 'done', 'outputs': current}})
         path = checkpoint / 'state.json'
         daily.durable(path, daily.encoded(state))
-        sources, status, _ = daily.collection_handoff(self.root, checkpoint, {})
+        sources, status, _ = daily.collection_handoff(self.root, checkpoint, current)
         self.assertNotIn('chromium-source', sources)
         self.assertEqual('partial', status)
-        raw = daily.encoded({'coverage': coverage, 'revision': 'a'*40})
+        end = '2026-11-16T12:53:40Z'
+        comparison = dict(cutoff=end, current_revision='a'*40, current_committed_at=end)
+        raw = daily.encoded({'coverage': coverage, 'revision': 'a'*40, 'temporal_comparison': comparison})
         daily.durable(checkpoint / 'inputs/chrome.json', raw)
         state['private_inputs']['chrome.json'] = daily.digest(raw)
         daily.durable(path, daily.encoded(state))
-        sources, status, _ = daily.collection_handoff(self.root, checkpoint, {})
+        sources, status, _ = daily.collection_handoff(self.root, checkpoint, current)
         self.assertEqual('complete', status)
         self.assertEqual('a'*40, sources['chromium-source']['revision'])
+        self.assertEqual(end, sources['chromium-source']['cutoff'])
+        report = dict(opts, job='report', collection_run=str(checkpoint))
+        with self.assertRaisesRegex(ValueError, 'cutoff must follow collection'):
+            daily.run(self.root, self.private, 'early-report', options=report)
+        self.assertFalse((self.private / 'early-report').exists())
         daily.durable(checkpoint / 'inputs/chrome.json', raw + b' ')
         with self.assertRaisesRegex(ValueError, 'checksum'):
-            daily.collection_handoff(self.root, checkpoint, {})
+            daily.collection_handoff(self.root, checkpoint, current)
+
+    def test_handoff_includes_later_retained_source_scope(self):
+        checkpoint = self.private / 'older'
+        cutoff = '2026-11-16T12:53:40Z'
+        rel = 'data/source-items/chrome-experiments/scope.json'
+        raw = daily.encoded([{'temporal_scope': {'cutoff': cutoff}}])
+        daily.durable(self.root / rel, raw)
+        current = {rel: daily.digest(raw)}
+        state = dict(version=2, status='partial', options=options(), source_baselines={}, stages={
+            'collect': {'result': {'complete': False}},
+            'validate': {'status': 'done', 'outputs': current}})
+        for validation in ({}, {'facts_cutoff': cutoff}):
+            state['stages']['validate']['result'] = validation
+            daily.durable(checkpoint / 'state.json', daily.encoded(state))
+            self.assertEqual(cutoff, daily.collection_handoff(self.root, checkpoint, current)[2])
 
     def test_chromium_watermark_cannot_move_backwards(self):
-        state = dict(options={'collection_cutoff': '2026-11-18T15:00:00Z',
+        state = dict(options={'collection_cutoff': '2026-11-20T15:00:00Z',
                               'prior_sources': {'chromium-source': {'cutoff': '2026-11-19T00:01:00+09:00'}}},
-                     stages={'collect': {'result': {'chrome_revision': 'a'*40, 'chrome': {'complete': True}}},
+                     stages={'collect': {'result': {'chrome_revision': 'a'*40, 'chrome_cutoff': '2026-11-18T15:00:00Z', 'chrome': {'complete': True}}},
                              'validate': {'outputs': {}}})
         with self.assertRaisesRegex(ValueError, 'backwards for chromium-source'):
             daily.source_baselines(state)
 
-    def test_real_collection_then_report_without_dashboard(self):
-        # Reuse the minimal contract fixture, but exercise actual subprocess
-        # stage code, transport parsing, normalization, evaluation and reporting.
+    def setup_contract_fixture(self):
         shutil.rmtree(self.root / 'data')
         for name in ('pipeline', 'scripts', 'schemas', 'rules', 'config'):
             shutil.copytree(ROOT / name, self.root / name, ignore=shutil.ignore_patterns('__pycache__'))
@@ -327,6 +348,30 @@ class DailyTests(unittest.TestCase):
                  'experiment_event':'data/experiment-events/events.json'}
         for kind, path in paths.items():
             daily.durable(self.root / path, daily.encoded(fixture[kind][0] if kind == 'feature_event' else fixture[kind]))
+
+    def test_chromium_collection_and_report_use_endpoint_window(self):
+        from test_temporal_projection import TemporalTests, CUTOFF
+        fixture = TemporalTests()
+        bundle = fixture.project(*fixture.bundles('BASE_FEATURE(kSame, base::FEATURE_ENABLED_BY_DEFAULT);',
+                                                  'BASE_FEATURE(kSame, base::FEATURE_DISABLED_BY_DEFAULT);'))
+        self.setup_contract_fixture()
+        daily.commit_candidate(self.root)
+        path = self.base / 'chrome.json'
+        daily.durable(path, daily.encoded(bundle))
+        state = daily.run(self.root, self.private, 'chrome', options=dict(options(), kind='chrome', sources=None),
+                          input_files={'chrome': path}, publish=True, allow_partial=True)
+        self.assertEqual(CUTOFF, state['source_baselines']['chromium-source']['cutoff'])
+        daily.commit_candidate(self.root)
+        opts = dict(options(), job='report', collection_run=str(self.private / 'chrome'))
+        with self.assertRaisesRegex(ValueError, 'cutoff must follow collection'):
+            daily.run(self.root, self.private, 'early', options=opts)
+        daily.run(self.root, self.private, 'valid', options=dict(opts, assessed_at=CUTOFF, report_cutoff=CUTOFF))
+        report = daily.read(self.private / 'valid/validate/data/reports/history/2026-11-16/revision-1.json')
+        self.assertEqual(daily.instant(CUTOFF), daily.instant(report['cutoff']))
+        self.assertEqual(CUTOFF, report['collection_scope']['cutoff'])
+
+    def test_real_collection_then_report_without_dashboard(self):
+        self.setup_contract_fixture()
         source = next(s for s in json.loads((ROOT / 'config/sources.yml').read_text())['sources'] if s['source_id'] == 'firefox-beta')
         responses = self.base / 'responses.json'
         responses.write_text(json.dumps({source['url']: {'body': (ROOT / 'tests/fixtures/browser/releases.html').read_text()}}))

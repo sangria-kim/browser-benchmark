@@ -22,6 +22,9 @@ from pipeline.temporal import dated_scope, instant
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
 
 
+DOCUMENT_VERSION = re.compile(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', re.I)
+
+
 def canonical(value):
     return json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(',', ':')).encode('utf-8')
 
@@ -209,6 +212,7 @@ class BrowserCollector:
                       'unparsed': 0, 'documents': 0, 'pages': 0, 'errors': [], 'pending': [],
                       'excluded_by_date': [], 'pagination_exhausted': False,
                       'last_successful_cutoff': prior_state.get('last_successful_cutoff')}
+        self.edge_content, self.edge_documents = {}, {}
         self.cache = {}
         self.state_path = state_path
         try:
@@ -261,13 +265,8 @@ class BrowserCollector:
         if source['source_id'] == 'edge-policies':
             # Keep the current observation set separate from retained historical rows.
             self.state['observed_ids'] = sorted(self.seen)
-            parsed_urls = {self.records[ident]['evidence']['url'] for ident in self.seen
-                           if self.records[ident]['record_status'] == 'parsed'}
-            documents = parsed_urls.intersection(self.progress['documents'])
-            self.state['documents_seen'] = {
-                url: digest(self.cache[url].body) for url in sorted(documents)
-                if url in self.cache and self.cache[url].url == url
-            }
+            self.state['documents_seen'] = self.edge_documents
+            self.state['visible_content'] = self.edge_content
         atomic_json(state_path, self.state)
         return copy.deepcopy(self.state)
 
@@ -458,7 +457,10 @@ class BrowserCollector:
             self.unresolved(url, response)
             self.problem(url, 'Recognized product content boundary missing')
             return root
-        units = blocks(body)
+        edge_policy = self.source['source_id'] == 'edge-policies'
+        if edge_policy and not re.fullmatch(self.source['discovery']['include_url_pattern'], canonical_url):
+            raise ValueError('Unexpected final Edge policy URL')
+        units = blocks(body, visible_sections=edge_policy)
         if not units:
             self.unresolved(url, response)
             self.problem(url, 'No source units in product content')
@@ -466,10 +468,21 @@ class BrowserCollector:
         timestamp = publication if publication and len(publication) > 10 else None
         publication_day = date_value(timestamp) if timestamp else publication
         for unit in units:
-            version_match = re.search(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', unit['section'] + ' ' + document_title, re.I)
+            version_match = DOCUMENT_VERSION.search(unit['section'] + ' ' + document_title)
             section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
                       version=version_match[1] if version_match else None)
+            if edge_policy and unit['parsed']:
+                # Use visible source text for comparison. Preserve the public location key and row hash.
+                headings = unit['visible_headings']
+                visible_version = DOCUMENT_VERSION.search(' '.join([*headings, document_title]))
+                ident = identity('src', [self.source['source_id'], canonical_url, unit['key']])
+                self.edge_content[ident] = digest(canonical([headings, unit['text'], unit.get('date'),
+                                                            visible_version[1] if visible_version else None]))
+        if edge_policy and units and all(unit['parsed'] for unit in units):
+            content_hash = digest(response.body)
+            if self.edge_documents.setdefault(canonical_url, content_hash) != content_hash:
+                raise ValueError('Inconsistent responses for one Edge policy URL')
         return root
 
     def index_link(self, node):

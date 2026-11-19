@@ -38,9 +38,10 @@ Both jobs default to private output. Publish each accepted job separately.
 The report job checks the collection fact hashes against its input snapshot.
 A later collection can use the same `--collection-run` option to carry forward
 last successful source cutoffs and hashes. A partial source keeps its preceding
-watermark. For v1 Chromium runs, use the revision from the checksum-pinned input
-bundle when its coverage matches. Otherwise carry the confirmed sources forward
-and mark the handoff partial. Report times must follow the collection cutoff.
+watermark. For older Chromium runs, recover the revision and comparison cutoff from
+the checksum-pinned bundle when its coverage matches. An unverified endpoint
+keeps the previous watermark and makes the handoff partial. Evaluation and
+report times must cover the latest source window in the collected data.
 Without a preceding checkpoint, its last successful window is unknown.
 
 Browser HTTP responses and source revisions stay in private collector caches.
@@ -163,8 +164,10 @@ The initializer accepts the single-file snapshot from before the shard split.
 A checkpoint with observed IDs establishes which items were present at that cutoff.
 If those IDs are unavailable, the first complete comparison records observations
 and compatibility evidence. Semantic comparisons start from that observed set.
-For positional units, compare full normalized content and duplicate counts under
-the official page URL. Reconcile identical content that moved to another key.
+Store private hashes of visible headings and full policy text. If the previous
+checkpoint lacks these hashes, capture them at the next complete observation.
+For positional units, compare content and duplicate counts under the final
+official page URL. Reconcile identical content that moved to another key.
 Store the source revision for each content difference. Handle independent anchors
 as individual items, including on pages that also use positional keys.
 

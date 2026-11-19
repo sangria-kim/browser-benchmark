@@ -287,6 +287,7 @@ def worker(stage, root, run_dir, options):
         graph = validate_graph(root)
         result = {'counts': {kind: len(rows) for kind, rows in graph.items()}}
         if options.get('job') != 'report':
+            result['facts_cutoff'] = latest_scope_cutoff(graph['source_item'])
             largest = {}
             for path in sorted((root / 'data/source-items').glob('*/*.json')):
                 browser = path.parent.name
@@ -331,6 +332,11 @@ def verify_collection_input(root, checkpoint, expected, current):
             raise ValueError('Collection checkpoint differs from event facts')
 
 
+def latest_scope_cutoff(rows):
+    return max((row['temporal_scope']['cutoff'] for row in rows if row.get('temporal_scope')),
+               key=instant, default=None)
+
+
 def collection_handoff(root, checkpoint, current):
     from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS, edge_policy_shards, read_edge_policies
     from pipeline.collectors.browser.collector import json_bytes
@@ -346,29 +352,43 @@ def collection_handoff(root, checkpoint, current):
         rows, _ = read_edge_policies(snapshot)
         expected.update({p: digest(json_bytes(group)) for p, group in edge_policy_shards(rows).items()})
     verify_collection_input(root, checkpoint, expected, current)
-    if 'source_baselines' in state:
-        sources = state['source_baselines']
+    validation = state['stages']['validate']
+    validation['outputs'] = expected
+    result = state['stages']['collect']['result']
+    if (result.get('chrome') or {}).get('complete') and not result.get('chrome_cutoff'):
+        # Older collectors only pinned the endpoint in the private input bundle.
+        pinned = state.get('private_inputs', {}).get('chrome.json')
+        if pinned:
+            from pipeline.collect import chromium_cutoff
+            raw = (checkpoint / 'inputs/chrome.json').read_bytes()
+            if digest(raw) != pinned:
+                raise ValueError('Legacy Chromium input checksum mismatch')
+            bundle = json.loads(raw)
+            if (bundle.get('coverage') != result['chrome']
+                    or (result.get('chrome_revision') and result['chrome_revision'] != bundle.get('revision'))):
+                raise ValueError('Legacy Chromium bundle mismatch')
+            result.update(chrome_revision=bundle.get('revision'), chrome_cutoff=chromium_cutoff(bundle))
+        if not result.get('chrome_revision') or not result.get('chrome_cutoff'):
+            result['chrome'] = dict(result['chrome'], complete=False)
+            result['complete'] = False
+    sources = source_baselines(state)
+    cutoffs = [state['options']['collection_cutoff'], *(s['cutoff'] for s in sources.values())]
+    if result.get('chrome_cutoff'):
+        cutoffs.append(result['chrome_cutoff'])
+    facts = validation.get('result', {})
+    if 'facts_cutoff' in facts:
+        if facts['facts_cutoff']:
+            cutoffs.append(facts['facts_cutoff'])
     else:
-        state['stages']['validate']['outputs'] = expected
-        result = state['stages']['collect']['result']
-        if (state['version'] == 1 and (result.get('chrome') or {}).get('complete')
-                and not result.get('chrome_revision')):
-            # A v1 replay can prove the revision via its frozen input bundle.
-            pinned = state.get('private_inputs', {}).get('chrome.json')
-            if pinned:
-                raw = (checkpoint / 'inputs/chrome.json').read_bytes()
-                if digest(raw) != pinned:
-                    raise ValueError('Legacy Chromium input checksum mismatch')
-                bundle = json.loads(raw)
-                if bundle.get('coverage') != result['chrome']:
-                    raise ValueError('Legacy Chromium coverage mismatch')
-                result['chrome_revision'] = bundle.get('revision')
-            if not result.get('chrome_revision'):
-                result['chrome'] = dict(result['chrome'], complete=False)
-                result['complete'] = False
-        sources = source_baselines(state)
-    status = 'complete' if state['stages']['collect']['result']['complete'] else 'partial'
-    return sources, status, state['options']['collection_cutoff']
+        # Reconstruct the report boundary from matched source files of older checkpoints.
+        from pipeline.normalize.storage import records
+        for rel in expected:
+            if rel.startswith('data/source-items/'):
+                cutoff = latest_scope_cutoff(records(read(root / rel)))
+                if cutoff:
+                    cutoffs.append(cutoff)
+    status = 'complete' if result['complete'] else 'partial'
+    return sources, status, max(cutoffs, key=instant)
 
 
 def source_baselines(state):
@@ -390,7 +410,8 @@ def source_baselines(state):
         baselines[source] = {'cutoff': status['cutoff'], 'sha256': digest(encoded(files))}
     if result.get('chrome') and result['chrome']['complete']:
         files = {p: h for p, h in output.items() if p.startswith('data/source-items/chrome-experiments/')}
-        cutoff = state['options']['collection_cutoff']
+        cutoff = result['chrome_cutoff']
+        instant(cutoff)
         previous = baselines.get('chromium-source')
         if previous and instant(cutoff) < instant(previous['cutoff']):
             raise ValueError('Source cutoff moved backwards for chromium-source')

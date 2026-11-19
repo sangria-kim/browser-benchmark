@@ -54,6 +54,7 @@ class PolicyDeltaTests(unittest.TestCase):
         status = dict(source_id=delta.SOURCE, cutoff=date, status='complete' if complete else 'partial',
                       last_successful_cutoff=date if complete else None,
                       observed_ids=[r['source_item_id'] for r in (after if seen is None else seen)],
+                      visible_content={r['source_item_id']: delta.checksum(r['title']) for r in (after if seen is None else seen)},
                       documents_seen={'https://example.org/policy': 'b'*64} if documents else {})
         state = dict(status='partial', stages={'validate': {'status': 'done', 'outputs': files},
                      'collect': {'result': {'browser': [status]}}})
@@ -133,6 +134,7 @@ class PolicyDeltaTests(unittest.TestCase):
                 status = state['stages']['collect']['result']['browser'][0]
                 if known:
                     status['observed_ids'] = [self.one['source_item_id']]
+                    status['visible_content'].pop(self.two['source_item_id'])
                 else:
                     status.pop('observed_ids')
                 durable(status_path, json_bytes(state))
@@ -147,14 +149,14 @@ class PolicyDeltaTests(unittest.TestCase):
     def test_markup_and_position_changes_use_actual_document_content(self):
         cfg = source('edge-policies')
         url = cfg['url'] + '/example'
-        def collect(day, tag, paragraphs, anchor=None):
+        def collect(day, tag, paragraphs, anchor=None, heading_id='policy', heading='Example'):
             def transport(target):
                 if target == cfg['url']:
                     return Response(target, f'<a href="{url}">Example</a>'.encode())
                 body = ''.join(f'<{tag}>{text}</{tag}>' for text in paragraphs)
                 if anchor:
                     body += f'<p id="fixed">{anchor}</p>'
-                return Response(url, f'<div class="content"><h2 id="policy">Example</h2>{body}</div>'.encode())
+                return Response(url + '-canonical', f'<div class="content"><h2 id="{heading_id}">{heading}</h2>{body}</div>'.encode())
             repo = self.root / 'observations'
             status = BrowserCollector(repo, self.root / f'capture-{day}', transport).collect(
                 cfg, f'2026-11-{day}T00:00:00Z', '2026-01-01')
@@ -164,11 +166,11 @@ class PolicyDeltaTests(unittest.TestCase):
         original = ['First definition', 'Second definition', 'Third definition']
         first, before = collect(16, 'p', original)
         second, retagged = collect(17, 'li', original)
-        changes, evidence = delta.compare(before, retagged, second, set(), first['cutoff'], set(first['observed_ids']))
+        changes, evidence = delta.compare(before, retagged, second, set(), first['cutoff'], set(first['observed_ids']), first['visible_content'])
         self.assertEqual([], changes)
         self.assertEqual(retagged, delta.replay(before, set(), changes, evidence)[0])
         third, after = collect(18, 'li', original[1:])
-        changes, evidence = delta.compare(retagged, after, third, set(), second['cutoff'], set(second['observed_ids']))
+        changes, evidence = delta.compare(retagged, after, third, set(), second['cutoff'], set(second['observed_ids']), second['visible_content'])
         event, = changes
         self.assertEqual(('policy_document', 'changed'), (event['scope'], event['type']))
         lost, = event['removed_content']
@@ -176,14 +178,28 @@ class PolicyDeltaTests(unittest.TestCase):
         self.assertEqual([], event['added_content'])
         self.assertEqual((after, set()), delta.replay(retagged, set(), changes, evidence))
         fourth, mixed = collect(19, 'p', original[1:], anchor='Anchor added')
-        changes, _ = delta.compare(after, mixed, fourth, set(), third['cutoff'], set(third['observed_ids']))
+        changes, _ = delta.compare(after, mixed, fourth, set(), third['cutoff'], set(third['observed_ids']), third['visible_content'])
         added, = changes
         self.assertEqual(('added', 'fixed'), (added['type'], mixed[added['item_id']]['item_key']))
         fifth, fewer = collect(20, 'p', original[1:])
-        changes, _ = delta.compare(mixed, fewer, fifth, set(), fourth['cutoff'], set(fourth['observed_ids']))
+        changes, _ = delta.compare(mixed, fewer, fifth, set(), fourth['cutoff'], set(fourth['observed_ids']), fourth['visible_content'])
         removed, = changes
         self.assertEqual(('removed', added['item_id']), (removed['type'], removed['item_id']))
 
+
+        sixth, renamed = collect(21, 'p', original[1:], heading_id='security-version-1.2')
+        changes, patches = delta.compare(fewer, renamed, sixth, set(), fifth['cutoff'],
+                                         set(fifth['observed_ids']), fifth['visible_content'])
+        self.assertEqual([], changes)
+        self.assertEqual(renamed, delta.replay(fewer, set(), changes, patches)[0])
+        seventh, edited = collect(22, 'p', original[1:], heading_id='security-version-1.2', heading='Changed heading')
+        changes, _ = delta.compare(renamed, edited, seventh, set(), sixth['cutoff'],
+                                   set(sixth['observed_ids']), sixth['visible_content'])
+        event, = changes
+        self.assertEqual(url + '-canonical', event['url'])
+        self.assertEqual((2, 2), (len(event['added_content']), len(event['removed_content'])))
+        changes, _ = delta.compare(renamed, edited, seventh, set(), sixth['cutoff'], set(sixth['observed_ids']), None)
+        self.assertEqual([], changes)
 
     def test_legacy_edge_cache_without_capture_time_stops_before_replay(self):
         cfg = source('edge-policies')
@@ -253,7 +269,7 @@ class PolicyDeltaTests(unittest.TestCase):
         messages['three'] = 'Third definition'
         status, after = collect(19)
         self.assertEqual([cfg['url'], url] * 2, calls)
-        changes, evidence = delta.compare(before, after, status, set(), first['cutoff'], set(first['observed_ids']))
+        changes, evidence = delta.compare(before, after, status, set(), first['cutoff'], set(first['observed_ids']), first['visible_content'])
         self.assertEqual(['added', 'removed'], sorted(p['type'] for p in changes))
         self.assertEqual(1, len(evidence))
         self.assertEqual(after, delta.replay(before, set(), changes, evidence)[0])

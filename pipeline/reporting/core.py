@@ -296,8 +296,11 @@ def run(repository, private_dir, *, day, cutoff, previous_cutoff=None, collectio
                    previous_cutoff=previous_cutoff, generator_version=VERSION, rule_version=VERSION,
                    items=items, catalog_transitions=transitions, completeness=completeness, outcome=outcome,
                    selection_snapshot_paths=sorted(snapshot_files))
-    if policy(dataset, cutoff):
-        payload['collection_scope'] = policy(dataset, cutoff)
+    scope = policy(dataset, cutoff)
+    if scope:
+        if instant(scope['cutoff']) > instant(cutoff):
+            raise ContractError('Report cutoff must follow the collection scope')
+        payload['collection_scope'] = scope
     # Include immutable snapshots and normalized cutoff; run IDs and clock time
     # have no role in report identity or input equality.
     input_hash = digest(payload)
