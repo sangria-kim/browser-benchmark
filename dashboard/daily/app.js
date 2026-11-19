@@ -86,6 +86,14 @@ function external(url, label) {
     ? '<a href="' + esc(safe) + '" target="_blank" rel="noopener noreferrer">' + esc(label) + ' ↗</a>'
     : '';
 }
+function sourceLink(value) {
+  const url = new URL(value);
+  const release = /^(?:www\.)?firefox\.com$/.test(url.hostname) &&
+    url.pathname.match(/\/firefox\/(android\/|ios\/)?(\d+(?:\.\d+)*)(beta)?\/releasenotes\/?$/);
+  if (!release) return external(value, url.hostname);
+  const platform = { 'android/': ' Android', 'ios/': ' iOS' }[release[1]] || '';
+  return external(value, `Firefox${platform} ${release[2]} ${release[3] ? '베타' : '정식판'} 릴리스 노트`);
+}
 const key = (c) => 'browser-benchmark:daily:media:' + c.id;
 function localMedia(c) {
   try {
@@ -499,7 +507,7 @@ function showDetails(c, button) {
     '</p></section><section><h3>근거와 변경 내용</h3>' +
     (c.delta ? '<p>' + esc(c.delta) + '</p>' : '') +
     '<ul>' +
-    c.sources.map((url) => '<li>' + external(url, new URL(url).hostname) + '</li>').join('') +
+    c.sources.map((url) => '<li>' + sourceLink(url) + '</li>').join('') +
     records
       .map(
         (path, n) =>
