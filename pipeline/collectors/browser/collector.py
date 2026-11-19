@@ -845,10 +845,24 @@ class BrowserCollector:
                 feature_url = 'https://chromestatus.com/feature/' + str(ident)
                 # Do not copy raw API metadata: it includes personal owner emails.
                 text = row.get('summary') or row.get('name') or ''
+                revision = row.get('updated', {}).get('when')
+                chrome = (row.get('browsers') or {}).get('chrome') or {}
+                status = (chrome.get('status') or {}).get('text')
+                if isinstance(status, str) and status.strip():
+                    # Earlier collectors hashed only the summary. Reading the same
+                    # official item revision with a new parser is not a launch.
+                    old = self.records.get(identity('src', [self.source['source_id'], feature_url, str(ident)]))
+                    same_legacy_revision = (
+                        old and old.get('item_content_sha256') == digest(canonical(['feature', text]))
+                        and ((revision and old['evidence']['source_revision'] == revision)
+                             or old['evidence']['content_sha256'] == digest(response.body))
+                    )
+                    if not same_legacy_revision:
+                        text = f'Chrome status: {status.strip()}. {text}'
                 self.emit(feature_url, response, {'key': str(ident), 'section': 'feature', 'text': text,
                           'parsed': bool(row.get('name'))}, title=row.get('name'),
                           date=date_value(row.get('created', {}).get('when', '')),
-                          revision=row.get('updated', {}).get('when'))
+                          revision=revision)
                 self.document_done(marker)
             start += len(rows)
             self.persist_checkpoint([url])

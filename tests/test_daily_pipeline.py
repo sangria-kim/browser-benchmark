@@ -349,6 +349,43 @@ class DailyTests(unittest.TestCase):
         row, = run_daily.read(self.evidence)
         self.assertEqual(['Share your tab groups.'], [r['summary'] for r in row['revisions']])
 
+    def test_chromestatus_release_stage_is_evidence_but_timestamp_only_is_not(self):
+        row = dict(id=123, name='Tab groups', summary='Organize tabs.', updated={'when': '2026-11-01'})
+        def scan_status(name):
+            self.private = self.private.parent / name
+            body = json.dumps({'total_count': 1, 'features': [row]}).encode()
+            result = collect.collect_sources(self.root, self.private, source_ids=['chrome-platform-status'],
+                cutoff=CUTOFF, transport=lambda url: Response(url, body))
+            self.assertTrue(result['complete'])
+            return run_daily.read(self.private / 'work/candidates/chrome-platform-status.json')
+
+        def save_stage(name, expected):
+            item, = scan_status(name)
+            self.assertIn(expected, item['evidence']['excerpt'])
+            choice = dict(source_item_id=item['source_item_id'], revision_id=item['revisions'][-1]['revision_id'],
+                          canonical_key='tab-groups', title='Tab groups', evidence_quote=expected)
+            self.assertEqual(1, self.save([choice]))
+            return choice['revision_id']
+
+        # Simulate the old summary-only contract for an already published item.
+        baseline = save_stage('legacy', 'Organize tabs.')
+        row['browsers'] = {'chrome': {'status': {'text': 'In development'}}}
+        self.assertEqual([], scan_status('same-legacy-revision'))
+        self.save([])
+        row['updated']['when'] = '2026-11-02'
+        row['summary'] = 'Organize and share tabs.'
+        first = save_stage('development', 'In development')
+        row['updated']['when'] = '2026-11-02T03:00:00Z'
+        self.assertEqual([], scan_status('timestamp-only'))
+        self.assertEqual(0, self.save([]))
+        row['updated']['when'] = '2026-11-03'
+        row['browsers']['chrome']['status']['text'] = 'Enabled by default'
+        latest = save_stage('enabled', 'Enabled by default')
+        feature, = run_daily.read(self.catalog)
+        self.assertEqual({baseline: 'Organize tabs.', first: 'In development', latest: 'Enabled by default'},
+                         feature['source_revision_excerpts'])
+        self.assertEqual([], scan_status('repeat'))
+
     def test_resume_recovers_interrupted_write(self):
         self.scan()
         decisions = self.choose()
