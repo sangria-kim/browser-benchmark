@@ -1,6 +1,6 @@
 # Pinned Chromium source collector
 
-This module collects public source definitions before PM selection. A source
+This private research tool reads source definitions for the historical experiment dataset. A source
 record is not evidence of a product rollout, account assignment, or installed
 behavior. Private Finch configuration is outside the scope.
 
@@ -13,8 +13,7 @@ Unsupported pagination or truncated responses prevent completion.
 ```sh
 python -m pipeline.collectors.chrome \
   --checkout /private/chromium/src \
-  --state-dir /private/chromium-collection/run-001 \
-  --output data/source-items/chrome-experiments/source-items.json
+  --state-dir /private/chromium-collection/run-001
 ```
 
 For a bounded source sample, omit `--checkout` and pass one or more
@@ -32,8 +31,7 @@ collection command. The timestamp must precede `2025-12-31T15:00:00Z`.
 The current timestamp must not exceed its declared source cutoff. Browser and
 Chromium cutoffs may differ; retain both in `collection_scope.source_windows`.
 Use a new state directory when parser or scope changes. `handoff.json` then carries
-`temporal_comparison` and public per-item scope. Pass that handoff to the daily
-runner's `--chrome-bundle`. A current scan without this comparison stays temporally
+`temporal_comparison` and public per-item scope. A current scan without this comparison stays temporally
 unknown and cannot complete the bounded collection.
 
 Enumeration, syntax parsing, reference resolution and temporal eligibility are
@@ -101,7 +99,7 @@ commit do not add duplicate source revisions.
 T4 consumes this handoff for normalization and writes the public catalog. The
 source array alone is not a substitute for the facts bundle. The current shared
 experiment schema has no structured choice/parameter field. T4 must preserve
-those facts in its versioned public catalog extension before data-only export.
+those facts in its versioned public catalog extension for historical reference.
 Do not publish the handoff, cache, manifest, or operations summary.
 
 ## Parsing and coverage limits

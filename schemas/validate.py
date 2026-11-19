@@ -21,7 +21,6 @@ KINDS = {
     'assessment': ('assessment', 'assessment_id'),
     'selected': ('selected', None),
     'report': ('report', 'report_id'),
-    'export_manifest': ('export-manifest', None),
     'legacy_feature_event': ('legacy-feature-event', 'event_id'),
     'sources_config': ('sources-config', None),
     'chrome_scope_config': ('chrome-scope-config', None),
@@ -111,10 +110,6 @@ def validate_record(kind, record):
             raise ContractError('Duplicate source IDs')
         if set(s['browser'] for s in record['sources'] if s['enabled']) != set(record['browsers']):
             raise ContractError('Each browser needs an enabled registered source')
-    if kind == 'export_manifest':
-        paths = [f['path'] for f in record['files']]
-        if len(paths) != len(set(paths)):
-            raise ContractError('Duplicate export paths')
     return record
 
 
@@ -188,6 +183,19 @@ def validate_dataset(records_by_kind, source_ids=None):
         for record in records_by_kind.get(kind, []):
             for ident in record['source_item_ids']:
                 require('source_item', ident)
+            if kind == 'feature':
+                pins_by_source = record.get('source_revision_ids', {})
+                pinned = {revision for pins in pins_by_source.values() for revision in pins}
+                if record.get('source_revision_excerpts', {}).keys() - pinned:
+                    raise ContractError('Feature excerpt must cite a confirmed source revision')
+                for ident, pins in pins_by_source.items():
+                    if ident not in record['source_item_ids']:
+                        raise ContractError('Feature revision references an uncited source item')
+                    source = require('source_item', ident)
+                    confirmed = set(pins)
+                    ordered = [r['revision_id'] for r in source['revisions'] if r['revision_id'] in confirmed]
+                    if source['browser'] != record['browser'] or ordered != pins:
+                        raise ContractError('Feature revision references must match the cited source history')
             if kind == 'feature_event':
                 feature = require('feature', record['feature_id'])
                 if feature['browser'] != record['browser']:

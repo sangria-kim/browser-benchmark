@@ -79,7 +79,10 @@ def write_edge_shards(root, candidate, *, write=atomic_bytes):
         raise
 
 
-def minimal(text, limit=220):
+EXCERPT_LIMIT = 220
+
+
+def minimal(text, limit=EXCERPT_LIMIT):
     # Do not expose API owners, handles, author signatures or contact addresses.
     text = re.sub(r'\S+@\S+', '[contact omitted]', text)
     text = re.sub(r'(?i)\breported by\b.*', '[reporter attribution omitted]', text)
@@ -173,7 +176,8 @@ class BrowserCollector:
     The private checkpoint contains
     pending URLs, reconciliation counts, errors and last successful cutoff.
     """
-    def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None):
+    def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None, *, write_records=True):
+        self.write_records = write_records
         self.repository = Path(repository).resolve()
         self.private_dir = Path(private_dir).expanduser().resolve()
         if self.private_dir == self.repository or self.repository in self.private_dir.parents:
@@ -205,6 +209,8 @@ class BrowserCollector:
             self.previous = json.loads(self.destination.read_text()) if self.destination.exists() else []
         self.records = {r['source_item_id']: r for r in self.previous}
         self.seen = {}
+        self.parsed_ids = set()
+        self.classification_text = {}
         state_path = self.private_dir / (source['source_id'] + '.json')
         prior_state = json.loads(state_path.read_text()) if state_path.exists() else {}
         self.state = {'source_id': source['source_id'], 'cutoff': cutoff, 'since': since,
@@ -246,10 +252,11 @@ class BrowserCollector:
             self.state['last_successful_cutoff'] = cutoff
         candidate = sorted(self.records.values(), key=lambda r: r['source_item_id'])
         validate_dataset({'source_item': candidate}, {source['source_id']})
-        if self.sharded:
-            write_edge_shards(self.repository, candidate)
-        else:
-            atomic_json(self.destination, candidate)
+        if self.write_records:
+            if self.sharded:
+                write_edge_shards(self.repository, candidate)
+            else:
+                atomic_json(self.destination, candidate)
         self.state['pending'] = list(dict.fromkeys(self.state['pending'] + [e['url'] for e in self.state['errors']]))
         self.state['stored_records'] = len(candidate)
         temporal = {'in_period': 0, 'before_period': 0, 'after_cutoff': 0, 'date_unknown': 0}
@@ -351,16 +358,19 @@ class BrowserCollector:
         parsed = unit['parsed']
         self.state['processed' if parsed else 'unparsed'] += 1
         content_hash = digest(response.body)
+        text = minimal(unit['text'], None) if parsed else ''
+        if not self.write_records and len(text) > EXCERPT_LIMIT:
+            self.classification_text[ident] = text
         evidence = {'url': url, 'section': minimal(unit['section']) or None,
                     'source_revision': revision, 'content_sha256': content_hash,
-                    'observed_at': observed_at, 'excerpt': minimal(unit['text']) if parsed else ''}
+                    'observed_at': observed_at, 'excerpt': text[:EXCERPT_LIMIT]}
         source_channels = self.source['channels']
         source_platforms = self.source['platforms']
         record = {'schema_version': 2, 'source_item_id': ident, 'source_id': self.source['source_id'],
                   'browser': self.source['browser'], 'item_key': key,
                   'item_type': item_type(unit['section'] + ' ' + unit['text']) if parsed else 'unknown',
                   'title': minimal(title or unit['text'], 160) or None,
-                  'summary': minimal(unit['text']) or None,
+                  'summary': evidence['excerpt'] or None,
                   'channel': channel or (source_channels[0] if len(source_channels) == 1 else 'unknown'),
                   'platform': platform or (source_platforms if len(source_platforms) == 1 else ['unknown']),
                   'version': version, 'published_at': date, 'observed_at': observed_at,
@@ -386,6 +396,8 @@ class BrowserCollector:
             comparison = ['title', 'summary', 'published_at', 'record_status', 'channel', 'platform', 'version', 'item_type', 'item_content_sha256']
             if (all(old.get(k) == record.get(k) for k in comparison) and
                     old['evidence']['content_sha256'] == content_hash and old['evidence']['source_revision'] == revision):
+                if parsed:
+                    self.parsed_ids.add(ident)
                 self.state['processed' if parsed else 'unparsed'] -= 1
                 self.state['duplicate'] += 1
                 from pipeline.temporal import scope_semantics
@@ -419,6 +431,8 @@ class BrowserCollector:
         if old:
             validate_transition('source_item', old, record)
         self.records[ident] = record
+        if parsed:
+            self.parsed_ids.add(ident)
 
     def unresolved(self, url, response, key='document', section='document'):
         self.emit(url, response, {'key': key, 'section': section, 'text': '', 'parsed': False})
@@ -429,7 +443,7 @@ class BrowserCollector:
         # Replay reconstructs recent records after an interruption. Each record
         # is validated on emit; whole-source validation runs once at completion.
         self.checkpoint_count += 1
-        if not self.sharded and self.checkpoint_count % 50 == 0:
+        if self.write_records and not self.sharded and self.checkpoint_count % 50 == 0:
             atomic_json(self.destination, sorted(self.records.values(), key=lambda r: r['source_item_id']))
         atomic_json(self.state_path, self.state)
 

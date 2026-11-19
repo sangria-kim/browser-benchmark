@@ -1,33 +1,6 @@
-# Normalize public evidence
+# Normalize historical evidence
 
-Run migration or replay a pinned collector handoff:
-
-```sh
-python -m scripts.migrate_dataset --private-dir /private/normalization \
-  --chrome-bundle /private/chromium/handoff.json
-python -m pipeline.collect --kind all --private-dir /private/daily \
-  --cutoff 2026-11-16T00:00:00Z
-```
-
-`--kind browser` is the default. Use `--kind chrome --chrome-bundle PATH` for
-network-free replay. Live Chromium inputs support `--checkout`, `--revision`,
-`--sample-path`, `--max-files`, `--max-trees` and `--previous-bundle`. Exit 2 means
-partial collection, even if validated evidence was published. Never describe it
-as no change or full coverage. The lower-level `collect_browsers` API remains
-available; daily orchestration should call the staged `collect_sources` API.
-
-The callable `collect_sources(repository, private_dir, ...)` invokes the existing
-T2 and T3 collectors in a private candidate. `prepare(repository, chrome_bundle,
-observed_at)` returns all replacement values without writing. `migrate(...)`
-validates and publishes; `dry_run=True` validates without writes. The private
-bundle never enters the public repository. A source-only public excerpt cannot
-replace that bundle's full definition and option facts.
-
-`normalize_browser_catalog` uses exact ChromeStatus machine identities. Other
-browser records remain source-item assessment subjects. `normalize_browser_facts`
-accepts explicit interpreted facts with canonical keys; it does not parse prose
-or perform PM selection. The complete source array and its revision snapshots
-are available to T5 regardless of feature mapping.
+For new browser updates, use the [collection and storage workflow](../OPERATIONS.md). This module also reads the earlier experiment and event formats.
 
 `normalize_chrome(bundle, sources, experiments, events, observed_at=...)` retains
 source facts and history. Stable events ignore global commits, observation times

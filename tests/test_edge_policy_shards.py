@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from pipeline.collect import collect_sources
+from pipeline.collect import collect_sources, save_features
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import atomic_bytes, write_edge_shards
 from pipeline.normalize import load_dataset
@@ -128,6 +128,11 @@ class EdgePolicyShardTests(unittest.TestCase):
             result = collect_sources(self.root, self.private / 'next', source_ids=['edge-policies'],
                                      cutoff='2026-11-17T00:00:00Z', origin='daily')
         self.assertTrue(result['complete'])
+        self.assertEqual(previous, read_edge_policies(self.root)[0])
+        candidates = json.loads((self.private / 'next/work/candidates/edge-policies.json').read_text())
+        save_features(self.root, self.private / 'next', [
+            dict(source_item_id=r['source_item_id'], revision_id=r['revisions'][-1]['revision_id'],
+                 canonical_key=r['item_key'], title=r['title']) for r in candidates])
         latest, mode = read_edge_policies(self.root)
         self.assertTrue(mode)
         self.assertEqual(3, len(latest))

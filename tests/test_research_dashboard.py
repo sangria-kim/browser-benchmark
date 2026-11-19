@@ -5,9 +5,10 @@ import tempfile
 import unittest
 from collections import Counter, defaultdict
 from pathlib import Path
+from datetime import timedelta
 from scripts.build_dashboard import ROOT, build, write_resource, read_resource
 from pipeline.normalize import load_dataset
-from pipeline.selection.core import build_contexts, load_rules, project
+from pipeline.selection.core import build_contexts, latest_assessments, load_rules, project, timestamp
 
 
 class ResearchDashboardTests(unittest.TestCase):
@@ -60,15 +61,47 @@ class ResearchDashboardTests(unittest.TestCase):
             self.assertEqual(expected, actual)
             self.assertEqual(len(expected), len(self.data['selected'][kind]))
 
-    def test_date_views_match_t5_without_unioning_archived_history(self):
+    def test_date_views_match_published_selection_snapshots(self):
+        snapshots = [json.loads(path.read_text()) for path in sorted(ROOT.glob('data/selected/history/*/*.json'))]
+        snapshots.extend(self.dataset['selected'])
+        for entry in self.data['dates']:
+            view = self.read(entry['path'])
+            cutoff = timestamp(view['cutoff'])
+            for kind in ('features', 'flags'):
+                with self.subTest(date=entry['date'], kind=kind):
+                    published = [p for p in snapshots if p['selection_kind'] == kind and
+                                 cutoff - timedelta(days=1) < timestamp(p['as_of']) <= cutoff]
+                    if not published:
+                        continue
+                    latest = max(reversed(published), key=lambda p: timestamp(p['as_of']))
+                    expected = [(r['subject_kind'], r['subject_id'], r['assessment_id'], r['catalog_id'])
+                                for r in latest['current']]
+                    actual = [(r['subject_kind'], r['id'], r['assessment_id'], r['catalog_id'])
+                              for r in view['rows'] if bool(r['experiment_kind']) == (kind == 'flags')]
+                    self.assertCountEqual(expected, actual)
+
+    def test_imported_dates_use_assessments_available_at_the_cutoff(self):
+        published = [timestamp(p['as_of']) for p in self.dataset['selected']]
+        published.extend(timestamp(json.loads(p.read_text())['as_of']) for p in ROOT.glob('data/selected/history/*/*.json'))
+        first = min(published, default=None)
         contexts, _ = build_contexts(self.dataset)
-        rules = load_rules()
-        for date in self.data['dates']:
-            snapshot = self.read(date['path'])
-            cutoff = snapshot['cutoff']
-            expected = project(self.dataset, contexts, self.dataset['assessment'], rules, cutoff, as_of=cutoff)
-            self.assertEqual({(r['subject_kind'],r['subject_id'],r['assessment_id']) for p in expected.values() for r in p['current']},
-                             {(r['subject_kind'],r['id'],r['assessment_id']) for r in snapshot['rows']})
+        for entry in self.data['dates']:
+            view = self.read(entry['path'])
+            if first and timestamp(view['cutoff']) >= first:
+                continue
+            heads = latest_assessments(self.dataset['assessment'], view['cutoff'])
+            # Event ownership is immutable, so the original PM projection is also an exact
+            # membership oracle for imported dates that contain only assessed events.
+            if all(kind.endswith('_event') for kind, _ in heads):
+                dated = project(self.dataset, contexts, self.dataset['assessment'], load_rules(),
+                                view['cutoff'], as_of=view['cutoff'])
+                self.assertCountEqual([r['assessment_id'] for p in dated.values() for r in p['current']],
+                                      [r['assessment_id'] for r in view['rows']])
+            for row in view['rows']:
+                assessment = heads[row['subject_kind'], row['id']]
+                self.assertEqual(('selected', assessment['assessment_id']), (row['status'], row['assessment_id']))
+
+    def test_selection_history_has_no_duplicate_subjects_and_retains_past_cards(self):
         keys = [r['key'] for r in self.data['history']]
         self.assertEqual(len(keys),len(set(keys)))
         self.assertTrue(any(not r['current_selected'] for r in self.data['history']))

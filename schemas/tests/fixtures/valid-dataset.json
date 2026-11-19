@@ -267,22 +267,5 @@
         }
       ]
     }
-  ],
-  "export_manifest": [
-    {
-      "contract_version": "1.0",
-      "source_repository": "https://github.com/example/browser-benchmark",
-      "source_ref": "main",
-      "source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-      "files": [
-        {
-          "path": "data/events/event-test.json",
-          "sha256": "0000000000000000000000000000000000000000000000000000000000000000",
-          "bytes": 123,
-          "data_kind": "feature-events"
-        }
-      ],
-      "link_policy": "preserve-relative-allowlisted-or-immutable-source-url"
-    }
   ]
 }

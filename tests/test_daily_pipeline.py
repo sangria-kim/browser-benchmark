@@ -1,411 +1,346 @@
-"""Daily transaction boundaries, crash recovery and real fixture integration."""
-import copy
+"""Feature-only collection, retention, concurrency and publication recovery."""
 import json
-import os
 from pathlib import Path
 import shutil
-import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
 
-from pipeline import run_daily as daily
+from pipeline import collect, run_daily
+from pipeline.collectors.browser import Response
+from pipeline.selection import run as run_selection
+from pipeline.selection.core import decision
+from schemas.validate import ContractError
+from scripts import build_dashboard
 
 ROOT = Path(__file__).resolve().parents[1]
-
-
-def options():
-    return dict(kind='browser', sources=['firefox-beta'], origin='baseline',
-        collection_cutoff='2026-11-16T06:00:00Z', previous_cutoff=None,
-        sample_paths=None, max_files=2, max_trees=2, model_id=None,
-        assessed_at='2026-11-16T06:00:00Z', report_cutoff='2026-11-16T06:00:00Z', day='2026-11-16')
+CUTOFF = '2026-11-16T06:00:00Z'
 
 
 class DailyTests(unittest.TestCase):
     def setUp(self):
-        self.temp = tempfile.TemporaryDirectory()
-        self.addCleanup(self.temp.cleanup)
-        self.base = Path(self.temp.name).resolve()
-        self.root = self.base / 'repo'
-        self.root.mkdir()
-        self.private = self.base / 'private'
-        (self.root / 'data').mkdir()
-        (self.root / 'data/value.json').write_text('[1]\n')
-        daily.git(self.root, 'init', '-q')
-        daily.commit_candidate(self.root)
-        self.calls = []
+        temp = tempfile.TemporaryDirectory()
+        self.addCleanup(temp.cleanup)
+        self.root = Path(temp.name) / 'repository'
+        self.private = Path(temp.name) / 'scan'
+        shutil.copytree(ROOT / 'config', self.root / 'config')
+        self.body = (ROOT / 'tests/fixtures/browser/releases.html').read_text().replace('entry-content', 'c-release-notes')
+        self.evidence = self.root / 'data/source-items/firefox/firefox-beta.json'
+        self.catalog = self.root / 'data/catalog/features/catalog.json'
 
-    def execute(self, stage, root, run_dir, opts):
-        self.calls.append(stage)
-        if stage == 'collect':
-            (root / 'data/value.json').write_text('[2]\n')
-        return {'complete': True, 'stage': stage}
+    @property
+    def candidates(self):
+        return self.private / 'work/candidates/firefox-beta.json'
 
-    def run_candidate(self, **kw):
-        return daily.run(self.root, self.private, 'fixture', options=options(), execute=self.execute, **kw)
+    def scan(self, **kw):
+        return collect.collect_sources(self.root, self.private, source_ids=['firefox-beta'], cutoff=CUTOFF,
+            transport=lambda url: Response(url, self.body.encode()), **kw)
 
-    def test_shadow_resume_and_publish_same_candidate(self):
-        before = daily.inventory(self.root)
-        state = self.run_candidate()
-        self.assertEqual('complete', state['status'])
-        self.assertEqual(before, daily.inventory(self.root))
-        self.assertEqual(list(daily.STAGES), self.calls)
-        state = self.run_candidate(resume=True, publish=True)
-        self.assertEqual(list(daily.STAGES), self.calls)
-        self.assertTrue(state['published'])
-        self.assertEqual('[2]\n', (self.root / 'data/value.json').read_text())
-        self.assertEqual(state, self.run_candidate(resume=True, publish=True))
+    def choose(self):
+        row = next(row for row in run_daily.read(self.candidates) if row['item_key'] == 'feature-a')
+        return [dict(source_item_id=row['source_item_id'], revision_id=row['revisions'][-1]['revision_id'],
+                     canonical_key='tab-groups', title='Tab groups')]
 
-    def test_failed_stage_restarts_from_previous_snapshot(self):
-        real = self.execute
-        def fail(stage, root, run_dir, opts):
-            if stage == 'validate':
-                (root / 'data/value.json').write_text('broken')
-                raise RuntimeError('interrupt')
-            return real(stage, root, run_dir, opts)
-        with self.assertRaises(RuntimeError):
-            daily.run(self.root, self.private, 'fixture', options=options(), execute=fail)
-        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
-        state = self.run_candidate(resume=True)
-        self.assertEqual('complete', state['status'])
-        self.assertEqual(1, self.calls.count('collect'))
-        self.assertEqual('[2]\n', (self.private / 'fixture/validate/data/value.json').read_text())
+    def save(self, decisions, **kw):
+        return collect.save_features(self.root, self.private, decisions, **kw)
 
-    def test_partial_collection_keeps_public_last_good(self):
-        private = self.base / 'collection'
-        def partial(stage, root, run_dir, opts):
-            result = self.execute(stage, root, run_dir, opts)
-            result['complete'] = stage != 'collect'
-            return result
-        result = daily.run(self.root, private, 'partial', options=options(), execute=partial)
-        self.assertEqual('partial', result['status'])
-        self.assertNotIn('report', result['stages'])
-        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
+    def dashboard(self):
+        (self.root / 'dashboard').mkdir(exist_ok=True)
+        (self.root / 'dashboard/card-summaries.json').write_text('{}')
+        legacy = dict(events=[], flags=[], source={}, built_at=CUTOFF, updated_at=CUTOFF, catalog={})
+        output = self.root.parent / 'site'
+        with patch.object(build_dashboard, 'ROOT', self.root):
+            build_dashboard.build_research(output, legacy, '')
+        return output
+
+    def test_collect_and_save_only_feature_evidence(self):
+        self.assertTrue(self.scan()['complete'])
+        self.assertFalse((self.root / 'data').exists())
+        rows = run_daily.read(self.candidates)
+        self.assertGreater(len(rows), 1)
+        self.assertIn('security', {r['item_type'] for r in rows})
+        decisions = self.choose()
+        keep = self.private / 'features.json'
+        keep.write_text(json.dumps(decisions))
+        self.assertEqual(1, self.save(decisions))
+        self.assertEqual(['feature-a'], [r['item_key'] for r in run_daily.read(self.evidence)])
+        self.assertEqual(['tab-groups'], [r['canonical_key'] for r in run_daily.read(self.catalog)])
+        self.assertFalse((self.private / 'work').exists())
+        self.assertTrue(keep.exists())
+        self.assertEqual(1, self.save(decisions))
         with self.assertRaises(ValueError):
-            daily.run(self.root, private, 'partial', resume=True, publish=True, execute=partial)
+            self.save([])
+        with self.assertRaises(ValueError):
+            self.scan()
 
-    def test_explicit_partial_publish_keeps_partial_status(self):
-        def partial(stage, root, run_dir, opts):
-            return dict(self.execute(stage, root, run_dir, opts), complete=False)
-        state = daily.run(self.root, self.private, 'fixture', options=options(), execute=partial,
-                          publish=True, allow_partial=True)
-        self.assertTrue(state['published'])
-        self.assertEqual('partial', state['status'])
+    def test_zero_confirmed_keeps_old_catalog_and_releases_workspace(self):
+        self.scan()
+        self.save(self.choose())
+        before = self.evidence.read_bytes(), self.catalog.read_bytes()
+        self.private = self.private.parent / 'next'
+        self.scan()
+        self.save([])
+        self.assertEqual(before, (self.evidence.read_bytes(), self.catalog.read_bytes()))
+        self.assertFalse((self.private / 'work').exists())
 
-    def test_retry_collection_keeps_base_but_rebuilds_downstream(self):
-        self.run_candidate()
-        self.run_candidate(resume=True, retry_collection=True)
-        self.assertEqual(list(daily.STAGES) * 2, self.calls)
-        self.assertEqual('[1]\n', (self.private / 'fixture/base/data/value.json').read_text())
+    def test_one_source_revision_can_support_two_features(self):
+        self.body = self.body.replace('Tab grouping added.', 'Share tab groups and customize captions per site.')
+        self.scan()
+        first, = self.choose()
+        second = dict(first, canonical_key='site-captions', title='Site captions')
+        with self.assertRaises(ValueError):
+            self.save([first, first])
+        self.assertEqual(2, self.save([first, second]))
+        self.assertEqual(1, len(run_daily.read(self.evidence)))
+        catalog = run_daily.read(self.catalog)
+        self.assertEqual({'tab-groups', 'site-captions'}, {f['canonical_key'] for f in catalog})
+        for feature in catalog:
+            self.assertEqual({first['source_item_id']: [first['revision_id']]}, feature['source_revision_ids'])
 
-    def test_dirty_and_long_running_concurrent_edit_refused(self):
-        (self.root / 'data/value.json').write_text('[3]\n')
-        with self.assertRaisesRegex(ValueError, 'clean starting'):
-            self.run_candidate(publish=True)
-        shutil.rmtree(self.private)
-        daily.commit_candidate(self.root)
-        self.run_candidate()
-        (self.root / 'data/value.json').write_text('[4]\n')
-        with self.assertRaisesRegex(RuntimeError, 'Concurrent'):
-            self.run_candidate(resume=True, publish=True)
-        self.assertEqual('[4]\n', (self.root / 'data/value.json').read_text())
+    def test_reused_anchor_displays_the_revision_confirmed_for_each_feature(self):
+        self.scan()
+        first, = self.choose()
+        self.save([first])
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('Tab grouping added.', 'Translate a PDF.')
+        self.scan()
+        second = dict(self.choose()[0], canonical_key='pdf-translation', title='PDF translation')
+        self.assertEqual(first['source_item_id'], second['source_item_id'])
+        self.assertNotEqual(first['revision_id'], second['revision_id'])
+        self.save([second])
 
-    def test_concurrent_lock_is_shared_across_private_directories(self):
-        with daily.run_lock(self.root):
-            with self.assertRaisesRegex(RuntimeError, 'lock'):
-                daily.run(self.root, self.base / 'other-private', 'other', options=options(), execute=self.execute, publish=True)
+        output = self.dashboard()
+        rows = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        evidence = {r['title']: build_dashboard.read_resource(output / r['detail'])['evidence'] for r in rows}
+        for decision, excerpt in [(first, 'Tab grouping added.'), (second, 'Translate a PDF.')]:
+            citation, = evidence[decision['title']]
+            self.assertEqual(excerpt, citation['excerpt'])
+            self.assertEqual(decision['revision_id'], citation['revision_id'])
 
-    def test_snapshot_and_private_input_tampering_refused(self):
-        self.run_candidate()
-        (self.private / 'fixture/base/data/value.json').write_text('tampered')
-        with self.assertRaisesRegex(ValueError, 'base snapshot'):
-            self.run_candidate(resume=True)
+    def collect_tab_group_sources(self):
+        self.body = self.body.replace('Tab grouping added.</li>',
+            'You can now group tabs into named workspaces.</li>'
+            '<li id="feature-b">Users can now share saved tab groups with other users.</li>')
+        self.scan()
+        rows = [r for r in run_daily.read(self.candidates) if r['item_key'] in ('feature-a', 'feature-b')]
+        self.evidence.parent.mkdir(parents=True)
+        self.evidence.write_text(json.dumps(rows))
+        return rows
 
-    def test_resume_rejects_added_response_or_decision_files(self):
-        def interrupt(stage, root, run_dir, opts):
-            raise KeyboardInterrupt()
-        for filename in ('responses.json', 'decisions.json'):
-            with self.subTest(filename=filename):
-                private = self.base / filename
-                with self.assertRaises(KeyboardInterrupt):
-                    daily.run(self.root, private, 'pinned', options=options(), execute=interrupt)
-                run_dir = private / 'pinned'
-                self.assertEqual({}, daily.read(run_dir / 'state.json')['private_inputs'])
-                daily.durable(run_dir / 'inputs' / filename, b'{}')
-                with self.assertRaisesRegex(ValueError, 'private input inventory'):
-                    daily.run(self.root, private, 'pinned', resume=True, execute=self.execute)
-                self.assertEqual([], self.calls)
-
-    def test_resume_rejects_modified_or_missing_private_input(self):
-        source = self.base / 'responses.json'
-        source.write_text('{}')
-        def interrupt(stage, root, run_dir, opts):
-            raise KeyboardInterrupt()
-        for change in ('modified', 'missing'):
-            with self.subTest(change=change):
-                private = self.base / change
-                with self.assertRaises(KeyboardInterrupt):
-                    daily.run(self.root, private, 'pinned', options=options(),
-                              input_files={'responses': source}, execute=interrupt)
-                target = private / 'pinned/inputs/responses.json'
-                if change == 'modified':
-                    target.write_text('{"changed": true}')
-                else:
-                    target.unlink()
-                with self.assertRaisesRegex(ValueError, 'private input inventory'):
-                    daily.run(self.root, private, 'pinned', resume=True, execute=self.execute)
-                self.assertEqual([], self.calls)
-
-    def test_private_input_links_and_nonregular_entries_are_rejected(self):
-        directory = self.base / 'inputs'
-        directory.mkdir()
-        source = self.base / 'external.json'
-        source.write_text('{}')
-        target = directory / 'responses.json'
-        target.symlink_to(source)
-        with self.assertRaisesRegex(ValueError, 'Nonregular or linked'):
-            daily.private_input_inventory(directory)
-        target.unlink()
-        target.mkdir()
-        with self.assertRaisesRegex(ValueError, 'Nonregular or linked'):
-            daily.private_input_inventory(directory)
-        target.rmdir()
-        os.mkfifo(target)
-        with self.assertRaisesRegex(ValueError, 'Nonregular or linked'):
-            daily.private_input_inventory(directory)
-        target.unlink()
-        link = self.base / 'linked-inputs'
-        link.symlink_to(directory, target_is_directory=True)
-        with self.assertRaisesRegex(ValueError, 'Linked private input directory'):
-            daily.private_input_inventory(link)
-
-    def test_worker_and_stage_boundary_reject_late_private_input(self):
-        run_dir = self.base / 'worker'
-        daily.durable(run_dir / 'state.json', daily.encoded({'private_inputs': {}}))
-        daily.durable(run_dir / 'inputs/decisions.json', b'{}')
-        with self.assertRaisesRegex(ValueError, 'private input inventory'):
-            daily.worker('select', self.root, run_dir, options())
-        def inject(stage, root, run_dir, opts):
-            result = self.execute(stage, root, run_dir, opts)
-            daily.durable(run_dir / 'inputs/decisions.json', b'{}')
+    def assess_tab_groups(self, at):
+        def select_tab_groups(context, rules):
+            result = decision('selected', 'Tab groups changed.', priority='P2',
+                              question='Can users group their tabs?', readiness='conditional')
+            source, = context['sources']
+            result['evidence_source_item_ids'] = [source['source_item_id']]
+            result['benchmark'] = dict(user_impact='Group tabs.', material_change='Named groups.',
+                steps=['Create a group'], metrics=['Completion'], conditions='Beta channel',
+                completion='Group exists', evidence_quotes=[source['evidence']['excerpt']])
             return result
-        with self.assertRaisesRegex(ValueError, 'private input inventory'):
-            daily.run(self.root, self.private, 'late', options=options(), execute=inject)
-        self.assertEqual(['collect'], self.calls)
 
-    def test_publication_error_rolls_back_and_crash_recovers(self):
-        state = self.run_candidate()
-        run_dir = self.private / 'fixture'
-        def error(path, data):
-            daily.durable(path, data)
-            raise OSError('failed after replacement')
-        with self.assertRaises(OSError):
-            daily.publish_candidate(self.root, run_dir, state, replace=error)
-        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
-        def crash(path, data):
-            daily.durable(path, data)
-            raise KeyboardInterrupt('process death')
-        with self.assertRaises(KeyboardInterrupt):
-            daily.publish_candidate(self.root, run_dir, state, replace=crash)
-        self.assertEqual('[2]\n', (self.root / 'data/value.json').read_text())
-        self.assertTrue(daily.recover_publication(self.root, run_dir))
-        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
+        result = run_selection(self.root, self.root.parent / 'selection', assessed_at=at,
+                               provider=select_tab_groups, model_id='fixture')
+        return result['selected']['features']['current']
 
-    def test_crash_journal_detected_from_other_private_root(self):
-        state = self.run_candidate()
-        run_dir = self.private / 'fixture'
-        with daily.run_lock(self.root) as lock:
-            lock.write(json.dumps({'run_dir': str(run_dir)})); lock.flush()
-        def crash(path, data):
-            daily.durable(path, data)
+    def link_tab_groups(self, rows):
+        decisions = [dict(canonical_key='tab-groups', title='Tab groups', source_item_id=r['source_item_id'],
+                          revision_id=r['revisions'][-1]['revision_id']) for r in rows]
+        self.assertEqual(2, self.save(decisions))
+
+    def test_two_selected_sources_keep_their_dashboard_cards_after_linking_one_feature(self):
+        rows = self.collect_tab_group_sources()
+        current = self.assess_tab_groups(CUTOFF)
+        self.assertEqual(2, len(current))
+        expected = {(r['subject_id'], r['assessment_id'], r['catalog_id']) for r in current}
+        selection_path = self.root / 'data/selected/features/current.json'
+        selection = run_daily.read(selection_path)
+        for change in selection['history']:
+            del change['catalog_id']
+        selection_path.write_text(json.dumps(selection))
+        self.link_tab_groups(rows)
+        output = self.dashboard()
+        dashboard = build_dashboard.read_resource(output / 'data.json')
+        day, = dashboard['dates']
+        for cards in (dashboard['selected']['features'], build_dashboard.read_resource(output / day['path'])['rows']):
+            self.assertEqual(expected, {(r['id'], r['assessment_id'], r['catalog_id']) for r in cards})
+            self.assertTrue(all(r['current_selected'] for r in cards))
+        feature, = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        detail = build_dashboard.read_resource(output / feature['detail'])
+        self.assertEqual({r['evidence']['excerpt'] for r in rows}, {e['excerpt'] for e in detail['evidence']})
+
+        # Imported assessments can precede the first published snapshot.
+        for path in (self.root / 'data/selected').rglob('*.json'):
+            snapshot = run_daily.read(path)
+            snapshot['as_of'] = '2026-11-17T06:00:00Z'
+            path.write_text(json.dumps(snapshot))
+        output = self.dashboard()
+        past = build_dashboard.read_resource(output / day['path'])
+        self.assertEqual(expected, {(r['id'], r['assessment_id'], r['catalog_id']) for r in past['rows']})
+
+    def test_unarchived_day_uses_selection_owners_before_reassessment(self):
+        rows = self.collect_tab_group_sources()
+        original = self.assess_tab_groups(CUTOFF)
+        self.assertEqual(2, len(original))
+        self.link_tab_groups(rows)
+        reassessed = self.assess_tab_groups('2026-11-16T16:00:00Z')  # November 17 in Korea.
+        self.assertEqual(1, len(reassessed))
+        self.assertIsNotNone(reassessed[0]['catalog_id'])
+
+        # An imported history can contain judgments from before its first archive.
+        shutil.rmtree(self.root / 'data/selected/history')
+        for path in (self.root / 'data/selected').glob('*/current.json'):
+            projection = run_daily.read(path)
+            projection['as_of'] = '2026-11-18T00:00:00Z'
+            path.write_text(json.dumps(projection))
+        output = self.dashboard()
+        for day, expected in [('2026-11-16', original), ('2026-11-17', reassessed)]:
+            with self.subTest(day=day):
+                cards = build_dashboard.read_resource(output / f'dates/{day}.json.gz')['rows']
+                self.assertCountEqual([(r['subject_id'], r['assessment_id'], r['catalog_id']) for r in expected],
+                                      [(r['id'], r['assessment_id'], r['catalog_id']) for r in cards])
+
+    def test_legacy_source_version_survives_an_update_of_the_same_anchor(self):
+        self.body = self.body.replace('<head>', '<head><title>Firefox 143.0</title>')
+        self.scan()
+        original, = self.choose()
+        self.save([original])
+        feature, = run_daily.read(self.catalog)
+        del feature['source_revision_ids']
+        source, = run_daily.read(self.evidence)
+        del source['revisions'][-1]['version']
+        self.evidence.write_text(json.dumps([source]))
+        # Older saved catalogs can already point to this incomplete revision.
+        already_pinned = dict(feature, canonical_key='saved-tabs', feature_id='feature-saved-tabs',
+                              title='Saved tabs', source_revision_ids={source['source_item_id']: [original['revision_id']]})
+        self.catalog.write_text(json.dumps([feature, already_pinned]))
+        before = build_dashboard.read_resource(self.dashboard() / 'indexes/feature.json.gz')
+        self.assertTrue(all(card['versions'] == ['143.0'] for card in before))
+
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('143.0', '144.0').replace('Tab grouping added.', 'Translate a PDF.')
+        self.scan()
+        new = dict(self.choose()[0], canonical_key='pdf-translation', title='PDF translation')
+        self.save([new])
+        output = self.dashboard()
+        cards = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        self.assertEqual({original['title']: ['143.0'], already_pinned['title']: ['143.0'], new['title']: ['144.0']},
+                         {card['title']: card['versions'] for card in cards})
+        updated, = run_daily.read(self.evidence)
+        restored, = [r for r in updated['revisions'] if r.get('restores_revision_id') == original['revision_id']]
+        expected_pins = {original['title']: restored['revision_id'], already_pinned['title']: original['revision_id'],
+                         new['title']: new['revision_id']}
+        for card in cards:
+            citation, = build_dashboard.read_resource(output / card['detail'])['evidence']
+            self.assertEqual(expected_pins[card['title']], citation['revision_id'])
+
+    def test_two_feature_quotes_survive_cleanup_including_text_after_character_220(self):
+        start = 'Tab grouping added.'
+        end = 'PDF documents can now be translated.'
+        filler = 'Release background. ' * 15
+        self.body = self.body.replace(start, start + ' ' + filler + end)
+        self.scan()
+        first, = self.choose()
+        first['evidence_quote'] = start
+        second = dict(first, canonical_key='translate-pdf', title='Translate PDF', evidence_quote=end)
+        for invalid in ({k: v for k, v in second.items() if k != 'evidence_quote'},
+                        dict(second, evidence_quote='Text from a different item.')):
+            with self.assertRaisesRegex(ValueError, 'evidence_quote'):
+                self.save([first, invalid])
+            self.assertTrue(self.candidates.exists())
+            self.assertFalse(self.evidence.exists())
+        self.assertEqual(2, self.save([first, second]))
+        self.assertFalse((self.private / 'work').exists())
+        self.assertNotIn(filler, self.catalog.read_text() + self.evidence.read_text())
+        output = self.dashboard()
+        rows = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        for r in rows:
+            citation, = build_dashboard.read_resource(output / r['detail'])['evidence']
+            self.assertEqual(start if r['title'] == first['title'] else end, citation['excerpt'])
+            self.assertEqual(first['revision_id'], citation['revision_id'])
+
+    def test_existing_feature_without_pins_keeps_its_last_displayed_revision(self):
+        self.scan()
+        first, = self.choose()
+        self.save([first])
+        legacy = run_daily.read(self.catalog)
+        legacy[0].pop('source_revision_ids')
+        self.catalog.write_text(json.dumps(legacy))
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('Tab grouping added.', 'Translate a PDF.')
+        self.scan()
+        second = dict(self.choose()[0], canonical_key='pdf-translation', title='PDF translation')
+        self.save([second])
+        expected = {choice['canonical_key']: {choice['source_item_id']: [choice['revision_id']]}
+                    for choice in [first, second]}
+        self.assertEqual(expected, {f['canonical_key']: f['source_revision_ids'] for f in run_daily.read(self.catalog)})
+
+    def test_empty_classification_detects_missing_evidence_and_can_retry(self):
+        self.scan()
+        self.save(self.choose())
+        self.private = self.private.parent / 'next'
+        self.scan()
+        previous = self.evidence.read_bytes()
+        self.evidence.unlink()
+        with self.assertRaisesRegex(ContractError, 'Missing source_item'):
+            self.save([])
+        self.assertTrue(self.candidates.exists())
+        self.evidence.write_bytes(previous)
+        self.assertEqual(0, self.save([]))
+        self.assertFalse(self.candidates.exists())
+
+    def test_unfinished_and_corrupt_inputs_remain_for_retry(self):
+        self.scan()
+        choices = self.choose()
+        for choice in (dict(choices[0], revision_id='stale'), dict(choices[0], source_item_id='missing')):
+            with self.assertRaises(ValueError):
+                self.save([choice])
+        self.candidates.write_text('[]')
+        with self.assertRaisesRegex(ValueError, 'collected content'):
+            self.save(choices)
+        self.assertFalse(self.evidence.exists())
+        self.assertTrue(self.candidates.exists())
+
+    def test_partial_requires_explicit_acceptance(self):
+        self.body = '<html><main></main></html>'
+        self.assertFalse(self.scan()['complete'])
+        with self.assertRaisesRegex(ValueError, 'partial'):
+            self.save([])
+        self.assertFalse(self.scan(resume=True)['complete'])
+        self.save([], allow_partial=True)
+        self.assertFalse(self.candidates.exists())
+
+    def test_concurrent_store_is_refused(self):
+        self.scan()
+        with run_daily.run_lock(self.root):
+            with self.assertRaisesRegex(RuntimeError, 'lock'):
+                self.save(self.choose())
+
+    def test_resume_recovers_interrupted_write(self):
+        self.scan()
+        decisions = self.choose()
+        def interrupt(path, raw):
+            run_daily.durable(path, raw)
             raise KeyboardInterrupt()
-        with self.assertRaises(KeyboardInterrupt):
-            daily.publish_candidate(self.root, run_dir, state, replace=crash)
-        daily.run(self.root, self.base / 'new-state', 'new', options=options(), execute=self.execute, publish=True)
-        self.assertEqual('rolled_back', daily.read(run_dir / 'publication.json')['status'])
+        def crash(*args):
+            run_daily.store_changes(*args, replace=interrupt)
+        with patch.object(collect, 'store_changes', crash), self.assertRaises(KeyboardInterrupt):
+            self.save(decisions)
+        self.assertTrue(self.evidence.exists())
+        self.assertFalse(self.catalog.exists())
+        self.save(decisions)
+        self.assertTrue(self.catalog.exists())
+        self.assertFalse(self.candidates.exists())
 
-    def test_unrelated_edit_during_publication_rolls_back_only_our_outputs(self):
-        state = self.run_candidate()
-        def edit(path, data):
-            daily.durable(path, data)
-            (self.root / 'data/user.json').write_text('user work')
-        with self.assertRaisesRegex(RuntimeError, 'during publication'):
-            daily.publish_candidate(self.root, self.private / 'fixture', state, replace=edit)
-        self.assertEqual('[1]\n', (self.root / 'data/value.json').read_text())
-        self.assertEqual('user work', (self.root / 'data/user.json').read_text())
-
-    def test_recovery_rejects_tampered_journal_and_backup(self):
-        state = self.run_candidate()
-        directory = self.private / 'fixture'
-        def crash(path, data):
-            daily.durable(path, data)
-            raise KeyboardInterrupt()
-        with self.assertRaises(KeyboardInterrupt):
-            daily.publish_candidate(self.root, directory, state, replace=crash)
-        journal = daily.read(directory / 'publication.json')
-        changed = copy.deepcopy(journal)
-        changed['files']['../outside'] = changed['files'].pop('data/value.json')
-        daily.durable(directory / 'publication.json', daily.encoded(changed))
-        with self.assertRaisesRegex(ValueError, 'inventory mismatch'):
-            daily.recover_publication(self.root, directory)
-        daily.durable(directory / 'publication.json', daily.encoded(journal))
-        (directory / 'backup/data/value.json').write_text('corrupt backup')
-        with self.assertRaisesRegex(ValueError, 'checksum mismatch'):
-            daily.recover_publication(self.root, directory)
-        self.assertEqual('[2]\n', (self.root / 'data/value.json').read_text())
-
-    def test_recovery_refuses_to_overwrite_unrelated_edit(self):
-        state = self.run_candidate()
-        def crash(path, data):
-            daily.durable(path, data)
-            raise KeyboardInterrupt()
-        with self.assertRaises(KeyboardInterrupt):
-            daily.publish_candidate(self.root, self.private / 'fixture', state, replace=crash)
-        (self.root / 'data/value.json').write_text('user edit')
+    def test_unrelated_edit_survives_recovery(self):
+        self.scan()
+        def crash(*args):
+            def interrupt(path, raw):
+                run_daily.durable(path, b'user edit')
+                raise KeyboardInterrupt()
+            run_daily.store_changes(*args, replace=interrupt)
+        decisions = self.choose()
+        with patch.object(collect, 'store_changes', crash), self.assertRaises(KeyboardInterrupt):
+            self.save(decisions)
         with self.assertRaisesRegex(RuntimeError, 'Recovery conflict'):
-            daily.recover_publication(self.root, self.private / 'fixture')
-        self.assertEqual('user edit', (self.root / 'data/value.json').read_text())
-
-    def test_source_baselines_advance_only_complete_sources(self):
-        old = {'cutoff': '2026-11-12T00:00:00Z', 'sha256': 'previous'}
-        cutoff = '2026-11-13T00:00:00Z'
-        statuses = [{'source_id': 'edge-policies', 'status': 'complete', 'cutoff': cutoff},
-                    {'source_id': 'safari-security', 'status': 'partial', 'cutoff': cutoff}]
-        state = {'options': {'prior_sources': {'safari-security': old, 'whale-notices': old}},
-                 'stages': {'validate': {'outputs': {'data/source-items/edge/edge-policies.part-00.json': 'new'}},
-                            'collect': {'result': {'browser': statuses}}}}
-        baseline = daily.source_baselines(state)
-        self.assertEqual(old, baseline['safari-security'])
-        self.assertEqual(old, baseline['whale-notices'])
-        self.assertEqual(cutoff, baseline['edge-policies']['cutoff'])
-        self.assertNotEqual('previous', baseline['edge-policies']['sha256'])
-
-    def test_legacy_chromium_checkpoint_with_and_without_a_pinned_bundle(self):
-        checkpoint = self.private / 'v1'
-        opts = options()
-        current = daily.inventory(self.root)
-        coverage = {'complete': True}
-        state = dict(version=1, status='complete', options=opts, private_inputs={}, stages={
-            'collect': {'result': {'complete': True, 'chrome': coverage}},
-            'validate': {'status': 'done', 'outputs': current}})
-        path = checkpoint / 'state.json'
-        daily.durable(path, daily.encoded(state))
-        sources, status, _ = daily.collection_handoff(self.root, checkpoint, current)
-        self.assertNotIn('chromium-source', sources)
-        self.assertEqual('partial', status)
-        end = '2026-11-16T12:53:40Z'
-        comparison = dict(cutoff=end, current_revision='a'*40, current_committed_at=end)
-        raw = daily.encoded({'coverage': coverage, 'revision': 'a'*40, 'temporal_comparison': comparison})
-        daily.durable(checkpoint / 'inputs/chrome.json', raw)
-        state['private_inputs']['chrome.json'] = daily.digest(raw)
-        daily.durable(path, daily.encoded(state))
-        sources, status, _ = daily.collection_handoff(self.root, checkpoint, current)
-        self.assertEqual('complete', status)
-        self.assertEqual('a'*40, sources['chromium-source']['revision'])
-        self.assertEqual(end, sources['chromium-source']['cutoff'])
-        report = dict(opts, job='report', collection_run=str(checkpoint))
-        with self.assertRaisesRegex(ValueError, 'cutoff must follow collection'):
-            daily.run(self.root, self.private, 'early-report', options=report)
-        self.assertFalse((self.private / 'early-report').exists())
-        daily.durable(checkpoint / 'inputs/chrome.json', raw + b' ')
-        with self.assertRaisesRegex(ValueError, 'checksum'):
-            daily.collection_handoff(self.root, checkpoint, current)
-
-    def test_handoff_includes_later_retained_source_scope(self):
-        checkpoint = self.private / 'older'
-        cutoff = '2026-11-16T12:53:40Z'
-        rel = 'data/source-items/chrome-experiments/scope.json'
-        raw = daily.encoded([{'temporal_scope': {'cutoff': cutoff}}])
-        daily.durable(self.root / rel, raw)
-        current = {rel: daily.digest(raw)}
-        state = dict(version=2, status='partial', options=options(), source_baselines={}, stages={
-            'collect': {'result': {'complete': False}},
-            'validate': {'status': 'done', 'outputs': current}})
-        for validation in ({}, {'facts_cutoff': cutoff}):
-            state['stages']['validate']['result'] = validation
-            daily.durable(checkpoint / 'state.json', daily.encoded(state))
-            self.assertEqual(cutoff, daily.collection_handoff(self.root, checkpoint, current)[2])
-
-    def test_chromium_watermark_cannot_move_backwards(self):
-        state = dict(options={'collection_cutoff': '2026-11-20T15:00:00Z',
-                              'prior_sources': {'chromium-source': {'cutoff': '2026-11-19T00:01:00+09:00'}}},
-                     stages={'collect': {'result': {'chrome_revision': 'a'*40, 'chrome_cutoff': '2026-11-18T15:00:00Z', 'chrome': {'complete': True}}},
-                             'validate': {'outputs': {}}})
-        with self.assertRaisesRegex(ValueError, 'backwards for chromium-source'):
-            daily.source_baselines(state)
-
-    def setup_contract_fixture(self):
-        shutil.rmtree(self.root / 'data')
-        for name in ('pipeline', 'scripts', 'schemas', 'rules', 'config'):
-            shutil.copytree(ROOT / name, self.root / name, ignore=shutil.ignore_patterns('__pycache__'))
-        for doc in (self.root / 'pipeline').rglob('README.md'):
-            doc.write_text('# Fixture documentation\n')
-        (self.root / 'docs').mkdir()
-        (self.root / 'docs/dataset-contract.md').write_text('# Fixture\n')
-        fixture = json.loads((ROOT / 'schemas/tests/fixtures/valid-dataset.json').read_text())
-        paths = {'source_item':'data/source-items/chrome/fixture.json', 'feature':'data/catalog/features/catalog.json',
-                 'feature_event':'data/events/event-test.json', 'experiment':'data/catalog/chrome-experiments/catalog.json',
-                 'experiment_event':'data/experiment-events/events.json'}
-        for kind, path in paths.items():
-            daily.durable(self.root / path, daily.encoded(fixture[kind][0] if kind == 'feature_event' else fixture[kind]))
-
-    def test_chromium_collection_and_report_use_endpoint_window(self):
-        from test_temporal_projection import TemporalTests, CUTOFF
-        fixture = TemporalTests()
-        bundle = fixture.project(*fixture.bundles('BASE_FEATURE(kSame, base::FEATURE_ENABLED_BY_DEFAULT);',
-                                                  'BASE_FEATURE(kSame, base::FEATURE_DISABLED_BY_DEFAULT);'))
-        self.setup_contract_fixture()
-        daily.commit_candidate(self.root)
-        path = self.base / 'chrome.json'
-        daily.durable(path, daily.encoded(bundle))
-        state = daily.run(self.root, self.private, 'chrome', options=dict(options(), kind='chrome', sources=None),
-                          input_files={'chrome': path}, publish=True, allow_partial=True)
-        self.assertEqual(CUTOFF, state['source_baselines']['chromium-source']['cutoff'])
-        daily.commit_candidate(self.root)
-        opts = dict(options(), job='report', collection_run=str(self.private / 'chrome'))
-        with self.assertRaisesRegex(ValueError, 'cutoff must follow collection'):
-            daily.run(self.root, self.private, 'early', options=opts)
-        daily.run(self.root, self.private, 'valid', options=dict(opts, assessed_at=CUTOFF, report_cutoff=CUTOFF))
-        report = daily.read(self.private / 'valid/validate/data/reports/history/2026-11-16/revision-1.json')
-        self.assertEqual(daily.instant(CUTOFF), daily.instant(report['cutoff']))
-        self.assertEqual(CUTOFF, report['collection_scope']['cutoff'])
-
-    def test_real_collection_then_report_without_dashboard(self):
-        self.setup_contract_fixture()
-        source = next(s for s in json.loads((ROOT / 'config/sources.yml').read_text())['sources'] if s['source_id'] == 'firefox-beta')
-        responses = self.base / 'responses.json'
-        responses.write_text(json.dumps({source['url']: {'body': (ROOT / 'tests/fixtures/browser/releases.html').read_text()}}))
-        daily.commit_candidate(self.root)
-        result = daily.run(self.root, self.private, 'real', options=options(), input_files={'responses':responses})
-        self.assertEqual('partial', result['status']) # A bounded source is not full registered coverage.
-        validation = result['stages']['validate']['result']
-        self.assertGreater(validation['counts']['source_item'], 1)
-        self.assertEqual(0, validation['counts']['assessment'])
-        self.assertEqual(0, validation['counts']['report'])
-        self.assertEqual(result, daily.run(self.root, self.private, 'real', resume=True))
-        daily.run(self.root, self.private, 'real', resume=True, publish=True, allow_partial=True)
-        daily.commit_candidate(self.root)
-        report_options = dict(options(), job='report', collection_run=str(self.private / 'real'))
-        earlier = dict(report_options, assessed_at='2026-11-16T14:59:59+09:00',
-                       report_cutoff='2026-11-16T14:59:59+09:00')
-        with self.assertRaisesRegex(ValueError, 'cutoff must follow collection'):
-            daily.run(self.root, self.private, 'backdated', options=earlier)
-        self.assertFalse((self.private / 'backdated').exists())
-        reports = daily.run(self.root, self.private, 'reports', options=report_options,
-                            publish=True, allow_partial=True)
-        self.assertEqual(set(daily.REPORT_STAGES), set(reports['stages']))
-        self.assertFalse((self.private / 'reports/collection').exists())
-        self.assertEqual(1, reports['stages']['validate']['result']['counts']['report'])
-        self.assertFalse(list(self.root.glob('reports/generated/*/newsletter-*.json')))
-        daily.commit_candidate(self.root)
-        again = daily.run(self.root, self.private, 'reports-again', options=report_options)
-        self.assertEqual(0, again['stages']['select']['result']['created'])
-        self.assertEqual(1, again['stages']['report']['result']['revision'])
-        response_map = json.loads(responses.read_text())
-        response_map[source['url']]['body'] = response_map[source['url']]['body'].replace('Feature one', 'Feature one changed')
-        # Ensure this fixture changes actual response content, not only its time.
-        response_map[source['url']]['body'] += '<p>Additional evidence.</p>'
-        responses.write_text(json.dumps(response_map))
-        changed = daily.run(self.root, self.private, 'changed-bytes', options=options(), input_files={'responses':responses})
-        self.assertEqual(set(daily.STAGES), set(changed['stages']))
-        self.assertEqual(validation['counts']['feature_event'], changed['stages']['validate']['result']['counts']['feature_event'])
+            self.save(decisions)
+        self.assertEqual(b'user edit', self.evidence.read_bytes())
