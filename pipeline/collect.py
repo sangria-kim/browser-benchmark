@@ -184,8 +184,12 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                     if prior_cutoff and instant(row['temporal_scope']['cutoff']) < instant(prior_cutoff):
                         raise ValueError('A newer source window is already saved')
                     # Older catalogs displayed the then-current source. Freeze that view before replacing it.
+                    old_id = prior['revisions'][-1]['revision_id']
+                    appended = row['revisions'][len(prior['revisions']):]
+                    display_id = next((r['revision_id'] for r in appended if r.get('restores_revision_id') == old_id),
+                                      old_id)
                     for owner in unpinned_owners[ident]:
-                        owner.setdefault('source_revision_ids', {})[ident] = [prior['revisions'][-1]['revision_id']]
+                        owner.setdefault('source_revision_ids', {})[ident] = [display_id]
                 changes[target][ident] = row
                 for choice in choices:
                     quote = choice.get('evidence_quote', excerpt)

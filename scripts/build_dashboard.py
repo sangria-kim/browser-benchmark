@@ -36,6 +36,21 @@ def read_json(path):
     return json.loads(path.read_text())
 
 
+def confirmed_snapshot(source, revision_id):
+    """Read the pinned evidence, including a documented version from an older record."""
+    revisions = source['revisions']
+    snapshot = next(r for r in reversed(revisions) if r['revision_id'] == revision_id)
+    if 'version' in snapshot:
+        return snapshot
+    # Only the matching head or an explicit restoration can supply missing metadata.
+    if revision_id == revisions[-1]['revision_id']:
+        return dict(snapshot, version=source.get('version'))
+    for restored in reversed(revisions):
+        if restored.get('restores_revision_id') == revision_id and 'version' in restored:
+            return dict(snapshot, version=restored['version'])
+    return snapshot
+
+
 def build_research(output, legacy, base):
     """Emit small entry data and lazy immutable-ID detail/report resources.
 
@@ -104,7 +119,7 @@ def build_research(output, legacy, base):
             source = objects[key('source_item', sid)]
             pins = catalog.get('source_revision_ids', {}).get(sid)
             if pins:
-                source = next(r for r in reversed(source['revisions']) if r['revision_id'] == pins[-1])
+                source = confirmed_snapshot(source, pins[-1])
                 quote = catalog.get('source_revision_excerpts', {}).get(pins[-1])
                 if quote is not None:
                     source = dict(source, evidence=dict(source['evidence'], excerpt=quote))
@@ -119,14 +134,17 @@ def build_research(output, legacy, base):
             # An omitted historical owner preserves any earlier explicit association.
             recorded_owners[subject] = row.get('catalog_id', recorded_owners.get(subject))
 
-    # Imported judgments can predate any daily archive. Restore their source-only
-    # selection contexts when current catalog links point at a different owner.
-    for k, cid in recorded_owners.items():
+    # Start historical projections with independently assessed sources. Their current
+    # catalog links cannot establish who owned them at an earlier cutoff.
+    standalone_sources = {}
+    for k in histories:
         if k.startswith('source_item:'):
             kind, ident = k.split(':', 1)
-            source = objects[k]
-            contexts[kind, ident] = dict(subject_kind=kind, subject_id=ident, subject=source,
-                                         catalog=catalogs.get(cid, (None, None))[1], sources=[source])
+            context = contexts.get((kind, ident))
+            if context is None or context['catalog'] is not None:
+                source = objects[k]
+                standalone_sources[kind, ident] = dict(subject_kind=kind, subject_id=ident, subject=source,
+                                                       catalog=None, sources=[source])
 
     def owner(k):
         fact = objects[k]
@@ -151,7 +169,7 @@ def build_research(output, legacy, base):
     def active_at(heads):
         active = {}
         for k, a in heads.items():
-            if tuple(k.split(':', 1)) not in contexts:
+            if k not in recorded_owners and tuple(k.split(':', 1)) not in contexts:
                 continue
             fact = objects[k]
             rank = (stamp(fact['observed_at']), a['subject_id']) if a['subject_kind'].endswith('_event') else (stamp(a['assessed_at']), a['subject_id'])
@@ -216,16 +234,33 @@ def build_research(output, legacy, base):
     ever = set(changes)
     # Prefer published end-of-day membership. Early imported assessments predate the first archive.
     snapshots = {}
+    owner_updates = [(stamp(change['effective_at']), change) for p in projections.values()
+                     for change in p['history'] if change['subject_kind'] == 'source_item' and 'catalog_id' in change]
     for snapshot in records('data/selected/history/*/*.json') + list(projections.values()):
+        owner_updates.extend((stamp(snapshot['as_of']), row) for row in snapshot['current']
+                             if row['subject_kind'] == 'source_item')
         slot = day(snapshot['as_of']), snapshot['selection_kind']
         if slot not in snapshots or stamp(snapshot['as_of']) >= stamp(snapshots[slot]['as_of']):
             snapshots[slot] = snapshot
+    # At equal times a published snapshot follows the changes included in it.
+    owner_updates.sort(key=lambda entry: entry[0])
+
+    def contexts_at(cutoff):
+        dated = contexts.copy()
+        dated.update(standalone_sources)
+        for at, row in owner_updates:
+            if at > cutoff:
+                break
+            subject = ('source_item', row['subject_id'])
+            dated[subject] = dict(dated[subject], catalog=catalogs.get(row['catalog_id'], (None, None))[1])
+        return dated
+
     date_index = []
     for d in sorted({day(a['assessed_at']) for a in assessments}, reverse=True):
         cutoff = d + 'T23:59:59.999999+09:00'
         dated = {kind: snapshots[d, kind] for kind in ('features', 'flags') if (d, kind) in snapshots}
         if len(dated) < 2:
-            derived = project(dataset, contexts, assessments, load_rules(), cutoff, as_of=cutoff)
+            derived = project(dataset, contexts_at(stamp(cutoff)), assessments, load_rules(), cutoff, as_of=cutoff)
             dated = {**derived, **dated}
         rows = [selected_card(r) for p in dated.values() for r in p['current']]
         path = 'dates/' + d + '.json.gz'

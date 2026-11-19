@@ -117,7 +117,7 @@ class DailyTests(unittest.TestCase):
             self.assertEqual(excerpt, citation['excerpt'])
             self.assertEqual(decision['revision_id'], citation['revision_id'])
 
-    def test_two_selected_sources_keep_their_dashboard_cards_after_linking_one_feature(self):
+    def collect_tab_group_sources(self):
         self.body = self.body.replace('Tab grouping added.</li>',
             'You can now group tabs into named workspaces.</li>'
             '<li id="feature-b">Users can now share saved tab groups with other users.</li>')
@@ -125,8 +125,10 @@ class DailyTests(unittest.TestCase):
         rows = [r for r in run_daily.read(self.candidates) if r['item_key'] in ('feature-a', 'feature-b')]
         self.evidence.parent.mkdir(parents=True)
         self.evidence.write_text(json.dumps(rows))
+        return rows
 
-        def select(context, rules):
+    def assess_tab_groups(self, at):
+        def select_tab_groups(context, rules):
             result = decision('selected', 'Tab groups changed.', priority='P2',
                               question='Can users group their tabs?', readiness='conditional')
             source, = context['sources']
@@ -136,9 +138,18 @@ class DailyTests(unittest.TestCase):
                 completion='Group exists', evidence_quotes=[source['evidence']['excerpt']])
             return result
 
-        historical = run_selection(self.root, self.root.parent / 'selection', assessed_at=CUTOFF,
-                                   provider=select, model_id='fixture')
-        current = historical['selected']['features']['current']
+        result = run_selection(self.root, self.root.parent / 'selection', assessed_at=at,
+                               provider=select_tab_groups, model_id='fixture')
+        return result['selected']['features']['current']
+
+    def link_tab_groups(self, rows):
+        decisions = [dict(canonical_key='tab-groups', title='Tab groups', source_item_id=r['source_item_id'],
+                          revision_id=r['revisions'][-1]['revision_id']) for r in rows]
+        self.assertEqual(2, self.save(decisions))
+
+    def test_two_selected_sources_keep_their_dashboard_cards_after_linking_one_feature(self):
+        rows = self.collect_tab_group_sources()
+        current = self.assess_tab_groups(CUTOFF)
         self.assertEqual(2, len(current))
         expected = {(r['subject_id'], r['assessment_id'], r['catalog_id']) for r in current}
         selection_path = self.root / 'data/selected/features/current.json'
@@ -146,9 +157,7 @@ class DailyTests(unittest.TestCase):
         for change in selection['history']:
             del change['catalog_id']
         selection_path.write_text(json.dumps(selection))
-        decisions = [dict(canonical_key='tab-groups', title='Tab groups', source_item_id=r['source_item_id'],
-                          revision_id=r['revisions'][-1]['revision_id']) for r in rows]
-        self.assertEqual(2, self.save(decisions))
+        self.link_tab_groups(rows)
         output = self.dashboard()
         dashboard = build_dashboard.read_resource(output / 'data.json')
         day, = dashboard['dates']
@@ -167,6 +176,62 @@ class DailyTests(unittest.TestCase):
         output = self.dashboard()
         past = build_dashboard.read_resource(output / day['path'])
         self.assertEqual(expected, {(r['id'], r['assessment_id'], r['catalog_id']) for r in past['rows']})
+
+    def test_unarchived_day_uses_selection_owners_before_reassessment(self):
+        rows = self.collect_tab_group_sources()
+        original = self.assess_tab_groups(CUTOFF)
+        self.assertEqual(2, len(original))
+        self.link_tab_groups(rows)
+        reassessed = self.assess_tab_groups('2026-11-16T16:00:00Z')  # November 17 in Korea.
+        self.assertEqual(1, len(reassessed))
+        self.assertIsNotNone(reassessed[0]['catalog_id'])
+
+        # An imported history can contain judgments from before its first archive.
+        shutil.rmtree(self.root / 'data/selected/history')
+        for path in (self.root / 'data/selected').glob('*/current.json'):
+            projection = run_daily.read(path)
+            projection['as_of'] = '2026-11-18T00:00:00Z'
+            path.write_text(json.dumps(projection))
+        output = self.dashboard()
+        for day, expected in [('2026-11-16', original), ('2026-11-17', reassessed)]:
+            with self.subTest(day=day):
+                cards = build_dashboard.read_resource(output / f'dates/{day}.json.gz')['rows']
+                self.assertCountEqual([(r['subject_id'], r['assessment_id'], r['catalog_id']) for r in expected],
+                                      [(r['id'], r['assessment_id'], r['catalog_id']) for r in cards])
+
+    def test_legacy_source_version_survives_an_update_of_the_same_anchor(self):
+        self.body = self.body.replace('<head>', '<head><title>Firefox 143.0</title>')
+        self.scan()
+        original, = self.choose()
+        self.save([original])
+        feature, = run_daily.read(self.catalog)
+        del feature['source_revision_ids']
+        source, = run_daily.read(self.evidence)
+        del source['revisions'][-1]['version']
+        self.evidence.write_text(json.dumps([source]))
+        # Older saved catalogs can already point to this incomplete revision.
+        already_pinned = dict(feature, canonical_key='saved-tabs', feature_id='feature-saved-tabs',
+                              title='Saved tabs', source_revision_ids={source['source_item_id']: [original['revision_id']]})
+        self.catalog.write_text(json.dumps([feature, already_pinned]))
+        before = build_dashboard.read_resource(self.dashboard() / 'indexes/feature.json.gz')
+        self.assertTrue(all(card['versions'] == ['143.0'] for card in before))
+
+        self.private = self.private.parent / 'next'
+        self.body = self.body.replace('143.0', '144.0').replace('Tab grouping added.', 'Translate a PDF.')
+        self.scan()
+        new = dict(self.choose()[0], canonical_key='pdf-translation', title='PDF translation')
+        self.save([new])
+        output = self.dashboard()
+        cards = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
+        self.assertEqual({original['title']: ['143.0'], already_pinned['title']: ['143.0'], new['title']: ['144.0']},
+                         {card['title']: card['versions'] for card in cards})
+        updated, = run_daily.read(self.evidence)
+        restored, = [r for r in updated['revisions'] if r.get('restores_revision_id') == original['revision_id']]
+        expected_pins = {original['title']: restored['revision_id'], already_pinned['title']: original['revision_id'],
+                         new['title']: new['revision_id']}
+        for card in cards:
+            citation, = build_dashboard.read_resource(output / card['detail'])['evidence']
+            self.assertEqual(expected_pins[card['title']], citation['revision_id'])
 
     def test_two_feature_quotes_survive_cleanup_including_text_after_character_220(self):
         start = 'Tab grouping added.'
