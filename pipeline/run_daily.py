@@ -17,6 +17,8 @@ import subprocess
 import sys
 import tempfile
 
+from pipeline.temporal import instant
+
 STAGES = ('collect', 'validate')
 REPORT_STAGES = ('select', 'report', 'validate')
 # Only these outputs may replace public files. All other inputs are read-only.
@@ -348,9 +350,25 @@ def collection_handoff(root, checkpoint, current):
         sources = state['source_baselines']
     else:
         state['stages']['validate']['outputs'] = expected
+        result = state['stages']['collect']['result']
+        if (state['version'] == 1 and (result.get('chrome') or {}).get('complete')
+                and not result.get('chrome_revision')):
+            # A v1 replay can prove the revision via its frozen input bundle.
+            pinned = state.get('private_inputs', {}).get('chrome.json')
+            if pinned:
+                raw = (checkpoint / 'inputs/chrome.json').read_bytes()
+                if digest(raw) != pinned:
+                    raise ValueError('Legacy Chromium input checksum mismatch')
+                bundle = json.loads(raw)
+                if bundle.get('coverage') != result['chrome']:
+                    raise ValueError('Legacy Chromium coverage mismatch')
+                result['chrome_revision'] = bundle.get('revision')
+            if not result.get('chrome_revision'):
+                result['chrome'] = dict(result['chrome'], complete=False)
+                result['complete'] = False
         sources = source_baselines(state)
     status = 'complete' if state['stages']['collect']['result']['complete'] else 'partial'
-    return sources, status
+    return sources, status, state['options']['collection_cutoff']
 
 
 def source_baselines(state):
@@ -367,14 +385,19 @@ def source_baselines(state):
         if not files and status.get('stored_records', 0):
             raise ValueError('Validated source files are missing for ' + source)
         if source in baselines:
-            from pipeline.temporal import instant
             if instant(status['cutoff']) < instant(baselines[source]['cutoff']):
                 raise ValueError('Source cutoff moved backwards for ' + source)
         baselines[source] = {'cutoff': status['cutoff'], 'sha256': digest(encoded(files))}
     if result.get('chrome') and result['chrome']['complete']:
         files = {p: h for p, h in output.items() if p.startswith('data/source-items/chrome-experiments/')}
-        baselines['chromium-source'] = dict(cutoff=state['options']['collection_cutoff'],
-                                            revision=result['chrome_revision'], sha256=digest(encoded(files)))
+        cutoff = state['options']['collection_cutoff']
+        previous = baselines.get('chromium-source')
+        if previous and instant(cutoff) < instant(previous['cutoff']):
+            raise ValueError('Source cutoff moved backwards for chromium-source')
+        revision = result.get('chrome_revision')
+        if not isinstance(revision, str) or not re.fullmatch('[0-9a-f]{40}', revision):
+            raise ValueError('Complete Chromium collection needs its pinned commit')
+        baselines['chromium-source'] = dict(cutoff=cutoff, revision=revision, sha256=digest(encoded(files)))
     return baselines
 
 
@@ -428,12 +451,14 @@ def run(repository, private_dir, run_id, *, resume=False, publish=False, allow_p
             if options.get('collection_run'):
                 checkpoint = Path(options['collection_run']).resolve()
                 require_external(root, checkpoint)
-                sources, status = collection_handoff(root, checkpoint, initial)
+                sources, status, collection_cutoff = collection_handoff(root, checkpoint, initial)
                 options['prior_sources'] = sources
             if options.get('job') == 'report':
                 options['collection_status'] = status
                 if not options.get('report_cutoff') or not options.get('assessed_at'):
                     raise ValueError('Report time must be fixed for this data version')
+                if not instant(collection_cutoff) <= instant(options['assessed_at']) <= instant(options['report_cutoff']):
+                    raise ValueError('Evaluation and report cutoff must follow collection in time order')
             state = {'version': 2, 'repository': str(root), 'source_commit': git(root, 'rev-parse', 'HEAD'),
                      'started_clean': not git(root, 'status', '--porcelain'), 'inputs': initial,
                      'options': options, 'stages': {}, 'status': 'running', 'published': False}

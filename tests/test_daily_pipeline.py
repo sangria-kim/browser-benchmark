@@ -280,6 +280,37 @@ class DailyTests(unittest.TestCase):
         self.assertEqual(cutoff, baseline['edge-policies']['cutoff'])
         self.assertNotEqual('previous', baseline['edge-policies']['sha256'])
 
+    def test_legacy_chromium_checkpoint_with_and_without_a_pinned_bundle(self):
+        checkpoint = self.private / 'v1'
+        opts = options()
+        coverage = {'complete': True}
+        state = dict(version=1, status='complete', options=opts, private_inputs={}, stages={
+            'collect': {'result': {'complete': True, 'chrome': coverage}},
+            'validate': {'status': 'done', 'outputs': {}}})
+        path = checkpoint / 'state.json'
+        daily.durable(path, daily.encoded(state))
+        sources, status, _ = daily.collection_handoff(self.root, checkpoint, {})
+        self.assertNotIn('chromium-source', sources)
+        self.assertEqual('partial', status)
+        raw = daily.encoded({'coverage': coverage, 'revision': 'a'*40})
+        daily.durable(checkpoint / 'inputs/chrome.json', raw)
+        state['private_inputs']['chrome.json'] = daily.digest(raw)
+        daily.durable(path, daily.encoded(state))
+        sources, status, _ = daily.collection_handoff(self.root, checkpoint, {})
+        self.assertEqual('complete', status)
+        self.assertEqual('a'*40, sources['chromium-source']['revision'])
+        daily.durable(checkpoint / 'inputs/chrome.json', raw + b' ')
+        with self.assertRaisesRegex(ValueError, 'checksum'):
+            daily.collection_handoff(self.root, checkpoint, {})
+
+    def test_chromium_watermark_cannot_move_backwards(self):
+        state = dict(options={'collection_cutoff': '2026-11-18T15:00:00Z',
+                              'prior_sources': {'chromium-source': {'cutoff': '2026-11-19T00:01:00+09:00'}}},
+                     stages={'collect': {'result': {'chrome_revision': 'a'*40, 'chrome': {'complete': True}}},
+                             'validate': {'outputs': {}}})
+        with self.assertRaisesRegex(ValueError, 'backwards for chromium-source'):
+            daily.source_baselines(state)
+
     def test_real_collection_then_report_without_dashboard(self):
         # Reuse the minimal contract fixture, but exercise actual subprocess
         # stage code, transport parsing, normalization, evaluation and reporting.
@@ -310,6 +341,11 @@ class DailyTests(unittest.TestCase):
         daily.run(self.root, self.private, 'real', resume=True, publish=True, allow_partial=True)
         daily.commit_candidate(self.root)
         report_options = dict(options(), job='report', collection_run=str(self.private / 'real'))
+        earlier = dict(report_options, assessed_at='2026-11-16T14:59:59+09:00',
+                       report_cutoff='2026-11-16T14:59:59+09:00')
+        with self.assertRaisesRegex(ValueError, 'cutoff must follow collection'):
+            daily.run(self.root, self.private, 'backdated', options=earlier)
+        self.assertFalse((self.private / 'backdated').exists())
         reports = daily.run(self.root, self.private, 'reports', options=report_options,
                             publish=True, allow_partial=True)
         self.assertEqual(set(daily.REPORT_STAGES), set(reports['stages']))

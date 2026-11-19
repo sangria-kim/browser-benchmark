@@ -1,5 +1,6 @@
 """Injectable HTTPS transport. Raw response caches belong outside the repository."""
 from dataclasses import dataclass, field
+from typing import Optional
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 from email.utils import parsedate_to_datetime
@@ -13,6 +14,7 @@ class Response:
     body: bytes
     status: int = 200
     headers: dict = field(default_factory=dict)
+    observed_at: Optional[str] = None
 
     def text(self):
         return self.body.decode('utf-8-sig')

@@ -18,7 +18,7 @@ from urllib.error import HTTPError
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, publication_value, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
-from pipeline.temporal import dated_scope
+from pipeline.temporal import dated_scope, instant
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
 
 
@@ -212,6 +212,11 @@ class BrowserCollector:
         self.cache = {}
         self.state_path = state_path
         try:
+            if source['source_id'] == 'edge-policies':
+                for cached in self.progress['responses'].values():
+                    if not isinstance(cached.get('observed_at'), str):
+                        raise ValueError('Edge response cache has no observation time. Start a fresh collection.')
+                    instant(cached['observed_at'])
             parser = source['parser']
             if source['source_id'] == 'whale-release-history':
                 self.collect_whale()
@@ -277,7 +282,7 @@ class BrowserCollector:
             raw = (self.private_dir / 'cache' / cached['sha256']).read_bytes()
             if digest(raw) != cached['sha256']:
                 raise ValueError('Cached response checksum mismatch')
-            response = Response(cached['url'], raw, 200, cached['headers'])
+            response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
         response = self.transport(url)
@@ -293,7 +298,8 @@ class BrowserCollector:
         self.cache[url] = response
         self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
         if self.source['source_id'] == 'edge-policies':
-            self.progress['responses'][url]['observed_at'] = self.observed_at
+            response.observed_at = self.observed_at
+            self.progress['responses'][url]['observed_at'] = response.observed_at
         atomic_json(self.progress_path, self.progress)
         return response
 
@@ -331,7 +337,7 @@ class BrowserCollector:
     def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None):
         observed_at = self.observed_at
         if self.source['source_id'] == 'edge-policies':
-            observed_at = self.progress['responses'].get(url, {}).get('observed_at', observed_at)
+            observed_at = response.observed_at or observed_at
         key = unit['key']
         ident = identity('src', [self.source['source_id'], url, key])
         fingerprint = digest(canonical([self.source['source_id'], url, key, unit,

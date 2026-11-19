@@ -1,5 +1,6 @@
 """Private Edge policy comparison and ordered replay of one collection per window."""
 import argparse
+from collections import Counter, defaultdict
 import json
 import os
 import re
@@ -31,7 +32,73 @@ def indexed(rows):
     return items
 
 
-def compare(before, after, status, retired, previous_cutoff):
+POSITION_KEY = re.compile(r':(?:p|li|tr|pre|blockquote|dt|dd|div|span|unparsed):[0-9]+$|:location:[0-9a-f]+:[0-9]+$')
+
+
+def document_content(rows):
+    """Count full normalized facts without treating a DOM slot as a policy identity."""
+    counts, references = Counter(), {}
+    for row in sorted(rows, key=lambda r: r['source_item_id']):
+        if not row.get('item_content_sha256'):
+            return None, {}
+        fingerprint = checksum([row.get(k) for k in FACTS if k != 'item_key'])
+        counts[fingerprint] += 1
+        references[fingerprint] = dict(source_item_id=row['source_item_id'],
+                                       revision_id=row['revisions'][-1]['revision_id'])
+    return counts, references
+
+
+def document_units(before, after, previous_seen, seen):
+    # Reconcile moved full content across anchor/position boundaries as well.
+    # Keep an unchanged explicit anchor independent of unrelated nearby slots.
+    grouped = set()
+    endpoints = []
+    same_ids = (previous_seen or set()) & seen
+    for items, ids in [(before, previous_seen or set()), (after, seen)]:
+        contents = defaultdict(set)
+        for ident in ids:
+            row = items[ident]
+            if POSITION_KEY.search(row['item_key']):
+                grouped.add(ident)
+            if row.get('item_content_sha256') and (ident in grouped or ident not in same_ids):
+                contents[row['evidence']['url'], row['item_content_sha256']].add(ident)
+        endpoints.append(contents)
+    old, new = endpoints
+    for key in old.keys() & new.keys():
+        if old[key] - new[key] and new[key] - old[key]:
+            grouped.update(old[key] ^ new[key])
+    return grouped
+
+
+def document_changes(before, after, previous_seen, seen, status, grouped, previous_cutoff):
+    old_docs, new_docs = defaultdict(list), defaultdict(list)
+    for items, ids, docs in [(before, previous_seen, old_docs), (after, seen, new_docs)]:
+        for ident in ids & grouped:
+            row = items[ident]
+            docs[row['evidence']['url']].append(row)
+    previous_urls = {before[k]['evidence']['url'] for k in previous_seen}
+    historical_urls = {r['evidence']['url'] for r in before.values()}
+    changes = []
+    for url in sorted((old_docs.keys() | new_docs.keys()) & status['documents_seen'].keys()):
+        if url not in previous_urls and url in historical_urls:
+            continue
+        old, old_refs = document_content(old_docs[url])
+        new, new_refs = document_content(new_docs[url])
+        if old is None or new is None or old == new:
+            continue
+        event = dict(item_id='edge-policy-' + checksum(url), scope='policy_document',
+                     type='changed' if url in previous_urls else 'added', url=url,
+                     document_sha256=status['documents_seen'][url])
+        if event['type'] == 'added':
+            dates = [r.get('published_at') for r in new_docs[url]]
+            event['origin'] = 'backfill' if all(d and d < previous_cutoff[:10] for d in dates) else 'first_observed'
+        for name, diff, refs in [('removed_content', old - new, old_refs), ('added_content', new - old, new_refs)]:
+            event[name] = [dict(fingerprint=k, count=diff[k], **refs[k]) for k in sorted(diff)]
+        changes.append(event)
+    return changes
+
+
+def compare(before, after, status, retired, previous_cutoff, previous_seen):
     """Keep semantic changes separate from compatibility evidence and revision tails."""
     if status['status'] != 'complete' or status['last_successful_cutoff'] != status['cutoff']:
         raise ContractError('Edge policy source is incomplete. Retain the last successful cutoff.')
@@ -40,7 +107,11 @@ def compare(before, after, status, retired, previous_cutoff):
     seen = set(status['observed_ids'])
     if before.keys() - after.keys() or seen - after.keys() or not seen:
         raise ContractError('Missing policy history or observations')
-    changes, evidence = [], []
+    grouped = document_units(before, after, previous_seen, seen)
+    changes = []
+    if previous_seen is not None and grouped:
+        changes = document_changes(before, after, previous_seen, seen, status, grouped, previous_cutoff)
+    evidence = []
     for ident, row in sorted(after.items()):
         old = before.get(ident, {})
         revisions = old.get('revisions', [])
@@ -52,7 +123,8 @@ def compare(before, after, status, retired, previous_cutoff):
                 raise ContractError('Unobserved policy was modified')
             # Require a complete, successfully parsed version of the same document.
             # Omission of an entire page from an index cannot prove removal.
-            if ident not in retired and url in status['documents_seen'] and old['record_status'] == 'parsed':
+            if (previous_seen is not None and ident in previous_seen and ident not in grouped
+                    and url in status['documents_seen'] and old['record_status'] == 'parsed'):
                 changes.append(dict(item_id=ident, type='removed', url=url,
                                     document_sha256=status['documents_seen'][url]))
             continue
@@ -63,6 +135,10 @@ def compare(before, after, status, retired, previous_cutoff):
         patch = dict(item_id=ident, fields=fields, revisions=tail)
         if list(old) != list(row):
             patch['key_order'] = list(row)
+        if (previous_seen is None or ident in grouped
+                or (old and ident not in previous_seen and ident not in retired)):
+            evidence.append(patch)
+            continue
         if not old or ident in retired:
             # Discovery time cannot establish a release date.
             patch.update(type='added', origin='restored' if ident in retired else 'first_observed')
@@ -87,6 +163,8 @@ def replay(items, retired, changes, evidence):
         if ident in applied:
             raise ContractError('Duplicate item in Edge policy interval')
         applied.add(ident)
+        if patch.get('scope') == 'policy_document':
+            continue
         if patch.get('type') == 'removed':
             if ident not in items or ident in removed:
                 raise ContractError('Unexpected removal')
@@ -190,6 +268,13 @@ def restore(repository, store, tip):
     items, hashes = baseline(repository, step['baseline_commit'])
     if step['shards'] != hashes:
         raise ContractError('Baseline shard checksum mismatch')
+    def verify_observations(receipt, records):
+        if 'observations' in receipt:
+            ids = blob(store, receipt['observations'])
+            if not isinstance(ids, list) or ids != sorted(set(ids)) or set(ids) - records.keys():
+                raise ContractError('Invalid policy observation inventory')
+
+    verify_observations(step, items)
     retired = set()
     for update in reversed(steps):
         if update['since'] != step['cutoff'] or instant(update['cutoff']) <= instant(step['cutoff']):
@@ -199,6 +284,7 @@ def restore(repository, store, tip):
         items, retired = replay(items, retired, changes, evidence)
         if checksum(items) != update['result'] or checksum(sorted(retired)) != update['retired']:
             raise ContractError('Reconstructed policy inventory differs')
+        verify_observations(update, items)
         step = update
     return items, retired, step
 
@@ -220,7 +306,7 @@ def verify_commit(repository, store, tip, commit):
 
 def initialize(repository, store, commit, run):
     status = verified_run(run)
-    _, hashes = baseline(repository, commit)
+    items, hashes = baseline(repository, commit)
     expected = read(run / 'state.json')['stages']['validate']['outputs']
     if EDGE_POLICY in expected:
         # The last full collector run can precede the lossless shard migration.
@@ -228,7 +314,16 @@ def initialize(repository, store, commit, run):
         expected = {p: digest(json_bytes(records)) for p, records in edge_policy_shards(rows).items()}
     if any(expected.get(p) != h for p, h in hashes.items()):
         raise ContractError('Baseline commit differs from last successful Edge source')
-    return save(store, dict(source=SOURCE, baseline_commit=commit, cutoff=status['cutoff'], shards=hashes))
+    receipt = dict(source=SOURCE, baseline_commit=commit, cutoff=status['cutoff'], shards=hashes)
+    if 'observed_ids' in status:
+        receipt['observations'] = save_observations(store, status['observed_ids'], items)
+    return save(store, receipt)
+
+
+def save_observations(store, ids, items):
+    if len(set(ids)) != len(ids) or set(ids) - items.keys():
+        raise ContractError('Invalid policy observation inventory')
+    return save(store, sorted(ids))
 
 
 def advance(repository, store, parent, run):
@@ -238,7 +333,8 @@ def advance(repository, store, parent, run):
     if indexed(old) != items:
         raise ContractError('Collection did not start from the preceding policy state')
     after = indexed(read_edge_policies(run / 'validate')[0])
-    changes, evidence = compare(items, after, status, retired, previous['cutoff'])
+    previous_seen = set(blob(store, previous['observations'])) if 'observations' in previous else None
+    changes, evidence = compare(items, after, status, retired, previous['cutoff'], previous_seen)
     restored, removed = replay(items, retired, changes, evidence)
     if restored != after:
         raise ContractError('Policy replay differs from the full collector output')
@@ -247,6 +343,7 @@ def advance(repository, store, parent, run):
     expected = read(run / 'state.json')['stages']['validate']['outputs']
     if shard_hashes(restored) != {rel: expected[rel] for rel in EDGE_SHARDS}:
         raise ContractError('Compatibility shard bytes differ from validated collection')
+    receipt['observations'] = save_observations(store, status['observed_ids'], after)
     for name, rows in [('changes', changes), ('evidence', evidence)]:
         if rows:
             receipt[name] = save_patches(store, rows)

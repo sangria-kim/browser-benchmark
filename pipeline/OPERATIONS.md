@@ -38,7 +38,10 @@ Both jobs default to private output. Publish each accepted job separately.
 The report job checks the collection fact hashes against its input snapshot.
 A later collection can use the same `--collection-run` option to carry forward
 last successful source cutoffs and hashes. A partial source keeps its preceding
-watermark. Without a preceding checkpoint, its last successful window is unknown.
+watermark. For v1 Chromium runs, use the revision from the checksum-pinned input
+bundle when its coverage matches. Otherwise carry the confirmed sources forward
+and mark the handoff partial. Report times must follow the collection cutoff.
+Without a preceding checkpoint, its last successful window is unknown.
 
 Browser HTTP responses and source revisions stay in private collector caches.
 Chromium pins one commit and resumes that commit. The default Chromium budget is
@@ -52,7 +55,9 @@ To use repaired collector code, start a new run. Never edit the old run's frozen
 code or checkpoint. `--browser-cache-from /private/old-run/collection/browser`
 copies only raw responses after SHA256 checks at the same cutoff. It does not
 copy completion status, parsed records, errors, or document-completion judgments.
-Every document is parsed again. The new run freezes a private handoff manifest.
+Every document is parsed again. For Edge policies, cached responses must retain
+their original observation timestamps. Start a fresh collection if an older
+Edge cache lacks capture times. The new run freezes a private handoff manifest.
 Mutable ChromeStatus and Google blog API pages are refreshed as one enumeration so an old
 partial page set is not mixed with newly shifted pages.
 
@@ -155,6 +160,14 @@ use its actual main commit. Before that merge, use the local candidate only
 for a private comparison. The baseline run must have complete Edge coverage.
 Its verified policy bytes must match that commit, including all history.
 The initializer accepts the single-file snapshot from before the shard split.
+A checkpoint with observed IDs establishes which items were present at that cutoff.
+If those IDs are unavailable, the first complete comparison records observations
+and compatibility evidence. Semantic comparisons start from that observed set.
+For positional units, compare full normalized content and duplicate counts under
+the official page URL. Reconcile identical content that moved to another key.
+Store the source revision for each content difference. Handle independent anchors
+as individual items, including on pages that also use positional keys.
+
 
 ```sh
 BASE_TIP=$(python -m pipeline.edge_delta --store "$EDGE_STORE" init \

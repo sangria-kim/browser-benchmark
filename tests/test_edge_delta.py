@@ -1,5 +1,6 @@
 """Private Edge pilot from a verified collector checkpoint to replayed source shards."""
 import copy
+import json
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,6 +8,7 @@ from unittest.mock import patch
 
 from pipeline import edge_delta as delta
 from pipeline.collectors.browser import BrowserCollector, Response
+from pipeline.collectors.browser.cache import seed_cache
 from test_browser_collectors import source
 from pipeline.collectors.browser.collector import json_bytes
 from pipeline.run_daily import commit_candidate, durable, git
@@ -123,6 +125,104 @@ class PolicyDeltaTests(unittest.TestCase):
         with self.assertRaisesRegex(ContractError, 'history'):
             delta.advance(self.repo, self.store, tip, bad)
 
+    def test_baseline_records_only_actual_observations_and_accepts_legacy_unknown(self):
+        for known in (True, False):
+            with self.subTest(known=known):
+                status_path = self.first / 'state.json'
+                state = json.loads(status_path.read_bytes())
+                status = state['stages']['collect']['result']['browser'][0]
+                if known:
+                    status['observed_ids'] = [self.one['source_item_id']]
+                else:
+                    status.pop('observed_ids')
+                durable(status_path, json_bytes(state))
+                base = delta.initialize(self.repo, self.store, self.sha, self.first)
+                first = self.checkpoint(2, self.old, self.old, seen=[self.one])
+                tip = delta.advance(self.repo, self.store, base, first)
+                self.assertNotIn('changes', delta.blob(self.store, tip))
+                again = self.checkpoint(3, self.old, self.old, seen=[self.one])
+                tip = delta.advance(self.repo, self.store, tip, again)
+                self.assertEqual(set(), delta.restore(self.repo, self.store, tip)[1])
+
+    def test_markup_and_position_changes_use_actual_document_content(self):
+        cfg = source('edge-policies')
+        url = cfg['url'] + '/example'
+        def collect(day, tag, paragraphs, anchor=None):
+            def transport(target):
+                if target == cfg['url']:
+                    return Response(target, f'<a href="{url}">Example</a>'.encode())
+                body = ''.join(f'<{tag}>{text}</{tag}>' for text in paragraphs)
+                if anchor:
+                    body += f'<p id="fixed">{anchor}</p>'
+                return Response(url, f'<div class="content"><h2 id="policy">Example</h2>{body}</div>'.encode())
+            repo = self.root / 'observations'
+            status = BrowserCollector(repo, self.root / f'capture-{day}', transport).collect(
+                cfg, f'2026-11-{day}T00:00:00Z', '2026-01-01')
+            self.assertEqual('complete', status['status'])
+            return status, delta.indexed(delta.read_edge_policies(repo)[0])
+
+        original = ['First definition', 'Second definition', 'Third definition']
+        first, before = collect(16, 'p', original)
+        second, retagged = collect(17, 'li', original)
+        changes, evidence = delta.compare(before, retagged, second, set(), first['cutoff'], set(first['observed_ids']))
+        self.assertEqual([], changes)
+        self.assertEqual(retagged, delta.replay(before, set(), changes, evidence)[0])
+        third, after = collect(18, 'li', original[1:])
+        changes, evidence = delta.compare(retagged, after, third, set(), second['cutoff'], set(second['observed_ids']))
+        event, = changes
+        self.assertEqual(('policy_document', 'changed'), (event['scope'], event['type']))
+        lost, = event['removed_content']
+        self.assertEqual(original[0], retagged[lost['source_item_id']]['summary'])
+        self.assertEqual([], event['added_content'])
+        self.assertEqual((after, set()), delta.replay(retagged, set(), changes, evidence))
+        fourth, mixed = collect(19, 'p', original[1:], anchor='Anchor added')
+        changes, _ = delta.compare(after, mixed, fourth, set(), third['cutoff'], set(third['observed_ids']))
+        added, = changes
+        self.assertEqual(('added', 'fixed'), (added['type'], mixed[added['item_id']]['item_key']))
+        fifth, fewer = collect(20, 'p', original[1:])
+        changes, _ = delta.compare(mixed, fewer, fifth, set(), fourth['cutoff'], set(fourth['observed_ids']))
+        removed, = changes
+        self.assertEqual(('removed', added['item_id']), (removed['type'], removed['item_id']))
+
+
+    def test_legacy_edge_cache_without_capture_time_stops_before_replay(self):
+        cfg = source('edge-policies')
+        repo, cache = self.root / 'capture', self.root / 'old-cache'
+        cutoff = '2026-11-19T00:00:00Z'
+        durable(cache / 'edge-policies-progress.json', json_bytes({
+            'cutoff': cutoff, 'responses': {cfg['url']: {'url': cfg['url'], 'headers': {}, 'sha256': 'a'*64}},
+            'documents': []}))
+        self.shards(repo, [])
+        for _ in range(2):
+            status = BrowserCollector(repo, cache, lambda _: self.fail('unexpected network'), resume=True).collect(
+                cfg, cutoff, '2026-01-01')
+            self.assertEqual('partial', status['status'])
+            self.assertIn('no observation time', status['errors'][0]['reason'])
+            self.assertIsNone(status['last_successful_cutoff'])
+            self.assertEqual([], delta.read_edge_policies(repo)[0])
+
+    def test_redirected_edge_cache_preserves_observation_time_on_replay(self):
+        cfg = source('edge-policies')
+        cutoff = '2026-11-19T00:00:00Z'
+        url = cfg['url'] + '/sample'
+        def transport(target):
+            if target == cfg['url']:
+                return Response(target, f'<a href="{url}">Policy</a>'.encode())
+            return Response(url + '-canonical', b'<div class="content"><p>Definition</p></div>')
+        original = self.root / 'original-cache'
+        repo = self.root / 'network-capture'
+        status = BrowserCollector(repo, original, transport).collect(cfg, cutoff, '2026-01-01')
+        self.assertEqual('complete', status['status'])
+        expected = delta.read_edge_policies(repo)[0]
+        self.assertTrue(expected)
+        for n in (1, 2):
+            cache, replay = self.root / f'cache-{n}', self.root / f'replay-{n}'
+            seed_cache(original, cache, cutoff)
+            status = BrowserCollector(replay, cache, lambda _: self.fail('unexpected network'), resume=True).collect(
+                cfg, cutoff, '2026-01-01')
+            self.assertEqual('complete', status['status'])
+            self.assertEqual(expected, delta.read_edge_policies(replay)[0])
+
     def test_one_collection_feeds_semantic_and_compatibility_views(self):
         cfg = source('edge-policies')
         url = cfg['url'] + '/sample'
@@ -153,7 +253,7 @@ class PolicyDeltaTests(unittest.TestCase):
         messages['three'] = 'Third definition'
         status, after = collect(19)
         self.assertEqual([cfg['url'], url] * 2, calls)
-        changes, evidence = delta.compare(before, after, status, set(), first['cutoff'])
+        changes, evidence = delta.compare(before, after, status, set(), first['cutoff'], set(first['observed_ids']))
         self.assertEqual(['added', 'removed'], sorted(p['type'] for p in changes))
         self.assertEqual(1, len(evidence))
         self.assertEqual(after, delta.replay(before, set(), changes, evidence)[0])
