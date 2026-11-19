@@ -19,6 +19,7 @@ from schemas.validate import validate_record, validate_transition, validate_data
 from .html import Tree, boundary, blocks, links, next_links, published, publication_value, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
 from pipeline.temporal import dated_scope
+from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
 
 
 def canonical(value):
@@ -33,16 +34,46 @@ def identity(prefix, fields):
     return prefix + '-' + digest(canonical(fields))[:24]
 
 
-def atomic_json(path, value):
+def json_bytes(value):
+    return (json.dumps(value, ensure_ascii=False, indent=2) + '\n').encode('utf-8')
+
+
+def atomic_bytes(path, data):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_name(path.name + '.tmp')
-    with open(temporary, 'w', encoding='utf-8') as stream:
-        json.dump(value, stream, ensure_ascii=False, indent=2)
-        stream.write('\n')
-        stream.flush()
-        os.fsync(stream.fileno())
-    os.replace(temporary, path)
+    temporary = path.with_name('.' + path.name + '.tmp')
+    try:
+        with open(temporary, 'wb') as stream:
+            stream.write(data)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.replace(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def atomic_json(path, value):
+    atomic_bytes(path, json_bytes(value))
+
+
+def write_edge_shards(root, candidate, *, write=atomic_bytes):
+    # Build every change before the first write. In-process failures restore
+    # exact previous bytes; daily orchestration also isolates this candidate.
+    changes = []
+    for rel, rows in edge_policy_shards(candidate).items():
+        path = root / rel
+        prior, new = path.read_bytes(), json_bytes(rows)
+        if prior != new:
+            changes.append((path, prior, new))
+    written = []
+    try:
+        for path, prior, new in changes:
+            write(path, new)
+            written.append((path, prior))
+    except BaseException:
+        for path, prior in reversed(written):
+            atomic_bytes(path, prior)
+        raise
 
 
 def minimal(text, limit=220):
@@ -135,7 +166,8 @@ class BrowserCollector:
     """One source per instance; transport is callable(url) -> Response.
 
     `private_dir` must be outside `repository`. Public files are arrays at
-    data/source-items/<browser>/<source_id>.json. The private checkpoint contains
+    data/source-items/<browser>/<source_id>.json, or the fixed Edge policy shards.
+    The private checkpoint contains
     pending URLs, reconciliation counts, errors and last successful cutoff.
     """
     def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None):
@@ -163,7 +195,11 @@ class BrowserCollector:
         self.checkpoint_count = 0
 
         self.destination = self.repository / 'data/source-items' / source['browser'] / (source['source_id'] + '.json')
-        self.previous = json.loads(self.destination.read_text()) if self.destination.exists() else []
+        self.sharded = False
+        if source['browser'] == 'edge' and source['source_id'] == 'edge-policies':
+            self.previous, self.sharded = read_edge_policies(self.repository)
+        else:
+            self.previous = json.loads(self.destination.read_text()) if self.destination.exists() else []
         self.records = {r['source_item_id']: r for r in self.previous}
         self.seen = {}
         state_path = self.private_dir / (source['source_id'] + '.json')
@@ -201,7 +237,10 @@ class BrowserCollector:
             self.state['last_successful_cutoff'] = cutoff
         candidate = sorted(self.records.values(), key=lambda r: r['source_item_id'])
         validate_dataset({'source_item': candidate}, {source['source_id']})
-        atomic_json(self.destination, candidate)
+        if self.sharded:
+            write_edge_shards(self.repository, candidate)
+        else:
+            atomic_json(self.destination, candidate)
         self.state['pending'] = list(dict.fromkeys(self.state['pending'] + [e['url'] for e in self.state['errors']]))
         self.state['stored_records'] = len(candidate)
         temporal = {'in_period': 0, 'before_period': 0, 'after_cutoff': 0, 'date_unknown': 0}
@@ -370,7 +409,7 @@ class BrowserCollector:
         # Replay reconstructs recent records after an interruption. Each record
         # is validated on emit; whole-source validation runs once at completion.
         self.checkpoint_count += 1
-        if self.checkpoint_count % 50 == 0:
+        if not self.sharded and self.checkpoint_count % 50 == 0:
             atomic_json(self.destination, sorted(self.records.values(), key=lambda r: r['source_item_id']))
         atomic_json(self.state_path, self.state)
 
