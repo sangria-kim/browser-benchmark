@@ -1,137 +1,249 @@
-"""Browser collection entry point; operation records are written only privately.
-
-python -m pipeline.collect --private-dir /outside/repository/state --source firefox-beta
-Exit 0 means all requested sources are complete; exit 2 means partial coverage.
-"""
+"""Collect registered browser updates privately and save classified features."""
 import argparse
-import shutil
-import tempfile
+import json
 from datetime import datetime, timezone
 from pathlib import Path
+import shutil
+import re
+import uuid
 
-from schemas.validate import load_config, validate_record
 from pipeline.collectors.browser import BrowserCollector
+from pipeline.collectors.browser.collector import atomic_json
+from pipeline.deduplicate import feature_identity
+from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
+from pipeline.run_daily import digest, durable, encoded, pending_recovery, read, require_external, run_lock, store_changes
+from pipeline.temporal import instant
+from schemas.validate import load_config, validate_record, validate_transition
 
 
-def collect_browsers(repository, private_dir, source_ids=None, cutoff=None, transport=None, origin='baseline', resume=False, reviewed_attributions=None, brave_release_metadata=None):
-    repository = Path(repository)
-    registry = load_config(repository / 'config/sources.yml')
+def registered_sources(root, requested):
+    registry = load_config(root / 'config/sources.yml')
     validate_record('sources_config', registry)
-    known = {s['source_id'] for s in registry['sources']}
-    if source_ids and set(source_ids) - known:
-        raise ValueError('Unknown source IDs: ' + ', '.join(sorted(set(source_ids) - known)))
-    if resume and not cutoff:
-        raise ValueError('Resume requires the original explicit cutoff')
-    cutoff = cutoff or datetime.now(timezone.utc).isoformat()
-    if datetime.fromisoformat(cutoff.replace('Z', '+00:00')).tzinfo is None:
-        raise ValueError('Cutoff needs a timezone')
-    collector = BrowserCollector(repository, private_dir, transport, resume=resume, reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata)
-    return [collector.collect(s, cutoff, registry['baseline']['backfill_since'], origin)
-            for s in registry['sources'] if s['enabled'] and (not source_ids or s['source_id'] in source_ids)]
+    enabled = {s['source_id']: s for s in registry['sources'] if s['enabled']}
+    missing = set(requested or ()) - enabled.keys()
+    if missing:
+        raise ValueError('Unknown or disabled sources: ' + ', '.join(sorted(missing)))
+    return [s for key, s in enabled.items() if not requested or key in requested], registry['baseline']['backfill_since']
 
 
-
-def chromium_cutoff(bundle):
-    """Bind a comparison window to its pinned revision and the materialized scopes."""
-    from pipeline.temporal import instant
-    comparison = bundle.get('temporal_comparison')
-    if not comparison:
-        return None
-    revision, cutoff = comparison['current_revision'], comparison['cutoff']
-    end = instant(cutoff)
-    if revision != bundle.get('revision') or instant(comparison['current_committed_at']) > end:
-        raise ValueError('Chromium comparison does not match its pinned endpoint')
-    for row in bundle.get('source_items', []) + bundle.get('experiments', []):
-        scope = row['temporal_scope']
-        if scope.get('current_revision') != revision or instant(scope['cutoff']) != end:
-            raise ValueError('Chromium record differs from the comparison window')
-    return cutoff
+def source_path(source):
+    return Path('data/source-items') / source['browser'] / (source['source_id'] + '.json')
 
 
-def collect_sources(repository, private_dir, *, kind='browser', source_ids=None, cutoff=None,
-                    transport=None, origin='baseline', resume=False, chrome_provider=None,
-                    chrome_bundle=None, previous_bundle=None, sample_paths=None, max_files=None, max_trees=None, reviewed_attributions=None, brave_release_metadata=None):
-    """Collect into a private candidate, normalize, then validate/publish once.
+def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, transport=None,
+                    origin='daily', resume=False, reviewed_attributions=None, brave_release_metadata=None):
+    """Keep every observed unit private until the collection agent classifies it."""
+    root, private = Path(repository).resolve(), Path(private_dir).resolve()
+    require_external(root, private)
+    sources, since = registered_sources(root, source_ids)
+    private.mkdir(mode=0o700, parents=True, exist_ok=True)
+    state_path = private / 'feature-run.json'
+    work = private / 'work'
+    with run_lock(private):
+        if work.is_symlink() or state_path.is_symlink():
+            raise ValueError('Invalid collection workspace')
+        if resume:
+            state = read(state_path)
+            if (state['repository'] != str(root) or state['status'] not in ('collecting', 'partial', 'complete')
+                    or source_ids and sorted(source_ids) != sorted(state['sources'])
+                    or cutoff and cutoff != state['cutoff']):
+                raise ValueError('Resume requires the same repository, sources and cutoff')
+            verify_workspace(work, state)
+            sources, since = registered_sources(root, state['sources'])
+        else:
+            if state_path.exists() or work.exists() or work.is_symlink():
+                raise ValueError('Use a new private run directory or resume the existing run')
+            cutoff = cutoff or datetime.now(timezone.utc).isoformat()
+            instant(cutoff)
+            state = dict(repository=str(root), cutoff=cutoff, origin=origin,
+                         sources=[s['source_id'] for s in sources], workspace_id=uuid.uuid4().hex)
+            work.mkdir(mode=0o700)
+            durable(work / '.owner', state['workspace_id'].encode())
+        config_hash = digest(encoded([sources, since, reviewed_attributions or {}, brave_release_metadata]))
+        if resume and state['config_hash'] != config_hash:
+            raise ValueError('Resume requires the original source registry and metadata inputs')
+        state['config_hash'] = config_hash
+        state['status'] = 'collecting'
+        durable(state_path, encoded(state))
+        observed, statuses = {}, []
+        collector = BrowserCollector(root, work / 'browser', transport, resume=resume,
+            reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata,
+            write_records=False)
+        for source in sources:
+            result = collector.collect(source, state['cutoff'], since, state['origin'])
+            statuses.append({k: result[k] for k in ('source_id', 'status', 'cutoff')})
+            rows = [collector.records[k] for k in sorted(collector.parsed_ids)
+                    if collector.records[k]['temporal_scope']['status'] in ('in_period', 'unknown')]
+            path = work / 'candidates' / source_path(source).name
+            atomic_json(path, rows)
+            observed[source['source_id']] = digest(path.read_bytes())
+        complete = all(s['status'] == 'complete' for s in statuses)
+        state.update(status='complete' if complete else 'partial', complete=complete, observed=observed)
+        durable(state_path, encoded(state))
+    return {'browser': statuses, 'complete': complete}
 
-    The original collectors retain their public APIs. This shared entry point
-    is the transaction boundary used by daily orchestration. A partial run can
-    publish valid retained evidence, but its private status remains partial.
-    """
-    from pipeline.collectors.chrome import collect as collect_chrome, Gitiles
-    from pipeline.normalize import publish
-    from scripts.migrate_dataset import prepare
-    repository, private_dir = Path(repository).resolve(), Path(private_dir).resolve()
-    if kind not in ('browser', 'chrome', 'all'):
-        raise ValueError('Unknown collector kind')
-    if private_dir == repository or repository in private_dir.parents:
-        raise ValueError('Private state must be outside the repository')
-    if resume and not cutoff:
-        raise ValueError('Resume requires the original explicit cutoff')
-    cutoff = cutoff or datetime.now(timezone.utc).isoformat()
-    private_dir.mkdir(parents=True, exist_ok=True)
-    result = {'browser': [], 'chrome': None}
-    with tempfile.TemporaryDirectory(prefix='candidate-', dir=private_dir) as temp:
-        stage = Path(temp)
-        for name in ('config', 'data', 'features', 'experiments', 'releases'):
-            if (repository / name).exists():
-                shutil.copytree(repository / name, stage / name)
-        if kind in ('browser', 'all'):
-            result['browser'] = collect_browsers(stage, private_dir / 'browser', source_ids, cutoff, transport, origin, resume, reviewed_attributions, brave_release_metadata)
-        if kind in ('chrome', 'all'):
-            if chrome_bundle is None:
-                config = load_config(repository / 'config/chrome-source-scope.yml')
-                provider = chrome_provider or Gitiles(config['repository_url'], config['baseline_ref'])
-                chrome_bundle = collect_chrome(config, provider, private_dir / 'chrome',
-                    origin=origin, sample_paths=sample_paths, max_files=max_files, max_trees=max_trees, previous=previous_bundle)
-            if not chrome_bundle.get('temporal_comparison'):
-                import copy
-                from pipeline.temporal import dated_scope
-                chrome_bundle = copy.deepcopy(chrome_bundle)
-                since = load_config(repository / 'config/chrome-source-scope.yml')['baseline']['historical_backfill_since']
-                for record in chrome_bundle['source_items'] + chrome_bundle['experiments']:
-                    record['temporal_scope'] = dated_scope(since, cutoff, reason='Current source scan has no verified boundary comparison.')
-                chrome_bundle['removed_candidates'] = []
-                chrome_bundle['coverage'].update(complete=False, temporal_complete=False)
-            result['chrome'] = chrome_bundle['coverage']
-            result['chrome_revision'] = chrome_bundle.get('revision')
-            result['chrome_cutoff'] = chromium_cutoff(chrome_bundle)
-        changes = prepare(stage, chrome_bundle if kind in ('chrome', 'all') else None, cutoff)
-        result['counts'] = publish(repository, changes, private_dir / 'publication')
-    result['complete'] = (all(r['status'] == 'complete' for r in result['browser'])
-                          and (result['chrome'] is None or result['chrome']['complete']))
-    return result
+
+def verify_workspace(work, state):
+    marker = work / '.owner'
+    if work.is_symlink() or marker.is_symlink() or marker.read_text() != state['workspace_id']:
+        raise ValueError('Collection workspace ownership changed')
 
 
-def main():
+def save_features(repository, private_dir, decisions, *, allow_partial=False):
+    """Close a classified run after its evidence and catalog are durable."""
+    root, private = Path(repository).resolve(), Path(private_dir).resolve()
+    require_external(root, private)
+    if not isinstance(decisions, list):
+        raise ValueError('Expected a list of classified features')
+    sources, _ = registered_sources(root, None)
+    catalog_path = 'data/catalog/features/catalog.json'
+    state_path, work = private / 'feature-run.json', private / 'work'
+    with run_lock(private), run_lock(root) as writer:
+        pending_recovery(root, writer)
+        if state_path.is_symlink():
+            raise ValueError('Invalid collection state')
+        state = read(state_path)
+        if state['repository'] != str(root) or work.is_symlink():
+            raise ValueError('Invalid collection workspace')
+        signature = digest(encoded(decisions))
+        txn = work / 'transaction'
+        if state['status'] == 'saved':
+            if state['decisions'] != signature:
+                raise ValueError('This run already has a different final classification')
+            return state['saved_items']
+        if state['status'] == 'cleaning' and not work.exists():
+            return finish_run(state_path, work, state, signature)
+        verify_workspace(work, state)
+        journal = txn / 'publication.json'
+        if state['status'] == 'cleaning' or (state['status'] == 'saving' and journal.exists()
+                                               and read(journal)['status'] == 'published'):
+            return finish_run(state_path, work, state, signature)
+        if state['status'] not in ('complete', 'partial', 'saving') or not (state['complete'] or allow_partial):
+            raise ValueError('Finish collection or explicitly accept partial coverage')
+        observed = state['observed']
+        requested = {}
+        for choice in decisions:
+            fields = ('source_item_id', 'revision_id', 'canonical_key', 'title')
+            if not isinstance(choice, dict) or not all(isinstance(choice.get(k), str) and choice[k].strip() for k in fields):
+                raise ValueError('Feature classification needs a source item, revision, key and title')
+            ident = choice['source_item_id']
+            if ident in requested:
+                raise ValueError('Repeated source item classification')
+            requested[ident] = choice
+        before = {}
+
+        def existing(path):
+            target = root / path
+            raw = target.read_bytes() if target.exists() else None
+            before[path] = digest(raw) if raw is not None else None
+            return json.loads(raw) if raw is not None else []
+
+        catalog = existing(catalog_path)
+        features = {(row['browser'], row['canonical_key']): row for row in catalog}
+        changes = {}
+        for source in sources:
+            sid = source['source_id']
+            if not requested or sid not in observed:
+                continue
+            rel = source_path(source)
+            raw = (work / 'candidates' / rel.name).read_bytes()
+            if digest(raw) != observed[sid]:
+                raise ValueError('Private candidates differ from the collected content')
+            candidates = {r['source_item_id']: r for r in json.loads(raw)}
+            for ident in sorted(requested.keys() & candidates.keys()):
+                choice, row = requested.pop(ident), candidates[ident]
+                revision = row['revisions'][-1]['revision_id']
+                if (revision != choice['revision_id']
+                        or row['source_id'] != sid or row['browser'] != source['browser']
+                        or row['record_status'] != 'parsed'):
+                    raise ValueError('Classification does not match the observed source revision')
+                validate_record('source_item', row)
+                target = rel.as_posix()
+                if target == EDGE_POLICY and (root / EDGE_SHARDS[0]).exists():
+                    target = EDGE_SHARDS[int(ident[4:6], 16)]
+                if target not in changes:
+                    changes[target] = {r['source_item_id']: r for r in existing(target)}
+                prior = changes[target].get(ident)
+                if prior:
+                    validate_transition('source_item', prior, row)
+                    prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')
+                    if prior_cutoff and instant(row['temporal_scope']['cutoff']) < instant(prior_cutoff):
+                        raise ValueError('A newer source window is already saved')
+                changes[target][ident] = row
+                key = (row['browser'], choice['canonical_key'])
+                if key not in features:
+                    feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
+                        canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
+                        event_ids=[], lifecycle='unknown', legacy=False)
+                    features[key] = feature
+                    catalog.append(feature)
+                feature = features[key]
+                # An undated citation cannot displace known in-period evidence.
+                if feature.get('temporal_scope', {}).get('status') != 'in_period' or row['temporal_scope']['status'] == 'in_period':
+                    feature['temporal_scope'] = row['temporal_scope']
+                feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
+        if requested:
+            raise ValueError('Classification refers to an unobserved source item')
+        if changes:
+            changes = {path: [rows[k] for k in sorted(rows)] for path, rows in changes.items()}
+            changes[catalog_path] = sorted(catalog, key=lambda row: row['feature_id'])
+        state.update(status='saving', decisions=signature, saved_items=len(decisions))
+        durable(state_path, encoded(state))
+        if changes:
+            store_changes(root, txn, changes, before, writer)
+        return finish_run(state_path, work, state, signature)
+
+
+def finish_run(state_path, work, state, signature):
+    if state['decisions'] != signature:
+        raise ValueError('This run already has a different final classification')
+    state.update(status='cleaning')
+    durable(state_path, encoded(state))
+    retired = work.with_name('.finished-' + state['workspace_id'])
+    if work.exists():
+        # Rename first so a crash part-way through removal cannot lose the owner marker of an active run.
+        verify_workspace(work, state)
+        work.rename(retired)
+    if retired.exists():
+        shutil.rmtree(retired)
+    state.update(status='saved')
+    state.pop('observed', None)
+    durable(state_path, encoded(state))
+    return state['saved_items']
+
+
+def main(*, daily=False):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--repository', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--private-dir', type=Path, required=True)
-    parser.add_argument('--kind', choices=['browser', 'chrome', 'all'], default='browser')
+    if daily:
+        parser.add_argument('--run-id', required=True)
+    parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--source', action='append')
     parser.add_argument('--cutoff')
+    parser.add_argument('--origin', choices=['daily', 'baseline', 'backfill'], default='daily')
     parser.add_argument('--resume', action='store_true')
-    parser.add_argument('--origin', choices=['baseline', 'daily', 'backfill'], default='baseline')
-    parser.add_argument('--chrome-bundle', type=Path, help='Replay a durable private handoff instead of fetching')
-    parser.add_argument('--previous-bundle', type=Path)
-    parser.add_argument('--brave-release-metadata', type=Path, help='Verified private complete release metadata at this cutoff')
-    parser.add_argument('--checkout', type=Path)
-    parser.add_argument('--revision')
-    parser.add_argument('--sample-path', action='append')
-    parser.add_argument('--max-files', type=int)
-    parser.add_argument('--max-trees', type=int)
+    parser.add_argument('--brave-release-metadata', type=Path)
+    parser.add_argument('--reviewed-attributions', type=Path)
+    parser.add_argument('--save-features', type=Path, help='Save classified features from the private collection, offline')
     args = parser.parse_args()
-    provider = None
-    if args.checkout or args.revision:
-        from pipeline.collectors.chrome import LocalCheckout, Gitiles
-        config = load_config(args.repository / 'config/chrome-source-scope.yml')
-        provider = LocalCheckout(args.checkout, args.revision or 'HEAD') if args.checkout else Gitiles(config['repository_url'], args.revision)
-    results = collect_sources(args.repository, args.private_dir, kind=args.kind, source_ids=args.source, cutoff=args.cutoff,
-        origin=args.origin, resume=args.resume, chrome_provider=provider,
-        chrome_bundle=load_config(args.chrome_bundle) if args.chrome_bundle else None,
-        previous_bundle=load_config(args.previous_bundle) if args.previous_bundle else None,
-        brave_release_metadata=load_config(args.brave_release_metadata) if args.brave_release_metadata else None,
-        sample_paths=args.sample_path, max_files=args.max_files, max_trees=args.max_trees)
-    return 0 if results['complete'] else 2
+    if daily:
+        if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', args.run_id):
+            parser.error('Invalid run ID')
+        args.private_dir = args.private_dir / args.run_id
+    if args.save_features:
+        if (args.private_dir / 'work').resolve() in args.save_features.resolve().parents:
+            parser.error('Keep the final classification outside the temporary work directory')
+        count = save_features(args.repository, args.private_dir, load_config(args.save_features),
+                              allow_partial=args.allow_partial)
+        print(f'Saved evidence for {count} classified items.')
+        return 0
+    result = collect_sources(args.repository, args.private_dir, source_ids=args.source, cutoff=args.cutoff,
+        origin=args.origin, resume=args.resume,
+        reviewed_attributions=load_config(args.reviewed_attributions) if args.reviewed_attributions else None,
+        brave_release_metadata=load_config(args.brave_release_metadata) if args.brave_release_metadata else None)
+    print(json.dumps({'collection_complete': result['complete'], 'candidates': str(args.private_dir / 'work/candidates')}))
+    return 0 if result['complete'] else 2
 
 
 if __name__ == '__main__':

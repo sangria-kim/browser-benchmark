@@ -29,7 +29,6 @@ class SelectionTests(unittest.TestCase):
         self.data.pop('assessment', None)
         self.data.pop('selected', None)
         self.data.pop('report', None)
-        self.data.pop('export_manifest', None)
         self.paths = {'source_item':'data/source-items/chrome/test.json', 'feature':'data/catalog/features/test.json',
                       'feature_event':'data/events/test.json', 'experiment':'data/catalog/chrome-experiments/test.json',
                       'experiment_event':'data/experiment-events/test.json'}

@@ -1,6 +1,6 @@
 # Public dataset contract 1.2
 
-The canonical JSON records use `schema_version: 2`. The source registry retains its unchanged scope format `contract_version: "1.0"`. New exports use `contract_version: "1.2"`. Version 1.2 adds optional temporal projections. Existing records without them remain readable. The manifest schema also reads 1.0 and 1.1; the importer accepts 1.1 and 1.2 packages. Version 1.1 added typed source definitions and a strict legacy-event compatibility branch. Do not relabel a legacy file as version 2 without validation.
+This document describes the retained schema version 2 dataset. New collection follows the [browser feature policy](collection-policy.md). The source registry uses contract version 1.0.
 
 ## Temporal projection (1.2)
 
@@ -25,7 +25,7 @@ A failed or incomplete boundary parse cannot prove that a current definition is 
 Generated Blink and Mojo definitions cite their public definition inputs. They do
 not claim that a generated build output or installed feature was observed.
 
-Selected outputs, new reports, dashboard data and export manifests carry optional
+Selected outputs, new reports, and dashboard data carry optional
 `collection_scope`, with the policy version, window and Chromium endpoint pairs.
 `source_windows` lists each source's actual window. The aggregate `cutoff` is the
 latest source cutoff, not a claim that all sources share one snapshot time.
@@ -72,7 +72,6 @@ Existing Chrome artifacts start at **2026-06-01**, with changes to `about_flags.
 | [assessment](../schemas/assessment.schema.json) | An immutable public PM judgment for a source item, feature event or experiment event. |
 | [selected](../schemas/selected.schema.json) | A materialized current list plus an append-only selection change history. |
 | [report](../schemas/report.schema.json) | A KST logical daily report, revision, cutoff, inputs and item references. Markdown stays in `reports/`. |
-| [export-manifest](../schemas/export-manifest.schema.json) | A fixed source commit, safe relative paths and file checksums. |
 
 Null means no supported value. Use `unknown` only where the schema defines it or for unknown channel/platform values. `legacy` identifies retained evidence with incomplete original source enumeration. `partial` and `complete` are private collection coverage states; neither belongs on a source record. No assessment means not yet assessed. It is different from `pending_verification`, which is an actual judgment about insufficient factual evidence.
 
@@ -132,11 +131,9 @@ Assessments are immutable. A changed input or rule creates a new ID and may `sup
 
 Selected records contain `current` and `history`. Current entries must reference a `selected` assessment. Deselection removes the entry from current, while history keeps its selected, deselected and reselected changes. Failure is not deselection. `selection_kind: flags` includes all three experiment kinds and requires the item kind. `selection_kind: features` covers regular features and their unlinked source items. The adopted subject may be an event; `catalog_id` links the feature or experiment when known. History entries may also retain `catalog_id`. Current and historical links must use the same feature/experiment owner as their subject. A source-item selection uses its source experiment kind and must be cited by any linked catalog or event. Ordinary source items cannot appear in the flag selection. Event predecessor and correction links must stay within one owner and must not form a cycle.
 
-## Reports and data import
+## Historical reports
 
 The report ID is `daily-YYYY-MM-DD` in `Asia/Seoul`. Revisions of that ID describe corrected or late evidence. Same inputs, rules and cutoff reuse the existing revision. `timing` distinguishes current evidence, late observation, historical backfill, correction and reclassification. A historical selection is not a new product release. Each report item cites one selection change with the same subject and assessment. Its event IDs may be a subset of that change's event IDs, but every cited event must have the same subject owner and evidence relationship. An empty subset is allowed for a reclassification with no new factual event. No-change reports require successful private collection/evaluation evidence; failures must not be described as no change.
-
-Export from one immutable source commit. Generate the manifest at export time; do not put a self-referential commit SHA into its own commit. Include all public source items, catalogs, facts, assessments, selected data and reports. Preserve allowlisted relative links or rewrite them to immutable source-commit URLs. Exclude workflows, executable dashboard code, collectors, private state and credentials. The importer verifies all paths/hashes before atomic replacement of its dedicated source-data directory. Keep the last valid import on failure.
 
 ## Validation API
 
@@ -153,8 +150,7 @@ validate_dataset(records_by_kind, {s["source_id"] for s in registry["sources"]} 
 
 `records_by_kind` maps singular kinds such as `source_item`, `feature_event` and `assessment` to lists. Validate the complete candidate graph, not an isolated delta. `read_records(path, kind)` accepts a singleton or bounded array. The CLI is `python -m schemas.validate KIND FILE...`. Run contract tests with `python -m unittest discover -s schemas/tests -v`.
 
-The contract gate checks shapes, dates, stable-reference integrity, selected status, assessment subjects and immutable transitions. Collectors must additionally reconcile enumeration and parsed/unparsed counts in private state. Export must additionally enforce its allowlist and actual file checksums. These operational checks are not replaced by a valid JSON record.
-
+The contract gate checks shapes, dates, stable-reference integrity, selected status, assessment subjects and immutable transitions. Collectors must additionally reconcile enumeration and parsed/unparsed counts in private state.
 
 ## Normalization and legacy compatibility (1.1)
 
@@ -170,7 +166,7 @@ not an evaluated parameter value. Unresolved names stay explicit. The semantic
 hash covers the collector's full semantic input, including expanded options; it
 is not a hash of this smaller public projection. Do not reconstruct catalog
 facts from the truncated source excerpt. The collector's private typed handoff
-is the normalization input. The public catalog carries the exportable facts.
+is the normalization input. The public catalog carries the public facts.
 
 Current feature events are `data/events/*.json`. Current experiment events are
 arrays under `data/experiment-events/*.json`. Historical snapshots are under

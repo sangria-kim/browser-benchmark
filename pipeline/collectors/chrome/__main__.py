@@ -14,7 +14,6 @@ def main():
     parser.add_argument('--checkout')
     parser.add_argument('--revision', help='Pinned commit or ref; default is configured main')
     parser.add_argument('--state-dir', required=True, help='Private state outside this repository; one directory per pinned run')
-    parser.add_argument('--output', help='Public schema-v2 source array, never an operations report')
     parser.add_argument('--sample-path', action='append', help='Bounded sample; always partial')
     parser.add_argument('--max-files', type=int)
     parser.add_argument('--max-trees', type=int)
@@ -36,8 +35,6 @@ def main():
         result = compare(result, load_config(args.baseline_bundle),
             since=config['baseline']['historical_backfill_since'], cutoff=args.cutoff, boundary_time=args.boundary_time, current_time=args.current_time)
         atomic_json(Path(args.state_dir) / 'handoff.json', result)
-    if args.output:
-        atomic_json(args.output, result['source_items'])
     print(json.dumps({'revision': result['revision'], 'coverage': result['coverage'], 'handoff': str(Path(args.state_dir) / 'handoff.json')}, indent=2))
     return 0 if result['coverage']['complete'] else 2
 

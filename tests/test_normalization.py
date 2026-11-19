@@ -6,10 +6,7 @@ import tempfile
 import unittest
 from collections import Counter
 from pathlib import Path
-from unittest.mock import patch
 
-from pipeline.collect import collect_sources
-from pipeline.collectors.browser import Response
 from pipeline.collectors.chrome import collect
 from pipeline.deduplicate import AliasIndex, digest
 from pipeline.normalize import merge_sources, normalize_browser_facts, normalize_chrome, publish, validate_graph
@@ -343,25 +340,6 @@ class NormalizationTests(unittest.TestCase):
             for row in index[kind]:
                 self.assertEqual(row['sha256'], hashlib.sha256((ROOT / row['path']).read_bytes()).hexdigest())
         self.assertTrue(all(row['experiment_ids'] for row in index['flags']))
-
-    def test_shared_entry_calls_both_real_collectors_and_retries(self):
-        base = 'https://chromestatus.com/api/v0/features?num=100&start=0'
-        def transport(url):
-            self.assertEqual(base, url)
-            return Response(url, json.dumps({'total_count': 1, 'features': [{'id': 123, 'name':'Example', 'summary':'Fact'}]}).encode())
-        result = collect_sources(self.repo, self.private / 'run', kind='all', source_ids=['chrome-platform-status'],
-            cutoff=NOW, transport=transport, chrome_provider=MemoryProvider(fixture_files(False)))
-        self.assertEqual('complete', result['browser'][0]['status'])
-        self.assertIsNotNone(result['chrome'])
-        graph = validate_graph(self.repo)
-        self.assertEqual(1, len(graph['feature']))
-        self.assertTrue(graph['experiment_event'])
-        before = {str(p.relative_to(self.repo)): p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
-        retry = collect_sources(self.repo, self.private / 'run', kind='all', source_ids=['chrome-platform-status'],
-            cutoff=NOW, transport=transport, resume=True, chrome_provider=MemoryProvider(fixture_files(False)))
-        self.assertEqual(result['counts'], retry['counts'])
-        self.assertEqual(before, {str(p.relative_to(self.repo)): p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
-
 
 if __name__ == '__main__':
     unittest.main()

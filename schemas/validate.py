@@ -21,7 +21,6 @@ KINDS = {
     'assessment': ('assessment', 'assessment_id'),
     'selected': ('selected', None),
     'report': ('report', 'report_id'),
-    'export_manifest': ('export-manifest', None),
     'legacy_feature_event': ('legacy-feature-event', 'event_id'),
     'sources_config': ('sources-config', None),
     'chrome_scope_config': ('chrome-scope-config', None),
@@ -111,10 +110,6 @@ def validate_record(kind, record):
             raise ContractError('Duplicate source IDs')
         if set(s['browser'] for s in record['sources'] if s['enabled']) != set(record['browsers']):
             raise ContractError('Each browser needs an enabled registered source')
-    if kind == 'export_manifest':
-        paths = [f['path'] for f in record['files']]
-        if len(paths) != len(set(paths)):
-            raise ContractError('Duplicate export paths')
     return record
 
 

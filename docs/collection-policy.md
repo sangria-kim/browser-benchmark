@@ -1,33 +1,18 @@
-# 공개 기능 자료 원칙
+# 브라우저 기능 수집 기준
 
-## 공개 대상
+[출처 설정](../config/sources.yml)에서 활성화한 브라우저별 출처를 조사합니다. 조사 기간은 2026년 1월 1일 한국시간부터 지정한 마감까지입니다. 날짜만 제공된 자료는 원문 날짜를 따릅니다. 날짜를 확인할 수 없는 기능은 적용일을 미확인으로 기록합니다.
 
-Chrome·Edge·Firefox·Brave·Whale·Opera·Vivaldi·Safari의 기능 설명, 사용자 영향, 공식 출처, 발표·적용 시점, 버전·채널·플랫폼, 지역·언어·계정·기기·구독 조건과 증거 수준을 기록합니다. 사내 자료나 내부 의사결정은 포함하지 않습니다.
+## 기능 판정
 
-공식 출처의 본문과 section, URL, 확인일, 소스 revision 또는 내용 hash를 근거로 유지합니다. 확인일과 출시일은 구분합니다. 소스 flag 등록·삭제는 출시나 철회의 단독 증거가 아닙니다. 릴리스 노트 수록을 모든 설치본 활성화로 일반화하지 않습니다.
+수집 에이전트는 각 업데이트를 항목 단위로 읽고, 어떤 브라우저에서 사용자가 무엇을 새로 할 수 있는지 또는 기존 동작이 어떻게 달라졌는지 확인합니다. 브라우저가 웹사이트나 관리자에게 제공하는 API·설정의 구체적인 변화도 포함합니다.
 
-## 기능 분석
+- 탭 그룹 공유 추가, 사이트별 권한 제어 변경, 특정 플랫폼 지원 확대, 기존 기능 제거처럼 공식 근거로 확인되는 변화를 저장합니다.
+- 취약점 패치, 일반 오류 수정, 내부 코드 정리, 단순 버전 상승, 홍보, 행사, 반복 공지와 파싱 실패는 건너뜁니다.
+- 섹션 제목이나 단어만으로 판정하지 않습니다. 보안 관련 새 기능도 구체적인 동작이 확인되면 포함합니다. 하나의 문서에 기능과 수정이 섞여 있으면 기능을 설명하는 항목만 선택합니다.
+- 기능은 브라우저와 기존 기능 키로 묶습니다. 버전, 채널, 플랫폼, 공식 URL, 근거 문장과 확인된 날짜를 유지합니다. 예고·실험·베타·정식 출시를 구분합니다. 확인되지 않은 출시나 설치본 동작을 추정하지 않습니다.
 
-[PM 분석 기준](pm-persona-and-selection.md)에 따라 사용자 과제, 실질적 변화, 비교 질문, 벤치마크 절차·지표를 설명합니다. 추측으로 제품 지원을 채우지 않습니다. 기능의 한국 제공·한국어 지원과 직접 동작 확인 여부가 불명확하면 unknown으로 남깁니다. 소스 관찰 / 설치본 노출 / 동작 검증의 증거 수준을 구분합니다.
+## 저장 범위
 
-기능 ID는 브라우저와 canonical feature key로 유지하고 사건 ID로 중복을 구분합니다. 기존 기능의 Beta→Stable 확대는 최초 도입과 구분합니다. 기능 사실의 정정은 근거와 함께 설명합니다.
+전체 후보, 원문 캐시와 분류 작업 파일은 저장소 밖에서 다룹니다. 공개 저장 대상은 판정한 기능과 이를 뒷받침하는 출처 항목입니다. 이전 수집 자료의 ID와 경로는 이력 조회를 위해 유지합니다.
 
-## 운영 자료와 분리
-
-조사 진행 범위·미확인 자료 목록·실행 시각표·수집 오류·재시도·checkpoint·보고 생성 여부·게시 결과·메일 상태·개인 식별자 및 운영 정정 원문은 비공개 Notion 일별 기록에 보관합니다. 이 저장소에 운영 로그나 비공개 기록 링크를 추가하지 않습니다. 운영 원문을 보존한 후 현재 공개 파일에서 제거하며 과거 Git 이력은 강제 재작성하지 않습니다.
-
-## 기능 사건 필드
-
-schema_version, event_id, feature_id, browser, event_type, version, channel, platform, workstreams, ai_related, scope, observed_at, announced_at, effective_at, source_revision, sources, summary, delta, verification_status, previous_event_id, selection_status, selection_reason, priority, priority_reason, comparison_question, benchmark_readiness, revisit_trigger, assessed_at, selection_rule_version.
-
-scope는 제품 적용 조건이며 조사 완료율이 아닙니다. observed_at은 근거를 확인한 시점이며 실행 성공·발송 상태를 의미하지 않습니다. JSON의 null/unknown은 미확인 제품 정보나 증거 수준을 뜻합니다.
-
-## Versioned pipeline boundary
-
-[Dataset contract 1.0](dataset-contract.md) and [the data layout](data-layout.md) define the canonical version 2 records. Keep full source-item coverage within the registered scope before PM selection. Security fixes, general fixes, unselected items and unresolved source definitions remain in the public minimal evidence catalog. Do not publish entire third-party pages, forum replies, email addresses, author/owner identities or raw source metadata that contains personal identifiers. Chromium ownership metadata is not needed for the feature catalog.
-
-Public records contain product facts, official URLs, minimal evidence, hashes and source revisions. Raw pages may be held in a private cache for validation. A source `unparsed` status only states that the definition value is unresolved. Exception text, coverage totals, parser traces, timeouts and recovery state stay in private storage. A private partial run must never become a public claim of complete coverage.
-
-A missing source does not prove product removal. Preserve the last successful records after source or evaluation failure. Keep assessment histories immutable and current selections separate from their source facts. `pending_verification` is a factual-evidence judgment, not an error fallback. Existing selection fields are compatibility projections written from assessments during migration.
-
-The original event fields above describe version 1 compatibility. Version 2 adds source-item references, explicit origin and revision information. Preserve all previous IDs, official URLs and readable report paths. Historical migration does not establish complete historical source coverage.
+비교 우선순위, 평가 점수, 벤치마크 계획, 일일 리포트, 사내 반입 준비는 수집 완료 조건에서 제외합니다. 운영 로그, 인증 정보, 개인 식별자, 사내 분석은 공개 자료에 넣지 않습니다. [실행 안내](../pipeline/OPERATIONS.md)

@@ -33,16 +33,8 @@ These rules apply to all agents that work in this repository, including Podo and
 
 Use clear, short sentences in repository documents and pull requests. Follow ASD-STE100 principles where practical, at the requested approximate 80% level. Do not claim certified compliance.
 
-## Public data boundary
+## Collection scope
 
-Keep public browser feature information and source evidence in this repository.
-Do not commit internal PRDs, private analysis, credentials, personal identifiers, or operation logs.
-Follow `docs/collection-policy.md` and `docs/pm-persona-and-selection.md`.
+Collect browser updates from enabled entries in `config/sources.yml`. Classify each item using `docs/collection-policy.md`. Save only browser features and their official evidence. Keep all other candidates and operational files outside the repository.
 
-## Consumers
-
-A commit on `work/browser-benchmark` is an agent-validated candidate. It is not owner approval.
-A consumer that tracks this branch can receive changes before a merge to `main`.
-A consumer that tracks `main` receives changes only after the owner merges them.
-Keep each consumer's selected source ref explicit. Record the imported commit SHA in the consumer environment.
-These rules do not configure a downstream scheduler or change its source branch.
+Finish collection when the feature catalog and its evidence are validated. Internal transfer preparation, packaging, import, synchronization and downstream analysis belong to the consumer. Preserve existing historical records and links.

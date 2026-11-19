@@ -36,12 +36,6 @@
     "reason": "observation requires a real timezone-aware timestamp"
   },
   {
-    "kind": "export_manifest",
-    "field": "files.0.path",
-    "value": "../.github/workflows/a.yml",
-    "reason": "no path traversal"
-  },
-  {
     "kind": "report",
     "field": "timezone",
     "value": "UTC",
