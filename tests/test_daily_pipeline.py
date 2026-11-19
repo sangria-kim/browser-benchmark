@@ -349,42 +349,69 @@ class DailyTests(unittest.TestCase):
         row, = run_daily.read(self.evidence)
         self.assertEqual(['Share your tab groups.'], [r['summary'] for r in row['revisions']])
 
+    def scan_status(self, name, row):
+        self.private = self.private.parent / name
+        body = json.dumps({'total_count': 1, 'features': [row]}).encode()
+        result = collect.collect_sources(self.root, self.private, source_ids=['chrome-platform-status'],
+            cutoff=CUTOFF, transport=lambda url: Response(url, body))
+        self.assertTrue(result['complete'])
+        return run_daily.read(self.private / 'work/candidates/chrome-platform-status.json')
+
+    def save_status(self, name, row, quote):
+        item, = self.scan_status(name, row)
+        self.assertIn(quote, item['evidence']['excerpt'])
+        choice = dict(source_item_id=item['source_item_id'], revision_id=item['revisions'][-1]['revision_id'],
+                      canonical_key='tab-groups', title='Tab groups', evidence_quote=quote)
+        self.assertEqual(1, self.save([choice]))
+        return choice['revision_id']
+
     def test_chromestatus_release_stage_is_evidence_but_timestamp_only_is_not(self):
-        row = dict(id=123, name='Tab groups', summary='Organize tabs.', updated={'when': '2026-11-01'})
-        def scan_status(name):
-            self.private = self.private.parent / name
-            body = json.dumps({'total_count': 1, 'features': [row]}).encode()
-            result = collect.collect_sources(self.root, self.private, source_ids=['chrome-platform-status'],
-                cutoff=CUTOFF, transport=lambda url: Response(url, body))
-            self.assertTrue(result['complete'])
-            return run_daily.read(self.private / 'work/candidates/chrome-platform-status.json')
-
-        def save_stage(name, expected):
-            item, = scan_status(name)
-            self.assertIn(expected, item['evidence']['excerpt'])
-            choice = dict(source_item_id=item['source_item_id'], revision_id=item['revisions'][-1]['revision_id'],
-                          canonical_key='tab-groups', title='Tab groups', evidence_quote=expected)
-            self.assertEqual(1, self.save([choice]))
-            return choice['revision_id']
-
-        # Simulate the old summary-only contract for an already published item.
-        baseline = save_stage('legacy', 'Organize tabs.')
-        row['browsers'] = {'chrome': {'status': {'text': 'In development'}}}
-        self.assertEqual([], scan_status('same-legacy-revision'))
-        self.save([])
+        row = dict(id=123, name='Tab groups', summary='Organize tabs.', updated={'when': '2026-11-01'},
+                   browsers={'chrome': {'status': {'text': 'In development'}}})
+        first = self.save_status('development', row, 'In development')
         row['updated']['when'] = '2026-11-02'
-        row['summary'] = 'Organize and share tabs.'
-        first = save_stage('development', 'In development')
-        row['updated']['when'] = '2026-11-02T03:00:00Z'
-        self.assertEqual([], scan_status('timestamp-only'))
+        self.assertEqual([], self.scan_status('timestamp-only', row))
         self.assertEqual(0, self.save([]))
         row['updated']['when'] = '2026-11-03'
         row['browsers']['chrome']['status']['text'] = 'Enabled by default'
-        latest = save_stage('enabled', 'Enabled by default')
+        latest = self.save_status('enabled', row, 'Enabled by default')
         feature, = run_daily.read(self.catalog)
-        self.assertEqual({baseline: 'Organize tabs.', first: 'In development', latest: 'Enabled by default'},
-                         feature['source_revision_excerpts'])
-        self.assertEqual([], scan_status('repeat'))
+        self.assertEqual({first: 'In development', latest: 'Enabled by default'}, feature['source_revision_excerpts'])
+        self.assertEqual([], self.scan_status('repeat', row))
+
+    def test_chromestatus_legacy_timestamp_seeds_private_comparison_until_real_change(self):
+        row = dict(id=123, name='Tab groups', summary='Organize tabs.', updated={'when': '2026-11-01'},
+                   browsers={'chrome': {'status': {'text': 'In development'}, 'desktop': 158}})
+        legacy = dict(key='123', section='feature', text='Organize tabs.', parsed=True)
+        with patch.object(collect.BrowserCollector, 'chromestatus_unit', return_value=legacy, create=True):
+            self.save_status('legacy', {k: v for k, v in row.items() if k != 'browsers'}, 'Organize tabs.')
+        path = self.root / 'data/source-items/chrome/chrome-platform-status.json'
+        before = self.catalog.read_bytes(), path.read_bytes()
+        for day in ('02', '03'):
+            row['updated']['when'] = '2026-11-' + day
+            self.assertEqual([], self.scan_status('clock-' + day, row))
+            self.assertEqual(0, self.save([]))
+            self.assertFalse((self.private / 'work').exists())
+            self.assertEqual(before, (self.catalog.read_bytes(), path.read_bytes()))
+        row['updated']['when'] = '2026-11-04'
+        row['browsers']['chrome']['status']['text'] = 'Enabled by default'
+        self.save_status('launch', row, 'Enabled by default')
+        source, = run_daily.read(path)
+        self.assertEqual(2, len(source['revisions']))
+
+    def test_chromestatus_platform_rollout_is_evidence_even_with_same_stage(self):
+        chrome = {'status': {'text': 'Enabled by default'}, 'desktop': 158, 'android': None}
+        row = dict(id=123, name='Tab groups', summary='Organize tabs.', updated={'when': '2026-11-01'},
+                   browsers={'chrome': chrome})
+        desktop = self.save_status('desktop', row, 'Enabled by default')
+        chrome['android'] = 158
+        row['updated']['when'] = '2026-11-02'
+        android = self.save_status('android', row, 'Android 158')
+        feature, = run_daily.read(self.catalog)
+        self.assertEqual({desktop: 'Enabled by default', android: 'Android 158'}, feature['source_revision_excerpts'])
+        chrome['android'] = '158'
+        row['updated']['when'] = '2026-11-03'
+        self.assertEqual([], self.scan_status('same-milestone', row))
 
     def test_resume_recovers_interrupted_write(self):
         self.scan()

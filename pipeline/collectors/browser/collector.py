@@ -187,6 +187,7 @@ class BrowserCollector:
         self.reviewed_attributions = reviewed_attributions or {}
         self.brave_release_metadata = brave_release_metadata
         self.brave_metadata_rows = None
+        self.chrome_status_baselines = None
         self.github_covered, self.github_publications = set(), {}
         for content_hash, attributions in self.reviewed_attributions.items():
             if not re.fullmatch('[0-9a-f]{64}', content_hash) or not isinstance(attributions, list) or not all(isinstance(value, str) and re.fullmatch('[0-9a-f]{64}', value) for value in attributions):
@@ -844,23 +845,9 @@ class BrowserCollector:
                 seen_ids.add(str(ident))
                 feature_url = 'https://chromestatus.com/feature/' + str(ident)
                 # Do not copy raw API metadata: it includes personal owner emails.
-                text = row.get('summary') or row.get('name') or ''
                 revision = row.get('updated', {}).get('when')
-                chrome = (row.get('browsers') or {}).get('chrome') or {}
-                status = (chrome.get('status') or {}).get('text')
-                if isinstance(status, str) and status.strip():
-                    # Earlier collectors hashed only the summary. Reading the same
-                    # official item revision with a new parser is not a launch.
-                    old = self.records.get(identity('src', [self.source['source_id'], feature_url, str(ident)]))
-                    same_legacy_revision = (
-                        old and old.get('item_content_sha256') == digest(canonical(['feature', text]))
-                        and ((revision and old['evidence']['source_revision'] == revision)
-                             or old['evidence']['content_sha256'] == digest(response.body))
-                    )
-                    if not same_legacy_revision:
-                        text = f'Chrome status: {status.strip()}. {text}'
-                self.emit(feature_url, response, {'key': str(ident), 'section': 'feature', 'text': text,
-                          'parsed': bool(row.get('name'))}, title=row.get('name'),
+                unit = self.chromestatus_unit(row, feature_url, revision)
+                self.emit(feature_url, response, unit, title=row.get('name'),
                           date=date_value(row.get('created', {}).get('when', '')),
                           revision=revision)
                 self.document_done(marker)
@@ -873,6 +860,38 @@ class BrowserCollector:
                     self.problem(url, 'Unique API IDs do not match total')
                 return
         self.problem(url, 'Page limit reached')
+
+    def chromestatus_unit(self, row, url, revision):
+        key = str(row['id'])
+        summary = row.get('summary') or row.get('name') or ''
+        chrome = (row.get('browsers') or {}).get('chrome') or {}
+        status = (chrome.get('status') or {}).get('text')
+        stage_text = f'Chrome status: {status.strip()}. ' if isinstance(status, str) and status.strip() else ''
+        milestones = []
+        for platform, label in [('desktop', 'Desktop'), ('android', 'Android'), ('ios', 'iOS'), ('webview', 'WebView')]:
+            value = chrome.get(platform)
+            if (type(value) is int or isinstance(value, str) and value.isascii() and value.isdecimal()) and int(value) > 0:
+                milestones.append(f'{label} {int(value)}')
+        facts = stage_text + (f"Chrome milestones: {', '.join(milestones)}. " if milestones else '')
+        unit = dict(key=key, section='ChromeStatus feature', text=facts + summary, parsed=bool(row.get('name')))
+        old = self.records.get(identity('src', [self.source['source_id'], url, key]))
+        if (not old or old['evidence']['section'] != 'feature' or self.chrome_status_baselines is None
+                or not unit['parsed'] or old['title'] != minimal(row['name'], 160)
+                or old['published_at'] != date_value(row.get('created', {}).get('when', ''))):
+            return unit
+        # A legacy hash can prove summary (or summary and stage) equality, but
+        # it cannot tell us which unrecorded milestones existed at that time.
+        for legacy_text in (summary, stage_text + summary):
+            if old.get('item_content_sha256') != digest(canonical(['feature', legacy_text])):
+                continue
+            if revision and self.publication_status(revision) == 'after_cutoff':
+                return unit
+            old_head = old['revisions'][-1]['revision_id']
+            first = self.chrome_status_baselines.setdefault(old_head, {'cutoff': self.cutoff, 'facts': facts})
+            if facts == first['facts'] or instant(self.cutoff) < instant(first['cutoff']):
+                unit.update(section='feature', text=legacy_text)
+            break
+        return unit
 
     def collect_apple(self):
         base = self.source['url']
