@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-68079d0b333dab006d2f3a6f: A TC39 proposal introducing `\\A`, `\\z` and `\\Z` character escapes to Unicode-mode regular expressions as synonyms for `(?-m:^)`, `(?-m:$)` and `(?=(?:\\r\\n|\\n|\\r|\\u2028|\\u2029)?(?-m:$))`, respectively. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f4f186a589ae4fef3501961f4b2739a1",
+  "subject_kind": "source_item",
+  "subject_id": "src-68079d0b333dab006d2f3a6f",
+  "input_hash": "16c2e20dd7ea43658746f095e1f417eaf6a23e528a0cca824436e530b8d34278",
+  "input_revision": "semantic-v2-sha256:32d4e95fbce48d4f891ed471b70ba8bfc1bc0918f41914fb4d6cfc010c8d5647",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-2440796bd0d3c7f16410b8e25d771de8",
+  "evidence_source_item_ids": [
+    "src-68079d0b333dab006d2f3a6f"
+  ]
+}

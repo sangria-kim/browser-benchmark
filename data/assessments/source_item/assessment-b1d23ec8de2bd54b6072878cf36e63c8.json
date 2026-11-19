@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-505ec2f87e329692b4f77812: Fixed window.print() waiting for active XMLHttpRequest requests, such as long-polling, to finish; the print dialog now appears after the load event. ( [contact omitted] ) (35035119) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b1d23ec8de2bd54b6072878cf36e63c8",
+  "subject_kind": "source_item",
+  "subject_id": "src-505ec2f87e329692b4f77812",
+  "input_hash": "91751fdd7fe9b4788ca76645d5b022a66610e75a7ed90718058922e12faa0bcc",
+  "input_revision": "semantic-v2-sha256:1520f273329ad55063b3dabc3a1aa4e28a90c6c4b55399ed2837d46e4bab6cf5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-505ec2f87e329692b4f77812"
+  ]
+}

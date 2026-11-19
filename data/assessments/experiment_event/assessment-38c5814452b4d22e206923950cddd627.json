@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ba0cc905e5e3bceacdf6ac82: Source baseline: Rust-based ChildProcessSecurityPolicy A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-38c5814452b4d22e206923950cddd627",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ba0cc905e5e3bceacdf6ac82",
+  "input_hash": "38620dd5754528bc4dca6b84a885507db450359785e52c526afbd7b76d4ce2a9",
+  "input_revision": "semantic-v2-sha256:dcd873c077588905028c776c92decea00a03c09bab6926e6546f63d7f936aa1d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-6e5d7089fc8974b120553c1920754164",
+  "evidence_source_item_ids": [
+    "src-chromium-083390512e3ec540fb5f29aa",
+    "src-legacy-2a8ef015e6aec7b78c5ed014"
+  ]
+}

@@ -1,0 +1,2490 @@
+{
+  "schema_version": 2,
+  "selection_kind": "features",
+  "as_of": "2026-11-19T01:07:23.156861Z",
+  "input_hash": "6e458bf68ac4fa759b03b49fa5d3e0a10a5a84c62143889dd42b195996b96f76",
+  "rule_version": "pm-selection-v3.0.0",
+  "current": [
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-7c79c98a33925d760454e795",
+      "assessment_id": "assessment-1631c977a46ffb0757cfe20bdaae943d",
+      "catalog_id": "feature-32dd71c2411c9f4ebe73c525",
+      "event_ids": [],
+      "experiment_kind": null
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-82284d6c37170a8065617d7d",
+      "assessment_id": "assessment-42a064a03149c402471af28e108a8cd6",
+      "catalog_id": null,
+      "event_ids": [],
+      "experiment_kind": null
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-e4381df11e821f72c25e02d9",
+      "assessment_id": "assessment-f91aa4f74ad77694a047b474aa71b742",
+      "catalog_id": "feature-b49983738970461f7f649d36",
+      "event_ids": [],
+      "experiment_kind": null
+    }
+  ],
+  "history": [
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
+      "assessment_id": "assessment-23bd1e955751d48c4a32fa22a7757b3a",
+      "catalog_id": "edge-accelerated-app-launch",
+      "event_ids": [
+        "edge-accelerated-app-launch-windows-kb5127936-20261028"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-0c3e55b5722fe3ee052028f0758f2f59",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-10-29T22:43:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-web-ai-local-apis-stable-139-inclusion-20261027",
+      "assessment_id": "assessment-9a1e854659b1c38b5b335073e4f93ad1",
+      "catalog_id": "opera-web-ai-local-apis",
+      "event_ids": [
+        "opera-web-ai-local-apis-stable-139-inclusion-20261027"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-55729fab2c6223d3fa95ed0af40523f2",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-10-29T22:43:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-android-incognito-capture-4-1-20261029",
+      "assessment_id": "assessment-e9c580d1d70ae0b889af85775f114c78",
+      "catalog_id": "whale-incognito-capture",
+      "event_ids": [
+        "whale-android-incognito-capture-4-1-20261029"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-1091bb478bfbc53b1a1e8c3142e89279",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-02T23:33:28Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-android-settings-search-4-1-20261029",
+      "assessment_id": "assessment-274a6a62a7a1e5d4a1c2606d49d67077",
+      "catalog_id": "whale-settings-search",
+      "event_ids": [
+        "whale-android-settings-search-4-1-20261029"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6d895faf7fe5616f93efa63082a1f3ed",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-02T23:33:28Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
+      "assessment_id": "assessment-7fbc3143eb31092bbb0fffef397abb32",
+      "catalog_id": "chrome-bookmark-bar-area-keyboard-navigation",
+      "event_ids": [
+        "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-f3e557efdb1d455337bde30de2c83cf6",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:27:14Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-notification-block-report-announced-20261102",
+      "assessment_id": "assessment-1f42efd2de8da9d542fd6a2fa5a88fa1",
+      "catalog_id": "edge-notification-block-report",
+      "event_ids": [
+        "edge-notification-block-report-announced-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-12347d27bea542c09ff10cf75112efa9",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:29:07.543849+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-related-origin-passkey-fix-159-0-1",
+      "assessment_id": "assessment-f94f32e588fea354c6e59d0aae12b0cb",
+      "catalog_id": "firefox-related-origin-passkey-signin",
+      "event_ids": [
+        "firefox-related-origin-passkey-fix-159-0-1"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6d8a4a7407416def8522f97d67f61529",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:29:07.543849+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102",
+      "assessment_id": "assessment-ef7fa48cac1c3cf55ec889977eea5809",
+      "catalog_id": "whale-vertical-tabs",
+      "event_ids": [
+        "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-0d9527ddd8967ade13ad7715c70ce8b2",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-memo-formatting-5-41-429-2-20261102",
+      "assessment_id": "assessment-b7e85f507b65771addc21cb55f6845b6",
+      "catalog_id": "whale-memo-formatting",
+      "event_ids": [
+        "whale-desktop-memo-formatting-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-1119e4e0acf22967564e39f50008f7b6",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102",
+      "assessment_id": "assessment-c3465da15236d0010198ef430ddf8200",
+      "catalog_id": "whale-mobile-window-tabs",
+      "event_ids": [
+        "whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-12fa452433412d45938be80d36a5e33d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102",
+      "assessment_id": "assessment-c361281f9085e0bb6be43e9c69e7bb5b",
+      "catalog_id": "whale-settings-import",
+      "event_ids": [
+        "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-23843921df793459efa81a485117aaf2",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102",
+      "assessment_id": "assessment-7c0f974528d9fa3edc5e53346563a9f8",
+      "catalog_id": "whale-multiplay",
+      "event_ids": [
+        "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-2c2bbf5fe83dab8e1996b8f671a4fa74",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-sign-in-continuity-5-41-429-2-20261102",
+      "assessment_id": "assessment-16eb9d7d265373019368a932ee15ad03",
+      "catalog_id": "whale-sign-in-continuity",
+      "event_ids": [
+        "whale-desktop-sign-in-continuity-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-64624758592fcbedf5bab8b2b2aaf048",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102",
+      "assessment_id": "assessment-d45dcecbf12ea46dac450745fd9595b6",
+      "catalog_id": "whale-dual-tab",
+      "event_ids": [
+        "whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-65e40d31656774cd8814262ecadbf068",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102",
+      "assessment_id": "assessment-42452656cceefd6d8618a16181a0487a",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-69691fa0a7c0e55e968a925c62e1e275",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102",
+      "assessment_id": "assessment-9431a1f60db7c47c4bc703369fe67f64",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-d4426a84dec086f778f75f3a90532993",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-03T23:30:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-split-view-edge-drag-restore-stable-1-99-55-20261105",
+      "assessment_id": "assessment-197316df561a465c25068ff8b34ed3c5",
+      "catalog_id": "brave-split-view-edge-drag",
+      "event_ids": [
+        "brave-split-view-edge-drag-restore-stable-1-99-55-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-3673c1338e24efbdafb1832ea1f09594",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:52:24.712Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-leo-clarification-choices-stable-1-99-55-20261105",
+      "assessment_id": "assessment-07e25f68ee498139ec1069ed657788e9",
+      "catalog_id": "brave-leo-clarification-choices",
+      "event_ids": [
+        "brave-leo-clarification-choices-stable-1-99-55-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-716c8d289dded08e9b9fdedd07229911",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:52:24.712Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-new-tab-content-redesign-20261105",
+      "assessment_id": "assessment-2fcce319e96d5c1c02af45775d1b4f54",
+      "catalog_id": "edge-new-tab-content-discovery",
+      "event_ids": [
+        "edge-new-tab-content-redesign-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c5bb524a377e2c2e219e155ab4ac223d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:52:24.712Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-leo-followup-suggestions-stable-1-99-55-20261105",
+      "assessment_id": "assessment-5490a65e09cc654e816c016c7be9b1d7",
+      "catalog_id": "brave-leo-followup-suggestions",
+      "event_ids": [
+        "brave-leo-followup-suggestions-stable-1-99-55-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-fb616b5dbaac40a469eb2d8ae5cb2e73",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:52:24.712Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-chro-menu-search-flag-20261104",
+      "assessment_id": "assessment-8af7df0d77e63911f835d654a74dbdb9",
+      "catalog_id": "chrome-chro-menu-search",
+      "event_ids": [
+        "chrome-chro-menu-search-flag-20261104"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-7a5ab62c2c977a4b9ae03d8e3b58a5cd",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:53:24Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-actor-notification-silencing-flag-20261105",
+      "assessment_id": "assessment-4c90c350845ee55bf7de433ebfcc0994",
+      "catalog_id": "chrome-actor-task-notification-silencing",
+      "event_ids": [
+        "chrome-actor-notification-silencing-flag-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-9d748f9532e848232bcd57b1ee71f3f3",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:53:24Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-vertical-tab-hover-expand-8-3-stable-20261105",
+      "assessment_id": "assessment-3bdd093c751a9d4dc6cb7d62c475d3af",
+      "catalog_id": "vivaldi-vertical-tabs",
+      "event_ids": [
+        "vivaldi-vertical-tab-hover-expand-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-171dedd79aa39106dd31daca9b1fb0a9",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-open-in-app-8-3-stable-20261105",
+      "assessment_id": "assessment-e46a84dac49dc99741dd9dc54cb90b4a",
+      "catalog_id": "vivaldi-android-open-in-app",
+      "event_ids": [
+        "vivaldi-android-open-in-app-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-1c5b24fed270cf4626d32e814026283d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-copy-sanitized-link-8-3-stable-20261105",
+      "assessment_id": "assessment-d706d8870506946e2a9af567b935e8aa",
+      "catalog_id": "vivaldi-copy-sanitized-link",
+      "event_ids": [
+        "vivaldi-copy-sanitized-link-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-3a8d85baa34a978b7829ea59b3b96cef",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-ad-blocker-levels-8-3-stable-20261105",
+      "assessment_id": "assessment-5f10dbd21e67e6eab7610f8926cf2204",
+      "catalog_id": "vivaldi-ad-tracker-blocker",
+      "event_ids": [
+        "vivaldi-ad-blocker-levels-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-4055f2738afa66f5941dfaa578c2d574",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-open-link-in-stack-8-3-stable-20261105",
+      "assessment_id": "assessment-f5bb83d04fa9122e6d3a9e89d5c209d5",
+      "catalog_id": "vivaldi-android-tab-stacks",
+      "event_ids": [
+        "vivaldi-android-open-link-in-stack-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-69c41cd8a31fccf81f8192bc4206a850",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-extension-tab-groups-api-8-3-stable-20261105",
+      "assessment_id": "assessment-5e1eb107aa79511de35a6f35fec8ed7d",
+      "catalog_id": "vivaldi-extension-tab-groups-api",
+      "event_ids": [
+        "vivaldi-extension-tab-groups-api-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-70b66434400ee445d34bf6b6e4ac854a",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104",
+      "assessment_id": "assessment-6070816ae95df5594b37ab9a10053067",
+      "catalog_id": "opera-vertical-tabs",
+      "event_ids": [
+        "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-bbe7c331bb5a0b6670b9e1a04e9a7a83",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-proton-vpn-8-3-stable-20261105",
+      "assessment_id": "assessment-847dcf9ad9058b86cb4baf5474904c44",
+      "catalog_id": "vivaldi-android-proton-vpn",
+      "event_ids": [
+        "vivaldi-android-proton-vpn-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c03e5f77ea4f0d7bcc100f67f7954c88",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-media-session-controls-8-3-stable-20261105",
+      "assessment_id": "assessment-09868616ba8b08147a4f440e1265df29",
+      "catalog_id": "vivaldi-android-media-controls",
+      "event_ids": [
+        "vivaldi-android-media-session-controls-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-e56805ca41d059cffc8d05ba5f03609e",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105",
+      "assessment_id": "assessment-e16620eaef65c35c2771d59dc4a75cbb",
+      "catalog_id": "vivaldi-vertical-tabs",
+      "event_ids": [
+        "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-ed4d8510e9950865cc3e3329339aa572",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-multi-url-paste-go-8-3-stable-20261105",
+      "assessment_id": "assessment-429116ffc616ebe853232e67b2ec9779",
+      "catalog_id": "vivaldi-multi-url-paste-go",
+      "event_ids": [
+        "vivaldi-multi-url-paste-go-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-fab3e8096d196cf28a315501ccfb807f",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-05T22:56:51.940747+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-fbf535e46d0e1f0fd0e469d4047c9f63",
+      "catalog_id": "whale-sign-in-continuity",
+      "event_ids": [
+        "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-5811312110dc815ec4a229a6721fcd37",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-multiplay-follow-exit-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-1da9f374bf3ebca7905d9cc863afe342",
+      "catalog_id": "whale-multiplay",
+      "event_ids": [
+        "whale-desktop-multiplay-follow-exit-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-58c5877e853b5021dd626b83150e35ad",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-1cd49fde9b46bcb4556d864d6e2ab5bf",
+      "catalog_id": "whale-vertical-tabs",
+      "event_ids": [
+        "whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6055776e740f7fb94c781b8d4fdc7b32",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-memo-formatting-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-42a0715f6c0a609426463b865108863c",
+      "catalog_id": "whale-memo-formatting",
+      "event_ids": [
+        "whale-desktop-memo-formatting-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-8b9c43d29f5f998f39b8d6d1d5afd4f7",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-page-capture-5-41-429-3-20261106",
+      "assessment_id": "assessment-1d96982dc01c045068233dba61f256b4",
+      "catalog_id": "whale-page-capture",
+      "event_ids": [
+        "whale-desktop-page-capture-5-41-429-3-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-94767802c1a60e2b0b4faba8c5db087b",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-4a5cd65853027eec090e1889e8ae9e9e",
+      "catalog_id": "whale-mobile-window-tabs",
+      "event_ids": [
+        "whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-9fcf976872d479637ba39be8d94988c7",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-4839bfcbc0153661d5f8d79db1b65111",
+      "catalog_id": "whale-settings-import",
+      "event_ids": [
+        "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-ae61088885cf425f77cf73492b1c216e",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-address-bar-ai-query-5-41-429-3-20261106",
+      "assessment_id": "assessment-00c9e89b9064b9e7ac9fcd1bbeed9160",
+      "catalog_id": "whale-address-bar-ai-query",
+      "event_ids": [
+        "whale-desktop-address-bar-ai-query-5-41-429-3-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c586ea2e08229f168b8d75e2409854b9",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-webapp-multimonitor-5-41-429-3-20261106",
+      "assessment_id": "assessment-acccf8597cfdeae796f6ae6b25361ff9",
+      "catalog_id": "whale-webapp-multimonitor",
+      "event_ids": [
+        "whale-desktop-webapp-multimonitor-5-41-429-3-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-d1ec863b9bc4300fec547fa08267ea2b",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-c8c592f47b8962298fe9b36503097728",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-e82e936a6c9f7a5144d20d23315ef21c",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-dual-tab-cross-window-drag-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-329816c96d8fb4debf8ce4b981ff92f5",
+      "catalog_id": "whale-dual-tab",
+      "event_ids": [
+        "whale-desktop-dual-tab-cross-window-drag-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-e923556d1b5a5c5414f210d5185553ad",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-001f26ad64e999ec326154e51d0985f2",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-fd2150e228057b0c15d38f0d964eaf2d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:54:23Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-annotated-default-browser-setter-20261106",
+      "assessment_id": "assessment-041adf0e90eb534e05672f799e5de21d",
+      "catalog_id": "chrome-default-browser-setter-selection",
+      "event_ids": [
+        "chrome-annotated-default-browser-setter-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-b21d7b357128e0b9b7c0c48568fd296e",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:56:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-tab-hover-memory-stable-157-20261105",
+      "assessment_id": "assessment-c1fd6197eb52fee39350dd5601efc035",
+      "catalog_id": "edge-tab-hover-memory-information",
+      "event_ids": [
+        "edge-tab-hover-memory-stable-157-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-3df4021e90d25b43fd30c3d0d61c0d24",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:58:32.221765+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-oneauth-migration-completed-stable-157-20261105",
+      "assessment_id": "assessment-eb5fcb191fd4338dab95b2563760584d",
+      "catalog_id": "edge-oneauth-signin-migration",
+      "event_ids": [
+        "edge-oneauth-migration-completed-stable-157-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-42458009a8fe89636785de6680e67de2",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-06T22:58:32.221765+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-performance-detector-retirement-plan-164-20261106",
+      "assessment_id": "assessment-006598647f2ec2fcc361a551cda30fb3",
+      "catalog_id": "edge-performance-detector",
+      "event_ids": [
+        "edge-performance-detector-retirement-plan-164-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-02d4504c853e5e3ec708f7655a3ceef0",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-07T23:12:38.066677+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-entra-passkey-sync-mobile-stable-157-20261109",
+      "assessment_id": "assessment-320ffde106a3347bebd38777fba01bd7",
+      "catalog_id": "edge-entra-passkey-sync",
+      "event_ids": [
+        "edge-entra-passkey-sync-mobile-stable-157-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-094757fec3d8967e500b3dbaed7375c1",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-09T22:50:46.214286+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-pdf-mathml-accessibility-stable-160-20261110",
+      "assessment_id": "assessment-5ea0d68ca31fefebc31fb71a27a6b2bf",
+      "catalog_id": "firefox-pdf-mathml-accessibility",
+      "event_ids": [
+        "firefox-pdf-mathml-accessibility-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-0fb570a1f9d5a173d4e5c9debbf7cf4a",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-on-device-speech-recognition-stable-160-20261110",
+      "assessment_id": "assessment-647e10dd20e62bbc62c0942ffe1f3061",
+      "catalog_id": "firefox-on-device-speech-recognition",
+      "event_ids": [
+        "firefox-on-device-speech-recognition-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-11a66a1e7c7408933be642336106d128",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-local-network-permissions-stable-160-20261110",
+      "assessment_id": "assessment-a24c92ae34a168bec677f68c05d9a0fe",
+      "catalog_id": "firefox-local-network-permissions",
+      "event_ids": [
+        "firefox-local-network-permissions-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-3d361cbcf6721e5f3c5aeb16dbb79060",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-mini-window-stable-160-20261110",
+      "assessment_id": "assessment-6fa5d4ed393cd39db6189125f0baa714",
+      "catalog_id": "firefox-mini-window",
+      "event_ids": [
+        "firefox-mini-window-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-63255cc3374ef748321e6afb5e61d05d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-pip-playback-speed-stable-160-20261110",
+      "assessment_id": "assessment-6487ce5c21cf4e697e1a1fd28afab05c",
+      "catalog_id": "firefox-pip-playback-speed",
+      "event_ids": [
+        "firefox-pip-playback-speed-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-65ce1d9eb77d29c6fee76a7667eb8b3e",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-protocol-handler-never-allow-stable-160-20261110",
+      "assessment_id": "assessment-4a8b417eaa60c02a1738cbbda1fae7df",
+      "catalog_id": "firefox-protocol-handler-never-allow",
+      "event_ids": [
+        "firefox-protocol-handler-never-allow-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-dc73ac5bd446ade81825f662e87cdc98",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:16:21.389826+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-contextual-product-comparison-rollout-20261109",
+      "assessment_id": "assessment-2f8816150d7543411605df3472d40be1",
+      "catalog_id": "edge-contextual-product-comparison",
+      "event_ids": [
+        "edge-contextual-product-comparison-rollout-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-4a5e88de9484d55434186bb6cd13f8ac",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-10T23:18:05.982921+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-android-extension-update-consent-prominence-beta-161-20261109",
+      "assessment_id": "assessment-d3a5664156d3348e9ad169d0d00bc412",
+      "catalog_id": "firefox-android-extension-update-consent-prominence",
+      "event_ids": [
+        "firefox-android-extension-update-consent-prominence-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-403bde95cf457fafc59f44e86acf8dc5",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-11T22:38:45.023058+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-copy-current-tab-url-shortcut-beta-161-20261109",
+      "assessment_id": "assessment-ff0fe3877775ed2b0c77dab2e5277726",
+      "catalog_id": "firefox-copy-current-tab-url-shortcut",
+      "event_ids": [
+        "firefox-copy-current-tab-url-shortcut-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-73bb78eb0d382570388c310df791a26d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-11T22:38:45.023058+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-chrome-history-import-visit-frequency-beta-161-20261109",
+      "assessment_id": "assessment-0eb90c831ed974c85c79f081be63c3c2",
+      "catalog_id": "firefox-chrome-history-import-visit-frequency",
+      "event_ids": [
+        "firefox-chrome-history-import-visit-frequency-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-bc4bd0ec8454385d4235914ff3fc138e",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-11T22:38:45.023058+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-canva-docs-ime-continuity-beta-161-20261109",
+      "assessment_id": "assessment-1ef1f367e4b6862351fa37f7beb682e0",
+      "catalog_id": "firefox-canva-docs-ime-continuity",
+      "event_ids": [
+        "firefox-canva-docs-ime-continuity-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-d94e4703ca75e88fa2f1afdd0121c06b",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-11T22:38:45.023058+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-macos13-5414295-support-evidence-20261111",
+      "assessment_id": "assessment-db15b5b405b81a4f712e1ffe87994d20",
+      "catalog_id": "whale-macos-minimum-version",
+      "event_ids": [
+        "whale-macos13-5414295-support-evidence-20261111"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-00e5799ec2a37fc3a07ea9c543383d31",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-11T22:39:34.161576+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-dynamic-aim-fulfillment-source-20261112",
+      "assessment_id": "assessment-d5e28a162c8d8017d30a5352da0d1d23",
+      "catalog_id": "chrome-dynamic-aim-fulfillment",
+      "event_ids": [
+        "chrome-dynamic-aim-fulfillment-source-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-f938bc78fa98aeae1fd1f02cf05b9f8b",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:20:54.575005+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-contextual-tasks-form-factor-scope-source-20261112",
+      "assessment_id": "assessment-5d949332183a37e7e18db59de463d3bb",
+      "catalog_id": "chrome-contextual-tasks-form-factor-scope",
+      "event_ids": [
+        "chrome-contextual-tasks-form-factor-scope-source-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-68b614b1bda15c34322ae56561ee7c24",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:20:54.576152+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-android-enterprise-file-upload-analysis-source-20261112",
+      "assessment_id": "assessment-fb0c10ce9d8463b77632483a7489e216",
+      "catalog_id": "chrome-android-enterprise-file-upload-analysis",
+      "event_ids": [
+        "chrome-android-enterprise-file-upload-analysis-source-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-0329c2a98b4db0af069926e514611074",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:20:54.577486+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-web-custom-clipboard-formats-beta-161-observed-20261113",
+      "assessment_id": "assessment-3ecb03d7d81b6a1b956e8e11026e1219",
+      "catalog_id": "firefox-web-custom-clipboard-formats",
+      "event_ids": [
+        "firefox-web-custom-clipboard-formats-beta-161-observed-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-539096bc5de3052d20bf8f67c54d9037",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:22:48.539256+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-vertical-tabs-autohide-default-developer-141-20261109",
+      "assessment_id": "assessment-f2945895d2f75b95ae6ccddb892d2847",
+      "catalog_id": "opera-vertical-tabs-autohide",
+      "event_ids": [
+        "opera-vertical-tabs-autohide-default-developer-141-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6a08eb30b2b22ed83b192c3211990128",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:24:54.740586+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-site-permission-removal-restored-stable-140-20261110",
+      "assessment_id": "assessment-415ad6af7afef55a36c084a6d6967c43",
+      "catalog_id": "opera-site-permission-removal",
+      "event_ids": [
+        "opera-site-permission-removal-restored-stable-140-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-bef803e11f713b2ecad8c9d1c0da11bd",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:24:54.740586+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-angle-d3d9-removal-recovery-notice-20261112",
+      "assessment_id": "assessment-15dbe75bc225e11abb4110ce64f972c4",
+      "catalog_id": "whale-angle-d3d9-removal-recovery",
+      "event_ids": [
+        "whale-angle-d3d9-removal-recovery-notice-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-dbd122dadb202b8f978cdd97b9c40906",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:24:54.740586+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+      "assessment_id": "assessment-30494901d04db7c4cc1e6bf40fd996b2",
+      "catalog_id": "vivaldi-browser-fullscreen-retention",
+      "event_ids": [
+        "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-ed74847ca4cf015606d4efffea9deec5",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-12T23:24:54.740586+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-webmcp-default-nightly-11022-20261112",
+      "assessment_id": "assessment-1d0fc0dbe5b81d5926ece6eb5cdb41ee",
+      "catalog_id": "brave-leo-website-tools",
+      "event_ids": [
+        "brave-webmcp-default-nightly-11022-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-876cdb5d61676f37f72e01a271b9d8be",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-13T22:48:46.168388+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-android-accessibility-note-class-source-20261113",
+      "assessment_id": "assessment-49e5143752f1692cfc74cb96bdf55be1",
+      "catalog_id": "chrome-android-accessibility-note-class",
+      "event_ids": [
+        "chrome-android-accessibility-note-class-source-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-41c4434ecf9a623dae9c901db6722504",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-13T22:57:51Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-fedcm-passive-signup-modal-source-20261113",
+      "assessment_id": "assessment-a9d3503ca3e14bae51b01b8ecd57d846",
+      "catalog_id": "chrome-fedcm-idp-links",
+      "event_ids": [
+        "chrome-fedcm-passive-signup-modal-source-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-85265b66192540d2149335ee568bacca",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-13T22:57:51Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-android-headphone-disconnect-pause-source-20261114",
+      "assessment_id": "assessment-276816627a95e73af860017bd19ffdbf",
+      "catalog_id": "chrome-android-headphone-disconnect-pause",
+      "event_ids": [
+        "chrome-android-headphone-disconnect-pause-source-20261114"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-bdc9e4b63985085a72aa6bfe02ba6bb8",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-14T22:40:00Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-context-menu-gemini-search-order-source-20261113",
+      "assessment_id": "assessment-1de91640e3e4ad3a7f613fcf6dd8641d",
+      "catalog_id": "chrome-context-menu-gemini-search-order",
+      "event_ids": [
+        "chrome-context-menu-gemini-search-order-source-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-b96b7e0ec2aa4b8ffa1daacd0d419ac2",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-15T22:58:00Z"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-82284d6c37170a8065617d7d",
+      "assessment_id": "assessment-6362515874962872d64793391b03cf19",
+      "catalog_id": null,
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-84e477a9ce915f82001df84ff61fea29",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-16T03:05:09Z"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-copy-current-tab-url-shortcut-beta-161-20261109",
+      "assessment_id": "assessment-edfb62d0fb577d6b27110a8b899c76b6",
+      "catalog_id": "firefox-copy-current-tab-url-shortcut",
+      "event_ids": [
+        "firefox-copy-current-tab-url-shortcut-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-0089b5f6c265ca1f18e5762749e52ddb",
+      "previous_assessment_id": "assessment-ff0fe3877775ed2b0c77dab2e5277726",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-android-headphone-disconnect-pause-source-20261114",
+      "assessment_id": "assessment-f7a6b34ee88dda6c7f94e16931733a0c",
+      "catalog_id": "chrome-android-headphone-disconnect-pause",
+      "event_ids": [
+        "chrome-android-headphone-disconnect-pause-source-20261114"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-03e0a9ee03795c5bc141537726cb7f2e",
+      "previous_assessment_id": "assessment-276816627a95e73af860017bd19ffdbf",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-memo-formatting-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-7c68ef70400306a3acc4e8b17e57e845",
+      "catalog_id": "whale-memo-formatting",
+      "event_ids": [
+        "whale-desktop-memo-formatting-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-07869605a27cd8d5e4a571435dcfd30a",
+      "previous_assessment_id": "assessment-42a0715f6c0a609426463b865108863c",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-vertical-tab-hover-expand-8-3-stable-20261105",
+      "assessment_id": "assessment-666d4d409af0f5256e79e72d1e13a49d",
+      "catalog_id": "vivaldi-vertical-tabs",
+      "event_ids": [
+        "vivaldi-vertical-tab-hover-expand-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-078876aa695dcc493daeb5e1d4aca81c",
+      "previous_assessment_id": "assessment-3bdd093c751a9d4dc6cb7d62c475d3af",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-proton-vpn-8-3-stable-20261105",
+      "assessment_id": "assessment-404e4f8739cda85de963d4de36ec4688",
+      "catalog_id": "vivaldi-android-proton-vpn",
+      "event_ids": [
+        "vivaldi-android-proton-vpn-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-0b083df3a37d7b3e8c7a8959db736825",
+      "previous_assessment_id": "assessment-847dcf9ad9058b86cb4baf5474904c44",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-contextual-tasks-form-factor-scope-source-20261112",
+      "assessment_id": "assessment-4916d26b104586ec618ce857dc1caa7c",
+      "catalog_id": "chrome-contextual-tasks-form-factor-scope",
+      "event_ids": [
+        "chrome-contextual-tasks-form-factor-scope-source-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-13c5372336065e610d4d575436f66880",
+      "previous_assessment_id": "assessment-5d949332183a37e7e18db59de463d3bb",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-e4381df11e821f72c25e02d9",
+      "assessment_id": "assessment-f91aa4f74ad77694a047b474aa71b742",
+      "catalog_id": "feature-b49983738970461f7f649d36",
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-199adbcd71df1d9e49754e681c1a4fc0",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-pdf-mathml-accessibility-stable-160-20261110",
+      "assessment_id": "assessment-2065474a060451583a2ef3af26cc357d",
+      "catalog_id": "firefox-pdf-mathml-accessibility",
+      "event_ids": [
+        "firefox-pdf-mathml-accessibility-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-1bbd69e45067cbda0f859b82a22c47d8",
+      "previous_assessment_id": "assessment-5ea0d68ca31fefebc31fb71a27a6b2bf",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-on-device-speech-recognition-stable-160-20261110",
+      "assessment_id": "assessment-4e806f6d378f53bbe25c5aeaa66d5d0d",
+      "catalog_id": "firefox-on-device-speech-recognition",
+      "event_ids": [
+        "firefox-on-device-speech-recognition-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-2257a9ac7d2559974e40506be8e51521",
+      "previous_assessment_id": "assessment-647e10dd20e62bbc62c0942ffe1f3061",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102",
+      "assessment_id": "assessment-c597fda8d96b4b8fdaf1bc9d286a9ceb",
+      "catalog_id": "whale-dual-tab",
+      "event_ids": [
+        "whale-desktop-dual-tab-cross-window-drag-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-24c3bd90c359e6358ab62a0901ee32e2",
+      "previous_assessment_id": "assessment-d45dcecbf12ea46dac450745fd9595b6",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-annotated-default-browser-setter-20261106",
+      "assessment_id": "assessment-f10d0524a970f1b9f8149af775614d05",
+      "catalog_id": "chrome-default-browser-setter-selection",
+      "event_ids": [
+        "chrome-annotated-default-browser-setter-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-24ec1b7eb2baf1ac0d0540fcd95d0959",
+      "previous_assessment_id": "assessment-041adf0e90eb534e05672f799e5de21d",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-macos13-5414295-support-evidence-20261111",
+      "assessment_id": "assessment-1f8c64eb3bbf3932ffa3ce6a4bb2e602",
+      "catalog_id": "whale-macos-minimum-version",
+      "event_ids": [
+        "whale-macos13-5414295-support-evidence-20261111"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-2975e66f89f7198d3cb0939eaec7ae9a",
+      "previous_assessment_id": "assessment-db15b5b405b81a4f712e1ffe87994d20",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-web-ai-local-apis-stable-139-inclusion-20261027",
+      "assessment_id": "assessment-39285a25bc293153548dbd86ee51118c",
+      "catalog_id": "opera-web-ai-local-apis",
+      "event_ids": [
+        "opera-web-ai-local-apis-stable-139-inclusion-20261027"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-2f8bbdd3b9fbda1836d29aadf1ff7b9f",
+      "previous_assessment_id": "assessment-9a1e854659b1c38b5b335073e4f93ad1",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-30f28cf9053516d3bd76b39719cbd8e5",
+      "catalog_id": "whale-mobile-window-tabs",
+      "event_ids": [
+        "whale-desktop-mobile-window-card-tabs-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-323d17ab09256de39ef89714e945ca81",
+      "previous_assessment_id": "assessment-4a5cd65853027eec090e1889e8ae9e9e",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-android-incognito-capture-4-1-20261029",
+      "assessment_id": "assessment-c7862361626d7315b706901e195a5ab4",
+      "catalog_id": "whale-incognito-capture",
+      "event_ids": [
+        "whale-android-incognito-capture-4-1-20261029"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-35b1bc60f5137a5dbc3d15e534d58f23",
+      "previous_assessment_id": "assessment-e9c580d1d70ae0b889af85775f114c78",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-fedcm-passive-signup-modal-source-20261113",
+      "assessment_id": "assessment-12038bc83dff9dc8036759636e98b4aa",
+      "catalog_id": "chrome-fedcm-idp-links",
+      "event_ids": [
+        "chrome-fedcm-passive-signup-modal-source-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-364f2f3d3a7906cc2f025baf69314159",
+      "previous_assessment_id": "assessment-a9d3503ca3e14bae51b01b8ecd57d846",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-media-session-controls-8-3-stable-20261105",
+      "assessment_id": "assessment-3a3fc9b01df7f26bcfbceb63a4490a0f",
+      "catalog_id": "vivaldi-android-media-controls",
+      "event_ids": [
+        "vivaldi-android-media-session-controls-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-371b47794de42947264df8ea0fc31e4e",
+      "previous_assessment_id": "assessment-09868616ba8b08147a4f440e1265df29",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102",
+      "assessment_id": "assessment-7c91bf42f13ca1f75ecabf7f1690b4a9",
+      "catalog_id": "whale-vertical-tabs",
+      "event_ids": [
+        "whale-desktop-vertical-tab-window-width-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-37e3b14bf89a814414cd9899e1879996",
+      "previous_assessment_id": "assessment-ef7fa48cac1c3cf55ec889977eea5809",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-chro-menu-search-flag-20261104",
+      "assessment_id": "assessment-9e9e66eb98e8ee02a0dd2881f3f90207",
+      "catalog_id": "chrome-chro-menu-search",
+      "event_ids": [
+        "chrome-chro-menu-search-flag-20261104"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-407a275d2ea4b6b437d784b0851ca3e7",
+      "previous_assessment_id": "assessment-8af7df0d77e63911f835d654a74dbdb9",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-chrome-history-import-visit-frequency-beta-161-20261109",
+      "assessment_id": "assessment-b7224169d97bc001eee70fea2afa9eb8",
+      "catalog_id": "firefox-chrome-history-import-visit-frequency",
+      "event_ids": [
+        "firefox-chrome-history-import-visit-frequency-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-464a0415799fb5122e4044979e943b6a",
+      "previous_assessment_id": "assessment-0eb90c831ed974c85c79f081be63c3c2",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-related-origin-passkey-fix-159-0-1",
+      "assessment_id": "assessment-c63e38f5da4009d328c752081d95a955",
+      "catalog_id": "firefox-related-origin-passkey-signin",
+      "event_ids": [
+        "firefox-related-origin-passkey-fix-159-0-1"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-4d93759e4cdf48142013793be9fa6764",
+      "previous_assessment_id": "assessment-f94f32e588fea354c6e59d0aae12b0cb",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102",
+      "assessment_id": "assessment-3f11916397af74d1e1a45f3dd1af2d07",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-ai-briefing-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-51f8a431ab3e1680770fe0eb4f32ff6b",
+      "previous_assessment_id": "assessment-9431a1f60db7c47c4bc703369fe67f64",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102",
+      "assessment_id": "assessment-627302ff3025e3aa1bdc78a38aa792f2",
+      "catalog_id": "whale-settings-import",
+      "event_ids": [
+        "whale-desktop-settings-import-shortcuts-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-5319c1f397463965f3ed1466fa1113c0",
+      "previous_assessment_id": "assessment-c361281f9085e0bb6be43e9c69e7bb5b",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-new-tab-content-redesign-20261105",
+      "assessment_id": "assessment-3a01e376357e295f80bc8078a42fe19f",
+      "catalog_id": "edge-new-tab-content-discovery",
+      "event_ids": [
+        "edge-new-tab-content-redesign-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-54f4ac38f8fb14ad20b0369126880f0a",
+      "previous_assessment_id": "assessment-2fcce319e96d5c1c02af45775d1b4f54",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-protocol-handler-never-allow-stable-160-20261110",
+      "assessment_id": "assessment-377d5ba881857a0328f685b6f3bfd8b8",
+      "catalog_id": "firefox-protocol-handler-never-allow",
+      "event_ids": [
+        "firefox-protocol-handler-never-allow-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-56a35d0778e98fb5680d6cb951a6d47b",
+      "previous_assessment_id": "assessment-4a8b417eaa60c02a1738cbbda1fae7df",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-webmcp-default-nightly-11022-20261112",
+      "assessment_id": "assessment-d409669bf3ae55559ef3354bcec8df52",
+      "catalog_id": "brave-leo-website-tools",
+      "event_ids": [
+        "brave-webmcp-default-nightly-11022-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-5c535e203ec2dfb90b9954785f318430",
+      "previous_assessment_id": "assessment-1d0fc0dbe5b81d5926ece6eb5cdb41ee",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-pip-playback-speed-stable-160-20261110",
+      "assessment_id": "assessment-1ce2bd40d5be65c9fde646da40b5d3e2",
+      "catalog_id": "firefox-pip-playback-speed",
+      "event_ids": [
+        "firefox-pip-playback-speed-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-5da3daecbaa1ad07abf44bf7deef7242",
+      "previous_assessment_id": "assessment-6487ce5c21cf4e697e1a1fd28afab05c",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-2f9909bc20f7544ad9cc1147",
+      "assessment_id": "assessment-972e05d6c7d3b2f030103e2266404bca",
+      "catalog_id": "feature-b49983738970461f7f649d36",
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-5ebb8bd24d64fe2523fb985ffbe91794",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-vertical-tabs-autohide-default-developer-141-20261109",
+      "assessment_id": "assessment-8fa42437b1c2eaa71b9aba273fc49b66",
+      "catalog_id": "opera-vertical-tabs-autohide",
+      "event_ids": [
+        "opera-vertical-tabs-autohide-default-developer-141-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-5fbc9e2a22d9b421a5d18f5cdfc7c6d9",
+      "previous_assessment_id": "assessment-f2945895d2f75b95ae6ccddb892d2847",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-actor-notification-silencing-flag-20261105",
+      "assessment_id": "assessment-298e0adf8b60e7ca4c7424af88e2aec3",
+      "catalog_id": "chrome-actor-task-notification-silencing",
+      "event_ids": [
+        "chrome-actor-notification-silencing-flag-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-5fc9574c5abef27da007d061587f04db",
+      "previous_assessment_id": "assessment-4c90c350845ee55bf7de433ebfcc0994",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-android-settings-search-4-1-20261029",
+      "assessment_id": "assessment-01621c7f28771352f7529d6745ce9c60",
+      "catalog_id": "whale-settings-search",
+      "event_ids": [
+        "whale-android-settings-search-4-1-20261029"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-61b91b9f2d4e6336c364c5ea6d91c0c0",
+      "previous_assessment_id": "assessment-274a6a62a7a1e5d4a1c2606d49d67077",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-8d8da137553d1a985dbfd77918ffdf3a",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-answer-toggles-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-62b6e2e885eaae6c0a048fa7a22b33c6",
+      "previous_assessment_id": "assessment-001f26ad64e999ec326154e51d0985f2",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-site-permission-removal-restored-stable-140-20261110",
+      "assessment_id": "assessment-0026c07e0679b7c6fb620f714234bdd2",
+      "catalog_id": "opera-site-permission-removal",
+      "event_ids": [
+        "opera-site-permission-removal-restored-stable-140-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-64f06e5d141139f527c4814e701dccc3",
+      "previous_assessment_id": "assessment-415ad6af7afef55a36c084a6d6967c43",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105",
+      "assessment_id": "assessment-140ca9744bcdae7165907193b8ed839e",
+      "catalog_id": "vivaldi-vertical-tabs",
+      "event_ids": [
+        "vivaldi-vertical-pinned-tab-grid-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-690f632589c843ac7ed8b0b8e8fd59a0",
+      "previous_assessment_id": "assessment-e16620eaef65c35c2771d59dc4a75cbb",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-angle-d3d9-removal-recovery-notice-20261112",
+      "assessment_id": "assessment-b9cb28550ff2e77148a5400ee4115709",
+      "catalog_id": "whale-angle-d3d9-removal-recovery",
+      "event_ids": [
+        "whale-angle-d3d9-removal-recovery-notice-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-692b0bce0784f1e7a8762e484d159f11",
+      "previous_assessment_id": "assessment-15dbe75bc225e11abb4110ce64f972c4",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-7822979071b9cf8adc7fc4b040c3bd63",
+      "catalog_id": "whale-settings-import",
+      "event_ids": [
+        "whale-desktop-settings-import-shortcuts-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6a1b828894050258c7c2b8befb2d4141",
+      "previous_assessment_id": "assessment-4839bfcbc0153661d5f8d79db1b65111",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102",
+      "assessment_id": "assessment-6cc5ce32afa19f990e60a55a701748b2",
+      "catalog_id": "whale-multiplay",
+      "event_ids": [
+        "whale-desktop-multiplay-follow-exit-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6b1cec74ac39617a695c1364c514b5db",
+      "previous_assessment_id": "assessment-7c0f974528d9fa3edc5e53346563a9f8",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-81683dae32f34dec77242df5b0816f6e",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-ai-briefing-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-6db275a1c655e28bc1d3fecc2b0ecb28",
+      "previous_assessment_id": "assessment-c8c592f47b8962298fe9b36503097728",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-oneauth-migration-completed-stable-157-20261105",
+      "assessment_id": "assessment-5a0d32f39d1ef35476f4b2a777f5734b",
+      "catalog_id": "edge-oneauth-signin-migration",
+      "event_ids": [
+        "edge-oneauth-migration-completed-stable-157-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-74ce399cf5b8acb695408c65a9592a4c",
+      "previous_assessment_id": "assessment-eb5fcb191fd4338dab95b2563760584d",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-memo-formatting-5-41-429-2-20261102",
+      "assessment_id": "assessment-e6d7f2c29a6ca7cd3c570ea8c2bc01b9",
+      "catalog_id": "whale-memo-formatting",
+      "event_ids": [
+        "whale-desktop-memo-formatting-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-7a92f94a2de1024f31d62a2ebc00dba1",
+      "previous_assessment_id": "assessment-b7e85f507b65771addc21cb55f6845b6",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-multi-url-paste-go-8-3-stable-20261105",
+      "assessment_id": "assessment-338cd59affc0c6313f3ac4004b5f6889",
+      "catalog_id": "vivaldi-multi-url-paste-go",
+      "event_ids": [
+        "vivaldi-multi-url-paste-go-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-7ec09f2e10acff95567a3c94c4ca4edb",
+      "previous_assessment_id": "assessment-429116ffc616ebe853232e67b2ec9779",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-sign-in-continuity-5-41-429-2-20261102",
+      "assessment_id": "assessment-df4b0aec1e1e5e24b09c0dc1e1d7663f",
+      "catalog_id": "whale-sign-in-continuity",
+      "event_ids": [
+        "whale-desktop-sign-in-continuity-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-7f6e1e2bdfbfbd0699961db6adeb6075",
+      "previous_assessment_id": "assessment-16eb9d7d265373019368a932ee15ad03",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-mini-window-stable-160-20261110",
+      "assessment_id": "assessment-fa6338b28469b87caa5f50e78ba999b9",
+      "catalog_id": "firefox-mini-window",
+      "event_ids": [
+        "firefox-mini-window-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-81760755d08eab1ea84b8112188587b2",
+      "previous_assessment_id": "assessment-6fa5d4ed393cd39db6189125f0baa714",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102",
+      "assessment_id": "assessment-336791ca884a0ff5bdc50f6d7a6dfbc8",
+      "catalog_id": "whale-mobile-window-tabs",
+      "event_ids": [
+        "whale-desktop-mobile-window-card-tabs-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-8e29b78bc82b58b6c3b354abca8cc425",
+      "previous_assessment_id": "assessment-c3465da15236d0010198ef430ddf8200",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-contextual-product-comparison-rollout-20261109",
+      "assessment_id": "assessment-d28565e5494b027335f461efcac0c122",
+      "catalog_id": "edge-contextual-product-comparison",
+      "event_ids": [
+        "edge-contextual-product-comparison-rollout-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-949fc6d1c271dd1a4a49a48eec54c38c",
+      "previous_assessment_id": "assessment-2f8816150d7543411605df3472d40be1",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-open-link-in-stack-8-3-stable-20261105",
+      "assessment_id": "assessment-0bcdf817e251e059c86e143940b1bf85",
+      "catalog_id": "vivaldi-android-tab-stacks",
+      "event_ids": [
+        "vivaldi-android-open-link-in-stack-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-96ec611904f53723c5fbaf0ce94abfe7",
+      "previous_assessment_id": "assessment-f5bb83d04fa9122e6d3a9e89d5c209d5",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-address-bar-ai-query-5-41-429-3-20261106",
+      "assessment_id": "assessment-c8cf6f13192e836c344f58aa70338da4",
+      "catalog_id": "whale-address-bar-ai-query",
+      "event_ids": [
+        "whale-desktop-address-bar-ai-query-5-41-429-3-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-97c8a5541cbdc66d7b028b59e6e58e78",
+      "previous_assessment_id": "assessment-00c9e89b9064b9e7ac9fcd1bbeed9160",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-canva-docs-ime-continuity-beta-161-20261109",
+      "assessment_id": "assessment-8b05303fb9fd1698d17a28fb6dd8898d",
+      "catalog_id": "firefox-canva-docs-ime-continuity",
+      "event_ids": [
+        "firefox-canva-docs-ime-continuity-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-9a232a59632fa0fc3ebd4edda71117aa",
+      "previous_assessment_id": "assessment-1ef1f367e4b6862351fa37f7beb682e0",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-dual-tab-cross-window-drag-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-55e58c09d937411b8018f077d006271a",
+      "catalog_id": "whale-dual-tab",
+      "event_ids": [
+        "whale-desktop-dual-tab-cross-window-drag-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-9ddf00a47639c584edb690dab46badfb",
+      "previous_assessment_id": "assessment-329816c96d8fb4debf8ce4b981ff92f5",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-leo-followup-suggestions-stable-1-99-55-20261105",
+      "assessment_id": "assessment-cd074d0fe2c5656111701605c35ad27e",
+      "catalog_id": "brave-leo-followup-suggestions",
+      "event_ids": [
+        "brave-leo-followup-suggestions-stable-1-99-55-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-a5777a3e34b0b61b7351d27a470ce7a0",
+      "previous_assessment_id": "assessment-5490a65e09cc654e816c016c7be9b1d7",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-tab-hover-memory-stable-157-20261105",
+      "assessment_id": "assessment-ec3c2b8a31e25c9b0d6900ab2bbe1948",
+      "catalog_id": "edge-tab-hover-memory-information",
+      "event_ids": [
+        "edge-tab-hover-memory-stable-157-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-a9c63fda10d4dfd7a43fa88bc390a26d",
+      "previous_assessment_id": "assessment-c1fd6197eb52fee39350dd5601efc035",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-copy-sanitized-link-8-3-stable-20261105",
+      "assessment_id": "assessment-8ac3a6581ca82e084daf155826aa2597",
+      "catalog_id": "vivaldi-copy-sanitized-link",
+      "event_ids": [
+        "vivaldi-copy-sanitized-link-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-aece89767c876a027b271c04a2324ea3",
+      "previous_assessment_id": "assessment-d706d8870506946e2a9af567b935e8aa",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-accelerated-app-launch-windows-kb5127936-20261028",
+      "assessment_id": "assessment-98b1aa3aaad7e58339b3aaae6d2bb917",
+      "catalog_id": "edge-accelerated-app-launch",
+      "event_ids": [
+        "edge-accelerated-app-launch-windows-kb5127936-20261028"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-b2479a74407850f19b331bb27a7f8d15",
+      "previous_assessment_id": "assessment-23bd1e955751d48c4a32fa22a7757b3a",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-ab3753c2e0a6ea5641730727b836d9a4",
+      "catalog_id": "whale-vertical-tabs",
+      "event_ids": [
+        "whale-desktop-vertical-tab-window-width-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-b2737752701437aa5d8c9f68b8073e25",
+      "previous_assessment_id": "assessment-1cd49fde9b46bcb4556d864d6e2ab5bf",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-a3b14351d5be948b25a9edc3",
+      "assessment_id": "assessment-551edaeada82037e1bdc24310afc176f",
+      "catalog_id": "feature-b49983738970461f7f649d36",
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-b277278076a6eb71dc167e2241853423",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104",
+      "assessment_id": "assessment-5fed8b574a0300ae6872d994ead7131a",
+      "catalog_id": "opera-vertical-tabs",
+      "event_ids": [
+        "opera-vertical-tabs-collapse-per-window-139-0-6053-38-20261104"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-b95ce5e76009da284873dda9fa074695",
+      "previous_assessment_id": "assessment-6070816ae95df5594b37ab9a10053067",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-7c79c98a33925d760454e795",
+      "assessment_id": "assessment-1631c977a46ffb0757cfe20bdaae943d",
+      "catalog_id": "feature-32dd71c2411c9f4ebe73c525",
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-bc10d5fc9916e4fe9088b53f675a2f29",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-dynamic-aim-fulfillment-source-20261112",
+      "assessment_id": "assessment-0a248c0122620cc44bb7c7c008f20e03",
+      "catalog_id": "chrome-dynamic-aim-fulfillment",
+      "event_ids": [
+        "chrome-dynamic-aim-fulfillment-source-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-bcb89f606da02de62b3bdbe0cc47ed8a",
+      "previous_assessment_id": "assessment-d5e28a162c8d8017d30a5352da0d1d23",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-local-network-permissions-stable-160-20261110",
+      "assessment_id": "assessment-85473d4dc11004de5ad5df776de9e07d",
+      "catalog_id": "firefox-local-network-permissions",
+      "event_ids": [
+        "firefox-local-network-permissions-stable-160-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c023a003aec461bd263005549e1d1ee8",
+      "previous_assessment_id": "assessment-a24c92ae34a168bec677f68c05d9a0fe",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-leo-clarification-choices-stable-1-99-55-20261105",
+      "assessment_id": "assessment-350bef596cc6240fbdcfe2d17a453c84",
+      "catalog_id": "brave-leo-clarification-choices",
+      "event_ids": [
+        "brave-leo-clarification-choices-stable-1-99-55-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c1f92ff945e81c8412ba11f2cabca8d0",
+      "previous_assessment_id": "assessment-07e25f68ee498139ec1069ed657788e9",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-context-menu-gemini-search-order-source-20261113",
+      "assessment_id": "assessment-708f2fff69ceb3a186678e725f2df38f",
+      "catalog_id": "chrome-context-menu-gemini-search-order",
+      "event_ids": [
+        "chrome-context-menu-gemini-search-order-source-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c356a896003435636d0db83c01d14bd9",
+      "previous_assessment_id": "assessment-1de91640e3e4ad3a7f613fcf6dd8641d",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-performance-detector-retirement-plan-164-20261106",
+      "assessment_id": "assessment-123b11c663852aa2d9e9dad079016622",
+      "catalog_id": "edge-performance-detector",
+      "event_ids": [
+        "edge-performance-detector-retirement-plan-164-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c491098e52029f4c98fd2067f5ebcc24",
+      "previous_assessment_id": "assessment-006598647f2ec2fcc361a551cda30fb3",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-extension-tab-groups-api-8-3-stable-20261105",
+      "assessment_id": "assessment-58fa3d510ee80be06b5c026cc196460d",
+      "catalog_id": "vivaldi-extension-tab-groups-api",
+      "event_ids": [
+        "vivaldi-extension-tab-groups-api-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c50a224ccb2f1ce9b076122caae389ed",
+      "previous_assessment_id": "assessment-5e1eb107aa79511de35a6f35fec8ed7d",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea",
+      "assessment_id": "assessment-d959ca6ede57bce74c44dbdeb19da6b1",
+      "catalog_id": "chrome-bookmark-bar-area-keyboard-navigation",
+      "event_ids": [
+        "chrome-source-0a00fca6c891b90ff58b40e1d82c023212c065ea"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c7ad1cbfe398aaec024d2d74c866e3fa",
+      "previous_assessment_id": "assessment-7fbc3143eb31092bbb0fffef397abb32",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-android-extension-update-consent-prominence-beta-161-20261109",
+      "assessment_id": "assessment-f2eabbea4d434ceac9978033222c0fd9",
+      "catalog_id": "firefox-android-extension-update-consent-prominence",
+      "event_ids": [
+        "firefox-android-extension-update-consent-prominence-beta-161-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-c94b84a8d3c239a9f8d36f22d273e721",
+      "previous_assessment_id": "assessment-d3a5664156d3348e9ad169d0d00bc412",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-5787beb31245eecfa975e1b8fd739d47",
+      "catalog_id": "whale-sign-in-continuity",
+      "event_ids": [
+        "whale-desktop-sign-in-continuity-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-caeb2e68799f4cd4d604c9fb08033ce8",
+      "previous_assessment_id": "assessment-fbf535e46d0e1f0fd0e469d4047c9f63",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-android-open-in-app-8-3-stable-20261105",
+      "assessment_id": "assessment-e2034a568d880cab2e2edcbb42ed29ad",
+      "catalog_id": "vivaldi-android-open-in-app",
+      "event_ids": [
+        "vivaldi-android-open-in-app-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-d68eaee869fcb111375707aeba87570a",
+      "previous_assessment_id": "assessment-e46a84dac49dc99741dd9dc54cb90b4a",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-entra-passkey-sync-mobile-stable-157-20261109",
+      "assessment_id": "assessment-389fc96ce442e931447df19b5d4c16da",
+      "catalog_id": "edge-entra-passkey-sync",
+      "event_ids": [
+        "edge-entra-passkey-sync-mobile-stable-157-20261109"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-d79ba5e0667f26cc338b812ab61ee799",
+      "previous_assessment_id": "assessment-320ffde106a3347bebd38777fba01bd7",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-android-enterprise-file-upload-analysis-source-20261112",
+      "assessment_id": "assessment-fcef7f0fc88260b52341002fd71cf4ba",
+      "catalog_id": "chrome-android-enterprise-file-upload-analysis",
+      "event_ids": [
+        "chrome-android-enterprise-file-upload-analysis-source-20261112"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-dbca6fba267942fc50b547db093a59f0",
+      "previous_assessment_id": "assessment-fb0c10ce9d8463b77632483a7489e216",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "firefox-web-custom-clipboard-formats-beta-161-observed-20261113",
+      "assessment_id": "assessment-3f27c9a88c7acfa16f853a7cb579b4bc",
+      "catalog_id": "firefox-web-custom-clipboard-formats",
+      "event_ids": [
+        "firefox-web-custom-clipboard-formats-beta-161-observed-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-dd14dfc01ebd168c8d74c5f70459dfd3",
+      "previous_assessment_id": "assessment-3ecb03d7d81b6a1b956e8e11026e1219",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-multiplay-follow-exit-5-41-429-3-stable-20261106",
+      "assessment_id": "assessment-6302b2baba8876b4946d4cf4def23a35",
+      "catalog_id": "whale-multiplay",
+      "event_ids": [
+        "whale-desktop-multiplay-follow-exit-5-41-429-3-stable-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-de039f76bbd8a0b78f569ac45d4aa1ca",
+      "previous_assessment_id": "assessment-1da9f374bf3ebca7905d9cc863afe342",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "edge-notification-block-report-announced-20261102",
+      "assessment_id": "assessment-d24dcddbb71afa2f55ae2b5aadb68c67",
+      "catalog_id": "edge-notification-block-report",
+      "event_ids": [
+        "edge-notification-block-report-announced-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-df3968f70f642fa704e15126aeeece51",
+      "previous_assessment_id": "assessment-1f42efd2de8da9d542fd6a2fa5a88fa1",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "chrome-android-accessibility-note-class-source-20261113",
+      "assessment_id": "assessment-d4196f27da76bf58357304220c524c52",
+      "catalog_id": "chrome-android-accessibility-note-class",
+      "event_ids": [
+        "chrome-android-accessibility-note-class-source-20261113"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-df74fdd6a12145fce2fb967a6a7d48c3",
+      "previous_assessment_id": "assessment-49e5143752f1692cfc74cb96bdf55be1",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-ad-blocker-levels-8-3-stable-20261105",
+      "assessment_id": "assessment-7aa4086e4c881b6d7413a5757db1e5d6",
+      "catalog_id": "vivaldi-ad-tracker-blocker",
+      "event_ids": [
+        "vivaldi-ad-blocker-levels-8-3-stable-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-e1167e1bbbecd39f71150a5e2fa77f4e",
+      "previous_assessment_id": "assessment-5f10dbd21e67e6eab7610f8926cf2204",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-webapp-multimonitor-5-41-429-3-20261106",
+      "assessment_id": "assessment-5dd738cdb20e5518c3c15ed89b5d5eed",
+      "catalog_id": "whale-webapp-multimonitor",
+      "event_ids": [
+        "whale-desktop-webapp-multimonitor-5-41-429-3-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-e234a6a703a522e91be6f9aecde0ebbd",
+      "previous_assessment_id": "assessment-acccf8597cfdeae796f6ae6b25361ff9",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-0171cefd8b776b19bbb770bf",
+      "assessment_id": "assessment-25d5aa06baff2e8547f3a805ba021221",
+      "catalog_id": "feature-b49983738970461f7f649d36",
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-ebd16f240e80c04d70bb22ccfd6c6b9d",
+      "previous_assessment_id": null,
+      "action": "selected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "brave-split-view-edge-drag-restore-stable-1-99-55-20261105",
+      "assessment_id": "assessment-28ab5058529a618306843beb666e8499",
+      "catalog_id": "brave-split-view-edge-drag",
+      "event_ids": [
+        "brave-split-view-edge-drag-restore-stable-1-99-55-20261105"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-ec2895eea424693e1ec194e13ea1c978",
+      "previous_assessment_id": "assessment-197316df561a465c25068ff8b34ed3c5",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "source_item",
+      "subject_id": "src-82284d6c37170a8065617d7d",
+      "assessment_id": "assessment-42a064a03149c402471af28e108a8cd6",
+      "catalog_id": null,
+      "event_ids": [],
+      "experiment_kind": null,
+      "change_id": "selection-f1404b5ddac463e6a65ffc3b9a42dfd7",
+      "previous_assessment_id": "assessment-6362515874962872d64793391b03cf19",
+      "action": "changed",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110",
+      "assessment_id": "assessment-ea9c3978824c4c6263902de09d420563",
+      "catalog_id": "vivaldi-browser-fullscreen-retention",
+      "event_ids": [
+        "vivaldi-browser-fullscreen-retention-fix-stable-83-20261110"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-f3fdda169aa62033b03332dab72c71a2",
+      "previous_assessment_id": "assessment-30494901d04db7c4cc1e6bf40fd996b2",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102",
+      "assessment_id": "assessment-7599cd7ccfbbff0163fee2532937930c",
+      "catalog_id": "whale-quick-search",
+      "event_ids": [
+        "whale-desktop-quick-search-answer-toggles-5-41-429-2-20261102"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-fa74ac2d202183297afd6fabb058f547",
+      "previous_assessment_id": "assessment-42452656cceefd6d8618a16181a0487a",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    },
+    {
+      "subject_kind": "feature_event",
+      "subject_id": "whale-desktop-page-capture-5-41-429-3-20261106",
+      "assessment_id": "assessment-3c6015ba03291f8802a9e50cd29370ac",
+      "catalog_id": "whale-page-capture",
+      "event_ids": [
+        "whale-desktop-page-capture-5-41-429-3-20261106"
+      ],
+      "experiment_kind": null,
+      "change_id": "selection-fd7ba69d366cdf0f8319073b4882d299",
+      "previous_assessment_id": "assessment-1d96982dc01c045068233dba61f256b4",
+      "action": "deselected",
+      "effective_at": "2026-11-17T03:06:49.429780+00:00"
+    }
+  ],
+  "collection_scope": {
+    "version": "dated-endpoints-v1",
+    "since": "2026-01-01",
+    "cutoff": "2026-11-18T23:38:06.026986+00:00",
+    "timezone": "Asia/Seoul",
+    "source_windows": [
+      {
+        "source_id": "brave-android-changelog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "brave-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "brave-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "chrome-blog",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "chrome-enterprise",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "chrome-platform-status",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-platform-status",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "chrome-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "chromium-source",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "chromium-source",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-beta-archive",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-mobile-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-mobile-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-policies",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "edge-stable",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "edge-stable-archive",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "firefox-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "firefox-beta",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "firefox-ios",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "firefox-releases",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "firefox-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "legacy",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "opera-desktop",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "opera-mobile",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "opera-news",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-release-notes",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-16T12:53:40.560982+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-17T23:30:24.003777+00:00"
+      },
+      {
+        "source_id": "safari-security",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "safari-technology-preview",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "vivaldi-android",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "vivaldi-desktop",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "vivaldi-ios",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "whale-notices",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      },
+      {
+        "source_id": "whale-release-history",
+        "since": "2026-01-01",
+        "cutoff": "2026-11-18T23:38:06.026986+00:00"
+      }
+    ],
+    "chrome_endpoints": [
+      {
+        "baseline_revision": "d6855ba8c6f271ee35a39ecf9dd4b009ef3075be",
+        "current_revision": "7ce468759563eca7d40e306113fb4d4c55d208e5",
+        "baseline_committed_at": "2025-12-31T14:00:34Z",
+        "current_committed_at": "2026-11-18T23:27:16+00:00"
+      }
+    ]
+  }
+}

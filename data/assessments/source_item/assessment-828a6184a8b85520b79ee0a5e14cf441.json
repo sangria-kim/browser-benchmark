@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-77b7001c9219a0ca3d4f2a97: Fixed WGSL for loops rejecting init and update statements whose left-hand side starts with ( , * , or & , such as for ((i) = 0; (i) < 5; (i)++) . ( [contact omitted] ) (191204074) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-828a6184a8b85520b79ee0a5e14cf441",
+  "subject_kind": "source_item",
+  "subject_id": "src-77b7001c9219a0ca3d4f2a97",
+  "input_hash": "1d8eb9638d1fb18124264be48bdc46b6421b5e5f32daa3b574ccc8871ce031bc",
+  "input_revision": "semantic-v2-sha256:c69b6988eadf0c4cd7a2bcbb3373d4989297f4ab920fe3b3671ad459c3b6121d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-77b7001c9219a0ca3d4f2a97"
+  ]
+}

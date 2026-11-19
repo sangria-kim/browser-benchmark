@@ -1,0 +1,31 @@
+{
+  "status": "selected",
+  "reasons": [
+    "Evidence-gated deterministic profile actor-observe-screenshot-default-benchmark: An agent framework can capture page screenshots by default when requested. The default capture surface raises a concrete user-control and sensitive-page comparison task.",
+    "Evidence: If enabled, the actor framework will capture screenshots by default when requested.",
+    "Material change: An active registration is documented at the pinned source baseline. This selects an existing experiment for research; it does not date its introduction or claim a new product release.",
+    "Benchmark: Build or obtain an accessible revision with this registration and confirm the actor path is present → Use synthetic pages with visible and off-screen markers → Request observation with the option enabled and disabled → Inspect captured markers and available user controls; compare another browser agent only if it supports the same task",
+    "Measure: Captured marker coverage; Capture events per request; User-visible controls and cancellation outcome",
+    "Completion: Three repetitions for each supported condition; record setup and failures. No execution is claimed.",
+    "Conditions: Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment."
+  ],
+  "priority": "P1",
+  "comparison_question": "In a controlled browser-agent task, what page content enters a screenshot when observation is requested, and can the user inspect or stop that transfer?",
+  "benchmark_readiness": "conditional",
+  "revisit_trigger": "Source-only baseline; installed availability, rollout and test results are unknown. Confirm platform/build access before executing. Use synthetic data in an approved test environment.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2fe2840c8c5370779fe42bfe461415e3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-00038b3b82de04c8632ce44c",
+  "input_hash": "88e8f9d1fb3997e5b53c671f02841d1645d4f093f77420cf87124132e0ad8c5a",
+  "input_revision": "semantic-v2-sha256:c465177d990b1394470476892b673110016844739b30eeed4e3febfd68f334b1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-5eb94af241708f8869909b7173ce5ddd",
+  "evidence_source_item_ids": [
+    "src-chromium-020c9a0390955bd679839457"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8ba1c8a8cebdd4ac2593efc9: Source baseline: Android Tab UI Refactor A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9e131d85b5245b0ae602140df0e79d03",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8ba1c8a8cebdd4ac2593efc9",
+  "input_hash": "f516f987a673d8328f3c0fafe1a418c3c9416d7330020afe67639963bf494893",
+  "input_revision": "semantic-v2-sha256:ee546375d106d77275c8ee9d10f5c725ba213422e51484fce43b810c17757e84",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-532cbc075a9106095c4c1e4b2bb57dfa",
+  "evidence_source_item_ids": [
+    "src-chromium-428e298c6472d21d943dbec8",
+    "src-legacy-d9ece2416163d94ff3c7994e"
+  ]
+}

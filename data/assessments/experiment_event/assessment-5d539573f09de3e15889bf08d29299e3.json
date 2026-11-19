@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-25001a4fb862f4a1e0ba1286: Source baseline: Enable optimization guide dogfood logging A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5d539573f09de3e15889bf08d29299e3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-25001a4fb862f4a1e0ba1286",
+  "input_hash": "6f797bb1cac18210aa99546e7c2dbf2657e102b33401c54fa2ee3ee94ded4b54",
+  "input_revision": "semantic-v2-sha256:9180088a538ad6d2bdd94e8707bfd680896fc77bb180b136e496c01ae3b645f0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-59e95f43e4ba34933d9466f05a9cee99",
+  "evidence_source_item_ids": [
+    "src-chromium-18f5081cf16ed297e69e9e9d",
+    "src-legacy-1928cf7fdc750136b67191bb"
+  ]
+}

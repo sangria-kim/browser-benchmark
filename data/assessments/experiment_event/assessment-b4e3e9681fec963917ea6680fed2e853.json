@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3293388c589cad2525b471c2: Source baseline: ActorTypeToolEnterDelay A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b4e3e9681fec963917ea6680fed2e853",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3293388c589cad2525b471c2",
+  "input_hash": "2ee4609d3412218861e559d45edc2ea36b4283ee6e5c8254622db278d635ad67",
+  "input_revision": "semantic-v2-sha256:9b2a8df9efe47d26c2c5b68cb453badf996f653a16eed49f4e65c1c73d4df01b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-73617b5991e86dcd2266ffe7fc2e59c2",
+  "evidence_source_item_ids": [
+    "src-chromium-3825df57ffe19d11fd074589"
+  ]
+}

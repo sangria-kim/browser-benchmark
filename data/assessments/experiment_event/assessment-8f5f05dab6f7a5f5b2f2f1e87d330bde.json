@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e78f5cedbaced0c6c04d46ee: Source baseline: Browser Actuator A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8f5f05dab6f7a5f5b2f2f1e87d330bde",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e78f5cedbaced0c6c04d46ee",
+  "input_hash": "03528486f11afae7b595adb1b7dfb5b3599c425021003e1ae18942051468c6e3",
+  "input_revision": "semantic-v2-sha256:4877d17068017b8d93432555d862467a898f84a311976cb815ae5efe8ec77ef9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-6b57e64b68e215ca679b06849fee953e",
+  "evidence_source_item_ids": [
+    "src-chromium-6196307947b830d4669a81a9",
+    "src-legacy-96d07b2be8e6cf8c2fcdf178"
+  ]
+}

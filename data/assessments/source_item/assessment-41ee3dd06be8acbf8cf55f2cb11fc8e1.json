@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-b280f28b2d0adde56242a08c: Fixed an issue where a view transition kept running with a stale ::view-transition-new() when the new element became hidden by content-visibility: hidden ; the transition is now skipped. ( [contact omitted] ) (191543407) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-41ee3dd06be8acbf8cf55f2cb11fc8e1",
+  "subject_kind": "source_item",
+  "subject_id": "src-b280f28b2d0adde56242a08c",
+  "input_hash": "cdd923d20fa16f20ce83d5dc4e7eedf3899e15a13a12465efbd8a1b0b219c68b",
+  "input_revision": "semantic-v2-sha256:7a3894d4141fe1bb32e001f0f4f9f638f0e9dcae5ec3ab69b2eb8a0bb2a33c96",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-b280f28b2d0adde56242a08c"
+  ]
+}

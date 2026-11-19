@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f1bc889e35ae45081a7e8468: Source baseline: Malicious APK download check A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f05251a72b0d5bbe651491edb42aba71",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f1bc889e35ae45081a7e8468",
+  "input_hash": "1af219de5c2cbc0246442fe1273e27c496f122eb24e72b7123efb8c64791e79d",
+  "input_revision": "semantic-v2-sha256:4e15698336287e6bbbf22cb3cd5d437afbd4da5cede227f69afc57981214bf7c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-fb3627bfb4849d85c63adc37810e1846",
+  "evidence_source_item_ids": [
+    "src-chromium-117989cb57b57d9ded097e7a"
+  ]
+}

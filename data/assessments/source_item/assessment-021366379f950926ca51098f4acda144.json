@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-cf7becdd228539603333177f: Fixed incorrect results in WebAssembly code that moves v128 values between stack slots in the baseline compiler. ( [contact omitted] ) (191050549) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-021366379f950926ca51098f4acda144",
+  "subject_kind": "source_item",
+  "subject_id": "src-cf7becdd228539603333177f",
+  "input_hash": "c174aea0a51014317f4d041705f634ebd6c566e4106e341c908204cb34d6d454",
+  "input_revision": "semantic-v2-sha256:f72ab9915c03762fa4eb51d8211b136d62ec255f292393717f189f55201a124f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-cf7becdd228539603333177f"
+  ]
+}

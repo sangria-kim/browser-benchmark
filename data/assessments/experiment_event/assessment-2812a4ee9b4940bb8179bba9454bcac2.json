@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c82b75066ad719873a98c575: Source baseline: Automatic JS Optimizer Control A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2812a4ee9b4940bb8179bba9454bcac2",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c82b75066ad719873a98c575",
+  "input_hash": "30656ce0e017a098f6ba8a8e1249d6ffdf969ec6887d682c2e1d279031dcd09f",
+  "input_revision": "semantic-v2-sha256:685809c97d7e371c9779ab99e41d84ef360415ed722b1a42261820b52b95d6bc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-c78374f884c9bb5a3a33167c5620518f",
+  "evidence_source_item_ids": [
+    "src-chromium-f696d5f9c6c39b62c2ea70df",
+    "src-legacy-36c7eaa60d4bbfe6d1caed2f"
+  ]
+}

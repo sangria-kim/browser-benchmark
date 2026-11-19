@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-33ddefeb2dc3cbde644dd6c0: Source baseline: enable-account-preview-preferred-account A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-65bba5cfe5f35b28c1064726619fa333",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-33ddefeb2dc3cbde644dd6c0",
+  "input_hash": "ea03160bf0c4267e5c29e241ab748000fecd5fda187dbc05ce7bb367afe43a03",
+  "input_revision": "semantic-v2-sha256:dccf4378c28b1f1e36cf37d6dc264600045f4041f6b16fea4ac36a3b724cd110",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-75adbd68911a4bdab7221c926c811c89",
+  "evidence_source_item_ids": [
+    "src-chromium-2eb6d383a5691205c12c6283",
+    "src-legacy-e44f18dd01c319252f4206f2"
+  ]
+}

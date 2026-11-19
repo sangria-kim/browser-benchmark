@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e30e4af13dbce5eff2b1cdec: Source baseline: Enables btsnoop collection in chrome: A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c499558af6f404a00541aaa2139dce5e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e30e4af13dbce5eff2b1cdec",
+  "input_hash": "59beedf03e1628cbc2ac2f67d2c0dec6d9657643e56ace2f3dfa8e14e9857f49",
+  "input_revision": "semantic-v2-sha256:0fb09a2bf96545774bcd4ffeb77da02411e5bc464b0fb469ec1392daa94765a1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-e23306acecdf0ea4992840b51364e463",
+  "evidence_source_item_ids": [
+    "src-chromium-deafcc14fd907c13a072ad64"
+  ]
+}

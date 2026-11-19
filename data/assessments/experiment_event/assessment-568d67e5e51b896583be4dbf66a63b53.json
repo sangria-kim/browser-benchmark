@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-2b6cfeb9729f293ba266e879: Source baseline: safe-browsing-local-lists-use-sbv5 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-568d67e5e51b896583be4dbf66a63b53",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-2b6cfeb9729f293ba266e879",
+  "input_hash": "ec6765147e531704f21a1cc836b469203a0d2c59d1aaca8d69795adfb4ddefac",
+  "input_revision": "semantic-v2-sha256:c088a0a0e0001b03527e0eb7eea908509f8e064359607cde63ee373bcd72a06a",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-eef8e8503b4e533987a183f4e9f257e8",
+  "evidence_source_item_ids": [
+    "src-chromium-b7cd99cadca9d46b12760305",
+    "src-legacy-3895dd6358670f9a757d6dc4"
+  ]
+}

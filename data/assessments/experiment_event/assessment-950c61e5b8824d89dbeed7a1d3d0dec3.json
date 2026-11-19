@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-828646e0c02df7476fd76d01: Source baseline: AndroidSetGoogleAccountInHelp A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-950c61e5b8824d89dbeed7a1d3d0dec3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-828646e0c02df7476fd76d01",
+  "input_hash": "abf19af91a62208dcf07f5bd1b4d47db02cebb0b07a8c6226823e82bd7551bc2",
+  "input_revision": "semantic-v2-sha256:45dc6c15afb0c9753b0871c947e7ed5f83fa6da5c681f744892ece45b5ac9a18",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-cc60252a206dd60dbce1ad15c99f4249",
+  "evidence_source_item_ids": [
+    "src-chromium-13274edacc4ff292cb400ce9"
+  ]
+}

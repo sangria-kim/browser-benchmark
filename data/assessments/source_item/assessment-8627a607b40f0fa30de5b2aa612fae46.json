@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-370a3a7f0f8d77d723ce6570: Fixed the duration argument of AudioBufferSourceNode.start() being measured against the AudioContext clock instead of the source data when loop is true . ( [contact omitted] ) (166168368) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8627a607b40f0fa30de5b2aa612fae46",
+  "subject_kind": "source_item",
+  "subject_id": "src-370a3a7f0f8d77d723ce6570",
+  "input_hash": "c45fbbf58298b4535fda1ba135e6f8cb0264d04e2a974bfa27011c9839aa4793",
+  "input_revision": "semantic-v2-sha256:deafd8148ffd802475effed80b9e66797150482b7222da687deabe128b754992",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-370a3a7f0f8d77d723ce6570"
+  ]
+}

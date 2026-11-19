@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-82f5ce70cc0ce0435b9da1bc: Source baseline: safe-browsing-hash-prefix-real-time-lookups-on-incognito-and-guest A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3c5f0622a53dc6b50bc729b99632a024",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-82f5ce70cc0ce0435b9da1bc",
+  "input_hash": "5251743ec12cf61a09e0909fb03bf00c344d0912f08fabb93fd0429988f43f3c",
+  "input_revision": "semantic-v2-sha256:3bc93950af06a230b6ae172d9ddc606c43baf6ec11b20f51030785507ee10873",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-173d760c2f6a93c2d910447f38393ebd",
+  "evidence_source_item_ids": [
+    "src-chromium-2d63db54803c13d051a6ebf5",
+    "src-legacy-7f97bb91c05604e7337660b9"
+  ]
+}

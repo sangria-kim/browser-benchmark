@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c30390bab545124b3b8c941f: Source baseline: PrefetchRequestIntegrityHeaders A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b242645d2a48749aaae95b50700df0ea",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c30390bab545124b3b8c941f",
+  "input_hash": "b69deb39e83f791ee534b9df10c79f591dd0d919e5ffb6da8fbf71b40283c2d1",
+  "input_revision": "semantic-v2-sha256:e0573238f72022e5b003412a6cd24ae6202ac71fdbee389586e863f43e4711b4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-1c24041989cf13ad5a7420be7b3e5e31",
+  "evidence_source_item_ids": [
+    "src-chromium-adbac3f05301c9df60999bd1"
+  ]
+}

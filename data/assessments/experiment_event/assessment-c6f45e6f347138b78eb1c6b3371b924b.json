@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-fdc6723100ea979f5348f4fa: Source baseline: Enables Display Compositor to use a new gpu thread. A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c6f45e6f347138b78eb1c6b3371b924b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-fdc6723100ea979f5348f4fa",
+  "input_hash": "2f14cdadf8c454f3e3d22914136d5486c7b8657739ab4f2f0cfc16c16033b867",
+  "input_revision": "semantic-v2-sha256:0c31ae3306e9a34ce7b012c4186f5e12d03432cf0c032073ef9bbc7780416f33",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-db3ce8fc7746a2f3842a5124f327442e",
+  "evidence_source_item_ids": [
+    "src-chromium-82fdf2aa7ee076829e40f487"
+  ]
+}

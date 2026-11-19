@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-5ed63d37af2abfd7dcaffeb6: Source baseline: MediaCodec Block Model Output A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b46a64a2ec51244aa015f5acdf995e45",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-5ed63d37af2abfd7dcaffeb6",
+  "input_hash": "82d6f9ba9f154b930b2613b31f909de8244a9cce41a20371e713e23293929f8e",
+  "input_revision": "semantic-v2-sha256:a6e59d29d9e5cb783d1b3fb666bbf6a5c89711471165081e46f1ecfbcd4d061d",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-e46c154b946f1f407059c0667693c606",
+  "evidence_source_item_ids": [
+    "src-chromium-fd7afb80c6c696be99b60556",
+    "src-legacy-7ecb30d175e49a60b25ab513"
+  ]
+}

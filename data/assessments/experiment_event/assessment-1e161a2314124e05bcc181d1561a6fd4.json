@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-30f25bc7b91a079339f6907a: Source baseline: In-App Updates flow A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1e161a2314124e05bcc181d1561a6fd4",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-30f25bc7b91a079339f6907a",
+  "input_hash": "0da8e87c1ccd912d9faaa965af9647621eb8028273018487253a259a8a01babc",
+  "input_revision": "semantic-v2-sha256:15d584e2fb8bdaac3f9369060c3d8c988fc18be5be5aea9e77f5e6f25a1c18d4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-790ac27c2fdf43ae97357f0eb4212591",
+  "evidence_source_item_ids": [
+    "src-chromium-f009f22d901b7df651f45ae3",
+    "src-legacy-39a798f61895317eaec33f6a"
+  ]
+}

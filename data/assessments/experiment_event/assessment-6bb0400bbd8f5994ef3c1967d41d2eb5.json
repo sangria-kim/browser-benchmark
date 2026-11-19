@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-453ca0b26483ad0aac55c60c: Source baseline: Payment Handler Custom Size A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6bb0400bbd8f5994ef3c1967d41d2eb5",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-453ca0b26483ad0aac55c60c",
+  "input_hash": "809c244863e88fe0c391057d7424b1bc856f1041a3ba645b3e93256fee0551d7",
+  "input_revision": "semantic-v2-sha256:f0bcca220e044026a8ed57d41da6bc6205a2303e237bef372039c7b1f7cc08fc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-7308537063471284264243ec76086c46",
+  "evidence_source_item_ids": [
+    "src-chromium-80c46bf5b498197b7ad8a1e5",
+    "src-legacy-40802947ac534c2f156cede6"
+  ]
+}

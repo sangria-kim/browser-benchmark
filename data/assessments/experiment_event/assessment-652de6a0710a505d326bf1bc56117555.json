@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-0008a91b645c150ebaaedbdf: Source baseline: ModelBasedPageClassification A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-652de6a0710a505d326bf1bc56117555",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-0008a91b645c150ebaaedbdf",
+  "input_hash": "f36691b59e6d8da2e3fd8efe31e6351c47d55c346282a7d091ef312ba2d45ea1",
+  "input_revision": "semantic-v2-sha256:6f72a8a834c5b2e44294aa2dad826234d4aa1a0a5b751ac47c4b05adafb76476",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-a248455e5655cf3b741de01a8657259b",
+  "evidence_source_item_ids": [
+    "src-chromium-cf4acb97a6db0839385b49eb"
+  ]
+}

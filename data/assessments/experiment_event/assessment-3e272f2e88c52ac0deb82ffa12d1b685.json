@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a91ef2a443eeb2f52e8fc3de: Source baseline: Google Pay via Android intents A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3e272f2e88c52ac0deb82ffa12d1b685",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a91ef2a443eeb2f52e8fc3de",
+  "input_hash": "94f09216663ae843c52aaa8621fc2217418274338ccacea6243852d074f28f41",
+  "input_revision": "semantic-v2-sha256:09da9368af3f0b6db05ecc014cda38a352471c31b1984c67145cb1236ea6bdfa",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-1996a6dd85b39f4efc3e13c1b9a5c46f",
+  "evidence_source_item_ids": [
+    "src-chromium-e0e96b9875ee0880996ca782",
+    "src-legacy-e7149546c38a6a9024e0024c"
+  ]
+}

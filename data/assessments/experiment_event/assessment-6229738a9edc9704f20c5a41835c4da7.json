@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-e79e2fb11132c9681185039f: Source baseline: Enable AV1 video encoding for Cast Streaming A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6229738a9edc9704f20c5a41835c4da7",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-e79e2fb11132c9681185039f",
+  "input_hash": "6db4be65c2c30e3f7f8d74ceeee706b999c9b16b003ab7836ecce73b261164ef",
+  "input_revision": "semantic-v2-sha256:d777bc59fb317cf19b377fb9398d2570dd5e0259beb5ba4014b4d3844083f64c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-799c7becf7bcae980b3a776daf038a8a",
+  "evidence_source_item_ids": [
+    "src-chromium-bf3156025e129b1371839a5d"
+  ]
+}

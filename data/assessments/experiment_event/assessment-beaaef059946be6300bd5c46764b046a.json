@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-2c9650b66e157326b515fb62: Source baseline: AndroidActorTaskTimeout A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-beaaef059946be6300bd5c46764b046a",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-2c9650b66e157326b515fb62",
+  "input_hash": "c704423a4e42d509c7e37290160e97b739bcc5e275c614ca43a5446b1f96c1a8",
+  "input_revision": "semantic-v2-sha256:0ad155a9d51e2910e0086899758c840f74cebc1bc2c7f3ea0c94d6bb31c720d6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-852bc1f7d8bed2fff9a9cf95dbd85a3d",
+  "evidence_source_item_ids": [
+    "src-chromium-bd81ccc0b7497eb2c696a1ea"
+  ]
+}

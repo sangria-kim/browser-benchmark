@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-5d720382ca3b6aaff5b85d63: Fixed FileSystemWritableFileStream.close() resolving its promise before the file was committed. ( [contact omitted] ) (191280663) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4de51ebd9322fd24b3354627448883e9",
+  "subject_kind": "source_item",
+  "subject_id": "src-5d720382ca3b6aaff5b85d63",
+  "input_hash": "cf4b54700643155a49de76941231184222bbc8ae30c36157da48316c32f237a2",
+  "input_revision": "semantic-v2-sha256:d87e6996d735c1024ff53fd65d1f148fd074fa8312846f9248b445b637e5193c",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-5d720382ca3b6aaff5b85d63"
+  ]
+}

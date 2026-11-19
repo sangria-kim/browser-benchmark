@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ec74a79d4a059883ae82c577: Source baseline: Toggle hardware accelerated H.264 video encoding for Cast Streaming A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1b893b0756a8e1d9dc96c4d3d7ddcae3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ec74a79d4a059883ae82c577",
+  "input_hash": "04ba2f44f412a5fa6ece769ab8dc00f6f0f02efe8596e59cc74248bb5a46ee41",
+  "input_revision": "semantic-v2-sha256:b9ea192e13d7e17057c37d239c5a9d23f01b5ab4864fa083675693fe1b344a27",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-81200e60cc101513dff2ecacf1cb6cd4",
+  "evidence_source_item_ids": [
+    "src-chromium-79ec0f608603f69d369473af"
+  ]
+}

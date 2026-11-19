@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-160fba8e5adc02e18375a01f: Source baseline: AIPromptAPILegacyParams A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1e38a0759b3a708c137510983d0fcfb1",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-160fba8e5adc02e18375a01f",
+  "input_hash": "d768fda64d0cd722364cece0d446123683d7cf2449e8b2fe9301a51eb5bb6a97",
+  "input_revision": "semantic-v2-sha256:ed7a5032a2924d061fba7554de074b38f2da468ea262cc32271fa9af4bb45687",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-e243d6f508bc8580a1cd4bb33a645517",
+  "evidence_source_item_ids": [
+    "src-chromium-19f00acd13b694b3bd459fc6"
+  ]
+}

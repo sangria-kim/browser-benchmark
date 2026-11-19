@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3cc74871362920a52bdcd5a0: Source baseline: Enable 3DS authentication for virtual cards A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-86e766f053b6c90642f575611a00fcc6",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3cc74871362920a52bdcd5a0",
+  "input_hash": "b3b936a5e8021a055a8df979d85b709db343590c8e812da2854d613590bc67e1",
+  "input_revision": "semantic-v2-sha256:fea6c3089558d20c90f5771e97fa2d9c23bd60bf6e998dab182d8aa5dff30b0e",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-da1a5925f2aad024dec1e955c6152dad",
+  "evidence_source_item_ids": [
+    "src-chromium-b0f06b090c65cf3cbd8bc188"
+  ]
+}
