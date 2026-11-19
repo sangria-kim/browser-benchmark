@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-500be4ae1766a3fa6ebd4449: Source baseline: LinuxPerProfileAppId A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-10b56804849d13a6e27ec137b0aa1881",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-500be4ae1766a3fa6ebd4449",
+  "input_hash": "244a8e9134f1691f87ca2626f1bde9cbd4f0e955ef0a82c0bc673160189bd5b1",
+  "input_revision": "semantic-v2-sha256:f466d84083c6afbddac04a801bdba57a622325c34007edb8ec634e1fd4ce5cf8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-d6bb5392e65962f7afb9658b9cc480b8",
+  "evidence_source_item_ids": [
+    "src-chromium-522ea36fc78d3f9933e9f5c4"
+  ]
+}

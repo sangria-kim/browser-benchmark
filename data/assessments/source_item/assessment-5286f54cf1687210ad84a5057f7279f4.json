@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-6630db756819134f23cd8b21: Exposes a WorkletPerformance object on AudioWorkletGlobalScope.performance providing the now() method (DOMHighResTimeStamp). This allows AudioWorkletProcessor scripts running on the real-time audio rendering thread to me A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5286f54cf1687210ad84a5057f7279f4",
+  "subject_kind": "source_item",
+  "subject_id": "src-6630db756819134f23cd8b21",
+  "input_hash": "2c384d20b41d91b383ca182199d9a508131f81239e1f10b740415d1e6d62f411",
+  "input_revision": "semantic-v2-sha256:6e3124b9c36e2929ac085346744a79707729d11788306a93f7624a62fed0ab3f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-8f98a9188e443d4a8f1393fa5a29ac16",
+  "evidence_source_item_ids": [
+    "src-6630db756819134f23cd8b21"
+  ]
+}

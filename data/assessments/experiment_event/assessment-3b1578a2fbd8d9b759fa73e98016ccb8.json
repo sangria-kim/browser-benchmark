@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-956123727e4e115455dd12de: Source baseline: PartitionAlloc Scheduler Loop Quarantine A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-3b1578a2fbd8d9b759fa73e98016ccb8",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-956123727e4e115455dd12de",
+  "input_hash": "fa8a5cd35afff3741f240ddbb686d922e7ea737c2609cf30ae40be78d96cb0cd",
+  "input_revision": "semantic-v2-sha256:f107f57350eb33c66476a81d22f590bc4d92bd85d19e808acc748ae5839d1954",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-d0098e6c28761186624fa4078fda971b",
+  "evidence_source_item_ids": [
+    "src-chromium-37a8673566e803246027d3fc",
+    "src-legacy-7e4bb0c16ceb607365391f36"
+  ]
+}

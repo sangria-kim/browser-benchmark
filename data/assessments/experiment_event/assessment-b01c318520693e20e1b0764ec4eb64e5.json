@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6ef29dc4cd697fa4dc0f8c43: Source baseline: FontFormatAvar2 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b01c318520693e20e1b0764ec4eb64e5",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6ef29dc4cd697fa4dc0f8c43",
+  "input_hash": "43317dfad31f371b7202eecd19df96527d3943ee3710629255a57df4f879fa3c",
+  "input_revision": "semantic-v2-sha256:2f8a07d53a2967768d48a5b2dde88a6a5e5965cce5aa6c4202ccb39e6838eb52",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-5ce52e48bd2ee9a6864b4339c213420f",
+  "evidence_source_item_ids": [
+    "src-chromium-2d94f601640dc635ad61da60"
+  ]
+}

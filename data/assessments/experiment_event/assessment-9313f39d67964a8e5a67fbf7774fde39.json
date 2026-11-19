@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-eaffca32a60e93b82ee53fcb: Source baseline: Actor page stability A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9313f39d67964a8e5a67fbf7774fde39",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-eaffca32a60e93b82ee53fcb",
+  "input_hash": "95badb632031ceacb9fa8b9bda5e1f92b03c4c7b1ed0cdaca171086c633aceb3",
+  "input_revision": "semantic-v2-sha256:dea618c17418923a20e832a0a33a67e853a7a1978ef0ada39ae0c6e805b23197",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-8d49c3a54ea1844a469baad0d7e3cd9f",
+  "evidence_source_item_ids": [
+    "src-chromium-158c50960e686a65cc0c199a",
+    "src-legacy-96833c27587dd89f03fcb3cd"
+  ]
+}

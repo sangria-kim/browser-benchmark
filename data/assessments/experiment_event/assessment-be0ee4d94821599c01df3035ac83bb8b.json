@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c2f08f9c7cb34ca843322b74: Source baseline: OofLayoutRequiresSideEffects A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-be0ee4d94821599c01df3035ac83bb8b",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c2f08f9c7cb34ca843322b74",
+  "input_hash": "fcaf148ece3ca4b135b031e76736bf74ef27c68b150cf3eeeb08f10f1ff0a790",
+  "input_revision": "semantic-v2-sha256:2562049c2ef346128292d857b5055e8ba8701c681333ac5c8956f4c53561db83",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-c3ca812fb77461114f5932469de7587d",
+  "evidence_source_item_ids": [
+    "src-chromium-e9d4b5ffef4a74eceae8ebb3"
+  ]
+}

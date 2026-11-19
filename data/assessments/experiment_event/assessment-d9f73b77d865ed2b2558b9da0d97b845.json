@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ec8b6253448eafd02761b19b: Source baseline: cross-device-signin A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d9f73b77d865ed2b2558b9da0d97b845",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ec8b6253448eafd02761b19b",
+  "input_hash": "3c4f3d27df03bc808a714d76f296b9a19366a8b02c279a42c76311bb141c2aff",
+  "input_revision": "semantic-v2-sha256:814a37ff9bfb60c30acd1e3cd07059021479de2256e60e4b724ba3f3de3fe0d6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-ed1da567e9636a72f2608989c74b2b68",
+  "evidence_source_item_ids": [
+    "src-chromium-c63de145aa8f5b5b13d46f55",
+    "src-legacy-3f235c598effc0d5c30e6e7d"
+  ]
+}

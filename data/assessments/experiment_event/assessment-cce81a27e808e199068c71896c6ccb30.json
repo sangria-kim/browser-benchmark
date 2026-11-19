@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3c5f8f8257e109cb69ca0472: Source baseline: FileSystemAccessWriteBlocklistCheck A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cce81a27e808e199068c71896c6ccb30",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3c5f8f8257e109cb69ca0472",
+  "input_hash": "d9468ea13210b0d3445f1a07eedf8a6164844ad3c79a2838cb2cef3509fd849a",
+  "input_revision": "semantic-v2-sha256:cdb129eee179bebc98e7bc9bc4d03cbdfc6fc7db7142d00713994de2120fb67f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-ad23356c63c5c7e6eba6871bfafebdf5",
+  "evidence_source_item_ids": [
+    "src-chromium-eaa4917badc83472deb95344"
+  ]
+}

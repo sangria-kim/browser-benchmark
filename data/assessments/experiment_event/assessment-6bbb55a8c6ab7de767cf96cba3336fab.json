@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-320889eb8e6db42331afb77a: Source baseline: CryptohomeUserDataAuth A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6bbb55a8c6ab7de767cf96cba3336fab",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-320889eb8e6db42331afb77a",
+  "input_hash": "dafb30eaa4bbd9d755d3ec24556fb452247f02c588929d8cdaca2573d3db9049",
+  "input_revision": "semantic-v2-sha256:d2b2ba19c56a645dda4ab5bd4d60a51f9c5c2247a51a9e258dbaa2479536a6b8",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-1d8290da2eb288eef5eb68c61e7daf97",
+  "evidence_source_item_ids": [
+    "src-chromium-13f64793053359b763b5763e"
+  ]
+}

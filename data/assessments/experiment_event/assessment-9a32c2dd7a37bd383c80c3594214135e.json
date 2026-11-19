@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-765adabe093be6dc80dab57b: Source baseline: Enable ChromeOS Isolated Web App setShape API A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9a32c2dd7a37bd383c80c3594214135e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-765adabe093be6dc80dab57b",
+  "input_hash": "258866574f4e17a9066f1cce65e727919057ac7fe4ea9e9220a02041c8c677fa",
+  "input_revision": "semantic-v2-sha256:a7dacdc4789b5b5793a45685c30f7e40a69d8c84e05c6bd8e3dbae12a2c1fcd5",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-dfb278c1b650184f899efbbc4c163bcb",
+  "evidence_source_item_ids": [
+    "src-chromium-8752061cab0b2fe6638243e5",
+    "src-legacy-a1527008546d4a34fde0359f"
+  ]
+}

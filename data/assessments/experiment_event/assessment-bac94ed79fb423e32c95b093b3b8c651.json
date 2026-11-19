@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d31ddbd19ed7aae926934f59: Source baseline: PartitionAlloc Memory Tagging A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bac94ed79fb423e32c95b093b3b8c651",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d31ddbd19ed7aae926934f59",
+  "input_hash": "079a1bd5f5c60bf633ec4b2bb088e489438bb3c869e29b83a4741f0d0c6a3cce",
+  "input_revision": "semantic-v2-sha256:7aadd495041300c3381346879dcae6bdc707303d594fa4e9cc81184271d03385",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-545063e0b81efa0e1b57f6c7220c786c",
+  "evidence_source_item_ids": [
+    "src-chromium-7e3a6732712d0bafeffe4c7d"
+  ]
+}

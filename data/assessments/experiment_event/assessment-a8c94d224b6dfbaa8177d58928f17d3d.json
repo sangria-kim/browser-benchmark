@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ef9e5480279b1dfccdcafe3b: Source baseline: FileSystemAccessAsBlobBlocklistCheck A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a8c94d224b6dfbaa8177d58928f17d3d",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ef9e5480279b1dfccdcafe3b",
+  "input_hash": "e7b6044dca5eaac48802e35104a3ac4efb04d9511f4a629a960c5577547a38eb",
+  "input_revision": "semantic-v2-sha256:de08d183a536d06d6b33a4c81705d99bd5f332ab957e5b5b196f14e52620958f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-4b0a7375c8d866ca36c65c06"
+  ]
+}

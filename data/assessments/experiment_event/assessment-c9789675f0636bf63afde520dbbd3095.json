@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c7afaa57ae92175f1823868e: Source baseline: Universal Keyboard Handling A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-c9789675f0636bf63afde520dbbd3095",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c7afaa57ae92175f1823868e",
+  "input_hash": "6097e41c14904a1f0a7c6e69af5d42ad6f533521575ccb74a59dcaf9f48377bb",
+  "input_revision": "semantic-v2-sha256:8d10d9c2e79e6844b6dfefd268d0ed4eb81914c99220355588decafe6a4de052",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-3b998df145411696739869c38200a6b1",
+  "evidence_source_item_ids": [
+    "src-chromium-26520f5a9757efb22a0fff90",
+    "src-legacy-0fa4f54e5d2ec9314a522140"
+  ]
+}

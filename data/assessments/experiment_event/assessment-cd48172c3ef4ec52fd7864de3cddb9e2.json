@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-4b073f7c6a39ce699ff1da29: Source definition changed: UseRustCborParser A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cd48172c3ef4ec52fd7864de3cddb9e2",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-4b073f7c6a39ce699ff1da29",
+  "input_hash": "1a0a57255cdaa856a73616568a5c740051e8c20fe1db7b4e2e72389e470dc7ab",
+  "input_revision": "semantic-v2-sha256:143ed2f4aad39f9f7e6670a33743ba4f3d0e5a456054b6defcd45228322ff64b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-chromium-1c7f281c2e3bcb12968347a8"
+  ]
+}

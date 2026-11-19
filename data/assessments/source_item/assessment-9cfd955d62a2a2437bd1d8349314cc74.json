@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-ecedbfd43595db09cd133e5a: Fixed an issue where only the first navigation of an iframe was reported in the parent document’s Resource Timing entries. Every navigation initiated by the parent document is now reported. ( [contact omitted] ) (1912253 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-9cfd955d62a2a2437bd1d8349314cc74",
+  "subject_kind": "source_item",
+  "subject_id": "src-ecedbfd43595db09cd133e5a",
+  "input_hash": "db9f083f9422db144569d3843c9695c0e1a16de38d7060f14e075f8b341dfd23",
+  "input_revision": "semantic-v2-sha256:74e8ce6ad201567c0708c43265781f6c6a522e8eab755e5a9e70c3ed3bb1fd2f",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-ecedbfd43595db09cd133e5a"
+  ]
+}

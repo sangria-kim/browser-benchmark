@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-494f065a00520869f2686847: Source baseline: Android Tabstrip Startup Capture Bug Fix A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-bc7ac59f1c802a7f2151c46a360296e2",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-494f065a00520869f2686847",
+  "input_hash": "368aeddc94ee8505c4e8b9743060f25fc6f8fb487e7f3033985273781f3f9be3",
+  "input_revision": "semantic-v2-sha256:af372be25da8105c2fb6c1ae6812c9072b5d179dcea0fb1a5879d68d6f49fec1",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-74136c3e29ad1d3381352023ad3b1013",
+  "evidence_source_item_ids": [
+    "src-chromium-fd03a6b428336f0768239398",
+    "src-legacy-dc06e29c448acf2400185958"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6eb61c21918accb99645226d: Source baseline: ONNX Runtime backend for WebNN A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cfe360baaed5f419319fde62519dd047",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6eb61c21918accb99645226d",
+  "input_hash": "a6c60dcc74a5d7bfb1abe574a3bb173449dc755f338c2f15363bfed03c858a1b",
+  "input_revision": "semantic-v2-sha256:f34d2e88e5284fce2ded7a350d17d22a7a9738eb5fb27b04c22afaaabbaed190",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-b9c496d7149493cf514a2208efbb5550",
+  "evidence_source_item_ids": [
+    "src-chromium-172dbd762716b74656c205f8"
+  ]
+}

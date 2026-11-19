@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-72024bad6afbe89c4efbb5db: Source baseline: autofill-upstream-enforce-strike-delay A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a34b1f4c1cea89e658014cc779f5e9eb",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-72024bad6afbe89c4efbb5db",
+  "input_hash": "9845324e276f97aecc3db4fb662050e7f1052ba875f0317193ce5f01ce70f652",
+  "input_revision": "semantic-v2-sha256:ff42ff957259183e8e26064bd49078663012c4f6b613fab2493ff23c99970c39",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-c3a7b8c897203d12d9429655b0b37c91",
+  "evidence_source_item_ids": [
+    "src-chromium-5e0bc9da8e6a7a2f0b612e29",
+    "src-legacy-a86aeed5519e902230685628"
+  ]
+}

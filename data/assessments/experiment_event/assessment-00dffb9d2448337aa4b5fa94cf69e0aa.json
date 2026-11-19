@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-aaf55c53dbb538a2578c035b: Source baseline: FileSystemAccessRenameRequiresParentWritePermission A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-00dffb9d2448337aa4b5fa94cf69e0aa",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-aaf55c53dbb538a2578c035b",
+  "input_hash": "4c1a0d7c54c49ba7b6fea68f22266dfc1d8fbc3df92a118acbb7ce4371cf5cef",
+  "input_revision": "semantic-v2-sha256:0275aa92b411bdb37f843888ba61dc3a9f9b83d14376d778962ab17ed55f1a93",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-6841ea61560d5b7032d2ea14948e6fb1",
+  "evidence_source_item_ids": [
+    "src-chromium-74d926f62e7042c0c1b6a6e8"
+  ]
+}

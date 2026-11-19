@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-c3682520d27a5960584956e9: Source baseline: Safe Browsing Temporary No Protection A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-5068220460a2118a8494bd362dfe5ea9",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-c3682520d27a5960584956e9",
+  "input_hash": "9040a09e4b28af09509499df38c46e8072c214627b95b69924b1e9a763ffbe92",
+  "input_revision": "semantic-v2-sha256:faf71b799c1f2d2a9aa2177c8d57321921a921de58d795844cfee9afd2bc6650",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-3c9a7d4177bea1b34ff3299b57c914f8",
+  "evidence_source_item_ids": [
+    "src-chromium-2705edcfa4fbf0b3e14ea22a",
+    "src-legacy-2f00a57f0663344b8c905ec7"
+  ]
+}

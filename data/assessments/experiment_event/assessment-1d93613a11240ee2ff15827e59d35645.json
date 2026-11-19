@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-67490a7656ff9b93437d6b07: Source baseline: ReleaseResourceStrongReferencesOnMemoryPressure A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-1d93613a11240ee2ff15827e59d35645",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-67490a7656ff9b93437d6b07",
+  "input_hash": "6fd71543f8fff22ae5ac697910a8b052b932e2cc284b3356bc858a95f660d161",
+  "input_revision": "semantic-v2-sha256:1f406a87f27702473207a7e99e39dc6021e395fb053b29bdcc1c8cd38f573b4b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-32f68e876e55cd9dc74c83eb1379dc9c",
+  "evidence_source_item_ids": [
+    "src-chromium-c856538548db7f099b66d40b"
+  ]
+}

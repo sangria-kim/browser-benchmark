@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ad05e460df779ad25e8a47fc: Source baseline: Android Keyboard Shortcut Hints A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-4e458e6bfbb3d09499d33ec1104eb472",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ad05e460df779ad25e8a47fc",
+  "input_hash": "5be02139d89d63a6f8cc05f53a85f02fe156ea56cb53cb78e84edcf155fbf6b0",
+  "input_revision": "semantic-v2-sha256:25ce209473e2cde8b0ddddde036fc7c647e31d44a3821ba87acdd0a0fa1ce0c4",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-331f4a15a369e1ace429d73d11c1950c",
+  "evidence_source_item_ids": [
+    "src-chromium-685e3f8c373f682a5f4ebad2",
+    "src-legacy-73d64131294433d2c76c3f5b"
+  ]
+}

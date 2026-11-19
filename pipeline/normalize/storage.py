@@ -7,6 +7,7 @@ import tempfile
 from pathlib import Path
 
 from pipeline.deduplicate import AliasIndex
+from pipeline.source_item_shards import EDGE_PART, MAX_SHARD_BYTES, edge_policy_paths, validate_edge_policy_shard
 from schemas.validate import ContractError, load_config, validate_dataset, validate_transition, validate_record, KINDS
 
 PATHS = {
@@ -25,11 +26,37 @@ def records(value):
     return value if isinstance(value, list) else [value]
 
 
+def load_source_items(repository, replacements=None):
+    root = Path(repository)
+    replacements = replacements or {}
+    pattern = PATHS['source_item']
+    paths = {p.relative_to(root).as_posix() for p in root.glob(pattern)}
+    paths.update(p for p in replacements if Path(p).match(pattern))
+    paths.update(p.relative_to(root).as_posix() for p in root.glob(EDGE_PART + '*'))
+    sharded = {p for p in edge_policy_paths(paths) if p.startswith(EDGE_PART)}
+    result = []
+    for rel in sorted(paths):
+        path = root / rel
+        if rel in sharded and (path.is_symlink() or
+                               (rel not in replacements and path.stat().st_size > MAX_SHARD_BYTES)):
+            raise ContractError('Unsafe Edge policy shard file')
+        values = replacements[rel] if rel in replacements else load_config(path)
+        if rel in sharded:
+            validate_edge_policy_shard(rel, values)
+        result.extend(records(values))
+    if len(result) != len({r['source_item_id'] for r in result}):
+        raise ContractError('Duplicate current source_item identity')
+    return result
+
+
 def load_dataset(repository, replacements=None):
     root = Path(repository)
     replacements = replacements or {}
     result = {}
     for kind, pattern in PATHS.items():
+        if kind == 'source_item':
+            result[kind] = load_source_items(root, replacements)
+            continue
         paths = {str(p.relative_to(root)) for p in root.glob(pattern)}
         paths.update(p for p in replacements if Path(p).match(pattern))
         result[kind] = [r for p in sorted(paths) for r in records(replacements[p] if p in replacements else load_config(root / p))]

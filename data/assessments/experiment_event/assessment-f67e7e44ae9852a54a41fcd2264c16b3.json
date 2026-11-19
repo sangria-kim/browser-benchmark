@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-05a299fb220fa6593a95bd33: Source baseline: Trusted Vault shared recovery factors and encryption A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f67e7e44ae9852a54a41fcd2264c16b3",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-05a299fb220fa6593a95bd33",
+  "input_hash": "29c87738963db4463401062ed5e58eef2bba5fa0376c9ef75b84b05a5a0e57fa",
+  "input_revision": "semantic-v2-sha256:678ed88665f8e406a2e7fc746ba67ebdcd7405fc254c01ec6694f22de2546c65",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-a1ff4866760c20205ff144ab6f8e32f9",
+  "evidence_source_item_ids": [
+    "src-chromium-88cd64712f0d545a7d2cd1f7",
+    "src-legacy-7b0cf1448a788d0995686bd4"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a855b2be93ab4ec10eab65eb: Source baseline: RtcRtpHeaderEncryptionPolicy A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-60cf05dec1e3cd846922274e2277c5fa",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a855b2be93ab4ec10eab65eb",
+  "input_hash": "8aeb5bede114a54e02d387476ecbdfe8cde2890c4366e8d48de34d2eaaceb8b5",
+  "input_revision": "semantic-v2-sha256:cb84679b87b5da91d9bc7d5e8a336c7016ee6797b993f31fda8447f44563a900",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-13155edd3416af6f1a1e70bbabd27602",
+  "evidence_source_item_ids": [
+    "src-chromium-2791d9ba7368665b49002796"
+  ]
+}

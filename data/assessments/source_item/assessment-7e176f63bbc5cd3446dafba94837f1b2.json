@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-af0271c0b8a37c5ed810386a: Fixed a performance regression where calling invalidateFramebuffer() on a texture that had not been written to caused it to be zero-filled on the CPU every frame. ( [contact omitted] ) (191073603) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-7e176f63bbc5cd3446dafba94837f1b2",
+  "subject_kind": "source_item",
+  "subject_id": "src-af0271c0b8a37c5ed810386a",
+  "input_hash": "6dbe95f6f4ae4194b2924857085ee97afcfbe9a7b3131346688a6ea04c1270b7",
+  "input_revision": "semantic-v2-sha256:8429e0aa7e6bd1fb01aecb9406d53b943e7fdc62f35cc6ab6b100e4ff0c61404",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-af0271c0b8a37c5ed810386a"
+  ]
+}

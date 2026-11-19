@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-724028fb4e21fbcd3d27ee72: Source baseline: Web Speech API On-Device Small Expert Model A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-73185ac4bf921d249bc56c4edcead089",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-724028fb4e21fbcd3d27ee72",
+  "input_hash": "eb357596ec6b74eeecd301b9180a0f0e86b127cbf9d250257208d5360c76506e",
+  "input_revision": "semantic-v2-sha256:99864e1825dfa0413f9a7e9e2f2ac87f33771a6224e74f1e5cb8bdb8bcea6adf",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-974e955c00b55f7c682ce088d51c6fae",
+  "evidence_source_item_ids": [
+    "src-chromium-748ce2ef7e5e3e11105d797f",
+    "src-legacy-83f58b4ea800214aba002c30"
+  ]
+}

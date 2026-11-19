@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Chrome Remote Desktop has historically supported operating systems beyond their manufacturer's end-of-life date. We do this by pinning those OS versions to an older version of the host software, meaning that we cannot re"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a154df44ce2656d1d01beb88263600f5",
+  "subject_kind": "source_item",
+  "subject_id": "src-69fcdda73dc7cc61ac5fd600",
+  "input_hash": "f51ccfb9694fa59f6674ac43034aa35cf0d87805fba7a05feb80303ab37db548",
+  "input_revision": "semantic-v2-sha256:5d3abee125fb2f1e611836fd2cbed948ce9d6dbba1e7bc84f4f88e1d6dba0ab2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-69fcdda73dc7cc61ac5fd600"
+  ]
+}

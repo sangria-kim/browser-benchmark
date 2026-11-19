@@ -22,7 +22,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 from pipeline.normalize import validate_graph
-from pipeline.normalize.storage import records
+from pipeline.normalize.storage import load_source_items, records
 from pipeline.reporting.core import render, instant
 from schemas.validate import ContractError, validate_dataset, validate_record
 
@@ -361,9 +361,7 @@ def verify(package, *, expected_commit, expected_manifest=None):
         raise ContractError('Package contains unlisted files')
     result = validate_contents(root, inventory)
     from pipeline.temporal import policy
-    sources = []
-    for path in root.glob('data/source-items/*/*.json'):
-        sources.extend(json.loads(path.read_text()))
+    sources = load_source_items(root)
     if manifest.get('collection_scope') != policy({'source_item': sources}):
         raise ContractError('Manifest collection scope differs from exported evidence')
     result.update(files=len(inventory), bytes=sum(e['bytes'] for e in inventory.values()),
@@ -408,9 +406,7 @@ def export(repository, ref, output, *, source_repository, after_pin=None):
         manifest = dict(contract_version=VERSION, source_repository=source_repository, source_ref=ref,
                         source_commit=sha, files=entries, link_policy=LINK_POLICY)
         from pipeline.temporal import policy
-        sources = []
-        for path in stage.glob('data/source-items/*/*.json'):
-            sources.extend(json.loads(path.read_text()))
+        sources = load_source_items(stage)
         if policy({'source_item': sources}):
             manifest['collection_scope'] = policy({'source_item': sources})
         (stage / MANIFEST).write_bytes(encoded(manifest))

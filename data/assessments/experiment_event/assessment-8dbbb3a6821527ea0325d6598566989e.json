@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f166a235d0f9841f4383201c: Source baseline: AndroidUseCorrectWindowBounds A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8dbbb3a6821527ea0325d6598566989e",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f166a235d0f9841f4383201c",
+  "input_hash": "17432d91261c0d6bb9ba195f0684e32e8532b1d6c8d0cb8e292899577caa86ad",
+  "input_revision": "semantic-v2-sha256:7651fe287466a6b34c332adc41fa0bc766a90ceb92515c30efa73af9f0ada1d9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-98e556b313c3106329eb2d5e0b1236fc",
+  "evidence_source_item_ids": [
+    "src-chromium-7f449b2b633b66cddbcf68b9"
+  ]
+}

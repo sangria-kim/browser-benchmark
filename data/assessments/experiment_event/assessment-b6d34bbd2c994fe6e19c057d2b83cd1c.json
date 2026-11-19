@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-71f49f6db205c675bba80ed5: Source baseline: Omnibox Voice Plate Intent A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-b6d34bbd2c994fe6e19c057d2b83cd1c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-71f49f6db205c675bba80ed5",
+  "input_hash": "64aa2de61c5a2b8a0f01dd1a88d6d28252222866c2d0f26fed4fe7dbf8862009",
+  "input_revision": "semantic-v2-sha256:ca5f480950d1a75e17c24f9bccf960bed2fbbcda5a1a2a72e4ce78b7fd33463b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-7a613bea99ea9dfe0bf1faad2c112454",
+  "evidence_source_item_ids": [
+    "src-chromium-4825e80001de32595caf0a8c",
+    "src-legacy-7f5fa222198c8fd7ccb0f874"
+  ]
+}

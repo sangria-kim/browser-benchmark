@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-6b28777c3e71ec159eb42ae5: Source baseline: AutofillEnableWalletBrandingV2 A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-2dde7d6239f6974aeb82b30e596e0271",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-6b28777c3e71ec159eb42ae5",
+  "input_hash": "c8456a3a6311042c52ade82cc5951e3c799b06e84775ca8f3c569c9cd2760dde",
+  "input_revision": "semantic-v2-sha256:511d63e73111a8bc6740d189cb7ab458c0975cdfdc0f862e002761285723fa62",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-710575c17c1031880169ab0eb1909139",
+  "evidence_source_item_ids": [
+    "src-chromium-593eb40e1e47169995a7b3e9"
+  ]
+}

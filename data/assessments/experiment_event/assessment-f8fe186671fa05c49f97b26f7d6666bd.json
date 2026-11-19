@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-9f8471b14c173602eadd9ccc: Source baseline: Spoof User-Agent as ChromeOS for Desktop Android A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-f8fe186671fa05c49f97b26f7d6666bd",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-9f8471b14c173602eadd9ccc",
+  "input_hash": "fb43ff3ad87dbcfe84fbf8d2d32cb57e9cfe086959a227b0f0a222a255110cd4",
+  "input_revision": "semantic-v2-sha256:c8f3fc25d0b139cfe3590e09cbe2f7c573e3f97c041435cdf28f9c9fb60f7517",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-2bd0a02906df6d75fdae9886085526e2",
+  "evidence_source_item_ids": [
+    "src-chromium-d16a8a6226b5975c9cf3421e",
+    "src-legacy-baa89d4172c77b47afb5d1d3"
+  ]
+}

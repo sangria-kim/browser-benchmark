@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-ef32f6fa63562940d6c66a72: Source baseline: UseNewEtc1Decoder A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-d484b2939da9e0cd77fa8e141e769083",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-ef32f6fa63562940d6c66a72",
+  "input_hash": "d006ad91aebad53a54ec28d3b8a5f4dff5b5d4ae6a9e3c0304c2955ca1cca49b",
+  "input_revision": "semantic-v2-sha256:c01b9156604917424e3a904732bf07ce90dea4338ff8f3c2adae992b1606d390",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-c83f86bb633cfbaee570b58b837e1163",
+  "evidence_source_item_ids": [
+    "src-chromium-69f247ab65ff6dac876faaca"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-d1a76f78969ce1e7167bed0c: Source baseline: UseRustCborWriter A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8a5ec7425bee050b0dd21d92bd6ca735",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-d1a76f78969ce1e7167bed0c",
+  "input_hash": "503790a12614304721a4f372dc52691daff095ecd5c313ee7f79eabfa9a4fbf7",
+  "input_revision": "semantic-v2-sha256:4d1ceca37cf3a61409acf9e61b78444e5c2c910af94f2479b6b51ec175e606d7",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-82807d9d7aa6f01637a6e97b84906cc8",
+  "evidence_source_item_ids": [
+    "src-chromium-2eb1d7d6adb648a2fa63c9ce"
+  ]
+}

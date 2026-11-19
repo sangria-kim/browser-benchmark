@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3967d87fe15765103bc82a75: Source baseline: BufferQueue A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e2707fa0c75d094d4c56698876ab5082",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3967d87fe15765103bc82a75",
+  "input_hash": "cc5ad9dfd4c56f6d99c02b5395af8c2d653f28080b96a115eb8f4ce6162f14a2",
+  "input_revision": "semantic-v2-sha256:af5a54a4d10687ec4abe970ab96c9145dc4947ac7fa60c3145a8b90706c02c51",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-dcc5449d6cf3a4a1df38ddaecf85b3af",
+  "evidence_source_item_ids": [
+    "src-chromium-49e1cea4d3b5ddf6085cf2db"
+  ]
+}

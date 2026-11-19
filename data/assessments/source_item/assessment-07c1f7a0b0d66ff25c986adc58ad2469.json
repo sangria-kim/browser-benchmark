@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-adf0ed31e6fb9949a940e081: Fixed an issue where a media element’s readyState did not return to HAVE_METADATA when seeking to an unbuffered position, which caused playback to stall after scrubbing. ( [contact omitted] ) (190448987) A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-07c1f7a0b0d66ff25c986adc58ad2469",
+  "subject_kind": "source_item",
+  "subject_id": "src-adf0ed31e6fb9949a940e081",
+  "input_hash": "e8ba78c3e46943e8458270bc75d3f77b9c574ef4967e1b58c863b897084e6460",
+  "input_revision": "semantic-v2-sha256:6ef8807b789a45d5c3804387824610f5fdf0a3cec64f41a7db47c077ce569998",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-adf0ed31e6fb9949a940e081"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-b4662b0c401dffb5381d5a40: Source baseline: Enable Android Split View A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-43ab079ea735e00c603d0543aeba6dec",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-b4662b0c401dffb5381d5a40",
+  "input_hash": "d73d90a8df78b065740200992d7a607ca1d61fa4e8e5fa9aad78841a5e9a8922",
+  "input_revision": "semantic-v2-sha256:9ae6697e4ea0f5413f5e71e8a60c610d3c4a7a6e45bb7e5dc4a746803e78166b",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-8ddd9bad7a86afdcc2bc97a28c92d632",
+  "evidence_source_item_ids": [
+    "src-chromium-d782a52c1b63f73c8e9714b6",
+    "src-legacy-593330662e9e5ba0de4c52d1"
+  ]
+}

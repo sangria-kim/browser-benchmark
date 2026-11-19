@@ -128,6 +128,39 @@ class ExportTests(unittest.TestCase):
         self.assertEqual(self.company_initial, self.git(self.consumer, 'rev-parse', 'HEAD^'))
         self.assertNotEqual(result['source_commit'], self.git(self.consumer, 'rev-parse', 'HEAD'))
 
+    def test_edge_shards_import_preserves_prior_monolith_snapshot_and_rejects_missing_bucket(self):
+        from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS, edge_policy_shards
+        fixture = json.loads((ROOT / 'schemas/tests/fixtures/valid-dataset.json').read_text())
+        item = dict(fixture['source_item'][0], source_item_id='src-' + '01' * 12,
+                    source_id='edge-policies', browser='edge')
+        self.write(EDGE_POLICY, [item])
+        self.commit()
+        first = self.export()
+        self.activate(first)
+        monolith_snapshot = exporter.resolve(self.managed)
+        self.assertEqual([item], json.loads((monolith_snapshot / EDGE_POLICY).read_text()))
+        (self.source / EDGE_POLICY).unlink()
+        for path, records in edge_policy_shards([item]).items():
+            self.write(path, records)
+        self.commit()
+        sharded_package = self.base / 'edge-shards-package'
+        second = self.export(sharded_package)
+        self.assertTrue(self.activate(second, sharded_package)['activated'])
+        active = exporter.resolve(self.managed)
+        self.assertEqual([item], [r for path in EDGE_SHARDS for r in json.loads((active / path).read_text())])
+        self.assertFalse((active / EDGE_POLICY).exists())
+        self.assertEqual([item], json.loads((monolith_snapshot / EDGE_POLICY).read_text()))
+        missing = EDGE_SHARDS[-1]
+        (sharded_package / missing).unlink()
+        manifest_path = sharded_package / exporter.MANIFEST
+        manifest = json.loads(manifest_path.read_text())
+        manifest['files'] = [entry for entry in manifest['files'] if entry['path'] != missing]
+        manifest_path.write_bytes(exporter.encoded(manifest))
+        with self.assertRaisesRegex(ContractError, 'incomplete'):
+            exporter.verify(sharded_package, expected_commit=second['source_commit'],
+                            expected_manifest=exporter.digest(manifest_path.read_bytes()))
+        self.assertEqual(active, exporter.resolve(self.managed))
+
     def test_dirty_tree_and_branch_movement_do_not_mix_source_commits(self):
         expected = self.git(self.source, 'rev-parse', 'HEAD')
         original = (self.source / 'reports/2026-11-16.md').read_bytes()

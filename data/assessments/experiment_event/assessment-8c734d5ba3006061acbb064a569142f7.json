@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-8d8b61dc46d8d3a7b4169303: Source baseline: Glic Android Offscreen Rendering A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8c734d5ba3006061acbb064a569142f7",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-8d8b61dc46d8d3a7b4169303",
+  "input_hash": "d722f24ba22de6ec29ee75b1ce404ca2faffa025492b059e5bb08b722dcb4842",
+  "input_revision": "semantic-v2-sha256:d363907dc8d9aa75205a0d20ba47dec7dda1c73953be77c4c53204c6afe33cb6",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-e392237284dccc8f832aac186d0370bb",
+  "evidence_source_item_ids": [
+    "src-chromium-ae7c28e3d40be593b176168c",
+    "src-legacy-489160bcbed05e59fa8231f5"
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3626af98dbe9ae54bea0175b: Source baseline: Safe Browsing Suppress Dangerous File Warnings in No Protection A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ac838ec6b09929eec22cf09ade9c09e6",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3626af98dbe9ae54bea0175b",
+  "input_hash": "0098ea2196ead9dd514cf29281636dc18a0a5c305bb03c90ddcbaff47b57b7c6",
+  "input_revision": "semantic-v2-sha256:29230511e1299d7215cb537541810f88f295699b8799f956573c5f55e5e39bc0",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-0bb9a7a7012fa8a60ff4666f45019281",
+  "evidence_source_item_ids": [
+    "src-chromium-efeb8c2e3262118b2154537a",
+    "src-legacy-82e30b4cdaa3682b75d82eea"
+  ]
+}

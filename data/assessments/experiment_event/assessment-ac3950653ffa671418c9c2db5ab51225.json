@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-7fdd4d6fdb72e75c2fd01458: Source baseline: autofill-enable-wallet-reminder-notice A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-ac3950653ffa671418c9c2db5ab51225",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-7fdd4d6fdb72e75c2fd01458",
+  "input_hash": "2e7a5ddfabf771bf05840b4ea91102e57b3ed7d1d66d6c146612dd4878730379",
+  "input_revision": "semantic-v2-sha256:d33aec3b11953176cbf06dc20688220c3cdc23c2527287a05366314517e758c2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-672bf6f87c5a9b39e7cfb8ebb8f6ea12",
+  "evidence_source_item_ids": [
+    "src-chromium-378199f986082d3515aa760a",
+    "src-legacy-36f102db7cd1559d57631c88"
+  ]
+}

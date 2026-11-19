@@ -46,6 +46,7 @@ def build_research(output, legacy, base):
     sys.path.insert(0, str(ROOT))
     from pipeline.selection.core import build_contexts, latest_assessments, project, load_rules
     from pipeline.temporal import policy
+    from pipeline.normalize.storage import load_source_items
     from collections import defaultdict, Counter
     from datetime import timedelta
 
@@ -72,7 +73,7 @@ def build_research(output, legacy, base):
         write_resource(output, path, value)
 
     groups = {
-        'source_item': records('data/source-items/*/*.json'),
+        'source_item': load_source_items(ROOT),
         'feature': records('data/catalog/features/*.json'),
         'feature_event': legacy['events'],
         'experiment': records('data/catalog/chrome-experiments/*.json'),

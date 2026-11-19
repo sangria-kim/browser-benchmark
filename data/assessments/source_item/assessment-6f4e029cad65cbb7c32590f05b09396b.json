@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-a38b9622c318ad51c46578e1: Retiring legacy sign-in implementation on Windows. Microsoft Edge plans to retire its legacy direct-WAM sign-in implementation on Windows in version 157, completing the transition to OneAuth. OneAuth continues to use Win A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-6f4e029cad65cbb7c32590f05b09396b",
+  "subject_kind": "source_item",
+  "subject_id": "src-a38b9622c318ad51c46578e1",
+  "input_hash": "07f52945cfd6f0bab9aab10d3f66532f543b191b1a767c5a9094336aa66ecdde",
+  "input_revision": "semantic-v2-sha256:9846b60dc4f2d79f1d69602ba04e51a52cab76dd834978cbee0966fa0de812e2",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-a38b9622c318ad51c46578e1"
+  ]
+}

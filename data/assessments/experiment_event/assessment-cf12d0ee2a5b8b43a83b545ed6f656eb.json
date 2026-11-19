@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-3cfb72515bc63039ea6cc325: Source baseline: PasswordManualFallbackSecurityChecks A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-cf12d0ee2a5b8b43a83b545ed6f656eb",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-3cfb72515bc63039ea6cc325",
+  "input_hash": "9a7083676535a8ca063b249511b2bfa535a4319050d8cead85afe6044ad19333",
+  "input_revision": "semantic-v2-sha256:5bf1af6e460d8af1664504d974af89d2241a03c926d42c64a0620817f8e98ce9",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-b4e5812aabbb3792d8f959412ed0b0f7",
+  "evidence_source_item_ids": [
+    "src-chromium-cb2b52e90ff6a22b4773a966"
+  ]
+}

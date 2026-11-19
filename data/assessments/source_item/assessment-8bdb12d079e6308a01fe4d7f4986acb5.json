@@ -1,0 +1,25 @@
+{
+  "status": "excluded",
+  "reasons": [
+    "The source classifies this item as a security update. The public evidence has no reviewed benchmark task: Fixed an issue where a fragment-only (same-document) navigation could trigger a page reload when Enhanced Security is enabled. ( [contact omitted] ) (191208475)"
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Document a changed user workflow or security control with a specific comparison task.",
+  "schema_version": 2,
+  "assessment_id": "assessment-8bdb12d079e6308a01fe4d7f4986acb5",
+  "subject_kind": "source_item",
+  "subject_id": "src-7322add90c75934315f0e0b7",
+  "input_hash": "0f53b20fc6b7cc5f99058af30faf01a0435c87cb2047e0a99fe5e5369e2b8007",
+  "input_revision": "semantic-v2-sha256:31f3e73232f92a139cae0bdca30b658f5f6a310cbe943ecf4d064481c0465047",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-7322add90c75934315f0e0b7"
+  ]
+}

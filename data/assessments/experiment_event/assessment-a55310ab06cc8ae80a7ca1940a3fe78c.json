@@ -1,0 +1,26 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-77df4158f2e90326a830c9dc: Source baseline: PartitionAlloc with Advanced Checks A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-a55310ab06cc8ae80a7ca1940a3fe78c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-77df4158f2e90326a830c9dc",
+  "input_hash": "73a3d61ee8fdeb7ea7b3d685534c06fbd60c749936522ab6f12f7c6388629b4f",
+  "input_revision": "semantic-v2-sha256:c747331a07d84803aa9beb23961a71544fddfc75d65e96edbeeaa68b82dda6b3",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-c8859249d0cd6f09a2fb7410e61cb392",
+  "evidence_source_item_ids": [
+    "src-chromium-c61878f29b136c1394fb286c",
+    "src-legacy-461929b650e70eadd905c8f9"
+  ]
+}

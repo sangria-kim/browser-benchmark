@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-a691d0ed8733de77817d307a: Source baseline: PartitionAllocMemoryPressureMonitor A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-404d9413069271ba30b1128663999573",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-a691d0ed8733de77817d307a",
+  "input_hash": "29dec2c8ff6ad38b4f84d5ed997868c66f09f6de3f63ad63d15b4a822b03d2a0",
+  "input_revision": "semantic-v2-sha256:ec47841d17c66c6934c3658a82c7ca33d36cb6b7d4b09148fcfe85f1eb543dcc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-c52e4a6bce10b256925e9484dccffa3c",
+  "evidence_source_item_ids": [
+    "src-chromium-cdf3a402b7571f34a7424113"
+  ]
+}

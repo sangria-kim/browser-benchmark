@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for src-918ee5859067bd182de67596: The HTML parser currently has a behavior where parsing an input tag will close any open ancestor select tag, preventing input elements from being used inside select elements. This is blocking us from working on the filte A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-773ccc8ee0a2ccbab91012f98850f846",
+  "subject_kind": "source_item",
+  "subject_id": "src-918ee5859067bd182de67596",
+  "input_hash": "57aaec2c03d5a539bcc71f596695e43fae6b0a0f193da213d16fa6dfa08e91a7",
+  "input_revision": "semantic-v2-sha256:d1bfc1d22482adbd32b055b8199e60e67737ef925979698a9202db2e3de781bc",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": null,
+  "evidence_source_item_ids": [
+    "src-918ee5859067bd182de67596"
+  ]
+}

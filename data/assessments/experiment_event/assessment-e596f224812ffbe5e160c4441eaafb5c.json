@@ -1,0 +1,25 @@
+{
+  "status": "pending_verification",
+  "reasons": [
+    "Evidence retained for event-f579443bdb5a011c6b60f0cf: Source baseline: UseAccountInfoFetcherIos A verified material change and a concrete comparison procedure are not yet jointly established by a public benchmark profile."
+  ],
+  "priority": null,
+  "comparison_question": null,
+  "benchmark_readiness": "unknown",
+  "revisit_trigger": "Add or review exact public evidence, user impact, comparison steps, metrics and access conditions. Source presence alone does not prove release or testing.",
+  "schema_version": 2,
+  "assessment_id": "assessment-e596f224812ffbe5e160c4441eaafb5c",
+  "subject_kind": "experiment_event",
+  "subject_id": "event-f579443bdb5a011c6b60f0cf",
+  "input_hash": "69037422c6745851bf5254e0d8b319db1fe4a8245b50ae456b15044ca3155212",
+  "input_revision": "semantic-v2-sha256:02ad368f552fdb07922019642e85a1055a8d6800591dab3f1ccedeb3ef8dffdd",
+  "rule_version": "pm-selection-v3.0.0",
+  "evaluator": "deterministic",
+  "model_id": null,
+  "prompt_version": "public-pm-evidence-v1",
+  "assessed_at": "2026-11-19T01:02:50.137413+00:00",
+  "supersedes": "assessment-60fb5a17d02689589b46c8738fc5e102",
+  "evidence_source_item_ids": [
+    "src-chromium-51aa66b0a36f60a9ff80bdec"
+  ]
+}
