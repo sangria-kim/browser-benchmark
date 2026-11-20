@@ -23126,6 +23126,38 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-366b3a675a3a822ab757d918",
+    "browser": "vivaldi",
+    "canonical_key": "vivaldi-ios-iphone-duo-interface",
+    "title": "Adapt the interface to iPhone Duo screens",
+    "aliases": [],
+    "source_item_ids": [
+      "src-77534efb7173203d1ef6b8f0"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19T08:05:10+00:00",
+      "precision": "timestamp",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-77534efb7173203d1ef6b8f0": [
+        "sr-594376090c36cd62c7e0aa32"
+      ]
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-36707d56e609081beedd21d5",
     "browser": "chrome",
     "canonical_key": "chromestatus:5720910061371392",
@@ -50135,6 +50167,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-7b49c1f7847ed804e3829b4f",
+    "browser": "vivaldi",
+    "canonical_key": "vivaldi-kagi-search-option",
+    "title": "Include Kagi as a built-in search option",
+    "aliases": [],
+    "source_item_ids": [
+      "src-6187c5a08e836ed1c2d7ba5a",
+      "src-cd87f0a9e583430a99f494b8"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19T08:05:10+00:00",
+      "precision": "timestamp",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-6187c5a08e836ed1c2d7ba5a": [
+        "sr-695ffe7744e69750ada0755b"
+      ],
+      "src-cd87f0a9e583430a99f494b8": [
+        "sr-a420cdf4c045795b1f05ddc3"
+      ]
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-7b505a8ae3654642517a948d",
     "browser": "chrome",
     "canonical_key": "chromestatus:4824062942642176",
@@ -58755,6 +58823,38 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-912fe9365178b10fcdb6af2a",
+    "browser": "edge",
+    "canonical_key": "edge-workspace-pinning",
+    "title": "Pin workspaces",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d1d5f1ed9052711ebd6c2854"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-d1d5f1ed9052711ebd6c2854": [
+        "sr-97752a02f91adb42af7fb85f"
+      ]
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-913c2f8fc7d7865f73743972",
     "browser": "chrome",
     "canonical_key": "chromestatus:5171003185430528",
@@ -61208,6 +61308,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-97467c1c2ee5e4493d0b10e3",
+    "browser": "edge",
+    "canonical_key": "edge-express-checkout-retirement",
+    "title": "Retire Express checkout",
+    "aliases": [],
+    "source_item_ids": [
+      "src-f163f16e2bb37e9e9c2705c2"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-f163f16e2bb37e9e9c2705c2": [
+        "sr-b4add1d4edd34363869ce853"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-b4add1d4edd34363869ce853": "Express checkout has been retired and is disabled by default."
     }
   },
   {
@@ -82278,6 +82413,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-caa89c7021b3f21e71590c63",
+    "browser": "edge",
+    "canonical_key": "edge-google-account-import-from-settings",
+    "title": "Import Google account data from Settings",
+    "aliases": [],
+    "source_item_ids": [
+      "src-1d40996c41a20211c2e590cb"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-1d40996c41a20211c2e590cb": [
+        "sr-62385fda5e5263aeba776944"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-62385fda5e5263aeba776944": "Microsoft Edge now lets users import their Google account data, including passwords, bookmarks, history, and autofill data, directly from Edge Settings at any time after setup."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-caab6b530669428673143f85",
     "browser": "chrome",
     "canonical_key": "chromestatus:5103493249761280",
@@ -84831,6 +85001,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-d084140b066acb7ef73d27d9",
+    "browser": "edge",
+    "canonical_key": "edge-workspaces-v1-retirement",
+    "title": "Disable Workspaces V1 by default",
+    "aliases": [],
+    "source_item_ids": [
+      "src-5723ccbfdbc75d0ee5e5ec95"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-5723ccbfdbc75d0ee5e5ec95": [
+        "sr-5a2d74045a14d6ce1f32c552"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-5a2d74045a14d6ce1f32c552": "Microsoft Edge Workspaces V1 is disabled by default in Edge 158 and fully removed in Edge 159."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-d09ed49fa0416fba06d49e8e",
     "browser": "chrome",
     "canonical_key": "chromestatus:5989473649164288",
@@ -86651,6 +86856,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-d59deecebccbb5837f3ca429",
+    "browser": "edge",
+    "canonical_key": "edge-in-window-workspace-switching",
+    "title": "Switch workspaces in the same window",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d361a9aa231f388d9d1964bb"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-d361a9aa231f388d9d1964bb": [
+        "sr-3d94e6543e64fc364bf2b496"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-3d94e6543e64fc364bf2b496": "Users can now switch between workspaces directly within their current browser window instead of opening a separate window for each workspace."
     }
   },
   {
@@ -92458,6 +92698,38 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-e31bd872c4a2baf534d21eb8",
+    "browser": "vivaldi",
+    "canonical_key": "vivaldi-ios-manage-other-browsing-data-removal",
+    "title": "Remove Manage other data from browsing data settings",
+    "aliases": [],
+    "source_item_ids": [
+      "src-a23d24dd720b95347e68fda5"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19T08:05:10+00:00",
+      "precision": "timestamp",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-a23d24dd720b95347e68fda5": [
+        "sr-ed12f03373562d4312530cbe"
+      ]
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-e327c4b475251601ca73f510",
     "browser": "chrome",
     "canonical_key": "chrome-enterprise:5123085464371200",
@@ -94195,6 +94467,38 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-e780b7c0f3efbce2f71d656b",
+    "browser": "vivaldi",
+    "canonical_key": "vivaldi-extension-per-tab-panel-options",
+    "title": "Set extension panel options for each tab",
+    "aliases": [],
+    "source_item_ids": [
+      "src-9a8070cafa726d61193f7a9b"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19T12:32:38+00:00",
+      "precision": "timestamp",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-9a8070cafa726d61193f7a9b": [
+        "sr-2e41d8ac684bdd9b5a553982"
+      ]
     }
   },
   {
@@ -102088,6 +102392,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-fbd292500b7abe2c16380303",
+    "browser": "edge",
+    "canonical_key": "edge-pinned-workspace-emoji",
+    "title": "Assign an emoji to a pinned workspace",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d3d93ac9e7d912943000c2df"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-19T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-d3d93ac9e7d912943000c2df": [
+        "sr-08fecbaa6067f125beac2921"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-08fecbaa6067f125beac2921": "Users can assign a custom emoji to a pinned workspace to identify it at a glance."
     }
   },
   {
