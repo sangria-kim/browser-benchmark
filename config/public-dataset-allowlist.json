@@ -1,0 +1,21 @@
+{
+  "contract_version": "1.0",
+  "default_ref": "main",
+  "catalog": {
+    "path": "data/catalog/features/catalog.json",
+    "id_field": "feature_id"
+  },
+  "evidence": {
+    "path_glob": "data/source-items/*/*.json",
+    "id_field": "source_item_id",
+    "referenced_by": "source_item_ids",
+    "selection": "referenced_only",
+    "revisions_field": "revisions",
+    "revision_id_field": "revision_id",
+    "feature_revision_ids_by_source": "source_revision_ids",
+    "current_revision": "last_linked_revision",
+    "feature_excerpt_by_revision": "source_revision_excerpts",
+    "excerpt_path": ["evidence", "excerpt"],
+    "when_unpinned": "source_item_at_pinned_commit"
+  }
+}
