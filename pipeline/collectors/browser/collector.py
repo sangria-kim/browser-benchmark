@@ -23,6 +23,19 @@ from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
 
 
 DOCUMENT_VERSION = re.compile(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', re.I)
+EDGE_RELEASE_VERSION = re.compile(r'^Version\s+(\d+(?:\.\d+){3})(?=[:\s]|$)', re.I)
+VIVALDI_SNAPSHOT = re.compile(
+    r'(?:^|[–—-]\s*)(?:Vivaldi\s+)?(Desktop|iOS)(?:\s+Browser)?\s+snapshot\s+'
+    r'(\d+\.\d+(?:/\d+)*)(?=\s*(?:\||$))', re.I)
+
+
+def edge_release_metadata(headings):
+    for heading in reversed(headings):
+        version = EDGE_RELEASE_VERSION.match(heading)
+        if version:
+            channel = re.search(r'\((Extended Stable|Stable)\)', heading, re.I)
+            return version[1], channel[1].lower().replace(' ', '_') if channel else None
+    return None, None
 
 
 def chromestatus_date(revision):
@@ -486,18 +499,31 @@ class BrowserCollector:
         edge_policy = self.source['source_id'] == 'edge-policies'
         if edge_policy and not re.fullmatch(self.source['discovery']['include_url_pattern'], canonical_url):
             raise ValueError('Unexpected final Edge policy URL')
-        units = blocks(body, visible_sections=edge_policy)
+        edge_stable = self.source['source_id'] in ('edge-stable', 'edge-stable-archive')
+        units = blocks(body, visible_sections=edge_policy or edge_stable)
         if not units:
             self.unresolved(url, response)
             self.problem(url, 'No source units in product content')
         document_title = ' '.join(n.text() for n in root.walk() if n.tag == 'title')
+        snapshot_build = None
+        if self.source['source_id'] in ('vivaldi-desktop', 'vivaldi-ios'):
+            release = VIVALDI_SNAPSHOT.search(document_title)
+            if release and self.source['source_id'] == 'vivaldi-' + release[1].lower():
+                snapshot_build = release[2]
         timestamp = publication if publication and len(publication) > 10 else None
         publication_day = date_value(timestamp) if timestamp else publication
         for unit in units:
-            version_match = DOCUMENT_VERSION.search(unit['section'] + ' ' + document_title)
+            version, channel = None, None
+            if edge_stable:
+                version, channel = edge_release_metadata(unit.get('visible_headings', []))
+            elif snapshot_build:
+                version, channel = snapshot_build, 'snapshot'
+            if version is None:
+                version_match = DOCUMENT_VERSION.search(unit['section'] + ' ' + document_title)
+                version = version_match[1] if version_match else None
             section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
-                      version=version_match[1] if version_match else None)
+                      version=version, channel=channel)
             if edge_policy and unit['parsed']:
                 # Use visible source text for comparison. Preserve the public location key and row hash.
                 headings = unit['visible_headings']

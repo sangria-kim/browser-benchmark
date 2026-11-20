@@ -8,6 +8,21 @@
 - 수집 에이전트는 원문을 읽고 기능의 추가·변경·지원 확대·제거를 식별합니다. 보안 패치, 일반 오류 수정, 배포 공지, 홍보 문구, 근거가 불명확한 항목은 새 공개 자료에서 제외합니다. 적용 기준과 저장 명령은 [수집 기준](docs/collection-policy.md)과 [실행 안내](pipeline/OPERATIONS.md)에 있습니다.
 - 사내 반입 준비, 패키징, 동기화, 사내 분석과 배포는 소비 환경에서 담당합니다. 이 저장소의 수집 작업은 기능과 출처 근거를 저장하면 끝납니다.
 
+## 공개 데이터 재사용
+
+[공개 데이터 allowlist](config/public-dataset-allowlist.json)는 기능 목록과 공식 근거의 읽기 범위를 정의합니다. 소비자는 `main`의 커밋 SHA를 한 번 확인하고, 목록과 모든 데이터를 같은 SHA에서 읽습니다. 다음 예시는 저장소에서 Git과 jq로 첫 기능의 ID와 근거 ID를 조회합니다.
+
+```sh
+git fetch origin main
+sha=$(git rev-parse origin/main)
+catalog=$(git show "${sha}:config/public-dataset-allowlist.json" | jq -er '.catalog.path')
+git show "${sha}:$catalog" | jq '.[0] | {feature_id, title, source_item_ids}'
+```
+
+- 기능의 식별자는 `feature_id`입니다. 근거 파일 패턴은 저장소 루트 기준이고, 각 `*`는 한 경로 구성요소 안에서만 일치합니다. Edge 정책의 분할 파일도 이 패턴에 포함됩니다. 각 파일에서 기능의 `source_item_ids`에 들어 있는 `source_item_id`만 읽습니다. 한 근거를 여러 기능이 참조하면 각 연결을 유지합니다.
+- 현재 근거는 기능의 `source_revision_ids[출처 ID]`에서 마지막 ID를 골라 출처의 `revisions`에서 같은 `revision_id`를 찾아 읽습니다. 인용문은 기능의 `source_revision_excerpts[리비전 ID]`를 우선하고, 생략된 경우 해당 리비전의 `evidence.excerpt`를 씁니다. 과거 연결에 리비전 ID 목록이 없으면 고정한 커밋의 출처 항목에서 `evidence`를 읽고 ‘커밋 시점 근거’로 구분합니다.
+- 소비자는 모든 출처 ID와 지정된 리비전 ID가 연결되는지 확인하고, 읽기와 저장이 성공하면 사용한 SHA를 기록합니다. 반입 주기와 저장 형식은 소비 환경에서 관리합니다.
+
 ## 기존 자료
 
 이전에 저장한 [기능 문서](features/README.md), [릴리스](releases/README.md), [기능 사건](data/events/README.md), [Chrome 실험](experiments/chrome/README.md), [일일 리포트](reports/generated/README.md)와 [공개 대시보드](https://sangria-kim.github.io/browser-benchmark/)를 열람할 수 있습니다. 이전 수집분에는 일반 수정과 제외 항목도 들어 있습니다. [폴더 구조](docs/data-layout.md)

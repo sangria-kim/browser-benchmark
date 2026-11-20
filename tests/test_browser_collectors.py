@@ -185,6 +185,43 @@ class CollectorsTest(unittest.TestCase):
         self.assertEqual(first[0]['revisions'], second[0]['revisions'][:1])
         self.assertEqual(2, len(second[0]['revisions']))
 
+    def test_edge_versions_and_channels_follow_each_visible_release_heading(self):
+        s = source('edge-stable')
+        html = '''<div class="content">
+          <h2 id="version-1580437033">Version 158.0.4370.33: November 19, 2026 (Stable) - Main Release</h2>
+          <h3 id="features">Feature Updates</h3><p id="pin">Pin workspaces.</p>
+          <h2 id="version-1560431484">Version 156.0.4314.84: November 12, 2026 (Extended Stable) - Update 6</h2>
+          <p id="update">Update summary.</p>
+          <h2 id="other">See also</h2><p id="more">Release resources.</p></div>'''
+        mapping = {s['url']: response(s['url'], html)}
+        _, rows = self.collect(s, mapping, cutoff='2026-11-20T00:00:00Z')
+        by_key = {r['item_key']: r for r in rows}
+        for key, version, channel in [('pin', '158.0.4370.33', 'stable'),
+                                      ('update', '156.0.4314.84', 'extended_stable'),
+                                      ('more', None, 'unknown')]:
+            row = by_key[key]
+            for snapshot in (row, row['revisions'][-1]):
+                self.assertEqual((version, channel), (snapshot['version'], snapshot['channel']))
+        _, again = self.collect(s, mapping, cutoff='2026-11-20T00:00:00Z')
+        self.assertEqual(rows, again)
+
+    def test_vivaldi_snapshot_build_comes_from_the_release_title(self):
+        for sid, title, build in [
+            ('vivaldi-desktop', 'Ad Blocker and Extension fixes — Desktop Snapshot 4238.3', '4238.3'),
+            ('vivaldi-ios', 'iPhone duo support – Vivaldi iOS Browser snapshot 4236.3 | Vivaldi Browser', '4236.3'),
+        ]:
+            with self.subTest(source=sid):
+                s = source(sid)
+                url = s['url'] + 'release/'
+                html = f'<title>{title}</title><div class="entry-content"><h2>Changelog</h2><p id="kagi">Add Kagi search.</p></div>'
+                mapping = {s['url']: self.index(s, [url]), url: response(url, html)}
+                _, rows = self.collect(s, mapping)
+                row, = rows
+                for snapshot in (row, row['revisions'][-1]):
+                    self.assertEqual((build, 'snapshot'), (snapshot['version'], snapshot['channel']))
+                _, again = self.collect(s, mapping)
+                self.assertEqual(rows, again)
+
     def test_safari_every_topic_every_item_including_unknown(self):
         s = source('safari-release-notes')
         base = 'https://developer.apple.com/tutorials/data/documentation/safari-release-notes'
