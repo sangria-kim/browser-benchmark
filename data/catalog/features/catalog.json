@@ -70877,6 +70877,51 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-aef9c320d009c4d6dc6f28e4",
+    "browser": "opera",
+    "canonical_key": "opera-start-page-google-lens",
+    "title": "시작 페이지에서 Google Lens로 이미지 검색",
+    "aliases": [],
+    "source_item_ids": [
+      "src-5233ae5daa61bd68f55bc1a0",
+      "src-5f44a2fe82a52074060c25b0",
+      "src-c1bf78ddb2ef39f383b39c54"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-18T23:38:06.026986+00:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-08-06T07:42:25+00:00",
+      "precision": "timestamp",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-5233ae5daa61bd68f55bc1a0": [
+        "sr-d80a899781490e5630ed3645"
+      ],
+      "src-5f44a2fe82a52074060c25b0": [
+        "sr-d06dcd6a8676cb593ba5bbdb"
+      ],
+      "src-c1bf78ddb2ef39f383b39c54": [
+        "sr-d77a7ac65832309ec7d2703b"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-d06dcd6a8676cb593ba5bbdb": "Added Google Lens on the Start Page, with a dedicated dialog, file upload, image pasting, and image search via URL",
+      "sr-d77a7ac65832309ec7d2703b": "brings Vertical Tabs and Google Lens to everyone.",
+      "sr-d80a899781490e5630ed3645": "Google Lens image search from the Start Page is now available for everyone. You can search using a URL, an uploaded file, or a pasted image"
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-aefc29e0dd1d0d245b587e6a",
     "browser": "chrome",
     "canonical_key": "chromestatus:6265214410424320",
