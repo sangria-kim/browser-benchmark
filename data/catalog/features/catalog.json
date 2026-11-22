@@ -8287,6 +8287,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-0fdd4b8e7175ae241fb9e75d",
+    "browser": "edge",
+    "canonical_key": "edge-select-password-context-menu",
+    "title": "입력란 메뉴에서 저장된 비밀번호 선택",
+    "aliases": [],
+    "source_item_ids": [
+      "src-e101bd34209a3a570c123fd2"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-e101bd34209a3a570c123fd2": [
+        "sr-f93230fce499e3e1111fcae4"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-f93230fce499e3e1111fcae4": "Select Password from the context menu. Users can now manually access saved credentials when password suggestions don't appear automatically. When a user right-clicks a recognized username or password field, a new Select Password option appears in the context menu. From there, users with saved credentials can: Search saved credentials by domain or username Fill credentials directly into the selected field View credential details after completing OS authentication Manage saved passwords through existing Edge Password Manager surfaces This provides a reliable fallback path for sign-in scenarios where autofill suggestions are not surfaced, reducing the need for users to copy credentials manually. No configuration is required, and existing password management policies continue to apply."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-10169d4c711d5785af70cb67",
     "browser": "chrome",
     "canonical_key": "chromestatus:5133150283890688",
@@ -13061,6 +13096,38 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-1cde5c64347d93670b9b4eb4",
+    "browser": "edge",
+    "canonical_key": "edge-policy-remix-bulk-extraction-allowed",
+    "title": "관리자가 맞춤 Remix의 일괄 추출 허용 제어",
+    "aliases": [],
+    "source_item_ids": [
+      "src-51bf62c370a3603926b1522f"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-51bf62c370a3603926b1522f": [
+        "sr-0d6b72e5a6d5c69b5c26a398"
+      ]
     }
   },
   {
@@ -19939,6 +20006,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-2e41ee79267da218cda33578",
+    "browser": "edge",
+    "canonical_key": "edge-keep-window-after-last-tab",
+    "title": "마지막 탭을 닫아도 Edge 창 유지",
+    "aliases": [],
+    "source_item_ids": [
+      "src-bc3aec9ff4bb2620a2e2c64b"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-bc3aec9ff4bb2620a2e2c64b": [
+        "sr-ce96b5273ed3bc9634ef5482"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ce96b5273ed3bc9634ef5482": "Prevent closure of the browser when closing last tab. When all tabs are closed, Microsoft Edge will ask whether to continue using the browser after closing the last tab. This will keep the browser open when user closes their last tab, so they have an option to resume or start a new browsing task without launching the browser again. Users can manage the experience through the “Keep the Edge window open when closing the last tab” setting under edge://settings/appearance/browserBehavior or admins can control availability to this feature using the SpawnNtpOnLastTabCloseEnabled policy."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-2e42446af50f4d3c02d9c2f4",
     "browser": "chrome",
     "canonical_key": "chromestatus:5119701235531776",
@@ -19989,6 +20091,38 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-2e8466e31df9f1365edb2259",
+    "browser": "edge",
+    "canonical_key": "edge-policy-remix-domain-blocklist",
+    "title": "관리자가 지정 도메인의 Remix 차단",
+    "aliases": [],
+    "source_item_ids": [
+      "src-0200a20045686e58191c3dcc"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-0200a20045686e58191c3dcc": [
+        "sr-72430412ddd308f4577d3a5c"
+      ]
     }
   },
   {
@@ -33266,6 +33400,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-4ff95e5abb8271beb513bce3",
+    "browser": "edge",
+    "canonical_key": "edge-pdf-mip-sensitivity-label-view",
+    "title": "보호된 PDF의 민감도 라벨 보기",
+    "aliases": [],
+    "source_item_ids": [
+      "src-17daf3c75281bba992001e98"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-17daf3c75281bba992001e98": [
+        "sr-ab1fc67ab4ff9a2b736f087d"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ab1fc67ab4ff9a2b736f087d": "Adding support for viewing Sensitivity labels applied to a Microsoft Information Protection (MIP) Protected PDF. Enterprise customers can view sensitivity labels applied to MIP protected PDF to be well informed of the data classification to enable them to handle such sensitive documents."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-4ffb5fb7b4ba02657d0b2c04",
     "browser": "chrome",
     "canonical_key": "chromestatus:5147683423256576",
@@ -33839,6 +34008,38 @@
       "current_revision": null,
       "change": null,
       "reason": "Official public enterprise-feature update; timezone-unspecified API timestamp retains its printed day."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-512bf1aa7fff36416735a4e2",
+    "browser": "edge",
+    "canonical_key": "edge-policy-remix-custom-remixes-allowed",
+    "title": "관리자가 맞춤 Remix 허용 제어",
+    "aliases": [],
+    "source_item_ids": [
+      "src-07b5e3184e42fc3c6df27d6d"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-07b5e3184e42fc3c6df27d6d": [
+        "sr-70f7c00cb45eb1ffdd3f70c4"
+      ]
     }
   },
   {
@@ -34434,6 +34635,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-52978585e8f80e3de853dad5",
+    "browser": "edge",
+    "canonical_key": "edge-strong-password-suggestion-dialog",
+    "title": "강력한 비밀번호 제안 대화상자 개선",
+    "aliases": [],
+    "source_item_ids": [
+      "src-08adfb208c30434ce0f81351"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-08adfb208c30434ce0f81351": [
+        "sr-f6d1c74447ee2f0c9a9e213a"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-f6d1c74447ee2f0c9a9e213a": "Improved Strong Password Suggestions. The password-generation experience has been improved with a redesigned dialog that makes strong passwords easier to accept during signup and password changes. The update introduces clearer actions, pre-fills suggested passwords and removes the password-strength indicator while preserving existing sign-in eligibility, password-saving behavior, and enterprise policy controls. Administrators can manage availability through the existing PasswordGeneratorEnabled policy. Note: This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout."
     }
   },
   {
@@ -63261,6 +63497,38 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-9cc5048791e2da3789639e5b",
+    "browser": "edge",
+    "canonical_key": "edge-default-blue-theme",
+    "title": "기본 파란색 테마 선택",
+    "aliases": [],
+    "source_item_ids": [
+      "src-919fe84acdfb28eb3687db85"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-919fe84acdfb28eb3687db85": [
+        "sr-9edd0b4c7ef54778d1392c08"
+      ]
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-9cd0eaf9304ff457d8bbcf37",
     "browser": "chrome",
     "canonical_key": "chrome-enterprise:5098659364601856",
@@ -66918,6 +67186,38 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-a5b2de2ea354c75a3a1ac9d5",
+    "browser": "edge",
+    "canonical_key": "edge-policy-enable-proxy-overrides-unaffiliated-users",
+    "title": "관리 브라우저의 비소속 사용자에게 프록시 재정의 정책 적용",
+    "aliases": [],
+    "source_item_ids": [
+      "src-e7f3fc3350a137bb9ee4aadd"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-e7f3fc3350a137bb9ee4aadd": [
+        "sr-978cda1fd13012adf0a40d4d"
+      ]
     }
   },
   {
@@ -96254,6 +96554,38 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-ec614dd87e075ae3215148d4",
+    "browser": "edge",
+    "canonical_key": "edge-policy-profile-picker-availability",
+    "title": "관리자가 프로필 선택기 노출 제어",
+    "aliases": [],
+    "source_item_ids": [
+      "src-4317ce0be7f985aa5ce57ac2"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-01-01",
+      "cutoff": "2026-11-21T23:00:00Z",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-4317ce0be7f985aa5ce57ac2": [
+        "sr-903f16710f43c74d0a677b30"
+      ]
     }
   },
   {
