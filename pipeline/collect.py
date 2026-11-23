@@ -71,7 +71,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             state = dict(repository=str(root), cutoff=cutoff, origin=origin,
                          sources=[s['source_id'] for s in sources], workspace_id=uuid.uuid4().hex)
             if daily_status:
-                receipt(cutoff, None)
+                receipt(cutoff, None, None)
                 if origin != 'daily':
                     raise ValueError('Daily status requires daily origin')
                 enabled, _ = registered_sources(root, None)
@@ -162,7 +162,7 @@ def mark_incomplete(repository, private_dir):
             raise ValueError('No unfinished daily status run')
         verify_workspace(work, state)
         changes, before = {}, {}
-        add_receipt(root, changes, before, state['cutoff'], None)
+        add_receipt(root, changes, before, state['cutoff'], None, None)
         if changes:
             store_changes(root, private / 'status-transaction', changes, before, writer)
 
@@ -244,6 +244,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         features = {(row['browser'], row['canonical_key']): row for row in catalog}
         existing_features = set(features)
         changed_features = set()
+        collected_features = set()
         unpinned_owners = defaultdict(list)
         for feature in catalog:
             for ident in feature['source_item_ids']:
@@ -298,6 +299,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                         raise ValueError('The evidence_quote must be a passage of up to 1200 characters from this item')
                     key = (row['browser'], choice['canonical_key'])
                     if daily_status:
+                        fid = feature_identity(*key)
+                        collected_features.add(fid)
                         kind = choice['change_kind']
                         if kind == 'evidence_only' and key not in existing_features:
                             raise ValueError('Evidence-only decisions require an existing feature')
@@ -306,7 +309,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                                             and not prior_links and prior is not None
                                             and prior['revisions'][-1]['revision_id'] == revision)
                         if kind == 'product_change' and revision not in prior_links and not same_legacy_link:
-                            changed_features.add(feature_identity(*key))
+                            changed_features.add(fid)
                     if key not in features:
                         feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
                             canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
@@ -329,7 +332,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             changes = {path: [rows[k] for k in sorted(rows)] for path, rows in changes.items()}
             changes[catalog_path] = sorted(catalog, key=lambda row: row['feature_id'])
         if daily_status:
-            add_receipt(root, changes, before, state['cutoff'], len(changed_features))
+            add_receipt(root, changes, before, state['cutoff'], len(changed_features), len(collected_features))
         state.update(status='saving', decisions=signature, saved_items=len(decisions))
         durable(state_path, encoded(state))
         store_changes(root, txn, changes, before, writer)

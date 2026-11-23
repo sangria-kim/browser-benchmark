@@ -14,25 +14,32 @@ def status_path(path):
     return bool(re.fullmatch(r'data/daily-status/\d{4}-\d{2}-\d{2}\.json', path))
 
 
-def receipt(cutoff, count):
+def receipt(cutoff, count, collected_count):
     local = instant(cutoff).astimezone(KST)
     if local.time() != time(8):
         raise ValueError('Daily status requires the 08:00 Asia/Seoul cutoff')
     day = local.date().isoformat()
     return f'{FOLDER}/{day}.json', dict(date=day, cutoff=local.isoformat(),
                                        status='incomplete' if count is None else 'complete',
-                                       change_count=count)
+                                       collected_feature_count=collected_count, change_count=count)
 
 
 def validate_receipt(path, value):
-    if not isinstance(value, dict) or set(value) != {'date', 'cutoff', 'status', 'change_count'}:
+    fields = {'date', 'cutoff', 'status', 'collected_feature_count', 'change_count'}
+    if not isinstance(value, dict) or set(value) != fields:
         raise ValueError('Invalid daily status fields')
     count = value['change_count']
     if count is not None and (type(count) is not int or count < 0):
         raise ValueError('Invalid daily change count')
+    collected = value['collected_feature_count']
+    if count is None:
+        if collected is not None:
+            raise ValueError('Incomplete daily status has no confirmed feature total')
+    elif type(collected) is not int or collected < count:
+        raise ValueError('Invalid collected feature count')
     if not isinstance(value['cutoff'], str):
         raise ValueError('Invalid daily cutoff')
-    expected_path, expected_value = receipt(value['cutoff'], count)
+    expected_path, expected_value = receipt(value['cutoff'], count, collected)
     if path != expected_path or value != expected_value:
         raise ValueError('Invalid daily status date, cutoff or state')
 
@@ -51,12 +58,12 @@ def validate_tree(root):
         validate_receipt(target.relative_to(root).as_posix(), json.loads(target.read_bytes()))
 
 
-def add_receipt(root, changes, before, cutoff, count):
+def add_receipt(root, changes, before, cutoff, count, collected_count):
     """An incomplete retry cannot downgrade an accepted receipt."""
     from pipeline.run_daily import digest
     from pipeline.collectors.browser.collector import json_bytes
 
-    rel, value = receipt(cutoff, count)
+    rel, value = receipt(cutoff, count, collected_count)
     target = root / rel
     if target.is_symlink() or target.parent.is_symlink() or root not in target.resolve().parents:
         raise ValueError('Unsafe daily status target')

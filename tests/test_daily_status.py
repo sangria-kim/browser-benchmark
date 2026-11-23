@@ -82,7 +82,7 @@ class StatusTests(unittest.TestCase):
         self.assertFalse(self.status.exists())
         self.assertEqual(0, self.save([]))
         self.assertEqual(dict(date='2026-11-17', cutoff='2026-11-17T08:00:00+09:00',
-                              status='complete', change_count=0), json.loads(self.status.read_bytes()))
+                              status='complete', collected_feature_count=0, change_count=0), json.loads(self.status.read_bytes()))
         validate_tree(self.root)
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
 
@@ -92,7 +92,8 @@ class StatusTests(unittest.TestCase):
         self.assertGreaterEqual(len(classified['dispositions']), 2)
         self.assertTrue(all(row['disposition'] == 'excluded' for row in classified['dispositions']))
         collect.save_features(self.root, self.run, classified)
-        self.assertEqual(0, json.loads(self.status.read_bytes())['change_count'])
+        record = json.loads(self.status.read_bytes())
+        self.assertEqual((0, 0), (record['collected_feature_count'], record['change_count']))
 
     def test_omission_blocks_both_zero_and_partial_positive_results(self):
         self.scan()
@@ -109,7 +110,9 @@ class StatusTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'decisions and dispositions'):
             collect.save_features(self.root, self.run, [])
         collect.mark_incomplete(self.root, self.run)
-        self.assertIsNone(json.loads(self.status.read_bytes())['change_count'])
+        record = json.loads(self.status.read_bytes())
+        self.assertIsNone(record['change_count'])
+        self.assertIsNone(record['collected_feature_count'])
 
     def test_unresolved_stale_or_mismatched_dispositions_cannot_certify(self):
         self.scan()
@@ -140,7 +143,9 @@ class StatusTests(unittest.TestCase):
         self.configure({'firefox-beta', 'firefox-ios'})
         self.assertFalse(self.scan(incomplete_source='firefox-ios')['complete'])
         collect.mark_incomplete(self.root, self.run)
-        self.assertIsNone(json.loads(self.status.read_bytes())['change_count'])
+        record = json.loads(self.status.read_bytes())
+        self.assertIsNone(record['change_count'])
+        self.assertIsNone(record['collected_feature_count'])
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
 
     def test_two_citations_for_one_feature_count_once(self):
@@ -148,7 +153,8 @@ class StatusTests(unittest.TestCase):
         choices = self.decisions()
         self.assertEqual(2, len(choices))
         self.assertEqual(2, self.save(choices))
-        self.assertEqual(1, json.loads(self.status.read_bytes())['change_count'])
+        record = json.loads(self.status.read_bytes())
+        self.assertEqual((1, 1), (record['collected_feature_count'], record['change_count']))
         catalog, = json.loads((self.root / collect.FEATURE_CATALOG).read_bytes())
         self.assertEqual(2, len(catalog['source_item_ids']))
 
@@ -162,7 +168,23 @@ class StatusTests(unittest.TestCase):
         choice = self.decisions('evidence_only')
         self.assertTrue(choice)
         self.save(choice)
-        self.assertEqual(0, json.loads((self.root / 'data/daily-status/2026-11-18.json').read_bytes())['change_count'])
+        record = json.loads((self.root / 'data/daily-status/2026-11-18.json').read_bytes())
+        self.assertEqual((1, 0), (record['collected_feature_count'], record['change_count']))
+
+    def test_daily_total_combines_one_changed_feature_and_one_evidence_update(self):
+        self.scan()
+        self.save(self.decisions()[:1])
+        self.run = self.dir / 'mixed'
+        self.body = self.body.replace('Tab grouping added.', 'Updated tab grouping guide.')
+        self.body = self.body.replace('Tab grouping now available.', 'Tab grouping supports shortcuts.')
+        self.scan(cutoff='2026-11-17T23:00:00Z')
+        choices = self.decisions('evidence_only')
+        self.assertEqual(2, len(choices))
+        choices[1].update(canonical_key='another-feature', title='Another feature',
+                          change_kind='product_change')
+        self.save(choices)
+        record = json.loads((self.root / 'data/daily-status/2026-11-18.json').read_bytes())
+        self.assertEqual((2, 1), (record['collected_feature_count'], record['change_count']))
 
     def test_same_cutoff_with_different_feature_and_same_count_is_rejected(self):
         self.scan()
@@ -221,7 +243,8 @@ class StatusTests(unittest.TestCase):
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
         self.assertFalse((self.root / 'data/source-items/firefox/firefox-beta.json').exists())
         self.save(self.decisions())
-        self.assertEqual(1, json.loads(self.status.read_bytes())['change_count'])
+        record = json.loads(self.status.read_bytes())
+        self.assertEqual((1, 1), (record['collected_feature_count'], record['change_count']))
 
     def test_catalog_drift_does_not_silently_certify_zero(self):
         self.scan()
@@ -252,9 +275,15 @@ class StatusTests(unittest.TestCase):
 
     def test_receipt_contract_rejects_invalid_state_count_and_day(self):
         valid = dict(date='2026-11-17', cutoff='2026-11-17T08:00:00+09:00',
-                     status='complete', change_count=0)
+                     status='complete', collected_feature_count=0, change_count=0)
         validate_receipt(REL, valid)
+        incomplete = dict(valid, status='incomplete', collected_feature_count=None, change_count=None)
+        validate_receipt(REL, incomplete)
+        missing_total = {key: val for key, val in valid.items() if key != 'collected_feature_count'}
         for invalid in [dict(valid, change_count=True), dict(valid, status='incomplete'),
+                        missing_total, dict(valid, collected_feature_count=True),
+                        dict(valid, collected_feature_count=-1), dict(valid, collected_feature_count=None),
+                        dict(valid, change_count=1), dict(incomplete, collected_feature_count=1),
                         dict(valid, cutoff='2026-11-17T08:00:00Z'),
                         dict(valid, date='2026-11-16'), dict(valid, diagnostic='private')]:
             with self.assertRaises(ValueError):
