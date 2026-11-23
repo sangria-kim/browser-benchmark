@@ -110,6 +110,19 @@ class StatusTests(unittest.TestCase):
         collect.save_features(self.root, self.run, choice)
         self.assertEqual(0, json.loads((self.root / 'data/daily-status/2026-11-18.json').read_bytes())['change_count'])
 
+    def test_same_cutoff_with_different_feature_and_same_count_is_rejected(self):
+        self.scan()
+        collect.save_features(self.root, self.run, self.decisions())
+        catalog = self.root / collect.FEATURE_CATALOG
+        prior = catalog.read_bytes(), self.status.read_bytes()
+        self.run = self.dir / 'same-cutoff-different-feature'
+        self.scan()
+        new = [dict(choice, canonical_key='another-feature', title='Another feature')
+               for choice in self.decisions()]
+        with self.assertRaisesRegex(ValueError, 'after the daily status is complete'):
+            collect.save_features(self.root, self.run, new)
+        self.assertEqual(prior, (catalog.read_bytes(), self.status.read_bytes()))
+
     def test_wrong_scope_or_altered_candidates_never_certify_zero(self):
         with self.assertRaisesRegex(ValueError, 'daily origin'):
             self.scan(origin='backfill')

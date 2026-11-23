@@ -54,6 +54,7 @@ def validate_tree(root):
 def add_receipt(root, changes, before, cutoff, count):
     """An incomplete retry cannot downgrade an accepted receipt."""
     from pipeline.run_daily import digest
+    from pipeline.collectors.browser.collector import json_bytes
 
     rel, value = receipt(cutoff, count)
     target = root / rel
@@ -64,8 +65,9 @@ def add_receipt(root, changes, before, cutoff, count):
         previous = json.loads(raw)
         validate_receipt(rel, previous)
         if previous['status'] == 'complete':
-            if count is not None and previous != value:
-                raise ValueError('Cannot replace a completed daily status with another count')
+            if count is not None and (previous != value or any(
+                    digest(json_bytes(rows)) != before[name] for name, rows in changes.items())):
+                raise ValueError('Cannot change data after the daily status is complete')
             return
     before[rel] = digest(raw) if raw is not None else None
     changes[rel] = value
