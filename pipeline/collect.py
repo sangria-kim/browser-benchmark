@@ -12,7 +12,7 @@ import uuid
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
-from pipeline.daily_status import add_receipt, receipt
+from pipeline.daily_status import add_receipt, classified_decisions, receipt
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant
@@ -171,8 +171,6 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
     """Close a classified run after its evidence and catalog are durable."""
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
     require_external(root, private)
-    if not isinstance(decisions, list):
-        raise ValueError('Expected a list of classified features')
     sources, _ = registered_sources(root, None)
     catalog_path = FEATURE_CATALOG
     state_path, work = private / 'feature-run.json', private / 'work'
@@ -183,6 +181,9 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         state = read(state_path)
         if state['repository'] != str(root) or work.is_symlink():
             raise ValueError('Invalid collection workspace')
+        daily_status = 'daily_status' in state
+        if not daily_status and not isinstance(decisions, list):
+            raise ValueError('Expected a list of classified features')
         signature = digest(encoded(decisions))
         txn = work / 'transaction'
         if state['status'] == 'saved':
@@ -198,16 +199,26 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             return finish_run(state_path, work, state, signature)
         if state['status'] not in ('complete', 'partial', 'saving') or not (state['complete'] or allow_partial):
             raise ValueError('Finish collection or explicitly accept partial coverage')
-        daily_status = 'daily_status' in state
         if daily_status:
             if allow_partial or not full_status_coverage(state):
                 raise ValueError('Daily status requires all pinned sources; use --record-incomplete')
             check_status_inputs(root, state)
+            inventory = set()
             for source in sources:
                 rel = source_path(source)
                 path = work / 'candidates' / rel.name
-                if path.is_symlink() or file_digest(path) != state['observed'][source['source_id']]:
+                sid = source['source_id']
+                if path.is_symlink() or not path.is_file():
+                    raise ValueError('Private candidates are missing or unsafe')
+                raw = path.read_bytes()
+                if digest(raw) != state['observed'][sid]:
                     raise ValueError('Private candidates differ from the collected content')
+                for row in json.loads(raw):
+                    key = (sid, row['source_item_id'], row['revisions'][-1]['revision_id'])
+                    if row['source_id'] != sid or key in inventory:
+                        raise ValueError('Private candidate identity mismatch')
+                    inventory.add(key)
+            decisions = classified_decisions(decisions, inventory)
         observed = state['observed']
         requested = {}
         for choice in decisions:

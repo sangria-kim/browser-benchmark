@@ -60,7 +60,9 @@ python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
   --save-features "$PRIVATE_STATE/$RUN_ID/features.json"
 ```
 
-분류를 끝내고 회귀 및 저장 경로 검증을 통과한 뒤 저장합니다. 이 모드의 분류 항목에 `change_kind`를 지정합니다. 실제 기능 추가·변경에는 `product_change`를 쓰고, 기능이 동일한 기존 항목의 공식 근거만 보강할 때는 `evidence_only`를 씁니다. 소스 본문이나 링크 변경만으로는 기능 변경이 아닙니다. 모든 후보 검토를 완료했고 저장할 항목이 없을 때만 빈 배열을 사용합니다. 기능 변경 수는 분류행 수가 아닙니다.
+분류를 끝내고 회귀 및 저장 경로 검증을 통과한 뒤 저장합니다. 이 모드의 분류 항목에 `change_kind`를 지정합니다. 실제 기능 추가·변경에는 `product_change`를 쓰고, 기능이 동일한 기존 항목의 공식 근거만 보강할 때는 `evidence_only`를 씁니다. 소스 본문이나 링크 변경만으로는 기능 변경이 아닙니다. 기능 변경 수는 분류행 수가 아닙니다.
+
+이 모드의 비공개 분류 파일은 `decisions`와 `dispositions` 배열을 갖는 객체입니다. `decisions`에는 위 기능 분류와 `change_kind`를 사용합니다. `dispositions`에는 각 후보의 `source_id`, `source_item_id`, 최신 `revision_id`, `disposition`을 한 번씩 기록합니다. 결과는 `selected`, `excluded`, `unchanged` 중 하나입니다. `selected`인 후보만 기능 분류 행과 연결됩니다. 판정이 없거나 미해결인 후보가 하나라도 있으면 완료로 저장하지 않습니다. 후보가 있지만 모두 제외하면 `decisions`만 빈 배열입니다. 두 배열이 모두 비는 경우는 후보가 없는 날뿐입니다. 일반 수집의 기존 배열 형식은 그대로입니다.
 
 활성 출처 전체를 확인하지 못했거나 검증을 마치지 못했으면 `--save-features` 대신 같은 실행에 `--record-incomplete`를 사용합니다. 이 단계는 상태 파일만 쓰고 후보를 보존합니다. `--allow-partial`로 완료 상태를 쓸 수 없습니다. 같은 날짜의 완료 상태는 미완료 재시도로 후퇴하지 않습니다. 완료본이 있으면 같은 날짜의 재실행은 기능 변경이나 건수 변경을 덮어쓰지 않습니다.
 

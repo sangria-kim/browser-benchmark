@@ -73,5 +73,42 @@ def add_receipt(root, changes, before, cutoff, count):
     changes[rel] = value
 
 
+def classified_decisions(classification, inventory):
+    """Require a final disposition for each exact observed candidate revision."""
+    if (not isinstance(classification, dict) or set(classification) != {'decisions', 'dispositions'}
+            or not all(isinstance(value, list) for value in classification.values())):
+        raise ValueError('Daily classification requires private decisions and dispositions arrays')
+
+    dispositions = {}
+    fields = ('source_id', 'source_item_id', 'revision_id')
+    for row in classification['dispositions']:
+        if not isinstance(row, dict) or set(row) != {*fields, 'disposition'}:
+            raise ValueError('Invalid daily candidate disposition fields')
+        if not all(isinstance(row[k], str) and row[k] for k in fields):
+            raise ValueError('Daily candidate disposition requires exact source, item and revision IDs')
+        key = tuple(row[k] for k in fields)
+        if key not in inventory or key in dispositions:
+            raise ValueError('Unknown or repeated daily candidate disposition')
+        kind = row['disposition']
+        if kind not in ('selected', 'excluded', 'unchanged'):
+            raise ValueError('Daily candidate disposition is not final')
+        dispositions[key] = kind
+    if dispositions.keys() != inventory:
+        raise ValueError('Daily classification does not cover all observed candidates')
+
+    eligible = {(item, revision) for _, item, revision in inventory}
+    selected = {(item, revision) for (_, item, revision), value in dispositions.items() if value == 'selected'}
+    if len(eligible) != len(inventory):
+        raise ValueError('Daily candidate identities are ambiguous')
+    included = set()
+    for row in classification['decisions']:
+        if not isinstance(row, dict) or not all(isinstance(row.get(k), str) and row[k] for k in fields[1:]):
+            raise ValueError('Invalid daily feature decision identity')
+        included.add((row['source_item_id'], row['revision_id']))
+    if included != selected:
+        raise ValueError('Daily decisions must match the selected candidate dispositions')
+    return classification['decisions']
+
+
 if __name__ == '__main__':
     validate_tree(Path(__file__).resolve().parents[1])

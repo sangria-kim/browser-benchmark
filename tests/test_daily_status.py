@@ -40,12 +40,12 @@ class StatusTests(unittest.TestCase):
             source['enabled'] = source['source_id'] in enabled | set(others.values())
         self.registry.write_text(json.dumps(data))
 
-    def scan(self, cutoff=CUTOFF, incomplete_source=None, **options):
+    def scan(self, cutoff=CUTOFF, incomplete_source=None, empty_inventory=False, **options):
         real_collect = BrowserCollector.collect
 
         def synthetic_coverage(collector, source, boundary, since, origin):
             sid = source['source_id']
-            if sid == 'firefox-beta':
+            if sid == 'firefox-beta' and not empty_inventory:
                 return real_collect(collector, source, boundary, since, origin)
             collector.parsed_ids = set()
             return dict(source_id=sid, cutoff=boundary,
@@ -62,20 +62,74 @@ class StatusTests(unittest.TestCase):
                      canonical_key='tab-groups', title='Tab groups', change_kind=kind)
                 for row in rows if row['item_key'] in ('feature-a', 'feature-b')]
 
+    def classification(self, decisions):
+        selected = {(row['source_item_id'], row['revision_id']) for row in decisions}
+        dispositions = []
+        for f in sorted((self.run / 'work/candidates').glob('*.json')):
+            for row in json.loads(f.read_bytes()):
+                item = row['source_item_id']
+                version = row['revisions'][-1]['revision_id']
+                dispositions.append(dict(source_id=row['source_id'], source_item_id=item,
+                    revision_id=version, disposition='selected' if (item, version) in selected else 'excluded'))
+        return dict(decisions=decisions, dispositions=dispositions)
+
+    def save(self, decisions, **options):
+        return collect.save_features(self.root, self.run, self.classification(decisions), **options)
+
     def test_confirmed_empty_collection_creates_valid_zero(self):
-        self.assertTrue(self.scan()['complete'])
+        self.assertTrue(self.scan(empty_inventory=True)['complete'])
+        self.assertEqual([], self.classification([])['dispositions'])
         self.assertFalse(self.status.exists())
-        self.assertEqual(0, collect.save_features(self.root, self.run, []))
+        self.assertEqual(0, self.save([]))
         self.assertEqual(dict(date='2026-11-17', cutoff='2026-11-17T08:00:00+09:00',
                               status='complete', change_count=0), json.loads(self.status.read_bytes()))
         validate_tree(self.root)
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
 
+    def test_all_candidates_explicitly_excluded_certifies_zero(self):
+        self.scan()
+        classified = self.classification([])
+        self.assertGreaterEqual(len(classified['dispositions']), 2)
+        self.assertTrue(all(row['disposition'] == 'excluded' for row in classified['dispositions']))
+        collect.save_features(self.root, self.run, classified)
+        self.assertEqual(0, json.loads(self.status.read_bytes())['change_count'])
+
+    def test_omission_blocks_both_zero_and_partial_positive_results(self):
+        self.scan()
+        decisions = self.decisions()
+        self.assertEqual(2, len(decisions))
+        for choices in ([], decisions[:1]):
+            classification = self.classification(choices)
+            classification['dispositions'] = [row for row in classification['dispositions']
+                if row['source_item_id'] != decisions[-1]['source_item_id']]
+            with self.assertRaisesRegex(ValueError, 'does not cover all'):
+                collect.save_features(self.root, self.run, classification)
+            self.assertFalse(self.status.exists())
+            self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
+        with self.assertRaisesRegex(ValueError, 'decisions and dispositions'):
+            collect.save_features(self.root, self.run, [])
+        collect.mark_incomplete(self.root, self.run)
+        self.assertIsNone(json.loads(self.status.read_bytes())['change_count'])
+
+    def test_unresolved_stale_or_mismatched_dispositions_cannot_certify(self):
+        self.scan()
+        for field, value, error in [
+            ('disposition', 'unresolved', 'not final'),
+            ('disposition', 'selected', 'must match'),
+            ('revision_id', 'stale', 'Unknown or repeated'),
+            ('source_id', 'edge-beta', 'Unknown or repeated'),
+        ]:
+            classification = self.classification([])
+            classification['dispositions'][0][field] = value
+            with self.assertRaisesRegex(ValueError, error):
+                collect.save_features(self.root, self.run, classification)
+            self.assertFalse(self.status.exists())
+
     def test_complete_subset_is_not_a_complete_day(self):
         self.configure({'firefox-beta', 'firefox-ios'})
         self.assertTrue(self.scan(source_ids=['firefox-beta'])['complete'])
         with self.assertRaisesRegex(ValueError, 'all pinned sources'):
-            collect.save_features(self.root, self.run, [], allow_partial=True)
+            self.save([], allow_partial=True)
         collect.mark_incomplete(self.root, self.run)
         record = json.loads(self.status.read_bytes())
         self.assertEqual(('incomplete', None), (record['status'], record['change_count']))
@@ -93,26 +147,26 @@ class StatusTests(unittest.TestCase):
         self.scan()
         choices = self.decisions()
         self.assertEqual(2, len(choices))
-        self.assertEqual(2, collect.save_features(self.root, self.run, choices))
+        self.assertEqual(2, self.save(choices))
         self.assertEqual(1, json.loads(self.status.read_bytes())['change_count'])
         catalog, = json.loads((self.root / collect.FEATURE_CATALOG).read_bytes())
         self.assertEqual(2, len(catalog['source_item_ids']))
 
     def test_evidence_only_for_an_existing_feature_counts_zero(self):
         self.scan()
-        collect.save_features(self.root, self.run, self.decisions())
+        self.save(self.decisions())
         self.run = self.dir / 'next'
         self.body = self.body.replace('Tab grouping now available.', 'Updated grouping help link.')
         next_cutoff = '2026-11-17T23:00:00Z'
         self.scan(cutoff=next_cutoff)
         choice = self.decisions('evidence_only')
         self.assertTrue(choice)
-        collect.save_features(self.root, self.run, choice)
+        self.save(choice)
         self.assertEqual(0, json.loads((self.root / 'data/daily-status/2026-11-18.json').read_bytes())['change_count'])
 
     def test_same_cutoff_with_different_feature_and_same_count_is_rejected(self):
         self.scan()
-        collect.save_features(self.root, self.run, self.decisions())
+        self.save(self.decisions())
         catalog = self.root / collect.FEATURE_CATALOG
         prior = catalog.read_bytes(), self.status.read_bytes()
         self.run = self.dir / 'same-cutoff-different-feature'
@@ -120,7 +174,7 @@ class StatusTests(unittest.TestCase):
         new = [dict(choice, canonical_key='another-feature', title='Another feature')
                for choice in self.decisions()]
         with self.assertRaisesRegex(ValueError, 'after the daily status is complete'):
-            collect.save_features(self.root, self.run, new)
+            self.save(new)
         self.assertEqual(prior, (catalog.read_bytes(), self.status.read_bytes()))
 
     def test_wrong_scope_or_altered_candidates_never_certify_zero(self):
@@ -130,20 +184,20 @@ class StatusTests(unittest.TestCase):
         candidates = self.run / 'work/candidates/firefox-beta.json'
         candidates.write_text('[]')
         with self.assertRaisesRegex(ValueError, 'candidates differ'):
-            collect.save_features(self.root, self.run, [])
+            self.save([])
         self.assertFalse(self.status.exists())
 
     def test_registry_changes_invalidate_the_pinned_coverage(self):
         self.scan()
         self.configure({'firefox-beta', 'firefox-ios'})
         with self.assertRaisesRegex(ValueError, 'baseline changed'):
-            collect.save_features(self.root, self.run, [])
+            self.save([])
         self.assertFalse(self.status.exists())
 
     def test_incomplete_can_recover_but_cannot_downgrade_complete(self):
         self.scan()
         collect.mark_incomplete(self.root, self.run)
-        collect.save_features(self.root, self.run, [])
+        self.save([])
         complete = self.status.read_bytes()
         self.run = self.dir / 'same-day-retry'
         self.scan()
@@ -162,11 +216,11 @@ class StatusTests(unittest.TestCase):
             return original(root, txn, changes, before, writer, replace=fail_after_status)
 
         with patch.object(collect, 'store_changes', inject), self.assertRaises(OSError):
-            collect.save_features(self.root, self.run, self.decisions())
+            self.save(self.decisions())
         self.assertFalse(self.status.exists())
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
         self.assertFalse((self.root / 'data/source-items/firefox/firefox-beta.json').exists())
-        collect.save_features(self.root, self.run, self.decisions())
+        self.save(self.decisions())
         self.assertEqual(1, json.loads(self.status.read_bytes())['change_count'])
 
     def test_catalog_drift_does_not_silently_certify_zero(self):
@@ -175,13 +229,13 @@ class StatusTests(unittest.TestCase):
         catalog.parent.mkdir(parents=True)
         catalog.write_text('[]')
         with self.assertRaisesRegex(ValueError, 'baseline changed'):
-            collect.save_features(self.root, self.run, [])
+            self.save([])
         self.assertFalse(self.status.exists())
 
     def test_misclassified_new_feature_cannot_be_saved_as_evidence_only(self):
         self.scan()
         with self.assertRaisesRegex(ValueError, 'existing feature'):
-            collect.save_features(self.root, self.run, self.decisions('evidence_only'))
+            self.save(self.decisions('evidence_only'))
         self.assertFalse(self.status.exists())
 
     def test_receipt_directory_must_not_be_a_symlink(self):
