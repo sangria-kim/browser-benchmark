@@ -47,3 +47,21 @@ python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
 이전 형식의 작업 디렉터리는 보존합니다. 이 명령으로 전환할 때는 새 실행 ID를 사용합니다. 기존 외부 스케줄러의 호출 인수는 운영 환경에서 맞춥니다. 저장 후에는 [저장소 PR 절차](../AGENTS.md)를 따릅니다.
 
 ChromeStatus의 예전 출처에는 당시 출시 단계와 플랫폼별 지원 버전이 빠져 있습니다. 수집기는 기존 설명과 일치하는 항목의 첫 관측값을 비공개 비교 기준으로 보관합니다. 이때 공개 기능 이력은 그대로 유지합니다. 이후 공식 출시 단계 또는 데스크톱·Android·iOS·WebView 지원 버전이 바뀌면 해당 근거를 분류 후보로 전달합니다. 수정 시각만 바뀌면 건너뜁니다. 일일 실행에는 같은 체크아웃과 같은 `$PRIVATE_STATE`를 사용합니다. 비교 기준은 이 경로의 `.browser-benchmark-comparison-<uid>/`에 있으며 실행별 원문 정리 후에도 유지됩니다.
+
+
+## 일일 수집 상태 파일
+
+신규 스케줄 연동 시 수집 명령에 `--daily-status`와 고정된 한국시간 오전 08:00 마감을 지정합니다. 동일 실행 재개에도 두 인수를 유지합니다. 기본 수집 및 기존 수동·백필 실행은 상태 파일을 만들지 않습니다.
+
+```sh
+python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
+  --cutoff "$CUTOFF" --daily-status
+python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
+  --save-features "$PRIVATE_STATE/$RUN_ID/features.json"
+```
+
+분류를 끝내고 회귀 및 저장 경로 검증을 통과한 뒤 저장합니다. 이 모드의 분류 항목에 `change_kind`를 지정합니다. 실제 기능 추가·변경에는 `product_change`를 쓰고, 기능이 동일한 기존 항목의 공식 근거만 보강할 때는 `evidence_only`를 씁니다. 소스 본문이나 링크 변경만으로는 기능 변경이 아닙니다. 모든 후보 검토를 완료했고 저장할 항목이 없을 때만 빈 배열을 사용합니다. 기능 변경 수는 분류행 수가 아닙니다.
+
+활성 출처 전체를 확인하지 못했거나 검증을 마치지 못했으면 `--save-features` 대신 같은 실행에 `--record-incomplete`를 사용합니다. 이 단계는 상태 파일만 쓰고 후보를 보존합니다. `--allow-partial`로 완료 상태를 쓸 수 없습니다. 같은 날짜의 완료 상태는 미완료 재시도로 후퇴하지 않습니다.
+
+변경이 있는 완료 상태는 기능·근거와 같은 작업 트리 트랜잭션에 저장됩니다. GitHub에는 같은 PR에 올립니다. 0건이면 상태 파일만 올릴 수 있습니다. 진단 로그는 공개하지 않습니다. CI는 `python -m pipeline.daily_status`로 상태 파일을 검증합니다.
