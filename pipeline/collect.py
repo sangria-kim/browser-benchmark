@@ -14,8 +14,8 @@ from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
 from pipeline.daily_status import add_receipt, classified_decisions, receipt
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
-from pipeline.run_daily import digest, durable, encoded, pending_recovery, read, require_external, run_lock, store_changes
-from pipeline.temporal import instant
+from pipeline.run_daily import digest, durable, encoded, git, pending_recovery, read, require_external, run_lock, store_changes
+from pipeline.temporal import instant, window_start
 from schemas.validate import load_config, validate_record, validate_transition
 
 
@@ -41,90 +41,134 @@ def file_digest(path):
 
 
 def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, transport=None,
-                    daily_status=False,
-                    origin='daily', resume=False, reviewed_attributions=None, brave_release_metadata=None):
-    """Keep every observed unit private until the collection agent classifies it."""
+                    daily_status=False, mode=None, since=None,
+                    origin=None, resume=False, reviewed_attributions=None, brave_release_metadata=None):
+    """Collect only into this run's private workspace, checkpointing each source."""
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
     require_external(root, private)
-    sources, since = registered_sources(root, source_ids)
     private.mkdir(mode=0o700, parents=True, exist_ok=True)
-    state_path = private / 'feature-run.json'
-    work = private / 'work'
+    state_path, work = private / 'feature-run.json', private / 'work'
     with run_lock(private), run_lock(root) as writer:
         pending_recovery(root, writer)
         if work.is_symlink() or state_path.is_symlink():
             raise ValueError('Invalid collection workspace')
         if resume:
             state = read(state_path)
-            if (state['repository'] != str(root) or state['status'] not in ('collecting', 'partial', 'complete')
+            if (state.get('run_id') != private.name or state['repository'] != str(root)
+                    or state['status'] not in ('collecting', 'partial', 'complete')
                     or source_ids and sorted(source_ids) != sorted(state['sources'])
-                    or cutoff and cutoff != state['cutoff']
+                    or cutoff and instant(cutoff) != instant(state['cutoff'])
+                    or mode and mode != state['mode'] or origin and origin != state['origin']
                     or daily_status != ('daily_status' in state)):
-                raise ValueError('Resume requires the same repository, sources and cutoff')
+                raise ValueError('Resume requires the same run, mode, origin, sources and cutoff')
             verify_workspace(work, state)
-            sources, since = registered_sources(root, state['sources'])
+            source_ids, cutoff, mode, origin = state['sources'], state['cutoff'], state['mode'], state['origin']
+            if since is None:
+                since = state['manual_since']
         else:
-            if state_path.exists() or work.exists() or work.is_symlink():
+            if state_path.exists() or work.exists():
                 raise ValueError('Use a new private run directory or resume the existing run')
             cutoff = cutoff or datetime.now(timezone.utc).isoformat()
-            instant(cutoff)
-            state = dict(repository=str(root), cutoff=cutoff, origin=origin,
-                         sources=[s['source_id'] for s in sources], workspace_id=uuid.uuid4().hex)
+            mode = mode or ('daily' if daily_status else 'manual')
+            origin = origin or 'daily'
+        sources, policy_since = registered_sources(root, source_ids)
+        registry = root / 'config/sources.yml'
+        policy = load_config(registry)['baseline']
+        days = policy.get('daily_window_days', 30)
+        start = window_start(mode, cutoff, policy_since, days, since)
+        if daily_status and (mode != 'daily' or origin != 'daily'):
+            raise ValueError('Daily status requires daily mode and daily origin')
+        code_root = Path(__file__).resolve().parents[1]
+        # Standalone fixture/data directories have no Git history of their own.
+        code_commit = git(code_root, 'rev-parse', 'HEAD')
+        base_commit = git(root, 'rev-parse', 'HEAD') if (root / '.git').exists() else code_commit
+        inputs = dict(registry=file_digest(registry), base_commit=base_commit, code_commit=code_commit,
+                      start=start, cutoff=cutoff, mode=mode, origin=origin,
+                      sources=[source['source_id'] for source in sources],
+                      metadata=digest(encoded([reviewed_attributions or {}, brave_release_metadata])))
+        config_hash = digest(encoded(inputs))
+        if resume:
+            if state['config_hash'] != config_hash:
+                raise ValueError('Resume requires the original commit, window, registry and metadata inputs')
+        else:
+            state = dict(**inputs, repository=str(root), run_id=private.name, timezone='Asia/Seoul',
+                         manual_since=since, config_hash=config_hash, workspace_id=uuid.uuid4().hex,
+                         observed={}, source_results={})
             if daily_status:
                 receipt(cutoff, None, None)
-                if origin != 'daily':
-                    raise ValueError('Daily status requires daily origin')
                 enabled, _ = registered_sources(root, None)
-                state['daily_status'] = dict(
-                    enabled=sorted(s['source_id'] for s in enabled),
-                    registry=file_digest(root / 'config/sources.yml'),
-                    catalog=file_digest(root / FEATURE_CATALOG))
+                state['daily_status'] = dict(enabled=sorted(s['source_id'] for s in enabled),
+                                             registry=inputs['registry'], catalog=file_digest(root / FEATURE_CATALOG))
             work.mkdir(mode=0o700)
             durable(work / '.owner', state['workspace_id'].encode())
-        config_hash = digest(encoded([sources, since, reviewed_attributions or {}, brave_release_metadata]))
-        if resume and state['config_hash'] != config_hash:
-            raise ValueError('Resume requires the original source registry and metadata inputs')
         if daily_status:
             check_status_inputs(root, state)
-        state['config_hash'] = config_hash
-        state['status'] = 'collecting'
+        state.update(status='collecting', complete=False)
         durable(state_path, encoded(state))
-        observed, statuses = {}, []
-        collector = BrowserCollector(root, work / 'browser', transport, resume=resume,
-            reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata,
-            write_records=False)
         for source in sources:
-            if source['source_id'] == 'chrome-platform-status':
-                # Retain only the first comparison facts for old summary-only records.
-                # The shared state survives cleanup of individual run directories.
-                folder = private.parent / ('.browser-benchmark-comparison-' + str(os.getuid()))
-                folder.mkdir(mode=0o700, exist_ok=True)
-                if folder.is_symlink() or folder.stat().st_uid != os.getuid() or folder.stat().st_mode & 0o077:
-                    raise ValueError('Unsafe private comparison directory')
-                baseline = folder / (digest(str(root).encode()) + '.json')
-                if baseline.is_symlink():
-                    raise ValueError('Linked ChromeStatus comparison file')
-                initial = read(baseline) if baseline.exists() else {}
-                collector.chrome_status_baselines = dict(initial)
-            result = collector.collect(source, state['cutoff'], since, state['origin'])
-            if (source['source_id'] == 'chrome-platform-status' and result['status'] == 'complete'
-                    and collector.chrome_status_baselines != initial):
-                durable(baseline, encoded(collector.chrome_status_baselines))
-            statuses.append({k: result[k] for k in ('source_id', 'status', 'cutoff')})
-            rows = []
-            for ident in sorted(collector.parsed_ids):
-                row = collector.records[ident]
-                if row['temporal_scope']['status'] in ('in_period', 'unknown'):
-                    if ident in collector.classification_text:
-                        row = dict(row, classification_text=collector.classification_text[ident])
-                    rows.append(row)
+            sid = source['source_id']
             path = work / 'candidates' / source_path(source).name
-            atomic_json(path, rows)
-            observed[source['source_id']] = digest(path.read_bytes())
-        complete = all(s['status'] == 'complete' for s in statuses)
-        state.update(status='complete' if complete else 'partial', complete=complete, observed=observed)
+            previous = state['source_results'].get(sid)
+            try:
+                if previous and previous.get('checkpoint_invalid'):
+                    raise ValueError('Invalid source checkpoint; use a fresh run')
+                if previous and previous['status'] == 'complete':
+                    if path.is_symlink() or file_digest(path) != state['observed'][sid]:
+                        raise ValueError('Completed candidate checkpoint checksum mismatch; use a fresh run')
+                    continue
+                collector = BrowserCollector(root, work / 'browser', transport, resume=resume,
+                    reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata,
+                    write_records=False)
+                collector.window_start = None if mode == 'legacy' else start
+                collector.policy_since = policy_since
+                collector.checkpoint_context = digest(encoded([state['workspace_id'], config_hash, sid]))
+                collector.attempt_seconds = policy.get('source_attempt_seconds', 900)
+                result = collect_one(collector, source, state, private)
+                rows = []
+                for ident in sorted(collector.parsed_ids):
+                    row = collector.records[ident]
+                    if collector.publication_status(row['temporal_scope']['evidence_date']) in ('in_period', 'unknown'):
+                        if ident in collector.classification_text:
+                            row = dict(row, classification_text=collector.classification_text[ident])
+                        rows.append(row)
+                atomic_json(path, rows)
+                state['observed'][sid] = file_digest(path)
+                status = {k: result[k] for k in ('source_id', 'status', 'cutoff')}
+                if result.get('errors'):
+                    status['errors'] = result['errors']
+            except Exception as error:
+                state['observed'].pop(sid, None)
+                status = dict(source_id=sid, cutoff=cutoff, status='partial',
+                              errors=[dict(url=source['url'], reason=f'{type(error).__name__}: {error}')])
+                # A damaged completed checkpoint is never replayed as a fresh snapshot.
+                if previous and (previous.get('checkpoint_invalid') or previous['status'] == 'complete'):
+                    status['checkpoint_invalid'] = True
+            state['source_results'][sid] = status
+            durable(state_path, encoded(state))
+        statuses = list(state['source_results'].values())
+        complete = bool(sources) and all(s['status'] == 'complete' for s in statuses)
+        state.update(status='complete' if complete else 'partial', complete=complete)
         durable(state_path, encoded(state))
     return {'browser': statuses, 'complete': complete}
+
+
+def collect_one(collector, source, state, private):
+    if source['source_id'] == 'chrome-platform-status':
+        # The first comparison facts for legacy summary-only records survive run cleanup.
+        folder = private.parent / ('.browser-benchmark-comparison-' + str(os.getuid()))
+        folder.mkdir(mode=0o700, exist_ok=True)
+        if folder.is_symlink() or folder.stat().st_uid != os.getuid() or folder.stat().st_mode & 0o077:
+            raise ValueError('Unsafe private comparison directory')
+        baseline = folder / (digest(state['repository'].encode()) + '.json')
+        if baseline.is_symlink():
+            raise ValueError('Linked ChromeStatus comparison file')
+        initial = read(baseline) if baseline.exists() else {}
+        collector.chrome_status_baselines = dict(initial)
+    result = collector.collect(source, state['cutoff'], state['start'][:10], state['origin'])
+    if (source['source_id'] == 'chrome-platform-status' and result['status'] == 'complete'
+            and collector.chrome_status_baselines != initial):
+        durable(baseline, encoded(collector.chrome_status_baselines))
+    return result
 
 
 def verify_workspace(work, state):
@@ -158,9 +202,12 @@ def mark_incomplete(repository, private_dir):
             raise ValueError('Invalid collection state')
         state = read(state_path)
         if (state['repository'] != str(root) or state['origin'] != 'daily'
-                or 'daily_status' not in state or state['status'] not in ('collecting', 'partial', 'complete')):
+                or 'daily_status' not in state or state['status'] not in ('collecting', 'partial', 'complete', 'saving')):
             raise ValueError('No unfinished daily status run')
         verify_workspace(work, state)
+        journal = work / 'transaction/publication.json'
+        if state['status'] == 'saving' and journal.exists() and read(journal)['status'] == 'published':
+            return
         changes, before = {}, {}
         add_receipt(root, changes, before, state['cutoff'], None, None)
         if changes:
@@ -182,7 +229,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         if state['repository'] != str(root) or work.is_symlink():
             raise ValueError('Invalid collection workspace')
         daily_status = 'daily_status' in state
-        if not daily_status and not isinstance(decisions, list):
+        weekly = state.get('mode') == 'weekly_reconcile'
+        if not (daily_status or weekly) and not isinstance(decisions, list):
             raise ValueError('Expected a list of classified features')
         signature = digest(encoded(decisions))
         txn = work / 'transaction'
@@ -203,6 +251,10 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             if allow_partial or not full_status_coverage(state):
                 raise ValueError('Daily status requires all pinned sources; use --record-incomplete')
             check_status_inputs(root, state)
+        if weekly and (allow_partial or not state['complete'] or state['registry'] != file_digest(root / 'config/sources.yml')
+                       or set(state['observed']) != {source['source_id'] for source in sources}):
+            raise ValueError('Weekly reconciliation requires complete coverage of all enabled sources')
+        if daily_status or weekly:
             inventory = set()
             for source in sources:
                 rel = source_path(source)
@@ -279,6 +331,10 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                 if prior is None and len(row['revisions']) != 1:
                     raise ValueError('Source history changed since collection. Collect again.')
                 if prior:
+                    # Another mode can save this exact content while classification is pending.
+                    # Keep the first stored observation and its immutable revision timestamps.
+                    if prior['revisions'][-1]['revision_id'] == revision:
+                        row = prior
                     validate_transition('source_item', prior, row)
                     prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')
                     if prior_cutoff and instant(row['temporal_scope']['cutoff']) < instant(prior_cutoff):
@@ -368,7 +424,9 @@ def main(*, daily=False):
     parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--source', action='append')
     parser.add_argument('--cutoff')
-    parser.add_argument('--origin', choices=['daily', 'baseline', 'backfill'], default='daily')
+    parser.add_argument('--mode', choices=['daily', 'weekly_reconcile', 'manual', 'legacy'])
+    parser.add_argument('--since', help='Manual lower bound: KST date or timezone-aware timestamp')
+    parser.add_argument('--origin', choices=['daily', 'baseline', 'backfill'])
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--brave-release-metadata', type=Path)
     parser.add_argument('--reviewed-attributions', type=Path)
@@ -379,12 +437,14 @@ def main(*, daily=False):
             parser.error('Invalid run ID')
         args.private_dir = args.private_dir / args.run_id
     if daily and args.record_incomplete:
-        if args.save_features or args.allow_partial or args.resume or args.daily_status or args.source or args.cutoff:
+        if args.save_features or args.allow_partial or args.resume or args.daily_status or args.source or args.cutoff or args.mode or args.since or args.origin:
             parser.error('--record-incomplete uses only the existing run')
         mark_incomplete(args.repository, args.private_dir)
         print('Recorded incomplete daily status (or preserved an existing complete result).')
         return 0
     if args.save_features:
+        if args.mode or args.since:
+            parser.error('Save uses the pinned collection mode and range')
         if daily and args.daily_status:
             parser.error('--daily-status is set when collecting, not when saving')
         if (args.private_dir / 'work').resolve() in args.save_features.resolve().parents:
@@ -394,6 +454,7 @@ def main(*, daily=False):
         print(f'Saved evidence for {count} classified items.')
         return 0
     result = collect_sources(args.repository, args.private_dir, source_ids=args.source, cutoff=args.cutoff,
+        mode=args.mode or (None if args.resume else 'daily' if daily else 'manual'), since=args.since,
         origin=args.origin, resume=args.resume, daily_status=daily and args.daily_status,
         reviewed_attributions=load_config(args.reviewed_attributions) if args.reviewed_attributions else None,
         brave_release_metadata=load_config(args.brave_release_metadata) if args.brave_release_metadata else None)

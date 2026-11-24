@@ -108,8 +108,28 @@ def publication_value(value):
     return date_value(value)
 
 
-def published(tree, source_id=None):
+def date_owner(node):
+    """Find the nearest independently identified publisher article."""
+    return next((parent for parent in (node, *node.ancestors()) if parent.tag == 'article'
+                 or parent.has_class('post') or parent.has_class('post-outer')
+                 or any(kind in parent.attrs.get('itemtype', '') for kind in ('Article', 'BlogPosting'))), None)
+
+
+def belongs_to_document(node, body):
+    ancestors = list(node.ancestors())
+    if any(a.tag in ('aside', 'footer', 'nav') or a.has_class('comments') or a.has_class('comment')
+           or 'Comment' in a.attrs.get('itemtype', '') for a in ancestors):
+        return False
+    owner = date_owner(node)
+    return owner is None or body is not None and owner is date_owner(body)
+
+
+def published(tree, source_id=None, *, product_body=None):
     for n in tree.walk():
+        if product_body is not None and not belongs_to_document(n, product_body):
+            continue
+        if n.attrs.get('itemprop') == 'dateModified':
+            continue
         if n.tag == 'meta' and n.attrs.get('property', n.attrs.get('name')) in (
                 'article:published_time', 'date', 'datePublished', 'publication_date'):
             found = publication_value(n.attrs.get('content'))
@@ -135,6 +155,36 @@ def published(tree, source_id=None):
             if found:
                 return found
     return None
+
+
+def modification(tree, product_body=None):
+    """Use explicit publisher modification fields; generic <time> can mean publication."""
+    values = set()
+    for node in tree.walk():
+        if (node.attrs.get('property') != 'article:modified_time'
+                and node.attrs.get('itemprop') != 'dateModified'):
+            continue
+        if not belongs_to_document(node, product_body if product_body is not None else tree):
+            continue
+        value = publication_value(node.attrs.get('content') or node.attrs.get('datetime') or node.text())
+        if value:
+            values.add(value)
+    if len(values) > 1:
+        raise ValueError('Conflicting document modification dates')
+    return next(iter(values), None)
+
+
+def chrome_post_header(link):
+    """A date on a Blogger post header belongs only to that post's permalink."""
+    ancestors = list(link.ancestors())
+    header = next((node for node in ancestors if node.has_class('post-header')), None)
+    if header is not None:
+        return header
+    if not any(node.has_class('post-title') for node in ancestors):
+        return None
+    post = next((node for node in ancestors if node.has_class('post') or node.has_class('post-outer')), None)
+    headers = [node for node in post.walk() if node.has_class('post-header')] if post else []
+    return headers[0] if len(headers) == 1 else None
 
 
 def remove_chrome_post_signoff(fragment, reviewed_signoffs=()):
@@ -240,7 +290,7 @@ def links(tree, base):
                 yield url, n.text(), n
 
 
-def chrome_archive_before(node, url, since):
+def chrome_archive_before(node, url, since, exact_start=None):
     if node.tag != 'a' or node.attrs.get('id') != 'Blog1_blog-pager-older-link':
         return False
     target = urlsplit(url)
@@ -258,10 +308,10 @@ def chrome_archive_before(node, url, since):
         return False
     # The publisher's offset determines its calendar day. Keep the entire
     # boundary day, including a cursor that lands exactly at its midnight.
-    return cursor < midnight
+    return cursor < midnight and (exact_start is None or cursor < instant(exact_start))
 
 
-def next_links(tree, base, chrome_releases_since=None):
+def next_links(tree, base, chrome_releases_since=None, exact_start=None):
     result = []
     for n in tree.walk():
         if n.tag not in {'a', 'link'} or not n.attrs.get('href'):
@@ -274,7 +324,7 @@ def next_links(tree, base, chrome_releases_since=None):
                 n.has_class('blog-pager-older-link') or attrs.get('id') == 'Blog1_blog-pager-older-link' or
                 attrs.get('rel') == 'next' or label.strip() in {'next', 'next page', 'older posts', 'older', '다음'}):
             url = urldefrag(urljoin(base, attrs['href']))[0]
-            if chrome_releases_since and chrome_archive_before(n, url, chrome_releases_since):
+            if chrome_releases_since and chrome_archive_before(n, url, chrome_releases_since, exact_start):
                 continue
             result.append(url)
     return list(dict.fromkeys(result))
