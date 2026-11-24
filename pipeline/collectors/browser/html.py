@@ -173,10 +173,12 @@ def reconcile_modification(values, context):
     return timestamps[0] if timestamps else next(iter(days), None)
 
 
-def modification(tree, product_body=None):
+def modification(tree, product_body=None, *, page_metadata_only=False):
     """Use explicit publisher modification fields; generic <time> can mean publication."""
     values = []
     for node in tree.walk():
+        if page_metadata_only and (node.tag != 'meta' or node.parent.tag not in ('head', 'document')):
+            continue
         if (node.attrs.get('property') != 'article:modified_time'
                 and node.attrs.get('itemprop') != 'dateModified'):
             continue

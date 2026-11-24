@@ -552,6 +552,15 @@ class BrowserCollector:
             atomic_json(self.destination, sorted(self.records.values(), key=lambda r: r['source_item_id']))
         atomic_json(self.state_path, self.state)
 
+    def rolling_revision_after_cutoff(self, root, url):
+        if self.window_start:
+            modified = modification(root, page_metadata_only=True)
+            if self.publication_status(modified) == 'after_cutoff':
+                self.problem(url, 'Only a rolling document revision after cutoff is available')
+                self.state['excluded_by_date'].append(url)
+                return True
+        return False
+
     def document(self, url, response=None, current=False, publication_date=None, modified=None):
         response = response or self.get(url)
         text = response.text()
@@ -562,6 +571,8 @@ class BrowserCollector:
         # Rolling release/policy pages contain independently dated sections.
         # A page's metadata or first <time> cannot date all of them.
         multi = self.source['source_id'].startswith('edge-') or self.source['source_id'] == 'chrome-enterprise' or '/changelog-for-' in url
+        if multi and self.rolling_revision_after_cutoff(root, url):
+            return root
         reviewed = self.reviewed_attributions.get(digest(response.body), []) if self.source['source_id'] == 'chrome-releases' else ()
         body = boundary(root, self.source['source_id'], reviewed)
         publication = None if multi else publication_date
@@ -856,11 +867,12 @@ class BrowserCollector:
         self.state['api_total'] = total
         self.state['latest_publication_date'] = max(dates, default=None)
 
-    def collect_enterprise(self):
-        """Official dated archive panels plus the publisher's current API."""
+    def collect_enterprise_archive(self):
         archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
         response = self.get(archive)
         root = Tree(response.text()).root
+        if self.rolling_revision_after_cutoff(root, archive):
+            return
         dates = {}
         for node in root.walk():
             href = node.attrs.get('href', '')
@@ -895,6 +907,10 @@ class BrowserCollector:
             self.problem(archive, 'Enterprise dated archive inventory is not recognized')
         self.state['documents'] += 1
         self.document_done(archive)
+
+    def collect_enterprise(self):
+        """Official dated archive panels plus the publisher's current API."""
+        self.collect_enterprise_archive()
         api = 'https://release-notes-787862449254.us-central1.run.app'
         response = self.get(api + '/versions', refresh=True)
         versions = json_body(response).get('versions')

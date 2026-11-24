@@ -584,3 +584,21 @@ class WindowTests(unittest.TestCase):
         self.cli('opposing-page-times', [sid], expected=2)
         self.assertIn('Conflicting document modification dates',
                       str(self.state('opposing-page-times')['source_results'][sid]))
+
+    def test_rolling_page_future_revision_blocks_certification_but_does_not_redate_sections(self):
+        sid = 'edge-stable'
+        url = self.sources[sid]['url']
+        body = ('<div class="content"><h2>March 10, 2026</h2><p id="old">Old capability.</p>'
+                '<h2>November 15, 2026</h2><p id="recent">Recent capability.</p>'
+                '<time itemprop="dateModified" datetime="2026-11-26T00:00:00Z"></time></div>')
+        def document(date):
+            return f'<html><head><meta property="article:modified_time" content="{date}"></head><body>{body}</body></html>'
+        self.payloads[url] = document('2026-11-24T08:00:01+09:00')
+        self.cli('rolling-future', [sid], expected=2)
+        self.assertEqual([], self.candidates('rolling-future', sid))
+        self.assertIn('rolling document revision after cutoff', str(self.state('rolling-future')['source_results'][sid]))
+        self.payloads[url] = document('2026-11-23T19:00:00+09:00')
+        self.cli('rolling-current', [sid])
+        row, = self.candidates('rolling-current', sid)
+        self.assertEqual(('recent', '2026-11-15', 'publication'),
+                         (row['item_key'], row['temporal_scope']['evidence_date'], row['temporal_scope']['basis']))
