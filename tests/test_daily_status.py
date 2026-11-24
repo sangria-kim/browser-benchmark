@@ -1,4 +1,5 @@
 """Exercise what the consumer can infer from the exact scheduled result."""
+from datetime import time
 import json
 from pathlib import Path
 import shutil
@@ -11,7 +12,9 @@ from pipeline.collectors.browser import BrowserCollector, Response
 from pipeline.daily_status import validate_receipt, validate_tree
 
 ROOT = Path(__file__).resolve().parents[1]
-CUTOFF = '2026-11-16T23:00:00Z'
+CUTOFF = '2026-11-16T22:00:00Z'
+KST_CUTOFF = '2026-11-17T07:00:00+09:00'
+LEGACY_CUTOFF = '2026-11-17T08:00:00+09:00'
 REL = 'data/daily-status/2026-11-17.json'
 
 
@@ -81,10 +84,132 @@ class StatusTests(unittest.TestCase):
         self.assertEqual([], self.classification([])['dispositions'])
         self.assertFalse(self.status.exists())
         self.assertEqual(0, self.save([]))
-        self.assertEqual(dict(date='2026-11-17', cutoff='2026-11-17T08:00:00+09:00',
+        self.assertEqual(dict(date='2026-11-17', cutoff='2026-11-17T07:00:00+09:00',
                               status='complete', collected_feature_count=0, change_count=0), json.loads(self.status.read_bytes()))
         validate_tree(self.root)
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
+
+    def test_only_the_exact_scheduled_instant_can_start_or_resume(self):
+        for cutoff in (LEGACY_CUTOFF, '2026-11-17T06:59:59+09:00', '2026-11-17T07:00:01+09:00',
+                       '2026-11-17T07:00:00.000001+09:00', '2026-11-17T07:00:00.0000001+09:00'):
+            with self.subTest(cutoff=cutoff), self.assertRaisesRegex(ValueError, '07:00'):
+                self.scan(cutoff=cutoff)
+            self.assertFalse((self.run / 'feature-run.json').exists())
+        self.scan(cutoff=KST_CUTOFF)
+        original = (self.run / 'feature-run.json').read_bytes()
+        with self.assertRaisesRegex(ValueError, '07:00'):
+            self.scan(cutoff='2026-11-16T22:00:00.0000001Z', resume=True)
+        self.assertEqual(original, (self.run / 'feature-run.json').read_bytes())
+        self.assertTrue(self.scan(cutoff=CUTOFF, resume=True)['complete'])
+        self.save([])
+        self.assertEqual(KST_CUTOFF, run_daily.read(self.status)['cutoff'])
+
+    def public_files(self):
+        return {p.relative_to(self.root): p.read_bytes() for p in (self.root / 'data').rglob('*.json')}
+
+    def test_unpublished_legacy_run_cannot_resume_mark_incomplete_or_save(self):
+        with patch('pipeline.daily_status.SCHEDULED_TIME', time(8)):
+            self.scan(cutoff=LEGACY_CUTOFF)
+        old_run = self.run
+        choices = self.classification(self.decisions())
+        original = (old_run / 'feature-run.json').read_bytes()
+        with self.assertRaises(ValueError):
+            self.scan(cutoff=None, resume=True)
+        with self.assertRaises(ValueError):
+            self.scan(cutoff=KST_CUTOFF, resume=True)
+
+        for existing in ('absent', 'incomplete', 'complete'):
+            if existing != 'absent':
+                self.run = self.dir / 'new-day'
+                if existing == 'incomplete':
+                    self.scan()
+                    collect.mark_incomplete(self.root, self.run)
+                else:
+                    self.save(self.decisions())
+                self.run = old_run
+            before = self.public_files()
+            with self.subTest(existing=existing), self.assertRaisesRegex(ValueError, '07:00'):
+                collect.save_features(self.root, old_run, choices)
+            with self.assertRaisesRegex(ValueError, '07:00'):
+                collect.mark_incomplete(self.root, old_run)
+            self.assertEqual(before, self.public_files())
+            self.assertEqual(original, (old_run / 'feature-run.json').read_bytes())
+
+    def test_legacy_receipt_locks_the_date_for_incomplete_zero_and_positive_writes(self):
+        self.scan()
+        self.status.parent.mkdir(parents=True)
+        for accepted_count in (None, 0, 1):
+            legacy = dict(date='2026-11-17', cutoff=LEGACY_CUTOFF, change_count=accepted_count,
+                          status='incomplete' if accepted_count is None else 'complete',
+                          collected_feature_count=accepted_count)
+            self.status.write_bytes(run_daily.encoded(legacy))
+            before = self.public_files()
+            with self.subTest(previous=accepted_count), self.assertRaisesRegex(ValueError, 'different daily cutoff'):
+                collect.mark_incomplete(self.root, self.run)
+            for decisions in ([], self.decisions()):
+                with self.assertRaisesRegex(ValueError, 'different daily cutoff'):
+                    self.save(decisions)
+            self.assertEqual(before, self.public_files())
+            self.assertEqual('complete', run_daily.read(self.run / 'feature-run.json')['status'])
+
+    def test_legacy_published_retry_finishes_cleanup_and_reuses_signed_result(self):
+        with patch('pipeline.daily_status.SCHEDULED_TIME', time(8)):
+            self.scan(cutoff=LEGACY_CUTOFF)
+            choices = self.classification(self.decisions())
+            with patch.object(collect, 'finish_run', side_effect=OSError('interrupted after publication')):
+                with self.assertRaises(OSError):
+                    collect.save_features(self.root, self.run, choices)
+        before = self.public_files()
+        self.assertEqual(LEGACY_CUTOFF, run_daily.read(self.status)['cutoff'])
+        state = self.run / 'feature-run.json'
+        self.assertEqual('saving', run_daily.read(state)['status'])
+        collect.mark_incomplete(self.root, self.run)
+        conflict = dict(choices, decisions=[])
+        for expected in ('saving', 'saved'):
+            with self.assertRaisesRegex(ValueError, 'different final classification'):
+                collect.save_features(self.root, self.run, conflict)
+            self.assertEqual(expected, run_daily.read(state)['status'])
+            self.assertEqual(2, collect.save_features(self.root, self.run, choices))
+            self.assertEqual('saved', run_daily.read(state)['status'])
+            self.assertEqual(before, self.public_files())
+
+    def test_final_writer_rejects_legacy_publication_and_cross_cutoff_overwrite(self):
+        incomplete = dict(date='2026-11-17', cutoff=LEGACY_CUTOFF, status='incomplete',
+                          change_count=None, collected_feature_count=None)
+        txn = self.dir / 'txn'
+        with run_daily.run_lock(self.root) as writer:
+            with self.assertRaisesRegex(ValueError, '07:00'):
+                run_daily.store_changes(self.root.resolve(), txn, {REL: incomplete}, {REL: None}, writer)
+            self.assertFalse(self.status.exists())
+            self.status.parent.mkdir(parents=True)
+            for status in (incomplete, dict(incomplete, status='complete', change_count=0, collected_feature_count=0)):
+                raw = run_daily.encoded(status)
+                self.status.write_bytes(raw)
+                with self.assertRaisesRegex(ValueError, 'different daily cutoff'):
+                    run_daily.store_changes(self.root.resolve(), txn, {REL: dict(status, cutoff=KST_CUTOFF)},
+                                            {REL: run_daily.digest(raw)}, writer)
+                self.assertEqual(raw, self.status.read_bytes())
+            self.assertFalse((txn / 'publication.json').exists())
+
+    def test_tree_accepts_canonical_new_and_historical_counts_and_cutoffs(self):
+        self.status.parent.mkdir(parents=True)
+        for day, hour, total, changed in ((14, 8, 2, 1), (15, 8, 0, 0), (16, 8, None, None), (17, 7, 1, 0)):
+            date = f'2026-11-{day}'
+            record = dict(date=date, cutoff=f'{date}T{hour:02}:00:00+09:00',
+                          status='incomplete' if total is None else 'complete',
+                          collected_feature_count=total, change_count=changed)
+            self.status.with_name(date + '.json').write_bytes(run_daily.encoded(record))
+        validate_tree(self.root)
+        for change in (dict(cutoff=CUTOFF), dict(cutoff='2026-11-16T23:00:00Z'),
+                       dict(cutoff='2026-11-17T08:00:00.000+09:00'), dict(cutoff='2026-11-17T07:00:01+09:00'),
+                       dict(cutoff='2026-11-17T09:00:00+09:00'), dict(date='2026-11-16'), dict(private=True)):
+            self.status.write_bytes(run_daily.encoded(dict(record, **change)))
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                validate_tree(self.root)
+        self.status.write_bytes(run_daily.encoded(record))
+        self.status.rename(self.status.with_name('2026-11-18.json'))
+        with self.assertRaises(ValueError):
+            validate_tree(self.root)
 
     def test_all_candidates_explicitly_excluded_certifies_zero(self):
         self.scan()
@@ -163,7 +288,7 @@ class StatusTests(unittest.TestCase):
         self.save(self.decisions())
         self.run = self.dir / 'next'
         self.body = self.body.replace('Tab grouping now available.', 'Updated grouping help link.')
-        next_cutoff = '2026-11-17T23:00:00Z'
+        next_cutoff = '2026-11-17T22:00:00Z'
         self.scan(cutoff=next_cutoff)
         choice = self.decisions('evidence_only')
         self.assertTrue(choice)
@@ -177,7 +302,7 @@ class StatusTests(unittest.TestCase):
         self.run = self.dir / 'mixed'
         self.body = self.body.replace('Tab grouping added.', 'Updated tab grouping guide.')
         self.body = self.body.replace('Tab grouping now available.', 'Tab grouping supports shortcuts.')
-        self.scan(cutoff='2026-11-17T23:00:00Z')
+        self.scan(cutoff='2026-11-17T22:00:00Z')
         choices = self.decisions('evidence_only')
         self.assertEqual(2, len(choices))
         choices[1].update(canonical_key='another-feature', title='Another feature',

@@ -27,7 +27,9 @@ git show "${sha}:$catalog" | jq '.[0] | {feature_id, title, source_item_ids}'
 
 선택 경로 `data/daily-status/YYYY-MM-DD.json`은 수집 결과만 전달합니다. 기능 목록이나 보고서가 아닙니다. 소비자는 오늘 한국 날짜의 파일과 기능·근거를 같은 `main` 커밋에서 읽습니다.
 
-예시: `{"date":"2026-11-24","cutoff":"2026-11-24T08:00:00+09:00","status":"complete","collected_feature_count":1,"change_count":0}`
+새 결과의 마감은 한국시간 07:00입니다. 기존 08:00 결과도 같은 형식으로 읽습니다.
+
+`{"date":"2026-11-24","cutoff":"2026-11-24T07:00:00+09:00","status":"complete","collected_feature_count":1,"change_count":0}`
 
 - `collected_feature_count`: 분류 후 채택한 고유 기능 수입니다. 공식 근거만 보강한 기능도 포함합니다. 제외한 후보나 기존 전체 카탈로그는 세지 않습니다.
 - `complete` + `change_count: 0`: 오늘 업데이트 없음. 전체 활성 출처의 수집과 분류·검증이 끝났습니다.
