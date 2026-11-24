@@ -108,6 +108,11 @@ class EdgePolicyShardTests(unittest.TestCase):
     def test_next_collection_retains_shard_paths_and_prior_revision(self):
         shutil.copytree(ROOT / 'config', self.root / 'config')
         config = source('edge-policies')
+        config['enabled'] = True
+        registry = json.loads((self.root / 'config/sources.yml').read_text())
+        registry['sources'] = [config if s['source_id'] == config['source_id'] else s
+                               for s in registry['sources']]
+        self.put('config/sources.yml', registry)
         url = config['url'] + '/fixture'
         def collect_fixture(collector):
             for key, message in current.items():
