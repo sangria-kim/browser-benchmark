@@ -12,7 +12,7 @@ import uuid
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
-from pipeline.daily_status import add_receipt, classified_decisions, receipt
+from pipeline.daily_status import add_receipt, classified_decisions, scheduled_cutoff
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, git, pending_recovery, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant, window_start
@@ -54,6 +54,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             raise ValueError('Invalid collection workspace')
         if resume:
             state = read(state_path)
+            if daily_status and cutoff:
+                scheduled_cutoff(cutoff)
             if (state.get('run_id') != private.name or state['repository'] != str(root)
                     or state['status'] not in ('collecting', 'partial', 'complete')
                     or source_ids and sorted(source_ids) != sorted(state['sources'])
@@ -76,8 +78,10 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
         policy = load_config(registry)['baseline']
         days = policy.get('daily_window_days', 30)
         start = window_start(mode, cutoff, policy_since, days, since)
-        if daily_status and (mode != 'daily' or origin != 'daily'):
-            raise ValueError('Daily status requires daily mode and daily origin')
+        if daily_status:
+            if mode != 'daily' or origin != 'daily':
+                raise ValueError('Daily status requires daily mode and daily origin')
+            scheduled_cutoff(cutoff)
         code_root = Path(__file__).resolve().parents[1]
         # Standalone fixture/data directories have no Git history of their own.
         code_commit = git(code_root, 'rev-parse', 'HEAD')
@@ -95,7 +99,6 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                          manual_since=since, config_hash=config_hash, workspace_id=uuid.uuid4().hex,
                          observed={}, source_results={})
             if daily_status:
-                receipt(cutoff, None, None)
                 enabled, _ = registered_sources(root, None)
                 state['daily_status'] = dict(enabled=sorted(s['source_id'] for s in enabled),
                                              registry=inputs['registry'], catalog=file_digest(root / FEATURE_CATALOG))
@@ -248,6 +251,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         if state['status'] not in ('complete', 'partial', 'saving') or not (state['complete'] or allow_partial):
             raise ValueError('Finish collection or explicitly accept partial coverage')
         if daily_status:
+            scheduled_cutoff(state['cutoff'])
             if allow_partial or not full_status_coverage(state):
                 raise ValueError('Daily status requires all pinned sources; use --record-incomplete')
             check_status_inputs(root, state)
@@ -419,7 +423,7 @@ def main(*, daily=False):
     parser.add_argument('--private-dir', type=Path, required=True)
     if daily:
         parser.add_argument('--run-id', required=True)
-        parser.add_argument('--daily-status', action='store_true', help='Pin an 08:00 KST collection for daily status')
+        parser.add_argument('--daily-status', action='store_true', help='Pin a 07:00 KST collection for daily status')
         parser.add_argument('--record-incomplete', action='store_true', help='Publish only the incomplete receipt')
     parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--source', action='append')

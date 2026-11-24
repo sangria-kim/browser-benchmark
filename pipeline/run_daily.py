@@ -174,10 +174,11 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     """Validate the graph, then journal only the files that will change."""
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
-    from pipeline.daily_status import status_path, validate_receipt
+    from pipeline.daily_status import previous_receipt, scheduled_cutoff, status_path, validate_receipt
     receipts = {rel for rel in changes if status_path(rel)}
     for rel in receipts:
         validate_receipt(rel, changes[rel])
+        scheduled_cutoff(changes[rel]['cutoff'])
         if (root / rel).parent.is_symlink():
             raise ValueError('Invalid daily status folder')
     feature_changes = {rel: value for rel, value in changes.items() if rel not in receipts}
@@ -198,6 +199,8 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
         if (digest(old) if old is not None else None) != before[rel]:
             raise ValueError('Concurrent edit to feature output')
         if old is not None:
+            if rel in receipts and previous_receipt(rel, old, changes[rel]['cutoff'])['status'] == 'complete':
+                raise ValueError('Cannot change data after the daily status is complete')
             durable(txn / 'backup' / rel, old)
     state = dict(version=4 if receipts else 3, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
     durable(txn / 'state.json', encoded(state))

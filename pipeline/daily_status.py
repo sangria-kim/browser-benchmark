@@ -1,4 +1,4 @@
-"""Public result for a verified 08:00 Asia/Seoul collection, not a report."""
+"""Public result for a verified daily Asia/Seoul collection."""
 from datetime import time, timedelta, timezone
 import json
 from pathlib import Path
@@ -8,16 +8,26 @@ from pipeline.temporal import instant
 
 FOLDER = 'data/daily-status'
 KST = timezone(timedelta(hours=9))
+SCHEDULED_TIME = time(7)
 
 
 def status_path(path):
     return bool(re.fullmatch(r'data/daily-status/\d{4}-\d{2}-\d{2}\.json', path))
 
 
-def receipt(cutoff, count, collected_count):
+def scheduled_cutoff(cutoff):
     local = instant(cutoff).astimezone(KST)
-    if local.time() != time(8):
-        raise ValueError('Daily status requires the 08:00 Asia/Seoul cutoff')
+    # fromisoformat truncates fractions beyond six digits, including just after the hour.
+    if local.time() != SCHEDULED_TIME or re.search(r'[.,]\d*[1-9]', cutoff):
+        raise ValueError('Daily status requires the exact 07:00 Asia/Seoul cutoff')
+    return local
+
+
+def receipt(cutoff, count, collected_count):
+    return _receipt(scheduled_cutoff(cutoff), count, collected_count)
+
+
+def _receipt(local, count, collected_count):
     day = local.date().isoformat()
     return f'{FOLDER}/{day}.json', dict(date=day, cutoff=local.isoformat(),
                                        status='incomplete' if count is None else 'complete',
@@ -39,7 +49,10 @@ def validate_receipt(path, value):
         raise ValueError('Invalid collected feature count')
     if not isinstance(value['cutoff'], str):
         raise ValueError('Invalid daily cutoff')
-    expected_path, expected_value = receipt(value['cutoff'], count, collected)
+    local = instant(value['cutoff']).astimezone(KST)
+    if local.time() not in (SCHEDULED_TIME, time(8)):
+        raise ValueError('Invalid daily cutoff')
+    expected_path, expected_value = _receipt(local, count, collected)
     if path != expected_path or value != expected_value:
         raise ValueError('Invalid daily status date, cutoff or state')
 
@@ -58,6 +71,14 @@ def validate_tree(root):
         validate_receipt(target.relative_to(root).as_posix(), json.loads(target.read_bytes()))
 
 
+def previous_receipt(rel, raw, cutoff):
+    previous = json.loads(raw)
+    validate_receipt(rel, previous)
+    if previous['cutoff'] != cutoff:
+        raise ValueError('This date already has a different daily cutoff')
+    return previous
+
+
 def add_receipt(root, changes, before, cutoff, count, collected_count):
     """An incomplete retry cannot downgrade an accepted receipt."""
     from pipeline.run_daily import digest
@@ -69,8 +90,7 @@ def add_receipt(root, changes, before, cutoff, count, collected_count):
         raise ValueError('Unsafe daily status target')
     raw = target.read_bytes() if target.exists() else None
     if raw is not None:
-        previous = json.loads(raw)
-        validate_receipt(rel, previous)
+        previous = previous_receipt(rel, raw, value['cutoff'])
         if previous['status'] == 'complete':
             if count is not None and (previous != value or any(
                     digest(json_bytes(rows)) != before[name] for name, rows in changes.items())):

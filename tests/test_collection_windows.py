@@ -15,6 +15,7 @@ from pipeline.run_daily import encoded, git, read, run_lock
 
 ROOT = Path(__file__).resolve().parents[1]
 CUTOFF = '2026-11-24T08:00:00+09:00'
+STATUS_CUTOFF = '2026-11-24T07:00:00+09:00'
 UTC = '2026-11-23T23:00:00Z'
 START = '2026-10-25T08:00:00+09:00'
 OBSERVED = '2026-11-24T09:00:00+09:00'
@@ -294,12 +295,12 @@ class WindowTests(unittest.TestCase):
     def test_racing_saves_in_three_modes_keep_one_revision_and_one_daily_status(self):
         self.configure_small_registry()
         with run_lock(self.repo), self.assertRaisesRegex(RuntimeError, 'lock'):
-            self.cli('week', mode='weekly_reconcile')
-        self.cli('week', mode='weekly_reconcile')
+            self.cli('week', cutoff=STATUS_CUTOFF, mode='weekly_reconcile')
+        self.cli('week', cutoff=STATUS_CUTOFF, mode='weekly_reconcile')
         self.observed_at = '2026-11-24T09:01:00+09:00'
-        self.cli('manual', mode='manual')
+        self.cli('manual', cutoff=STATUS_CUTOFF, mode='manual')
         self.observed_at = '2026-11-24T09:02:00+09:00'
-        self.cli('day', extra=['--daily-status'])
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
         with self.assertRaisesRegex(ValueError, 'does not cover all'):
             self.save('week', dict(decisions=[], dispositions=[]))
         with self.assertRaisesRegex(ValueError, 'all enabled sources'):
@@ -321,20 +322,20 @@ class WindowTests(unittest.TestCase):
 
     def test_weekly_save_first_preserves_daily_baseline_gate_and_does_not_backfill_gap(self):
         self.configure_small_registry()
-        self.cli('stale', extra=['--daily-status'])
-        self.cli('week', mode='weekly_reconcile')
+        self.cli('stale', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.cli('week', cutoff=STATUS_CUTOFF, mode='weekly_reconcile')
         self.save('week', self.decisions('week'))
         self.assertFalse((self.repo / 'data/daily-status').exists())
         with self.assertRaisesRegex(ValueError, 'baseline changed'):
             self.save('stale', self.decisions('stale'))
-        self.cli('manual', mode='manual')
+        self.cli('manual', cutoff=STATUS_CUTOFF, mode='manual')
         self.save('manual', [])
-        self.cli('day', extra=['--daily-status'])
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
         self.save('day', self.decisions('day'))
         status = self.repo / 'data/daily-status/2026-11-24.json'
         self.assertEqual((0, 0), (read(status)['collected_feature_count'], read(status)['change_count']))
-        self.cli('after-gap', cutoff='2027-01-04T08:00:00+09:00', extra=['--daily-status'])
-        self.assertEqual('2026-12-05T08:00:00+09:00', self.state('after-gap')['start'])
+        self.cli('after-gap', cutoff='2027-01-04T07:00:00+09:00', extra=['--daily-status'])
+        self.assertEqual('2026-12-05T07:00:00+09:00', self.state('after-gap')['start'])
         self.save('after-gap', self.decisions('after-gap'))
         self.assertEqual({'2026-11-24.json', '2027-01-04.json'}, {p.name for p in status.parent.iterdir()})
 
@@ -582,13 +583,13 @@ class WindowTests(unittest.TestCase):
 
     def test_daily_stale_positive_and_excluded_decisions_refuse_changed_weekly_catalog(self):
         self.configure_small_registry()
-        self.cli('waiting', extra=['--daily-status'])
+        self.cli('waiting', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
         positive = self.decisions('waiting')
         excluded = dict(decisions=[], dispositions=[dict(item, disposition='excluded')
                                                     for item in positive['dispositions']])
         catalog = self.repo / collect.FEATURE_CATALOG
         receipt = self.repo / 'data/daily-status/2026-11-24.json'
-        self.cli('weekly-before', mode='weekly_reconcile')
+        self.cli('weekly-before', cutoff=STATUS_CUTOFF, mode='weekly_reconcile')
         self.assertFalse(catalog.exists())
         self.assertFalse(receipt.exists())
         self.save('weekly-before', self.decisions('weekly-before'))
@@ -599,7 +600,7 @@ class WindowTests(unittest.TestCase):
                 self.save('waiting', classification)
             self.assertEqual(accepted_catalog, catalog.read_bytes())
             self.assertFalse(receipt.exists())
-        self.cli('new-daily-same-cutoff', extra=['--daily-status'])
+        self.cli('new-daily-same-cutoff', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
         self.assertEqual(self.state('waiting')['cutoff'], self.state('new-daily-same-cutoff')['cutoff'])
         self.save('new-daily-same-cutoff', self.decisions('new-daily-same-cutoff'))
         self.assertEqual(('complete', 0, 0), tuple(read(receipt)[k]
