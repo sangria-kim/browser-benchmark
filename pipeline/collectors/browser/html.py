@@ -126,14 +126,16 @@ def belongs_to_document(node, body):
 
 def firefox_advisory_summaries(body):
     for node in body.walk():
-        if node.tag != 'dl' or not node.has_class('summary') or not node.parent.has_class('advisory'):
+        if node.tag != 'dl' or not node.has_class('summary'):
             continue
-        article = node.parent.parent
-        if article is None or article.tag != 'article':
+        article = date_owner(node)
+        if (article is None or article.tag != 'article' or date_owner(article.parent) is not None
+                or (article is not body and body not in article.ancestors())):
             continue
-        container = article.parent
-        primary = container is body or (container.tag == 'main' and container.parent is body)
-        if primary and belongs_to_document(node, article):
+        ancestors = list(node.ancestors())
+        if any(a.tag == 'header' for a in ancestors) or not belongs_to_document(node, article):
+            continue
+        if any(a.has_class('advisory') for a in ancestors[:ancestors.index(article)]):
             yield node
 
 
@@ -147,8 +149,12 @@ def published(tree, source_id=None, *, product_body=None):
             return None
         if summaries:
             product_body = summaries[0]
-            nodes = (n for n in product_body.children
-                     if isinstance(n, Node) and n.tag == 'dt' and n.text() == 'Announced')
+            nodes = [n for n in product_body.children
+                     if isinstance(n, Node) and n.tag == 'dt' and n.text() == 'Announced']
+            if len(nodes) != 1:
+                return None
+        else:
+            nodes = (n for n in tree.walk() if not any(a.tag == 'header' for a in n.ancestors()))
     for n in nodes:
         if product_body is not None and not belongs_to_document(n, product_body):
             continue

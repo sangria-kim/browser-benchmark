@@ -486,6 +486,31 @@ class WindowTests(unittest.TestCase):
                 self.assertEqual({expected}, {r['published_at'] for r in rows})
                 self.assertEqual({expected}, {r['temporal_scope']['evidence_date'] for r in rows})
 
+    def test_firefox_layout_wrappers_cannot_substitute_a_page_header_date(self):
+        sid = 'firefox-security'
+        url = 'https://www.mozilla.org/en-US/security/advisories/mfsa2026-01/'
+        self.payloads[self.sources[sid]['url']] = f'<a href="{url}">Notice</a>'
+        header = ('<header><time datetime="2026-01-01"></time>'
+                  '<article><div class="advisory"><dl class="summary">'
+                  '<dt>Announced</dt><dd>January 1, 2026</dd></dl></div></article></header>')
+        for name, field, expected in [
+                ('wrapped', '<dt>Announced</dt><dd>November 10, 2026</dd>', '2026-11-10'),
+                ('empty', '<dt>Announced</dt><dd></dd>', None),
+                ('missing', '', None),
+                ('no-summary', None, None),
+                ('conflict', '<dt>Announced</dt><dd>November 10, 2026</dd>'
+                             '<dt>Announced</dt><dd>January 1, 2026</dd>', None)]:
+            with self.subTest(name=name):
+                summary = f'<dl class="summary">{field}</dl>' if field is not None else ''
+                self.payloads[url] = (
+                    '<div id="main-content">' + header + '<main><div><article><div><div class="advisory">'
+                    '<section>' + summary + '</section><p id="note">Browser update.</p>'
+                    '</div></div></article></div></main></div>')
+                self.cli(name, [sid])
+                rows = self.candidates(name, sid)
+                self.assertEqual({expected}, {r['published_at'] for r in rows})
+                self.assertEqual({expected}, {r['temporal_scope']['evidence_date'] for r in rows})
+
     def brave_bundle(self, rows, version):
         from test_brave_metadata import bundle, page
         data = bundle([page(rows)])
