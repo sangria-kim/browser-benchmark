@@ -124,8 +124,32 @@ def belongs_to_document(node, body):
     return owner is None or body is not None and owner is date_owner(body)
 
 
+def firefox_advisory_summaries(body):
+    for node in body.walk():
+        if node.tag != 'dl' or not node.has_class('summary') or not node.parent.has_class('advisory'):
+            continue
+        article = node.parent.parent
+        if article is None or article.tag != 'article':
+            continue
+        container = article.parent
+        primary = container is body or (container.tag == 'main' and container.parent is body)
+        if primary and belongs_to_document(node, article):
+            yield node
+
+
 def published(tree, source_id=None, *, product_body=None):
-    for n in tree.walk():
+    nodes = tree.walk()
+    if source_id == 'firefox-security' and product_body is not None:
+        # Mozilla's unit boundary wraps its primary article. Only the article's
+        # advisory summary owns the Announced field; keep the unit boundary intact.
+        summaries = list(firefox_advisory_summaries(product_body))
+        if len(summaries) > 1:
+            return None
+        if summaries:
+            product_body = summaries[0]
+            nodes = (n for n in product_body.children
+                     if isinstance(n, Node) and n.tag == 'dt' and n.text() == 'Announced')
+    for n in nodes:
         if product_body is not None and not belongs_to_document(n, product_body):
             continue
         if n.attrs.get('itemprop') == 'dateModified':

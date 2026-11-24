@@ -425,6 +425,67 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(('2027-02-04', 'item_change'),
                          (row['temporal_scope']['evidence_date'], row['temporal_scope']['basis']))
 
+    @staticmethod
+    def firefox_advisory(day=None, surrounding='', summary_extra=''):
+        date = f'<dt>Announced</dt><dd>{day}</dd>' if day else ''
+        return ('<div id="main-content"><main>' + surrounding +
+                '<article class="mzp-c-article"><div class="advisory"><dl class="summary">'
+                + date + summary_extra + '</dl><p id="entry">Browser update.</p></div></article>'
+                '</main><p id="other-unit">Additional product note.</p></div>')
+
+    def test_firefox_advisory_announced_window_and_unchanged_queue(self):
+        sid = 'firefox-security'
+        dates = {'old': 'October 24, 2026', 'lower': 'October 25, 2026',
+                 'unchanged': 'November 10, 2026', 'upper': 'November 24, 2026',
+                 'future': 'November 25, 2026', 'undated': None}
+        urls = {name: f'https://www.mozilla.org/en-US/security/advisories/mfsa2026-{i:02}/'
+                for i, name in enumerate(dates, 1)}
+        self.payloads[self.sources[sid]['url']] = ''.join(
+            f'<a href="{url}">Advisory</a>' for url in urls.values())
+        for name, day in dates.items():
+            self.payloads[urls[name]] = self.firefox_advisory(day)
+
+        self.cli('legacy', [sid], mode='legacy')
+        baseline = self.candidates('legacy', sid)
+        self.assertIn(urls['old'], {r['evidence']['url'] for r in baseline})
+        prior_ids = {r['source_item_id'] for r in baseline if r['evidence']['url'] == urls['unchanged']}
+        self.assertTrue(prior_ids)
+        self.save('legacy', [choice for choice in self.classified('legacy', sid)
+                             if choice['source_item_id'] in prior_ids])
+
+        self.cli('daily', [sid])
+        rows = self.candidates('daily', sid)
+        self.assertEqual({(urls['lower'], '2026-10-25', 'day'),
+                          (urls['upper'], '2026-11-24', 'day'),
+                          (urls['undated'], None, 'unknown')},
+                         {(r['evidence']['url'], r['published_at'], r['temporal_scope']['precision']) for r in rows})
+        retained_urls = {urls[n] for n in ('lower', 'upper', 'undated')}
+        fields = ('source_item_id', 'item_key', 'published_at', 'summary', 'item_content_sha256')
+        self.assertEqual({tuple(r[f] for f in fields) for r in baseline if r['evidence']['url'] in retained_urls},
+                         {tuple(r[f] for f in fields) for r in rows})
+        self.assertTrue({'entry', 'other-unit'} <= {r['item_key'] for r in rows})
+
+    def test_firefox_advisory_only_primary_summary_dates_the_document(self):
+        sid = 'firefox-security'
+        url = 'https://www.mozilla.org/en-US/security/advisories/mfsa2026-01/'
+        self.payloads[self.sources[sid]['url']] = f'<a href="{url}">Advisory</a>'
+        wrong = '<dl class="summary"><dt>Announced</dt><dd>January 2, 2026</dd></dl>'
+        other_article = f'<article><div class="advisory">{wrong}</div></article>'
+        surrounding = (f'<nav>{other_article}</nav><footer>{other_article}</footer>'
+                       f'<div class="comments">{other_article}</div><aside>{other_article}</aside>'
+                       f'<article>{wrong}{other_article}</article>')
+        unrelated_date = '<dt class="c-release-date">January 2, 2026</dt><dd><time datetime="2026-01-02"></time></dd>'
+        for name, value, extra, expected in [
+                ('dated', 'November 10, 2026', '', '2026-11-10'),
+                ('unknown', None, '', None),
+                ('ambiguous', 'November 10, 2026', other_article, None)]:
+            with self.subTest(name=name):
+                self.payloads[url] = self.firefox_advisory(value, surrounding + extra, unrelated_date)
+                self.cli(name, [sid])
+                rows = self.candidates(name, sid)
+                self.assertEqual({expected}, {r['published_at'] for r in rows})
+                self.assertEqual({expected}, {r['temporal_scope']['evidence_date'] for r in rows})
+
     def brave_bundle(self, rows, version):
         from test_brave_metadata import bundle, page
         data = bundle([page(rows)])
