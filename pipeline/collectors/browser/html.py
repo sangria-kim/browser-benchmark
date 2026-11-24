@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from urllib.parse import parse_qs, urljoin, urldefrag, urlsplit
 from datetime import datetime
 
-from pipeline.temporal import instant
+from pipeline.temporal import SEOUL, instant
 
 VOID = {'br', 'img', 'meta', 'link', 'hr', 'input', 'source', 'wbr', 'area', 'base', 'embed'}
 SKIP = {'script', 'style', 'nav', 'footer', 'form', 'noscript'}
@@ -108,8 +108,57 @@ def publication_value(value):
     return date_value(value)
 
 
-def published(tree, source_id=None):
-    for n in tree.walk():
+def date_owner(node):
+    """Find the nearest independently identified publisher article."""
+    return next((parent for parent in (node, *node.ancestors()) if parent.tag == 'article'
+                 or parent.has_class('post') or parent.has_class('post-outer')
+                 or any(kind in parent.attrs.get('itemtype', '') for kind in ('Article', 'BlogPosting'))), None)
+
+
+def belongs_to_document(node, body):
+    ancestors = list(node.ancestors())
+    if any(a.tag in ('aside', 'footer', 'nav') or a.has_class('comments') or a.has_class('comment')
+           or 'Comment' in a.attrs.get('itemtype', '') for a in ancestors):
+        return False
+    owner = date_owner(node)
+    return owner is None or body is not None and owner is date_owner(body)
+
+
+def firefox_advisory_summaries(body):
+    for node in body.walk():
+        # Each subitem can also have a dl.summary. Mozilla puts only the
+        # document summary directly inside its advisory container.
+        if node.tag != 'dl' or not node.has_class('summary') or not node.parent.has_class('advisory'):
+            continue
+        article = date_owner(node)
+        if (article is None or article.tag != 'article' or date_owner(article.parent) is not None
+                or (article is not body and body not in article.ancestors())):
+            continue
+        if belongs_to_document(node, article) and not any(a.tag == 'header' for a in node.ancestors()):
+            yield node
+
+
+def published(tree, source_id=None, *, product_body=None):
+    nodes = tree.walk()
+    if source_id == 'firefox-security' and product_body is not None:
+        # Mozilla's unit boundary wraps its primary article. Only the article's
+        # advisory summary owns the Announced field; keep the unit boundary intact.
+        summaries = list(firefox_advisory_summaries(product_body))
+        if len(summaries) > 1:
+            return None
+        if summaries:
+            product_body = summaries[0]
+            nodes = [n for n in product_body.children
+                     if isinstance(n, Node) and n.tag == 'dt' and n.text() == 'Announced']
+            if len(nodes) != 1:
+                return None
+        else:
+            nodes = (n for n in tree.walk() if not any(a.tag == 'header' for a in n.ancestors()))
+    for n in nodes:
+        if product_body is not None and not belongs_to_document(n, product_body):
+            continue
+        if n.attrs.get('itemprop') == 'dateModified':
+            continue
         if n.tag == 'meta' and n.attrs.get('property', n.attrs.get('name')) in (
                 'article:published_time', 'date', 'datePublished', 'publication_date'):
             found = publication_value(n.attrs.get('content'))
@@ -135,6 +184,52 @@ def published(tree, source_id=None):
             if found:
                 return found
     return None
+
+
+def reconcile_modification(values, context):
+    """Agree on a single publication day or instant and retain the best precision."""
+    days = {value for value in values if value and len(value) == 10}
+    timestamps = [value for value in values if value and len(value) > 10]
+    instants = {instant(value) for value in timestamps}
+    if len(days) > 1 or len(instants) > 1:
+        raise ValueError('Conflicting ' + context)
+    if timestamps and days:
+        # A printed day may use the source offset or the KST comparison calendar.
+        possible_days = {value[:10] for value in timestamps}
+        possible_days.add(instant(timestamps[0]).astimezone(SEOUL).date().isoformat())
+        if not days <= possible_days:
+            raise ValueError('Conflicting ' + context)
+    return timestamps[0] if timestamps else next(iter(days), None)
+
+
+def modification(tree, product_body=None, *, page_metadata_only=False):
+    """Use explicit publisher modification fields; generic <time> can mean publication."""
+    values = []
+    for node in tree.walk():
+        if page_metadata_only and (node.tag != 'meta' or node.parent.tag not in ('head', 'document')):
+            continue
+        if (node.attrs.get('property') != 'article:modified_time'
+                and node.attrs.get('itemprop') != 'dateModified'):
+            continue
+        if not belongs_to_document(node, product_body if product_body is not None else tree):
+            continue
+        value = publication_value(node.attrs.get('content') or node.attrs.get('datetime') or node.text())
+        if value:
+            values.append(value)
+    return reconcile_modification(values, 'document modification dates')
+
+
+def chrome_post_header(link):
+    """A date on a Blogger post header belongs only to that post's permalink."""
+    ancestors = list(link.ancestors())
+    header = next((node for node in ancestors if node.has_class('post-header')), None)
+    if header is not None:
+        return header
+    if not any(node.has_class('post-title') for node in ancestors):
+        return None
+    post = next((node for node in ancestors if node.has_class('post') or node.has_class('post-outer')), None)
+    headers = [node for node in post.walk() if node.has_class('post-header')] if post else []
+    return headers[0] if len(headers) == 1 else None
 
 
 def remove_chrome_post_signoff(fragment, reviewed_signoffs=()):
@@ -240,7 +335,7 @@ def links(tree, base):
                 yield url, n.text(), n
 
 
-def chrome_archive_before(node, url, since):
+def chrome_archive_before(node, url, since, exact_start=None):
     if node.tag != 'a' or node.attrs.get('id') != 'Blog1_blog-pager-older-link':
         return False
     target = urlsplit(url)
@@ -258,10 +353,10 @@ def chrome_archive_before(node, url, since):
         return False
     # The publisher's offset determines its calendar day. Keep the entire
     # boundary day, including a cursor that lands exactly at its midnight.
-    return cursor < midnight
+    return cursor < midnight and (exact_start is None or cursor < instant(exact_start))
 
 
-def next_links(tree, base, chrome_releases_since=None):
+def next_links(tree, base, chrome_releases_since=None, exact_start=None):
     result = []
     for n in tree.walk():
         if n.tag not in {'a', 'link'} or not n.attrs.get('href'):
@@ -274,7 +369,7 @@ def next_links(tree, base, chrome_releases_since=None):
                 n.has_class('blog-pager-older-link') or attrs.get('id') == 'Blog1_blog-pager-older-link' or
                 attrs.get('rel') == 'next' or label.strip() in {'next', 'next page', 'older posts', 'older', '다음'}):
             url = urldefrag(urljoin(base, attrs['href']))[0]
-            if chrome_releases_since and chrome_archive_before(n, url, chrome_releases_since):
+            if chrome_releases_since and chrome_archive_before(n, url, chrome_releases_since, exact_start):
                 continue
             result.append(url)
     return list(dict.fromkeys(result))

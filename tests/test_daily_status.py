@@ -242,6 +242,10 @@ class StatusTests(unittest.TestCase):
         self.assertFalse(self.status.exists())
         self.assertFalse((self.root / collect.FEATURE_CATALOG).exists())
         self.assertFalse((self.root / 'data/source-items/firefox/firefox-beta.json').exists())
+        collect.mark_incomplete(self.root, self.run)
+        interrupted = json.loads(self.status.read_bytes())
+        self.assertEqual(('incomplete', None, None),
+                         (interrupted['status'], interrupted['collected_feature_count'], interrupted['change_count']))
         self.save(self.decisions())
         record = json.loads(self.status.read_bytes())
         self.assertEqual((1, 1), (record['collected_feature_count'], record['change_count']))

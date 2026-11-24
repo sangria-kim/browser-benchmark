@@ -17,6 +17,8 @@
     "backfill_until": "baseline_cutoff",
     "reason": "Collect official items announced or changed since 2026-01-01. Retain older accepted records as context; undated items remain unknown, not evidence of an in-period change.",
     "include_undated_current_documents": true,
+    "daily_window_days": 30,
+    "source_attempt_seconds": 900,
     "overlap_days": 7,
     "full_reconcile_days": 30,
     "legacy_policy": "preserve_all_existing_records_and_ids"

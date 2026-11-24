@@ -55,12 +55,15 @@ class BraveMetadataTests(unittest.TestCase):
     def test_complete_cursor_inventory_and_first_page_recheck(self):
         pages = [page([row()], more=True, total=2), page([row(2)], cursor='A', end='B', total=2)]
         self.assertEqual(2, len(validate(bundle(pages), CUTOFF)))
+        pages = [page([dict(row(), updated_at=CUTOFF)], more=True, total=2),
+                 page([dict(row(2), updated_at=CUTOFF)], cursor='A', end='B', total=2)]
         replies, calls = iter(pages + [bundle(pages)['oldest_page_check']['page'], pages[0]]), []
         def request(cursor, direction='DESC'):
             calls.append((cursor, direction))
             return next(replies)
         result = capture(CUTOFF, request=request)
         self.assertEqual([(None, 'DESC'), ('A', 'DESC'), (None, 'ASC'), (None, 'DESC')], calls)
+        self.assertEqual(3, result['version'])
         self.assertEqual(2, len(validate(result, CUTOFF)))
         with self.assertRaises(ValueError):
             capture(CUTOFF, request=lambda cursor: pages[0], max_pages=1)
@@ -100,7 +103,7 @@ class BraveMetadataTests(unittest.TestCase):
 
     def test_gh_boundary_uses_shell_false_and_minimizes_response(self):
         calls = []
-        node = dict(databaseId=1, tagName='v1', url=row()['url'], createdAt=row()['created_at'], publishedAt=row()['published_at'], isDraft=False,
+        node = dict(databaseId=1, tagName='v1', url=row()['url'], createdAt=row()['created_at'], publishedAt=row()['published_at'], updatedAt=CUTOFF, isDraft=False,
                     owner_email='private@example.invalid')
         raw = {'data': {'repository': {'nameWithOwner': REPOSITORY, 'isPrivate': False,
                 'releases': {'totalCount': 1, 'pageInfo': {'hasNextPage': False, 'endCursor': 'A'}, 'nodes': [node]}}}}

@@ -47,6 +47,14 @@
         "include_undated_current_documents": {
           "const": true
         },
+        "source_attempt_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "daily_window_days": {
+          "type": "integer",
+          "minimum": 1
+        },
         "overlap_days": {
           "type": "integer",
           "minimum": 0

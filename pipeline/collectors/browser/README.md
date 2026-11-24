@@ -44,3 +44,13 @@ The helper invokes `gh api graphql` without a shell. It retains only public rele
 Pass the file through `--brave-release-metadata /absolute/private/brave-release-metadata.json` to `pipeline.collect` or a new `pipeline.run_daily` collection. Its cutoff must match the run. Keep the original metadata with the private run inputs if a retry needs it. The collector reconciles publication timestamps and fetches only missing eligible official release bodies. Missing, invalid or incomplete metadata leaves the older-created/newly-published gap explicit.
 
 Source: [GitHub release API](https://docs.github.com/en/rest/releases/releases#get-the-latest-release) and [GraphQL release fields](https://docs.github.com/en/graphql/reference/objects#release).
+
+In windowed collection, the private v3 metadata includes each release's official
+modification timestamp. The collector compares the release ID, URL and publication
+with the frozen inventory. It checks old releases with recent edits and the
+creation-month HTML partitions needed for their existing item keys. If a release
+appears in search but is missing from the inventory, coverage is partial. A v2
+inventory still supplies publication dates. Old releases beyond REST coverage
+with no verified modification date keep a v2 run partial. Capture a new v3
+inventory for the same cutoff before starting a new run. The collector never
+invokes the capture helper itself. [GitHub release fields](https://docs.github.com/en/graphql/reference/releases)

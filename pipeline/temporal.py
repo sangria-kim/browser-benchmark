@@ -1,6 +1,6 @@
 """Evidence-based collection scope. Observation time never dates a product change."""
 import copy
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from zoneinfo import ZoneInfo
 
 POLICY_VERSION = 'dated-endpoints-v1'
@@ -13,20 +13,47 @@ def instant(value):
     return value
 
 
+SEOUL = ZoneInfo('Asia/Seoul')
+
+
+def window_start(mode, cutoff, policy_since, window_days, manual_since=None):
+    """Freeze an inclusive private instant; public scopes keep their calendar-day contract."""
+    end = instant(cutoff).astimezone(SEOUL)
+    floor = instant(policy_since + 'T00:00:00+09:00')
+    if mode not in ('daily', 'weekly_reconcile', 'manual', 'legacy'):
+        raise ValueError('Unknown collection mode')
+    if manual_since is not None:
+        if mode != 'manual':
+            raise ValueError('Only manual collections accept --since')
+        start = instant(manual_since + 'T00:00:00+09:00' if len(manual_since) == 10 else manual_since)
+        if start < floor:
+            raise ValueError('Manual range starts before collection policy')
+    elif mode in ('weekly_reconcile', 'legacy'):
+        start = floor
+    else:
+        start = max(floor, end - timedelta(days=window_days))
+    if start > end:
+        raise ValueError('Collection window ends before it starts')
+    return start.astimezone(SEOUL).isoformat()
+
+
+def window_status(start, cutoff, value):
+    """Compare timestamps as instants and printed days against both inclusive KST dates."""
+    lower, upper = instant(start), instant(cutoff)
+    if not value:
+        return 'unknown'
+    if len(value) == 10:
+        item = datetime.strptime(value, '%Y-%m-%d').date()
+        lower, upper = lower.astimezone(SEOUL).date(), upper.astimezone(SEOUL).date()
+    else:
+        item = instant(value)
+    return 'before_period' if item < lower else 'after_cutoff' if item > upper else 'in_period'
+
+
 def dated_scope(since, cutoff, date=None, basis='unknown', reason=None):
     """Printed dates compare as calendar days; timestamps compare as instants."""
-    end = instant(cutoff)
-    status, precision = 'unknown', 'unknown'
-    if date:
-        if len(date) == 10:
-            datetime.strptime(date, '%Y-%m-%d')
-            precision = 'day'
-            status = 'before_period' if date < since else 'after_cutoff' if date > end.astimezone(ZoneInfo('Asia/Seoul')).date().isoformat() else 'in_period'
-        else:
-            value = instant(date)
-            start = instant(since + 'T00:00:00+09:00')
-            precision = 'timestamp'
-            status = 'before_period' if value < start else 'after_cutoff' if value > end else 'in_period'
+    status = window_status(since + 'T00:00:00+09:00', cutoff, date)
+    precision = ('day' if len(date) == 10 else 'timestamp') if date else 'unknown'
     return dict(version=1, since=since, cutoff=cutoff, status=status, basis=basis if date else 'unknown',
                 evidence_date=date, precision=precision, baseline_revision=None, current_revision=None,
                 change=None, reason=reason or ('Official item date.' if date else 'No supported item date.'))

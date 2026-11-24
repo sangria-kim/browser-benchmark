@@ -17,7 +17,7 @@ from pipeline.temporal import instant
 REPOSITORY = 'brave/brave-browser'
 QUERY = '''query($cursor:String,$direction:OrderDirection!){repository(owner:"brave",name:"brave-browser"){
  nameWithOwner isPrivate releases(first:100,after:$cursor,orderBy:{field:CREATED_AT,direction:$direction}){
- totalCount pageInfo{hasNextPage endCursor} nodes{databaseId tagName url createdAt publishedAt isDraft}
+ totalCount pageInfo{hasNextPage endCursor} nodes{databaseId tagName url createdAt publishedAt updatedAt isDraft}
  }}}'''
 FIELDS = {'id', 'tag_name', 'url', 'created_at', 'published_at', 'is_draft'}
 
@@ -32,7 +32,7 @@ def stamp():
 
 def validate(bundle, cutoff, *, now=None):
     required = {'version', 'repository', 'cutoff', 'started_at', 'observed_at', 'complete', 'pages', 'first_page_recheck', 'oldest_page_check'}
-    if not isinstance(bundle, dict) or set(bundle) != required or bundle['version'] != 2 or bundle['repository'] != REPOSITORY or bundle['complete'] is not True:
+    if not isinstance(bundle, dict) or set(bundle) != required or bundle['version'] not in (2, 3) or bundle['repository'] != REPOSITORY or bundle['complete'] is not True:
         raise ValueError('Incomplete or unsupported Brave metadata bundle')
     if instant(bundle['cutoff']) != instant(cutoff):
         raise ValueError('Brave metadata cutoff differs from the frozen collection window')
@@ -41,6 +41,7 @@ def validate(bundle, cutoff, *, now=None):
         raise ValueError('Brave metadata observation times are invalid')
     if not isinstance(bundle['pages'], list) or not bundle['pages']:
         raise ValueError('Brave metadata pages are missing')
+    fields = FIELDS | {'updated_at'} if bundle['version'] == 3 else FIELDS
     cursor, total, ids, tags, ends, result = None, None, set(), set(), set(), []
     for index, page in enumerate(bundle['pages']):
         if not isinstance(page, dict) or set(page) != {'cursor', 'end_cursor', 'has_next_page', 'total_count', 'records', 'sha256'}:
@@ -62,7 +63,7 @@ def validate(bundle, cutoff, *, now=None):
         if not page['records'] and (page['has_next_page'] or total != 0 or end is not None):
             raise ValueError('Unexpected empty Brave metadata page')
         for row in page['records']:
-            if not isinstance(row, dict) or set(row) != FIELDS or type(row['id']) is not int or row['id'] <= 0 or type(row['is_draft']) is not bool:
+            if not isinstance(row, dict) or set(row) != fields or type(row['id']) is not int or row['id'] <= 0 or type(row['is_draft']) is not bool:
                 raise ValueError('Invalid or nonminimal Brave release metadata')
             if not isinstance(row['tag_name'], str) or not row['tag_name'] or row['id'] in ids or row['tag_name'] in tags:
                 raise ValueError('Duplicate or invalid Brave release identity')
@@ -73,6 +74,8 @@ def validate(bundle, cutoff, *, now=None):
                 raise ValueError('Brave release URL/repository mismatch')
             if instant(row['created_at']) > observed or (row['published_at'] is not None and instant(row['published_at']) > observed):
                 raise ValueError('Brave release timestamp postdates observation')
+            if bundle['version'] == 3 and instant(row['updated_at']) > observed:
+                raise ValueError('Release modification postdates metadata observation')
             ids.add(row['id']); tags.add(row['tag_name']); result.append(row)
         cursor = end
         ends.add(end)
@@ -125,7 +128,7 @@ def request_page(cursor, runner=subprocess.run, *, direction='DESC'):
         raise ValueError('Expected the public Brave repository')
     releases = repo['releases']
     records = [dict(id=n['databaseId'], tag_name=n['tagName'], url=n['url'], created_at=n['createdAt'],
-                    published_at=n['publishedAt'], is_draft=n['isDraft']) for n in releases['nodes']]
+                    published_at=n['publishedAt'], updated_at=n['updatedAt'], is_draft=n['isDraft']) for n in releases['nodes']]
     page = dict(cursor=cursor, end_cursor=releases['pageInfo']['endCursor'], has_next_page=releases['pageInfo']['hasNextPage'],
                 total_count=releases['totalCount'], records=records)
     page['sha256'] = digest(page)
@@ -150,7 +153,7 @@ def capture(cutoff, *, request=request_page, max_pages=2000):
         raise ValueError('Brave metadata page budget reached; no complete bundle was written')
     oldest = {'page': request(None, direction='ASC'), 'observed_at': stamp()}
     first = request(None)
-    result = dict(version=2, repository=REPOSITORY, cutoff=cutoff, started_at=started, observed_at=stamp(), complete=True,
+    result = dict(version=3, repository=REPOSITORY, cutoff=cutoff, started_at=started, observed_at=stamp(), complete=True,
                   oldest_page_check=oldest,
                   pages=pages, first_page_recheck={'sha256': first['sha256'], 'observed_at': stamp()})
     result['observed_at'] = stamp()

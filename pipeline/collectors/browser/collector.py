@@ -9,19 +9,21 @@ import hashlib
 import json
 import os
 import re
+from time import monotonic
 import calendar
 from pathlib import Path
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from urllib.parse import urljoin, urlparse, urldefrag, urlencode
 from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
-from .html import Tree, boundary, blocks, links, next_links, published, publication_value, date_value, item_type, unique_unit_keys
+from .html import Tree, boundary, blocks, links, next_links, published, modification, reconcile_modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
-from pipeline.temporal import dated_scope, instant
+from pipeline.temporal import SEOUL, dated_scope, instant, window_status
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
 
 
+GITHUB_REST_CAP = 1000
 DOCUMENT_VERSION = re.compile(r'(?:version|firefox|chrome|safari|opera|vivaldi|brave)[ -]+(\d+(?:[.][\w]+)+)', re.I)
 EDGE_RELEASE_VERSION = re.compile(r'^Version\s+(\d+(?:\.\d+){3})(?=[:\s]|$)', re.I)
 VIVALDI_SNAPSHOT = re.compile(
@@ -196,6 +198,8 @@ class BrowserCollector:
     """
     def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None, *, write_records=True):
         self.write_records = write_records
+        self.policy_since = self.window_start = self.checkpoint_context = self.attempt_seconds = None
+        self.deadline = None
         self.repository = Path(repository).resolve()
         self.private_dir = Path(private_dir).expanduser().resolve()
         if self.private_dir == self.repository or self.repository in self.private_dir.parents:
@@ -216,6 +220,12 @@ class BrowserCollector:
         self.observed_at = datetime.now(timezone.utc).isoformat()
         self.progress_path = self.private_dir / (source['source_id'] + '-progress.json')
         prior_progress = json.loads(self.progress_path.read_text()) if self.resume and self.progress_path.exists() else {}
+        if self.checkpoint_context and prior_progress:
+            checksum = prior_progress.pop('checkpoint_sha256', None)
+            if (prior_progress.get('context') != self.checkpoint_context
+                    or checksum != digest(canonical(prior_progress))):
+                raise ValueError('Source response checkpoint mismatch; start a fresh run')
+        self.deadline = monotonic() + self.attempt_seconds if self.attempt_seconds else None
         self.progress = prior_progress if prior_progress.get('cutoff') == cutoff else {'cutoff': cutoff, 'responses': {}, 'documents': []}
         self.new_pages, self.new_documents = 0, 0
         self.checkpoint_count = 0
@@ -239,7 +249,16 @@ class BrowserCollector:
                       'last_successful_cutoff': prior_state.get('last_successful_cutoff')}
         self.edge_content, self.edge_documents = {}, {}
         self.cache = {}
+        self.replayed_pages = []
         self.state_path = state_path
+        self.github_prior_formats = {}
+        if self.window_start and source['parser'] == 'github_releases':
+            for prior in self.previous:
+                key = prior['item_key']
+                if ':' in key:
+                    release, _, unit = key.partition(':')
+                    self.github_prior_formats.setdefault(release, set()).add(
+                        'html' if unit.startswith('html:') else 'markdown')
         try:
             if source['source_id'] == 'edge-policies':
                 for cached in self.progress['responses'].values():
@@ -299,11 +318,37 @@ class BrowserCollector:
     def problem(self, url, error):
         self.state['errors'].append({'url': url, 'reason': error})
 
+    def write_progress(self):
+        if self.checkpoint_context:
+            self.progress['context'] = self.checkpoint_context
+            checkpoint = dict(self.progress, checkpoint_sha256=digest(canonical(self.progress)))
+        else:
+            checkpoint = self.progress
+        atomic_json(self.progress_path, checkpoint)
+
+    def check_time(self):
+        if self.deadline is not None and monotonic() >= self.deadline:
+            raise TimeoutError('Source attempt time budget reached')
+
+    def get_page(self, url):
+        """Verify a cached mutable prefix before extending it with a new page."""
+        if self.resume and self.checkpoint_context:
+            if url in self.progress['responses']:
+                self.replayed_pages.append(url)
+            else:
+                for page in self.replayed_pages:
+                    self.get(page, refresh=True)
+                self.replayed_pages.clear()
+        return self.get(url)
+
     def get(self, url, refresh=False):
+        self.check_time()
         if url in self.cache and not refresh:
             return self.cache[url]
         cached = self.progress['responses'].get(url)
         if cached and not refresh:
+            if not re.fullmatch(r'[0-9a-f]{64}', cached['sha256']):
+                raise ValueError('Invalid cached response checksum')
             raw = (self.private_dir / 'cache' / cached['sha256']).read_bytes()
             if digest(raw) != cached['sha256']:
                 raise ValueError('Cached response checksum mismatch')
@@ -315,20 +360,28 @@ class BrowserCollector:
             raise ValueError('Unexpected HTTP status %s' % response.status)
         if not response.body:
             raise ValueError('Empty response')
+        if self.checkpoint_context and self.resume and cached and refresh:
+            prior_link = cached['headers'].get('link', cached['headers'].get('Link'))
+            next_link = response.headers.get('link', response.headers.get('Link'))
+            if (digest(response.body), response.url, next_link) != (cached['sha256'], cached['url'], prior_link):
+                raise ValueError('Mutable enumeration changed on resume; start a fresh run')
+            response.observed_at = cached.get('observed_at')
         # Keep bytes private. Cache filenames are hashes, not author/URL names.
         cache_path = self.private_dir / 'cache' / digest(response.body)
         cache_path.parent.mkdir(parents=True, exist_ok=True)
         if not cache_path.exists():
-            cache_path.write_bytes(response.body)
+            atomic_bytes(cache_path, response.body)
         self.cache[url] = response
         self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
-        if self.source['source_id'] == 'edge-policies':
-            response.observed_at = self.observed_at
+        if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
+            response.observed_at = response.observed_at or datetime.now(timezone.utc).isoformat()
             self.progress['responses'][url]['observed_at'] = response.observed_at
-        atomic_json(self.progress_path, self.progress)
+        self.write_progress()
+        self.check_time()
         return response
 
     def budget(self, url, kind):
+        self.check_time()
         cached = url in self.progress['responses'] if kind == 'pages' else url in self.progress['documents']
         if cached:
             return True
@@ -343,27 +396,50 @@ class BrowserCollector:
     def document_done(self, url):
         if url not in self.progress['documents']:
             self.progress['documents'].append(url)
-            atomic_json(self.progress_path, self.progress)
+            self.write_progress()
 
     def allowed_date(self, date, current=False):
-        if date and date > self.cutoff[:10]:
-            return False
-        return current or not date or date >= self.since
+        return self.allowed_publication(date, current)
 
     def publication_status(self, value):
-        # Timestamp evidence must reach the shared KST policy before any
-        # calendar-day truncation. Unknown dates remain explicit, not excluded.
-        return dated_scope(self.since, self.cutoff, value, 'publication')['status']
+        start = self.window_start or self.since + 'T00:00:00+09:00'
+        return window_status(start, self.cutoff, value)
+
+    def possible_index_date(self, value):
+        # A printed date near a boundary can resolve to an offset timestamp on the detail.
+        if self.window_start and value and len(value) == 10:
+            day = datetime.strptime(value, '%Y-%m-%d').date()
+            start = instant(self.window_start).astimezone(SEOUL).date()
+            end = instant(self.cutoff).astimezone(SEOUL).date()
+            return start - timedelta(days=1) <= day <= end + timedelta(days=1)
+        return self.allowed_publication(value)
+
+    def revision_in_scope(self, url, publication, modified):
+        # A release published after cutoff could not have existed in the window.
+        if self.publication_status(publication) == 'after_cutoff':
+            return False
+        if modified and self.publication_status(modified) == 'after_cutoff':
+            self.problem(url, 'Only a revision after cutoff is available')
+            return False
+        return self.allowed_publication(modified or publication) or self.publication_status(publication) == 'in_period'
 
     def allowed_publication(self, value, current=False):
         status = self.publication_status(value)
         return status != 'after_cutoff' and (current or status != 'before_period')
 
-    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None):
+    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None):
+        self.check_time()
         observed_at = self.observed_at
-        if self.source['source_id'] == 'edge-policies':
+        if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
             observed_at = response.observed_at or observed_at
         key = unit['key']
+        if self.github_prior_formats and ':' in key:
+            release, _, location = key.partition(':')
+            prior_formats = self.github_prior_formats.get(release)
+            layout = 'html' if location.startswith('html:') else 'markdown'
+            if prior_formats and prior_formats != {layout}:
+                self.problem(url, 'Release evidence layout changed; verify the existing item identities')
+                return
         ident = identity('src', [self.source['source_id'], url, key])
         fingerprint = digest(canonical([self.source['source_id'], url, key, unit,
                                         digest(response.body), date, revision, title, channel, platform, version]))
@@ -397,11 +473,15 @@ class BrowserCollector:
                   'origin': self.origin, 'lifecycle': 'unknown', 'revisions': [],
                   'experiment_kind': None, 'source_location': url + '#' + key, 'source_symbol': None}
         record['temporal_scope'] = dated_scope(self.since, self.cutoff, date_evidence or date, 'publication')
+        if modified and not (self.publication_status(modified) == 'before_period'
+                             and self.publication_status(date_evidence or date) == 'in_period'):
+            record['temporal_scope'] = dated_scope(self.since, self.cutoff, modified, 'item_change')
         if self.source['source_id'] == 'chrome-platform-status' and revision:
             # This API timestamp belongs to one feature, not its enclosing page.
             value = chromestatus_date(revision)
-            record['temporal_scope'] = dated_scope(self.since, self.cutoff, value, 'item_change',
-                'Official per-feature update; a timestamp without timezone supplies its printed calendar day only.')
+            if not (self.publication_status(value) == 'before_period' and self.publication_status(date_evidence) == 'in_period'):
+                record['temporal_scope'] = dated_scope(self.since, self.cutoff, value, 'item_change',
+                    'Official per-feature update; a timestamp without timezone supplies its printed calendar day only.')
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
         if parsed:
             record['item_content_sha256'] = digest(canonical([unit['section'], unit['text']]))
@@ -472,7 +552,16 @@ class BrowserCollector:
             atomic_json(self.destination, sorted(self.records.values(), key=lambda r: r['source_item_id']))
         atomic_json(self.state_path, self.state)
 
-    def document(self, url, response=None, current=False, publication_date=None):
+    def rolling_revision_after_cutoff(self, root, url):
+        if self.window_start:
+            modified = modification(root, page_metadata_only=True)
+            if self.publication_status(modified) == 'after_cutoff':
+                self.problem(url, 'Only a rolling document revision after cutoff is available')
+                self.state['excluded_by_date'].append(url)
+                return True
+        return False
+
+    def document(self, url, response=None, current=False, publication_date=None, modified=None):
         response = response or self.get(url)
         text = response.text()
         root = Tree(text).root
@@ -482,16 +571,25 @@ class BrowserCollector:
         # Rolling release/policy pages contain independently dated sections.
         # A page's metadata or first <time> cannot date all of them.
         multi = self.source['source_id'].startswith('edge-') or self.source['source_id'] == 'chrome-enterprise' or '/changelog-for-' in url
-        publication = None if multi else publication_date
-        if not multi and (not publication or len(publication) == 10):
-            page_date = published(root, self.source['source_id'])
-            if not publication or (page_date and len(page_date) > 10):
-                publication = page_date
-        if not self.allowed_publication(publication, current):
-            self.state['excluded_by_date'].append(url)
+        if multi and self.rolling_revision_after_cutoff(root, url):
             return root
         reviewed = self.reviewed_attributions.get(digest(response.body), []) if self.source['source_id'] == 'chrome-releases' else ()
         body = boundary(root, self.source['source_id'], reviewed)
+        publication = None if multi else publication_date
+        if not multi and (not publication or len(publication) == 10):
+            page_date = published(root, self.source['source_id'], product_body=body if self.window_start else None)
+            if not publication or (page_date and len(page_date) > 10):
+                publication = page_date
+        if not multi and self.window_start:
+            page_modified = modification(root, body)
+            modified = reconcile_modification((modified, page_modified), 'index and document modification dates')
+        if modified:
+            eligible = self.revision_in_scope(url, publication, modified)
+        else:
+            eligible = self.allowed_publication(publication, current)
+        if not eligible:
+            self.state['excluded_by_date'].append(url)
+            return root
         if body is None:
             self.unresolved(url, response)
             self.problem(url, 'Recognized product content boundary missing')
@@ -523,7 +621,7 @@ class BrowserCollector:
                 version = version_match[1] if version_match else None
             section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
-                      version=version, channel=channel)
+                      version=version, channel=channel, modified=modified)
             if edge_policy and unit['parsed']:
                 # Use visible source text for comparison. Preserve the public location key and row hash.
                 headings = unit['visible_headings']
@@ -545,6 +643,10 @@ class BrowserCollector:
         return True
 
     def index_date(self, node, url):
+        if self.source['source_id'] == 'chrome-releases' and self.window_start:
+            header = chrome_post_header(node)
+            if header:
+                return published(header, 'chrome-releases')
         if self.source['source_id'] == 'safari-security':
             row = next((a for a in node.ancestors() if a.tag == 'tr'), None)
             return date_value(row.text()) if row else None
@@ -555,6 +657,8 @@ class BrowserCollector:
         for ancestor in node.ancestors():
             if ancestor.tag == 'article' or ancestor.has_class('ipsDataItem') or ancestor.has_class('blogcard'):
                 for child in ancestor.walk():
+                    if child.attrs.get('itemprop') == 'dateModified':
+                        continue
                     if child.tag == 'time' or child.has_class('date'):
                         date = publication_value(child.attrs.get('datetime')) or publication_value(child.text())
                         if date:
@@ -576,7 +680,7 @@ class BrowserCollector:
         self.release_dates = {}
         if source['source_id'] == 'firefox-releases':
             for name in ('major', 'stability'):
-                history = self.get('https://product-details.mozilla.org/1.0/firefox_history_' + name + '_releases.json')
+                history = self.get_page('https://product-details.mozilla.org/1.0/firefox_history_' + name + '_releases.json')
                 self.release_dates.update(json_body(history))
         chrome_releases_since = self.since if source['source_id'] == 'chrome-releases' else None
         pending_pages, visited_pages, documents, document_set = [source['url']], set(), [], set()
@@ -590,7 +694,7 @@ class BrowserCollector:
                 continue
             visited_pages.add(url)
             try:
-                response = self.get(url)
+                response = self.get_page(url)
                 self.state['pages'] += 1
                 index_text = response.text()
                 root = Tree(index_text).root
@@ -609,22 +713,24 @@ class BrowserCollector:
                         self.unresolved(url, response, key='index')
                         self.problem(url, 'No registered document links in index')
                         enumeration_valid = False
-                index_statuses = []
                 for doc, node in found:
                     date = self.index_date(node, doc)
-                    status = self.publication_status(date)
-                    index_statuses.append(status)
+                    article = next((a for a in node.ancestors() if a.tag == 'article'), None)
+                    metadata = chrome_post_header(node) if source['source_id'] == 'chrome-releases' else article
+                    changed = modification(metadata) if metadata and self.window_start else None
                     year = re.search(r'/mfsa(\d{4})-', doc) if source['source_id'] == 'firefox-security' else None
-                    if status in ('before_period', 'after_cutoff') or (year and int(year[1]) < int(self.since[:4])):
+                    if changed and self.publication_status(changed) == 'after_cutoff':
+                        self.revision_in_scope(doc, date, changed)
+                        continue
+                    relevant = self.possible_index_date(changed or date) or (date and self.possible_index_date(date))
+                    if not relevant or (year and not changed and not date and int(year[1]) < int(self.since[:4])):
                         self.state['excluded_by_date'].append(doc)
                         continue
                     if doc not in document_set:
                         document_set.add(doc)
-                        documents.append((doc, response, date))
-                before_window = (source['browser'] in {'opera', 'vivaldi'} and index_statuses
-                                 and all(status == 'before_period' for status in index_statuses))
-                if source['discovery']['pagination'] == 'next_link' and not before_window:
-                    for next_url in next_links(root, url, chrome_releases_since):
+                        documents.append((doc, response, date, changed))
+                if source['discovery']['pagination'] == 'next_link':
+                    for next_url in next_links(root, url, chrome_releases_since, self.window_start):
                         if urlparse(next_url).netloc != urlparse(source['url']).netloc:
                             self.problem(next_url, 'Unexpected pagination host')
                         elif next_url in visited_pages:
@@ -643,13 +749,13 @@ class BrowserCollector:
         while documents:
             if not self.budget(documents[0][0], 'documents'):
                 break
-            url, discovery_response, discovery_date = documents.pop(0)
+            url, discovery_response, discovery_date, changed = documents.pop(0)
             if url in done:
                 continue
             done.add(url)
             self.state['documents'] += 1
             try:
-                root = self.document(url, publication_date=discovery_date)
+                root = self.document(url, publication_date=discovery_date, modified=changed)
                 self.document_done(url)
                 if source['discovery']['follow_related_documents'] and url not in self.state['excluded_by_date'] and source['source_id'] != 'safari-security':
                     body = boundary(root, source['source_id'])
@@ -657,7 +763,7 @@ class BrowserCollector:
                         for related, _, _ in links(body, url):
                             if pattern.search(related) and related not in document_set and related != source['url']:
                                 document_set.add(related)
-                                documents.append((related, self.cache[url], None))
+                                documents.append((related, self.cache[url], None, None))
             except Exception as error:
                 replacement = self.verified_document_replacement(url, error)
                 if replacement:
@@ -741,7 +847,7 @@ class BrowserCollector:
                 date = publication_value(row.get('published'))
                 if date:
                     dates.append(date_value(date))
-                if not self.allowed_publication(date):
+                if not self.possible_index_date(date):
                     self.state['excluded_by_date'].append(document_url)
                     continue
                 if not self.budget(document_url, 'documents'):
@@ -761,11 +867,12 @@ class BrowserCollector:
         self.state['api_total'] = total
         self.state['latest_publication_date'] = max(dates, default=None)
 
-    def collect_enterprise(self):
-        """Official dated archive panels plus the publisher's current API."""
+    def collect_enterprise_archive(self):
         archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
         response = self.get(archive)
         root = Tree(response.text()).root
+        if self.rolling_revision_after_cutoff(root, archive):
+            return 0
         dates = {}
         for node in root.walk():
             href = node.attrs.get('href', '')
@@ -777,6 +884,7 @@ class BrowserCollector:
                         raise ValueError('Conflicting enterprise release dates')
                     dates[anchor] = date
         panels = 0
+        recognized_panels = 0
         for node in root.walk():
             anchor = node.attrs.get('name', '')
             if node.tag != 'a' or not node.has_class('zippy') or not anchor.isdigit():
@@ -786,6 +894,7 @@ class BrowserCollector:
             if panel is None or panel.tag != 'div':
                 self.problem(archive + '#' + anchor, 'Enterprise release panel is missing')
                 continue
+            recognized_panels += 1
             day = dates.get(anchor)
             if day and not self.allowed_date(day):
                 self.state['excluded_by_date'].append(archive + '#' + anchor)
@@ -794,10 +903,15 @@ class BrowserCollector:
             for unit in blocks(panel):
                 unit['key'] = 'release:' + anchor + ':' + unit['key']
                 self.emit(archive, response, unit, date=day, version=anchor)
-        if not panels or not dates:
+        if not recognized_panels or not dates:
             self.problem(archive, 'Enterprise dated archive inventory is not recognized')
         self.state['documents'] += 1
         self.document_done(archive)
+        return panels
+
+    def collect_enterprise(self):
+        """Official dated archive panels plus the publisher's current API."""
+        self.state['enterprise_archive_panels'] = self.collect_enterprise_archive()
         api = 'https://release-notes-787862449254.us-central1.run.app'
         response = self.get(api + '/versions', refresh=True)
         versions = json_body(response).get('versions')
@@ -830,14 +944,15 @@ class BrowserCollector:
                 # Match the public ChromeStatus item's full-body hash. The
                 # observed milestone remains in version and the evidence URL.
                 unit = {'key': str(ident), 'section': 'feature', 'text': summary, 'parsed': True}
-                self.emit(url, response, unit, date=date_value(row.get('created', {}).get('when')), revision=changed, title=name, version=version)
-                record_id = identity('src', [self.source['source_id'], url, str(ident)])
-                self.records[record_id]['temporal_scope'] = dated_scope(self.since, self.cutoff, date_value(changed), 'item_change',
-                    'Official public enterprise-feature update; timezone-unspecified API timestamp retains its printed day.')
+                created = chromestatus_date(row.get('created', {}).get('when') or '')
+                modified = chromestatus_date(changed) if changed else None
+                if self.window_start and not self.revision_in_scope(url + '#' + str(ident), created, modified):
+                    continue
+                self.emit(url, response, unit, date=date_value(created), date_evidence=created,
+                          revision=changed, title=name, version=version, modified=modified)
             self.document_done(url)
             self.persist_checkpoint([])
         self.state['enterprise_publication_excluded'] = excluded
-        self.state['enterprise_archive_panels'] = panels
         self.state['pagination_exhausted'] = True
 
     def collect_chromestatus(self):
@@ -877,10 +992,13 @@ class BrowserCollector:
                 feature_url = 'https://chromestatus.com/feature/' + str(ident)
                 # Do not copy raw API metadata: it includes personal owner emails.
                 revision = row.get('updated', {}).get('when')
+                created = chromestatus_date(row.get('created', {}).get('when') or '')
+                if self.window_start and not self.revision_in_scope(feature_url, created, chromestatus_date(revision or '')):
+                    self.document_done(marker)
+                    continue
                 unit = self.chromestatus_unit(row, feature_url, revision)
                 self.emit(feature_url, response, unit, title=row.get('name'),
-                          date=date_value(row.get('created', {}).get('when', '')),
-                          revision=revision)
+                          date=date_value(created), date_evidence=created, revision=revision)
                 self.document_done(marker)
             start += len(rows)
             self.persist_checkpoint([url])
@@ -963,17 +1081,16 @@ class BrowserCollector:
                         self.unresolved(url, document)
                     for unit in units:
                         self.emit(url, document, unit, date=date)
-                    self.document_done(url)
-                    # Topic sections are explicit continuations, not arbitrary related links.
-                    for section in data.get('topicSections', []):
-                        for ident in section.get('identifiers', []):
-                            ref = data.get('references', {}).get(ident, {})
-                            related = urljoin('https://developer.apple.com', ref.get('url', '')).lower()
-                            if re.search(self.source['discovery']['include_url_pattern'], related) and related not in seen:
-                                pending.append(related)
                 else:
                     self.state['excluded_by_date'].append(url)
-                    self.document_done(url)
+                self.document_done(url)
+                # A topic's publication does not establish the dates of its children.
+                for section in data.get('topicSections', []):
+                    for ident in section.get('identifiers', []):
+                        ref = data.get('references', {}).get(ident, {})
+                        related = urljoin('https://developer.apple.com', ref.get('url', '')).lower()
+                        if re.search(self.source['discovery']['include_url_pattern'], related) and related not in seen:
+                            pending.append(related)
             except Exception as error:
                 self.unresolved(url, response, key='discovered-document')
                 self.problem(url, str(error))
@@ -983,9 +1100,11 @@ class BrowserCollector:
     def collect_github(self):
         self.github_covered, self.github_publications = set(), {}
         self.brave_metadata_rows = None
+        self.brave_inventory = {}
         if self.source['source_id'] == 'brave-releases' and self.brave_release_metadata is not None:
             from .brave_metadata import validate
             self.brave_metadata_rows = validate(self.brave_release_metadata, self.cutoff)
+            self.brave_inventory = {str(row['id']): row for row in self.brave_metadata_rows}
         parts = urlparse(self.source['url']).path.strip('/').split('/')
         url = 'https://api.github.com/repos/%s/%s/releases?per_page=100&page=1' % tuple(parts[:2])
         visited, release_ids = set(), set()
@@ -998,9 +1117,9 @@ class BrowserCollector:
                 return
             visited.add(url)
             try:
-                response = self.get(url)
+                response = self.get_page(url)
             except HTTPError as error:
-                if error.code != 422 or len(release_ids) < 1000:
+                if error.code != 422 or len(release_ids) < GITHUB_REST_CAP:
                     raise
                 self.state['github_rest_limit'] = {'status': 422, 'enumerated': len(release_ids), 'url': url}
                 break
@@ -1013,13 +1132,16 @@ class BrowserCollector:
                     self.unresolved(url, response, key='release-row:' + str(row_index))
                     continue
                 document_url = row['html_url']
+                if str(row['id']) in release_ids:
+                    raise ValueError('Duplicate release ID across GitHub pages')
                 release_ids.add(str(row['id']))
                 self.github_publications[str(row['id'])] = row.get('published_at')
                 if not self.budget(document_url, 'documents'):
                     return
                 self.state['documents'] += 1
                 date = date_value(row.get('published_at'))
-                if not self.allowed_publication(row.get('published_at')):
+                changed = self.github_update(str(row['id']), document_url, row.get('published_at'), row.get('updated_at'))
+                if not self.revision_in_scope(document_url, row.get('published_at'), changed):
                     self.state['excluded_by_date'].append(document_url)
                     self.document_done(document_url)
                     continue
@@ -1028,7 +1150,7 @@ class BrowserCollector:
                     self.unresolved(document_url, response)
                 for unit in units:
                     unit['key'] = str(row['id']) + ':' + unit['key']
-                    self.emit(document_url, response, unit, date=date, date_evidence=row.get('published_at'), revision=row.get('tag_name'), version=row.get('tag_name'))
+                    self.emit(document_url, response, unit, date=date, date_evidence=row.get('published_at'), modified=changed, revision=row.get('tag_name'), version=row.get('tag_name'))
                 if units:
                     self.github_covered.add(str(row['id']))
                 self.document_done(document_url)
@@ -1038,12 +1160,28 @@ class BrowserCollector:
             if url and urlparse(url).netloc != 'api.github.com':
                 raise ValueError('Unexpected GitHub pagination host')
             self.persist_checkpoint([url] if url else [])
-        if self.source['source_id'] == 'brave-releases' and len(release_ids) >= 1000:
+        self.github_rest_ids = release_ids
+        if self.source['source_id'] == 'brave-releases' and len(release_ids) >= GITHUB_REST_CAP:
             self.collect_github_months(release_ids)
         else:
             self.state['pagination_exhausted'] = True
             if self.brave_metadata_rows is not None:
                 self.collect_github_complement()
+
+    def github_update(self, ident, url, published, updated=None):
+        if not self.window_start:
+            return None
+        record = self.brave_inventory.get(ident)
+        if self.brave_metadata_rows is not None:
+            if record is None:
+                raise ValueError('Observed public release absent from frozen metadata: ' + ident)
+            if (record['is_draft'] or url != record['url'] or not published or not record['published_at']
+                    or instant(published) != instant(record['published_at'])):
+                raise ValueError('Release identity/publication differs from frozen metadata: ' + ident)
+        frozen = record.get('updated_at') if record else None
+        if frozen and updated and instant(frozen) != instant(updated):
+            raise ValueError('Release modification differs from frozen metadata: ' + ident)
+        return publication_value(updated or frozen)
 
     def collect_github_months(self, api_ids):
         """Reconcile official month partitions beyond GitHub REST's 1,000 cap.
@@ -1053,11 +1191,28 @@ class BrowserCollector:
         The live search payload must echo the requested qualifier and page.
         """
         base = self.source['url']
-        first = datetime.fromisoformat(self.since)
-        last = datetime.fromisoformat(self.cutoff[:10])
+        # GitHub's created-date search partitions use UTC calendar months.
+        first = instant(self.window_start).astimezone(timezone.utc) if self.window_start else datetime.fromisoformat(self.since)
+        last = instant(self.cutoff).astimezone(timezone.utc)
         year, month = first.year, first.month
-        seen, partitions = set(), []
+        months = set()
         while (year, month) <= (last.year, last.month):
+            months.add((year, month))
+            year, month = (year + 1, 1) if month == 12 else (year, month + 1)
+        # A release created in an older policy month can be published or edited recently.
+        # Consult that specific HTML partition to preserve its historical source-unit keys.
+        if self.window_start and self.brave_metadata_rows:
+            for entry in self.brave_metadata_rows:
+                ident = str(entry['id'])
+                if entry['is_draft'] or not entry['published_at'] or ident in api_ids:
+                    continue
+                if not any(self.publication_status(entry.get(k)) == 'in_period' for k in ('published_at', 'updated_at')):
+                    continue
+                created = instant(entry['created_at']).astimezone(timezone.utc)
+                if created.date().isoformat() >= (self.policy_since or self.since) or self.github_prior_formats.get(ident) == {'html'}:
+                    months.add((created.year, created.month))
+        seen, partitions = set(), []
+        for year, month in sorted(months):
             start = f'{year:04d}-{month:02d}-01'
             end = f'{year:04d}-{month:02d}-{calendar.monthrange(year, month)[1]:02d}'
             query = 'created:' + start + '..' + end
@@ -1101,6 +1256,8 @@ class BrowserCollector:
                         raise ValueError('GitHub release appeared twice in date partitions')
                     seen.add(ident)
                     count += 1
+                    if self.window_start and self.brave_metadata_rows is not None and ident not in self.brave_inventory:
+                        raise ValueError('Observed public release absent from frozen metadata: ' + ident)
                     if ident in api_ids:
                         continue
                     sections = [n for n in root.walk() if n.tag == 'section' and n.attrs.get('id') == entry['anchorId']]
@@ -1121,14 +1278,15 @@ class BrowserCollector:
                         return
                     self.state['documents'] += 1
                     day = date_value(timestamp)
-                    if self.allowed_publication(timestamp):
+                    changed = self.github_update(ident, document_url, timestamp)
+                    if self.revision_in_scope(document_url, timestamp, changed):
                         version = document_url.rsplit('/', 1)[-1]
                         units = blocks(bodies[0])
                         if not units:
                             self.unresolved(document_url, response, key=ident + ':document')
                         for unit in units:
                             unit['key'] = ident + ':html:' + unit['key']
-                            self.emit(document_url, response, unit, date=day, date_evidence=timestamp, revision=version, version=version)
+                            self.emit(document_url, response, unit, date=day, date_evidence=timestamp, modified=changed, revision=version, version=version)
                         if units:
                             self.github_covered.add(ident)
                     else:
@@ -1140,7 +1298,6 @@ class BrowserCollector:
                 url = following[0] if following else None
                 self.persist_checkpoint([url] if url else [])
             partitions.append({'query': query, 'pages': len(visited), 'releases': count})
-            year, month = (year + 1, 1) if month == 12 else (year, month + 1)
         self.state['release_search_partitions'] = partitions
         self.state['release_search_unique'] = len(seen)
         self.state['pagination_exhausted'] = True
@@ -1153,12 +1310,18 @@ class BrowserCollector:
         from pipeline.temporal import instant
         inventory_ids = {str(row['id']) for row in self.brave_metadata_rows}
         absent = [ident for ident, published in self.github_publications.items() if published
-                  and dated_scope(self.since, self.cutoff, published, 'publication')['status'] == 'in_period'
+                  and self.publication_status(published) == 'in_period'
                   and ident not in inventory_ids]
         if absent:
             self.problem(self.source['url'], 'Observed public releases are absent from frozen metadata; capture a new inventory/run')
         expected = [row for row in self.brave_metadata_rows if not row['is_draft'] and row['published_at']
-                    and dated_scope(self.since, self.cutoff, row['published_at'], 'publication')['status'] == 'in_period']
+                    and self.revision_in_scope(row['url'], row['published_at'], row.get('updated_at') if self.window_start else None)]
+        if self.window_start and self.brave_release_metadata['version'] == 2:
+            unknown = sum(not row['is_draft'] and bool(row['published_at'])
+                          and self.publication_status(row['published_at']) == 'before_period'
+                          and str(row['id']) not in self.github_rest_ids for row in self.brave_metadata_rows)
+            if unknown:
+                self.problem(self.source['url'], f'{unknown} older releases lack verified modification times outside REST; capture v3 metadata')
         for row in expected:
             ident = str(row['id'])
             known = self.github_publications.get(ident)
@@ -1178,16 +1341,21 @@ class BrowserCollector:
                         or release.get('draft') is not False or not release.get('published_at')
                         or instant(release['published_at']) != instant(row['published_at'])):
                     raise ValueError('Release body identity/publication differs from frozen metadata')
+                changed = self.github_update(ident, row['url'], release['published_at'], release.get('updated_at'))
+                if not self.revision_in_scope(row['url'], row['published_at'], changed):
+                    self.github_covered.add(ident)
+                    self.document_done(url)
+                    continue
                 units = markdown_items(release.get('body') or '')
                 if not units:
                     self.unresolved(row['url'], response, key=ident + ':document')
                 for unit in units:
                     unit['key'] = ident + ':' + unit['key']
                     self.emit(row['url'], response, unit, date=date_value(row['published_at']), date_evidence=row['published_at'],
-                              revision=row['tag_name'], version=row['tag_name'])
+                              revision=row['tag_name'], version=row['tag_name'], modified=changed)
                 if units:
                     self.github_covered.add(ident)
-                self.document_done(row['url'])
+                self.document_done(url)
             except Exception as error:
                 self.problem(url, str(error))
             self.persist_checkpoint([r['url'] for r in expected if str(r['id']) not in self.github_covered])
@@ -1219,7 +1387,7 @@ class BrowserCollector:
             url = base + '?sectionId=199&page=%s&pageSize=20' % page
             if not self.budget(url, 'pages'):
                 return
-            response = self.get(url)
+            response = self.get_page(url)
             self.state['pages'] += 1
             data = json_body(response)
             rows, info = data['item'], data['pageInfo']
@@ -1238,8 +1406,10 @@ class BrowserCollector:
                 seen.add(ident)
                 self.state['documents'] += 1
                 public_url = self.source['url'] + '?id=' + ident
-                date = date_value(row.get('regDate'))
-                if not self.allowed_date(date):
+                publication = chromestatus_date(row.get('regDate') or '')
+                changed = chromestatus_date(row.get('modDate') or '') if self.window_start else None
+                date = date_value(publication)
+                if not self.revision_in_scope(public_url, publication, changed):
                     self.state['excluded_by_date'].append(public_url)
                     self.document_done(base + ident)
                     continue
@@ -1247,13 +1417,18 @@ class BrowserCollector:
                     detail = self.get(base + ident)
                     payload = json_body(detail)
                     payload = payload.get('item', payload)
+                    changed = (chromestatus_date(payload.get('modDate') or '') or changed) if self.window_start else None
+                    if not self.revision_in_scope(public_url, publication, changed):
+                        self.document_done(base + ident)
+                        continue
                     content = payload.get('renderHtml') or payload.get('content') or payload.get('contents') or ''
                     root = Tree(content).root
                     units = blocks(root)
                     if not units:
                         self.unresolved(public_url, detail)
                     for unit in units:
-                        self.emit(public_url, detail, unit, date=date, revision=row.get('modDate'))
+                        self.emit(public_url, detail, unit, date=date, date_evidence=publication,
+                                  revision=row.get('modDate'), modified=changed)
                     self.document_done(base + ident)
                 except Exception as error:
                     self.unresolved(public_url, response, 'notice:' + ident)
