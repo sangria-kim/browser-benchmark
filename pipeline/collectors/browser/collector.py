@@ -17,7 +17,7 @@ from urllib.parse import urljoin, urlparse, urldefrag, urlencode
 from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
-from .html import Tree, boundary, blocks, links, next_links, published, modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
+from .html import Tree, boundary, blocks, links, next_links, published, modification, reconcile_modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
 from .transport import HTTPTransport, Response
 from pipeline.temporal import SEOUL, dated_scope, instant, window_status
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
@@ -571,23 +571,7 @@ class BrowserCollector:
                 publication = page_date
         if not multi and self.window_start:
             page_modified = modification(root, body)
-            if modified and page_modified:
-                if len(modified) > 10 and len(page_modified) > 10:
-                    consistent = instant(modified) == instant(page_modified)
-                else:
-                    # A printed day may be the publisher's local day or the KST day.
-                    precise = max((modified, page_modified), key=len)
-                    day = min((modified, page_modified), key=len)
-                    possible_days = {precise[:10]}
-                    if len(precise) > 10:
-                        possible_days.add(instant(precise).astimezone(SEOUL).date().isoformat())
-                    consistent = day in possible_days
-                if not consistent:
-                    self.problem(url, 'Conflicting index and document modification dates')
-                    return root
-                modified = max((modified, page_modified), key=len)
-            else:
-                modified = page_modified or modified
+            modified = reconcile_modification((modified, page_modified), 'index and document modification dates')
         if modified:
             eligible = self.revision_in_scope(url, publication, modified)
         else:

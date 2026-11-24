@@ -562,3 +562,25 @@ class WindowTests(unittest.TestCase):
             self.cli(name, [sid])
             row, = self.candidates(name, sid)
             self.assertEqual('timestamp', row['temporal_scope']['precision'])
+
+    def test_modification_days_and_duplicate_page_fields_compare_by_precision(self):
+        sid = 'chrome-releases'
+        url = HOME + '2026/03/old-post.html'
+        self.payloads[HOME] = self.card(url, '2026-03-10', '2026-11-15')
+        self.payloads[url] = self.article('2026-03-10', changed='2026-03-13')
+        self.cli('opposing-days', [sid], expected=2)
+        self.assertIn('Conflicting index and document modification dates',
+                      str(self.state('opposing-days')['source_results'][sid]))
+        self.assertEqual([], self.candidates('opposing-days', sid))
+        self.payloads[url] = self.article('2026-03-10', changed='2026-11-15')
+        self.cli('matching-days', [sid])
+        self.assertEqual('day', self.candidates('matching-days', sid)[0]['temporal_scope']['precision'])
+        self.payloads[url] = ('<meta property="article:modified_time" content="2026-11-15T19:00:00+09:00">'
+                              + self.article('2026-03-10', changed='2026-11-15T10:00:00Z'))
+        self.cli('equivalent-page-times', [sid])
+        row, = self.candidates('equivalent-page-times', sid)
+        self.assertEqual('timestamp', row['temporal_scope']['precision'])
+        self.payloads[url] = self.payloads[url].replace('19:00:00+09:00', '19:00:01+09:00')
+        self.cli('opposing-page-times', [sid], expected=2)
+        self.assertIn('Conflicting document modification dates',
+                      str(self.state('opposing-page-times')['source_results'][sid]))

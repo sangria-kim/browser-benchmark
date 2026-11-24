@@ -6,7 +6,7 @@ from html.parser import HTMLParser
 from urllib.parse import parse_qs, urljoin, urldefrag, urlsplit
 from datetime import datetime
 
-from pipeline.temporal import instant
+from pipeline.temporal import SEOUL, instant
 
 VOID = {'br', 'img', 'meta', 'link', 'hr', 'input', 'source', 'wbr', 'area', 'base', 'embed'}
 SKIP = {'script', 'style', 'nav', 'footer', 'form', 'noscript'}
@@ -157,9 +157,25 @@ def published(tree, source_id=None, *, product_body=None):
     return None
 
 
+def reconcile_modification(values, context):
+    """Agree on a single publication day or instant and retain the best precision."""
+    days = {value for value in values if value and len(value) == 10}
+    timestamps = [value for value in values if value and len(value) > 10]
+    instants = {instant(value) for value in timestamps}
+    if len(days) > 1 or len(instants) > 1:
+        raise ValueError('Conflicting ' + context)
+    if timestamps and days:
+        # A printed day may use the source offset or the KST comparison calendar.
+        possible_days = {value[:10] for value in timestamps}
+        possible_days.add(instant(timestamps[0]).astimezone(SEOUL).date().isoformat())
+        if not days <= possible_days:
+            raise ValueError('Conflicting ' + context)
+    return timestamps[0] if timestamps else next(iter(days), None)
+
+
 def modification(tree, product_body=None):
     """Use explicit publisher modification fields; generic <time> can mean publication."""
-    values = set()
+    values = []
     for node in tree.walk():
         if (node.attrs.get('property') != 'article:modified_time'
                 and node.attrs.get('itemprop') != 'dateModified'):
@@ -168,10 +184,8 @@ def modification(tree, product_body=None):
             continue
         value = publication_value(node.attrs.get('content') or node.attrs.get('datetime') or node.text())
         if value:
-            values.add(value)
-    if len(values) > 1:
-        raise ValueError('Conflicting document modification dates')
-    return next(iter(values), None)
+            values.append(value)
+    return reconcile_modification(values, 'document modification dates')
 
 
 def chrome_post_header(link):
