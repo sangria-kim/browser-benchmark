@@ -126,12 +126,15 @@ def recover_publication(root, run_dir):
         raise ValueError('Recovery journal belongs to another repository')
     # Pre-feature-only runners can leave a pending journal in the same lock.
     permitted = ('data/', 'reports/generated/') if state.get('version') in (1, 2) else OUTPUTS
+    from pipeline.daily_status import status_path
+    receipt_allowed = state.get('version') == 4
     expected = state['stages']['validate']['outputs']
     changed = {p for p in set(state['inputs']) | set(expected) if state['inputs'].get(p) != expected.get(p)}
     if set(journal['files']) != changed:
         raise ValueError('Recovery journal inventory mismatch')
     for rel, row in journal['files'].items():
-        if (not rel.startswith(permitted) or Path(rel).is_absolute() or '..' in Path(rel).parts
+        allowed = rel.startswith(permitted) or (receipt_allowed and status_path(rel))
+        if (not allowed or Path(rel).is_absolute() or '..' in Path(rel).parts
                 or row != {'before': state['inputs'].get(rel), 'after': expected.get(rel)}
                 or row['after'] is None):
             raise ValueError('Unsafe recovery journal entry')
@@ -141,7 +144,8 @@ def recover_publication(root, run_dir):
     # Validate every path before rolling back any. Preserve third-party edits.
     for rel, row in journal['files'].items():
         path = root / rel
-        if path.is_symlink() or root not in path.resolve().parents:
+        if (path.is_symlink() or root not in path.resolve().parents
+                or receipt_allowed and status_path(rel) and path.parent.is_symlink()):
             raise RuntimeError('Unsafe recovery target: ' + rel)
         current = digest(path.read_bytes()) if path.exists() else None
         if current not in (row['before'], row['after']):
@@ -170,7 +174,16 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     """Validate the graph, then journal only the files that will change."""
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
-    validate_graph(root, changes)
+    from pipeline.daily_status import status_path, validate_receipt
+    receipts = {rel for rel in changes if status_path(rel)}
+    for rel in receipts:
+        validate_receipt(rel, changes[rel])
+        if (root / rel).parent.is_symlink():
+            raise ValueError('Invalid daily status folder')
+    feature_changes = {rel: value for rel, value in changes.items() if rel not in receipts}
+    # Failed collection may publish an incomplete status without touching feature data.
+    if feature_changes or not receipts or any(changes[rel]['status'] == 'complete' for rel in receipts):
+        validate_graph(root, feature_changes)
     payloads = {p: json_bytes(rows) for p, rows in changes.items()}
     payloads = {p: raw for p, raw in payloads.items() if digest(raw) != before[p]}
     if not payloads:
@@ -179,14 +192,14 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     inputs = {p: before[p] for p in payloads}
     for rel in payloads:
         path = root / rel
-        if path.is_symlink() or root not in path.resolve().parents or not rel.startswith(OUTPUTS):
+        if path.is_symlink() or root not in path.resolve().parents or not (rel.startswith(OUTPUTS) or rel in receipts):
             raise ValueError('Invalid feature output path')
         old = path.read_bytes() if path.exists() else None
         if (digest(old) if old is not None else None) != before[rel]:
             raise ValueError('Concurrent edit to feature output')
         if old is not None:
             durable(txn / 'backup' / rel, old)
-    state = dict(version=3, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
+    state = dict(version=4 if receipts else 3, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
     durable(txn / 'state.json', encoded(state))
     journal = dict(status='writing', files={p: dict(before=inputs[p], after=after[p]) for p in after})
     durable(txn / 'publication.json', encoded(journal))

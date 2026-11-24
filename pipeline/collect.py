@@ -12,6 +12,7 @@ import uuid
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
+from pipeline.daily_status import add_receipt, classified_decisions, receipt
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant
@@ -32,7 +33,15 @@ def source_path(source):
     return Path('data/source-items') / source['browser'] / (source['source_id'] + '.json')
 
 
+FEATURE_CATALOG = "data/catalog/features/catalog.json"
+
+
+def file_digest(path):
+    return digest(path.read_bytes()) if path.exists() else None
+
+
 def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, transport=None,
+                    daily_status=False,
                     origin='daily', resume=False, reviewed_attributions=None, brave_release_metadata=None):
     """Keep every observed unit private until the collection agent classifies it."""
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
@@ -49,7 +58,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             state = read(state_path)
             if (state['repository'] != str(root) or state['status'] not in ('collecting', 'partial', 'complete')
                     or source_ids and sorted(source_ids) != sorted(state['sources'])
-                    or cutoff and cutoff != state['cutoff']):
+                    or cutoff and cutoff != state['cutoff']
+                    or daily_status != ('daily_status' in state)):
                 raise ValueError('Resume requires the same repository, sources and cutoff')
             verify_workspace(work, state)
             sources, since = registered_sources(root, state['sources'])
@@ -60,11 +70,22 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             instant(cutoff)
             state = dict(repository=str(root), cutoff=cutoff, origin=origin,
                          sources=[s['source_id'] for s in sources], workspace_id=uuid.uuid4().hex)
+            if daily_status:
+                receipt(cutoff, None, None)
+                if origin != 'daily':
+                    raise ValueError('Daily status requires daily origin')
+                enabled, _ = registered_sources(root, None)
+                state['daily_status'] = dict(
+                    enabled=sorted(s['source_id'] for s in enabled),
+                    registry=file_digest(root / 'config/sources.yml'),
+                    catalog=file_digest(root / FEATURE_CATALOG))
             work.mkdir(mode=0o700)
             durable(work / '.owner', state['workspace_id'].encode())
         config_hash = digest(encoded([sources, since, reviewed_attributions or {}, brave_release_metadata]))
         if resume and state['config_hash'] != config_hash:
             raise ValueError('Resume requires the original source registry and metadata inputs')
+        if daily_status:
+            check_status_inputs(root, state)
         state['config_hash'] = config_hash
         state['status'] = 'collecting'
         durable(state_path, encoded(state))
@@ -112,14 +133,46 @@ def verify_workspace(work, state):
         raise ValueError('Collection workspace ownership changed')
 
 
+def check_status_inputs(root, state):
+    pinned = state['daily_status']
+    enabled, _ = registered_sources(root, None)
+    if (pinned['registry'] != file_digest(root / 'config/sources.yml')
+            or pinned['enabled'] != sorted(s['source_id'] for s in enabled)
+            or pinned['catalog'] != file_digest(root / FEATURE_CATALOG)):
+        raise ValueError('Daily status baseline changed; use a fresh collection')
+
+
+def full_status_coverage(state):
+    enabled = state['daily_status']['enabled']
+    return (bool(enabled) and state.get('complete') is True and sorted(state['sources']) == enabled
+            and sorted(state.get('observed', {})) == enabled)
+
+
+def mark_incomplete(repository, private_dir):
+    root, private = Path(repository).resolve(), Path(private_dir).resolve()
+    require_external(root, private)
+    with run_lock(private), run_lock(root) as writer:
+        pending_recovery(root, writer)
+        state_path, work = private / 'feature-run.json', private / 'work'
+        if state_path.is_symlink():
+            raise ValueError('Invalid collection state')
+        state = read(state_path)
+        if (state['repository'] != str(root) or state['origin'] != 'daily'
+                or 'daily_status' not in state or state['status'] not in ('collecting', 'partial', 'complete')):
+            raise ValueError('No unfinished daily status run')
+        verify_workspace(work, state)
+        changes, before = {}, {}
+        add_receipt(root, changes, before, state['cutoff'], None, None)
+        if changes:
+            store_changes(root, private / 'status-transaction', changes, before, writer)
+
+
 def save_features(repository, private_dir, decisions, *, allow_partial=False):
     """Close a classified run after its evidence and catalog are durable."""
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
     require_external(root, private)
-    if not isinstance(decisions, list):
-        raise ValueError('Expected a list of classified features')
     sources, _ = registered_sources(root, None)
-    catalog_path = 'data/catalog/features/catalog.json'
+    catalog_path = FEATURE_CATALOG
     state_path, work = private / 'feature-run.json', private / 'work'
     with run_lock(private), run_lock(root) as writer:
         pending_recovery(root, writer)
@@ -128,6 +181,9 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         state = read(state_path)
         if state['repository'] != str(root) or work.is_symlink():
             raise ValueError('Invalid collection workspace')
+        daily_status = 'daily_status' in state
+        if not daily_status and not isinstance(decisions, list):
+            raise ValueError('Expected a list of classified features')
         signature = digest(encoded(decisions))
         txn = work / 'transaction'
         if state['status'] == 'saved':
@@ -143,12 +199,34 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             return finish_run(state_path, work, state, signature)
         if state['status'] not in ('complete', 'partial', 'saving') or not (state['complete'] or allow_partial):
             raise ValueError('Finish collection or explicitly accept partial coverage')
+        if daily_status:
+            if allow_partial or not full_status_coverage(state):
+                raise ValueError('Daily status requires all pinned sources; use --record-incomplete')
+            check_status_inputs(root, state)
+            inventory = set()
+            for source in sources:
+                rel = source_path(source)
+                path = work / 'candidates' / rel.name
+                sid = source['source_id']
+                if path.is_symlink() or not path.is_file():
+                    raise ValueError('Private candidates are missing or unsafe')
+                raw = path.read_bytes()
+                if digest(raw) != state['observed'][sid]:
+                    raise ValueError('Private candidates differ from the collected content')
+                for row in json.loads(raw):
+                    key = (sid, row['source_item_id'], row['revisions'][-1]['revision_id'])
+                    if row['source_id'] != sid or key in inventory:
+                        raise ValueError('Private candidate identity mismatch')
+                    inventory.add(key)
+            decisions = classified_decisions(decisions, inventory)
         observed = state['observed']
         requested = {}
         for choice in decisions:
             fields = ('source_item_id', 'revision_id', 'canonical_key', 'title')
             if not isinstance(choice, dict) or not all(isinstance(choice.get(k), str) and choice[k].strip() for k in fields):
                 raise ValueError('Feature classification needs a source item, revision, key and title')
+            if daily_status and choice.get('change_kind') not in ('product_change', 'evidence_only'):
+                raise ValueError('Daily classification requires change_kind')
             ident = choice['source_item_id']
             by_feature = requested.setdefault(ident, {})
             if choice['canonical_key'] in by_feature:
@@ -164,6 +242,9 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
 
         catalog = existing(catalog_path)
         features = {(row['browser'], row['canonical_key']): row for row in catalog}
+        existing_features = set(features)
+        changed_features = set()
+        collected_features = set()
         unpinned_owners = defaultdict(list)
         for feature in catalog:
             for ident in feature['source_item_ids']:
@@ -217,6 +298,18 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                     if not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in classification_text:
                         raise ValueError('The evidence_quote must be a passage of up to 1200 characters from this item')
                     key = (row['browser'], choice['canonical_key'])
+                    if daily_status:
+                        fid = feature_identity(*key)
+                        collected_features.add(fid)
+                        kind = choice['change_kind']
+                        if kind == 'evidence_only' and key not in existing_features:
+                            raise ValueError('Evidence-only decisions require an existing feature')
+                        prior_links = features.get(key, {}).get('source_revision_ids', {}).get(ident, ())
+                        same_legacy_link = (key in features and ident in features[key]['source_item_ids']
+                                            and not prior_links and prior is not None
+                                            and prior['revisions'][-1]['revision_id'] == revision)
+                        if kind == 'product_change' and revision not in prior_links and not same_legacy_link:
+                            changed_features.add(fid)
                     if key not in features:
                         feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
                             canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
@@ -238,6 +331,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         if changes:
             changes = {path: [rows[k] for k in sorted(rows)] for path, rows in changes.items()}
             changes[catalog_path] = sorted(catalog, key=lambda row: row['feature_id'])
+        if daily_status:
+            add_receipt(root, changes, before, state['cutoff'], len(changed_features), len(collected_features))
         state.update(status='saving', decisions=signature, saved_items=len(decisions))
         durable(state_path, encoded(state))
         store_changes(root, txn, changes, before, writer)
@@ -268,6 +363,8 @@ def main(*, daily=False):
     parser.add_argument('--private-dir', type=Path, required=True)
     if daily:
         parser.add_argument('--run-id', required=True)
+        parser.add_argument('--daily-status', action='store_true', help='Pin an 08:00 KST collection for daily status')
+        parser.add_argument('--record-incomplete', action='store_true', help='Publish only the incomplete receipt')
     parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--source', action='append')
     parser.add_argument('--cutoff')
@@ -281,7 +378,15 @@ def main(*, daily=False):
         if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', args.run_id):
             parser.error('Invalid run ID')
         args.private_dir = args.private_dir / args.run_id
+    if daily and args.record_incomplete:
+        if args.save_features or args.allow_partial or args.resume or args.daily_status or args.source or args.cutoff:
+            parser.error('--record-incomplete uses only the existing run')
+        mark_incomplete(args.repository, args.private_dir)
+        print('Recorded incomplete daily status (or preserved an existing complete result).')
+        return 0
     if args.save_features:
+        if daily and args.daily_status:
+            parser.error('--daily-status is set when collecting, not when saving')
         if (args.private_dir / 'work').resolve() in args.save_features.resolve().parents:
             parser.error('Keep the final classification outside the temporary work directory')
         count = save_features(args.repository, args.private_dir, load_config(args.save_features),
@@ -289,7 +394,7 @@ def main(*, daily=False):
         print(f'Saved evidence for {count} classified items.')
         return 0
     result = collect_sources(args.repository, args.private_dir, source_ids=args.source, cutoff=args.cutoff,
-        origin=args.origin, resume=args.resume,
+        origin=args.origin, resume=args.resume, daily_status=daily and args.daily_status,
         reviewed_attributions=load_config(args.reviewed_attributions) if args.reviewed_attributions else None,
         brave_release_metadata=load_config(args.brave_release_metadata) if args.brave_release_metadata else None)
     print(json.dumps({'collection_complete': result['complete'], 'candidates': str(args.private_dir / 'work/candidates')}))

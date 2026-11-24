@@ -17,5 +17,10 @@
     "feature_excerpt_by_revision": "source_revision_excerpts",
     "excerpt_path": ["evidence", "excerpt"],
     "when_unpinned": "source_item_at_pinned_commit"
+  },
+  "daily_status": {
+    "path_glob": "data/daily-status/*.json",
+    "timezone": "Asia/Seoul",
+    "cutoff_local_time": "08:00:00"
   }
 }

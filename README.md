@@ -23,6 +23,20 @@ git show "${sha}:$catalog" | jq '.[0] | {feature_id, title, source_item_ids}'
 - 현재 근거는 기능의 `source_revision_ids[출처 ID]`에서 마지막 ID를 골라 출처의 `revisions`에서 같은 `revision_id`를 찾아 읽습니다. 인용문은 기능의 `source_revision_excerpts[리비전 ID]`를 우선하고, 생략된 경우 해당 리비전의 `evidence.excerpt`를 씁니다. 과거 연결에 리비전 ID 목록이 없으면 고정한 커밋의 출처 항목에서 `evidence`를 읽고 ‘커밋 시점 근거’로 구분합니다.
 - 소비자는 모든 출처 ID와 지정된 리비전 ID가 연결되는지 확인하고, 읽기와 저장이 성공하면 사용한 SHA를 기록합니다. 반입 주기와 저장 형식은 소비 환경에서 관리합니다.
 
+### 일일 수집 상태
+
+선택 경로 `data/daily-status/YYYY-MM-DD.json`은 수집 결과만 전달합니다. 기능 목록이나 보고서가 아닙니다. 소비자는 오늘 한국 날짜의 파일과 기능·근거를 같은 `main` 커밋에서 읽습니다.
+
+예시: `{"date":"2026-11-24","cutoff":"2026-11-24T08:00:00+09:00","status":"complete","collected_feature_count":1,"change_count":0}`
+
+- `collected_feature_count`: 분류 후 채택한 고유 기능 수입니다. 공식 근거만 보강한 기능도 포함합니다. 제외한 후보나 기존 전체 카탈로그는 세지 않습니다.
+- `complete` + `change_count: 0`: 오늘 업데이트 없음. 전체 활성 출처의 수집과 분류·검증이 끝났습니다.
+- `complete` + 양의 `change_count`: 확인된 실질 변경이 있는 기능 수입니다. 여러 근거가 한 기능을 설명하면 한 번만 셉니다.
+- `incomplete` + 두 건수 모두 `null`: 수집 또는 분류·검증 미완료입니다. 변경 없음으로 표시하지 않습니다.
+- 파일 없음, 아직 미병합 또는 미동기화: 오늘 결과 미반영입니다. 이전 날짜의 결과를 오늘의 결과로 쓰지 않습니다.
+
+Allowlist의 `daily_status`는 기능 근거와 별개입니다. 파일명과 날짜·마감·상태·건수 조합이 맞는 파일만 읽으세요.
+
 ## 기존 자료
 
 이전에 저장한 [기능 문서](features/README.md), [릴리스](releases/README.md), [기능 사건](data/events/README.md), [Chrome 실험](experiments/chrome/README.md), [일일 리포트](reports/generated/README.md)와 [공개 대시보드](https://sangria-kim.github.io/browser-benchmark/)를 열람할 수 있습니다. 이전 수집분에는 일반 수정과 제외 항목도 들어 있습니다. [폴더 구조](docs/data-layout.md)

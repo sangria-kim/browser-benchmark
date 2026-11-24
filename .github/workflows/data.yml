@@ -18,6 +18,8 @@ jobs:
       - run: python -m unittest discover -s schemas/tests -v
       - name: Validate committed records and references
         run: python -c "from pipeline.normalize import validate_graph; validate_graph('.')"
+      - name: Validate daily status receipts
+        run: python -m pipeline.daily_status
       - name: Test data processing
         run: |
           for suite in tests/test_*.py; do
