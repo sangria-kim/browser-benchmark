@@ -493,6 +493,8 @@ class WindowTests(unittest.TestCase):
         header = ('<header><time datetime="2026-01-01"></time>'
                   '<article><div class="advisory"><dl class="summary">'
                   '<dt>Announced</dt><dd>January 1, 2026</dd></dl></div></article></header>')
+        item_summary = '<dl class="summary"><dt>Announced</dt><dd>January 2, 2026</dd></dl>'
+        subitems = f'<section>{item_summary}</section><div>{item_summary}</div>'
         for name, field, expected in [
                 ('wrapped', '<dt>Announced</dt><dd>November 10, 2026</dd>', '2026-11-10'),
                 ('empty', '<dt>Announced</dt><dd></dd>', None),
@@ -504,7 +506,7 @@ class WindowTests(unittest.TestCase):
                 summary = f'<dl class="summary">{field}</dl>' if field is not None else ''
                 self.payloads[url] = (
                     '<div id="main-content">' + header + '<main><div><article><div><div class="advisory">'
-                    '<section>' + summary + '</section><p id="note">Browser update.</p>'
+                    + summary + subitems + '<p id="note">Browser update.</p>'
                     '</div></div></article></div></main></div>')
                 self.cli(name, [sid])
                 rows = self.candidates(name, sid)

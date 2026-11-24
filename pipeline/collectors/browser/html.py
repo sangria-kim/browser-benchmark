@@ -126,16 +126,15 @@ def belongs_to_document(node, body):
 
 def firefox_advisory_summaries(body):
     for node in body.walk():
-        if node.tag != 'dl' or not node.has_class('summary'):
+        # Each subitem can also have a dl.summary. Mozilla puts only the
+        # document summary directly inside its advisory container.
+        if node.tag != 'dl' or not node.has_class('summary') or not node.parent.has_class('advisory'):
             continue
         article = date_owner(node)
         if (article is None or article.tag != 'article' or date_owner(article.parent) is not None
                 or (article is not body and body not in article.ancestors())):
             continue
-        ancestors = list(node.ancestors())
-        if any(a.tag == 'header' for a in ancestors) or not belongs_to_document(node, article):
-            continue
-        if any(a.has_class('advisory') for a in ancestors[:ancestors.index(article)]):
+        if belongs_to_document(node, article) and not any(a.tag == 'header' for a in node.ancestors()):
             yield node
 
 
