@@ -21,6 +21,10 @@
 - https://vivaldi.com/blog/desktop/
 - https://whale.naver.com/
 
+## Edge
+
+PC와 모바일의 Stable·Beta 기능은 공식 릴리스 노트에서 찾습니다. 일일 수집과 주간 대조의 활성 출처에는 PC 릴리스 아카이브와 보안 노트도 포함됩니다. 선택한 기능의 조건을 확인할 때 쓰는 정책 상세의 범위는 [수집 기준](collection-policy.md#edge-정책-근거)을 따릅니다.
+
 ## Safari
 
 - https://developer.apple.com/documentation/safari-release-notes

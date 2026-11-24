@@ -32,6 +32,16 @@ Python 3.9 이상과 `schemas/requirements.txt`를 설치합니다. 브라우저
 
 수집 종료 코드 2는 요청한 출처 일부를 확인하지 못했다는 뜻입니다. 그 상태를 기능 변화 없음으로 해석하지 않습니다. 재시도할 때는 같은 디렉터리, `--resume`을 사용합니다. 원래 마감 시각과 출처를 재사용하며, 첫 실행에 제공한 메타데이터 입력도 다시 지정합니다. 실패한 출처의 기존 기능은 보존합니다.
 
+## Edge 정책 상세 확인
+
+분류 중 선택한 Edge 기능의 적용 조건이나 정확한 지원 플랫폼·버전을 확인해야 할 때만 해당 릴리스 항목이 직접 연결한 정책 상세 한 건을 읽습니다. 확인할 조건이 없으면 조회를 생략합니다. `edge-policies`는 이력 조회를 위해 등록 상태를 유지하며 `--source edge-policies`는 요청 전에 거부됩니다.
+
+1. 분류 판정의 `source_item_id`와 `revision_id`를 후보 및 후보의 마지막 리비전과 대조합니다. 그 리비전의 `evidence.content_sha256`로 `$PRIVATE_RUN/work/browser/cache/<sha256>`를 찾고, 파일 바이트의 SHA-256을 다시 계산해 일치하는지 확인합니다. 일일·주간 실행의 `$PRIVATE_RUN`은 해당 실행 ID의 비공개 폴더입니다.
+2. 검증한 PC·모바일 Stable·Beta 원문 또는 해당 릴리스 아카이브에서 후보의 `item_key`와 섹션, 후보 본문(`classification_text` 또는 `evidence.excerpt`)을 대조합니다. HTML ID가 없으면 파서가 만든 구역·태그·순번 키를 사용하고 섹션과 본문으로 행을 확인합니다. 같은 구절이 반복되어 해당 행을 하나로 특정하기 어렵다면 조회를 생략합니다. 확인한 행의 기능 설명에 있는 원래 `href`를 읽습니다. 다른 행이나 푸터의 링크, 정규화한 후보에서 사라진 링크는 제목이나 정책 이름으로 복원하지 않습니다.
+3. 상대 `href`는 리비전의 공식 릴리스 URL(`evidence.url`)을 기준으로 해석합니다. 예를 들어 `https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel`의 `microsoft-edge-policies/examplepolicy`는 `https://learn.microsoft.com/en-us/deployedge/microsoft-edge-policies/examplepolicy`를 가리킵니다. 요청 전에 HTTPS, 정확한 호스트 `learn.microsoft.com`, 사용자 정보와 비표준 포트 없음, `/…/deployedge/microsoft-edge-policies/<정책 한 개>` 경로인지 확인합니다. 상세 경로를 먼저 확인한 뒤 쿼리와 프래그먼트를 제외하고 해당 페이지를 읽습니다. 정책 목록의 앵커라면 상세 URL로 바꾸지 않습니다. 이동을 자동으로 따르지 말고 목적지가 같은 정책의 상세 페이지인지 요청 전에 확인합니다. 목적지가 불분명하면 조회를 중단합니다. 정책 상세의 실제 페이지 제목이 선택한 기능의 정책과 맞는지 확인하고, 상세의 다른 링크는 따라가지 않습니다.
+4. 실행 루트의 비공개 `edge-policy-evidence.md`에 후보 ID, 최신 리비전 ID, 원문 해시, 원래 href, 해석한 상세 URL, 관측 시각, 조건·플랫폼·버전 및 확인한 정책 구절을 남깁니다. 예를 들어 `src-… / sr-… / <sha256>`, `microsoft-edge-policies/examplepolicy` 및 위 상세 URL, 관측 시각, `Windows 140부터 적용`과 이를 뒷받침한 구절을 적습니다. 캐시가 없거나 해시, 행, 리비전, 공식 목적지 또는 지원 조건을 확인할 수 없으면 메모에 해당 조건을 미확인으로 표시합니다.
+5. 공개 `evidence_quote`에는 릴리스 후보 본문의 구절만 사용합니다. 정책에서 확인한 별도 구절과 조건은 비공개 메모에 남기고, 릴리스 본문이 뒷받침하는 범위에서 저장합니다. 이 메모는 `features.json`이나 `classification.json` 옆에 두므로 `work/`가 정리된 뒤에도 남습니다. 분류 JSON 형식과 기존 정책 근거 참조는 그대로 사용합니다.
+
 ## 수집 기간과 재개
 
 기존 `pipeline.run_daily` 호출은 일일 모드를 선택합니다. `--cutoff`에는 예정 시각과 시간대를 지정합니다. 일일 하한은 서울 시각으로 마감 30일 전 같은 시각입니다. 양끝을 포함합니다. `config/sources.yml`의 `baseline.daily_window_days`는 수집 기간입니다. `pipeline.collect`의 기본 모드는 수동입니다.

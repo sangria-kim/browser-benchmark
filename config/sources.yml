@@ -339,7 +339,7 @@
         "ChromeOS"
       ],
       "language": "en",
-      "enabled": true,
+      "enabled": false,
       "discovery": {
         "include_url_pattern": "^https://learn\\.microsoft\\.com/en-us/deployedge/microsoft-edge-policies/[^/#]+$",
         "pagination": "none",
@@ -348,7 +348,7 @@
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."
+      "scope_note": "Keep historical evidence. Check a directly linked official policy detail only when a selected Edge release-note feature needs support conditions, platforms, or versions confirmed."
     },
     {
       "source_id": "firefox-releases",
