@@ -872,7 +872,7 @@ class BrowserCollector:
         response = self.get(archive)
         root = Tree(response.text()).root
         if self.rolling_revision_after_cutoff(root, archive):
-            return
+            return 0
         dates = {}
         for node in root.walk():
             href = node.attrs.get('href', '')
@@ -907,10 +907,11 @@ class BrowserCollector:
             self.problem(archive, 'Enterprise dated archive inventory is not recognized')
         self.state['documents'] += 1
         self.document_done(archive)
+        return panels
 
     def collect_enterprise(self):
         """Official dated archive panels plus the publisher's current API."""
-        self.collect_enterprise_archive()
+        self.state['enterprise_archive_panels'] = self.collect_enterprise_archive()
         api = 'https://release-notes-787862449254.us-central1.run.app'
         response = self.get(api + '/versions', refresh=True)
         versions = json_body(response).get('versions')
@@ -952,7 +953,6 @@ class BrowserCollector:
             self.document_done(url)
             self.persist_checkpoint([])
         self.state['enterprise_publication_excluded'] = excluded
-        self.state['enterprise_archive_panels'] = panels
         self.state['pagination_exhausted'] = True
 
     def collect_chromestatus(self):

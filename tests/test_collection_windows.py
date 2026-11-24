@@ -602,3 +602,31 @@ class WindowTests(unittest.TestCase):
         row, = self.candidates('rolling-current', sid)
         self.assertEqual(('recent', '2026-11-15', 'publication'),
                          (row['item_key'], row['temporal_scope']['evidence_date'], row['temporal_scope']['basis']))
+
+    def test_enterprise_archive_count_and_independent_current_api(self):
+        sid = 'chrome-enterprise'
+        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        versions, details = api + '/versions', api + '/features?version=101&lang=en'
+        self.payloads[versions] = {'versions': [{'value': '101'}]}
+        self.payloads[details] = {'total_count': 1, 'features': [
+            dict(id=12345, name='Tabs', summary='Group tabs.', is_releasenotes_publish_ready=True,
+                 is_releasenotes_content_reviewed=True, created={'when': '2026-11-08'},
+                 updated={'when': '2026-11-18'})]}
+        panel = ('<a href="#101">November 10, 2026</a><a class="zippy" name="101">Version</a>'
+                 '<div><p id="archive">Organize workspaces.</p></div>')
+        for name, date, status, panels in [('normal', '2026-11-19', 0, 1), ('late', '2026-11-25', 2, 0)]:
+            self.calls.clear()
+            self.payloads[archive] = (f'<html><head><meta property="article:modified_time" content="{date}">'
+                                      f'</head><body>{panel}</body></html>')
+            self.cli(name, [sid], expected=status)
+            self.assertEqual([archive, versions, details], self.calls)
+            result = read(self.folder / 'runs' / name / 'work/browser/chrome-enterprise.json')
+            self.assertEqual(panels, result['enterprise_archive_panels'])
+            self.assertTrue(result['pagination_exhausted'])
+            rows = self.candidates(name, sid)
+            self.assertEqual({'12345', 'release:101:archive'} if panels else {'12345'},
+                             {row['item_key'] for row in rows})
+            self.assertEqual('complete' if panels else 'partial', result['status'])
+            if not panels:
+                self.assertIn('rolling document revision after cutoff', str(result['errors']))
