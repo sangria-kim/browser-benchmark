@@ -1219,6 +1219,102 @@ class WindowTests(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'original publication'):
                 validate_tree(self.repo, base=stable)
 
+    def test_zero_weekly_backup_keeps_its_original_registry_after_deletion(self):
+        self.configure_small_registry()
+        template = self.repo
+        entry = template / 'pipeline/daily_status.py'
+        entry.parent.mkdir()
+        shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
+        base = run_daily.commit_candidate(template)
+        week = weekly_status.FIRST_GUARDED_CUTOFF
+        for scoped in (False, True):
+            run = f'zero-policy-{scoped}'
+            self.repo = self.folder / run
+            shutil.copytree(template, self.repo)
+            self.cli(run, cutoff=week, mode='weekly_reconcile')
+            choices = self.browser_choices(run, 'firefox', select=False) if scoped else self.decisions(run)
+            choices['decisions'] = []
+            for row in choices['dispositions']:
+                row['disposition'] = 'excluded'
+            pm = self.folder / (run + '.json')
+            pm.write_bytes(encoded(choices))
+            save = ['--save-features', str(pm)] + (['--save-browser', 'firefox'] if scoped else [])
+            self.cli(run, cutoff=None, extra=save)
+            rel = browser_status.detail_path('weekly_reconcile', week) if scoped else weekly_status.path(week)
+            marker = self.repo / rel
+            original = marker.read_bytes()
+            alias = marker.with_suffix('.json.bak')
+            marker.rename(alias)
+            first = run_daily.commit_candidate(self.repo)
+            alias.unlink()
+            deleted = run_daily.commit_candidate(self.repo)
+            # A fresh classification must not use the other route to replace the old zero.
+            fresh = run + '-replacement'
+            self.cli(fresh, cutoff=week, mode='weekly_reconcile')
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                if scoped:
+                    replacement = self.folder / 'replacement.json'
+                    replacement.write_bytes(encoded(self.decisions(fresh)))
+                    self.cli(fresh, cutoff=None, extra=['--save-features', str(replacement)])
+                else:
+                    self.publish_browser(fresh, 'firefox', self.browser_choices(fresh, 'firefox'))
+            self.assertFalse(git(self.repo, 'status', '--porcelain', '--', 'data'))
+            registry = self.repo / 'config/sources.yml'
+            before = registry.read_bytes()
+            config = read(registry)
+            config['baseline']['daily_window_days'] = 4
+            registry.write_bytes(encoded(config))
+            new_policy = run_daily.commit_candidate(self.repo)
+            marker.parent.mkdir(parents=True, exist_ok=True)
+            marker.write_bytes(original)
+            repaired = run_daily.commit_candidate(self.repo)
+            entry = self.repo / 'pipeline/daily_status.py'
+            for ref in (base, first, deleted, new_policy, repaired):
+                with patch('sys.argv', [str(entry), '--base-commit', ref]):
+                    runpy.run_path(str(entry), run_name='__main__')
+            if not scoped:
+                self.cli(run, cutoff=None, extra=save)
+
+            # Re-sealing the earlier zero with today's registry is a different proposal.
+            git(self.repo, 'switch', '-qc', 'altered', new_policy)
+            marker.parent.mkdir(parents=True, exist_ok=True)
+            changed = json.loads(original)
+            changed['scope']['registry'] = browser_status.registry_facts(self.repo, 'weekly_reconcile')[0]
+            marker.write_bytes(encoded(browser_status.seal(changed)))
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=new_policy)
+            run_daily.commit_candidate(self.repo)
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=new_policy)
+
+            # If the initial alias itself was invalid under its registry, a
+            # subsequent change back to the matching policy cannot authorize it.
+            git(self.repo, 'switch', '-qc', 'wrong-author-policy', base)
+            registry.write_bytes(encoded(config))
+            alias.parent.mkdir(parents=True, exist_ok=True)
+            alias.write_bytes(original)
+            wrong_policy = run_daily.commit_candidate(self.repo)
+            alias.unlink()
+            registry.write_bytes(before)
+            run_daily.commit_candidate(self.repo)
+            marker.write_bytes(original)
+            run_daily.commit_candidate(self.repo)
+            with self.assertRaisesRegex(ValueError, 'registry'):
+                validate_tree(self.repo, base=wrong_policy)
+
+            # A file with the same backup name and no valid receipt makes no claim.
+            git(self.repo, 'switch', '-qc', 'unrelated-backup', base)
+            alias.parent.mkdir(parents=True, exist_ok=True)
+            alias.write_bytes(b'{}')
+            run_daily.commit_candidate(self.repo)
+            alias.unlink()
+            run_daily.commit_candidate(self.repo)
+            fresh = run + '-new'
+            self.cli(fresh, cutoff=week, mode='weekly_reconcile')
+            self.publish_browser(fresh, 'firefox', self.browser_choices(fresh, 'firefox'))
+            run_daily.commit_candidate(self.repo)
+            validate_tree(self.repo, base=base)
+
     def test_invalid_first_daily_blob_cannot_claim_the_cutoff(self):
         self.configure_small_registry()
         initial = run_daily.commit_candidate(self.repo)

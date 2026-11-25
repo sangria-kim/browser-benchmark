@@ -37,13 +37,9 @@ def matches_checkout(root, ref):
     return not subprocess.check_output(['git', '-C', str(root), 'ls-files', '-z', '--others', '--', *ROOTS])
 
 
-class ExistingWeeklyEvidence(ValueError):
-    """The requested full-window observation already exists in public data."""
-
-
 def needs_history(scopes, since, cutoff):
     if (since, cutoff) in scopes:
-        raise ExistingWeeklyEvidence('Existing evidence has this weekly cutoff and historical window; '
+        raise ValueError('Existing evidence has this weekly cutoff and historical window; '
                          'the original publication cannot be verified')
     return any(end >= cutoff for _, end in scopes)
 

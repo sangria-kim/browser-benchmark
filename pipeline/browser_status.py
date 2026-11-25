@@ -368,6 +368,7 @@ def validate_tree(root, *, graph=None, base=None, complete_history=False):
         mode = scope['mode']
         if (mode == 'weekly_reconcile' and (base or complete_history) and ref and rel not in tracked
                 and weekly_status.guarded(scope['cutoff'])):
+            receipt_history.require_committed_repair(root, ref, receipt_history.paths_for(rel), tracked)
             weekly_evidence.check_committed(root, ref, policy_day(scope['start']), instant(scope['cutoff']))
         if mode == 'daily' and rel not in tracked:
             day, _ = daily_status.receipt(scope['cutoff'], None, None)

@@ -124,6 +124,49 @@ def validate_snapshot(paths, current):
             raise ValueError('Conflicting whole and browser weekly publications')
 
 
+@lru_cache(maxsize=256)
+def weekly_aliases(root, ref, paths):
+    """Find signed receipt proposals for this cutoff, including deleted aliases."""
+    spellings = {name.casefold() + suffix: name for name in paths for suffix in ('', '.bak')}
+    # Git's icase is narrower than Unicode casefold. Match the cutoff in the
+    # two reserved directories, then check the complete spelling in Python.
+    stamp = paths[0].rsplit('/', 1)[1].removesuffix('.json')
+    specs = [':(icase,glob)data/' + folder + '/' + stamp + '.*'
+             for folder in ('wee*', 'brow*/wee*')]
+    raw = subprocess.check_output(['git', '-C', str(root), 'log', '--raw', '--no-abbrev', '--root', '-m',
+                                   '--full-history', '--no-renames', '-z', '--format=', ref, '--', *specs])
+    fields = iter(raw.split(b'\0'))
+    candidates = set()
+    for header in fields:
+        if not header:
+            continue
+        name = next(fields).decode('utf-8', 'surrogateescape')
+        canonical = spellings.get(name.casefold())
+        if canonical is None or name in paths:
+            continue
+        old_mode, new_mode, old_oid, new_oid, _ = header.strip().lstrip(b':').split()
+        for mode, oid in ((old_mode, old_oid), (new_mode, new_oid)):
+            if mode in (b'100644', b'100755'):
+                candidates.add((canonical, mode, oid))
+    proposals = set()
+    for rel, mode, oid in candidates:
+        raw = subprocess.check_output(['git', '-C', str(root), 'cat-file', 'blob', oid])
+        validate = weekly_status.validate if rel == paths[0] else browser_status.validate_detail
+        try:
+            validate(rel, json.loads(raw))
+        except (ValueError, TypeError, KeyError, AttributeError, OverflowError):
+            continue  # A file with a backup suffix alone does not establish a submission.
+        proposals.add((rel, mode, oid))
+    return proposals
+
+
+def require_committed_repair(root, ref, paths, tracked):
+    if (ref and weekly_status.is_receipt(paths[0]) and not tracked.intersection(paths)
+            and paths[0] >= weekly_status.path(weekly_status.FIRST_GUARDED_CUTOFF)
+            and weekly_aliases(root, ref, paths)):
+        raise ValueError('Restore the original publication in a commit before saving this weekly cutoff')
+
+
 def has_receipt_alias(root, commit, rel, oid):
     # Only an exact regular blob at the corresponding case alias or backup
     # spelling can identify the original submission. Other files establish nothing.
@@ -168,7 +211,8 @@ def prior_tree_state(root, folder, original, restored, rel, oid):
             added_mode = new_mode
         elif status == b'D' and old_oid == oid and removed_mode is None:
             alias = folder.encode() + b'/' + path
-            if alias == canonical or alias.lower() not in (canonical.lower(), canonical.lower() + b'.bak'):
+            folded = alias.decode('utf-8', 'surrogateescape').casefold()
+            if alias == canonical or folded not in (rel.casefold(), rel.casefold() + '.bak'):
                 return None
             removed_mode = old_mode
         else:
@@ -217,7 +261,10 @@ def prior_deleted_aliases(root, restored, parent, ancestry, rel, oid):
 
 
 def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_parents, inherited):
-    oid = git(root, 'rev-parse', commit + ':' + rel).encode()
+    info = git(root, 'ls-tree', commit, '--', rel).split()
+    proposal = (rel, info[0].encode(), info[2].encode())
+    oid = proposal[2]
+    paths = paths_for(rel)
     since, cutoff = policy_day(scope['start']), instant(scope['cutoff'])
     pending = [(commit, None)]
     seen = set()
@@ -229,29 +276,26 @@ def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_
         parents = first_parents if child == commit else ancestry[child]
         continuing = False
         for parent in parents:
-            if has_receipt_alias(root, parent, rel, oid):
+            earlier = weekly_aliases(root, parent, paths)
+            if earlier - {proposal}:
+                raise ValueError('An earlier weekly receipt conflicts with the original publication')
+            if earlier and has_receipt_alias(root, parent, rel, oid):
                 if original_tree is not None and list(data_roots(root, parent).values()) != [original_tree]:
                     raise ValueError('The original weekly submission differs from the restored data tree')
                 weekly_evidence.check_alias_transition(root, parent, child, since, cutoff)
                 pending.append((parent, original_tree))
                 continuing = True
             else:
-                if original_tree is not None:
-                    # A different receipt on this side might have no feature
-                    # evidence (for example, an older zero). It is not this submission.
-                    names = [':(icase,literal)' + path + suffix for path in paths_for(rel) for suffix in ('', '.bak')]
-                    if git(root, 'rev-list', '-1', '--full-history', parent, '--', *names):
-                        raise ValueError('An earlier weekly receipt conflicts with the original publication')
-                try:
-                    weekly_evidence.check_committed(root, parent, since, cutoff)
-                except weekly_evidence.ExistingWeeklyEvidence:
-                    # A rare corrective commit can restore the very same proposal
-                    # after deletion. Prove every parent path before using its source.
+                if earlier:
+                    # The same proposal may have been deleted even when its count was zero.
+                    # Prove its complete data tree and use its original policy.
                     sources = prior_deleted_aliases(root, child, parent, ancestry, rel, oid)
                     if not sources:
-                        raise
+                        raise ValueError('Cannot verify the original publication across the deleted weekly receipt')
                     pending.extend(sources)
                     continuing = True
+                else:
+                    weekly_evidence.check_committed(root, parent, since, cutoff)
         if not continuing and (child != commit or not inherited):
             browser_status.check_registry(root, scope, facts=registry(child, scope['mode']))
 
@@ -312,7 +356,7 @@ def verify_publication(root, rel):
 def verify(root, *, base=None, paths=(), complete_history=False):
     head = repository_head(root)
     if paths:  # Writers, including no-op retries, must also reject present-day invalid names.
-        browser_status.receipt_inventory(root, head)
+        _, _, tracked = browser_status.receipt_inventory(root, head)
     if not head:
         if base:
             raise ValueError('Receipt comparison needs an existing Git commit')
@@ -320,6 +364,8 @@ def verify(root, *, base=None, paths=(), complete_history=False):
     shallow_file = root / git(root, 'rev-parse', '--git-path', 'shallow')
     shallow = frozenset(shallow_file.read_text().splitlines()) if shallow_file.exists() else frozenset()
     verify_commits(root, head, base, tuple(paths), shallow, complete_history)
+    if paths:
+        require_committed_repair(root, head, tuple(paths), tracked)
 
 
 @lru_cache(maxsize=64)
