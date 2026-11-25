@@ -4,7 +4,8 @@ from functools import lru_cache
 import json
 import subprocess
 
-from pipeline import browser_status, daily_status, weekly_status
+from pipeline import browser_status, daily_status, weekly_status, weekly_evidence
+from pipeline.temporal import instant
 from pipeline.run_daily import git, repository_head
 
 FOLDERS = (daily_status.FOLDER, weekly_status.FOLDER, browser_status.FOLDER)
@@ -54,8 +55,8 @@ def direct_git_children(root, tree):
     for entry in raw.split(b'\0'):
         if entry:
             info, name = entry.split(b'\t', 1)
-            _, kind, oid = info.split()
-            children[name.decode('utf-8', 'surrogateescape')] = (kind, oid)
+            mode, kind, oid = info.split()
+            children[name.decode('utf-8', 'surrogateescape')] = (mode, kind, oid)
     return children
 
 
@@ -66,7 +67,7 @@ def tracked_paths(root, head):
     top = direct_git_children(root, head)
     check_spelling(top, {'data'})
     if 'data' in top:
-        kind, oid = top['data']
+        _, kind, oid = top['data']
         if kind != b'tree':
             raise ValueError('Invalid committed data directory')
         check_spelling(direct_git_children(root, oid), FOLDER_NAMES)
@@ -123,16 +124,62 @@ def validate_snapshot(paths, current):
             raise ValueError('Conflicting whole and browser weekly publications')
 
 
-def check_publication_policy(root, files, candidate, prior, commit, registry, reviewed):
+def has_receipt_alias(root, commit, rel, oid):
+    # Only an exact regular blob at the corresponding case alias or backup
+    # spelling can identify the original submission. Other files establish nothing.
+    *folders, filename = rel.split('/')
+    trees = [(commit, False)]
+    for component in folders:
+        trees = [(child, changed or name != component)
+                 for tree, changed in trees
+                 for name, (_, kind, child) in direct_git_children(root, tree).items()
+                 if kind == b'tree' and name.casefold() == component.casefold()]
+    for tree, changed in trees:
+        for name, (mode, _, child) in direct_git_children(root, tree).items():
+            if (child == oid and mode in (b'100644', b'100755') and (changed or name != filename)
+                    and name.casefold() in {filename.casefold(), filename.casefold() + '.bak'}):
+                return True
+    return False
+
+
+def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_parents, inherited):
+    oid = git(root, 'rev-parse', commit + ':' + rel).encode()
+    pending = [commit]
+    seen = set()
+    while pending:
+        child = pending.pop()
+        if child in seen:
+            continue
+        seen.add(child)
+        parents = first_parents if child == commit else ancestry[child]
+        aliases = {p for p in parents if has_receipt_alias(root, p, rel, oid)}
+        if not aliases and (child != commit or not inherited):
+            browser_status.check_registry(root, scope, facts=registry(child, scope['mode']))
+        for parent in parents:
+            if parent in aliases:
+                weekly_evidence.check_alias_transition(root, parent, child, scope['start'][:10], instant(scope['cutoff']))
+                pending.append(parent)
+            else:
+                weekly_evidence.check_committed(root, parent, scope['start'][:10], instant(scope['cutoff']))
+
+
+def check_publication_policy(root, files, candidate, prior, commit, registry, reviewed, ancestry, first_parents):
     # Each cutoff has at most one scoped receipt or whole weekly marker.
     index = 1 if candidate[1] is not None else 0
     raw = candidate[index]
     if raw is None or daily_status.status_path(files[index]):
         return
     record = json.loads(raw)
-    if any(old[index] is not None and json.loads(old[index]) == record for old in prior):
-        return  # A merge or repair can inherit a result authored under an earlier policy.
+    inherited = any(old[index] is not None and json.loads(old[index]) == record for old in prior)
     scope = record['scope']
+    if (scope['mode'] == 'weekly_reconcile' and weekly_status.guarded(scope['cutoff'])
+            and (first_parents or not ancestry[commit])):
+        # Receiving the other parent's accepted marker is still a first
+        # settlement on a side that had no marker. Inspect that side's evidence.
+        first_weekly_submission(root, files[index], commit, ancestry, scope, registry, first_parents, inherited)
+        return
+    if inherited:
+        return  # The existing result can retain the policy under which it was authored.
     if (reviewed and index == 1 and scope['mode'] == 'weekly_reconcile'
             and not any(old[1] for old in prior) and not weekly_status.guarded(scope['cutoff'])):
         raise ValueError('New unmarked historical weekly browser result has no authoritative base')
@@ -230,6 +277,7 @@ def verify_commits(root, head, base, paths, shallow, complete_history):
             raise ValueError('Missing registry at receipt publication')
         return browser_status.registry_snapshot(raw, mode)
 
+    ancestry = dict(commits)
     for files, changed in changed_groups(root, commits, paths or FOLDERS).items():
         authorities = {}
         last_error = None
@@ -246,7 +294,9 @@ def verify_commits(root, head, base, paths, shallow, complete_history):
                     for previous in prior:
                         advance(files, previous, candidate)
                     if child not in shallow:
-                        check_publication_policy(root, files, candidate, prior, child, registry, child in reviewed)
+                        first_parents = [p for p in parents if EMPTY in authorities[p]]
+                        check_publication_policy(root, files, candidate, prior, child, registry,
+                                                 child in reviewed, ancestry, first_parents)
                     prior = {candidate}
                 except (ValueError, TypeError, KeyError, AttributeError, OverflowError) as error:
                     # A later ordinary commit can restore the accepted record. A bad

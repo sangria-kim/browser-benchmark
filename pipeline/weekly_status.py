@@ -2,8 +2,8 @@
 from pathlib import Path
 import re
 
-from pipeline import browser_status
-from pipeline.run_daily import git, read
+from pipeline import browser_status, weekly_evidence
+from pipeline.run_daily import git, read, repository_head
 from pipeline.temporal import instant
 
 FOLDER = 'data/weekly-status'
@@ -93,12 +93,12 @@ def check_prior_evidence(root, scope, graph, replacements):
     cutoff = instant(scope['cutoff'])
     since = scope['start'][:10]
 
+    moved = False
+
     def check(rows):
-        for row in rows:
-            prior = row.get('temporal_scope', {})
-            if prior.get('since') == since and prior.get('cutoff') and instant(prior['cutoff']) == cutoff:
-                raise ValueError('Existing evidence has this weekly cutoff and historical window; '
-                                 'the original publication cannot be verified')
+        nonlocal moved
+        if weekly_evidence.needs_history(weekly_evidence.windows(rows), since, cutoff):
+            moved = True
 
     for kind, ident in [('feature', 'feature_id'), ('source_item', 'source_item_id')]:
         replaced_ids = set()
@@ -109,3 +109,13 @@ def check_prior_evidence(root, scope, graph, replacements):
                 if previous.exists():
                     check(records(read(previous)))
         check(row for row in graph[kind] if row[ident] not in replaced_ids)
+    if not guarded(scope['cutoff']):
+        return  # Historical whole markers carry an unknown count.
+    head = repository_head(root)
+    if head:
+        clean = weekly_evidence.matches_checkout(root, head)
+        if clean or not moved:
+            weekly_evidence.check_committed(root, head, since, cutoff, checked_earlier=clean and not moved)
+            return
+    if moved:
+        raise ValueError('Later evidence requires matching committed Git history to verify the original publication')

@@ -1312,6 +1312,104 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(1, accepted['browsers']['edge']['collected_feature_count'])
         self.assertFalse((self.repo / weekly_status.path(later)).exists())
 
+    def test_unmarked_weekly_window_survives_a_later_revision_in_writers_and_ci(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        sid = 'firefox-beta'
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        source = self.repo / 'data/source-items/firefox/firefox-beta.json'
+        self.cli('old', [sid], cutoff='2026-11-28T13:00:00-12:00', mode='manual', extra=['--since', '2026-01-01'])
+        self.save('old', self.classified('old', sid))
+        old = run_daily.commit_candidate(self.repo)
+        original = source.read_bytes()
+        source.write_bytes(b'{broken historical proposal')
+        run_daily.commit_candidate(self.repo)
+        source.write_bytes(original)
+        run_daily.commit_candidate(self.repo)
+        self.payloads[self.sources[sid]['url']] = self.payloads[self.sources[sid]['url']].replace('added', 'updated')
+        self.cli('moved', [sid], cutoff=cutoff, mode='manual', extra=['--since', '2026-11-01'])
+        self.save('moved', self.classified('moved', sid))
+        moved = run_daily.commit_candidate(self.repo)
+        template = self.repo
+        for index, scoped in enumerate((False, True)):
+            self.repo = self.folder / f'history-{index}'
+            shutil.copytree(template, self.repo)
+            name = f'old-week-{index}'
+            self.cli(name, cutoff=cutoff, mode='weekly_reconcile')
+            pm = self.folder / (name + '.json')
+            pm.write_bytes(encoded(self.browser_choices(name, 'firefox') if scoped else self.decisions(name)))
+            save = (['--save-browser', 'firefox'] if scoped else []) + ['--save-features', str(pm)]
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                self.cli(name, cutoff=None, extra=save)
+            # Create a correctly sealed but historically false proposal to test the
+            # independent CI boundary, both before and after a Git commit.
+            with patch('pipeline.weekly_evidence.check_committed'):
+                self.cli(name, cutoff=None, extra=save)
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=old)
+            proposed = run_daily.commit_candidate(self.repo)
+            for ref in (base, moved, proposed):
+                with self.assertRaisesRegex(ValueError, 'original publication'):
+                    validate_tree(self.repo, base=ref)
+            rel = browser_status.detail_path('weekly_reconcile', cutoff) if scoped else weekly_status.path(cutoff)
+            (self.repo / rel).unlink()
+            run_daily.commit_candidate(self.repo)
+            validate_tree(self.repo, base=proposed)
+
+        self.repo = self.folder / 'data-only'
+        shutil.copytree(template, self.repo, ignore=shutil.ignore_patterns('.git'))
+        self.cli('no-history', cutoff=cutoff, mode='weekly_reconcile')
+        with self.assertRaisesRegex(ValueError, 'Git history'):
+            self.publish_browser('no-history', 'firefox', self.browser_choices('no-history', 'firefox'))
+        self.cli('new-week', cutoff='2026-12-06T10:00:00+09:00', mode='weekly_reconcile')
+        self.publish_browser('new-week', 'firefox', self.browser_choices('new-week', 'firefox'))
+
+    def test_first_weekly_marker_cannot_hide_earlier_evidence_on_a_merge_or_alias(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        rel = weekly_status.path(cutoff)
+        marker = self.repo / rel
+        self.cli('manual-witness', ['firefox-beta'], cutoff=cutoff, mode='manual', extra=['--since', '2026-01-01'])
+        self.save('manual-witness', self.classified('manual-witness', 'firefox-beta'))
+        witness = run_daily.commit_candidate(self.repo)
+        git(self.repo, 'switch', '-qc', 'marker-first', base)
+        self.cli('excluded-week', cutoff=cutoff, mode='weekly_reconcile')
+        excluded = self.decisions('excluded-week')
+        excluded['decisions'] = []
+        for row in excluded['dispositions']:
+            row['disposition'] = 'excluded'
+        self.save('excluded-week', excluded)
+        saved = run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=base)
+        git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=t@example.invalid', '-c', 'core.hooksPath=/dev/null',
+            'merge', '--no-ff', '-qm', 'Merge receipts and evidence', witness)
+        for ref in (base, witness, saved):
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=ref)
+
+        git(self.repo, 'switch', '-qc', 'first-spelling', base)
+        git(self.repo, 'checkout', saved, '--', rel)
+        alias = marker.with_suffix('.json.bak')
+        marker.rename(alias)
+        first_alias = run_daily.commit_candidate(self.repo)
+        git(self.repo, 'checkout', witness, '--', 'data/catalog/features', 'data/source-items')
+        run_daily.commit_candidate(self.repo)
+        alias.rename(marker)
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaisesRegex(ValueError, 'original publication'):
+            validate_tree(self.repo, base=first_alias)
+
+        # A spelling repair alone can retain its original registry and its exact bytes.
+        git(self.repo, 'switch', '-qc', 'valid-spelling-repair', first_alias)
+        policy = read(self.registry)
+        policy['baseline']['daily_window_days'] = 4
+        self.registry.write_bytes(encoded(policy))
+        run_daily.commit_candidate(self.repo)
+        alias.rename(marker)
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=first_alias)
+
     def test_browser_cli_weekly_journal_recovery_and_same_run_resume(self):
         self.configure_small_registry()
         edge = self.sources['edge-beta']['url']

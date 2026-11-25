@@ -321,7 +321,7 @@ def receipt_inventory(root, head):
 def validate_tree(root, *, graph=None, base=None, complete_history=False):
     """Check durable effects against proposed data, including absent Git-tracked receipts."""
     from pipeline.normalize.storage import load_dataset
-    from pipeline import receipt_history, weekly_status
+    from pipeline import receipt_history, weekly_status, weekly_evidence
 
     ref = repository_head(root)
     paths, daily_paths, tracked = receipt_inventory(root, ref)
@@ -366,6 +366,9 @@ def validate_tree(root, *, graph=None, base=None, complete_history=False):
             historical = previous == detail
         scope = detail['scope']
         mode = scope['mode']
+        if (mode == 'weekly_reconcile' and (base or complete_history) and ref and rel not in tracked
+                and weekly_status.guarded(scope['cutoff'])):
+            weekly_evidence.check_committed(root, ref, scope['start'][:10], instant(scope['cutoff']))
         if mode == 'daily' and rel not in tracked:
             day, _ = daily_status.receipt(scope['cutoff'], None, None)
             if day in tracked and json.loads(git(root, 'show', ref + ':' + day))['status'] == 'complete':
