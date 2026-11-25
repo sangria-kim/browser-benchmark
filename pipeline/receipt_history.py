@@ -11,20 +11,51 @@ FOLDERS = (daily_status.FOLDER, weekly_status.FOLDER, browser_status.FOLDER)
 EMPTY = (None, None)
 
 
+def canonical_paths(rel):
+    """Return the receipt pair for a representable cutoff, or None for any other name."""
+    if not rel.isascii():
+        return None
+    try:
+        if daily_status.status_path(rel):
+            day = rel.rsplit('/', 1)[1][:-5]
+            return rel, browser_status.detail_path('daily', day + 'T07:00:00+09:00')
+        weekly = weekly_status.is_receipt(rel)
+        if weekly or browser_status.is_detail(rel):
+            name = rel.rsplit('/', 1)[1]
+            stamp = datetime.strptime(name, '%Y-%m-%dT%H%M%S.%fZ.json').replace(tzinfo=timezone.utc)
+            local = stamp.astimezone(daily_status.KST)
+            if weekly or '/weekly_reconcile/' in rel:
+                return f'{weekly_status.FOLDER}/{name}', f'{browser_status.FOLDER}/weekly_reconcile/{name}'
+            day, _ = daily_status.receipt(local.isoformat(), None, None)
+            return day, rel
+    except (ValueError, OverflowError):
+        # A date-shaped name can still be an impossible instant or outside the local calendar.
+        return None
+    return None
+
+
 def paths_for(rel):
-    if daily_status.status_path(rel):
-        day = rel.rsplit('/', 1)[1][:-5]
-        return rel, browser_status.detail_path('daily', day + 'T07:00:00+09:00')
-    if weekly_status.is_receipt(rel):
-        return rel, f"{browser_status.FOLDER}/weekly_reconcile/{rel.rsplit('/', 1)[1]}"
-    if browser_status.is_detail(rel):
-        _, _, mode, name = rel.split('/')
-        if mode == 'weekly_reconcile':
-            return f'{weekly_status.FOLDER}/{name}', rel
-        stamp = datetime.strptime(name, '%Y-%m-%dT%H%M%S.%fZ.json').replace(tzinfo=timezone.utc)
-        day, _ = daily_status.receipt(stamp.isoformat(), None, None)
-        return day, rel
-    raise ValueError('Invalid committed receipt path: ' + rel)
+    pair = canonical_paths(rel)
+    if pair is None:
+        raise ValueError('Invalid receipt path: ' + rel)
+    return pair
+
+
+@lru_cache(maxsize=64)
+def tracked_paths(root, head):
+    entries = subprocess.check_output(['git', '-C', str(root), 'ls-tree', '-rz', head, '--', *FOLDERS])
+    tracked = set()
+    for entry in entries.split(b'\0'):
+        if not entry:
+            continue
+        info, name = entry.split(b'\t', 1)
+        mode, kind, _ = info.split()
+        rel = name.decode('ascii', 'surrogateescape')
+        paths_for(rel)
+        if kind != b'blob' or mode not in (b'100644', b'100755'):
+            raise ValueError('Invalid committed receipt file: ' + rel)
+        tracked.add(rel)
+    return frozenset(tracked)
 
 
 def advance(paths, prior, current):
@@ -50,12 +81,12 @@ def advance(paths, prior, current):
 def validate_snapshot(paths, current):
     whole, detail = (json.loads(raw) if raw is not None else None for raw in current)
     daily = daily_status.status_path(paths[0])
-    if whole is not None:
+    if current[0] is not None:
         if daily:
             daily_status.validate_receipt(paths[0], whole)
         else:
             weekly_status.validate(paths[0], whole)
-    if detail is not None:
+    if current[1] is not None:
         browser_status.validate_detail(paths[1], detail)
         if daily:
             _, expected = daily_status.receipt(detail['scope']['cutoff'], *browser_status.aggregate(detail))
@@ -91,7 +122,7 @@ def changed_groups(root, commits, pathspec):
         if not parents:
             requests.append(child)
     output = subprocess.check_output(
-        ['git', '-C', str(root), 'diff-tree', '--stdin', '--root', '-r', '--no-renames',
+        ['git', '-C', str(root), '-c', 'core.quotePath=true', 'diff-tree', '--stdin', '--root', '-r', '--no-renames',
          '--no-commit-id', '--name-only', '--', *pathspec],
         input=('\n'.join(requests) + '\n').encode()).decode()
     groups = {}
@@ -99,12 +130,18 @@ def changed_groups(root, commits, pathspec):
         if line.startswith('commit '):
             child = line.split()[1]
         else:
-            groups.setdefault(paths_for(line), set()).add(child)
+            # Only canonical paths can establish authority. A rename still reports
+            # deletion of the canonical source because rename detection is off.
+            files = canonical_paths(line)
+            if files is not None:
+                groups.setdefault(files, set()).add(child)
     return groups
 
 
 def verify(root, *, base=None, paths=(), complete_history=False):
     head = repository_head(root)
+    if paths:  # Writers, including no-op retries, must also reject present-day invalid names.
+        browser_status.receipt_inventory(root, head)
     if not head:
         if base:
             raise ValueError('Receipt comparison needs an existing Git commit')
@@ -180,7 +217,7 @@ def verify_commits(root, head, base, paths, shallow, complete_history):
                     if child not in shallow:
                         check_publication_policy(root, files, candidate, prior, child, registry, child in reviewed)
                     prior = {candidate}
-                except (ValueError, TypeError, KeyError, AttributeError) as error:
+                except (ValueError, TypeError, KeyError, AttributeError, OverflowError) as error:
                     # A later ordinary commit can restore the accepted record. A bad
                     # proposal cannot replace the constraints inherited by that repair.
                     last_error = str(error)

@@ -872,6 +872,127 @@ class WindowTests(unittest.TestCase):
         self.assertFalse((self.repo / 'data/daily-status').exists())
         validate_tree(self.repo)
 
+    def test_ci_accepts_exact_repair_after_invalid_names_and_file_types(self):
+        self.configure_small_registry()
+        entry = self.repo / 'pipeline/daily_status.py'
+        entry.parent.mkdir()
+        shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
+        def ci(base):
+            with patch('sys.argv', [str(entry), '--base-commit', base]):
+                runpy.run_path(str(entry), run_name='__main__')
+        base = run_daily.commit_candidate(self.repo)
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.save('day', self.decisions('day'))
+        week = weekly_status.FIRST_GUARDED_CUTOFF
+        self.cli('week', cutoff=week, mode='weekly_reconcile')
+        self.save('week', self.decisions('week'))
+        later = '2026-12-06T10:00:00+09:00'
+        self.cli('browser', cutoff=later, mode='weekly_reconcile')
+        self.publish_browser('browser', 'edge', self.browser_choices('browser', 'edge'))
+        day = self.repo / 'data/daily-status/2026-11-24.json'
+        marker = self.repo / weekly_status.path(week)
+        detail = self.repo / browser_status.detail_path('weekly_reconcile', later)
+        originals = {p: p.read_bytes() for p in (day, marker, detail)}
+        accepted = run_daily.commit_candidate(self.repo)
+        branch = git(self.repo, 'branch', '--show-current')
+        git(self.repo, 'branch', 'merge-base', accepted)
+        ci(base)
+        invalid = {
+            day: day.with_suffix('.json.bak'),
+            marker: marker.with_name('2026-13-35T700000.000000Z.json'),
+            detail: detail.with_name('bad\u2028name.bak'),
+        }
+        git(self.repo, 'config', 'core.quotePath', 'false')
+        for path, alias in invalid.items():
+            path.rename(alias)
+        renamed = run_daily.commit_candidate(self.repo)
+        for ref in (base, accepted):
+            with self.assertRaises(ValueError):
+                ci(ref)
+        for path, alias in invalid.items():
+            alias.rename(path)
+        day.write_bytes(encoded(dict(read(day), change_count=0, collected_feature_count=0)))
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaises(ValueError):
+            ci(renamed)
+        day.unlink()
+        day.mkdir()
+        (day / 'not-a-receipt').write_text('broken')
+        marker.unlink()
+        marker.symlink_to(detail)
+        detail.write_bytes(b'not json')
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaises(ValueError):
+            ci(renamed)
+        shutil.rmtree(day)
+        marker.unlink()
+        for path, raw in originals.items():
+            path.write_bytes(raw)
+        repaired = run_daily.commit_candidate(self.repo)
+        for ref in (base, accepted, renamed, repaired):
+            ci(ref)
+        (self.repo / 'unrelated.txt').write_text('next push')
+        run_daily.commit_candidate(self.repo)
+        ci(repaired)
+        git(self.repo, 'switch', '-q', 'merge-base')
+        git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=test@example.invalid',
+            '-c', 'core.hooksPath=/dev/null', 'merge', '-q', '--no-ff', '-m', 'Merge repair', branch)
+        ci(accepted)
+
+    def test_invalid_first_daily_blob_cannot_claim_the_cutoff(self):
+        self.configure_small_registry()
+        initial = run_daily.commit_candidate(self.repo)
+        day = self.repo / 'data/daily-status/2026-11-24.json'
+        day.parent.mkdir(parents=True)
+        day.write_bytes(b'null')
+        bad = run_daily.commit_candidate(self.repo)
+        with self.assertRaises(ValueError):
+            validate_tree(self.repo, base=initial)
+        day.unlink()
+        run_daily.commit_candidate(self.repo)
+        self.cli('valid', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        pm = self.folder / 'valid.json'
+        pm.write_bytes(encoded(self.decisions('valid')))
+        self.cli('valid', cutoff=None, extra=['--save-features', str(pm)])
+        run_daily.commit_candidate(self.repo)
+        self.assertEqual(1, read(day)['collected_feature_count'])
+        validate_tree(self.repo, base=bad)
+
+    def test_current_alias_blocks_daily_replay_and_incomplete_even_when_original_exists(self):
+        self.configure_small_registry()
+        initial = run_daily.commit_candidate(self.repo)
+        self.cli('saved', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        pm = self.folder / 'saved.json'
+        pm.write_bytes(encoded(self.decisions('saved')))
+        save = ['--save-features', str(pm)]
+        self.cli('saved', cutoff=None, extra=save)
+        run_daily.commit_candidate(self.repo)
+        self.cli('retry', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        day = self.repo / 'data/daily-status/2026-11-24.json'
+        original = day.read_bytes()
+        for folder, name in ((weekly_status.FOLDER, 'bad-name.bak'),
+                             (browser_status.FOLDER + '/daily', '2026-11-24T031000.000000Z.json'),
+                             (day.parent.relative_to(self.repo), '2026-02-31.json')):
+            alias = self.repo / folder / name
+            alias.parent.mkdir(parents=True, exist_ok=True)
+            alias.write_bytes(original)
+            for state in ('working', 'committed', 'hidden-in-working-tree'):
+                if state == 'committed':
+                    run_daily.commit_candidate(self.repo)
+                if state == 'hidden-in-working-tree':
+                    alias.unlink()
+                with self.subTest(folder=folder, state=state):
+                    for name, args in (('saved', save), ('retry', ['--record-incomplete'])):
+                        with self.assertRaises(ValueError):
+                            self.cli(name, cutoff=None, extra=args)
+                    with self.assertRaises(ValueError):
+                        validate_tree(self.repo, base=initial)
+                    self.assertEqual(original, day.read_bytes())
+            run_daily.commit_candidate(self.repo)
+            self.cli('saved', cutoff=None, extra=save)
+            self.cli('retry', cutoff=None, extra=['--record-incomplete'])
+            validate_tree(self.repo, base=initial)
+
     def test_shallow_daily_writers_require_history_for_every_snapshot_and_new_date(self):
         self.configure_small_registry()
         original = self.repo

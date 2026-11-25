@@ -2,10 +2,9 @@
 from datetime import timezone
 import json
 import re
-import subprocess
 
 from pipeline import daily_status
-from pipeline.run_daily import digest, encoded, git, read
+from pipeline.run_daily import digest, encoded, git, read, repository_head
 from pipeline.temporal import instant, window_start
 
 FOLDER = 'data/browser-status'
@@ -272,10 +271,9 @@ def check_effects(detail, index):
                 raise ValueError('Accepted browser evidence or feature link changed: ' + ident + ' (excerpt)')
 
 
-def validate_tree(root, *, graph=None, base=None, complete_history=False):
-    """Check durable effects against proposed data, including absent Git-tracked receipts."""
-    from pipeline.normalize.storage import load_dataset
-    from pipeline import weekly_status
+def receipt_inventory(root, head):
+    """Check current names and file types in both the working tree and the committed tip."""
+    from pipeline import receipt_history, weekly_status
 
     folder = root / FOLDER
     if folder.is_symlink() or folder.exists() and not folder.is_dir():
@@ -303,34 +301,32 @@ def validate_tree(root, *, graph=None, base=None, complete_history=False):
 
     daily_paths = daily_status.tree_paths(root)
     all_paths = paths | daily_paths
-    tracked, modified = set(), set()
-    folders = (FOLDER, weekly_status.FOLDER, daily_status.FOLDER)
-    # HEAD anchors local writes. CI passes the previous push or PR base so a deletion
-    # already committed in the checked-out head is also visible.
-    ref = 'HEAD'
+    tracked = receipt_history.tracked_paths(root, head) if head else frozenset()
+    for rel in all_paths - tracked:
+        receipt_history.paths_for(rel)
+    missing = tracked - all_paths
+    if any(daily_status.status_path(rel) for rel in missing):
+        raise ValueError('Committed daily status is missing: ' + ', '.join(sorted(missing)))
+    if missing:
+        raise ValueError('Committed browser detail is missing: ' + ', '.join(sorted(missing)))
+    return paths, daily_paths, tracked
+
+
+def validate_tree(root, *, graph=None, base=None, complete_history=False):
+    """Check durable effects against proposed data, including absent Git-tracked receipts."""
+    from pipeline.normalize.storage import load_dataset
+    from pipeline import receipt_history, weekly_status
+
+    ref = repository_head(root)
+    paths, daily_paths, tracked = receipt_inventory(root, ref)
     if base and not re.fullmatch(r'[a-f0-9]{40}|[a-f0-9]{64}', base):
         raise ValueError('Invalid browser status comparison commit')
-    if (root / '.git').exists():
-        head = subprocess.run(['git', '-C', str(root), 'rev-parse', '--verify', '--quiet', 'HEAD'],
-                              stdout=subprocess.DEVNULL, check=False)
-        if head.returncode not in (0, 1) or base and head.returncode:
-            raise ValueError('Cannot verify browser status comparison commit')
-        if head.returncode == 0:
-            if base or complete_history:
-                from pipeline import receipt_history
-                receipt_history.verify(root, base=base, complete_history=complete_history)
-            names = git(root, 'ls-tree', '-r', '-z', '--name-only', ref, '--', *folders)
-            tracked = set(filter(None, names.split('\0')))
-            missing = tracked - all_paths
-            if any(daily_status.status_path(rel) for rel in missing):
-                raise ValueError('Committed daily status is missing: ' + ', '.join(sorted(missing)))
-            if missing:
-                raise ValueError('Committed browser detail is missing: ' + ', '.join(sorted(missing)))
-            if tracked:
-                names = git(root, 'diff', '--name-only', '--no-renames', '-z', ref, '--', *folders)
-                modified = set(filter(None, names.split('\0')))
-    elif base:
-        raise ValueError('Browser status comparison needs a Git checkout')
+    if base or complete_history:
+        receipt_history.verify(root, base=base, complete_history=complete_history)
+    modified = set()
+    if tracked:
+        names = git(root, 'diff', '--name-only', '--no-renames', '-z', ref, '--', *receipt_history.FOLDERS)
+        modified = set(filter(None, names.split('\0')))
     for rel in daily_paths:
         raw = safe_path(root, rel).read_bytes()
         daily_status.validate_receipt(rel, json.loads(raw))
