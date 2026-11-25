@@ -32,7 +32,7 @@ git show "${sha}:$catalog" | jq '.[0] | {feature_id, title, source_item_ids}'
 `{"date":"2026-11-24","cutoff":"2026-11-24T07:00:00+09:00","status":"complete","collected_feature_count":1,"change_count":0}`
 
 - `collected_feature_count`: 분류 후 채택한 고유 기능 수입니다. 공식 근거만 보강한 기능도 포함합니다. 제외한 후보나 기존 전체 카탈로그는 세지 않습니다.
-- `complete` + `change_count: 0`: 오늘 업데이트 없음. 전체 활성 출처의 수집과 분류·검증이 끝났습니다.
+- `complete` + `change_count: 0`: 오늘 업데이트 없음. 일일 대상 출처의 수집과 분류·검증이 끝났습니다. Brave, Vivaldi, Opera는 주간 대조와 수동 수집에서 확인합니다.
 - `complete` + 양의 `change_count`: 확인된 실질 변경이 있는 기능 수입니다. 여러 근거가 한 기능을 설명하면 한 번만 셉니다.
 - `incomplete` + 두 건수 모두 `null`: 수집 또는 분류·검증 미완료입니다. 변경 없음으로 표시하지 않습니다.
 - 파일 없음, 아직 미병합 또는 미동기화: 오늘 결과 미반영입니다. 이전 날짜의 결과를 오늘의 결과로 쓰지 않습니다.

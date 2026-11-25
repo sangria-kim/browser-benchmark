@@ -19,13 +19,23 @@ from pipeline.temporal import instant, window_start
 from schemas.validate import load_config, validate_record, validate_transition
 
 
-def registered_sources(root, requested):
+WEEKLY_ONLY_BROWSERS = frozenset({'brave', 'opera', 'vivaldi'})
+
+
+def registered_sources(root, requested, *, mode):
     registry = load_config(root / 'config/sources.yml')
     validate_record('sources_config', registry)
     enabled = {s['source_id']: s for s in registry['sources'] if s['enabled']}
     missing = set(requested or ()) - enabled.keys()
     if missing:
         raise ValueError('Unknown or disabled sources: ' + ', '.join(sorted(missing)))
+    if mode == 'daily':
+        daily = {sid: source for sid, source in enabled.items() if source['browser'] not in WEEKLY_ONLY_BROWSERS}
+        weekly_only = set(requested or ()) - daily.keys()
+        if weekly_only:
+            raise ValueError('Weekly-only sources require --mode manual for on-demand collection: '
+                             + ', '.join(sorted(weekly_only)))
+        enabled = daily
     return [s for key, s in enabled.items() if not requested or key in requested], registry['baseline']['backfill_since']
 
 
@@ -64,6 +74,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                     or daily_status != ('daily_status' in state)):
                 raise ValueError('Resume requires the same run, mode, origin, sources and cutoff')
             verify_workspace(work, state)
+            if daily_status:
+                check_status_inputs(root, state)
             source_ids, cutoff, mode, origin = state['sources'], state['cutoff'], state['mode'], state['origin']
             if since is None:
                 since = state['manual_since']
@@ -73,7 +85,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             cutoff = cutoff or datetime.now(timezone.utc).isoformat()
             mode = mode or ('daily' if daily_status else 'manual')
             origin = origin or 'daily'
-        sources, policy_since = registered_sources(root, source_ids)
+        sources, policy_since = registered_sources(root, source_ids, mode=mode)
         registry = root / 'config/sources.yml'
         policy = load_config(registry)['baseline']
         days = policy.get('daily_window_days', 30)
@@ -99,12 +111,12 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                          manual_since=since, config_hash=config_hash, workspace_id=uuid.uuid4().hex,
                          observed={}, source_results={})
             if daily_status:
-                enabled, _ = registered_sources(root, None)
+                enabled, _ = registered_sources(root, None, mode=mode)
                 state['daily_status'] = dict(enabled=sorted(s['source_id'] for s in enabled),
                                              registry=inputs['registry'], catalog=file_digest(root / FEATURE_CATALOG))
             work.mkdir(mode=0o700)
             durable(work / '.owner', state['workspace_id'].encode())
-        if daily_status:
+        if daily_status and not resume:
             check_status_inputs(root, state)
         state.update(status='collecting', complete=False)
         durable(state_path, encoded(state))
@@ -182,7 +194,7 @@ def verify_workspace(work, state):
 
 def check_status_inputs(root, state):
     pinned = state['daily_status']
-    enabled, _ = registered_sources(root, None)
+    enabled, _ = registered_sources(root, None, mode=state['mode'])
     if (pinned['registry'] != file_digest(root / 'config/sources.yml')
             or pinned['enabled'] != sorted(s['source_id'] for s in enabled)
             or pinned['catalog'] != file_digest(root / FEATURE_CATALOG)):
@@ -221,7 +233,6 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
     """Close a classified run after its evidence and catalog are durable."""
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
     require_external(root, private)
-    sources, _ = registered_sources(root, None)
     catalog_path = FEATURE_CATALOG
     state_path, work = private / 'feature-run.json', private / 'work'
     with run_lock(private), run_lock(root) as writer:
@@ -255,6 +266,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             if allow_partial or not full_status_coverage(state):
                 raise ValueError('Daily status requires all pinned sources; use --record-incomplete')
             check_status_inputs(root, state)
+        sources, _ = registered_sources(root, None, mode=state.get('mode'))
         if weekly and (allow_partial or not state['complete'] or state['registry'] != file_digest(root / 'config/sources.yml')
                        or set(state['observed']) != {source['source_id'] for source in sources}):
             raise ValueError('Weekly reconciliation requires complete coverage of all enabled sources')

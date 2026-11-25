@@ -156,11 +156,11 @@ class WindowTests(unittest.TestCase):
                                f'<a rel="next" href="{older}">Next</a>')
         self.payloads[older] = f'<article><h2><a href="{new}">New</a></h2></article>'
         self.payloads[new] = self.article('2026-11-09', body='entry-content')
-        self.cli('ordered', [sid])
+        self.cli('ordered', [sid], mode='manual')
         self.assertEqual([home, older, new], self.calls)
         self.assertEqual(1, len(self.candidates('ordered', sid)))
         self.payloads[new] = self.article('2026-11-09', changed='2026-11-24T08:00:01+09:00', body='entry-content')
-        self.cli('future', [sid, 'firefox-ios'], expected=2)
+        self.cli('future', [sid, 'firefox-ios'], mode='manual', expected=2)
         self.assertEqual([], self.candidates('future', sid))
         self.assertIn('after cutoff', str(self.state('future')['source_results'][sid]['errors']))
 
@@ -292,6 +292,37 @@ class WindowTests(unittest.TestCase):
         return dict(decisions=[dict(choice, change_kind='product_change') for choice in selected],
                     dispositions=dispositions)
 
+    def test_daily_cli_marks_partial_and_recovers_to_complete_zero(self):
+        self.configure_small_registry()
+        decisions = self.folder / 'decisions.json'
+        decisions.write_bytes(encoded(dict(decisions=[], dispositions=[])))
+        receipt = self.repo / 'data/daily-status/2026-11-24.json'
+        self.cli('subset', ['firefox-beta'], cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaisesRegex(ValueError, 'all pinned sources'):
+            self.cli('subset', cutoff=None, extra=['--save-features', str(decisions)])
+        self.assertFalse(receipt.exists())
+        self.cli('subset', cutoff=None, extra=['--record-incomplete'])
+        self.assertEqual(('incomplete', None, None), tuple(read(receipt)[key]
+                         for key in ('status', 'change_count', 'collected_feature_count')))
+
+        self.payloads = {url: body.replace('2026-11-10', '2026-01-10') for url, body in self.payloads.items()}
+        firefox = self.sources['firefox-beta']['url']
+        recovered = self.payloads[firefox]
+        self.payloads[firefox] = TimeoutError('synthetic Firefox outage')
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status'], expected=2)
+        self.assertEqual({'firefox-beta'}, {sid for sid, item in self.state('day')['source_results'].items()
+                                           if item['status'] != 'complete'})
+        self.cli('day', cutoff=None, extra=['--record-incomplete'])
+        self.assertEqual(('incomplete', None, None), tuple(read(receipt)[key]
+                         for key in ('status', 'change_count', 'collected_feature_count')))
+        self.payloads[firefox] = recovered
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status', '--resume'])
+        dispositions = [dict(item, disposition='excluded') for item in self.decisions('day')['dispositions']]
+        decisions.write_bytes(encoded(dict(decisions=[], dispositions=dispositions)))
+        self.cli('day', cutoff=None, extra=['--save-features', str(decisions)])
+        self.assertEqual(('complete', 0, 0), tuple(read(receipt)[key]
+                         for key in ('status', 'change_count', 'collected_feature_count')))
+
     def test_racing_saves_in_three_modes_keep_one_revision_and_one_daily_status(self):
         self.configure_small_registry()
         with run_lock(self.repo), self.assertRaisesRegex(RuntimeError, 'lock'):
@@ -372,7 +403,7 @@ class WindowTests(unittest.TestCase):
                             headers={'Link': f'<{second}>; rel="next"'} if url == first else {},
                             observed_at=OBSERVED)
         self.request = fetch
-        self.cli('pages', [sid], expected=2)
+        self.cli('pages', [sid], mode='manual', expected=2)
         pages[first] = [release(3)]
         self.cli('pages', cutoff=None, extra=['--resume'], expected=2)
         self.assertIn('Mutable enumeration changed', str(self.state('pages')['source_results'][sid]))
@@ -534,13 +565,13 @@ class WindowTests(unittest.TestCase):
         self.payloads[api + '?per_page=100&page=1'] = []
         self.payloads[api + '/9'] = dict(id=9, tag_name='v9', html_url=recent['url'], draft=False,
                                          published_at=recent['published_at'], body='- Add tab groups.')
-        self.cli('v3', [sid], extra=self.brave_bundle([recent, ancient], 3))
+        self.cli('v3', [sid], mode='manual', extra=self.brave_bundle([recent, ancient], 3))
         result, = self.candidates('v3', sid)
         self.assertEqual(recent['updated_at'], result['temporal_scope']['evidence_date'])
         self.assertEqual(2, len(self.calls))
         old = [{key: val for key, val in r.items() if key != 'updated_at'} for r in [recent, ancient]]
         self.calls.clear()
-        self.cli('v2', [sid], extra=self.brave_bundle(old, 2), expected=2)
+        self.cli('v2', [sid], mode='manual', extra=self.brave_bundle(old, 2), expected=2)
         self.assertEqual([api + '?per_page=100&page=1'], self.calls)
         self.assertIn('2 older releases', str(self.state('v2')['source_results'][sid]))
 
@@ -557,7 +588,7 @@ class WindowTests(unittest.TestCase):
             self.payloads[api + '/' + str(item['id'])] = dict(id=item['id'], tag_name=item['tag_name'],
                 html_url=item['url'], draft=False, published_at=item['published_at'], body='- Add tab groups.')
         metadata = self.brave_bundle(rows, 3)
-        self.cli('bounded', [sid], extra=metadata, expected=2)
+        self.cli('bounded', [sid], mode='manual', extra=metadata, expected=2)
         self.assertEqual([api + '?per_page=100&page=1', api + '/1'], self.calls)
         self.calls.clear()
         self.cli('bounded', cutoff=None, extra=['--resume', *metadata])
@@ -578,7 +609,7 @@ class WindowTests(unittest.TestCase):
                               'toc': [{'id': 1001, 'anchorId': 'missing'}]},
                               'releasesIndexRoute.Results': {'value': '<section id="missing"></section>'}}}
         with patch('pipeline.collectors.browser.collector.GITHUB_REST_CAP', 1):
-            self.cli('missing', [sid], extra=self.brave_bundle([entry], 3), expected=2)
+            self.cli('missing', [sid], mode='manual', extra=self.brave_bundle([entry], 3), expected=2)
         self.assertIn('absent from frozen metadata: 1001', str(self.state('missing')['source_results'][sid]))
 
     def test_daily_stale_positive_and_excluded_decisions_refuse_changed_weekly_catalog(self):

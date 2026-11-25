@@ -14,7 +14,7 @@ from pipeline import collect
 from pipeline.collect import collect_one
 from pipeline.collectors.browser import Response
 from pipeline.collectors.browser.html import Tree, boundary, blocks
-from pipeline.run_daily import read
+from pipeline.run_daily import encoded, read
 
 ROOT = Path(__file__).resolve().parents[1]
 DAILY = '2026-11-24T07:00:00+09:00'
@@ -35,6 +35,8 @@ class EdgePolicyScopeTests(unittest.TestCase):
         self.edge_notes = {s['source_id']: s['url'] for s in self.sources
                            if s['browser'] == 'edge' and s['source_id'] != 'edge-policies'}
         self.calls = []
+        self.scanned = []
+        self.empty = False
 
     def request(self, url):
         self.calls.append(url)
@@ -53,14 +55,17 @@ class EdgePolicyScopeTests(unittest.TestCase):
         return Response(url, html, observed_at='2026-11-29T11:00:00+09:00')
 
     def collect_one(self, collector, source, state, private):
-        if source['browser'] == 'edge':
+        self.scanned.append(source['source_id'])
+        if source['browser'] == 'edge' and not self.empty:
             return collect_one(collector, source, state, private)
         collector.parsed_ids = set()
         return dict(source_id=source['source_id'], status='complete', cutoff=state['cutoff'])
 
-    def cli(self, run, cutoff, *options):
+    def cli(self, run, cutoff, *options, edge_calls=None):
         argv = ['pipeline.run_daily', '--repository', str(self.repo), '--private-dir', str(self.folder),
-                '--run-id', run, '--cutoff', cutoff, *options]
+                '--run-id', run, *options]
+        if cutoff:
+            argv.extend(['--cutoff', cutoff])
         with patch('sys.argv', argv), patch('pipeline.collect.collect_one', side_effect=self.collect_one):
             with patch('pipeline.collectors.browser.collector.HTTPTransport', return_value=self.request):
                 with redirect_stdout(StringIO()), self.assertRaises(SystemExit) as result:
@@ -69,7 +74,7 @@ class EdgePolicyScopeTests(unittest.TestCase):
         errors = {sid: item['errors'] for sid, item in state['source_results'].items()
                   if item.get('errors')}
         self.assertEqual(0, result.exception.code, errors)
-        self.assertEqual(list(self.edge_notes.values()), self.calls)
+        self.assertEqual(list(self.edge_notes.values()) if edge_calls is None else edge_calls, self.calls)
         self.calls.clear()
 
     def decisions(self, run, select_stable=False):
@@ -91,17 +96,23 @@ class EdgePolicyScopeTests(unittest.TestCase):
 
     def test_daily_and_weekly_use_enabled_scope_and_save(self):
         status = self.repo / 'data/daily-status/2026-11-24.json'
-        expected_sources = {s['source_id'] for s in self.sources} - {'edge-policies'}
-        self.assertEqual(30, len(expected_sources))
+        weekly = {s['source_id'] for s in self.sources if s['enabled']}
+        weekly_only = {s['source_id'] for s in self.sources
+                       if s['enabled'] and s['browser'] in {'brave', 'vivaldi', 'opera'}}
+        daily = weekly - weekly_only
+        self.assertEqual((21, 30, 9), (len(daily), len(weekly), len(weekly_only)))
         self.assertEqual(7, len(self.edge_notes))
-        for name, cutoff, flags in (('day', DAILY, ('--daily-status',)),
-                                    ('week', WEEKLY, ('--mode', 'weekly_reconcile'))):
+        for name, cutoff, sources, flags in (('day', DAILY, daily, ('--daily-status',)),
+                                             ('week', WEEKLY, weekly, ('--mode', 'weekly_reconcile'))):
             with self.subTest(name=name):
+                self.scanned.clear()
                 self.cli(name, cutoff, *flags)
+                self.assertCountEqual(sources, self.scanned)
                 run = self.folder / name
                 state = read(run / 'feature-run.json')
-                self.assertEqual(expected_sources, set(state['observed']))
-                self.assertEqual(expected_sources, set(state['source_results']))
+                self.assertEqual(sources, set(state['observed']))
+                self.assertEqual(sources, set(state['source_results']))
+                self.assertEqual(sources, {path.stem for path in (run / 'work/candidates').glob('*.json')})
                 self.assertEqual({'complete'}, {s['status'] for s in state['source_results'].values()})
                 for sid in RELEASE_CHANNELS:
                     rows = read(run / 'work/candidates' / (sid + '.json'))
@@ -113,16 +124,81 @@ class EdgePolicyScopeTests(unittest.TestCase):
                 self.assertFalse((run / 'work/candidates/edge-policies.json').exists())
                 if name == 'day':
                     pinned = state['daily_status']['enabled']
-                    self.assertEqual(expected_sources, set(pinned))
-                    collect.save_features(self.repo, run, self.decisions(run, select_stable=True))
+                    self.assertEqual(daily, set(pinned))
+                    classification = run / 'classification.json'
+                    classification.write_bytes(encoded(self.decisions(run, select_stable=True)))
+                    self.cli(name, None, '--save-features', str(classification), edge_calls=[])
                     receipt = status.read_bytes()
                     record = read(status)
                     self.assertEqual(('complete', 1, 1), (record['status'],
                                      record['collected_feature_count'], record['change_count']))
                 else:
-                    collect.save_features(self.repo, run, self.decisions(run))
+                    classification = run / 'classification.json'
+                    classification.write_bytes(encoded(self.decisions(run)))
+                    self.cli(name, None, '--save-features', str(classification), edge_calls=[])
                     self.assertEqual(receipt, status.read_bytes())
                 self.assertEqual('saved', read(run / 'feature-run.json')['status'])
+
+    def test_complete_empty_daily_scope_certifies_zero(self):
+        self.empty = True
+        self.cli('empty', DAILY, '--mode', 'daily', '--daily-status', edge_calls=[])
+        self.assertEqual(21, len(self.scanned))
+        run = self.folder / 'empty'
+        self.assertEqual(21, len(list((run / 'work/candidates').glob('*.json'))))
+        classification = run / 'classification.json'
+        classification.write_bytes(encoded(dict(decisions=[], dispositions=[])))
+        self.cli('empty', None, '--save-features', str(classification), edge_calls=[])
+        record = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('complete', 0, 0), (record['status'], record['change_count'],
+                                              record['collected_feature_count']))
+
+    def test_explicit_daily_rejects_weekly_only_sources_before_any_scan(self):
+        with self.assertRaisesRegex(ValueError, '--mode manual.*brave-blog'):
+            self.cli('mixed', DAILY, '--mode', 'daily', '--source', 'edge-stable', '--source', 'brave-blog')
+        self.assertEqual([], self.scanned)
+        self.assertEqual([], self.calls)
+        self.assertFalse((self.folder / 'mixed/feature-run.json').exists())
+
+    def test_manual_and_legacy_keep_weekly_only_sources(self):
+        targets = ['brave-blog', 'vivaldi-desktop', 'opera-mobile']
+        options = [part for sid in targets for part in ('--source', sid)]
+        for mode in ('manual', 'legacy'):
+            self.scanned.clear()
+            self.cli(mode, DAILY, '--mode', mode, *options, edge_calls=[])
+            self.assertCountEqual(targets, self.scanned)
+        argv = ['pipeline.collect', '--repository', str(self.repo), '--private-dir',
+                str(self.folder / 'direct'), '--cutoff', DAILY, *options]
+        self.scanned.clear()
+        with patch('sys.argv', argv), patch('pipeline.collect.collect_one', side_effect=self.collect_one):
+            with redirect_stdout(StringIO()):
+                self.assertEqual(0, collect.main())
+        self.assertCountEqual(targets, self.scanned)
+
+    def test_partial_weekly_request_cannot_be_saved_as_full_reconciliation(self):
+        urls = [self.edge_notes['edge-stable']]
+        self.cli('diagnostic', WEEKLY, '--mode', 'weekly_reconcile', '--source', 'edge-stable', edge_calls=urls)
+        run = self.folder / 'diagnostic'
+        classification = run / 'classification.json'
+        classification.write_bytes(encoded(self.decisions(run)))
+        with self.assertRaisesRegex(ValueError, 'all enabled sources'):
+            self.cli('diagnostic', None, '--save-features', str(classification), edge_calls=[])
+        self.assertFalse((self.repo / 'data').exists())
+
+    def test_unpublished_previous_scope_cannot_be_resumed_or_finalized(self):
+        with patch.object(collect, 'WEEKLY_ONLY_BROWSERS', frozenset()):
+            self.cli('previous', DAILY, '--daily-status')
+        run = self.folder / 'previous'
+        self.assertEqual(30, len(read(run / 'feature-run.json')['daily_status']['enabled']))
+        self.scanned.clear()
+        with self.assertRaisesRegex(ValueError, 'baseline changed'):
+            self.cli('previous', DAILY, '--daily-status', '--resume', edge_calls=[])
+        classification = run / 'classification.json'
+        classification.write_bytes(encoded(self.decisions(run)))
+        with self.assertRaisesRegex(ValueError, 'baseline changed'):
+            self.cli('previous', None, '--save-features', str(classification), edge_calls=[])
+        self.assertEqual([], self.scanned)
+        self.assertEqual([], self.calls)
+        self.assertFalse((self.repo / 'data').exists())
 
     def test_disabled_policy_rejected_before_transport(self):
         argv = ['pipeline.collect', '--repository', str(self.repo), '--private-dir',
