@@ -58,9 +58,9 @@ def validate_receipt(path, value):
         raise ValueError('Invalid daily status date, cutoff or state')
 
 
-def validate_tree(root, *, base=None):
+def validate_tree(root, *, base=None, complete_history=False):
     from pipeline import browser_status
-    browser_status.validate_tree(root.resolve(), base=base)
+    browser_status.validate_tree(root.resolve(), base=base, complete_history=complete_history)
 
 
 def tree_paths(root):
@@ -101,6 +101,8 @@ def read_current(root, cutoff):
     if target.is_symlink() or target.parent.is_symlink() or root not in target.resolve().parents:
         raise ValueError('Unsafe daily status target')
     raw = target.read_bytes() if target.exists() else None
+    from pipeline import receipt_history
+    receipt_history.verify(root, paths=receipt_history.paths_for(rel))
     check_committed(root, rel, raw)
     return raw, previous_receipt(rel, raw, expected['cutoff']) if raw is not None else None
 
@@ -170,4 +172,5 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base-commit', help='Previous push or PR base to check collection receipt immutability')
-    validate_tree(Path(__file__).resolve().parents[1], base=parser.parse_args().base_commit)
+    base = parser.parse_args().base_commit
+    validate_tree(Path(__file__).resolve().parents[1], base=base, complete_history=not base)

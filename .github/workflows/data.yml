@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -26,7 +29,7 @@ jobs:
             python -m pipeline.daily_status
           else
             if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
-              git fetch --no-tags --depth=1 origin "$BASE"
+              git fetch --no-tags --filter=blob:none origin "$BASE"
             fi
             python -m pipeline.daily_status --base-commit "$BASE"
           fi

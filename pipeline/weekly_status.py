@@ -59,7 +59,9 @@ def check_features(value, features):
 
 
 def read_current(root, cutoff):
+    from pipeline import receipt_history
     rel = path(cutoff)
+    receipt_history.verify(root, paths=receipt_history.paths_for(rel))
     target = browser_status.safe_path(root, rel)
     value = None
     if target.exists():

@@ -132,8 +132,11 @@ def read_current(root, rel):
 
 
 def registry_facts(root, mode):
+    return registry_snapshot((root / 'config/sources.yml').read_bytes(), mode)
+
+
+def registry_snapshot(raw, mode):
     from pipeline.collect import select_sources
-    raw = (root / 'config/sources.yml').read_bytes()
     registry = json.loads(raw)
     groups = {}
     for source in select_sources(registry, None, mode=mode):
@@ -269,7 +272,7 @@ def check_effects(detail, index):
                 raise ValueError('Accepted browser evidence or feature link changed: ' + ident + ' (excerpt)')
 
 
-def validate_tree(root, *, graph=None, base=None):
+def validate_tree(root, *, graph=None, base=None, complete_history=False):
     """Check durable effects against proposed data, including absent Git-tracked receipts."""
     from pipeline.normalize.storage import load_dataset
     from pipeline import weekly_status
@@ -304,7 +307,7 @@ def validate_tree(root, *, graph=None, base=None):
     folders = (FOLDER, weekly_status.FOLDER, daily_status.FOLDER)
     # HEAD anchors local writes. CI passes the previous push or PR base so a deletion
     # already committed in the checked-out head is also visible.
-    ref = base or 'HEAD'
+    ref = 'HEAD'
     if base and not re.fullmatch(r'[a-f0-9]{40}|[a-f0-9]{64}', base):
         raise ValueError('Invalid browser status comparison commit')
     if (root / '.git').exists():
@@ -313,6 +316,9 @@ def validate_tree(root, *, graph=None, base=None):
         if head.returncode not in (0, 1) or base and head.returncode:
             raise ValueError('Cannot verify browser status comparison commit')
         if head.returncode == 0:
+            if base or complete_history:
+                from pipeline import receipt_history
+                receipt_history.verify(root, base=base, complete_history=complete_history)
             names = git(root, 'ls-tree', '-r', '-z', '--name-only', ref, '--', *folders)
             tracked = set(filter(None, names.split('\0')))
             missing = tracked - all_paths

@@ -405,7 +405,7 @@ class WindowTests(unittest.TestCase):
 
     def test_committed_whole_daily_receipt_protects_every_retry(self):
         self.configure_small_registry()
-        run_daily.commit_candidate(self.repo)
+        initial = run_daily.commit_candidate(self.repo)
         day = self.repo / 'data/daily-status/2026-11-24.json'
         self.cli('whole', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
         original = self.folder / 'whole.json'
@@ -445,16 +445,35 @@ class WindowTests(unittest.TestCase):
                         action()
                     self.assertEqual(raw, day.read_bytes() if day.exists() else None)
                     self.assertFalse((self.repo / browser_status.FOLDER).exists())
-        for raw in (None, after):
+        original_repo = self.repo
+        for index, raw in enumerate((None, after)):
+            self.repo = self.folder / f'damaged-commit-{index}'
+            shutil.copytree(original_repo, self.repo)
+            damaged = self.repo / day.relative_to(original_repo)
             if raw is None:
-                day.unlink(missing_ok=True)
+                damaged.unlink(missing_ok=True)
             else:
-                day.write_bytes(raw)
+                damaged.write_bytes(raw)
+            rejected = run_daily.commit_candidate(self.repo)
+            for ref in (accepted, initial):
+                with self.subTest(committed_change=raw, ref=ref), self.assertRaises(ValueError):
+                    validate_tree(self.repo, base=ref)
+            name = f'after-damage-{index}'
+            self.cli(name, cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+            with self.assertRaises(ValueError):
+                self.publish_browser(name, 'firefox', self.browser_choices(name, 'firefox'))
+            with self.assertRaises(ValueError):
+                self.cli(name, cutoff=None, extra=['--record-incomplete'])
+            with self.assertRaises(ValueError):
+                self.save(name, self.decisions(name))
+            damaged.write_bytes(original_bytes)
             run_daily.commit_candidate(self.repo)
-            with self.subTest(committed_change=raw), self.assertRaises(ValueError):
-                validate_tree(self.repo, base=accepted)
+            for ref in (initial, accepted, rejected):
+                validate_tree(self.repo, base=ref)
+            self.cli(name, cutoff=None, extra=['--record-incomplete'])
+            self.assertEqual(original_bytes, damaged.read_bytes())
+        self.repo = original_repo
         day.write_bytes(original_bytes)
-        run_daily.commit_candidate(self.repo)
         self.cli('whole', cutoff=None, extra=['--save-features', str(original)])
         self.cli('tomorrow', cutoff='2026-11-25T07:00:00+09:00', extra=['--daily-status'])
         self.save('tomorrow', self.decisions('tomorrow'))
@@ -552,7 +571,6 @@ class WindowTests(unittest.TestCase):
         row['scope']['start'] = '2026-11-26T22:00:00Z'  # Same instant.
         second.write_bytes(encoded(browser_status.seal(row)))
         validate_tree(self.repo, base=base)
-        accepted = run_daily.commit_candidate(self.repo)
         fixed = second.read_bytes()
         for invalid in (row['scope']['cutoff'], '2026-11-26T22:00:00.000001Z'):
             row['scope']['start'] = invalid
@@ -560,10 +578,59 @@ class WindowTests(unittest.TestCase):
             with self.subTest(start=invalid), self.assertRaisesRegex(ValueError, 'window'):
                 validate_tree(self.repo, base=base)
         second.write_bytes(fixed)
+        accepted = run_daily.commit_candidate(self.repo)
         policy['baseline']['daily_window_days'] = 7
         self.registry.write_bytes(encoded(policy))
         run_daily.commit_candidate(self.repo)
         validate_tree(self.repo, base=accepted)
+
+    def test_batch_checks_second_parent_and_snapshot_policy(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        # Keep an empty first-parent branch while the other publishes a browser.
+        git(self.repo, 'branch', 'empty-base', base)
+        self.cli('scoped', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.publish_browser('scoped', 'firefox', self.browser_choices('scoped', 'firefox'))
+        accepted = run_daily.commit_candidate(self.repo)
+        policy = read(self.registry)
+        policy['baseline']['daily_window_days'] = 4
+        self.registry.write_bytes(encoded(policy))
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=base)
+        git(self.repo, 'switch', '-q', 'empty-base')
+        git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=test@example.invalid',
+            '-c', 'core.hooksPath=/dev/null', 'merge', '-q', '--no-ff', '-s', 'ours', '-m', 'Drop receipt', accepted)
+        with self.assertRaisesRegex(ValueError, 'missing'):
+            validate_tree(self.repo, base=base)
+
+    def test_weekly_history_keeps_accepted_whole_and_browser_results_through_a_batch(self):
+        self.configure_small_registry()
+        initial = run_daily.commit_candidate(self.repo)
+        first = weekly_status.FIRST_GUARDED_CUTOFF
+        later = '2026-12-06T10:00:00+09:00'
+        self.cli('whole', cutoff=first, mode='weekly_reconcile')
+        self.save('whole', self.decisions('whole'))
+        self.cli('partial', cutoff=later, mode='weekly_reconcile')
+        self.publish_browser('partial', 'edge', self.browser_choices('partial', 'edge'))
+        run_daily.commit_candidate(self.repo)
+        marker = self.repo / weekly_status.path(first)
+        detail = self.repo / browser_status.detail_path('weekly_reconcile', later)
+        old = [p.read_bytes() for p in (marker, detail)]
+        marker.write_bytes(encoded(browser_status.seal(dict(read(marker), collected_feature_count=0, feature_ids=[]))))
+        detail.unlink()
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaises(ValueError):
+            validate_tree(self.repo, base=initial)
+        for name, cutoff in [('whole-again', first), ('partial-again', later)]:
+            self.cli(name, cutoff=cutoff, mode='weekly_reconcile')
+            with self.assertRaises(ValueError):
+                self.publish_browser(name, 'firefox', self.browser_choices(name, 'firefox'))
+            with self.assertRaises(ValueError):
+                self.save(name, self.decisions(name))
+        for path, raw in zip((marker, detail), old):
+            path.write_bytes(raw)
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=initial)
 
     def test_full_weekly_freezes_cutoff_before_fresh_browser_save(self):
         self.configure_small_registry()
