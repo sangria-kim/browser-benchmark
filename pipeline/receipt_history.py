@@ -146,37 +146,48 @@ def data_roots(root, commit):
     return {name: entry for name, entry in direct_git_children(root, commit).items() if name.casefold() == 'data'}
 
 
-def sole_added_file(root, before, after):
-    """Return the Git path, mode and blob if the only change is one new regular file."""
-    diff = subprocess.check_output(['git', '-C', str(root), 'diff-tree', '-r', '-z', '--raw', '--no-renames', '--abbrev=64',
-                                    before[2], after[2]])
+def prior_tree_state(root, folder, original, restored, rel, oid):
+    """Identify an empty receipt slot or the exact original alias in the otherwise identical tree."""
+    if original == restored:
+        return 'alias' if folder != 'data' else None
+    diff = subprocess.check_output(['git', '-C', str(root), 'diff-tree', '-r', '-z', '--raw', '--no-renames',
+                                    '--abbrev=64', original[2], restored[2]])
     fields = diff.split(b'\0')
-    if len(fields) != 3 or fields[-1]:
+    # An absent marker produces one addition. Renaming its alias produces one
+    # addition and one deletion. Any other change is outside this repair.
+    if len(fields) not in (3, 5) or fields[-1]:
         return None
-    old_mode, mode, _, oid, status = fields[0].split()
-    if old_mode != b':000000' or status != b'A' or mode not in (b'100644', b'100755'):
+    added_mode = None
+    removed_mode = None
+    canonical = rel.encode()
+    for index in range(0, len(fields) - 1, 2):
+        header, path = fields[index:index + 2]
+        old_mode, new_mode, old_oid, new_oid, status = header.split()
+        old_mode = old_mode.removeprefix(b':')
+        if status == b'A' and new_oid == oid and b'data/' + path == canonical and added_mode is None:
+            added_mode = new_mode
+        elif status == b'D' and old_oid == oid and removed_mode is None:
+            alias = folder.encode() + b'/' + path
+            if alias == canonical or alias.lower() not in (canonical.lower(), canonical.lower() + b'.bak'):
+                return None
+            removed_mode = old_mode
+        else:
+            return None
+    if added_mode not in (b'100644', b'100755'):
         return None
-    return fields[1], mode, oid
+    if removed_mode is None:
+        return 'gap'
+    return 'alias' if removed_mode == added_mode else None
 
 
 def prior_deleted_aliases(root, restored, parent, ancestry, rel, oid):
-    """Prove either a deleted data root or a deleted receipt with the remaining tree intact."""
+    """Trace all parents through verifiable gaps until each reaches the exact first submission."""
     if len(ancestry[restored]) != 1:
         return set()
     destination = data_roots(root, restored)
     if set(destination) != {'data'} or destination['data'][1] != b'tree':
         return set()
     expected = destination['data']
-    gap = data_roots(root, parent)
-    remaining = next(iter(gap.values()), None)
-    if len(gap) > 1 or (remaining and remaining[1] != b'tree'):
-        return set()
-    added = None
-    if remaining:
-        added = sole_added_file(root, remaining, expected)
-        if not added or added[0] != rel.removeprefix('data/').encode() or added[2] != oid:
-            return set()
-
     sources = set()
     pending = [parent]
     visited = set()
@@ -186,30 +197,22 @@ def prior_deleted_aliases(root, restored, parent, ancestry, rel, oid):
             continue
         visited.add(revision)
         entries = data_roots(root, revision)
-        if len(entries) <= 1 and next(iter(entries.values()), None) == remaining:
-            if not ancestry[revision]:
-                return set()
-            pending.extend(ancestry[revision])
-            continue
-        if len(entries) != 1:
+        if len(entries) > 1:
             return set()
-        folder, original = next(iter(entries.items()))
-        if original[1] != b'tree':
+        if entries:
+            folder, original = next(iter(entries.items()))
+            if original[1] != b'tree':
+                return set()
+            state = prior_tree_state(root, folder, original, expected, rel, oid)
+            if state == 'alias':
+                sources.add((revision, original))
+                continue
+            if state != 'gap':
+                return set()
+        # Either all data is absent or the only missing file is this receipt.
+        if not ancestry[revision]:
             return set()
-        if added is None:
-            if folder == 'data' or original != expected:
-                return set()
-        else:
-            # From the same unchanged tree, each endpoint must add exactly the
-            # same blob and mode. Only the receipt's spelling can differ.
-            alias = sole_added_file(root, remaining, original)
-            if not alias or alias[1:] != added[1:]:
-                return set()
-            path = folder.encode() + b'/' + alias[0]
-            canonical = rel.encode()
-            if path == canonical or path.lower() not in (canonical.lower(), canonical.lower() + b'.bak'):
-                return set()
-        sources.add((revision, original))
+        pending.extend(ancestry[revision])
     return sources
 
 

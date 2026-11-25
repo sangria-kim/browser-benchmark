@@ -1165,6 +1165,33 @@ class WindowTests(unittest.TestCase):
             else:
                 self.cli(run, cutoff=None, extra=save)
 
+            # The original backup name can also survive in a Git tree that was
+            # removed in full. A retained-evidence gap may precede the full deletion.
+            for parent in (first, gap):
+                git(self.repo, 'switch', '-qc', 'full-gap-' + parent[:8], parent)
+                data = self.repo / 'data'
+                kept = self.folder / (run + parent[:8])
+                data.rename(kept)
+                removed = run_daily.commit_candidate(self.repo)
+                kept.rename(data)
+                if backup.exists():
+                    backup.rename(marker)
+                else:
+                    marker.parent.mkdir(exist_ok=True, parents=True)
+                    marker.write_bytes(original)
+                fixed = run_daily.commit_candidate(self.repo)
+                with patch('sys.argv', [str(entry), '--base-commit', removed]):
+                    runpy.run_path(str(entry), run_name='__main__')
+                if not scoped:
+                    self.cli(run, cutoff=None, extra=save)
+                git(self.repo, 'switch', '-qc', 'changed-full-gap-' + parent[:8], removed)
+                git(self.repo, 'checkout', fixed, '--', 'data')
+                evidence = self.repo / 'data/source-items/firefox/firefox-beta.json'
+                evidence.write_bytes(evidence.read_bytes() + bytes([10]))
+                run_daily.commit_candidate(self.repo)
+                with self.assertRaisesRegex(ValueError, 'original publication'):
+                    validate_tree(self.repo, base=removed)
+
             # A reappearing identical marker cannot cover a side branch on which
             # evidence changed during the gap, even if the final bytes match.
             git(self.repo, 'switch', '-qc', 'changed-evidence', gap)
