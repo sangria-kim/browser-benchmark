@@ -200,6 +200,7 @@ class BrowserCollector:
     """
     def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None, *, write_records=True):
         self.write_records = write_records
+        self.collection_mode = None
         self.policy_since = self.window_start = self.checkpoint_context = self.attempt_seconds = None
         self.deadline = None
         self.repository = Path(repository).resolve()
@@ -372,11 +373,7 @@ class BrowserCollector:
             if (digest(response.body), response.url, next_link) != (cached['sha256'], cached['url'], prior_link):
                 raise ValueError('Mutable enumeration changed on resume; start a fresh run')
             response.observed_at = cached.get('observed_at')
-        # Keep bytes private. Cache filenames are hashes, not author/URL names.
-        cache_path = self.private_dir / 'cache' / digest(response.body)
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        if not cache_path.exists():
-            atomic_bytes(cache_path, response.body)
+        self.cache_body(response.body)
         self.cache[url] = response
         self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
@@ -385,6 +382,15 @@ class BrowserCollector:
         self.write_progress()
         self.check_time()
         return response
+
+    def cache_body(self, body, *, verify=False):
+        checksum = digest(body)
+        path = self.private_dir / 'cache' / checksum
+        if not path.exists():
+            atomic_bytes(path, body)
+        elif verify and path.read_bytes() != body:
+            raise ValueError('Cached response checksum mismatch')
+        return checksum
 
     def budget(self, url, kind):
         self.check_time()

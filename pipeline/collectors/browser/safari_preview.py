@@ -1,7 +1,12 @@
 """Join Apple's numbered release inventory to WebKit's canonical article evidence."""
+import hashlib
+import json
 import re
+from datetime import datetime, timedelta, timezone
+from email.utils import format_datetime, parsedate_to_datetime
 from urllib.parse import urljoin
 
+from pipeline.temporal import instant
 from .html import Tree, boundary, next_links, publication_value, reconcile_modification
 
 
@@ -130,7 +135,154 @@ def verified_publication(response, version, year, source_id):
     return date
 
 
+RELEASE_ONE_PATH = '/documentation/safari-technology-preview-release-notes/stp-release-1'
+RELEASE_ONE_MARKDOWN = 'https://developer.apple.com' + RELEASE_ONE_PATH + '.md'
+RELEASE_ONE_DOCC = 'https://developer.apple.com/tutorials/data' + RELEASE_ONE_PATH + '.json'
+RELEASE_ONE_TITLE = 'Safari Technology Preview 1 Release Notes'
+RELEASE_ONE_BUNDLE = 'Safari-Technology-Preview-Release-Notes'
+
+
+def release_one_markdown(response):
+    match = re.fullmatch(r'<!--\s*(.*?)\s*-->\s*(.*?)\n---\s*\nCopyright &copy; \d{4} Apple Inc\. '
+                         r'All rights reserved\. \| \[Terms of Use\]\(https://www.apple.com/legal/internet-services/terms/site.html\) '
+                         r'\| \[Privacy Policy\]\(https://www.apple.com/privacy/privacy-policy\)\s*', response.text(), re.S)
+    if not match:
+        raise ValueError('Unrecognized Apple release-1 Markdown')
+    meta = json.loads(match[1])
+    if (meta.get('title') != RELEASE_ONE_TITLE or meta.get('documentType') != 'article' or meta.get('role') != 'article'
+            or meta.get('framework') != 'Safari Technology Preview Release Notes'
+            or meta.get('identifier') != RELEASE_ONE_PATH.replace('safari-technology-preview-release-notes', RELEASE_ONE_BUNDLE)):
+        raise ValueError('Wrong Apple release-1 Markdown identity')
+    return [line.strip() for line in match[2].splitlines() if line.strip()]
+
+
+def release_one_docc(response):
+    data = json.loads(response.text())
+    identifier = 'doc://com.apple.' + RELEASE_ONE_BUNDLE + RELEASE_ONE_PATH.replace(
+        'safari-technology-preview-release-notes', RELEASE_ONE_BUNDLE)
+    if (data['identifier']['url'] != identifier or data['metadata']['title'] != RELEASE_ONE_TITLE
+            or data['metadata']['role'] != 'article' or data['kind'] != 'article'):
+        raise ValueError('Wrong Apple release-1 DocC identity')
+
+    def inline(nodes):
+        parts = []
+        for node in nodes:
+            if node['type'] == 'text':
+                parts.append(node['text'])
+            elif node['type'] == 'codeVoice':
+                parts.append('`' + node['code'] + '`')
+            elif node['type'] == 'reference':
+                ref = data['references'][node['identifier']]
+                parts.append('[' + ref['title'] + '](' + ref['url'] + ')')
+            else:
+                raise ValueError('Unsupported Apple release-1 inline content')
+        line = ''.join(parts)
+        if not line.strip() or '\n' in line:
+            raise ValueError('Invalid Apple release-1 paragraph')
+        return line
+
+    lines = ['# ' + RELEASE_ONE_TITLE, inline(data['abstract'])]
+    section, = data['primaryContentSections']
+    if section['kind'] != 'content' or data.get('sections'):
+        raise ValueError('Unrecognized Apple release-1 sections')
+    for node in section['content']:
+        if node['type'] == 'heading' and node['level'] in (2, 3):
+            lines.append('#' * node['level'] + ' ' + node['text'])
+        elif node['type'] == 'paragraph':
+            lines.append(inline(node['inlineContent']))
+        elif node['type'] == 'unorderedList' and node['items']:
+            for item in node['items']:
+                paragraph, = item['content']
+                if paragraph['type'] != 'paragraph':
+                    raise ValueError('Unsupported Apple release-1 product unit')
+                lines.append('- ' + inline(paragraph['inlineContent']))
+        else:
+            raise ValueError('Unsupported Apple release-1 content')
+    # Release 1 has five named product sections. Do not mistake two identically
+    # truncated representations for a complete release.
+    headings = ('Browser Differences', 'JavaScript Improvements', 'HTML Enhancements', 'Web Inspector Changes', 'Behavior Changes')
+    groups = [line[4:] for line in lines if line.startswith('### ')]
+    if '## Overview' not in lines or tuple(groups) != headings:
+        raise ValueError('Missing substantive Apple release-1 product sections')
+    for i, line in enumerate(lines):
+        if line.startswith('### ') and (i + 1 == len(lines) or not lines[i + 1].startswith('- ')):
+            raise ValueError('Empty Apple release-1 product section')
+    return lines
+
+
+def apple_proof_request(collector, url, since, journal):
+    # Each request, including each live 304 on resume, consumes a detail slot.
+    if not collector.budget(url, 'documents'):
+        raise ValueError('Apple release-1 proof request exceeds source budget')
+    collector.state['documents'] += 1
+    attempts = collector.state['preview_inventory'].setdefault('release_one_requests', [])
+    event = {'url': url, 'if_modified_since': since}
+    attempts.append(event)
+    response = collector.transport(url, direct=True, if_modified_since=since)
+    headers = {k.lower(): v for k, v in response.headers.items()}
+    facts = dict(event, final_url=response.url, status=response.status, sha256=collector.cache_body(response.body, verify=True),
+                 etag=headers.get('etag'), last_modified=headers.get('last-modified'), content_type=headers.get('content-type'),
+                 content_encoding=headers.get('content-encoding'), vary=headers.get('vary'))
+    event.update(facts, observed_at=response.observed_at or datetime.now(timezone.utc).isoformat())
+    key = url + ' ' + (since or 'full')
+    prior = journal.get(key)
+    if prior and {k: prior.get(k) for k in facts} != facts:
+        raise ValueError('Apple release-1 proof changed on resume; start a fresh run')
+    if not prior:
+        journal[key] = dict(event)
+    collector.write_progress()
+    collector.check_time()
+    if (response.url != url or instant(event['observed_at']) < instant(collector.cutoff)
+            or headers.get('content-encoding', 'identity').lower() != 'identity'
+            or any(name.strip().lower() not in ('accept', 'accept-encoding', 'user-agent')
+                   for name in headers.get('vary', '').split(',') if name.strip())):
+        raise ValueError('Unexpected Apple release-1 representation')
+    return response, facts
+
+
+def exclude_old_apple_release_one(collector):
+    start = instant(collector.window_start).astimezone(timezone.utc)
+    before = start.replace(microsecond=0)
+    if before == start:
+        before -= timedelta(seconds=1)
+    since = format_datetime(before, usegmt=True)
+    journal = collector.progress.setdefault('apple_release_one', {}).setdefault('requests', {})
+    for prior in journal.values():
+        checksum = prior['sha256']
+        if (not re.fullmatch(r'[a-f0-9]{64}', checksum)
+                or hashlib.sha256((collector.private_dir / 'cache' / checksum).read_bytes()).hexdigest() != checksum):
+            raise ValueError('Apple release-1 cached proof checksum mismatch')
+    documents = []
+    for url, media, parse in ((RELEASE_ONE_MARKDOWN, 'text/markdown', release_one_markdown),
+                              (RELEASE_ONE_DOCC, 'application/json', release_one_docc)):
+        response, facts = apple_proof_request(collector, url, None, journal)
+        if (response.status != 200 or (facts['content_type'] or '').split(';')[0].lower() != media
+                or not re.fullmatch(r'"[\x21\x23-\x7e\x80-\xff]+"', facts['etag'] or '')):
+            raise ValueError('Unverified Apple release-1 full response or ETag')
+        modified = parsedate_to_datetime(facts['last_modified'] or '')
+        if modified.tzinfo is None or format_datetime(modified, usegmt=True) != facts['last_modified'] or modified > before:
+            raise ValueError('Apple release-1 representation not verified before the window')
+        documents.append((url, facts, parse(response)))
+    if documents[0][2] != documents[1][2]:
+        raise ValueError('Apple release-1 product content disagrees between Markdown and DocC')
+    for url, full, _ in documents:
+        response, facts = apple_proof_request(collector, url, since, journal)
+        if (response.status != 304 or response.body or facts['etag'] != full['etag']
+                or any(facts[k] is not None and facts[k] != full[k] for k in ('last_modified', 'content_type', 'vary'))):
+            raise ValueError('Apple release-1 did not confirm the same representation before the window')
+    semantic = hashlib.sha256(json.dumps(documents[0][2], ensure_ascii=False, separators=(',', ':')).encode()).hexdigest()
+    decision = dict(version=1, cutoff=collector.cutoff, window_start=collector.window_start,
+                    if_modified_since=since, product_text_sha256=semantic)
+    collector.progress['apple_release_one']['verified'] = decision
+    collector.write_progress()
+    collector.state['preview_inventory']['release_one_exclusion'] = decision
+    collector.state['excluded_by_date'].append(RELEASE_ONE_MARKDOWN)
+
+
 def collect_safari_preview(collector):
+    previous_proof = collector.progress.get('apple_release_one', {})
+    if previous_proof.pop('verified', None):
+        collector.write_progress()
     detail_pattern = re.compile(collector.source['discovery']['include_url_pattern'])
     urls = {}
     state = collector.state
@@ -202,7 +354,14 @@ def collect_safari_preview(collector):
         url = urls.get(version)
         if not url:
             target = APPLE_INDEX + '#stp-release-' + str(version)
-            collector.problem(target, 'Missing canonical WebKit release URL')
+            if (version == 1 and collector.collection_mode == 'daily' and years.get(1) == 2016
+                    and int(collector.window_start[:4]) > 2016 and not state['errors']):
+                try:
+                    exclude_old_apple_release_one(collector)
+                except Exception as error:
+                    collector.problem(target, str(error))
+            else:
+                collector.problem(target, 'Missing canonical WebKit release URL')
             continue
         # Undated category cards cannot exclude an older article modified in
         # the window. Keep the normal detail-side publication and revision rules.

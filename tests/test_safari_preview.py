@@ -1,4 +1,5 @@
 import contextlib
+import copy
 from io import StringIO
 import json
 from pathlib import Path
@@ -9,7 +10,9 @@ import unittest
 from unittest.mock import patch
 
 from pipeline.collectors.browser import BrowserCollector, Response
-from pipeline.collectors.browser.safari_preview import APPLE_INDEX, CATEGORY
+from pipeline.collectors.browser.safari_preview import (
+    APPLE_INDEX, CATEGORY, RELEASE_ONE_BUNDLE, RELEASE_ONE_DOCC, RELEASE_ONE_MARKDOWN, RELEASE_ONE_TITLE)
+
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -58,8 +61,16 @@ class PreviewTests(unittest.TestCase):
         self.source = next(s for s in json.loads(self.registry.read_text())['sources'] if s['source_id'] == SID)
         self.pages = {APPLE_INDEX: apple([1]), CATEGORY: page([1]), release_url(1): article(1, '2026-11-01')}
         self.calls = []
+        self.proof_calls = []
+        self.proof = {}
 
-    def request(self, url):
+    def request(self, url, *, direct=False, if_modified_since=None):
+        if direct:
+            self.proof_calls.append((url, if_modified_since))
+            result = self.proof[url, if_modified_since]
+            if isinstance(result, Exception):
+                raise result
+            return result
         self.calls.append(url)
         result = self.pages[url]
         if isinstance(result, Exception):
@@ -188,6 +199,125 @@ class PreviewTests(unittest.TestCase):
         _, rows = self.run_cli('news-card')
         self.assertEqual([release_url(1)], [r['evidence']['url'] for r in rows])
         self.assertNotIn('https://webkit.org/blog/999/engine-news/', self.calls)
+
+    def configure_release_one(self):
+        self.pages[APPLE_INDEX] = apple([2, 1], year=2016)
+        self.pages[CATEGORY] = page([2])
+        self.pages[release_url(2)] = article(2, '2016-04-01')
+        since = 'Sun, 25 Oct 2026 21:59:59 GMT'
+        identifier = '/documentation/' + RELEASE_ONE_BUNDLE + '/stp-release-1'
+        metadata = dict(title=RELEASE_ONE_TITLE, role='article', documentType='article',
+                        framework='Safari Technology Preview Release Notes', identifier=identifier)
+        md = ['<!--' + json.dumps(metadata) + '-->', '# ' + RELEASE_ONE_TITLE, 'Summary.', '## Overview', 'Overview.']
+        def paragraph(text):
+            return dict(type='paragraph', inlineContent=[dict(type='text', text=text)])
+        content = [dict(type='heading', level=2, text='Overview'), paragraph('Overview.')]
+        for heading in ('Browser Differences', 'JavaScript Improvements', 'HTML Enhancements', 'Web Inspector Changes', 'Behavior Changes'):
+            md.extend(['### ' + heading, '- A documented item.'])
+            content.extend([dict(type='heading', level=3, text=heading),
+                            dict(type='unorderedList', items=[dict(content=[paragraph('A documented item.')])])])
+        md.extend(['---', 'Copyright &copy; 2026 Apple Inc. All rights reserved. | '
+                   '[Terms of Use](https://www.apple.com/legal/internet-services/terms/site.html) | '
+                   '[Privacy Policy](https://www.apple.com/privacy/privacy-policy)'])
+        doc = dict(kind='article', metadata=dict(role='article', title=RELEASE_ONE_TITLE),
+                   identifier=dict(url='doc://com.apple.' + RELEASE_ONE_BUNDLE + identifier),
+                   abstract=[dict(type='text', text='Summary.')], sections=[], primaryContentSections=[dict(kind='content', content=content)])
+        for url, media, body, tag in ((RELEASE_ONE_MARKDOWN, 'text/markdown', '\n'.join(md), '"md"'),
+                                      (RELEASE_ONE_DOCC, 'application/json', json.dumps(doc), '"docc"')):
+            self.proof[url, None] = Response(url, body.encode(), 200, {
+                'Content-Type': media, 'ETag': tag, 'Last-Modified': 'Thu, 06 Aug 2026 02:56:49 GMT', 'Vary': 'Accept-Encoding'})
+            self.proof[url, since] = Response(url, b'', 304, {'ETag': tag, 'Vary': 'Accept-Encoding'})
+        return since
+
+    def test_release_one_four_live_requests_and_only_daily_coverage(self):
+        since = self.configure_release_one()
+        state, rows = self.run_cli('old-first')
+        self.assertEqual([APPLE_INDEX, CATEGORY, release_url(2)], self.calls)
+        self.assertEqual([(RELEASE_ONE_MARKDOWN, None), (RELEASE_ONE_DOCC, None),
+                          (RELEASE_ONE_MARKDOWN, since), (RELEASE_ONE_DOCC, since)], self.proof_calls)
+        self.assertEqual((2, 5, [], []), (state['pages'], state['documents'], rows, state['pending']))
+        receipt = state['preview_inventory']['release_one_exclusion']
+        self.assertEqual(since, receipt['if_modified_since'])
+        self.assertEqual(CUTOFF, receipt['cutoff'])
+        self.assertFalse((self.repo / 'data').exists())
+        for mode in ('weekly_reconcile', 'manual', 'legacy'):
+            self.proof_calls.clear()
+            state, _ = self.run_cli('mode-' + mode, mode, expected=2)
+            self.assertIn('Missing canonical WebKit release URL', str(state['errors']))
+            self.assertEqual([], self.proof_calls)
+        self.pages[CATEGORY] = page([1, 2])
+        self.pages[release_url(1)] = article(1, '2016-03-30')
+        self.run_cli('use-webkit')
+        self.assertEqual([], self.proof_calls)
+        self.pages[CATEGORY] = page([2])
+        self.pages[APPLE_INDEX] = apple([3, 2, 1], year=2016)
+        state, _ = self.run_cli('missing-third', expected=2)
+        self.assertIn('#stp-release-3', str(state['pending']))
+        self.assertNotIn('release_one_exclusion', state['preview_inventory'])
+
+    def test_release_one_refuses_ambiguous_identity_time_and_validators(self):
+        since = self.configure_release_one()
+        original = copy.deepcopy(self.proof)
+        for name, url, condition, field, value in [
+                ('wrong-doc', RELEASE_ONE_DOCC, None, 'body', self.proof[RELEASE_ONE_DOCC, None].body.replace(b'stp-release-1', b'stp-release-2')),
+                ('conflict-md', RELEASE_ONE_MARKDOWN, None, 'body', self.proof[RELEASE_ONE_MARKDOWN, None].body.replace(b'A documented item.', b'Changed.')),
+                ('truncated', RELEASE_ONE_MARKDOWN, None, 'body', b'<!-- truncated -->'),
+                ('empty', RELEASE_ONE_DOCC, None, 'body', b'{}'),
+                ('redirected', RELEASE_ONE_MARKDOWN, None, 'url', 'https://developer.apple.com/other'),
+                ('bad-mime', RELEASE_ONE_DOCC, None, 'Content-Type', 'text/html'),
+                ('weak', RELEASE_ONE_DOCC, None, 'ETag', 'W/"docc"'),
+                ('malformed-time', RELEASE_ONE_MARKDOWN, None, 'Last-Modified', 'unknown'),
+                ('inclusive', RELEASE_ONE_MARKDOWN, None, 'Last-Modified', 'Sun, 25 Oct 2026 22:00:00 GMT'),
+                ('post-cutoff', RELEASE_ONE_DOCC, None, 'Last-Modified', 'Wed, 25 Nov 2026 12:00:00 GMT'),
+                ('unexpected-variant', RELEASE_ONE_DOCC, None, 'Vary', '*'),
+                ('md-changed', RELEASE_ONE_MARKDOWN, since, 'status', 200),
+                ('docc-changed', RELEASE_ONE_DOCC, since, 'status', 200),
+                ('conditional-body', RELEASE_ONE_DOCC, since, 'body', b'x'),
+                ('stale-tag', RELEASE_ONE_MARKDOWN, since, 'ETag', '"different"'),
+                ('observation-before-cutoff', RELEASE_ONE_DOCC, since, 'observed_at', '2026-11-23T10:00:00Z'),
+                ('conditional-later', RELEASE_ONE_MARKDOWN, since, 'Last-Modified', 'Wed, 25 Nov 2026 12:00:00 GMT')]:
+            with self.subTest(name=name):
+                self.proof = copy.deepcopy(original)
+                r = self.proof[url, condition]
+                if field in ('url', 'body', 'status', 'observed_at'):
+                    setattr(r, field, value)
+                else:
+                    r.headers[field] = value
+                state, rows = self.run_cli(name, expected=2)
+                self.assertEqual([], rows)
+                self.assertEqual(1, len(state['errors']))
+                self.assertIn('#stp-release-1', state['pending'][0])
+                self.assertNotIn('release_one_exclusion', state['preview_inventory'])
+
+    def test_release_one_budget_resume_fresh_gets_and_cache_integrity(self):
+        since = self.configure_release_one()
+        registry = json.loads(self.registry.read_text())
+        src = next(s for s in registry['sources'] if s['source_id'] == SID)
+        src['discovery']['max_documents'] = 4
+        self.registry.write_text(json.dumps(registry))
+        for name, corrupt in [('continued', None), ('bad-cache', 'cache'), ('new-identity', 'etag')]:
+            self.proof_calls.clear()
+            self.configure_release_one()
+            state, _ = self.run_cli(name, expected=2)
+            self.assertEqual(4, state['documents'])
+            self.assertEqual(3, len(self.proof_calls))
+            work = self.root / 'runs' / name / 'work/browser'
+            progress = json.loads((work / (SID + '-progress.json')).read_text())
+            journal = progress['apple_release_one']['requests']
+            self.assertEqual(3, len(journal))
+            if corrupt == 'cache':
+                (work / 'cache' / journal[RELEASE_ONE_MARKDOWN + ' full']['sha256']).write_bytes(b'altered')
+            elif corrupt == 'etag':
+                self.proof[RELEASE_ONE_MARKDOWN, None].headers['ETag'] = '"changed"'
+            self.proof_calls.clear()
+            state, _ = self.run_cli(name, expected=2 if corrupt else 0, extra=['--resume'])
+            if corrupt:
+                self.assertIn('checksum' if corrupt == 'cache' else 'changed on resume', str(state['errors']))
+                self.assertNotIn('release_one_exclusion', state['preview_inventory'])
+            else:
+                self.assertEqual(len(self.proof_calls), 4)
+                self.assertEqual((RELEASE_ONE_DOCC, since), self.proof_calls[-1])
+                self.assertIn('release_one_exclusion', state['preview_inventory'])
 
     def test_limits_and_revalidation_on_resume(self):
         registry = json.loads(self.registry.read_text())

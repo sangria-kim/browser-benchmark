@@ -152,6 +152,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 collector = BrowserCollector(root, work / 'browser', transport, resume=resume,
                     reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata,
                     write_records=False)
+                collector.collection_mode = mode
                 collector.window_start = None if mode == 'legacy' else start
                 collector.policy_since = policy_since
                 collector.checkpoint_context = digest(encoded([state['workspace_id'], config_hash, sid]))
