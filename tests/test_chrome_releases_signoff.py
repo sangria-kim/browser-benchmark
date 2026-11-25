@@ -32,8 +32,8 @@ def document(line, publisher='Google Chrome', card=None, product='<p id="tabs">P
             + product + line + '<p>' + publisher + '</p>' + card + '</script></div></div>')
 
 
-def units(markup, reviewed=()):
-    return blocks(boundary(Tree(markup).root, 'chrome-releases', reviewed))
+def units(markup, reviewed=(), url=URL):
+    return blocks(boundary(Tree(markup).root, 'chrome-releases', reviewed, document_url=url))
 
 
 class SignoffTests(unittest.TestCase):
@@ -49,6 +49,14 @@ class SignoffTests(unittest.TestCase):
         text = '<p>Reviewed Example</p>'
         rows = units(document(text, card=author('')), [hashlib.sha256(b'Reviewed Example').hexdigest()])
         self.assertEqual(['tabs'], [r['key'] for r in rows])
+
+    def test_explicit_long_author_name_preserves_anchored_or_linked_product_units(self):
+        name = 'Example Editorial Contributor for Browser Interface and Release Documentation'
+        card = author(f'<meta itemprop="name" content="{name}">')
+        self.assertGreater(len(name), 64)
+        self.assertEqual(['tabs'], [r['key'] for r in units(document(f'<p>{name}</p>', card=card))])
+        for row in [f'<p id="changes">{name}</p>', f'<p><a href="/release">{name}</a></p>']:
+            self.assertEqual(name, units(document(row, card=card))[-1]['text'])
 
     def test_unknown_short_lines_and_insufficient_author_evidence_stay_unresolved(self):
         for line, card, publisher in [
@@ -75,7 +83,8 @@ class SignoffTests(unittest.TestCase):
         markup = markup.replace('<p id="tabs">', '<div>' + author('') + '</div><p id="tabs">')
         template = next(n for n in Tree(markup).root.walk() if n.tag == 'script')
         reviewed = hashlib.sha256(''.join(template.children).encode()).hexdigest()
-        with patch('pipeline.collectors.browser.html.REVIEWED_CHROME_TEMPLATES', {reviewed}):
+        with patch('pipeline.collectors.browser.html.REVIEWED_CHROME_TEMPLATES', {URL: reviewed}):
+            self.assertFalse(units(markup, url=HOME + '2026/11/copied.html')[-1]['parsed'])
             self.assertEqual(['tabs'], [r['key'] for r in units(markup + '<footer>Later</footer>')])
             for edited in [markup.replace('Pin tabs.', 'Share tabs.'), markup.replace('Editor', 'Changed')]:
                 self.assertEqual(('chrome-post-signoff', False),
@@ -99,8 +108,19 @@ class SignoffTests(unittest.TestCase):
             shutil.copytree(ROOT / 'config', repo / 'config')
             pages = {HOME: '<h2><a href="' + URL + '">Update</a></h2>'}
             prior = None
-            for run, line, code in [('proved', 'Chrome Release Team', 0), ('ambiguous', 'Pin new tabs.', 2)]:
-                pages[URL] = document('<p>' + line + '</p>')
+            for run, line, code, extra in [
+                ('proved', '<p>Chrome Release Team</p>', 0, {}),
+                ('ambiguous', '<p>Pin new tabs.</p>', 2, {}),
+                ('anchored', '<p id="share-tabs">Share tabs.</p>', 0, {'share-tabs': 'Share tabs.'}),
+                ('same-label', '<p id="release-team">Chrome Release Team</p>', 0,
+                 {'release-team': 'Chrome Release Team'}),
+                ('publisher-anchor', '<p id="share-tabs">Share tabs.</p>', 0,
+                 {'share-tabs': 'Share tabs.', 'new-search-feature': 'Google Chrome'}),
+            ]:
+                pages[URL] = document(line)
+                if run == 'publisher-anchor':
+                    pages[URL] = pages[URL].replace('<p>Google Chrome</p>',
+                        '<p id="new-search-feature"><a href="/new-feature">Google Chrome</a></p>')
 
                 def request(url):
                     return Response(url, pages[url].encode())
@@ -115,8 +135,10 @@ class SignoffTests(unittest.TestCase):
                 work = root / 'runs' / run / 'work'
                 state = json.loads((work / 'browser/chrome-releases.json').read_text())
                 self.assertEqual(code, exit_status.exception.code, state)
-                self.assertEqual(0 if run == 'proved' else 1, state['unparsed'])
-                row, = json.loads((work / 'candidates/chrome-releases.json').read_text())
+                self.assertEqual(int(code != 0), state['unparsed'])
+                rows = json.loads((work / 'candidates/chrome-releases.json').read_text())
+                self.assertEqual({'tabs': 'Pin tabs.', **extra}, {r['item_key']: r['title'] for r in rows})
+                row, = [r for r in rows if r['item_key'] == 'tabs']
                 self.assertEqual(('tabs', 'Pin tabs.'), (row['item_key'], row['title']))
                 identity = row['source_item_id'], row['item_content_sha256']
                 if prior:

@@ -577,7 +577,7 @@ class BrowserCollector:
         if multi and self.rolling_revision_after_cutoff(root, url):
             return root
         reviewed = self.reviewed_attributions.get(digest(response.body), []) if self.source['source_id'] == 'chrome-releases' else ()
-        body = boundary(root, self.source['source_id'], reviewed)
+        body = boundary(root, self.source['source_id'], reviewed, document_url=canonical_url)
         publication = None if multi else publication_date
         if not multi and not publication_verified and (not publication or len(publication) == 10):
             page_date = published(root, self.source['source_id'], product_body=body if self.window_start else None)

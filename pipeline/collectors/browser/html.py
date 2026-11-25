@@ -249,22 +249,30 @@ CHROME_BYLINES = {
 # https://chromereleases.googleblog.com/2025/11/
 # https://chromereleases.googleblog.com/2026/07/long-term-support-channel-update-for.html
 REVIEWED_CHROME_TEMPLATES = {
-    'c39a8b2dd45a729d9450dc8951219511f8a5eaaa621ef11e69e02bbab6838d22',
-    'd6f77237d38bf16ab61231387decf14b12242c7130b39bfd44d88cb51e1f4268',
-    '72f1fc7a630046761383732f8569c94e6f21c03efece221363ed1e48e7a161c2',
-    '6500b52b994e67d38d550a92fa50d04ba6cb31aa3b800d693aacd21cd17b2af4',
-    'd2c7b5c6bf08b688a370379fd8186234b724b7d52d35340363c25f88fb7280ff',
-    '40b94389aabfe379499f6af4421ede374c8ac9d983b1c8b0e4d7d8c840c72724',
-    '7f79a3b3e2bf1a98751706f9e0fce79b7f1ea2a8c1c2760b7ff7f6a0a5ed4a5a',
-    '79c1b1575a2f8635f931d0345b0dde1de2be210df010848f55b7c29262dc5951',
-    # These two official posts include a pasted post-body and an additional
-    # empty Person field. Their exact templates were reviewed separately.
-    'd4414328a55f6777ca578462df7eeadf2038021b6efb69f5e57a1ea0b57a429d',
-    '257e6dc64ad28e78984f0e6320ee5455414abdc896e4d18ddab7b0c84433fb8a',
+    'https://chromereleases.googleblog.com/2026/10/beta-channel-update-for-chromeos_0669100502.html':
+        'd2c7b5c6bf08b688a370379fd8186234b724b7d52d35340363c25f88fb7280ff',
+    'https://chromereleases.googleblog.com/2026/10/dev-channel-update-for-chromeos_0448562495.html':
+        '6500b52b994e67d38d550a92fa50d04ba6cb31aa3b800d693aacd21cd17b2af4',
+    'https://chromereleases.googleblog.com/2026/10/early-stable-update-for-desktop_01255863767.html':
+        'd4414328a55f6777ca578462df7eeadf2038021b6efb69f5e57a1ea0b57a429d',
+    'https://chromereleases.googleblog.com/2026/10/long-term-support-channel-update-for_0661547040.html':
+        '79c1b1575a2f8635f931d0345b0dde1de2be210df010848f55b7c29262dc5951',
+    'https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_0562499947.html':
+        '257e6dc64ad28e78984f0e6320ee5455414abdc896e4d18ddab7b0c84433fb8a',
+    'https://chromereleases.googleblog.com/2026/11/beta-channel-update-for-chromeos.html':
+        '72f1fc7a630046761383732f8569c94e6f21c03efece221363ed1e48e7a161c2',
+    'https://chromereleases.googleblog.com/2026/11/beta-channel-update-for-chromeos_01835406967.html':
+        'd6f77237d38bf16ab61231387decf14b12242c7130b39bfd44d88cb51e1f4268',
+    'https://chromereleases.googleblog.com/2026/11/long-term-support-channel-update-for.html':
+        '7f79a3b3e2bf1a98751706f9e0fce79b7f1ea2a8c1c2760b7ff7f6a0a5ed4a5a',
+    'https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-chromeos_01089491269.html':
+        '40b94389aabfe379499f6af4421ede374c8ac9d983b1c8b0e4d7d8c840c72724',
+    'https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-chromeos_01679457768.html':
+        'c39a8b2dd45a729d9450dc8951219511f8a5eaaa621ef11e69e02bbab6838d22',
 }
 
 
-def chrome_byline_matches(author, text, publisher, template_hash):
+def chrome_byline_matches(author, text, publisher, reviewed_template):
     if (author is None or author.tag != 'span' or 'itemscope' not in author.attrs or
             author.attrs.get('itemtype') not in {'http://schema.org/Person', 'https://schema.org/Person'}):
         return False
@@ -279,10 +287,19 @@ def chrome_byline_matches(author, text, publisher, template_hash):
     signature = hashlib.sha256((text + '\n' + publisher).encode()).hexdigest()
     if urls != ['https://plus.google.com/116899029375914044550']:
         return False
-    return signature in CHROME_BYLINES or template_hash in REVIEWED_CHROME_TEMPLATES
+    return signature in CHROME_BYLINES or reviewed_template
 
 
-def remove_chrome_post_signoff(fragment, author, template_hash, reviewed_signoffs):
+def inline_product_container(node):
+    inline_tags = {'a', 'span', 'strong', 'b', 'em', 'i', 'u', 'code', 'br', 'small', 'sup', 'sub', 'font'}
+    return node.tag in {'div', 'span'} and all(c is node or c.tag in inline_tags for c in node.walk())
+
+
+def anchored_chrome_unit(node):
+    return node.attrs.get('id') and (node.tag in {'p', 'a'} or inline_product_container(node))
+
+
+def remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_signoffs):
     # Blogger places the unmarked byline on its own line before the publisher
     # label, in adjacent paragraphs or on opposite sides of a line break.
     lines = [[]]
@@ -314,7 +331,7 @@ def remove_chrome_post_signoff(fragment, author, template_hash, reviewed_signoff
     # keeps its own text and identity even when it uses a known byline string.
     plain = {'document', 'p', 'div', 'span', 'b', 'strong', 'i', 'em', 'font', 'u', 'small'}
     publisher_nodes = {a for node, _, part in lines[-1] if part.strip() for a in (node, *node.ancestors())}
-    if any(a.tag not in plain and a.tag != 'a' for a in publisher_nodes):
+    if any(anchored_chrome_unit(a) or (a.tag not in plain and a.tag != 'a') for a in publisher_nodes):
         return
     if any(a.tag == 'a' and a.attrs.get('href') not in {
             'https://www.google.com/chrome', 'https://www.google.com/chrome/'} for a in publisher_nodes):
@@ -322,21 +339,23 @@ def remove_chrome_post_signoff(fragment, author, template_hash, reviewed_signoff
     for node, index, _ in lines[-1]:
         node.children[index] = ''
     signature_line = lines[-2]
-    if any(a.tag not in plain for node, _, _ in signature_line for a in (node, *node.ancestors())):
+    if any(anchored_chrome_unit(a) or a.tag not in plain
+           for node, _, part in signature_line if part.strip() for a in (node, *node.ancestors())):
         return
     text = ''.join(part for _, _, part in signature_line).strip()
-    if len(text) > 64:
+    confirmed = (hashlib.sha256(text.encode()).hexdigest() in reviewed_signoffs
+                 or chrome_byline_matches(author, text, publisher, reviewed_template))
+    if len(text) > 64 and not confirmed:
         return
     for node, index, _ in signature_line:
         node.children[index] = ''
     # Raw ambiguous content remains in the private response cache. Its stable
     # unresolved key prevents completion; a confirmed credit is not a feature.
-    if (hashlib.sha256(text.encode()).hexdigest() not in reviewed_signoffs
-            and not chrome_byline_matches(author, text, publisher, template_hash)):
+    if not confirmed:
         fragment.children.append(UnresolvedChromeSignoff('document', parent=fragment))
 
 
-def expand_chrome_post_templates(body, reviewed_signoffs=()):
+def expand_chrome_post_templates(body, reviewed_signoffs, document_url):
     # Chrome Releases stores the article markup in an inert Blogger template.
     # Its noscript copy remains excluded by SKIP.
     for content in body.children:
@@ -351,19 +370,20 @@ def expand_chrome_post_templates(body, reviewed_signoffs=()):
             children = [part for part in fragment.children if isinstance(part, Node) or part.strip()]
             authors = [n for n in fragment.walk() if n.attrs.get('itemprop') == 'author']
             template_hash = hashlib.sha256(template.encode()).hexdigest()
+            reviewed_template = REVIEWED_CHROME_TEMPLATES.get(document_url) == template_hash
             author = None
             if authors and authors[-1] is children[-1]:
-                if len(authors) == 1 or template_hash in REVIEWED_CHROME_TEMPLATES:
+                if len(authors) == 1 or reviewed_template:
                     author = authors[-1]
             for node in list(fragment.walk())[1:]:
                 if node.attrs.get('itemprop') == 'author' or node.tag == 'header':
                     node.parent.children.remove(node)
-            remove_chrome_post_signoff(fragment, author, template_hash, reviewed_signoffs if authors else ())
+            remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_signoffs if authors else ())
             fragment.parent = content
             content.children[index] = fragment
 
 
-def boundary(tree, source_id, reviewed_signoffs=()):
+def boundary(tree, source_id, reviewed_signoffs=(), *, document_url=None):
     nodes = list(tree.walk())
     # Select the publisher's product body, never navigation, replies or author cards.
     selectors = {
@@ -391,7 +411,7 @@ def boundary(tree, source_id, reviewed_signoffs=()):
                 matches.append(n)
         if matches:
             if key == 'chrome-releases':
-                expand_chrome_post_templates(matches[0], reviewed_signoffs)
+                expand_chrome_post_templates(matches[0], reviewed_signoffs, document_url)
             # Learn has a title-only .content before its complete article body.
             return max(matches, key=lambda n: len(n.text())) if key == 'edge' else matches[0]
     return None
@@ -601,8 +621,7 @@ def blocks(body, *, visible_sections=False):
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
             continue
-        inline_container = n.tag in {'div', 'span'} and all(c is n or c.tag in {'a', 'span', 'strong', 'b', 'em', 'i', 'u', 'code', 'br', 'small', 'sup', 'sub', 'font'} for c in n.walk())
-        if (n.tag in {'p', 'li', 'tr', 'pre', 'blockquote', 'dt', 'dd'} or inline_container) and (text or (n.tag in {'li', 'tr'} and any(c.tag in {'img', 'iframe', 'object'} for c in n.walk()))):
+        if (n.tag in {'p', 'li', 'tr', 'pre', 'blockquote', 'dt', 'dd'} or inline_product_container(n)) and (text or (n.tag in {'li', 'tr'} and any(c.tag in {'img', 'iframe', 'object'} for c in n.walk()))):
             # Parent list entries own their complete nested definition.
             key = n.attrs.get('id')
             issue = re.search(r'\b(?:CVE-\d{4}-\d+|VB-\d+|DNA-\d+)\b|\((\d{7,})\)', text)
