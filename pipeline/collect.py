@@ -406,12 +406,14 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
                        or set(state['observed']) != {source['source_id'] for source in sources}):
             raise ValueError('Weekly reconciliation requires complete coverage of all enabled sources')
         if daily_status or weekly:
+            expected = {source['source_id'] for source in sources}
+            results = state.get('source_results')
+            if (state.get('complete') is not True or sorted(state['sources']) != sorted(expected)
+                    or set(state['observed']) != expected or not isinstance(results, dict) or set(results) != expected):
+                raise ValueError('Strict scheduled save requires every registered source result')
             if pin is not None:
-                expected = {source['source_id'] for source in sources}
                 checkpoints = work / 'checkpoints'
-                if (state.get('complete') is not True or set(state['sources']) != expected
-                        or set(state['observed']) != expected or set(state['source_results']) != expected
-                        or checkpoints.is_symlink() or not checkpoints.is_dir()
+                if (checkpoints.is_symlink() or not checkpoints.is_dir()
                         or {p.name for p in checkpoints.iterdir()} != {sid + '.json' for sid in expected}):
                     raise ValueError('Strict scheduled save requires every pinned source checkpoint')
             inventory = candidate_inventory(work, state, sources, checkpointed=pin is not None)
@@ -431,12 +433,13 @@ def candidate_inventory(work, state, sources, *, checkpointed=False):
     identities = set()
     for source in sources:
         sid = source['source_id']
+        result = state['source_results'].get(sid)
+        if (not isinstance(result, dict) or sid not in state['sources'] or result.get('source_id') != sid
+                or result.get('status') != 'complete' or result.get('errors') or result.get('checkpoint_invalid')
+                or sid not in state['observed'] or not isinstance(result.get('cutoff'), str)
+                or instant(result['cutoff']) != instant(state['cutoff'])):
+            raise ValueError('Browser requires every pinned source complete at this cutoff: ' + sid)
         if checkpointed:
-            result = state['source_results'].get(sid, {})
-            if (sid not in state['sources'] or result.get('source_id') != sid or result.get('status') != 'complete'
-                    or result.get('errors') or result.get('checkpoint_invalid') or sid not in state['observed']
-                    or not isinstance(result.get('cutoff'), str) or instant(result['cutoff']) != instant(state['cutoff'])):
-                raise ValueError('Browser requires every pinned source complete at this cutoff: ' + sid)
             checkpoint = browser_status.safe_path(work, 'checkpoints/' + sid + '.json')
             if not checkpoint.is_file() or read(checkpoint) != source_checkpoint(state, sid):
                 raise ValueError('Invalid browser source checkpoint: ' + sid)
@@ -453,13 +456,12 @@ def candidate_inventory(work, state, sources, *, checkpointed=False):
             key = (sid, row['source_item_id'], row['revisions'][-1]['revision_id'])
             if row['source_id'] != sid or key in inventory:
                 raise ValueError('Private candidate identity mismatch')
-            if checkpointed:
-                if (row['browser'] != source['browser'] or row['record_status'] != 'parsed'
-                        or row['source_item_id'] in identities
-                        or instant(row['temporal_scope']['cutoff']) != instant(state['cutoff'])):
-                    raise ValueError('Browser candidate scope or identity mismatch')
-                validate_record('source_item', {k: v for k, v in row.items() if k != 'classification_text'})
-                identities.add(row['source_item_id'])
+            if (row['browser'] != source['browser'] or row['record_status'] != 'parsed'
+                    or row['source_item_id'] in identities
+                    or instant(row['temporal_scope']['cutoff']) != instant(state['cutoff'])):
+                raise ValueError('Browser candidate scope or identity mismatch')
+            validate_record('source_item', {k: v for k, v in row.items() if k != 'classification_text'})
+            identities.add(row['source_item_id'])
             inventory.add(key)
     return inventory
 

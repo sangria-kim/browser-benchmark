@@ -639,6 +639,64 @@ class WindowTests(unittest.TestCase):
             self.cli('old', cutoff=None, extra=['--save-features', str(choice)])
         self.assertEqual(1, read(self.repo / 'data/daily-status/2026-11-24.json')['change_count'])
 
+    def test_pre_pin_strict_save_requires_every_original_source_result(self):
+        self.configure_small_registry()
+        code = self.folder / 'old-code'
+        (code / 'pipeline').mkdir(parents=True)
+        (code / 'pipeline/collect.py').write_text('# Pre-pin collector tree fixture')
+        run_daily.commit_candidate(code)
+        sid = 'edge-beta'
+        url = self.sources[sid]['url']
+        with patch.object(run_daily, 'CODE_REPOSITORY', code):
+            for mode in ('daily', 'weekly_reconcile'):
+                invalid_results = dict(wrong_source={'source_id': 'firefox-beta'},
+                                       wrong_cutoff={'cutoff': '2026-11-25T07:00:00+09:00'},
+                                       errors={'errors': [{'reason': 'unresolved request'}]},
+                                       corrupt={'checkpoint_invalid': True})
+                for scenario in ('missing', 'partial', 'extra', *invalid_results, 'valid'):
+                    with self.subTest(mode=mode, scenario=scenario):
+                        name = mode + '-' + scenario
+                        args = ['--daily-status'] if mode == 'daily' else []
+                        responses = {url: TimeoutError('incomplete Edge')} if scenario == 'partial' else {}
+                        with patch.dict(self.payloads, responses):
+                            self.cli(name, cutoff=STATUS_CUTOFF, mode=mode, extra=args,
+                                     expected=2 if scenario == 'partial' else 0)
+                        run = self.folder / 'runs' / name
+                        state_path, work = run / 'feature-run.json', run / 'work'
+                        state = read(state_path)
+                        state.pop('browser_pin')
+                        (work / '.owner').write_text(state['workspace_id'])
+                        (work / 'browser-pin.json').unlink()
+                        shutil.rmtree(work / 'checkpoints')
+                        if scenario == 'missing':
+                            state['source_results'].pop(sid)
+                        elif scenario == 'partial':
+                            self.assertEqual('partial', state['source_results'][sid]['status'])
+                            state.update(status='complete', complete=True)
+                        elif scenario == 'extra':
+                            state['source_results']['unregistered'] = state['source_results'][sid]
+                        elif scenario in invalid_results:
+                            state['source_results'][sid].update(invalid_results[scenario])
+                        state_path.write_bytes(encoded(state))
+                        choices = self.decisions(name)
+                        for row in choices['dispositions']:
+                            row['disposition'] = 'excluded'
+                        choices['decisions'] = []
+                        path = run / 'pm.json'
+                        path.write_bytes(encoded(choices))
+                        save = ['--save-features', str(path)]
+                        if scenario == 'valid':
+                            self.cli(name, cutoff=None, extra=save)
+                            self.assertEqual('saved', read(state_path)['status'])
+                        else:
+                            prior = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+                            with self.assertRaises(ValueError):
+                                self.cli(name, cutoff=None, extra=save)
+                            self.assertEqual(prior, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+                            self.assertEqual(state, read(state_path))
+        receipt = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('complete', 0, 0), (receipt['status'], receipt['collected_feature_count'], receipt['change_count']))
+
     def test_old_null_quote_uses_its_own_immutable_revision_after_append(self):
         from pipeline.normalize.storage import publish
         self.configure_small_registry()
