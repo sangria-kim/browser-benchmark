@@ -283,3 +283,46 @@ class FirefoxIosTests(unittest.TestCase):
                                            + meta.replace('2026-11-10', '2026-12-01') + '</footer></html>')
         state, _ = self.cli('footer-time')
         self.assertEqual(1, state['duplicate'])
+
+    def test_page_owned_metadata_spellings_apply_publication_and_modification_cutoffs(self):
+        row = release('31.0', '2026-11-25', [note(31, 'A product feature.')])
+        self.rows['31.0'] = row
+        self.prepare()
+        url = detail_url('31.0')
+        original = self.pages[url]
+        stamp = '2026-11-25T07:00:01+09:00'
+        public_fields = ('date', 'datePublished', 'publication_date', 'article:published_time')
+        change_fields = ('dateModified', 'article:modified_time')
+        for attr in ('name', 'property', 'itemprop'):
+            for field in public_fields + change_fields:
+                name = f'{attr}-{field.replace(":", "-")}'
+                metadata = f'<meta {attr}="{field}" content="{stamp}">'
+                with self.subTest(name=name), patch.dict(self.pages, {url: original.replace('</head>', metadata + '</head>')}):
+                    state, rows = self.cli(name, expected=2 if field in change_fields else 0)
+                    self.assertNotIn('note-31', {r['item_key'] for r in rows})
+                    if field in change_fields:
+                        self.assertIn('after cutoff', str(state['errors']))
+                    else:
+                        self.assertIn(url, state['excluded_by_date'])
+        for tag, attr in [('time', 'datetime'), ('span', 'content')]:
+            date = f'<{tag} itemprop="datePublished" {attr}="{stamp}">2026-11-25</{tag}>'
+            with self.subTest(tag=tag), patch.dict(self.pages, {url: original.replace('2026-11-25</p>', date + '</p>')}):
+                _, rows = self.cli(f'owned-{tag}')
+                self.assertNotIn('note-31', {r['item_key'] for r in rows})
+        bad = original.replace('</head>', '<meta itemprop="dateModified" content="2026-11-01T03:00:00Z">'
+                               '<meta name="article:modified_time" content="2026-11-01T05:00:00Z"></head>')
+        with patch.dict(self.pages, {url: bad}):
+            state, _ = self.cli('conflicting-modifications', expected=2)
+            self.assertIn('Conflicting', str(state['errors']))
+
+        # A related article can share <main> with the release without owning its timestamp.
+        unrelated = original.replace('</head>', '</head><main>').replace('</html>',
+            '<article><meta name="datePublished" content="' + stamp + '"></article></main></html>')
+        with patch.dict(self.pages, {url: unrelated}):
+            _, rows = self.cli('nested-article')
+            self.assertIn('note-31', {r['item_key'] for r in rows})
+        owned = original.replace('<section class="c-release-notes">',
+            '<section class="c-release-notes" itemprop="dateModified" content="' + stamp + '">')
+        with patch.dict(self.pages, {url: owned}):
+            state, _ = self.cli('product-body-metadata', expected=2)
+            self.assertIn('after cutoff', str(state['errors']))

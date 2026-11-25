@@ -8,7 +8,7 @@ from urllib.parse import urlencode
 from zipfile import ZipFile
 
 from pipeline.temporal import instant, policy_day
-from .html import Tree, blocks, date_value, modification, publication_value, reconcile_modification
+from .html import Tree, blocks, date_value, publication_value, reconcile_modification
 
 
 NOTES_API = 'https://api.github.com/repos/mozilla/release-notes'
@@ -204,6 +204,46 @@ def matches_note(note, unit, node):
             and unit['text'] == ' '.join(text.split()) and None not in hrefs and hrefs == actual_links)
 
 
+def page_dates(nodes, date_field, body, day):
+    publications, modifications = [day], []
+    # Mozilla prints the release date beside the product/version summary. A note,
+    # independently scoped object, or page footer can have its own dates.
+    date_nodes = set(date_field.walk())
+    product_path = {body, date_field, *body.ancestors(), *date_field.ancestors()}
+    owners = set(body.ancestors()).intersection(date_field.ancestors())
+    owners = {n for n in owners if n.tag in ('main', 'article')}
+    for node in nodes:
+        ancestors = list(node.ancestors())
+        in_head = node.tag == 'meta' and node.parent.tag == 'head' and node.parent.parent.tag == 'html'
+        if not in_head and node not in date_nodes:
+            lineage = (node, *ancestors)
+            if (not any(n is body or n in owners for n in lineage)
+                    or any(n.tag in ('aside', 'footer', 'nav', 'li')
+                           or n.tag in ('article', 'section') and n not in product_path
+                           or 'itemscope' in n.attrs and n not in product_path for n in lineage)):
+                continue
+        fields = {word.lower() for attr in ('property', 'name', 'itemprop')
+                  for word in (node.attrs.get(attr) or '').split()}
+        published = bool(fields & {'date', 'datepublished', 'publication_date', 'article:published_time'})
+        modified = bool(fields & {'datemodified', 'article:modified_time'})
+        if published and modified:
+            raise ValueError('Conflicting Firefox iOS date field roles')
+        if not modified and (node is date_field or node in date_nodes and node.tag == 'time'):
+            published = True
+        if not (published or modified):
+            continue
+        values = [publication_value(node.attrs[key]) for key in ('datetime', 'content') if key in node.attrs]
+        if not values or node is date_field or node.tag == 'time':
+            label = publication_value(node.text())
+            if label or not values:
+                values.append(label)
+        if not all(values):
+            raise ValueError('Unverified Firefox iOS publication or modification metadata')
+        (modifications if modified else publications).extend(values)
+    return (reconcile_modification(publications, 'Firefox iOS publication dates'),
+            reconcile_modification(modifications, 'Firefox iOS modification dates'))
+
+
 def document_metadata(response, version, day, cutoff):
     expected_url = detail_url(version)
     text = response.text()
@@ -219,22 +259,7 @@ def document_metadata(response, version, day, cutoff):
             or values('c-release-version') != [version] or values('c-release-product') != ['Firefox for iOS Release']
             or len(dates) != 1 or date_value(dates[0].text()) != day or len(bodies) != 1):
         raise ValueError('Inconsistent Firefox iOS version, locale, product or publication day')
-    # Only the canonical page head and the version's release-date field own its
-    # publication time. Generic <time> elements can date unrelated page content.
-    publications = [day, publication_value(dates[0].text())]
-    publications.extend(publication_value(n.attrs['datetime']) for n in dates[0].walk()
-                        if n.tag == 'time' and 'datetime' in n.attrs)
-    for n in nodes:
-        if n.tag == 'meta' and n.parent.tag == 'head':
-            field = n.attrs.get('property') or n.attrs.get('name')
-            if field == 'article:published_time':
-                publications.append(publication_value(n.attrs.get('content')))
-            elif field == 'article:modified_time' and not publication_value(n.attrs.get('content')):
-                raise ValueError('Unverified Firefox iOS page modification metadata')
-    if not all(publications):
-        raise ValueError('Unverified Firefox iOS publication metadata')
-    publication = reconcile_modification(publications, 'Firefox iOS publication dates')
-    modified = modification(root, bodies[0])
+    publication, modified = page_dates(nodes, dates[0], bodies[0], day)
     if modified and (instant(modified) > instant(cutoff) if len(modified) > 10 else modified > policy_day(cutoff)):
         raise ValueError('Only a Firefox iOS HTML revision after cutoff is available')
     return publication, bodies[0]
