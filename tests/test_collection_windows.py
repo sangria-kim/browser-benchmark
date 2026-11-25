@@ -699,6 +699,38 @@ class WindowTests(unittest.TestCase):
                 receipt = read(self.repo / f'data/daily-status/2026-11-{day}.json')
                 self.assertEqual(('incomplete', None, None), tuple(receipt[k] for k in ('status', 'collected_feature_count', 'change_count')))
 
+    def test_checked_old_passage_on_mixed_url_counts_only_as_enrichment(self):
+        self.configure_small_registry()
+        sid = 'edge-beta'
+        url = self.sources[sid]['url']
+        self.item('manual', dict(browser='edge', source_id=sid, canonical_key='mute', title='Mute tabs', url=url),
+                  standalone=True)
+        self.payloads[url] = ('<div class="content"><h2>November 28, 2026</h2><p>Share tabs.</p>'
+                              '<h2>November 20, 2026</h2><p>Save tabs.</p>'
+                              '<h2>April 1, 2026</h2><p>Mute tabs on Windows in stable 150 are enabled.</p></div>')
+        self.cli('review', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        work = self.folder / 'runs/review/work'
+        job, = read(work / 'enrichment/edge-beta.json')
+        row = job['candidate']
+        self.item('review', dict(browser='edge', source_id=sid, feature_id=job['feature_id'], source_item_id=row['source_item_id'],
+                                 revision_id=row['revisions'][-1]['revision_id'], facts=dict(platform=['Windows'], channel='stable', version='150', rollout_status='enabled')))
+        cache = work / 'browser/cache' / job['content_sha256']
+        raw = cache.read_bytes()
+        cache.write_bytes(b'tampered')
+        with self.assertRaisesRegex(ValueError, 'checksum'):
+            self.publish_browser('review', 'edge', self.browser_choices('review', 'edge', select=False))
+        cache.write_bytes(raw)
+        run_daily.commit_candidate(self.repo)
+        self.cli('fresh-review', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        fresh_work = self.folder / 'runs/fresh-review/work'
+        self.assertFalse((fresh_work / 'enrichment/edge-beta.json').exists())
+        proofs = read(fresh_work / 'windows/edge-beta.json')['enrichment_proofs']
+        self.assertEqual([[job['feature_id'], row['source_item_id'], row['revisions'][-1]['revision_id'], job['content_sha256']]], proofs)
+        for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
+            self.publish_browser('fresh-review', browser, self.browser_choices('fresh-review', browser, select=False))
+        day = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('complete', 1, 0), tuple(day[k] for k in ('status', 'collected_feature_count', 'change_count')))
+
     def test_unresolved_fragment_on_mixed_page_needs_current_feature_to_finish(self):
         self.configure_small_registry()
         sid = 'edge-beta'

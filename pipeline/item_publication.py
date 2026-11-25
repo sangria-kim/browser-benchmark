@@ -7,7 +7,7 @@ from pathlib import Path
 from urllib.parse import parse_qsl, urlsplit
 
 from pipeline import browser_status, collect, daily_status, weekly_status
-from pipeline.feature_enrichment import verified_candidate, verified_reference
+from pipeline.feature_enrichment import verified_candidate, verified_reference, verify_body
 from pipeline.feature_item import ALIAS_PATH, item_delta
 from pipeline.official_reference import enterprise_archive_anchor, normalize_url
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, publication_commits, read, require_external, run_lock, store_changes
@@ -105,17 +105,19 @@ def window_index(work, state, sid):
     bounds = {}
     checkpoint = checked_source(work, state, sid, windows=True)
     mixed = {window_key(url)[:3]: rows for url, rows in checkpoint.pop('mixed_documents', {}).items()}
+    proofs = {(fid, item, revision): checksum for fid, item, revision, checksum in checkpoint.pop('enrichment_proofs', ())}
     for url, reason in checkpoint.items():
         try:
             key = window_key(url)
         except ValueError:
             continue  # A parser's non-publisher diagnostic cannot match an official citation.
         bounds[key] = reason
-    return bounds, mixed
+    return bounds, mixed, proofs
 
 
-def require_url_window(index, url, *, enrichment, finalize=False, confirmed=False):
-    bounds, mixed = index
+def require_url_window(index, url, *, enrichment):
+    """Reject known exclusions and report whether the URL itself resolves its window."""
+    bounds, mixed, _ = index
     key = window_key(url)
     anchor, directives = publisher_fragment(url)
     reasons = {bounds.get(key), bounds.get((*key[:3], ''))}
@@ -123,7 +125,7 @@ def require_url_window(index, url, *, enrichment, finalize=False, confirmed=Fals
         raise ValueError('Official URL is outside the scheduled source window: ' + url)
     passages = mixed.get(key[:3])
     if not passages:
-        return
+        return True
     element_statuses = {status for status, _, targets in passages if anchor and anchor in targets}
     text_statuses = set()
     for directive in directives:
@@ -134,8 +136,7 @@ def require_url_window(index, url, *, enrichment, finalize=False, confirmed=Fals
     statuses = element_statuses or text_statuses
     if statuses == {'after_cutoff'} or statuses == {'before_period'} and not enrichment:
         raise ValueError('Official URL is outside the scheduled source window: ' + url)
-    if finalize and not confirmed and statuses != {'in_period'} and not (enrichment and statuses == {'before_period'}):
-        raise ValueError('Official URL target has an unresolved scheduled source window: ' + url)
+    return statuses == {'in_period'} or enrichment and statuses == {'before_period'}
 
 
 def check_prior_item_windows(root, work, state, browser, effects, inventory, accepted):
@@ -148,6 +149,7 @@ def check_prior_item_windows(root, work, state, browser, effects, inventory, acc
         bounds = window_index(work, state, sid)
         if not any(bounds):
             continue
+        _, mixed_documents, enrichment_proofs = bounds
         rel = f'data/source-items/{browser}/{sid}.json'
         files = {rel}
         if rel == collect.EDGE_POLICY and (root / collect.EDGE_SHARDS[0]).exists():
@@ -156,7 +158,7 @@ def check_prior_item_windows(root, work, state, browser, effects, inventory, acc
         # A current candidate must actually be selected for the same feature
         # and publisher document before it can resolve an ambiguous citation.
         dated = set()
-        if bounds[1]:
+        if mixed_documents:
             observed = {(r['source_item_id'], r['revisions'][-1]['revision_id']): r
                         for r in checked_source(work, state, sid) if r['temporal_scope']['status'] == 'in_period'}
             for effect in accepted:
@@ -164,9 +166,19 @@ def check_prior_item_windows(root, work, state, browser, effects, inventory, acc
                 if effect['source_id'] == sid and row:
                     dated.add((effect['feature_id'], window_key(row['evidence']['url'])[:3]))
         for effect in selected:
-            url = rows[effect['item']]['evidence']['url']
-            require_url_window(bounds, url, enrichment=not effect['changed'], finalize=True,
-                               confirmed=(effect['feature_id'], window_key(url)[:3]) in dated)
+            row = rows[effect['item']]
+            url = row['evidence']['url']
+            if require_url_window(bounds, url, enrichment=not effect['changed']):
+                continue
+            if (effect['feature_id'], window_key(url)[:3]) in dated:
+                continue
+            proof = enrichment_proofs.get(browser_status.effect_key(effect))
+            if not effect['changed'] and proof and row['item_key'] == 'feature-facts:' + effect['feature_id']:
+                snapshot = next((r for r in row['revisions'] if r['revision_id'] == effect['revision']), None)
+                if snapshot:
+                    verify_body(work, snapshot, proof)
+                    continue
+            raise ValueError('Official URL target has an unresolved scheduled source window: ' + url)
 
 
 def checked_request(work, state, request):

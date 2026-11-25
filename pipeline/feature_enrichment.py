@@ -8,7 +8,7 @@ import re
 from urllib.parse import parse_qsl, urldefrag, urlsplit
 
 from pipeline import browser_status
-from pipeline.collectors.browser.collector import atomic_json, digest, identity, minimal
+from pipeline.collectors.browser.collector import atomic_json, canonical, digest, identity, minimal
 from pipeline.collectors.browser.html import Tree, blocks, boundary, modification, published
 from pipeline.collectors.browser.safari_preview import retry_deadline, stop_safari_requests, verified_release_dates
 from pipeline.feature_item import FACT_FIELDS, missing_facts
@@ -249,6 +249,36 @@ class SourceReview:
                         entry.setdefault('tried', {}).update(dict.fromkeys(touched[url], c.observed_at))
                 atomic_json(self.history, history)
         return jobs
+
+    def mixed_review_proofs(self, jobs, documents):
+        """Pin exact feature-specific evidence observed on a mixed-date page."""
+        proofs = set()
+        for job in jobs:
+            row = job.get('candidate')
+            if row and self.publisher_page(job['url']) in documents:
+                proofs.add((job['feature_id'], row['source_item_id'], row['revisions'][-1]['revision_id'],
+                            job['content_sha256']))
+        # A fresh run need not ask again for a fact that is already filled.
+        # Its survey can independently confirm the same bytes and parsed unit.
+        for ident, revision in self.collector.pending_selections:
+            row = self.by_id.get(ident)
+            if not row or not row['item_key'].startswith('feature-facts:'):
+                continue
+            url = row['evidence']['url']
+            if self.publisher_page(url) not in documents:
+                continue
+            owner = next((feature for feature, _ in self.links.get(url, ())
+                          if row['item_key'] == 'feature-facts:' + feature['feature_id']
+                          and revision in feature.get('source_revision_ids', {}).get(ident, ())), None)
+            snapshot = next((r for r in row['revisions'] if r['revision_id'] == revision), None)
+            if not owner or not snapshot:
+                continue
+            for unit, _, response in self.units.get(url, ()):
+                if (digest(canonical([unit['section'], unit['text']])) == snapshot.get('item_content_sha256')
+                        and self.raw_hash(response) == snapshot['content_sha256']):
+                    proofs.add((owner['feature_id'], ident, revision, snapshot['content_sha256']))
+                    break
+        return sorted(proofs)
 
     def raw_hash(self, response):
         key = id(response)

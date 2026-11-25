@@ -218,6 +218,10 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                                     mixed[url] = passages
                             if mixed:
                                 window['mixed_documents'] = mixed
+                                if collector.fact_review:
+                                    proofs = collector.fact_review.mixed_review_proofs(jobs, mixed)
+                                    if proofs:
+                                        window['enrichment_proofs'] = proofs
                             window_path = work / 'windows' / (sid + '.json')
                             atomic_json(window_path, window)
                             status['window_sha256'] = file_digest(window_path)
