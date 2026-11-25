@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from pipeline import browser_status, collect, run_daily, weekly_status
+from pipeline import browser_status, collect, run_daily, weekly_evidence, weekly_status
 from pipeline.daily_status import validate_tree
 from pipeline.collectors.browser import Response
 from pipeline.run_daily import encoded, git, read, run_lock
@@ -1640,6 +1640,101 @@ class WindowTests(unittest.TestCase):
         accepted = read(self.repo / browser_status.detail_path('weekly_reconcile', later))
         self.assertEqual(1, accepted['browsers']['edge']['collected_feature_count'])
         self.assertFalse((self.repo / weekly_status.path(later)).exists())
+
+    def test_reverted_committed_weekly_evidence_blocks_only_its_own_cutoff(self):
+        self.configure_small_registry()
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        sid = 'firefox-beta'
+        url = self.sources[sid]['url']
+        document = self.payloads[url]
+
+        def manual(name, at, text):
+            self.payloads[url] = document.replace('added', text)
+            self.cli(name, [sid], cutoff=at, mode='manual', extra=['--since', '2026-01-01'])
+            self.save(name, self.classified(name, sid))
+            return run_daily.commit_candidate(self.repo)
+
+        older = manual('older', '2026-11-22T10:00:00+09:00', 'added')
+        template = self.repo
+        # Obtain a valid earlier revision whose source and catalog blobs have
+        # never appeared on the branch that will contain the witness.
+        self.repo = self.folder / 'alternative'
+        shutil.copytree(template, self.repo)
+        manual('alternative', '2026-11-23T10:00:00+09:00', 'revised')
+        files = (collect.FEATURE_CATALOG, 'data/source-items/firefox/firefox-beta.json')
+        alternative = {rel: (self.repo / rel).read_bytes() for rel in files}
+        self.repo = template
+        witness = manual('witness', '2026-11-28T13:00:00-12:00', 'enhanced')
+        for variant in ('revert', 'new-blobs'):
+            self.repo = self.folder / variant
+            shutil.copytree(template, self.repo)
+            if variant == 'revert':
+                git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=t@example.invalid',
+                    '-c', 'core.hooksPath=/dev/null', 'revert', '--no-edit', witness)
+            else:
+                for rel, raw in alternative.items():
+                    path = self.repo / rel
+                    self.assertNotEqual(path.read_bytes(), raw)
+                    path.write_bytes(raw)
+                    self.assertNotEqual(git(self.repo, 'hash-object', rel), git(self.repo, 'rev-parse', older + ':' + rel))
+                run_daily.commit_candidate(self.repo)
+            restored = run_daily.commit_candidate(self.repo)
+            for scoped in (False, True):
+                name = variant + str(scoped)
+                self.cli(name, cutoff=cutoff, mode='weekly_reconcile')
+                pm = self.folder / (name + '.json')
+                choices = self.browser_choices(name, 'firefox', select=False) if scoped else self.decisions(name)
+                choices['decisions'] = []
+                for item in choices['dispositions']:
+                    item['disposition'] = 'excluded'
+                pm.write_bytes(encoded(choices))
+                args = ['--save-features', str(pm)] + (['--save-browser', 'firefox'] if scoped else [])
+                with self.subTest(variant=variant, scoped=scoped), self.assertRaisesRegex(ValueError, 'original publication'):
+                    self.cli(name, cutoff=None, extra=args)
+                # Exercise CI even when the writer has correctly refused the proposal.
+                with patch('pipeline.weekly_evidence.check_committed'):
+                    self.cli(name, cutoff=None, extra=args)
+                with self.assertRaisesRegex(ValueError, 'original publication'):
+                    validate_tree(self.repo, base=witness)
+                run_daily.commit_candidate(self.repo)
+                with self.assertRaisesRegex(ValueError, 'original publication'):
+                    validate_tree(self.repo, base=restored)
+                git(self.repo, 'switch', '-qc', 'next-' + name, restored)
+            name = variant + '-next'
+            self.cli(name, cutoff='2026-12-06T10:00:00+09:00', mode='weekly_reconcile')
+            self.publish_browser(name, 'firefox', self.browser_choices(name, 'firefox', select=False))
+            run_daily.commit_candidate(self.repo)
+            validate_tree(self.repo, base=older)
+
+    def test_audited_evidence_shortcut_requires_reachable_digest_and_strictly_later_cutoff(self):
+        self.configure_small_registry()
+        older = run_daily.commit_candidate(self.repo)
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        self.cli('witness', ['firefox-beta'], cutoff=cutoff, mode='manual', extra=['--since', '2026-01-01'])
+        self.save('witness', self.classified('witness', 'firefox-beta'))
+        tip = run_daily.commit_candidate(self.repo)
+        proof = weekly_evidence.audit(self.repo, tip)
+        self.assertEqual('2026-11-29T01:00:00+00:00', proof['maximum'])
+        self.assertGreater(proof['objects'], 0)
+        bound = weekly_evidence.instant(proof['maximum'])
+        future = weekly_evidence.instant('2026-11-29T01:00:00.000001Z')
+        for label, anchor, digest, end, reads in (
+                ('certified', tip, proof['object_digest'], future, False),
+                ('wrong-digest', tip, '0' * 64, future, True),
+                ('absent', 'a' * 40, proof['object_digest'], future, True),
+                ('earlier-ancestor', older, weekly_evidence.audit(self.repo, older)['object_digest'], future, True),
+                ('at-bound', tip, proof['object_digest'], bound, True)):
+            with self.subTest(label=label), patch.object(weekly_evidence, 'AUDITED_COMMIT', anchor), \
+                    patch.object(weekly_evidence, 'AUDITED_OBJECTS', digest), \
+                    patch.object(weekly_evidence, 'AUDITED_MAXIMUM', bound), \
+                    patch.object(weekly_evidence, 'committed_windows', wraps=weekly_evidence.committed_windows) as read_blob:
+                weekly_evidence.check_committed.cache_clear()
+                if end == bound:
+                    with self.assertRaisesRegex(ValueError, 'original publication'):
+                        weekly_evidence.check_committed(self.repo, tip, '2026-01-01', end)
+                else:
+                    weekly_evidence.check_committed(self.repo, tip, '2026-01-01', end)
+                self.assertEqual(reads, bool(read_blob.call_count))
 
     def test_unmarked_weekly_window_survives_a_later_revision_in_writers_and_ci(self):
         self.configure_small_registry()

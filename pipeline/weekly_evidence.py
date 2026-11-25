@@ -1,4 +1,5 @@
-"""Find pre-settlement full-window evidence when a later revision moved its cutoff."""
+"""Find full-window evidence in every reachable version before the first weekly settlement."""
+from datetime import timezone
 from functools import lru_cache
 import hashlib
 import json
@@ -6,11 +7,14 @@ import os
 from pathlib import Path
 import subprocess
 
-from pipeline.source_item_shards import EDGE_PART, EDGE_POLICY, EDGE_SHARDS
 from pipeline.temporal import instant
 
 
 ROOTS = ('data/catalog/features', 'data/source-items')
+# Reproduce the object-set digest and inclusive maximum with the offline audit below.
+AUDITED_COMMIT = '1d38f6d421258d871fb28212849015aed50e08d8'
+AUDITED_OBJECTS = 'd3e0c94b92ee8bfd5a1ce8a710cc5d9f5cf3b1c7f699c5112cca8cbf3432b163'
+AUDITED_MAXIMUM = instant('2026-11-21T23:00:00Z')
 
 
 def windows(rows):
@@ -126,24 +130,80 @@ def evidence_versions(root, ref):
     return evidence_tree(root, ref), versions
 
 
+def evidence_oids(root, ref):
+    tips, versions = evidence_versions(root, ref)
+    return frozenset(tips.values()).union(*versions.values())
+
+
+def oid_digest(oids):
+    return hashlib.sha256(''.join(oid + '\n' for oid in sorted(oids)).encode('ascii')).hexdigest()
+
+
+@lru_cache(maxsize=64)
+def audited_oids(root, ref, anchor, digest):
+    # Listing the reachable commits never requests an unknown anchor from a promisor remote.
+    ancestors = subprocess.check_output(['git', '-C', str(root), 'rev-list', ref])
+    if anchor.encode() not in ancestors.splitlines():
+        return frozenset()
+    oids = evidence_oids(root, anchor)
+    return oids if oid_digest(oids) == digest else frozenset()
+
+
 @lru_cache(maxsize=256)
 def check_committed(root, ref, since, cutoff, *, checked_earlier=False):
-    """A surviving source row cannot go back to an earlier cutoff in a normal save."""
     tips, versions = evidence_versions(root, ref)
-    inspect = set()
+    checked = set()
+    if cutoff > AUDITED_MAXIMUM:
+        checked.update(audited_oids(root, ref, AUDITED_COMMIT, AUDITED_OBJECTS))
+    priority = set()
     for rel, oid in tips.items():
-        if checked_earlier and rel.startswith('data/'):
-            continue  # The validated working graph covers this exact physical root.
-        scopes = committed_windows(root, oid)
-        if scopes is None or needs_history(scopes, since, cutoff):
-            inspect.add(rel)
-    # Retired data files have no surviving timestamp bound. The Edge migration
-    # preserved every row in the current shards, which provide the same bound.
-    earlier_shards = set(EDGE_SHARDS).issubset(tips) and not any(path.startswith(EDGE_PART) for path in inspect)
-    for rel in versions.keys() - tips.keys():
-        if rel != EDGE_POLICY or not earlier_shards:
-            inspect.add(rel)
-    # A single source file usually proves the conflict before the shared catalog.
-    for rel in sorted(inspect, key=lambda path: (not path.startswith('data/source-items/'), path)):
-        for oid in sorted(versions[rel] - {tips.get(rel)}):
+        if oid in checked:
+            continue
+        if not (checked_earlier and rel.startswith('data/')):
+            scopes = committed_windows(root, oid)
+            if scopes is None or needs_history(scopes, since, cutoff):
+                priority.add(rel)
+        checked.add(oid)
+    # A revert or a partial row restoration can make any older blob contain a
+    # later observation. A current row can prioritise inspection, never bound it.
+    for rel in sorted(versions, key=lambda path: (path not in priority, '/source-items/' not in path, path)):
+        for oid in sorted(versions[rel] - checked):
             needs_history(committed_windows(root, oid) or (), since, cutoff)
+            checked.add(oid)
+
+
+def audit(root, ref):
+    """Read and verify each historical evidence blob once. Return a reproducible checkpoint."""
+    from pipeline.normalize.storage import records
+    commit = subprocess.check_output(['git', '-C', str(root), 'rev-parse', '--verify', ref + '^{commit}']).decode().strip()
+    shallow = subprocess.check_output(['git', '-C', str(root), 'rev-parse', '--is-shallow-repository']).strip()
+    if shallow != b'false':
+        raise ValueError('Audit requires complete Git history')
+    oids = evidence_oids(root, commit)
+    maximum = None
+    size = rows = 0
+    for oid in sorted(oids):
+        raw = subprocess.check_output(['git', '-C', str(root), 'cat-file', 'blob', oid])
+        hasher = hashlib.new({40: 'sha1', 64: 'sha256'}[len(oid)])
+        hasher.update(b'blob ' + str(len(raw)).encode() + b'\0')
+        hasher.update(raw)
+        if hasher.hexdigest() != oid:
+            raise ValueError('Git evidence blob does not match its object ID: ' + oid)
+        values = records(json.loads(raw))
+        size += len(raw)
+        rows += len(values)
+        for _, end in windows(values):
+            if maximum is None or end > maximum:
+                maximum = end
+    return dict(commit=commit, object_digest=oid_digest(oids), objects=len(oids), bytes=size, rows=rows,
+                maximum=maximum.astimezone(timezone.utc).isoformat() if maximum is not None else None)
+
+
+if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser(description='Audit all historical feature and source evidence from local Git objects.')
+    parser.add_argument('--audit', required=True, metavar='COMMIT')
+    parser.add_argument('--repo', type=Path, default=Path.cwd())
+    args = parser.parse_args()
+    os.environ.update(GIT_NO_LAZY_FETCH='1', GIT_NO_REPLACE_OBJECTS='1', GIT_ALLOW_PROTOCOL='')
+    print(json.dumps(audit(args.repo, args.audit), indent=2))
