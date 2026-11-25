@@ -73,7 +73,9 @@ def validate_graph(repository, replacements=None):
     dataset = load_dataset(repository, replacements)
     registry = load_config(Path(repository) / 'config/sources.yml')
     validate_record('sources_config', registry)
-    validate_dataset(dataset, {s['source_id'] for s in registry['sources']} | {'legacy', 'chromium-source'})
+    from pipeline.official_reference import reference_checker
+    validate_dataset(dataset, {s['source_id'] for s in registry['sources']} | {'legacy', 'chromium-source'},
+                     reference_check=reference_checker(Path(repository), registry, dataset['source_item']))
     alias_path = 'data/aliases/corrections.json'
     aliases = (replacements or {}).get(alias_path)
     if aliases is None:

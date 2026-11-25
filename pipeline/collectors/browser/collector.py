@@ -13,7 +13,7 @@ from time import monotonic
 import calendar
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
-from urllib.parse import urljoin, urlparse, urldefrag, urlencode
+from urllib.parse import quote, urljoin, urlparse, urldefrag, urlencode
 from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
@@ -201,6 +201,8 @@ class BrowserCollector:
     def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None, *, write_records=True):
         self.write_records = write_records
         self.collection_mode = None
+        self.fact_index = self.fact_review = None
+        self.enrichment_blocked = False
         self.policy_since = self.window_start = self.checkpoint_context = self.attempt_seconds = None
         self.deadline = None
         self.repository = Path(repository).resolve()
@@ -211,6 +213,10 @@ class BrowserCollector:
         self.resume = resume
         self.reviewed_attributions = reviewed_attributions or {}
         self.brave_release_metadata = brave_release_metadata
+        self.pending_selections = set()
+        self.window_exclusions = {}
+        self.unit_windows = {}
+        self.passage_windows = {}
         self.brave_metadata_rows = None
         self.chrome_status_baselines = None
         self.github_covered, self.github_publications = set(), {}
@@ -218,7 +224,7 @@ class BrowserCollector:
             if not re.fullmatch('[0-9a-f]{64}', content_hash) or not isinstance(attributions, list) or not all(isinstance(value, str) and re.fullmatch('[0-9a-f]{64}', value) for value in attributions):
                 raise ValueError('Invalid content-bound attribution review')
 
-    def collect(self, source, cutoff, since, origin='baseline'):
+    def collect(self, source, cutoff, since, origin='baseline', *, review_only=False):
         self.source, self.cutoff, self.since, self.origin = source, cutoff, since, origin
         self.observed_at = datetime.now(timezone.utc).isoformat()
         self.progress_path = self.private_dir / (source['source_id'] + '-progress.json')
@@ -254,7 +260,11 @@ class BrowserCollector:
         self.cache = {}
         self.replayed_pages = []
         self.state_path = state_path
+        if self.fact_index is not None:
+            self.fact_review = self.fact_index.source(self, self.previous)
         self.github_prior_formats = {}
+        if review_only:
+            return
         if self.window_start and source['parser'] == 'github_releases':
             for prior in self.previous:
                 key = prior['item_key']
@@ -324,6 +334,8 @@ class BrowserCollector:
 
     def problem(self, url, error):
         self.state['errors'].append({'url': url, 'reason': error})
+        if re.search(r'HTTP Error|HTTP status|retry.after|timeout|time budget|limit reached|publisher refused', error, re.I):
+            self.enrichment_blocked = True
 
     def write_progress(self):
         if self.checkpoint_context:
@@ -348,7 +360,7 @@ class BrowserCollector:
                 self.replayed_pages.clear()
         return self.get(url)
 
-    def get(self, url, refresh=False):
+    def get(self, url, refresh=False, *, direct=False):
         self.check_time()
         if url in self.cache and not refresh:
             return self.cache[url]
@@ -362,11 +374,18 @@ class BrowserCollector:
             response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
+        if self.fact_review is not None and self.fact_review.wait:
+            raise ValueError('Publisher requested retry after ' + self.fact_review.wait)
         if self.source['source_id'] == 'safari-technology-preview':
-            response = safari_request(self, url, before_send=self.check_time)
+            options = {'direct': True} if direct and hasattr(self.transport, 'get_once') else {}
+            response = safari_request(self, url, before_send=self.check_time, **options)
+        elif direct and hasattr(self.transport, 'get_once'):
+            response = self.transport.get_once(url, self.check_time, direct=True)
         else:
             response = self.transport(url)
         if response.status != 200:
+            if direct:
+                raise HTTPError(url, response.status, 'Publisher refused reinspection', response.headers, None)
             raise ValueError('Unexpected HTTP status %s' % response.status)
         if not response.body:
             raise ValueError('Empty response')
@@ -378,7 +397,10 @@ class BrowserCollector:
             response.observed_at = cached.get('observed_at')
         self.cache_body(response.body)
         self.cache[url] = response
-        self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
+        # Direct urllib responses retain HTTPMessage for proof checks. Cache
+        # the serializable header view used by ordinary response replay.
+        headers = {key.lower(): value for key, value in response.headers.items()}
+        self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': headers}
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
             response.observed_at = response.observed_at or datetime.now(timezone.utc).isoformat()
             self.progress['responses'][url]['observed_at'] = response.observed_at
@@ -432,17 +454,34 @@ class BrowserCollector:
     def revision_in_scope(self, url, publication, modified):
         # A release published after cutoff could not have existed in the window.
         if self.publication_status(publication) == 'after_cutoff':
+            self.window_exclusions[url] = 'after_cutoff'
+            if self.fact_review:
+                self.fact_review.after_cutoff(url)
             return False
         if modified and self.publication_status(modified) == 'after_cutoff':
+            self.window_exclusions[url] = 'after_cutoff'
+            if self.fact_review:
+                self.fact_review.after_cutoff(url)
             self.problem(url, 'Only a revision after cutoff is available')
             return False
-        return self.allowed_publication(modified or publication) or self.publication_status(publication) == 'in_period'
+        eligible = self.allowed_publication(modified or publication) or self.publication_status(publication) == 'in_period'
+        if not eligible:
+            self.window_exclusions.setdefault(url, 'before_period')
+        return eligible
 
     def allowed_publication(self, value, current=False):
         status = self.publication_status(value)
         return status != 'after_cutoff' and (current or status != 'before_period')
 
-    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None):
+    def record_passage_window(self, url, status, text, anchors):
+        """Record a publisher-verified unit from a shared evidence URL, including excluded units."""
+        if self.window_start and not self.write_records:
+            self.passage_windows.setdefault(url, []).append([status, text, anchors])
+            self.unit_windows.setdefault(url, set()).add(status)
+            for anchor in anchors:
+                self.unit_windows.setdefault(url + '#' + quote(anchor, safe=''), set()).add(status)
+
+    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=None, reviewed_document=False):
         self.check_time()
         observed_at = self.observed_at
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
@@ -465,6 +504,8 @@ class BrowserCollector:
             self.state['duplicate'] += 1
             return
         self.seen[ident] = fingerprint
+        if self.fact_review is not None:
+            self.fact_review.observe(url, response, unit, title, dates=(date_evidence or date, modified))
         parsed = unit['parsed']
         self.state['processed' if parsed else 'unparsed'] += 1
         content_hash = digest(response.body)
@@ -497,8 +538,18 @@ class BrowserCollector:
             if not (self.publication_status(value) == 'before_period' and self.publication_status(date_evidence) == 'in_period'):
                 record['temporal_scope'] = dated_scope(self.since, self.cutoff, value, 'item_change',
                     'Official per-feature update; a timestamp without timezone supplies its printed calendar day only.')
+        if parsed and not self.write_records:
+            status = self.publication_status(record['temporal_scope']['evidence_date'])
+            self.unit_windows.setdefault(url, set()).add(status)
+            if window_anchors is not None:
+                passage = ' '.join(filter(None, (title, unit['text'])))
+                self.record_passage_window(url, status, passage, window_anchors)
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
-        if parsed:
+        if reviewed_document:
+            # This observation identifies verified publisher bytes without claiming
+            # a parsed product passage, release date or DOM location.
+            record.update(item_type='unknown', source_location=url, source_symbol=None)
+        elif parsed:
             record['item_content_sha256'] = digest(canonical([unit['section'], unit['text']]))
         old = self.records.get(ident)
         if old:
@@ -513,6 +564,11 @@ class BrowserCollector:
                 # The daily classifier needs item changes, not a sibling edit or a new page hash.
                 self.state['processed'] -= 1
                 self.state['duplicate'] += 1
+                if (ident, old['revisions'][-1]['revision_id']) in self.pending_selections:
+                    # One selected feature did not settle this whole observation.
+                    # Use the original revision with this run's verified scope.
+                    self.parsed_ids.add(ident)
+                    self.records[ident] = dict(old, temporal_scope=record['temporal_scope'])
                 return
             if (same_item and
                     old['evidence']['content_sha256'] == content_hash and old['evidence']['source_revision'] == revision):
@@ -567,12 +623,22 @@ class BrowserCollector:
             atomic_json(self.destination, sorted(self.records.values(), key=lambda r: r['source_item_id']))
         atomic_json(self.state_path, self.state)
 
+    def exclude_document(self, url, *dates):
+        self.state['excluded_by_date'].append(url)
+        future = any(self.publication_status(d) == 'after_cutoff' for d in dates if d)
+        if future:
+            self.window_exclusions[url] = 'after_cutoff'
+            if self.fact_review:
+                self.fact_review.after_cutoff(url)
+        else:
+            self.window_exclusions.setdefault(url, 'before_period')
+
     def rolling_revision_after_cutoff(self, root, url):
         if self.window_start:
             modified = modification(root, page_metadata_only=True)
             if self.publication_status(modified) == 'after_cutoff':
                 self.problem(url, 'Only a rolling document revision after cutoff is available')
-                self.state['excluded_by_date'].append(url)
+                self.exclude_document(url, modified)
                 return True
         return False
 
@@ -603,7 +669,9 @@ class BrowserCollector:
         else:
             eligible = self.allowed_publication(publication, current)
         if not eligible:
-            self.state['excluded_by_date'].append(url)
+            self.exclude_document(url, publication, modified)
+            if canonical_url != url:
+                self.exclude_document(canonical_url, publication, modified)
             return root
         if body is None:
             self.unresolved(url, response)
@@ -613,7 +681,8 @@ class BrowserCollector:
         if edge_policy and not re.fullmatch(self.source['discovery']['include_url_pattern'], canonical_url):
             raise ValueError('Unexpected final Edge policy URL')
         edge_stable = self.source['source_id'] in ('edge-stable', 'edge-stable-archive')
-        units = blocks(body, visible_sections=edge_policy or edge_stable)
+        units = blocks(body, visible_sections=edge_policy or edge_stable,
+                       window_anchors=self.window_start and not self.write_records)
         if not units:
             self.unresolved(url, response)
             self.problem(url, 'No source units in product content')
@@ -636,7 +705,7 @@ class BrowserCollector:
                 version = version_match[1] if version_match else None
             section_day = None if timestamp or publication_verified else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
-                      version=version, channel=channel, modified=modified)
+                      version=version, channel=channel, modified=modified, window_anchors=unit.pop('window_anchors', None))
             if edge_policy and unit['parsed']:
                 # Use visible source text for comparison. Preserve the public location key and row hash.
                 headings = unit['visible_headings']
@@ -644,6 +713,8 @@ class BrowserCollector:
                 ident = identity('src', [self.source['source_id'], canonical_url, unit['key']])
                 self.edge_content[ident] = digest(canonical([headings, unit['text'], unit.get('date'),
                                                             visible_version[1] if visible_version else None]))
+        if len(self.unit_windows.get(canonical_url, ())) <= 1:
+            self.passage_windows.pop(canonical_url, None)
         if edge_policy and units and all(unit['parsed'] for unit in units):
             content_hash = digest(response.body)
             if self.edge_documents.setdefault(canonical_url, content_hash) != content_hash:
@@ -735,7 +806,7 @@ class BrowserCollector:
                         continue
                     relevant = self.possible_index_date(changed or date) or (date and self.possible_index_date(date))
                     if not relevant or (year and not changed and not date and int(year[1]) < int(self.since[:4])):
-                        self.state['excluded_by_date'].append(doc)
+                        self.exclude_document(doc, date, changed)
                         continue
                     if doc not in document_set:
                         document_set.add(doc)
@@ -859,7 +930,7 @@ class BrowserCollector:
                 if date:
                     dates.append(date_value(date))
                 if not self.possible_index_date(date):
-                    self.state['excluded_by_date'].append(document_url)
+                    self.exclude_document(document_url, date)
                     continue
                 if not self.budget(document_url, 'documents'):
                     return
@@ -879,7 +950,8 @@ class BrowserCollector:
         self.state['latest_publication_date'] = max(dates, default=None)
 
     def collect_enterprise_archive(self):
-        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        from pipeline.official_reference import ENTERPRISE_ARCHIVE
+        archive = ENTERPRISE_ARCHIVE
         response = self.get(archive)
         root = Tree(response.text()).root
         if self.rolling_revision_after_cutoff(root, archive):
@@ -894,6 +966,9 @@ class BrowserCollector:
                     if anchor in dates and dates[anchor] != date:
                         raise ValueError('Conflicting enterprise release dates')
                     dates[anchor] = date
+        for anchor, day in dates.items():
+            if not self.allowed_date(day):
+                self.exclude_document(archive + '#' + anchor, day)
         panels = 0
         recognized_panels = 0
         for node in root.walk():
@@ -907,13 +982,19 @@ class BrowserCollector:
                 continue
             recognized_panels += 1
             day = dates.get(anchor)
-            if day and not self.allowed_date(day):
-                self.state['excluded_by_date'].append(archive + '#' + anchor)
+            in_scope = not day or self.allowed_date(day)
+            if self.window_start and not self.write_records:
+                self.record_passage_window(archive, self.publication_status(day), panel.text(), [anchor])
+            if in_scope:
+                panels += 1
+            elif not self.fact_review or not self.fact_review.archive_targets(anchor):
                 continue
-            panels += 1
             for unit in blocks(panel):
                 unit['key'] = 'release:' + anchor + ':' + unit['key']
-                self.emit(archive, response, unit, date=day, version=anchor)
+                if in_scope:
+                    self.emit(archive, response, unit, date=day, version=anchor)
+                else:
+                    self.fact_review.observe(archive, response, unit, dates=(day,))
         if not recognized_panels or not dates:
             self.problem(archive, 'Enterprise dated archive inventory is not recognized')
         self.state['documents'] += 1
@@ -936,6 +1017,10 @@ class BrowserCollector:
             url = api + '/features?' + urlencode({'version': version, 'lang': 'en'})
             response = self.get(url, refresh=True)
             data = json_body(response)
+            # Only this parser knows the publisher's per-row visibility gates.
+            # Never offer the unfiltered JSON or reparse it as HTML.
+            if self.fact_review:
+                self.fact_review.begin_enterprise_page(url)
             rows = data.get('features')
             if not isinstance(rows, list) or data.get('total_count') != len(rows):
                 raise ValueError('Enterprise API inventory count mismatch')
@@ -957,10 +1042,14 @@ class BrowserCollector:
                 unit = {'key': str(ident), 'section': 'feature', 'text': summary, 'parsed': True}
                 created = chromestatus_date(row.get('created', {}).get('when') or '')
                 modified = chromestatus_date(changed) if changed else None
-                if self.window_start and not self.revision_in_scope(url + '#' + str(ident), created, modified):
+                target = url + '#' + str(ident)
+                if self.window_start and not self.revision_in_scope(target, created, modified):
+                    self.record_passage_window(url, self.window_exclusions[target], name + ' ' + summary, [str(ident)])
+                    if self.fact_review:
+                        self.fact_review.observe(url, response, unit, name, dates=(created, modified))
                     continue
                 self.emit(url, response, unit, date=date_value(created), date_evidence=created,
-                          revision=changed, title=name, version=version, modified=modified)
+                          revision=changed, title=name, version=version, modified=modified, window_anchors=[str(ident)])
             self.document_done(url)
             self.persist_checkpoint([])
         self.state['enterprise_publication_excluded'] = excluded
@@ -1004,7 +1093,11 @@ class BrowserCollector:
                 # Do not copy raw API metadata: it includes personal owner emails.
                 revision = row.get('updated', {}).get('when')
                 created = chromestatus_date(row.get('created', {}).get('when') or '')
-                if self.window_start and not self.revision_in_scope(feature_url, created, chromestatus_date(revision or '')):
+                updated = chromestatus_date(revision or '')
+                if self.window_start and not self.revision_in_scope(feature_url, created, updated):
+                    if self.fact_review and feature_url in self.fact_review.links:
+                        unit = self.chromestatus_unit(row, feature_url, revision, compare=False)
+                        self.fact_review.observe(feature_url, response, unit, row.get('name'), dates=(created, updated))
                     self.document_done(marker)
                     continue
                 unit = self.chromestatus_unit(row, feature_url, revision)
@@ -1021,7 +1114,7 @@ class BrowserCollector:
                 return
         self.problem(url, 'Page limit reached')
 
-    def chromestatus_unit(self, row, url, revision):
+    def chromestatus_unit(self, row, url, revision, *, compare=True):
         key = str(row['id'])
         summary = row.get('summary') or row.get('name') or ''
         chrome = (row.get('browsers') or {}).get('chrome') or {}
@@ -1034,6 +1127,8 @@ class BrowserCollector:
                 milestones.append(f'{label} {int(value)}')
         facts = stage_text + (f"Chrome milestones: {', '.join(milestones)}. " if milestones else '')
         unit = dict(key=key, section='ChromeStatus feature', text=facts + summary, parsed=bool(row.get('name')))
+        if not compare:
+            return unit
         old = self.records.get(identity('src', [self.source['source_id'], url, key]))
         if (not old or old['evidence']['section'] != 'feature' or self.chrome_status_baselines is None
                 or not unit['parsed'] or old['title'] != minimal(row['name'], 160)
@@ -1093,7 +1188,7 @@ class BrowserCollector:
                     for unit in units:
                         self.emit(url, document, unit, date=date)
                 else:
-                    self.state['excluded_by_date'].append(url)
+                    self.exclude_document(url, date)
                 self.document_done(url)
                 # A topic's publication does not establish the dates of its children.
                 for section in data.get('topicSections', []):
@@ -1385,7 +1480,7 @@ class BrowserCollector:
         if not units:
             self.unresolved(source_url, response)
         for unit in units:
-            self.emit(source_url, response, unit, date=date_value(unit['section']))
+            self.emit(source_url, response, unit, date=date_value(unit['section']), window_anchors=[])
         self.state['pagination_exhausted'] = True
 
     def collect_whale(self):

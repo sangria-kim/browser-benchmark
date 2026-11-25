@@ -2,6 +2,39 @@
 
 Python 3.9 이상과 `schemas/requirements.txt`를 설치합니다. 브라우저별 조사 대상은 [공식 출처 설정](../config/sources.yml)에서 관리합니다.
 
+## 기능 한 건 저장
+
+공식 문서에서 구체적인 브라우저 기능을 확인하면 다음 출처의 응답이나 다른 후보의 판정을 기다리지 않고 저장합니다. 기능 키와 제목 또는 기존 `feature_id`로 기능을 식별합니다. 공식 URL을 필수 근거로 사용합니다. 원문 인용, 버전, 플랫폼, 채널, 배포 상태는 확인된 값만 넣습니다. 보안 수정, 유지보수, 버전 상승 등 기존 제외 기준은 그대로 적용합니다.
+
+1. 저장소 밖에 `item.json`을 만듭니다. 아래는 독립 확인한 공식 URL을 쓰는 형식입니다. 같은 공식 문서에서 별개 기능을 확인하면 별개의 기능 키로 요청합니다.
+
+   ```json
+   {
+     "browser": "firefox",
+     "source_id": "firefox-ios",
+     "canonical_key": "duo",
+     "title": "Duo",
+     "url": "https://www.firefox.com/en-US/firefox/ios/160.0/releasenotes/"
+   }
+   ```
+
+   이 예시는 입력 형식입니다. 공개 원문이 해당 기능을 설명하는지 분류자가 확인합니다. 이미 비공개 후보가 있으면 `url` 대신 해당 출처의 `source_id`, `source_item_id`, 마지막 `revision_id`를 지정합니다. 일부 자료를 확보한 미완료 출처도 게시된 체크포인트의 개별 후보를 사용할 수 있습니다. 선택 인용은 후보 본문의 실제 구절을 사용합니다.
+
+2. 수동으로 확인한 URL은 수집 실행 없이 저장할 수 있습니다. 예약 수집은 기존 실행 ID를 사용합니다.
+
+   ```sh
+   python -m pipeline.collect --private-dir "$PRIVATE_MANUAL" --save-item "$ITEM_JSON"
+   python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" --save-item "$ITEM_JSON"
+   ```
+
+   예약 명령은 수집 때 고정한 출처와 마감을 재사용합니다. 일일 상태 실행은 수집할 때 `--daily-status`와 07:00 KST 마감을 지정합니다. 이전 버전에서 시작한 수집에 건별 저장 기준이 없으면 같은 마감으로 새 실행을 시작합니다. 수동 URL 저장은 일일 상태를 작성하지 않습니다. 예약 실행에서도 해당 출처가 아직 응답 중이면 직접 확인한 공식 URL의 기능을 즉시 저장할 수 있습니다. 건수는 조사 완료 때까지 미확정입니다. 해당 출처가 이미 확인한 기간 밖의 문서나 특정 HTML 앵커는 그 마감의 신규 기능으로 저장할 수 없습니다. 날짜가 섞인 문서에서는 원래 후보 ID, 실제 HTML 앵커, 또는 브라우저의 텍스트 하이라이트가 가리키는 공식 문단으로 귀속 시각을 확인합니다. 대상이 모호하면 직접 확인한 기능을 먼저 저장할 수 있습니다. 해당 마감의 최종화는 같은 기능·문서에 속한 기간 내 후보를 확인할 때까지 보류합니다. 먼저 저장한 뒤 마감 이후 문서로 확인되면 해당 마감의 브라우저와 일일 합계는 미완료로 남습니다. 다음 마감에서는 그 마감의 실제 관측을 판정합니다.
+
+3. 다음 수집에서 `work/enrichment/<source-id>.json`을 확인합니다. 조사한 기능의 `feature_id`와 `missing_fields`가 나옵니다. 공식 문구에서 해당 기능의 값을 확인했으면 `feature_id`, `browser`, `source_id`, `candidate`의 항목·리비전 ID와 `facts`로 같은 명령을 실행합니다. 예를 들어 `"facts": {"platform": ["Windows"]}`로 플랫폼을 추가합니다. 해당 작업에 `reference_review: true`만 있으면 원문에서 그 기능의 값을 직접 확인하고 요청에 `"reference_review": true`와 작업의 URL을 넣습니다. 접근 오류·다른 기능의 문구·미확인 값은 보강을 보류합니다. 보강은 같은 기능 ID를 유지하고 제품 변경 건수를 늘리지 않습니다. 보강 작업의 `review_passages`가 있으면 해당 문서나 앵커에서 확인한 구절을 사용합니다. 원문을 재확인한 사실은 이번 응답의 해시와 관측 시각을 가진 근거에 연결합니다. 별도 원문 없이 URL과 새 사실을 직접 입력하면 그 URL 참조를 근거로 남깁니다.
+
+4. 건별 저장은 비공개 작업과 다른 후보를 보존합니다. 같은 마감의 건별 저장 뒤에는 각 브라우저의 필수 출처와 모든 일반 후보를 확인하고 `--save-browser BROWSER --save-features CLASSIFICATION.json`으로 그 마감을 확정합니다. 이미 건별 저장한 일반 후보가 여전히 목록에 있으면 `dispositions`에 `selected`를 적습니다. 해당 기능의 `decisions` 행을 반복할 필요는 없습니다. 같은 마감의 미완료 브라우저에서 이미 선정했던 원문 리비전을 새 실행이 다시 확인하면 그 후보가 원래 ID로 나타납니다. 한 문단에 별개 기능이 더 있으면 같은 항목·리비전 ID와 다른 기능 키로 저장한 뒤 원문의 판정을 마칩니다. 최초 변경 판정은 집계에 남습니다. 다음 마감에서는 일반적인 무변경 억제를 적용합니다. 모든 필수 브라우저가 끝날 때까지 일일 상태의 두 건수는 `null`입니다. 현재 커밋이나 기준 자료가 변경되면 원래 마감의 새 실행으로 이어갑니다.
+
+## 전체 조사 후 일괄 저장
+
 1. 저장소 밖의 전용 작업 디렉터리에 업데이트 후보를 수집합니다. `--source`를 생략하면 실행 모드의 모든 활성 출처를 조사합니다. 일일 모드에서는 Brave, Vivaldi, Opera를 제외합니다.
 
    ```sh
@@ -70,35 +103,49 @@ python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$WEEK_ID" 
 
 출처별 `baseline.source_attempt_seconds`의 기본값은 900초입니다. 요청 사이와 항목 처리 중에 시간을 확인합니다. 진행 중인 HTTP 요청에는 기존 전송 시간 제한과 재시도 규칙이 적용됩니다. 한 출처에서 시간이나 페이지·문서 예산이 끝나면 나머지 출처를 조사합니다. 종료 코드 2이면 비공개 `source_results`의 오류와 남은 범위를 확인합니다. 프로세스를 강제 종료하면 상태가 `collecting`에 머물며 같은 마감으로 재개할 수 있습니다.
 
-저장소 잠금은 수집 중에도 유지합니다. 겹치는 실행은 잠금 오류 후 같은 예정 시각으로 다시 시도합니다. 수집 후 다른 실행이 먼저 저장하면 저장기가 현재 근거와 카탈로그를 다시 읽습니다. 같은 리비전은 최초 저장된 관측을 유지합니다. 서로 다른 이력 또는 일일 상태용 기준 카탈로그가 충돌하면 새로 수집·분류합니다.
+수집기 전용 잠금은 같은 저장소의 중복 수집을 막습니다. 저장소 쓰기 잠금은 기준 고정, 출처 체크포인트 교체, 공개 파일 검증·저장에 사용합니다. 다른 출처의 HTTP 응답을 기다리는 동안 이미 확보한 건을 저장할 수 있습니다. 수집 후 다른 실행이 먼저 저장하면 저장기가 현재 근거와 카탈로그를 다시 읽습니다. 같은 리비전은 최초 저장된 관측을 유지합니다. 서로 다른 이력 또는 일일 상태용 기준 카탈로그가 충돌하면 새로 수집·분류합니다.
 
-## 작업 공간과 일일 실행
+## 비공개 작업 공간
 
-각 수집에는 새 비공개 디렉터리를 지정합니다. 전체 후보와 응답 캐시는 분류하는 동안 `work/`에 머뭅니다. 분류 파일은 이 폴더 밖에 둡니다. 기능과 근거를 검증하고 저장하면 수집기가 자신의 `work/`를 정리합니다. 빈 선정 배열도 작업을 끝냅니다. 실행 상태 파일과 직접 만든 분류 파일은 남습니다. 부분 수집을 마감할 때는 저장 명령에 `--allow-partial`을 추가합니다. 실패한 저장에는 후보와 복구 자료가 남습니다.
-
-일일 실행도 같은 경로를 사용합니다. 아래 예에서 후보는 `$PRIVATE_STATE/$RUN_ID/work/candidates/`에 있습니다.
-
-```sh
-python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID"
-python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
-  --save-features "$PRIVATE_STATE/$RUN_ID/features.json"
-```
-
-이전 형식의 작업 디렉터리는 보존합니다. 이 명령으로 전환할 때는 새 실행 ID를 사용합니다. 기존 외부 스케줄러의 호출 인수는 운영 환경에서 맞춥니다. 저장 후에는 [저장소 PR 절차](../AGENTS.md)를 따릅니다.
+전체 후보와 응답 캐시는 `$PRIVATE_STATE/$RUN_ID/work/`에 보관합니다. 분류 파일은 실행 폴더에서 `work/` 밖에 둡니다. 전체 일괄 저장은 검증 후 임시 후보를 정리합니다. 건별 저장과 브라우저별 저장은 다른 후보와 재개 자료를 남깁니다. 구형 작업 디렉터리는 보존하고 전환 시 새 실행 ID를 사용합니다. 저장 후에는 [저장소 PR 절차](../AGENTS.md)를 따릅니다.
 
 ChromeStatus의 예전 출처에는 당시 출시 단계와 플랫폼별 지원 버전이 빠져 있습니다. 수집기는 기존 설명과 일치하는 항목의 첫 관측값을 비공개 비교 기준으로 보관합니다. 이때 공개 기능 이력은 그대로 유지합니다. 이후 공식 출시 단계 또는 데스크톱·Android·iOS·WebView 지원 버전이 바뀌면 해당 근거를 분류 후보로 전달합니다. 수정 시각만 바뀌면 건너뜁니다. 일일 실행에는 같은 체크아웃과 같은 `$PRIVATE_STATE`를 사용합니다. 비교 기준은 이 경로의 `.browser-benchmark-comparison-<uid>/`에 있으며 실행별 원문 정리 후에도 유지됩니다.
 
 
-## 일일 수집 상태 파일
+## 07:00 일일 실행
 
-신규 스케줄 연동 시 수집 명령에 `--daily-status`와 한국시간 07:00:00 정각의 마감을 지정합니다. 같은 시점의 UTC 입력도 허용합니다. 공개 파일에는 한국 날짜와 `+09:00` 마감을 기록합니다. 동일 실행 재개에도 두 인수를 유지합니다. 아직 게시하지 않은 상태에서 이전 전체 출처 범위를 고정한 일이 있으면 새 일일 실행 ID로 시작합니다. 기본 수집 및 기존 수동·백필 실행은 상태 파일을 만들지 않습니다.
+저장소 루트에서 실행합니다. `$PRIVATE_STATE`는 저장소 밖의 비공개 상위 디렉터리입니다. 아래 예시는 2026년 11월 26일 07:00 서울 마감입니다. 최근 30일 하한은 10월 27일 07:00입니다. `--source`를 생략해 그날의 일일 등록 출처를 모두 고정합니다.
 
 ```sh
-python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
-  --cutoff "$CUTOFF" --daily-status
-python -m pipeline.run_daily --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" \
-  --save-features "$PRIVATE_STATE/$RUN_ID/features.json"
+set -eu
+umask 077
+CUTOFF=2026-11-26T07:00:00+09:00
+RUN_ID=daily-20261126-0700
+REPOSITORY=${REPOSITORY:-"$PWD"}
+RUN="$PRIVATE_STATE/$RUN_ID"
+daily() { python -m pipeline.run_daily --repository "$REPOSITORY" --private-dir "$PRIVATE_STATE" --run-id "$RUN_ID" "$@"; }
+collect_daily() {
+  if output=$(daily --daily-status --cutoff "$CUTOFF" "$@"); then rc=0; else rc=$?; fi
+  printf '%s\n' "$output"
+  case "$rc" in
+    0) return 0 ;;
+    2) printf '%s\n' "$output" | python -c 'import json, sys; sys.exit(json.load(sys.stdin)["collection_complete"] is not False)' ;;
+    *) return "$rc" ;;
+  esac
+}
+collect_daily
 ```
+
+수집이 끝나면 `$RUN/feature-run.json`의 `source_results`와 `$RUN/work/candidates/<source-id>.json`을 확인합니다. 종료 코드 2와 `collection_complete: false`는 일부 출처가 미완료라는 뜻입니다. 위 함수는 이 결과에서도 분류를 계속하고 다른 실행 오류는 전달합니다. 수집기가 아직 다음 출처를 읽고 있어도 이미 확보한 공식 근거는 별도 프로세스에서 건별 저장할 수 있습니다.
+
+1. 수집 프로세스가 끝났고 조사가 남았으면 `daily --record-incomplete`로 일일 상태를 남깁니다. 확인한 기능마다 `daily --save-item "$RUN/item.json"`을 실행합니다. 입력은 위의 **기능 한 건 저장** 형식을 따릅니다. 신규 기능에는 `browser`, `canonical_key`, `title`, 공식 `url`을 넣습니다. `source_id`로 등록 출처를 지정할 수 있습니다. 기존 후보는 `source_id`, `source_item_id`, 최신 `revision_id`로 해당 공식 URL과 원문을 지정합니다. `facts.version`, `facts.platform`, `facts.channel`, `facts.rollout_status`와 `evidence_quote`는 확인한 값만 넣습니다. 건별 저장도 전체 조사가 남으면 두 건수를 `null`로 기록합니다.
+2. 조사할 수 있게 된 출처는 `collect_daily --resume`으로 이어갑니다. 처음에 `--reviewed-attributions` 또는 `--brave-release-metadata`를 사용했다면 첫 수집과 재개 양쪽에 같은 내용의 파일을 지정합니다. 같은 기능·동일 근거는 다시 저장해도 한 건입니다. 코드·데이터 Git 커밋이나 고정한 기준이 바뀌었으면 이전 디렉터리를 보존하고 같은 마감에 새 `RUN_ID`와 `RUN`을 지정해 `collect_daily`로 시작합니다. 새 실행은 응답을 다시 받으므로 비공개 캐시 공간을 확보합니다.
+3. 필수 출처가 모두 끝나고 후보를 전부 판정한 브라우저만 `daily --save-browser firefox --save-features "$RUN/firefox.json"`과 같은 명령으로 확정합니다. 각 브라우저 파일에는 그 브라우저의 `decisions`와 모든 일반 후보의 `dispositions`를 넣습니다. 건별 저장에 사용한 동일한 항목·리비전은 `selected`로 지정하면 됩니다. URL만으로 저장한 뒤 실제 후보가 별도 ID로 나타나면 그 후보는 `selected`, `decisions`에는 같은 기능 키와 `change_kind: evidence_only`를 넣어 원문을 연결합니다. 후보가 없는 브라우저의 파일은 `{"decisions":[],"dispositions":[]}`입니다.
+4. 이 마감의 `data/browser-status/daily/2026-11-25T220000.000000Z.json`에서 `scope.expected`의 모든 브라우저가 `complete`인지 확인합니다. `data/daily-status/2026-11-26.json`의 `status`가 `complete`일 때만 최종 `collected_feature_count`와 `change_count`를 사용합니다. 중간 상태는 후보를 계속 조사합니다.
+
+## 일일 수집 상태 파일
+
+건별·브라우저별 저장을 시작하지 않고 전체 조사를 한 번에 마치는 기존 경로는 같은 `--daily-status` 수집 후 `daily --save-features "$RUN/features.json"`을 사용합니다. 기본 수집 및 수동·백필 실행은 일일 상태 파일을 만들지 않습니다. 같은 시점의 UTC 마감 입력도 허용하며 공개 파일에는 한국 날짜와 `+09:00` 마감을 기록합니다.
 
 분류를 끝내고 회귀 및 저장 경로 검증을 통과한 뒤 저장합니다. 이 모드의 분류 항목에 `change_kind`를 지정합니다. 실제 기능 추가·변경에는 `product_change`를 쓰고, 기능이 동일한 기존 항목의 공식 근거만 보강할 때는 `evidence_only`를 씁니다. 소스 본문이나 링크 변경만으로는 기능 변경이 아닙니다. 최상위 `collected_feature_count`는 이 실행에서 채택한 고유 기능 수입니다. 기능마다 한 번만 세며, 근거 보강만 한 기능도 포함합니다. 제외·미변경으로 판정한 후보는 세지 않습니다. `change_count`는 그중 실제 기능 추가·변경 수입니다.
 

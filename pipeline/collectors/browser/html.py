@@ -578,7 +578,7 @@ def omit_attributions(body):
             link.attrs.pop('href', None)
 
 
-def blocks(body, *, visible_sections=False):
+def blocks(body, *, visible_sections=False, window_anchors=False):
     """Partition body into source units, retaining unsupported leaf text as unresolved.
 
     A list entry or table row is one unit. Paragraphs outside those units are
@@ -587,7 +587,7 @@ def blocks(body, *, visible_sections=False):
     """
     omit_attributions(body)
     result, counters, section, headings = [], {}, 'document', {}
-    heading_dates, visible_headings = {}, {}
+    heading_dates, visible_headings, anchor_headings = {}, {}, {}
     suppressed = set()
     # Explicit author/reporter fields are outside the public product record.
     for n in body.walk():
@@ -602,6 +602,52 @@ def blocks(body, *, visible_sections=False):
             following = next((v for v in siblings[siblings.index(n)+1:] if isinstance(v, Node)), None)
             if following and following.tag == 'dd':
                 suppressed.add(id(following))
+
+    def fragment_targets(node, *, descendants=False):
+        if node.tag in SKIP or id(node) in suppressed:
+            return
+        if node.attrs.get('id'):
+            yield node.attrs['id']
+        if node.tag == 'a' and node.attrs.get('name'):
+            yield node.attrs['name']
+        if descendants:
+            for child in node.children:
+                if isinstance(child, Node):
+                    yield from fragment_targets(child, descendants=True)
+
+    # Empty standalone bookmarks mark the boundary between their immediate
+    # visible siblings. If the two sides differ in date, retain both dates.
+    neighboring = {}
+    if window_anchors:
+        for parent in body.walk():
+            previous, pending = None, []
+            for child in parent.children:
+                if isinstance(child, str) and not child.strip():
+                    continue
+                if (isinstance(child, Node) and child.tag in {'a', 'span', 'div'}
+                        and not any(isinstance(part, Node) or part.strip() for part in child.children)):
+                    pending.extend(fragment_targets(child))
+                    continue
+                if pending:
+                    for adjacent in (previous, child):
+                        if isinstance(adjacent, Node):
+                            neighboring.setdefault(id(adjacent), []).extend(pending)
+                    pending = []
+                previous = child
+            if pending and isinstance(previous, Node):
+                neighboring.setdefault(id(previous), []).extend(pending)
+
+    def unit_targets(node, ancestors, *, descendants):
+        # A surrounding container owns each of its units; their combined
+        # dates determine whether the container has an unambiguous window.
+        targets = [target for level in anchor_headings.values() for target in level]
+        for ancestor in ancestors:
+            targets.extend(fragment_targets(ancestor))
+            targets.extend(neighboring.get(id(ancestor), ()))
+        targets.extend(fragment_targets(node, descendants=descendants))
+        targets.extend(neighboring.get(id(node), ()))
+        return list(dict.fromkeys(targets))
+
     covered = set(suppressed)
     for n in body.walk():
         within = []
@@ -631,6 +677,9 @@ def blocks(body, *, visible_sections=False):
                 visible_headings = {k: v for k, v in visible_headings.items() if k < level}
                 if text:
                     visible_headings[level] = text
+            if window_anchors:
+                anchor_headings = {k: v for k, v in anchor_headings.items() if k < level}
+                anchor_headings[level] = [*fragment_targets(n, descendants=True), *neighboring.get(id(n), ())]
             headings[level] = n.attrs.get('id') or text or section
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
@@ -646,6 +695,8 @@ def blocks(body, *, visible_sections=False):
             key = key or prefix + ':' + str(counters[prefix])
             result.append({'key': key, 'text': text, 'section': section, 'parsed': bool(text),
                            'date': heading_dates[max(heading_dates)] if heading_dates else None})
+            if window_anchors:
+                result[-1]['window_anchors'] = unit_targets(n, within, descendants=True)
             if visible_sections:
                 result[-1]['visible_headings'] = list(visible_headings.values())
             covered.add(id(n))
@@ -659,6 +710,8 @@ def blocks(body, *, visible_sections=False):
                 result.append({'key': n.attrs.get('id') or prefix + ':' + str(counters[prefix]),
                                'text': direct if ordinary else '', 'section': section, 'parsed': ordinary,
                                'date': heading_dates[max(heading_dates)] if heading_dates else None})
+                if window_anchors:
+                    result[-1]['window_anchors'] = unit_targets(n, within, descendants=False)
                 if visible_sections:
                     result[-1]['visible_headings'] = list(visible_headings.values())
     return unique_unit_keys(result)

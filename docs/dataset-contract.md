@@ -103,6 +103,27 @@ A factual correction keeps its event ID and increments `revision`. Preserve the 
 
 `published_at` or `announced_at` is the source publication date. `effective_at` is a separately supported product date. `observed_at` is a timezone-aware evidence observation timestamp. These fields are not interchangeable. `content_sha256` hashes the evidence input bytes before parsing. Source revision may be null for a web page, but the hash is required. For legacy imports with unavailable original bytes, hash the retained evidence and keep `record_status: legacy`; do not claim an original page hash.
 
+An individual selection can cite the registered publisher's HTTPS URL. The source has
+`record_status: reference`, `origin: reference`, and an `official-url:` item key. Its
+`content_sha256` hashes canonical JSON with `kind: official_url`, `source_id` and
+the normalized `url`. The original page bytes, publication date and excerpt are
+unknown. The empty excerpt and null publication date stay intact on retry.
+`observed_at` is the first observation of the reference. If classification selects
+an observed item and revision, the feature pins that snapshot and its actual hash.
+Shared Whale forum topics and cross-category Google blog posts also need a matching
+item from the registered announcement index or Chrome feed. Community replies are
+excluded. If the source registration moves, graph validation can retain an identical
+link-only row committed under its earlier registration.
+
+Individual selections carry an optional `feature_facts` object. Its slots are
+`version`, `platform` (a list), `channel`, and `rollout_status`. Each confirmed
+slot stores `value`, `source_item_id`, and `revision_id` for this feature. An
+absent slot has no confirmed value. An empty object identifies a selection with
+all four slots open. Older entries may omit the object. A shared source page can
+support several features. Their facts are independent. Enrichment fills open
+slots and preserves established values and the first confirmed citation.
+An additional citation does not by itself establish a product change.
+
 Browser collectors also store optional `item_content_sha256`. It hashes the full
 item section and text before excerpt truncation. PM inputs use this digest instead
 of the whole-document `evidence.content_sha256`; sibling edits and HTML comments

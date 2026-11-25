@@ -109,7 +109,7 @@ def require_external(root, private):
 
 
 @contextmanager
-def run_lock(repository):
+def run_lock(repository, *, wait=False):
     # A stable per-user, per-repository location prevents alternate state dirs
     # from bypassing serialization. flock is released by the OS on process exit.
     folder = Path('/tmp').resolve() / ('browser-benchmark-locks-' + str(os.getuid()))
@@ -120,7 +120,7 @@ def run_lock(repository):
     fd = os.open(str(path), os.O_CREAT | os.O_RDWR | os.O_NOFOLLOW, 0o600)
     with os.fdopen(fd, 'r+') as stream:
         try:
-            fcntl.flock(stream, fcntl.LOCK_EX | fcntl.LOCK_NB)
+            fcntl.flock(stream, fcntl.LOCK_EX if wait else fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError as error:
             raise RuntimeError('Another daily run holds the repository lock') from error
         yield stream
@@ -239,7 +239,7 @@ def pending_recovery(root, writer):
         recover_publication(root, Path(json.loads(pending)['run_dir']))
 
 
-def store_changes(root, txn, changes, before, writer, *, replace=durable):
+def store_changes(root, txn, changes, before, writer, *, replace=durable, item_effect=None):
     """Validate the graph, then journal only the files that will change."""
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
@@ -298,7 +298,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             if first_browser and changes[rel]['scope']['mode'] == 'weekly_reconcile':
                 weekly_status.check_prior_evidence(root, changes[rel]['scope'], graph, feature_changes)
             browser_status.check_effects(changes[rel], browser_status.effect_index(graph))
-            browser_status.check_delta(root, previous, changes[rel], graph, feature_changes)
+            browser_status.check_delta(root, previous, changes[rel], graph, feature_changes, item_effect=item_effect)
     payloads = {p: json_bytes(rows) for p, rows in changes.items()}
     payloads = {p: raw for p, raw in payloads.items() if digest(raw) != before[p]}
 
@@ -318,7 +318,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
         for rel in details | whole:
             receipt_history.verify_publication(root, rel)
 
-    if details or whole:
+    if details or whole or item_effect is not None:
         check_dependencies(before)
     if not payloads:
         return
@@ -348,7 +348,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     os.fsync(writer.fileno())
     try:
         check_receipt_commits()
-        if details or whole:
+        if details or whole or item_effect is not None:
             check_dependencies(before)
         for rel, raw in payloads.items():
             path = root / rel
@@ -357,7 +357,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             replace(path, raw)
         if any(digest((root / rel).read_bytes()) != after[rel] for rel in after):
             raise ValueError('Concurrent edit after feature publication')
-        if details or whole:
+        if details or whole or item_effect is not None:
             check_dependencies({**before, **after})
         check_receipt_commits()
         journal['status'] = 'published'
