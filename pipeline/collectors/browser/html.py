@@ -295,8 +295,15 @@ def inline_product_container(node):
     return node.tag in {'div', 'span'} and all(c is node or c.tag in inline_tags for c in node.walk())
 
 
-def anchored_chrome_unit(node):
-    return node.attrs.get('id') and (node.tag in {'p', 'a'} or inline_product_container(node))
+def anchored_chrome_line(line):
+    # blocks() can also emit an ordinary node's direct text with that node's
+    # own ID. A wrapper around several paragraphs does not own their units.
+    for node, _, text in line:
+        if text.strip() and any(a.attrs.get('id') and
+                                (a is node or a.tag == 'p' or inline_product_container(a))
+                                for a in (node, *node.ancestors())):
+            return True
+    return False
 
 
 def remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_signoffs):
@@ -331,7 +338,7 @@ def remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_sig
     # keeps its own text and identity even when it uses a known byline string.
     plain = {'document', 'p', 'div', 'span', 'b', 'strong', 'i', 'em', 'font', 'u', 'small'}
     publisher_nodes = {a for node, _, part in lines[-1] if part.strip() for a in (node, *node.ancestors())}
-    if any(anchored_chrome_unit(a) or (a.tag not in plain and a.tag != 'a') for a in publisher_nodes):
+    if anchored_chrome_line(lines[-1]) or any(a.tag not in plain and a.tag != 'a' for a in publisher_nodes):
         return
     signature_line = lines[-2]
     signature_nodes = {a for node, _, part in signature_line if part.strip() for a in (node, *node.ancestors())}
@@ -343,10 +350,11 @@ def remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_sig
     # A separate product link owns its normal row. A combined, unanchored
     # signoff + link in the same paragraph stays private pending review.
     shares_block = any(a.tag == 'p' or inline_product_container(a) for a in publisher_nodes & signature_nodes)
-    if not product_link or (shares_block and not any(anchored_chrome_unit(a) for a in signature_nodes)):
+    anchored = anchored_chrome_line(signature_line)
+    if not product_link or (shares_block and not anchored):
         for node, index, _ in lines[-1]:
             node.children[index] = ''
-    if any(anchored_chrome_unit(a) or a.tag not in plain for a in signature_nodes):
+    if anchored or any(a.tag not in plain for a in signature_nodes):
         return
     text = ''.join(part for _, _, part in signature_line).strip()
     confirmed = (hashlib.sha256(text.encode()).hexdigest() in reviewed_signoffs

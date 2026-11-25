@@ -100,6 +100,17 @@ class SignoffTests(unittest.TestCase):
                                                                   '<ul><li id="last">Google Chrome</li></ul>')
         self.assertEqual(['tabs', 'before', 'last'], [r['key'] for r in units(product)])
 
+    def test_standalone_source_ids_at_either_end_of_a_signature_pair(self):
+        for tag in ['strong', 'b', 'em', 'font', 'small', 'u', 'i', 'a', 'code', 'span', 'div', 'p',
+                    'figcaption', 'li', 'pre', 'blockquote', 'dt', 'dd', 'tr']:
+            with self.subTest(tag=tag):
+                for label, markup in [
+                    ('Chrome Release Team', document(f'<{tag} id="source-feature">Chrome Release Team</{tag}>')),
+                    ('Google Chrome', document('<p>Share tabs.</p>').replace('<p>Google Chrome</p>',
+                          f'<{tag} id="source-feature">Google Chrome</{tag}>')),
+                ]:
+                    self.assertIn(('source-feature', label), [(r['key'], r['text']) for r in units(markup)])
+
     def test_daily_cli_keeps_product_identity_and_reopens_changed_unreviewed_tail(self):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
