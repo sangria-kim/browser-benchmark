@@ -5,7 +5,7 @@ import re
 
 from pipeline import daily_status
 from pipeline.run_daily import digest, encoded, git, read, repository_head
-from pipeline.temporal import instant, window_start
+from pipeline.temporal import instant, policy_day, window_start
 
 FOLDER = 'data/browser-status'
 MODES = ('daily', 'weekly_reconcile')
@@ -368,7 +368,7 @@ def validate_tree(root, *, graph=None, base=None, complete_history=False):
         mode = scope['mode']
         if (mode == 'weekly_reconcile' and (base or complete_history) and ref and rel not in tracked
                 and weekly_status.guarded(scope['cutoff'])):
-            weekly_evidence.check_committed(root, ref, scope['start'][:10], instant(scope['cutoff']))
+            weekly_evidence.check_committed(root, ref, policy_day(scope['start']), instant(scope['cutoff']))
         if mode == 'daily' and rel not in tracked:
             day, _ = daily_status.receipt(scope['cutoff'], None, None)
             if day in tracked and json.loads(git(root, 'show', ref + ':' + day))['status'] == 'complete':

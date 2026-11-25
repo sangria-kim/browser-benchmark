@@ -4,7 +4,7 @@ import re
 
 from pipeline import browser_status, weekly_evidence
 from pipeline.run_daily import git, read, repository_head
-from pipeline.temporal import instant
+from pipeline.temporal import instant, policy_day
 
 FOLDER = 'data/weekly-status'
 FIRST_GUARDED_CUTOFF = '2026-11-29T10:00:00+09:00'
@@ -91,7 +91,7 @@ def check_prior_evidence(root, scope, graph, replacements):
     """Check persisted rows in the proposed graph, restoring old rows for replaced files."""
     from pipeline.normalize.storage import PATHS, records
     cutoff = instant(scope['cutoff'])
-    since = scope['start'][:10]
+    since = policy_day(scope['start'])
 
     moved = False
 

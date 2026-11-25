@@ -757,6 +757,15 @@ class WindowTests(unittest.TestCase):
             runpy.run_path(str(entry), run_name='__main__')
             target = self.repo / weekly_status.path(cutoff)
             altered = read(target)
+            altered['scope']['start'] = '2025-12-31T10:00:00-05:00'
+            target.write_bytes(encoded(browser_status.seal(altered)))
+            runpy.run_path(str(entry), run_name='__main__')
+            run_daily.commit_candidate(self.repo)
+            runpy.run_path(str(entry), run_name='__main__')
+            git(self.repo, 'switch', '-qc', 'different-start', base)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            entry.parent.mkdir(exist_ok=True)
+            shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
             altered['scope']['start'] = '2026-12-04T00:00:00+09:00'
             target.write_bytes(encoded(browser_status.seal(altered)))
             with self.assertRaisesRegex(ValueError, 'full registered history'):
@@ -1465,17 +1474,29 @@ class WindowTests(unittest.TestCase):
             save = (['--save-browser', 'firefox'] if scoped else []) + ['--save-features', str(pm)]
             with self.assertRaisesRegex(ValueError, 'original publication'):
                 self.cli(name, cutoff=None, extra=save)
-            # Create a correctly sealed but historically false proposal to test the
-            # independent CI boundary, both before and after a Git commit.
+            rel = browser_status.detail_path('weekly_reconcile', cutoff) if scoped else weekly_status.path(cutoff)
+            # The same policy midnight is still the previous printed day in UTC.
+            def alternate_start(root, txn, changes, before, writer):
+                marker = changes[rel]
+                marker['scope'] = dict(marker['scope'], start='2025-12-31T15:00:00+00:00')
+                changes[rel] = browser_status.seal(marker)
+                return run_daily.store_changes(root, txn, changes, before, writer)
+            with patch.object(collect, 'store_changes', alternate_start):
+                with self.assertRaisesRegex(ValueError, 'original publication'):
+                    self.cli(name, cutoff=None, extra=save)
+            self.assertFalse((self.repo / rel).exists())
+            # Manufacture the false zero to check CI independently of the writer.
             with patch('pipeline.weekly_evidence.check_committed'):
                 self.cli(name, cutoff=None, extra=save)
+            marker = read(self.repo / rel)
+            marker['scope']['start'] = '2025-12-31T15:00:00+00:00'
+            (self.repo / rel).write_bytes(encoded(browser_status.seal(marker)))
             with self.assertRaisesRegex(ValueError, 'original publication'):
                 validate_tree(self.repo, base=old)
             proposed = run_daily.commit_candidate(self.repo)
             for ref in (base, moved, proposed):
                 with self.assertRaisesRegex(ValueError, 'original publication'):
                     validate_tree(self.repo, base=ref)
-            rel = browser_status.detail_path('weekly_reconcile', cutoff) if scoped else weekly_status.path(cutoff)
             (self.repo / rel).unlink()
             run_daily.commit_candidate(self.repo)
             validate_tree(self.repo, base=proposed)

@@ -16,6 +16,11 @@ def instant(value):
 SEOUL = ZoneInfo('Asia/Seoul')
 
 
+def policy_day(value):
+    """Return the public policy date of an instant, regardless of its written offset."""
+    return instant(value).astimezone(SEOUL).date().isoformat()
+
+
 def window_start(mode, cutoff, policy_since, window_days, manual_since=None):
     """Freeze an inclusive private instant; public scopes keep their calendar-day contract."""
     end = instant(cutoff).astimezone(SEOUL)

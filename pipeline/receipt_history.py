@@ -5,7 +5,7 @@ import json
 import subprocess
 
 from pipeline import browser_status, daily_status, weekly_status, weekly_evidence
-from pipeline.temporal import instant
+from pipeline.temporal import instant, policy_day
 from pipeline.run_daily import git, repository_head
 
 FOLDERS = (daily_status.FOLDER, weekly_status.FOLDER, browser_status.FOLDER)
@@ -180,7 +180,7 @@ def prior_deleted_aliases(root, restored, parent, ancestry):
 
 def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_parents, inherited):
     oid = git(root, 'rev-parse', commit + ':' + rel).encode()
-    since, cutoff = scope['start'][:10], instant(scope['cutoff'])
+    since, cutoff = policy_day(scope['start']), instant(scope['cutoff'])
     pending = [(commit, None)]
     seen = set()
     while pending:

@@ -16,7 +16,7 @@ from pipeline.deduplicate import feature_identity
 from pipeline.daily_status import add_receipt, classified_decisions, read_current as current_daily_receipt, receipt, scheduled_cutoff
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, predates_browser_pins, publication_commits, read, require_external, run_lock, store_changes
-from pipeline.temporal import instant, window_start
+from pipeline.temporal import instant, policy_day, window_start
 from schemas.validate import load_config, validate_record, validate_transition
 
 
@@ -199,7 +199,7 @@ def collect_one(collector, source, state, private):
             raise ValueError('Linked ChromeStatus comparison file')
         initial = read(baseline) if baseline.exists() else {}
         collector.chrome_status_baselines = dict(initial)
-    result = collector.collect(source, state['cutoff'], state['start'][:10], state['origin'])
+    result = collector.collect(source, state['cutoff'], policy_day(state['start']), state['origin'])
     if (source['source_id'] == 'chrome-platform-status' and result['status'] == 'complete'
             and collector.chrome_status_baselines != initial):
         durable(baseline, encoded(collector.chrome_status_baselines))
