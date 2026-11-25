@@ -602,6 +602,28 @@ def blocks(body, *, visible_sections=False, window_anchors=False):
             following = next((v for v in siblings[siblings.index(n)+1:] if isinstance(v, Node)), None)
             if following and following.tag == 'dd':
                 suppressed.add(id(following))
+
+    def fragment_targets(node, *, descendants=False):
+        if node.tag in SKIP or id(node) in suppressed:
+            return
+        if node.attrs.get('id'):
+            yield node.attrs['id']
+        if node.tag == 'a' and node.attrs.get('name'):
+            yield node.attrs['name']
+        if descendants:
+            for child in node.children:
+                if isinstance(child, Node):
+                    yield from fragment_targets(child, descendants=True)
+
+    def unit_targets(node, ancestors, *, descendants):
+        # A surrounding container owns each of its units; their combined
+        # dates determine whether the container has an unambiguous window.
+        targets = [target for level in anchor_headings.values() for target in level]
+        for ancestor in ancestors:
+            targets.extend(fragment_targets(ancestor))
+        targets.extend(fragment_targets(node, descendants=descendants))
+        return list(dict.fromkeys(targets))
+
     covered = set(suppressed)
     for n in body.walk():
         within = []
@@ -633,8 +655,7 @@ def blocks(body, *, visible_sections=False, window_anchors=False):
                     visible_headings[level] = text
             if window_anchors:
                 anchor_headings = {k: v for k, v in anchor_headings.items() if k < level}
-                if n.attrs.get('id'):
-                    anchor_headings[level] = n.attrs['id']
+                anchor_headings[level] = tuple(fragment_targets(n, descendants=True))
             headings[level] = n.attrs.get('id') or text or section
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
@@ -651,7 +672,7 @@ def blocks(body, *, visible_sections=False, window_anchors=False):
             result.append({'key': key, 'text': text, 'section': section, 'parsed': bool(text),
                            'date': heading_dates[max(heading_dates)] if heading_dates else None})
             if window_anchors:
-                result[-1]['window_anchors'] = [v for v in [*anchor_headings.values(), n.attrs.get('id')] if v]
+                result[-1]['window_anchors'] = unit_targets(n, within, descendants=True)
             if visible_sections:
                 result[-1]['visible_headings'] = list(visible_headings.values())
             covered.add(id(n))
@@ -666,7 +687,7 @@ def blocks(body, *, visible_sections=False, window_anchors=False):
                                'text': direct if ordinary else '', 'section': section, 'parsed': ordinary,
                                'date': heading_dates[max(heading_dates)] if heading_dates else None})
                 if window_anchors:
-                    result[-1]['window_anchors'] = [v for v in [*anchor_headings.values(), n.attrs.get('id')] if v]
+                    result[-1]['window_anchors'] = unit_targets(n, within, descendants=False)
                 if visible_sections:
                     result[-1]['visible_headings'] = list(visible_headings.values())
     return unique_unit_keys(result)

@@ -619,6 +619,75 @@ class WindowTests(unittest.TestCase):
         self.publish_browser('mixed', 'edge', choices)
         self.assertEqual(1, len(read(self.repo / collect.FEATURE_CATALOG)))
 
+    def test_nested_release_fragments_use_the_owning_unit_and_section(self):
+        self.configure_small_registry()
+        sid = 'edge-beta'
+        url = self.sources[sid]['url']
+        self.payloads[url] = (
+            '<div class="content" id="both"><section id="future-section">'
+            '<h2 id="future-release"><a name="future-heading"></a><span id="future-date">November 28, 2026</span></h2>'
+            '<p id="future-block"><span id="share"><a name="share-legacy" href="#href-only">Share tab groups.</a></span></p></section>'
+            '<section id="current-section"><h2 id="current-release">November 20, 2026</h2>'
+            '<p id="save"><span id="save-detail">Save tab groups.</span></p></section>'
+            '<section><h2>April 1, 2026</h2><p><span id="mute">Mute tabs on Windows.</span></p></section></div>')
+        self.item('manual', dict(browser='edge', source_id=sid, url=url + '#mute', canonical_key='mute', title='Mute tabs'),
+                  standalone=True)
+        self.cli('nested', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        present, = self.candidates('nested', sid)
+        self.assertEqual('save', present['item_key'])
+        bounds = read(self.folder / 'runs/nested/work/windows/edge-beta.json')
+        future = ('future-section', 'future-release', 'future-heading', 'future-date', 'future-block', 'share', 'share-legacy')
+        req = dict(browser='edge', source_id=sid, canonical_key='save-tabs', title='Save tab groups')
+        for fragment in future:
+            with self.subTest(fragment=fragment):
+                self.assertEqual('after_cutoff', bounds.get(url + '#' + fragment))
+                with self.assertRaisesRegex(ValueError, 'window'):
+                    self.item('nested', dict(req, url=url + '#' + fragment))
+        for fragment in ('both', 'current-release', 'current-section', 'save', 'save-detail', 'href-only'):
+            self.assertNotIn(url + '#' + fragment, bounds)
+        self.assertNotIn(url, bounds)
+        self.assertEqual('before_period', bounds.get(url + '#mute'))
+        review, = read(self.folder / 'runs/nested/work/enrichment/edge-beta.json')
+        candidate = review['candidate']
+        self.assertEqual('Mute tabs on Windows.', candidate['classification_text'])
+        self.item('nested', dict(browser='edge', source_id=sid, feature_id=review['feature_id'],
+                                 source_item_id=candidate['source_item_id'], revision_id=candidate['revisions'][-1]['revision_id'],
+                                 facts={'platform': ['Windows']}))
+        self.item('nested', dict(req, url=url + '#save-detail'))
+        self.item('nested', dict(req, source_item_id=present['source_item_id'], revision_id=present['revisions'][-1]['revision_id']))
+        for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
+            choices = self.browser_choices('nested', browser, select=(browser == 'edge'))
+            choices['decisions'] = []
+            self.publish_browser('nested', browser, choices)
+        day = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('complete', 2, 1), tuple(day[k] for k in ('status', 'collected_feature_count', 'change_count')))
+        self.payloads[url] = '<div class="content"><p><span id="unknown">An undated update.</span></p></div>'
+        self.cli('undated', [sid], cutoff='2026-11-25T07:00:00+09:00')
+        self.assertNotIn(url + '#unknown', read(self.folder / 'runs/undated/work/windows/edge-beta.json'))
+        self.item('manual', dict(req, url=url + '#unknown', canonical_key='independent', title='Independent feature'), standalone=True)
+
+    def test_survey_cannot_finalize_nested_future_anchor_saved_before_source_returns(self):
+        self.configure_small_registry()
+        sid = 'edge-beta'
+        url = self.sources[sid]['url']
+        req = dict(browser='edge', source_id=sid, canonical_key='share-tabs', title='Share tab groups', url=url + '#share')
+        request = self.request
+        def fetch(address):
+            if address == url:
+                self.item('held', req)
+            return request(address)
+        self.payloads[url] = ('<div class="content"><h2>November 28, 2026</h2><p><span id="share">Share tab groups.</span></p>'
+                              '<h2>November 20, 2026</h2><p id="save">Save tab groups.</p></div>')
+        with patch.object(self, 'request', fetch):
+            self.cli('held', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
+            if browser != 'edge':
+                self.publish_browser('held', browser, self.browser_choices('held', browser, select=False))
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('held', 'edge', self.browser_choices('held', 'edge', select=False))
+        day = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('incomplete', None, None), tuple(day[k] for k in ('status', 'collected_feature_count', 'change_count')))
+
     def test_fresh_survey_cannot_finalize_a_reference_now_known_after_cutoff(self):
         self.configure_small_registry()
         sid = 'chrome-releases'
