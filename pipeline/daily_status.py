@@ -173,4 +173,4 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base-commit', help='Previous push or PR base to check collection receipt immutability')
     base = parser.parse_args().base_commit
-    validate_tree(Path(__file__).resolve().parents[1], base=base, complete_history=not base)
+    validate_tree(Path(__file__).resolve().parents[1], base=base, complete_history=True)

@@ -129,12 +129,11 @@ def verify_commits(root, head, base, paths, shallow, complete_history):
         reviewed = {child for child, _ in batch}
         if reviewed & shallow:
             raise ValueError('Incomplete receipt ancestry; fetch full history')
-        groups = changed_groups(root, batch, FOLDERS) if batch else {}
-        if not groups:
+        if not reviewed and shallow and not complete_history:
+            # A local shallow data checkout can validate its working tree against HEAD.
             return
-        # A push base may itself contain a bad proposal. Rebuild the original
-        # authority for affected cutoffs, so a normal corrective commit can pass.
-        paths = tuple(path for pair in groups for path in pair)
+    # CI checks all receipt paths even when this push changes none of them.
+    # Local writers pass only the two paths that belong to their cutoff.
     commits = walk()
     if (base or complete_history) and any(child in shallow for child, _ in commits):
         raise ValueError('Incomplete receipt ancestry; fetch full history')

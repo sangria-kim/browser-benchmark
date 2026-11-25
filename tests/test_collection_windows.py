@@ -458,6 +458,11 @@ class WindowTests(unittest.TestCase):
             for ref in (accepted, initial):
                 with self.subTest(committed_change=raw, ref=ref), self.assertRaises(ValueError):
                     validate_tree(self.repo, base=ref)
+            # A following push can touch only unrelated files while the damage remains.
+            (self.repo / 'unrelated.txt').write_text('A later change')
+            run_daily.commit_candidate(self.repo)
+            with self.assertRaises(ValueError):
+                validate_tree(self.repo, base=rejected)
             name = f'after-damage-{index}'
             self.cli(name, cutoff=STATUS_CUTOFF, extra=['--daily-status'])
             with self.assertRaises(ValueError):
