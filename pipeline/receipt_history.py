@@ -146,16 +146,37 @@ def data_roots(root, commit):
     return {name: entry for name, entry in direct_git_children(root, commit).items() if name.casefold() == 'data'}
 
 
-def prior_deleted_aliases(root, restored, parent, ancestry):
-    """Prove the entire restored Git tree was deleted, on every side of the gap."""
-    # A normal repair commit restores a single base. Merges still have to
-    # satisfy the existing checks separately on every branch being combined.
+def sole_added_file(root, before, after):
+    """Return the Git path, mode and blob if the only change is one new regular file."""
+    diff = subprocess.check_output(['git', '-C', str(root), 'diff-tree', '-r', '-z', '--raw', '--no-renames', '--abbrev=64',
+                                    before[2], after[2]])
+    fields = diff.split(b'\0')
+    if len(fields) != 3 or fields[-1]:
+        return None
+    old_mode, mode, _, oid, status = fields[0].split()
+    if old_mode != b':000000' or status != b'A' or mode not in (b'100644', b'100755'):
+        return None
+    return fields[1], mode, oid
+
+
+def prior_deleted_aliases(root, restored, parent, ancestry, rel, oid):
+    """Prove either a deleted data root or a deleted receipt with the remaining tree intact."""
     if len(ancestry[restored]) != 1:
         return set()
     destination = data_roots(root, restored)
-    if set(destination) != {'data'} or destination['data'][1] != b'tree' or data_roots(root, parent):
+    if set(destination) != {'data'} or destination['data'][1] != b'tree':
         return set()
     expected = destination['data']
+    gap = data_roots(root, parent)
+    remaining = next(iter(gap.values()), None)
+    if len(gap) > 1 or (remaining and remaining[1] != b'tree'):
+        return set()
+    added = None
+    if remaining:
+        added = sole_added_file(root, remaining, expected)
+        if not added or added[0] != rel.removeprefix('data/').encode() or added[2] != oid:
+            return set()
+
     sources = set()
     pending = [parent]
     visited = set()
@@ -165,16 +186,30 @@ def prior_deleted_aliases(root, restored, parent, ancestry):
             continue
         visited.add(revision)
         entries = data_roots(root, revision)
-        if entries:
-            # A remaining file, a competing root or a different proposal breaks
-            # provenance. The tree ID includes all paths, modes and blob bytes.
-            if len(entries) != 1 or 'data' in entries or next(iter(entries.values())) != expected:
+        if len(entries) <= 1 and next(iter(entries.values()), None) == remaining:
+            if not ancestry[revision]:
                 return set()
-            sources.add(revision)
-        elif ancestry[revision]:
             pending.extend(ancestry[revision])
-        else:
+            continue
+        if len(entries) != 1:
             return set()
+        folder, original = next(iter(entries.items()))
+        if original[1] != b'tree':
+            return set()
+        if added is None:
+            if folder == 'data' or original != expected:
+                return set()
+        else:
+            # From the same unchanged tree, each endpoint must add exactly the
+            # same blob and mode. Only the receipt's spelling can differ.
+            alias = sole_added_file(root, remaining, original)
+            if not alias or alias[1:] != added[1:]:
+                return set()
+            path = folder.encode() + b'/' + alias[0]
+            canonical = rel.encode()
+            if path == canonical or path.lower() not in (canonical.lower(), canonical.lower() + b'.bak'):
+                return set()
+        sources.add((revision, original))
     return sources
 
 
@@ -208,12 +243,11 @@ def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_
                     weekly_evidence.check_committed(root, parent, since, cutoff)
                 except weekly_evidence.ExistingWeeklyEvidence:
                     # A rare corrective commit can restore the very same proposal
-                    # after a complete deletion. Prove the gap before using its source.
-                    sources = prior_deleted_aliases(root, child, parent, ancestry)
+                    # after deletion. Prove every parent path before using its source.
+                    sources = prior_deleted_aliases(root, child, parent, ancestry, rel, oid)
                     if not sources:
                         raise
-                    tree = data_roots(root, child)['data']
-                    pending.extend((source, tree) for source in sources)
+                    pending.extend(sources)
                     continuing = True
         if not continuing and (child != commit or not inherited):
             browser_status.check_registry(root, scope, facts=registry(child, scope['mode']))

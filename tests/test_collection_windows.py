@@ -1102,7 +1102,7 @@ class WindowTests(unittest.TestCase):
 
         # The same marker with different evidence bytes is a different proposal.
         source = self.repo / 'data/source-items/firefox/firefox-beta.json'
-        source.write_bytes(source.read_bytes() + b'\\n')
+        source.write_bytes(source.read_bytes() + b'\n')
         git(self.repo, 'add', '--', str(source))
         different = commit_tree(git(self.repo, 'write-tree'), deleted)
         git(self.repo, 'switch', '-q', '--detach', different)
@@ -1118,6 +1118,79 @@ class WindowTests(unittest.TestCase):
         for ref in (base, removed, merged):
             with self.assertRaisesRegex(ValueError, 'original publication'):
                 validate_tree(self.repo, base=ref)
+
+    def test_restore_deleted_weekly_backup_with_unchanged_evidence(self):
+        self.configure_small_registry()
+        template = self.repo
+        entry = template / 'pipeline/daily_status.py'
+        entry.parent.mkdir()
+        shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
+        base = run_daily.commit_candidate(template)
+        week = weekly_status.FIRST_GUARDED_CUTOFF
+        for scoped in (False, True):
+            run = f'backup-{scoped}'
+            self.repo = self.folder / run
+            shutil.copytree(template, self.repo)
+            self.cli(run, cutoff=week, mode='weekly_reconcile')
+            pm = self.folder / (run + '.json')
+            pm.write_bytes(encoded(self.browser_choices(run, 'firefox') if scoped else self.decisions(run)))
+            save = ['--save-features', str(pm)] + (['--save-browser', 'firefox'] if scoped else [])
+            self.cli(run, cutoff=None, extra=save)
+            rel = browser_status.detail_path('weekly_reconcile', week) if scoped else weekly_status.path(week)
+            marker = self.repo / rel
+            original = marker.read_bytes()
+            backup = marker.with_suffix('.json.bak')
+            marker.rename(backup)
+            first = run_daily.commit_candidate(self.repo)
+            backup.unlink()
+            gap = run_daily.commit_candidate(self.repo)
+            (self.repo / 'unrelated.txt').write_text('ordinary commit')
+            if not scoped:
+                registry = self.repo / 'config/sources.yml'
+                config = read(registry)
+                config['baseline']['daily_window_days'] = 4
+                registry.write_bytes(encoded(config))
+            stable = run_daily.commit_candidate(self.repo)
+            marker.write_bytes(original)
+            run_daily.commit_candidate(self.repo)
+            entry = self.repo / 'pipeline/daily_status.py'
+            for ref in (base, first, gap, stable):
+                with patch('sys.argv', [str(entry), '--base-commit', ref]):
+                    runpy.run_path(str(entry), run_name='__main__')
+            if scoped:
+                self.cli('remaining', cutoff=week, mode='weekly_reconcile')
+                self.publish_browser('remaining', 'edge', self.browser_choices('remaining', 'edge', select=False))
+                self.assertEqual(1, read(marker)['browsers']['firefox']['collected_feature_count'])
+                run_daily.commit_candidate(self.repo)
+            else:
+                self.cli(run, cutoff=None, extra=save)
+
+            # A reappearing identical marker cannot cover a side branch on which
+            # evidence changed during the gap, even if the final bytes match.
+            git(self.repo, 'switch', '-qc', 'changed-evidence', gap)
+            source = self.repo / 'data/source-items/firefox/firefox-beta.json'
+            content = source.read_bytes()
+            source.write_bytes(content + bytes([10]))
+            run_daily.commit_candidate(self.repo)
+            source.write_bytes(content)
+            changed_side = run_daily.commit_candidate(self.repo)
+            git(self.repo, 'switch', '-qc', 'mixed-gap', stable)
+            git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=t@example.invalid', 'merge', '-q',
+                '--no-ff', '-m', 'Join gap histories', changed_side)
+            marker.parent.mkdir(exist_ok=True, parents=True)
+            marker.write_bytes(original)
+            run_daily.commit_candidate(self.repo)
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=gap)
+
+            git(self.repo, 'switch', '-qc', 'changed-mode', stable)
+            marker.parent.mkdir(exist_ok=True, parents=True)
+            marker.write_bytes(original)
+            git(self.repo, 'add', '--chmod=+x', '--', rel)
+            git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=t@example.invalid',
+                'commit', '-qm', 'Different receipt mode')
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=stable)
 
     def test_invalid_first_daily_blob_cannot_claim_the_cutoff(self):
         self.configure_small_registry()
