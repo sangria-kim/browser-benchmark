@@ -312,6 +312,12 @@ def browser_baseline(root, work, state, pin):
     return scope, baseline
 
 
+def include_baseline(before, baseline):
+    if any(rel not in baseline or baseline[rel] != checksum for rel, checksum in before.items()):
+        raise ValueError('Publication inputs changed since collection; use a fresh collection')
+    before.update(baseline)
+
+
 def check_status_inputs(root, state):
     pinned = state['daily_status']
     enabled, _ = registered_sources(root, None, mode=state['mode'])
@@ -418,6 +424,11 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
                     raise ValueError('Strict scheduled save requires every pinned source checkpoint')
             inventory = candidate_inventory(work, state, sources, checkpointed=pin is not None)
             decisions = classified_decisions(decisions, inventory)
+        counted_weekly = weekly and weekly_status.guarded(state['cutoff'])
+        if counted_weekly:
+            if pin is None:
+                raise ValueError('A counted weekly result needs the original evidence baseline; use a fresh collection')
+            _, weekly_baseline = browser_baseline(root, work, state, pin)
         changes, before, changed_features, collected_features, _ = classified_delta(
             root, work, state, sources, decisions, daily_status=daily_status)
         if daily_status:
@@ -427,9 +438,14 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
             rel = weekly_status.path(scope['cutoff'])
             changes[rel] = weekly_status.receipt(scope, signature, collected_features)
             state['weekly_publication'] = changes[rel]['checksum']
+            if counted_weekly:
+                include_baseline(before, weekly_baseline)
+                code, base = state['code_commit'], state['base_commit']
+            else:
+                # Historical full saves keep their transition checks and publish null totals.
+                code, base = publication_commits(root)
             before.update({rel: None, 'config/sources.yml': state['registry'],
                            browser_status.detail_path('weekly_reconcile', scope['cutoff']): None})
-            code, base = publication_commits(root)
             durable(txn / 'scope.json', encoded(dict(code_commit=code, base_commit=base)))
         state.update(status='saving', decisions=signature, saved_items=len(decisions))
         durable(state_path, encoded(state))
@@ -515,9 +531,7 @@ def save_browser(root, work, state, browser, classification, writer):
         return len(decisions)
     changes, before, changed, collected, effects = classified_delta(root, work, state, sources, decisions,
                                                                    daily_status=True, browser=browser)
-    if any(rel not in baseline or baseline[rel] != checksum for rel, checksum in before.items()):
-        raise ValueError('Browser inputs changed since collection')
-    before.update(baseline)
+    include_baseline(before, baseline)
     detail['browsers'][browser] = dict(status='complete', classification=signature, effects=effects,
                                        change_count=len(changed), collected_feature_count=len(collected))
     changes[rel] = browser_status.seal(detail)

@@ -430,6 +430,104 @@ class WindowTests(unittest.TestCase):
             total = read(self.repo / rel)['browsers']['firefox']['collected_feature_count']
             self.fail(f'Fresh scoped save accepted {total} Firefox features after whole weekly saved one')
 
+    def test_stale_weekly_zero_cannot_freeze_a_new_restore_candidate(self):
+        self.configure_small_registry()
+        template = self.repo
+        sid = 'firefox-beta'
+        url = self.sources[sid]['url']
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        for case in ('committed', 'uncommitted', 'data-only'):
+            with self.subTest(case=case):
+                self.repo = self.folder / case
+                shutil.copytree(template, self.repo)
+                seed, waiting, interim, fresh = (case + suffix for suffix in ('-seed', '-old', '-interim', '-new'))
+                self.cli(seed, [sid], cutoff='2026-11-27T10:00:00+09:00', mode='manual')
+                self.save(seed, self.classified(seed, sid))
+                if case != 'data-only':
+                    run_daily.commit_candidate(self.repo)
+                self.cli(waiting, cutoff=cutoff, mode='weekly_reconcile')
+                self.assertEqual([], self.candidates(waiting, sid))
+                pm = self.folder / (case + '-whole.json')
+                pm.write_bytes(encoded(self.decisions(waiting)))
+                with patch.dict(self.payloads, {url: self.payloads[url].replace('Tab grouping added.', 'Tab sorting added.')}):
+                    self.cli(interim, [sid], cutoff='2026-11-28T10:00:00+09:00', mode='manual')
+                    self.save(interim, self.classified(interim, sid))
+                if case == 'committed':
+                    run_daily.commit_candidate(self.repo)
+                self.cli(fresh, cutoff=cutoff, mode='weekly_reconcile')
+                restored, = self.candidates(fresh, sid)
+                self.assertEqual('Tab grouping added.', restored['evidence']['excerpt'])
+                original = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+                with self.assertRaises(ValueError):
+                    self.cli(waiting, cutoff=None, extra=['--save-features', str(pm)])
+                self.assertEqual(original, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+                pm.write_bytes(encoded(self.decisions(fresh)))
+                self.cli(fresh, cutoff=None, extra=['--save-features', str(pm)])
+                self.assertEqual(1, read(self.repo / weekly_status.path(cutoff))['collected_feature_count'])
+
+    def test_weekly_writer_rechecks_an_unchanged_source_immediately_before_publish(self):
+        self.configure_small_registry()
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        self.cli('pending', cutoff=cutoff, mode='weekly_reconcile')
+        pm = self.folder / 'pending.json'
+        pm.write_bytes(encoded(self.decisions('pending')))
+        original = run_daily.store_changes
+        source = self.repo / 'data/source-items/edge/edge-beta.json'
+
+        def concurrent(root, txn, changes, before, writer):
+            self.assertNotIn('data/source-items/edge/edge-beta.json', changes)
+            source.parent.mkdir(parents=True, exist_ok=True)
+            source.write_bytes(b'[]')
+            return original(root, txn, changes, before, writer)
+
+        with patch.object(collect, 'store_changes', concurrent), self.assertRaisesRegex(ValueError, 'Concurrent edit'):
+            self.cli('pending', cutoff=None, extra=['--save-features', str(pm)])
+        self.assertEqual(b'[]', source.read_bytes())
+        self.assertFalse((self.repo / weekly_status.path(cutoff)).exists())
+        self.assertFalse((self.repo / collect.FEATURE_CATALOG).exists())
+
+    def test_guarded_weekly_requires_input_baseline_from_its_producer(self):
+        self.configure_small_registry()
+        code = self.folder / 'previous-code'
+        (code / 'pipeline').mkdir(parents=True)
+        (code / 'pipeline/collect.py').write_text('# Old collector without evidence pins')
+        run_daily.commit_candidate(code)
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        with patch.object(run_daily, 'CODE_REPOSITORY', code):
+            self.cli('legacy-week', cutoff=cutoff, mode='weekly_reconcile')
+            run = self.folder / 'runs/legacy-week'
+            state_path, work = run / 'feature-run.json', run / 'work'
+            state = read(state_path)
+            state.pop('browser_pin')
+            state_path.write_bytes(encoded(state))
+            (work / '.owner').write_text(state['workspace_id'])
+            (work / 'browser-pin.json').unlink()
+            shutil.rmtree(work / 'checkpoints')
+            pm = run / 'pm.json'
+            pm.write_bytes(encoded(self.decisions('legacy-week')))
+            with self.assertRaisesRegex(ValueError, 'original evidence baseline'):
+                self.cli('legacy-week', cutoff=None, extra=['--save-features', str(pm)])
+        self.assertFalse((self.repo / 'data').exists())
+
+    def test_ci_checks_both_full_weekly_history_starts(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        for name, cutoff in [('first', weekly_status.FIRST_GUARDED_CUTOFF), ('second', '2026-12-06T10:00:00+09:00')]:
+            self.cli(name, cutoff=cutoff, mode='weekly_reconcile')
+            self.save(name, self.decisions(name))
+        # Execute the CI entry point against this fixture checkout.
+        entry = self.repo / 'pipeline/daily_status.py'
+        entry.parent.mkdir()
+        shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
+        with patch('sys.argv', [str(entry), '--base-commit', base]):
+            runpy.run_path(str(entry), run_name='__main__')
+            target = self.repo / weekly_status.path(cutoff)
+            altered = read(target)
+            altered['scope']['start'] = '2026-12-04T00:00:00+09:00'
+            target.write_bytes(encoded(browser_status.seal(altered)))
+            with self.assertRaisesRegex(ValueError, 'full registered history'):
+                runpy.run_path(str(entry), run_name='__main__')
+
     def test_full_weekly_zero_is_atomic_and_same_run_recovery_is_idempotent(self):
         self.configure_small_registry()
         cutoff = weekly_status.FIRST_GUARDED_CUTOFF

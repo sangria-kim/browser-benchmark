@@ -131,20 +131,24 @@ def read_current(root, rel):
     return value
 
 
-def check_registry(root, scope, *, historical=False):
+def registry_facts(root, mode):
     from pipeline.collect import registered_sources
-    registry = root / 'config/sources.yml'
-    if digest(registry.read_bytes()) != scope['registry']:
+    sources, since = registered_sources(root, None, mode=mode)
+    groups = {}
+    for source in sources:
+        groups.setdefault(source['browser'], []).append(source['source_id'])
+    return digest((root / 'config/sources.yml').read_bytes()), since, {k: sorted(v) for k, v in groups.items()}
+
+
+def check_registry(root, scope, *, historical=False, facts=None):
+    fingerprint, since, expected = facts if facts is not None else registry_facts(root, scope['mode'])
+    if fingerprint != scope['registry']:
         if historical:
             return
         raise ValueError('Browser scope does not match the current registry fingerprint')
-    sources, since = registered_sources(root, None, mode=scope['mode'])
     if scope['mode'] == 'weekly_reconcile' and instant(scope['start']) != instant(since + 'T00:00:00+09:00'):
         raise ValueError('Weekly result requires the full registered history')
-    expected = {}
-    for source in sources:
-        expected.setdefault(source['browser'], []).append(source['source_id'])
-    if {name: sorted(ids) for name, ids in expected.items()} != scope['expected']:
+    if expected != scope['expected']:
         raise ValueError('Browser scope does not match the pinned registry')
 
 
@@ -310,7 +314,7 @@ def validate_tree(root, *, graph=None, base=None):
         return
 
     index = effect_index(graph if graph is not None else load_dataset(root))
-    checked_scopes = set()
+    facts_by_mode = {}
     for rel in sorted(paths):
         detail = read(safe_path(root, rel))
         whole = weekly_status.is_receipt(rel)
@@ -333,10 +337,10 @@ def validate_tree(root, *, graph=None, base=None):
             transition(previous, detail)
             historical = previous == detail
         scope = detail['scope']
-        key = (scope['mode'], scope['registry'], value_hash(scope['expected']), historical)
-        if key not in checked_scopes:
-            check_registry(root, scope, historical=historical)
-            checked_scopes.add(key)
+        mode = scope['mode']
+        if mode not in facts_by_mode:
+            facts_by_mode[mode] = registry_facts(root, mode)
+        check_registry(root, scope, historical=historical, facts=facts_by_mode[mode])
         if not whole:
             check_aggregate(root, detail, {})
             check_effects(detail, index)
