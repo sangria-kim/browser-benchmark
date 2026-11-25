@@ -201,6 +201,8 @@ class BrowserCollector:
     def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None, *, write_records=True):
         self.write_records = write_records
         self.collection_mode = None
+        self.fact_index = self.fact_review = None
+        self.enrichment_blocked = False
         self.policy_since = self.window_start = self.checkpoint_context = self.attempt_seconds = None
         self.deadline = None
         self.repository = Path(repository).resolve()
@@ -218,7 +220,7 @@ class BrowserCollector:
             if not re.fullmatch('[0-9a-f]{64}', content_hash) or not isinstance(attributions, list) or not all(isinstance(value, str) and re.fullmatch('[0-9a-f]{64}', value) for value in attributions):
                 raise ValueError('Invalid content-bound attribution review')
 
-    def collect(self, source, cutoff, since, origin='baseline'):
+    def collect(self, source, cutoff, since, origin='baseline', *, review_only=False):
         self.source, self.cutoff, self.since, self.origin = source, cutoff, since, origin
         self.observed_at = datetime.now(timezone.utc).isoformat()
         self.progress_path = self.private_dir / (source['source_id'] + '-progress.json')
@@ -254,7 +256,11 @@ class BrowserCollector:
         self.cache = {}
         self.replayed_pages = []
         self.state_path = state_path
+        if self.fact_index is not None:
+            self.fact_review = self.fact_index.source(self, self.previous)
         self.github_prior_formats = {}
+        if review_only:
+            return
         if self.window_start and source['parser'] == 'github_releases':
             for prior in self.previous:
                 key = prior['item_key']
@@ -324,6 +330,8 @@ class BrowserCollector:
 
     def problem(self, url, error):
         self.state['errors'].append({'url': url, 'reason': error})
+        if re.search(r'HTTP Error|HTTP status|retry.after|timeout|time budget|limit reached|publisher refused', error, re.I):
+            self.enrichment_blocked = True
 
     def write_progress(self):
         if self.checkpoint_context:
@@ -348,7 +356,7 @@ class BrowserCollector:
                 self.replayed_pages.clear()
         return self.get(url)
 
-    def get(self, url, refresh=False):
+    def get(self, url, refresh=False, *, direct=False):
         self.check_time()
         if url in self.cache and not refresh:
             return self.cache[url]
@@ -362,11 +370,18 @@ class BrowserCollector:
             response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
+        if self.fact_review is not None and self.fact_review.wait:
+            raise ValueError('Publisher requested retry after ' + self.fact_review.wait)
         if self.source['source_id'] == 'safari-technology-preview':
-            response = safari_request(self, url, before_send=self.check_time)
+            options = {'direct': True} if direct and hasattr(self.transport, 'get_once') else {}
+            response = safari_request(self, url, before_send=self.check_time, **options)
+        elif direct and hasattr(self.transport, 'get_once'):
+            response = self.transport.get_once(url, self.check_time, direct=True)
         else:
             response = self.transport(url)
         if response.status != 200:
+            if direct:
+                raise HTTPError(url, response.status, 'Publisher refused reinspection', response.headers, None)
             raise ValueError('Unexpected HTTP status %s' % response.status)
         if not response.body:
             raise ValueError('Empty response')
@@ -465,6 +480,8 @@ class BrowserCollector:
             self.state['duplicate'] += 1
             return
         self.seen[ident] = fingerprint
+        if self.fact_review is not None:
+            self.fact_review.observe(url, response, unit, title)
         parsed = unit['parsed']
         self.state['processed' if parsed else 'unparsed'] += 1
         content_hash = digest(response.body)
@@ -1004,7 +1021,12 @@ class BrowserCollector:
                 # Do not copy raw API metadata: it includes personal owner emails.
                 revision = row.get('updated', {}).get('when')
                 created = chromestatus_date(row.get('created', {}).get('when') or '')
-                if self.window_start and not self.revision_in_scope(feature_url, created, chromestatus_date(revision or '')):
+                updated = chromestatus_date(revision or '')
+                if self.window_start and not self.revision_in_scope(feature_url, created, updated):
+                    if (self.fact_review and feature_url in self.fact_review.links
+                            and 'after_cutoff' not in (self.publication_status(created), self.publication_status(updated))):
+                        unit = self.chromestatus_unit(row, feature_url, revision, compare=False)
+                        self.fact_review.observe(feature_url, response, unit, row.get('name'))
                     self.document_done(marker)
                     continue
                 unit = self.chromestatus_unit(row, feature_url, revision)
@@ -1021,7 +1043,7 @@ class BrowserCollector:
                 return
         self.problem(url, 'Page limit reached')
 
-    def chromestatus_unit(self, row, url, revision):
+    def chromestatus_unit(self, row, url, revision, *, compare=True):
         key = str(row['id'])
         summary = row.get('summary') or row.get('name') or ''
         chrome = (row.get('browsers') or {}).get('chrome') or {}
@@ -1034,6 +1056,8 @@ class BrowserCollector:
                 milestones.append(f'{label} {int(value)}')
         facts = stage_text + (f"Chrome milestones: {', '.join(milestones)}. " if milestones else '')
         unit = dict(key=key, section='ChromeStatus feature', text=facts + summary, parsed=bool(row.get('name')))
+        if not compare:
+            return unit
         old = self.records.get(identity('src', [self.source['source_id'], url, key]))
         if (not old or old['evidence']['section'] != 'feature' or self.chrome_status_baselines is None
                 or not unit['parsed'] or old['title'] != minimal(row['name'], 160)

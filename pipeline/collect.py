@@ -13,6 +13,7 @@ from pipeline import browser_status, weekly_status
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
+from pipeline.feature_enrichment import FeatureIndex, read_jobs
 from pipeline.daily_status import add_receipt, classified_decisions, read_current as current_daily_receipt, receipt, scheduled_cutoff
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, predates_browser_pins, publication_commits, read, require_external, run_lock, store_changes
@@ -138,6 +139,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             check_status_inputs(root, state)
         state.update(status='collecting', complete=False)
         durable(state_path, encoded(state))
+        fact_index = FeatureIndex(root, private)
         for source in sources:
             sid = source['source_id']
             path = work / 'candidates' / source_path(source).name
@@ -145,10 +147,13 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             try:
                 if previous and previous.get('checkpoint_invalid'):
                     raise ValueError('Invalid source checkpoint; use a fresh run')
-                if previous and previous['status'] == 'complete':
+                prior_jobs = read_jobs(work, state, sid) if previous else []
+                review_only = previous and previous['status'] == 'complete'
+                if review_only:
                     if path.is_symlink() or file_digest(path) != state['observed'][sid]:
                         raise ValueError('Completed candidate checkpoint checksum mismatch; use a fresh run')
-                    continue
+                    if not any('error' in job for job in prior_jobs):
+                        continue
                 collector = BrowserCollector(root, work / 'browser', transport, resume=resume,
                     reviewed_attributions=reviewed_attributions, brave_release_metadata=brave_release_metadata,
                     write_records=False)
@@ -157,7 +162,12 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 collector.policy_since = policy_since
                 collector.checkpoint_context = digest(encoded([state['workspace_id'], config_hash, sid]))
                 collector.attempt_seconds = policy.get('source_attempt_seconds', 900)
-                result = collect_one(collector, source, state, private)
+                collector.fact_index = fact_index
+                if review_only:
+                    collector.collect(source, cutoff, policy_day(start), origin, review_only=True)
+                    result = previous
+                else:
+                    result = collect_one(collector, source, state, private)
                 rows = []
                 for ident in sorted(collector.parsed_ids):
                     row = collector.records[ident]
@@ -165,11 +175,17 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                         if ident in collector.classification_text:
                             row = dict(row, classification_text=collector.classification_text[ident])
                         rows.append(row)
-                atomic_json(path, rows)
+                if not review_only:
+                    atomic_json(path, rows)
                 state['observed'][sid] = file_digest(path)
                 status = {k: result[k] for k in ('source_id', 'status', 'cutoff')}
                 if result.get('errors'):
                     status['errors'] = result['errors']
+                jobs = collector.fact_review.run(prior_jobs)
+                if jobs or prior_jobs:
+                    review_path = work / 'enrichment' / (sid + '.json')
+                    atomic_json(review_path, jobs)
+                    status['enrichment_sha256'] = file_digest(review_path)
             except Exception as error:
                 state['observed'].pop(sid, None)
                 status = dict(source_id=sid, cutoff=cutoff, status='partial',
@@ -775,7 +791,8 @@ def main(*, daily=False):
         origin=args.origin, resume=args.resume, daily_status=daily and args.daily_status,
         reviewed_attributions=load_config(args.reviewed_attributions) if args.reviewed_attributions else None,
         brave_release_metadata=load_config(args.brave_release_metadata) if args.brave_release_metadata else None)
-    print(json.dumps({'collection_complete': result['complete'], 'candidates': str(args.private_dir / 'work/candidates')}))
+    print(json.dumps({'collection_complete': result['complete'], 'candidates': str(args.private_dir / 'work/candidates'),
+                      'enrichment': str(args.private_dir / 'work/enrichment')}))
     return 0 if result['complete'] else 2
 
 
