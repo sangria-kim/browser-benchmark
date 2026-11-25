@@ -522,6 +522,158 @@ class WindowTests(unittest.TestCase):
             self.publish_browser('run', 'edge', self.browser_choices('run', 'edge'))
         self.assertEqual(original, (self.repo / receipt).read_bytes())
 
+    def test_strict_scheduled_save_rejects_state_and_candidate_replacement(self):
+        self.configure_small_registry()
+        for mode in ('daily', 'weekly_reconcile'):
+            with self.subTest(mode=mode):
+                args = ['--daily-status'] if mode == 'daily' else []
+                self.cli(mode, cutoff=STATUS_CUTOFF, mode=mode, extra=args)
+                run = self.folder / 'runs' / mode
+                sid = 'firefox-beta'
+                path = run / 'work/candidates' / (sid + '.json')
+                self.assertTrue(read(path))
+                path.write_bytes(encoded([]))
+                state_path = run / 'feature-run.json'
+                state = read(state_path)
+                state['observed'][sid] = run_daily.digest(path.read_bytes())
+                state_path.write_bytes(encoded(state))
+                classification = run / 'whole.json'
+                classification.write_bytes(encoded(self.decisions(mode)))
+                with self.assertRaises(ValueError):
+                    self.cli(mode, cutoff=None, extra=['--save-features', str(classification)])
+                self.assertFalse((self.repo / 'data/daily-status').exists())
+                self.assertFalse((self.repo / collect.FEATURE_CATALOG).exists())
+
+    def test_implicit_browser_excerpt_blocks_overlapping_manual_quote(self):
+        self.configure_small_registry()
+        self.cli('manual-first', ['firefox-beta'], cutoff=STATUS_CUTOFF, mode='manual')
+        self.cli('partial', ['firefox-beta'], cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        accepted = self.browser_choices('partial', 'firefox')
+        choice, = accepted['decisions']
+        full = choice.pop('evidence_quote')
+        self.assertEqual('Tab grouping added.', full)
+        self.publish_browser('partial', 'firefox', accepted)
+        catalog = self.repo / collect.FEATURE_CATALOG
+        detail = self.repo / browser_status.detail_path('daily', STATUS_CUTOFF)
+        original = catalog.read_bytes(), detail.read_bytes()
+        path = self.folder / 'manual-quote.json'
+        path.write_bytes(encoded([dict(choice, evidence_quote='Tab grouping')]))
+        with self.assertRaisesRegex(ValueError, 'Accepted browser evidence'):
+            self.cli('manual-first', cutoff=None, extra=['--save-features', str(path)])
+        self.assertEqual(original, (catalog.read_bytes(), detail.read_bytes()))
+        effect, = read(detail)['browsers']['firefox']['effects']
+        self.assertEqual(browser_status.value_hash(full), effect['quote'])
+        path.write_bytes(encoded([dict(choice, evidence_quote=full)]))
+        self.cli('manual-first', cutoff=None, extra=['--save-features', str(path)])
+        self.assertEqual(original[1], detail.read_bytes())
+        validate_tree(self.repo)
+
+    def test_strict_scheduled_checkpoint_loss_and_legacy_format(self):
+        self.configure_small_registry()
+        for mode in ('daily', 'weekly_reconcile'):
+            with self.subTest(mode=mode):
+                name = 'format-' + mode
+                args = ['--daily-status'] if mode == 'daily' else []
+                self.cli(name, cutoff=STATUS_CUTOFF, mode=mode, extra=args)
+                run = self.folder / 'runs' / name
+                state_path, work = run / 'feature-run.json', run / 'work'
+                state_raw = state_path.read_bytes()
+                pin = work / 'browser-pin.json'
+                checkpoint = work / 'checkpoints/firefox-beta.json'
+                choice = run / 'pm.json'
+                choice.write_bytes(encoded(self.decisions(name)))
+                save = ['--save-features', str(choice)]
+                for target in (pin, checkpoint):
+                    original = target.read_bytes()
+                    target.unlink()
+                    with self.assertRaises(ValueError):
+                        self.cli(name, cutoff=None, extra=save)
+                    target.write_bytes(b'{}')
+                    with self.assertRaises(ValueError):
+                        self.cli(name, cutoff=None, extra=save)
+                    target.write_bytes(original)
+                for field, value in (('status', 'partial'), ('source_id', 'edge-beta'),
+                                     ('cutoff', '2026-11-25T07:00:00+09:00')):
+                    state = json.loads(state_raw)
+                    state['source_results']['firefox-beta'][field] = value
+                    state_path.write_bytes(encoded(state))
+                    with self.assertRaises(ValueError):
+                        self.cli(name, cutoff=None, extra=save)
+                state = json.loads(state_raw)
+                state.pop('browser_pin')
+                state_path.write_bytes(encoded(state))
+                with self.assertRaises(ValueError):
+                    self.cli(name, cutoff=None, extra=save)
+                pin.unlink()
+                shutil.rmtree(work / 'checkpoints')
+                with self.assertRaises(ValueError):
+                    self.cli(name, cutoff=None, extra=save)
+                # The first released pinned format used a plain workspace owner.
+                (work / '.owner').write_text(state['workspace_id'])
+                with self.assertRaisesRegex(ValueError, 'baseline changed'):
+                    self.cli(name, cutoff=None, extra=save)
+        self.assertFalse((self.repo / 'data').exists())
+
+    def test_genuine_pre_pin_format_uses_its_recorded_local_code_tree(self):
+        # Independent synthetic Git history works in CI with a depth-one checkout.
+        code = self.folder / 'earlier-code'
+        (code / 'pipeline').mkdir(parents=True)
+        (code / 'pipeline/collect.py').write_text('# Pre-pin collector tree fixture')
+        earlier = run_daily.commit_candidate(code)
+        self.configure_small_registry()
+        with patch.object(run_daily, 'CODE_REPOSITORY', code):
+            self.cli('old', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+            run = self.folder / 'runs/old'
+            state_path = run / 'feature-run.json'
+            state = read(state_path)
+            self.assertEqual(earlier, state['code_commit'])
+            state.pop('browser_pin')
+            state_path.write_bytes(encoded(state))
+            work = run / 'work'
+            (work / '.owner').write_text(state['workspace_id'])
+            (work / 'browser-pin.json').unlink()
+            shutil.rmtree(work / 'checkpoints')
+            choice = run / 'pm.json'
+            choice.write_bytes(encoded(self.decisions('old')))
+            self.cli('old', cutoff=None, extra=['--save-features', str(choice)])
+            self.cli('old', cutoff=None, extra=['--save-features', str(choice)])
+        self.assertEqual(1, read(self.repo / 'data/daily-status/2026-11-24.json')['change_count'])
+
+    def test_old_null_quote_uses_its_own_immutable_revision_after_append(self):
+        from pipeline.normalize.storage import publish
+        self.configure_small_registry()
+        self.cli('first', ['firefox-beta'], cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        accepted = self.browser_choices('first', 'firefox')
+        choice, = accepted['decisions']
+        full = choice.pop('evidence_quote')
+        self.publish_browser('first', 'firefox', accepted)
+        self.publish_browser('first', 'firefox', accepted)
+        rel = browser_status.detail_path('daily', STATUS_CUTOFF)
+        detail = read(self.repo / rel)
+        effect, = detail['browsers']['firefox']['effects']
+        effect['quote'] = None
+        original = encoded(browser_status.seal(detail))
+        (self.repo / rel).write_bytes(original)
+        run_daily.commit_candidate(self.repo)
+        url = self.sources['firefox-beta']['url']
+        self.payloads[url] = self.payloads[url].replace(full, 'Tab grouping supports shortcuts.')
+        self.cli('update', ['firefox-beta'], cutoff='2026-11-25T07:00:00+09:00', mode='manual')
+        path = self.folder / 'update-pm.json'
+        path.write_bytes(encoded(self.classified('update', 'firefox-beta')))
+        self.cli('update', cutoff=None, extra=['--save-features', str(path)])
+        catalog = read(self.repo / collect.FEATURE_CATALOG)
+        feature, = catalog
+        revisions = feature['source_revision_ids'][choice['source_item_id']]
+        self.assertEqual(2, len(revisions))
+        self.assertEqual(choice['revision_id'], revisions[0])
+        feature['source_revision_excerpts'] = {revisions[0]: 'Tab grouping'}
+        with self.assertRaisesRegex(ValueError, 'Accepted browser evidence'):
+            publish(self.repo, {collect.FEATURE_CATALOG: catalog}, self.folder / 'normalize')
+        feature['source_revision_excerpts'][revisions[0]] = full
+        publish(self.repo, {collect.FEATURE_CATALOG: catalog}, self.folder / 'normalize')
+        self.assertEqual(original, (self.repo / rel).read_bytes())
+        validate_tree(self.repo)
+
     def test_browser_witness_protects_against_later_manual_and_weekly_saves(self):
         self.configure_small_registry()
         run_daily.commit_candidate(self.repo)

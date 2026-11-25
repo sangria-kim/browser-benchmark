@@ -10,7 +10,7 @@ import unittest
 from unittest.mock import patch
 from urllib.parse import urljoin
 
-from pipeline import collect
+from pipeline import collect, run_daily
 from pipeline.collect import collect_one
 from pipeline.collectors.browser import Response
 from pipeline.collectors.browser.html import Tree, boundary, blocks
@@ -201,20 +201,26 @@ class EdgePolicyScopeTests(unittest.TestCase):
         self.assertFalse((self.repo / 'data').exists())
 
     def test_actual_pre_browser_pin_daily_run_requires_fresh_same_cutoff(self):
-        with patch.object(collect, 'WEEKLY_ONLY_BROWSERS', frozenset()):
-            self.cli('old-shape', DAILY, '--daily-status')
-        run = self.folder / 'old-shape'
-        state_path = run / 'feature-run.json'
-        state = read(state_path)
-        state.pop('browser_pin')
-        state_path.write_bytes(encoded(state))
-        (run / 'work/browser-pin.json').unlink()
-        shutil.rmtree(run / 'work/checkpoints')
-        self.scanned.clear()
-        with self.assertRaisesRegex(ValueError, 'baseline changed; use a fresh collection'):
-            self.cli('old-shape', DAILY, '--daily-status', '--resume', edge_calls=[])
-        self.assertEqual([], self.scanned)
-        self.assertEqual(state, read(state_path))
+        code = self.folder / 'previous-producer'
+        (code / 'pipeline').mkdir(parents=True)
+        (code / 'pipeline/collect.py').write_text('# Pre-pin collector tree fixture')
+        run_daily.commit_candidate(code)
+        with patch.object(run_daily, 'CODE_REPOSITORY', code):
+            with patch.object(collect, 'WEEKLY_ONLY_BROWSERS', frozenset()):
+                self.cli('old-shape', DAILY, '--daily-status')
+            run = self.folder / 'old-shape'
+            state_path = run / 'feature-run.json'
+            state = read(state_path)
+            state.pop('browser_pin')
+            state_path.write_bytes(encoded(state))
+            (run / 'work/.owner').write_text(state['workspace_id'])
+            (run / 'work/browser-pin.json').unlink()
+            shutil.rmtree(run / 'work/checkpoints')
+            self.scanned.clear()
+            with self.assertRaisesRegex(ValueError, 'baseline changed; use a fresh collection'):
+                self.cli('old-shape', DAILY, '--daily-status', '--resume', edge_calls=[])
+            self.assertEqual([], self.scanned)
+            self.assertEqual(state, read(state_path))
 
     def test_disabled_policy_rejected_before_transport(self):
         argv = ['pipeline.collect', '--repository', str(self.repo), '--private-dir',

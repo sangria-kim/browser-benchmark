@@ -15,7 +15,7 @@ from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
 from pipeline.daily_status import add_receipt, classified_decisions, scheduled_cutoff
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
-from pipeline.run_daily import digest, durable, encoded, pending_recovery, publication_commits, read, require_external, run_lock, store_changes
+from pipeline.run_daily import digest, durable, encoded, pending_recovery, predates_browser_pins, publication_commits, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant, window_start
 from schemas.validate import load_config, validate_record, validate_transition
 
@@ -75,8 +75,9 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                     or daily_status != ('daily_status' in state)):
                 raise ValueError('Resume requires the same run, mode, origin, sources and cutoff')
             verify_workspace(work, state)
-            if state.get('browser_pin'):
-                browser_baseline(root, work, state)
+            pin = collection_pin(root, work, state)
+            if pin is not None:
+                browser_baseline(root, work, state, pin)
             elif daily_status:
                 check_status_inputs(root, state)
             source_ids, cutoff, mode, origin = state['sources'], state['cutoff'], state['mode'], state['origin']
@@ -115,7 +116,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 state['daily_status'] = dict(enabled=sorted(s['source_id'] for s in enabled),
                                              registry=inputs['registry'], catalog=file_digest(root / FEATURE_CATALOG))
             work.mkdir(mode=0o700)
-            durable(work / '.owner', state['workspace_id'].encode())
+            owner = state['workspace_id']
             if daily_status or mode == 'weekly_reconcile':
                 scope, paths = browser_scope(root, state)
                 baseline = {rel: file_digest(browser_status.safe_path(root, rel)) for rel in paths}
@@ -127,6 +128,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                            scope=scope, baseline=baseline)
                 state['browser_pin'] = browser_status.value_hash(pin)
                 durable(work / 'browser-pin.json', encoded(pin))
+                owner += '\n' + state['browser_pin']
+            durable(work / '.owner', owner.encode())
         if daily_status and not resume:
             check_status_inputs(root, state)
         state.update(status='collecting', complete=False)
@@ -201,8 +204,12 @@ def collect_one(collector, source, state, private):
 
 def verify_workspace(work, state):
     marker = work / '.owner'
-    if work.is_symlink() or marker.is_symlink() or marker.read_text() != state['workspace_id']:
+    if work.is_symlink() or marker.is_symlink() or not marker.is_file():
         raise ValueError('Collection workspace ownership changed')
+    owner = marker.read_text()
+    if owner != state['workspace_id'] and (not state.get('browser_pin')
+            or owner != state['workspace_id'] + '\n' + state['browser_pin']):
+        raise ValueError('Collection ownership or browser baseline changed; use a fresh collection at the same cutoff')
 
 
 def browser_scope(root, state):
@@ -225,20 +232,42 @@ def source_checkpoint(state, sid):
     return dict(pin=state['browser_pin'], result=state['source_results'][sid], observed=state['observed'].get(sid))
 
 
-def browser_baseline(root, work, state):
-    """Replay only this workspace's published before/after journal chain."""
-    pin = read(browser_status.safe_path(work, 'browser-pin.json'))
-    cfg = {key: state[key] for key in ('registry', 'base_commit', 'code_commit', 'start', 'cutoff',
-                                       'mode', 'origin', 'sources', 'metadata')}
+def collection_pin(root, work, state):
+    """Verify the producing configuration before trusting its source checkpoints."""
+    path = browser_status.safe_path(work, 'browser-pin.json')
+    # Older pinned workspaces also used the plain owner marker. Artifact loss alone
+    # cannot identify a legacy run; check the collector commit bound to its config.
+    config_keys = ('registry', 'base_commit', 'code_commit', 'start', 'cutoff', 'mode', 'origin', 'sources', 'metadata')
+    if 'browser_pin' not in state and not path.exists() and not os.path.lexists(work / 'checkpoints'):
+        if 'daily_status' in state or state.get('mode') == 'weekly_reconcile':
+            if (not all(k in state for k in config_keys)
+                    or digest(encoded({k: state[k] for k in config_keys})) != state.get('config_hash')
+                    or not predates_browser_pins(state['code_commit'])):
+                raise ValueError('Scheduled collection baseline changed; use a fresh collection at the same cutoff')
+        return None
+    if not path.is_file() or not state.get('browser_pin'):
+        raise ValueError('Missing browser collection pin; use a fresh collection')
+    if (state['run_id'] != work.parent.name or state['mode'] not in browser_status.MODES
+            or ('daily_status' in state) != (state['mode'] == 'daily')):
+        raise ValueError('Invalid scheduled collection identity or mode')
+    pin = read(path)
+    cfg = {key: state.get(key) for key in config_keys}
     scope, paths = browser_scope(root, state)
-    code_commit, base_commit = publication_commits(root)
-    if (code_commit, base_commit) != (state['code_commit'], state['base_commit']):
-        raise ValueError('Browser baseline changed from the original commit; use a fresh collection at the same cutoff')
     if (pin.get('version') != 1 or browser_status.value_hash(pin) != state.get('browser_pin')
             or pin['workspace'] != state['workspace_id'] or pin['config'] != digest(encoded(cfg))
             or pin['config'] != state['config_hash'] or scope != pin['scope'] or set(pin['baseline']) != paths
             or state['registry'] != file_digest(root / 'config/sources.yml')):
         raise ValueError('Browser publication baseline changed; use a fresh collection at the same cutoff')
+    if 'daily_status' in state and state['daily_status'].get('catalog') != pin['baseline'][FEATURE_CATALOG]:
+        raise ValueError('Daily status baseline changed; use a fresh collection at the same cutoff')
+    return pin
+
+
+def browser_baseline(root, work, state, pin):
+    """Replay only this workspace's published before/after journal chain."""
+    scope = pin['scope']
+    if publication_commits(root) != (state['code_commit'], state['base_commit']):
+        raise ValueError('Browser baseline changed from the original commit; use a fresh collection at the same cutoff')
     if pin['accepted']:
         rel = browser_status.detail_path(scope['mode'], scope['cutoff'])
         detail = browser_status.read_current(root, rel)
@@ -360,6 +389,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
         if state['status'] == 'cleaning' or (state['status'] == 'saving' and journal.exists()
                                                and read(journal)['status'] == 'published'):
             return finish_run(state_path, work, state, signature)
+        pin = collection_pin(root, work, state)
         if daily_status or weekly:
             rel = browser_status.detail_path(state['mode'], state['cutoff'])
             if browser_status.read_current(root, rel) is not None:
@@ -376,7 +406,16 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
                        or set(state['observed']) != {source['source_id'] for source in sources}):
             raise ValueError('Weekly reconciliation requires complete coverage of all enabled sources')
         if daily_status or weekly:
-            decisions = classified_decisions(decisions, candidate_inventory(work, state, sources))
+            if pin is not None:
+                expected = {source['source_id'] for source in sources}
+                checkpoints = work / 'checkpoints'
+                if (state.get('complete') is not True or set(state['sources']) != expected
+                        or set(state['observed']) != expected or set(state['source_results']) != expected
+                        or checkpoints.is_symlink() or not checkpoints.is_dir()
+                        or {p.name for p in checkpoints.iterdir()} != {sid + '.json' for sid in expected}):
+                    raise ValueError('Strict scheduled save requires every pinned source checkpoint')
+            inventory = candidate_inventory(work, state, sources, checkpointed=pin is not None)
+            decisions = classified_decisions(decisions, inventory)
         changes, before, changed_features, collected_features, _ = classified_delta(
             root, work, state, sources, decisions, daily_status=daily_status)
         if daily_status:
@@ -387,16 +426,16 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
         return finish_run(state_path, work, state, signature)
 
 
-def candidate_inventory(work, state, sources, *, scoped=False):
+def candidate_inventory(work, state, sources, *, checkpointed=False):
     inventory = set()
     identities = set()
     for source in sources:
         sid = source['source_id']
-        if scoped:
+        if checkpointed:
             result = state['source_results'].get(sid, {})
             if (sid not in state['sources'] or result.get('source_id') != sid or result.get('status') != 'complete'
                     or result.get('errors') or result.get('checkpoint_invalid') or sid not in state['observed']
-                    or instant(result['cutoff']) != instant(state['cutoff'])):
+                    or not isinstance(result.get('cutoff'), str) or instant(result['cutoff']) != instant(state['cutoff'])):
                 raise ValueError('Browser requires every pinned source complete at this cutoff: ' + sid)
             checkpoint = browser_status.safe_path(work, 'checkpoints/' + sid + '.json')
             if not checkpoint.is_file() or read(checkpoint) != source_checkpoint(state, sid):
@@ -414,7 +453,7 @@ def candidate_inventory(work, state, sources, *, scoped=False):
             key = (sid, row['source_item_id'], row['revisions'][-1]['revision_id'])
             if row['source_id'] != sid or key in inventory:
                 raise ValueError('Private candidate identity mismatch')
-            if scoped:
+            if checkpointed:
                 if (row['browser'] != source['browser'] or row['record_status'] != 'parsed'
                         or row['source_item_id'] in identities
                         or instant(row['temporal_scope']['cutoff']) != instant(state['cutoff'])):
@@ -426,11 +465,12 @@ def candidate_inventory(work, state, sources, *, scoped=False):
 
 
 def save_browser(root, work, state, browser, classification, writer):
-    scope, baseline = browser_baseline(root, work, state)
+    pin = collection_pin(root, work, state)
+    scope, baseline = browser_baseline(root, work, state, pin)
     if browser not in scope['expected']:
         raise ValueError('Browser is outside this collection mode')
     sources, _ = registered_sources(root, scope['expected'][browser], mode=state['mode'])
-    decisions = classified_decisions(classification, candidate_inventory(work, state, sources, scoped=True))
+    decisions = classified_decisions(classification, candidate_inventory(work, state, sources, checkpointed=True))
     allowed = {'source_item_id', 'revision_id', 'canonical_key', 'title', 'change_kind', 'evidence_quote'}
     if any(set(choice) - allowed for choice in decisions):
         raise ValueError('Unexpected browser classification fields')
@@ -602,10 +642,11 @@ def classified_delta(root, work, state, sources, decisions, *, daily_status, bro
                 if revision not in revisions:
                     revisions.append(revision)
                 if browser:
-                    stored_quote = feature.get('source_revision_excerpts', {}).get(revision)
+                    snapshot = row['revisions'][-1]
+                    displayed = browser_status.displayed_excerpt(feature, snapshot)
                     effects.append(dict(feature_id=feature['feature_id'], source_id=sid, item=ident,
-                        revision=revision, snapshot=browser_status.value_hash(row['revisions'][-1]),
-                        quote=browser_status.value_hash(stored_quote) if stored_quote is not None else None,
+                        revision=revision, snapshot=browser_status.value_hash(snapshot),
+                        quote=browser_status.value_hash(displayed),
                         changed=changed))
     if requested:
         raise ValueError('Classification refers to an unobserved source item')

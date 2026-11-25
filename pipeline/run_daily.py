@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import stat
 import subprocess
 import tempfile
@@ -15,6 +16,7 @@ import tempfile
 
 # Only these outputs may replace public files. All other inputs are read-only.
 OUTPUTS = ('data/source-items/', 'data/catalog/features/')
+CODE_REPOSITORY = Path(__file__).resolve().parents[1]
 
 
 def digest(value):
@@ -58,8 +60,22 @@ def git(root, *args):
 
 
 def publication_commits(root):
-    code = git(Path(__file__).resolve().parents[1], 'rev-parse', 'HEAD')
+    code = git(CODE_REPOSITORY, 'rev-parse', 'HEAD')
     return code, git(root, 'rev-parse', 'HEAD') if (root / '.git').exists() else code
+
+
+def predates_browser_pins(commit):
+    """Identify the producing collector from its local Git tree, including on shallow clones."""
+    if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}|[0-9a-f]{64}', commit):
+        return False
+    try:
+        if git(CODE_REPOSITORY, 'cat-file', '-t', commit) != 'commit':
+            return False
+        entries = git(CODE_REPOSITORY, 'ls-tree', '--name-only', commit, '--',
+                      'pipeline/collect.py', 'pipeline/browser_status.py')
+    except subprocess.CalledProcessError:
+        return False
+    return entries.splitlines() == ['pipeline/collect.py']
 
 
 def private_input_inventory(directory):

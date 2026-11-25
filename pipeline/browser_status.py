@@ -220,6 +220,11 @@ def effect_index(graph):
     return ({r['feature_id']: r for r in graph['feature']}, {r['source_item_id']: r for r in graph['source_item']})
 
 
+def displayed_excerpt(feature, snapshot):
+    quote = feature.get('source_revision_excerpts', {}).get(snapshot['revision_id'])
+    return quote if quote is not None else snapshot.get('evidence', {}).get('excerpt') or ''
+
+
 def check_effects(detail, index):
     features, items = index
     for browser, outcome in detail['browsers'].items():
@@ -228,13 +233,15 @@ def check_effects(detail, index):
             ident, revision = effect['item'], effect['revision']
             item = items.get(ident, {})
             snapshot = next((r for r in item.get('revisions', []) if r['revision_id'] == revision), None)
-            quote = feature.get('source_revision_excerpts', {}).get(revision)
             if (feature.get('browser') != browser or item.get('browser') != browser
                     or item.get('source_id') != effect['source_id'] or ident not in feature['source_item_ids']
                     or revision not in feature.get('source_revision_ids', {}).get(ident, [])
-                    or snapshot is None or value_hash(snapshot) != effect['snapshot']
-                    or effect['quote'] is not None and value_hash(quote) != effect['quote']):
+                    or snapshot is None or value_hash(snapshot) != effect['snapshot']):
                 raise ValueError('Accepted browser evidence or feature link changed: ' + ident)
+            # Earlier receipts used null when the revision supplied the displayed text.
+            expected = effect['quote'] or value_hash(displayed_excerpt({}, snapshot))
+            if value_hash(displayed_excerpt(feature, snapshot)) != expected:
+                raise ValueError('Accepted browser evidence or feature link changed: ' + ident + ' (excerpt)')
 
 
 def validate_tree(root, *, graph=None, base=None):
