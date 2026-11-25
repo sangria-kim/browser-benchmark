@@ -265,8 +265,8 @@ def document_metadata(response, version, day, cutoff):
     return publication, bodies[0]
 
 
-def document_units(body, notes):
-    units = blocks(body)
+def document_units(body, notes, *, window_anchors=False):
+    units = blocks(body, window_anchors=window_anchors)
     if ({u['key'] for u in units} != set(notes) or len(units) != len(notes)
             or (not notes and body.text())):
         raise ValueError('Firefox iOS HTML note IDs disagree with the pinned release record')
@@ -326,14 +326,23 @@ def collect_firefox_ios(collector):
                 collector.exclude_document(url, publication)
                 collector.document_done(url)
                 continue
-            units = document_units(body, notes)
+            units = document_units(body, notes, window_anchors=bool(collector.window_start and not collector.write_records))
             for unit in units:
                 key = unit['key']
+                anchors = unit.pop('window_anchors', [key])
                 if key in eligible:
                     old = previous.get((url, key))
                     collector.emit(url, response, unit, date=day, date_evidence=publication,
                                    version=old['version'] if old else version,
-                                   modified=notes[key]['modified'] if status == 'before_period' else None)
+                                   modified=notes[key]['modified'] if status == 'before_period' else None,
+                                   window_anchors=anchors)
+                else:
+                    # This note was verified against the public record and HTML,
+                    # but neither its publication nor its edit is in this window.
+                    modified = notes[key]['modified']
+                    collector.record_passage_window(url, collector.publication_status(modified), unit['text'], anchors)
+                    if collector.fact_review:
+                        collector.fact_review.observe(url, response, unit, dates=(publication, modified))
             history['verified_versions'].append(version)
             if not notes:
                 history['empty_versions'].append(version)

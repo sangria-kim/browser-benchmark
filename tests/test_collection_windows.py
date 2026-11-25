@@ -3251,6 +3251,100 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(('recent', '2026-11-15', 'publication'),
                          (row['item_key'], row['temporal_scope']['evidence_date'], row['temporal_scope']['basis']))
 
+    def test_public_enterprise_rows_share_api_window_and_require_the_current_feature(self):
+        sid = 'chrome-enterprise'
+        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        versions, details = api + '/versions', api + '/features?version=150&lang=en'
+        self.payloads[archive] = ('<a href="#149">April 1, 2026</a><a class="zippy" name="149">Version</a>'
+                                  '<div><p>Old release.</p></div>')
+        self.payloads[versions] = {'versions': [{'value': '150'}]}
+        def note(ident, name, day, **flags):
+            row = dict(id=ident, name=name, summary=name + ' on Windows.', is_releasenotes_publish_ready=True,
+                       is_releasenotes_content_reviewed=True, created={'when': day}, updated={'when': day})
+            return dict(row, **flags)
+        entries = [note(110, 'Save tabs', '2026-11-24'), note(111, 'Share tabs', '2026-11-29'),
+                   dict(note(109, 'Mute tabs', '2026-04-01'), summary='Mute tabs on Windows in stable 150 are enabled.'), note(108, 'Other tabs', '2026-04-01'), note(444, 'Hidden', '2026-11-24', confidential=True)]
+        self.payloads[details] = dict(total_count=len(entries), features=entries)
+        self.configure_small_registry()
+        registry = read(self.registry)
+        for source in registry['sources']:
+            if source['browser'] == self.sources[sid]['browser']:
+                source['enabled'] = source['source_id'] == sid
+        self.registry.write_bytes(encoded(registry))
+        cutoff = '2026-11-26T07:00:00+09:00'
+        self.cli('mixed-api', cutoff=cutoff, extra=['--daily-status'])
+        row, = self.candidates('mixed-api', sid)
+        self.assertEqual('110', row['item_key'])
+        self.assertEqual([archive, versions, details], [u for u in self.calls if u == archive or u.startswith(api)])
+        window = read(self.folder / 'runs/mixed-api/work/windows/chrome-enterprise.json')
+        self.assertNotIn('Hidden', str(window))
+        self.assertNotIn('444', str(window))
+        request = dict(browser='chrome', source_id=sid, canonical_key='save-tabs', title='Save tabs', url=details)
+        self.item('mixed-api', request)
+        for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
+            if browser != 'chrome':
+                self.publish_browser('mixed-api', browser, self.browser_choices('mixed-api', browser, select=False))
+        for fragment in ('#111', '#109', '#:~:text=Share%20tabs'):
+            with self.subTest(fragment=fragment), self.assertRaisesRegex(ValueError, 'window'):
+                self.item('mixed-api', dict(request, url=details + fragment))
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('mixed-api', 'chrome', self.browser_choices('mixed-api', 'chrome', select=False))
+        position = self.repo / 'data/daily-status/2026-11-26.json'
+        self.assertEqual(('incomplete', None), (read(position)['status'], read(position)['change_count']))
+        run_daily.commit_candidate(self.repo)
+        self.cli('fresh-api', cutoff=cutoff, extra=['--daily-status'])
+        self.cli('fresh-api', cutoff=cutoff, extra=['--daily-status', '--resume'])
+        choices = self.browser_choices('fresh-api', 'chrome')
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('fresh-api', 'chrome', choices)
+        choices['decisions'][0].update(canonical_key='save-tabs', title='Save tabs')
+        self.publish_browser('fresh-api', 'chrome', choices)
+        self.assertEqual(('complete', 1, 1), tuple(read(position)[k] for k in ('status', 'collected_feature_count', 'change_count')))
+
+        alternate = api + '/features?lang=en&version=150'
+        self.item('manual', dict(browser='chrome', source_id=sid, canonical_key='mute-tabs', title='Mute tabs',
+                                 url=alternate), standalone=True)
+        self.item('manual', dict(browser='chrome', source_id=sid, canonical_key='wrong-row', title='Other tabs',
+                                 url=details + '#110'), standalone=True)
+        second_cutoff = '2026-11-27T07:00:00+09:00'
+        self.cli('old-api', cutoff=second_cutoff, extra=['--daily-status'])
+        work = self.folder / 'runs/old-api/work'
+        jobs = read(work / 'enrichment/chrome-enterprise.json')
+        other, = [j for j in jobs if j['url'] == details + '#110']
+        self.assertNotIn('candidate', other)
+        old, = [j for j in jobs if j['url'] == alternate]
+        selected = old['candidate']
+        self.item('old-api', dict(browser='chrome', source_id=sid, feature_id=old['feature_id'],
+                                  source_item_id=selected['source_item_id'], revision_id=selected['revisions'][-1]['revision_id'],
+                                  facts=dict(platform=['Windows'], channel='stable', version='150', rollout_status='enabled')))
+        run_daily.commit_candidate(self.repo)
+        self.cli('old-api-fresh', cutoff=second_cutoff, extra=['--daily-status'])
+        for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
+            self.publish_browser('old-api-fresh', browser, self.browser_choices('old-api-fresh', browser, select=False))
+        day = read(self.repo / 'data/daily-status/2026-11-27.json')
+        self.assertEqual(('complete', 1, 0), tuple(day[k] for k in ('status', 'collected_feature_count', 'change_count')))
+
+    def test_weekly_markdown_sections_share_the_registered_document_window(self):
+        sid = 'brave-android-changelog'
+        url = self.sources[sid]['url']
+        self.payloads[url.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/')] = (
+            '# November 24, 2026\n- Save tabs.\n# December 2, 2026\n- Share tabs.\n')
+        self.configure_small_registry()
+        registry = read(self.registry)
+        for source in registry['sources']:
+            if source['browser'] == self.sources[sid]['browser']:
+                source['enabled'] = source['source_id'] == sid
+        self.registry.write_bytes(encoded(registry))
+        cutoff = '2026-11-29T10:00:00+09:00'
+        self.cli('brave-window', cutoff=cutoff, mode='weekly_reconcile')
+        row, = self.candidates('brave-window', sid)
+        self.assertEqual('Save tabs.', row['evidence']['excerpt'])
+        req = dict(browser='brave', source_id=sid, canonical_key='share', title='Share tabs', url=url)
+        self.item('brave-window', req)
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('brave-window', 'brave', self.browser_choices('brave-window', 'brave', select=False))
+
     def test_enterprise_archive_count_and_independent_current_api(self):
         sid = 'chrome-enterprise'
         archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'

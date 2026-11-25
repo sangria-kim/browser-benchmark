@@ -105,6 +105,12 @@ class SourceReview:
         release = re.match(r'release:(\d+):', unit['key'])
         return self.archive_targets(release[1]) if release else ()
 
+    def api_unit_targets(self, url, unit):
+        for target in self.enterprise_urls.get(enterprise_version_query(url), ()):
+            anchor, _ = publisher_fragment(target)
+            if not anchor.isdecimal() or anchor == unit['key']:
+                yield target
+
     def begin_enterprise_page(self, url):
         for target in self.enterprise_urls.get(enterprise_version_query(url), ()):
             self.units.setdefault(target, [])
@@ -119,8 +125,8 @@ class SourceReview:
         if self.sid == 'chrome-enterprise':
             if enterprise_archive_anchor(url) is not None:
                 targets = self.archive_unit_targets(unit)
-            else:
-                targets = self.enterprise_urls.get(enterprise_version_query(url), targets)
+            elif enterprise_version_query(url) is not None:
+                targets = self.api_unit_targets(url, unit)
         for target in targets:
             if target not in self.links:
                 continue
@@ -252,10 +258,11 @@ class SourceReview:
 
     def mixed_review_proofs(self, jobs, documents):
         """Pin exact feature-specific evidence observed on a mixed-date page."""
+        document_keys = {self.document_key(url) for url in documents}
         proofs = set()
         for job in jobs:
             row = job.get('candidate')
-            if row and self.publisher_page(job['url']) in documents:
+            if row and self.document_key(job['url']) in document_keys:
                 proofs.add((job['feature_id'], row['source_item_id'], row['revisions'][-1]['revision_id'],
                             job['content_sha256']))
         # A fresh run need not ask again for a fact that is already filled.
@@ -265,7 +272,7 @@ class SourceReview:
             if not row or not row['item_key'].startswith('feature-facts:'):
                 continue
             url = row['evidence']['url']
-            if self.publisher_page(url) not in documents:
+            if self.document_key(url) not in document_keys:
                 continue
             owner = next((feature for feature, _ in self.links.get(url, ())
                           if row['item_key'] == 'feature-facts:' + feature['feature_id']
@@ -372,6 +379,8 @@ class SourceReview:
                 return False
         if self.sid == 'chrome-enterprise' and enterprise_archive_anchor(url) is not None:
             owners = (owner for target in self.archive_unit_targets(unit) for owner, _ in self.links[target])
+        elif self.sid == 'chrome-enterprise' and enterprise_version_query(url) is not None:
+            owners = (owner for target in self.api_unit_targets(url, unit) for owner, _ in self.links[target])
         else:
             owners = self.document_owners[self.document_key(url)].values()
         return not any(named(owner) for owner in owners if owner['feature_id'] != feature['feature_id'])

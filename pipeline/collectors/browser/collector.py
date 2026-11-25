@@ -473,6 +473,14 @@ class BrowserCollector:
         status = self.publication_status(value)
         return status != 'after_cutoff' and (current or status != 'before_period')
 
+    def record_passage_window(self, url, status, text, anchors):
+        """Record a publisher-verified unit from a shared evidence URL, including excluded units."""
+        if self.window_start and not self.write_records:
+            self.passage_windows.setdefault(url, []).append([status, text, anchors])
+            self.unit_windows.setdefault(url, set()).add(status)
+            for anchor in anchors:
+                self.unit_windows.setdefault(url + '#' + quote(anchor, safe=''), set()).add(status)
+
     def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=None, reviewed_document=False):
         self.check_time()
         observed_at = self.observed_at
@@ -533,10 +541,9 @@ class BrowserCollector:
         if parsed and not self.write_records:
             status = self.publication_status(record['temporal_scope']['evidence_date'])
             self.unit_windows.setdefault(url, set()).add(status)
-            if self.window_start and window_anchors is not None:
-                self.passage_windows.setdefault(url, []).append([status, unit['text'], window_anchors])
-            for anchor in window_anchors or ():
-                self.unit_windows.setdefault(url + '#' + quote(anchor, safe=''), set()).add(status)
+            if window_anchors is not None:
+                passage = ' '.join(filter(None, (title, unit['text'])))
+                self.record_passage_window(url, status, passage, window_anchors)
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
         if reviewed_document:
             # This observation identifies verified publisher bytes without claiming
@@ -977,7 +984,7 @@ class BrowserCollector:
             day = dates.get(anchor)
             in_scope = not day or self.allowed_date(day)
             if self.window_start and not self.write_records:
-                self.passage_windows.setdefault(archive, []).append([self.publication_status(day), panel.text(), [anchor]])
+                self.record_passage_window(archive, self.publication_status(day), panel.text(), [anchor])
             if in_scope:
                 panels += 1
             elif not self.fact_review or not self.fact_review.archive_targets(anchor):
@@ -1035,12 +1042,14 @@ class BrowserCollector:
                 unit = {'key': str(ident), 'section': 'feature', 'text': summary, 'parsed': True}
                 created = chromestatus_date(row.get('created', {}).get('when') or '')
                 modified = chromestatus_date(changed) if changed else None
-                if self.window_start and not self.revision_in_scope(url + '#' + str(ident), created, modified):
+                target = url + '#' + str(ident)
+                if self.window_start and not self.revision_in_scope(target, created, modified):
+                    self.record_passage_window(url, self.window_exclusions[target], name + ' ' + summary, [str(ident)])
                     if self.fact_review:
                         self.fact_review.observe(url, response, unit, name, dates=(created, modified))
                     continue
                 self.emit(url, response, unit, date=date_value(created), date_evidence=created,
-                          revision=changed, title=name, version=version, modified=modified)
+                          revision=changed, title=name, version=version, modified=modified, window_anchors=[str(ident)])
             self.document_done(url)
             self.persist_checkpoint([])
         self.state['enterprise_publication_excluded'] = excluded
@@ -1471,7 +1480,7 @@ class BrowserCollector:
         if not units:
             self.unresolved(source_url, response)
         for unit in units:
-            self.emit(source_url, response, unit, date=date_value(unit['section']))
+            self.emit(source_url, response, unit, date=date_value(unit['section']), window_anchors=[])
         self.state['pagination_exhausted'] = True
 
     def collect_whale(self):
