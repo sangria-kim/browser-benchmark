@@ -9,12 +9,13 @@ import shutil
 import re
 import uuid
 
+from pipeline import browser_status
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
 from pipeline.daily_status import add_receipt, classified_decisions, scheduled_cutoff
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
-from pipeline.run_daily import digest, durable, encoded, git, pending_recovery, read, require_external, run_lock, store_changes
+from pipeline.run_daily import digest, durable, encoded, pending_recovery, publication_commits, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant, window_start
 from schemas.validate import load_config, validate_record, validate_transition
 
@@ -74,7 +75,9 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                     or daily_status != ('daily_status' in state)):
                 raise ValueError('Resume requires the same run, mode, origin, sources and cutoff')
             verify_workspace(work, state)
-            if daily_status:
+            if state.get('browser_pin'):
+                browser_baseline(root, work, state)
+            elif daily_status:
                 check_status_inputs(root, state)
             source_ids, cutoff, mode, origin = state['sources'], state['cutoff'], state['mode'], state['origin']
             if since is None:
@@ -94,10 +97,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
             if mode != 'daily' or origin != 'daily':
                 raise ValueError('Daily status requires daily mode and daily origin')
             scheduled_cutoff(cutoff)
-        code_root = Path(__file__).resolve().parents[1]
-        # Standalone fixture/data directories have no Git history of their own.
-        code_commit = git(code_root, 'rev-parse', 'HEAD')
-        base_commit = git(root, 'rev-parse', 'HEAD') if (root / '.git').exists() else code_commit
+        code_commit, base_commit = publication_commits(root)
         inputs = dict(registry=file_digest(registry), base_commit=base_commit, code_commit=code_commit,
                       start=start, cutoff=cutoff, mode=mode, origin=origin,
                       sources=[source['source_id'] for source in sources],
@@ -116,6 +116,17 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                                              registry=inputs['registry'], catalog=file_digest(root / FEATURE_CATALOG))
             work.mkdir(mode=0o700)
             durable(work / '.owner', state['workspace_id'].encode())
+            if daily_status or mode == 'weekly_reconcile':
+                scope, paths = browser_scope(root, state)
+                baseline = {rel: file_digest(browser_status.safe_path(root, rel)) for rel in paths}
+                rel = browser_status.detail_path(mode, cutoff)
+                accepted = browser_status.read_current(root, rel)
+                accepted_hashes = {name: browser_status.value_hash(row) for name, row in
+                                   (accepted or {}).get('browsers', {}).items() if row['status'] == 'complete'}
+                pin = dict(version=1, workspace=state['workspace_id'], config=config_hash, accepted=accepted_hashes,
+                           scope=scope, baseline=baseline)
+                state['browser_pin'] = browser_status.value_hash(pin)
+                durable(work / 'browser-pin.json', encoded(pin))
         if daily_status and not resume:
             check_status_inputs(root, state)
         state.update(status='collecting', complete=False)
@@ -159,6 +170,8 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 if previous and (previous.get('checkpoint_invalid') or previous['status'] == 'complete'):
                     status['checkpoint_invalid'] = True
             state['source_results'][sid] = status
+            if state.get('browser_pin'):
+                durable(work / 'checkpoints' / (sid + '.json'), encoded(source_checkpoint(state, sid)))
             durable(state_path, encoded(state))
         statuses = list(state['source_results'].values())
         complete = bool(sources) and all(s['status'] == 'complete' for s in statuses)
@@ -192,13 +205,91 @@ def verify_workspace(work, state):
         raise ValueError('Collection workspace ownership changed')
 
 
+def browser_scope(root, state):
+    sources, _ = registered_sources(root, None, mode=state['mode'])
+    groups = defaultdict(list)
+    paths = {FEATURE_CATALOG}
+    for source in sources:
+        groups[source['browser']].append(source['source_id'])
+        rel = source_path(source).as_posix()
+        paths.add(rel)
+        if rel == EDGE_POLICY:
+            paths.update(EDGE_SHARDS)
+    scope = dict(mode=state['mode'], cutoff=instant(state['cutoff']).astimezone(timezone.utc).isoformat(),
+                 start=state['start'], origin=state['origin'], registry=state['registry'],
+                 expected={name: sorted(ids) for name, ids in groups.items()})
+    return scope, paths
+
+
+def source_checkpoint(state, sid):
+    return dict(pin=state['browser_pin'], result=state['source_results'][sid], observed=state['observed'].get(sid))
+
+
+def browser_baseline(root, work, state):
+    """Replay only this workspace's published before/after journal chain."""
+    pin = read(browser_status.safe_path(work, 'browser-pin.json'))
+    cfg = {key: state[key] for key in ('registry', 'base_commit', 'code_commit', 'start', 'cutoff',
+                                       'mode', 'origin', 'sources', 'metadata')}
+    scope, paths = browser_scope(root, state)
+    code_commit, base_commit = publication_commits(root)
+    if (code_commit, base_commit) != (state['code_commit'], state['base_commit']):
+        raise ValueError('Browser baseline changed from the original commit; use a fresh collection at the same cutoff')
+    if (pin.get('version') != 1 or browser_status.value_hash(pin) != state.get('browser_pin')
+            or pin['workspace'] != state['workspace_id'] or pin['config'] != digest(encoded(cfg))
+            or pin['config'] != state['config_hash'] or scope != pin['scope'] or set(pin['baseline']) != paths
+            or state['registry'] != file_digest(root / 'config/sources.yml')):
+        raise ValueError('Browser publication baseline changed; use a fresh collection at the same cutoff')
+    if pin['accepted']:
+        rel = browser_status.detail_path(scope['mode'], scope['cutoff'])
+        detail = browser_status.read_current(root, rel)
+        if detail is None or any(browser_status.value_hash(detail['browsers'].get(name)) != checksum
+                                 for name, checksum in pin['accepted'].items()):
+            raise ValueError('Previously accepted browser outcomes changed')
+    baseline = dict(pin['baseline'])
+    folder = work / 'browser-transactions'
+    if folder.is_symlink():
+        raise ValueError('Invalid browser transaction folder')
+    seen = set()
+    for txn in sorted(folder.iterdir()) if folder.exists() else ():
+        if txn.is_symlink() or not txn.is_dir():
+            raise ValueError('Unsafe browser transaction')
+        journal_path = browser_status.safe_path(txn, 'publication.json')
+        if not journal_path.exists() or read(journal_path)['status'] != 'published':
+            continue
+        marker = read(browser_status.safe_path(txn, 'scope.json'))
+        browser = marker['browser']
+        journal = read(journal_path)
+        saved = read(browser_status.safe_path(txn, 'state.json'))
+        rel = browser_status.detail_path(scope['mode'], scope['cutoff'])
+        if (marker.get('pin') != state['browser_pin'] or browser not in scope['expected'] or browser in seen
+                or saved.get('repository') != str(root) or saved.get('version') != 5
+                or rel not in journal['files'] or set(journal['files']) != set(saved['inputs'])):
+            raise ValueError('Invalid browser publication chain')
+        detail = read(browser_status.safe_path(root, rel))
+        browser_status.validate_detail(rel, detail)
+        if detail['browsers'][browser].get('classification') != marker['classification']:
+            raise ValueError('Published browser outcome changed')
+        seen.add(browser)
+        for path, change in journal['files'].items():
+            if change != dict(before=saved['inputs'][path], after=saved['stages']['validate']['outputs'][path]):
+                raise ValueError('Invalid browser publication journal checksums')
+            if path in baseline:
+                if baseline[path] != change['before']:
+                    raise ValueError('Broken browser publication chain; use a fresh collection')
+                baseline[path] = change['after']
+    baseline['config/sources.yml'] = state['registry']
+    if any(file_digest(browser_status.safe_path(root, rel)) != checksum for rel, checksum in baseline.items()):
+        raise ValueError('Browser publication baseline changed; use a fresh collection at the same cutoff')
+    return scope, baseline
+
+
 def check_status_inputs(root, state):
     pinned = state['daily_status']
     enabled, _ = registered_sources(root, None, mode=state['mode'])
     if (pinned['registry'] != file_digest(root / 'config/sources.yml')
             or pinned['enabled'] != sorted(s['source_id'] for s in enabled)
             or pinned['catalog'] != file_digest(root / FEATURE_CATALOG)):
-        raise ValueError('Daily status baseline changed; use a fresh collection')
+        raise ValueError('Daily status baseline changed; use a fresh collection at the same cutoff')
 
 
 def full_status_coverage(state):
@@ -223,17 +314,21 @@ def mark_incomplete(repository, private_dir):
         journal = work / 'transaction/publication.json'
         if state['status'] == 'saving' and journal.exists() and read(journal)['status'] == 'published':
             return
+        rel = browser_status.detail_path(state['mode'], state['cutoff'])
+        detail = browser_status.read_current(root, rel)
+        if detail is not None:
+            browser_status.check_aggregate(root, detail, {})
+            return
         changes, before = {}, {}
         add_receipt(root, changes, before, state['cutoff'], None, None)
         if changes:
             store_changes(root, private / 'status-transaction', changes, before, writer)
 
 
-def save_features(repository, private_dir, decisions, *, allow_partial=False):
+def save_features(repository, private_dir, decisions, *, allow_partial=False, browser=None):
     """Close a classified run after its evidence and catalog are durable."""
     root, private = Path(repository).resolve(), Path(private_dir).resolve()
     require_external(root, private)
-    catalog_path = FEATURE_CATALOG
     state_path, work = private / 'feature-run.json', private / 'work'
     with run_lock(private), run_lock(root) as writer:
         pending_recovery(root, writer)
@@ -244,6 +339,12 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
             raise ValueError('Invalid collection workspace')
         daily_status = 'daily_status' in state
         weekly = state.get('mode') == 'weekly_reconcile'
+        if browser is not None:
+            if (not (daily_status or weekly) or allow_partial or not state.get('browser_pin')
+                    or state['run_id'] != private.name or state['status'] not in ('collecting', 'partial', 'complete')):
+                raise ValueError('Browser save requires a pinned daily status or weekly reconciliation run')
+            verify_workspace(work, state)
+            return save_browser(root, work, state, browser, decisions, writer)
         if not (daily_status or weekly) and not isinstance(decisions, list):
             raise ValueError('Expected a list of classified features')
         signature = digest(encoded(decisions))
@@ -259,6 +360,10 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
         if state['status'] == 'cleaning' or (state['status'] == 'saving' and journal.exists()
                                                and read(journal)['status'] == 'published'):
             return finish_run(state_path, work, state, signature)
+        if daily_status or weekly:
+            rel = browser_status.detail_path(state['mode'], state['cutoff'])
+            if browser_status.read_current(root, rel) is not None:
+                raise ValueError('Browser outcomes already exist; finish this cutoff with --save-browser')
         if state['status'] not in ('complete', 'partial', 'saving') or not (state['complete'] or allow_partial):
             raise ValueError('Finish collection or explicitly accept partial coverage')
         if daily_status:
@@ -271,144 +376,243 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False):
                        or set(state['observed']) != {source['source_id'] for source in sources}):
             raise ValueError('Weekly reconciliation requires complete coverage of all enabled sources')
         if daily_status or weekly:
-            inventory = set()
-            for source in sources:
-                rel = source_path(source)
-                path = work / 'candidates' / rel.name
-                sid = source['source_id']
-                if path.is_symlink() or not path.is_file():
-                    raise ValueError('Private candidates are missing or unsafe')
-                raw = path.read_bytes()
-                if digest(raw) != state['observed'][sid]:
-                    raise ValueError('Private candidates differ from the collected content')
-                for row in json.loads(raw):
-                    key = (sid, row['source_item_id'], row['revisions'][-1]['revision_id'])
-                    if row['source_id'] != sid or key in inventory:
-                        raise ValueError('Private candidate identity mismatch')
-                    inventory.add(key)
-            decisions = classified_decisions(decisions, inventory)
-        observed = state['observed']
-        requested = {}
-        for choice in decisions:
-            fields = ('source_item_id', 'revision_id', 'canonical_key', 'title')
-            if not isinstance(choice, dict) or not all(isinstance(choice.get(k), str) and choice[k].strip() for k in fields):
-                raise ValueError('Feature classification needs a source item, revision, key and title')
-            if daily_status and choice.get('change_kind') not in ('product_change', 'evidence_only'):
-                raise ValueError('Daily classification requires change_kind')
-            ident = choice['source_item_id']
-            by_feature = requested.setdefault(ident, {})
-            if choice['canonical_key'] in by_feature:
-                raise ValueError('Repeated feature classification for this source item')
-            by_feature[choice['canonical_key']] = choice
-        before = {}
-
-        def existing(path):
-            target = root / path
-            raw = target.read_bytes() if target.exists() else None
-            before[path] = digest(raw) if raw is not None else None
-            return json.loads(raw) if raw is not None else []
-
-        catalog = existing(catalog_path)
-        features = {(row['browser'], row['canonical_key']): row for row in catalog}
-        existing_features = set(features)
-        changed_features = set()
-        collected_features = set()
-        unpinned_owners = defaultdict(list)
-        for feature in catalog:
-            for ident in feature['source_item_ids']:
-                if ident not in feature.get('source_revision_ids', {}):
-                    unpinned_owners[ident].append(feature)
-        changes = {}
-        for source in sources:
-            sid = source['source_id']
-            if not requested or sid not in observed:
-                continue
-            rel = source_path(source)
-            raw = (work / 'candidates' / rel.name).read_bytes()
-            if digest(raw) != observed[sid]:
-                raise ValueError('Private candidates differ from the collected content')
-            candidates = {r['source_item_id']: r for r in json.loads(raw)}
-            for ident in sorted(requested.keys() & candidates.keys()):
-                choices, row = requested.pop(ident).values(), candidates[ident]
-                revision = row['revisions'][-1]['revision_id']
-                if (any(choice['revision_id'] != revision for choice in choices)
-                        or row['source_id'] != sid or row['browser'] != source['browser']
-                        or row['record_status'] != 'parsed'):
-                    raise ValueError('Classification does not match the observed source revision')
-                excerpt = row['evidence']['excerpt']
-                classification_text = row.pop('classification_text', excerpt)
-                validate_record('source_item', row)
-                target = rel.as_posix()
-                if target == EDGE_POLICY and (root / EDGE_SHARDS[0]).exists():
-                    target = EDGE_SHARDS[int(ident[4:6], 16)]
-                if target not in changes:
-                    changes[target] = {r['source_item_id']: r for r in existing(target)}
-                prior = changes[target].get(ident)
-                if prior is None and len(row['revisions']) != 1:
-                    raise ValueError('Source history changed since collection. Collect again.')
-                if prior:
-                    # Another mode can save this exact content while classification is pending.
-                    # Keep the first stored observation and its immutable revision timestamps.
-                    if prior['revisions'][-1]['revision_id'] == revision:
-                        row = prior
-                    validate_transition('source_item', prior, row)
-                    prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')
-                    if prior_cutoff and instant(row['temporal_scope']['cutoff']) < instant(prior_cutoff):
-                        raise ValueError('A newer source window is already saved')
-                    # Older catalogs displayed the then-current source. Freeze that view before replacing it.
-                    old_id = prior['revisions'][-1]['revision_id']
-                    appended = row['revisions'][len(prior['revisions']):]
-                    display_id = next((r['revision_id'] for r in appended if r.get('restores_revision_id') == old_id),
-                                      old_id)
-                    for owner in unpinned_owners[ident]:
-                        owner.setdefault('source_revision_ids', {})[ident] = [display_id]
-                changes[target][ident] = row
-                for choice in choices:
-                    quote = choice.get('evidence_quote', excerpt)
-                    if len(excerpt) == EXCERPT_LIMIT and 'evidence_quote' not in choice:
-                        raise ValueError('Choose an evidence_quote for each feature in a long item')
-                    if not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in classification_text:
-                        raise ValueError('The evidence_quote must be a passage of up to 1200 characters from this item')
-                    key = (row['browser'], choice['canonical_key'])
-                    if daily_status:
-                        fid = feature_identity(*key)
-                        collected_features.add(fid)
-                        kind = choice['change_kind']
-                        if kind == 'evidence_only' and key not in existing_features:
-                            raise ValueError('Evidence-only decisions require an existing feature')
-                        prior_links = features.get(key, {}).get('source_revision_ids', {}).get(ident, ())
-                        same_legacy_link = (key in features and ident in features[key]['source_item_ids']
-                                            and not prior_links and prior is not None
-                                            and prior['revisions'][-1]['revision_id'] == revision)
-                        if kind == 'product_change' and revision not in prior_links and not same_legacy_link:
-                            changed_features.add(fid)
-                    if key not in features:
-                        feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
-                            canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
-                            event_ids=[], lifecycle='unknown', legacy=False)
-                        features[key] = feature
-                        catalog.append(feature)
-                    feature = features[key]
-                    # An undated citation cannot displace known in-period evidence.
-                    if feature.get('temporal_scope', {}).get('status') != 'in_period' or row['temporal_scope']['status'] == 'in_period':
-                        feature['temporal_scope'] = row['temporal_scope']
-                    feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
-                    revisions = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
-                    if 'evidence_quote' in choice:
-                        feature.setdefault('source_revision_excerpts', {})[revision] = quote
-                    if revision not in revisions:
-                        revisions.append(revision)
-        if requested:
-            raise ValueError('Classification refers to an unobserved source item')
-        if changes:
-            changes = {path: [rows[k] for k in sorted(rows)] for path, rows in changes.items()}
-            changes[catalog_path] = sorted(catalog, key=lambda row: row['feature_id'])
+            decisions = classified_decisions(decisions, candidate_inventory(work, state, sources))
+        changes, before, changed_features, collected_features, _ = classified_delta(
+            root, work, state, sources, decisions, daily_status=daily_status)
         if daily_status:
             add_receipt(root, changes, before, state['cutoff'], len(changed_features), len(collected_features))
         state.update(status='saving', decisions=signature, saved_items=len(decisions))
         durable(state_path, encoded(state))
         store_changes(root, txn, changes, before, writer)
         return finish_run(state_path, work, state, signature)
+
+
+def candidate_inventory(work, state, sources, *, scoped=False):
+    inventory = set()
+    identities = set()
+    for source in sources:
+        sid = source['source_id']
+        if scoped:
+            result = state['source_results'].get(sid, {})
+            if (sid not in state['sources'] or result.get('source_id') != sid or result.get('status') != 'complete'
+                    or result.get('errors') or result.get('checkpoint_invalid') or sid not in state['observed']
+                    or instant(result['cutoff']) != instant(state['cutoff'])):
+                raise ValueError('Browser requires every pinned source complete at this cutoff: ' + sid)
+            checkpoint = browser_status.safe_path(work, 'checkpoints/' + sid + '.json')
+            if not checkpoint.is_file() or read(checkpoint) != source_checkpoint(state, sid):
+                raise ValueError('Invalid browser source checkpoint: ' + sid)
+        path = browser_status.safe_path(work, 'candidates/' + source_path(source).name)
+        if not path.is_file():
+            raise ValueError('Private candidates are missing or unsafe')
+        raw = path.read_bytes()
+        if digest(raw) != state['observed'][sid]:
+            raise ValueError('Private candidates differ from the collected content')
+        rows = json.loads(raw)
+        if not isinstance(rows, list):
+            raise ValueError('Private candidates must be an array')
+        for row in rows:
+            key = (sid, row['source_item_id'], row['revisions'][-1]['revision_id'])
+            if row['source_id'] != sid or key in inventory:
+                raise ValueError('Private candidate identity mismatch')
+            if scoped:
+                if (row['browser'] != source['browser'] or row['record_status'] != 'parsed'
+                        or row['source_item_id'] in identities
+                        or instant(row['temporal_scope']['cutoff']) != instant(state['cutoff'])):
+                    raise ValueError('Browser candidate scope or identity mismatch')
+                validate_record('source_item', {k: v for k, v in row.items() if k != 'classification_text'})
+                identities.add(row['source_item_id'])
+            inventory.add(key)
+    return inventory
+
+
+def save_browser(root, work, state, browser, classification, writer):
+    scope, baseline = browser_baseline(root, work, state)
+    if browser not in scope['expected']:
+        raise ValueError('Browser is outside this collection mode')
+    sources, _ = registered_sources(root, scope['expected'][browser], mode=state['mode'])
+    decisions = classified_decisions(classification, candidate_inventory(work, state, sources, scoped=True))
+    allowed = {'source_item_id', 'revision_id', 'canonical_key', 'title', 'change_kind', 'evidence_quote'}
+    if any(set(choice) - allowed for choice in decisions):
+        raise ValueError('Unexpected browser classification fields')
+    signature = browser_status.value_hash(classification)
+    rel = browser_status.detail_path(state['mode'], state['cutoff'])
+    target = browser_status.safe_path(root, rel)
+    raw = target.read_bytes() if target.exists() else None
+    detail = browser_status.read_current(root, rel)
+    if detail is None:
+        detail = browser_status.initial(scope)
+    else:
+        if detail['scope'] != scope:
+            raise ValueError('Browser scope differs from the first published result')
+        browser_status.check_aggregate(root, detail, {})
+    if scope['mode'] == 'daily':
+        from pipeline.daily_status import receipt, previous_receipt
+        daily_rel, daily_value = receipt(scope['cutoff'], None, None)
+        daily_file = browser_status.safe_path(root, daily_rel)
+        if daily_file.exists():
+            previous = previous_receipt(daily_rel, daily_file.read_bytes(), daily_value['cutoff'])
+            if previous['status'] == 'complete' and raw is None:
+                raise ValueError('Cannot change data after the daily status is complete')
+    outcome = detail['browsers'][browser]
+    if outcome['status'] == 'complete':
+        if outcome['classification'] != signature:
+            raise ValueError('This browser already has a different final classification')
+        from pipeline.normalize import validate_graph
+        browser_status.check_effects(detail, browser_status.effect_index(validate_graph(root)))
+        return len(decisions)
+    changes, before, changed, collected, effects = classified_delta(root, work, state, sources, decisions,
+                                                                   daily_status=True, browser=browser)
+    if any(rel not in baseline or baseline[rel] != checksum for rel, checksum in before.items()):
+        raise ValueError('Browser inputs changed since collection')
+    before.update(baseline)
+    detail['browsers'][browser] = dict(status='complete', classification=signature, effects=effects,
+                                       change_count=len(changed), collected_feature_count=len(collected))
+    changes[rel] = browser_status.seal(detail)
+    before[rel] = digest(raw) if raw is not None else None
+    if scope['mode'] == 'daily':
+        add_receipt(root, changes, before, scope['cutoff'], *browser_status.aggregate(detail))
+    folder = work / 'browser-transactions'
+    folder.mkdir(exist_ok=True)
+    txn = folder / f'{len(list(folder.iterdir())):08d}-{browser}'
+    txn.mkdir()
+    durable(txn / 'scope.json', encoded(dict(pin=state['browser_pin'], browser=browser, classification=signature,
+                                             code_commit=state['code_commit'], base_commit=state['base_commit'])))
+    store_changes(root, txn, changes, before, writer)
+    return len(decisions)
+
+
+def classified_delta(root, work, state, sources, decisions, *, daily_status, browser=None):
+    observed = state['observed']
+    requested = {}
+    for choice in decisions:
+        fields = ('source_item_id', 'revision_id', 'canonical_key', 'title')
+        if not isinstance(choice, dict) or not all(isinstance(choice.get(k), str) and choice[k].strip() for k in fields):
+            raise ValueError('Feature classification needs a source item, revision, key and title')
+        if daily_status and choice.get('change_kind') not in ('product_change', 'evidence_only'):
+            raise ValueError('Daily classification requires change_kind')
+        ident = choice['source_item_id']
+        by_feature = requested.setdefault(ident, {})
+        if choice['canonical_key'] in by_feature:
+            raise ValueError('Repeated feature classification for this source item')
+        by_feature[choice['canonical_key']] = choice
+    before = {}
+    effects = []
+
+    def existing(path):
+        target = root / path
+        raw = target.read_bytes() if target.exists() else None
+        before[path] = digest(raw) if raw is not None else None
+        return json.loads(raw) if raw is not None else []
+
+    catalog = existing(FEATURE_CATALOG)
+    features = {(row['browser'], row['canonical_key']): row for row in catalog}
+    existing_features = set(features)
+    changed_features = set()
+    collected_features = set()
+    unpinned_owners = defaultdict(list)
+    for feature in catalog:
+        for ident in feature['source_item_ids']:
+            if ident not in feature.get('source_revision_ids', {}):
+                unpinned_owners[ident].append(feature)
+    changes = {}
+    for source in sources:
+        sid = source['source_id']
+        if not requested or sid not in observed:
+            continue
+        rel = source_path(source)
+        raw = (work / 'candidates' / rel.name).read_bytes()
+        if digest(raw) != observed[sid]:
+            raise ValueError('Private candidates differ from the collected content')
+        candidates = {r['source_item_id']: r for r in json.loads(raw)}
+        for ident in sorted(requested.keys() & candidates.keys()):
+            choices, row = requested.pop(ident).values(), candidates[ident]
+            revision = row['revisions'][-1]['revision_id']
+            if (any(choice['revision_id'] != revision for choice in choices)
+                    or row['source_id'] != sid or row['browser'] != source['browser']
+                    or row['record_status'] != 'parsed'):
+                raise ValueError('Classification does not match the observed source revision')
+            excerpt = row['evidence']['excerpt']
+            classification_text = row.pop('classification_text', excerpt)
+            validate_record('source_item', row)
+            target = rel.as_posix()
+            if target == EDGE_POLICY and (root / EDGE_SHARDS[0]).exists():
+                target = EDGE_SHARDS[int(ident[4:6], 16)]
+            if target not in changes:
+                changes[target] = {r['source_item_id']: r for r in existing(target)}
+            prior = changes[target].get(ident)
+            if prior is None and len(row['revisions']) != 1:
+                raise ValueError('Source history changed since collection. Collect again.')
+            if prior:
+                # Another mode can save this exact content while classification is pending.
+                # Keep the first stored observation and its immutable revision timestamps.
+                if prior['revisions'][-1]['revision_id'] == revision:
+                    row = prior
+                validate_transition('source_item', prior, row)
+                prior_cutoff = prior.get('temporal_scope', {}).get('cutoff')
+                if prior_cutoff and instant(row['temporal_scope']['cutoff']) < instant(prior_cutoff):
+                    raise ValueError('A newer source window is already saved')
+                # Older catalogs displayed the then-current source. Freeze that view before replacing it.
+                old_id = prior['revisions'][-1]['revision_id']
+                appended = row['revisions'][len(prior['revisions']):]
+                display_id = next((r['revision_id'] for r in appended if r.get('restores_revision_id') == old_id),
+                                  old_id)
+                for owner in unpinned_owners[ident]:
+                    if browser and owner['browser'] != browser:
+                        raise ValueError('Unpinned evidence has a different browser owner; use full reconciliation')
+                    owner.setdefault('source_revision_ids', {})[ident] = [display_id]
+            changes[target][ident] = row
+            for choice in choices:
+                quote = choice.get('evidence_quote', excerpt)
+                if len(excerpt) == EXCERPT_LIMIT and 'evidence_quote' not in choice:
+                    raise ValueError('Choose an evidence_quote for each feature in a long item')
+                if not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in classification_text:
+                    raise ValueError('The evidence_quote must be a passage of up to 1200 characters from this item')
+                key = (row['browser'], choice['canonical_key'])
+                changed = False
+                if daily_status:
+                    fid = features[key]['feature_id'] if key in features else feature_identity(*key)
+                    collected_features.add(fid)
+                    kind = choice['change_kind']
+                    if kind == 'evidence_only' and key not in existing_features:
+                        raise ValueError('Evidence-only decisions require an existing feature')
+                    prior_links = features.get(key, {}).get('source_revision_ids', {}).get(ident, ())
+                    same_legacy_link = (key in features and ident in features[key]['source_item_ids']
+                                        and not prior_links and prior is not None
+                                        and prior['revisions'][-1]['revision_id'] == revision)
+                    if kind == 'product_change' and revision not in prior_links and not same_legacy_link:
+                        changed = True
+                        changed_features.add(fid)
+                if key not in features:
+                    feature = dict(schema_version=2, feature_id=feature_identity(*key), browser=key[0],
+                        canonical_key=key[1], title=choice['title'], aliases=[], source_item_ids=[],
+                        event_ids=[], lifecycle='unknown', legacy=False)
+                    features[key] = feature
+                    catalog.append(feature)
+                feature = features[key]
+                # An undated citation cannot displace known in-period evidence.
+                if feature.get('temporal_scope', {}).get('status') != 'in_period' or row['temporal_scope']['status'] == 'in_period':
+                    feature['temporal_scope'] = row['temporal_scope']
+                feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
+                revisions = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
+                if 'evidence_quote' in choice:
+                    prior_quote = feature.get('source_revision_excerpts', {}).get(revision)
+                    if browser and prior_quote is not None and prior_quote != quote:
+                        raise ValueError('Cannot overwrite a prior evidence quote in a browser save')
+                    feature.setdefault('source_revision_excerpts', {})[revision] = quote
+                if revision not in revisions:
+                    revisions.append(revision)
+                if browser:
+                    stored_quote = feature.get('source_revision_excerpts', {}).get(revision)
+                    effects.append(dict(feature_id=feature['feature_id'], source_id=sid, item=ident,
+                        revision=revision, snapshot=browser_status.value_hash(row['revisions'][-1]),
+                        quote=browser_status.value_hash(stored_quote) if stored_quote is not None else None,
+                        changed=changed))
+    if requested:
+        raise ValueError('Classification refers to an unobserved source item')
+    if changes:
+        changes = {path: [rows[k] for k in sorted(rows)] for path, rows in changes.items()}
+        changes[FEATURE_CATALOG] = sorted(catalog, key=lambda row: row['feature_id'])
+    return changes, before, changed_features, collected_features, effects
 
 
 def finish_run(state_path, work, state, signature):
@@ -437,6 +641,8 @@ def main(*, daily=False):
         parser.add_argument('--run-id', required=True)
         parser.add_argument('--daily-status', action='store_true', help='Pin a 07:00 KST collection for daily status')
         parser.add_argument('--record-incomplete', action='store_true', help='Publish only the incomplete receipt')
+    parser.add_argument('--save-browser', metavar='BROWSER',
+                        help='Save all classified candidates of one complete browser in a scheduled run')
     parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--source', action='append')
     parser.add_argument('--cutoff')
@@ -452,6 +658,9 @@ def main(*, daily=False):
         if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', args.run_id):
             parser.error('Invalid run ID')
         args.private_dir = args.private_dir / args.run_id
+    if args.save_browser is not None and (not args.save_features or args.resume or args.source or args.cutoff
+            or args.allow_partial or args.origin or args.reviewed_attributions or args.brave_release_metadata):
+        parser.error('--save-browser requires --save-features and uses the existing run scope')
     if daily and args.record_incomplete:
         if args.save_features or args.allow_partial or args.resume or args.daily_status or args.source or args.cutoff or args.mode or args.since or args.origin:
             parser.error('--record-incomplete uses only the existing run')
@@ -466,7 +675,7 @@ def main(*, daily=False):
         if (args.private_dir / 'work').resolve() in args.save_features.resolve().parents:
             parser.error('Keep the final classification outside the temporary work directory')
         count = save_features(args.repository, args.private_dir, load_config(args.save_features),
-                              allow_partial=args.allow_partial)
+                              allow_partial=args.allow_partial, browser=args.save_browser)
         print(f'Saved evidence for {count} classified items.')
         return 0
     result = collect_sources(args.repository, args.private_dir, source_ids=args.source, cutoff=args.cutoff,

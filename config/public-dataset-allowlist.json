@@ -23,5 +23,10 @@
     "timezone": "Asia/Seoul",
     "cutoff_local_time": "07:00:00",
     "historical_cutoff_local_times": ["08:00:00"]
+  },
+  "browser_status": {
+    "path_glob": "data/browser-status/*/*.json",
+    "modes": ["daily", "weekly_reconcile"],
+    "version": 1
   }
 }

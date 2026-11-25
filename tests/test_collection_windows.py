@@ -9,7 +9,8 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from pipeline import collect
+from pipeline import browser_status, collect, run_daily
+from pipeline.daily_status import validate_tree
 from pipeline.collectors.browser import Response
 from pipeline.run_daily import encoded, git, read, run_lock
 
@@ -291,6 +292,315 @@ class WindowTests(unittest.TestCase):
                                          disposition='selected' if row['source_id'] == 'firefox-beta' else 'excluded'))
         return dict(decisions=[dict(choice, change_kind='product_change') for choice in selected],
                     dispositions=dispositions)
+
+    def browser_choices(self, name, browser, *, select=True):
+        state = self.state(name)
+        decisions, dispositions = [], []
+        for sid in state['sources']:
+            if self.sources[sid]['browser'] != browser:
+                continue
+            for row in self.candidates(name, sid):
+                ident = row['source_item_id']
+                revision = row['revisions'][-1]['revision_id']
+                dispositions.append(dict(source_id=sid, source_item_id=ident, revision_id=revision,
+                                         disposition='selected' if select else 'excluded'))
+                if select:
+                    decisions.append(dict(source_item_id=ident, revision_id=revision, canonical_key='tab-groups',
+                                          title='Tab groups', change_kind='product_change',
+                                          evidence_quote=row['evidence']['excerpt']))
+        return dict(decisions=decisions, dispositions=dispositions)
+
+    def publish_browser(self, name, browser, choices):
+        path = self.folder / (browser + '-classification.json')
+        path.write_bytes(encoded(choices))
+        self.cli(name, cutoff=None, extra=['--save-browser', browser, '--save-features', str(path)])
+
+    def test_browser_cli_committed_partial_then_fresh_remaining_browsers(self):
+        self.configure_small_registry()
+        run_daily.commit_candidate(self.repo)
+        edge = self.sources['edge-beta']['url']
+        recovered = self.payloads[edge]
+        self.payloads[edge] = TimeoutError('incomplete Edge')
+        self.cli('first', cutoff=STATUS_CUTOFF, extra=['--daily-status'], expected=2)
+        firefox = self.browser_choices('first', 'firefox')
+        self.publish_browser('first', 'firefox', firefox)
+        status = self.repo / 'data/daily-status/2026-11-24.json'
+        detail = self.repo / browser_status.detail_path('daily', STATUS_CUTOFF)
+        self.assertEqual((None, None), (read(status)['change_count'], read(status)['collected_feature_count']))
+        outcomes = read(detail)['browsers']
+        self.assertEqual((1, 1), (outcomes['firefox']['change_count'], outcomes['firefox']['collected_feature_count']))
+        self.assertEqual(None, outcomes['edge']['change_count'])
+        firefox_path = self.repo / 'data/source-items/firefox/firefox-beta.json'
+        first_files = tuple(p.read_bytes() for p in (firefox_path, status, detail))
+        self.publish_browser('first', 'firefox', firefox)
+        with self.assertRaisesRegex(ValueError, 'different final'):
+            self.publish_browser('first', 'firefox', self.browser_choices('first', 'firefox', select=False))
+        with self.assertRaisesRegex(ValueError, 'finish this cutoff'):
+            self.save('first', self.decisions('first'), allow_partial=True)
+        self.assertEqual(first_files, tuple(p.read_bytes() for p in (firefox_path, status, detail)))
+        run_daily.commit_candidate(self.repo)
+        self.payloads[edge] = recovered
+        with self.assertRaisesRegex(ValueError, 'original commit'):
+            self.cli('first', cutoff=STATUS_CUTOFF, extra=['--daily-status', '--resume'])
+        shutil.rmtree(self.folder / 'runs/first')
+        self.cli('second', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        # A's original explicit quote and immutable revision must survive A's private cleanup.
+        accepted_row, = read(firefox_path)
+        snapshot = accepted_row['revisions'][0]
+        snapshot['evidence']['excerpt'] = 'Changed original evidence'
+        accepted_row['evidence']['excerpt'] = snapshot['evidence']['excerpt']
+        firefox_path.write_bytes(encoded([accepted_row]))
+        self.cli('drift', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaisesRegex(ValueError, 'Accepted browser evidence'):
+            self.publish_browser('drift', 'edge', self.browser_choices('drift', 'edge'))
+        self.assertEqual(first_files[1:], (status.read_bytes(), detail.read_bytes()))
+        firefox_path.write_bytes(first_files[0])
+        for browser in outcomes.keys() - {'firefox'}:
+            self.publish_browser('second', browser, self.browser_choices('second', browser, select=browser == 'edge'))
+        self.assertEqual((2, 2), (read(status)['change_count'], read(status)['collected_feature_count']))
+        self.assertEqual(outcomes['firefox'], read(detail)['browsers']['firefox'])
+        self.assertEqual(first_files[0], firefox_path.read_bytes())
+        self.assertEqual(2, len(read(self.repo / collect.FEATURE_CATALOG)))
+        final = detail.read_bytes(), status.read_bytes()
+        self.cli('second', cutoff=None, extra=['--record-incomplete'])
+        self.assertEqual(final, (detail.read_bytes(), status.read_bytes()))
+        validate_tree(self.repo)
+
+    def test_browser_cli_zero_subset_and_checkpoint_guards(self):
+        self.configure_small_registry()
+        registry = read(self.registry)
+        next(s for s in registry['sources'] if s['source_id'] == 'firefox-ios')['enabled'] = True
+        self.registry.write_bytes(encoded(registry))
+        self.cli('subset', ['firefox-beta', 'edge-beta'], cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaisesRegex(ValueError, 'every pinned source'):
+            self.publish_browser('subset', 'firefox', self.browser_choices('subset', 'firefox'))
+        choices = self.browser_choices('subset', 'edge', select=False)
+        with self.assertRaisesRegex(ValueError, 'cover all'):
+            self.publish_browser('subset', 'edge', dict(choices, dispositions=[]))
+        work = self.folder / 'runs/subset/work'
+        for rel in ['checkpoints/edge-beta.json', 'candidates/edge-beta.json']:
+            path = work / rel
+            original = path.read_bytes()
+            path.write_bytes(b'[]')
+            with self.assertRaises(ValueError):
+                self.publish_browser('subset', 'edge', choices)
+            path.write_bytes(original)
+        bad = self.browser_choices('subset', 'firefox')
+        with self.assertRaises(ValueError):
+            self.publish_browser('subset', 'edge', bad)
+        self.publish_browser('subset', 'edge', choices)
+        self.assertFalse((self.repo / collect.FEATURE_CATALOG).exists())
+        rel = browser_status.detail_path('daily', STATUS_CUTOFF)
+        detail = read(self.repo / rel)
+        self.assertEqual(0, detail['browsers']['edge']['change_count'])
+        self.assertIsNone(detail['browsers']['firefox']['change_count'])
+        day = self.repo / 'data/daily-status/2026-11-24.json'
+        self.assertIsNone(read(day)['change_count'])
+        detail['scope']['expected'] = {'edge': ['edge-beta']}
+        detail['browsers'] = {'edge': detail['browsers']['edge']}
+        (self.repo / rel).write_bytes(encoded(browser_status.seal(detail)))
+        day.write_bytes(encoded(dict(read(day), status='complete', change_count=0, collected_feature_count=0)))
+        with self.assertRaisesRegex(ValueError, 'pinned registry'):
+            validate_tree(self.repo)
+
+    def test_browser_cli_weekly_journal_recovery_and_same_run_resume(self):
+        self.configure_small_registry()
+        edge = self.sources['edge-beta']['url']
+        recovered = self.payloads[edge]
+        self.payloads[edge] = TimeoutError('incomplete Edge')
+        weekly = '2026-11-29T10:00:00+09:00'
+        self.cli('week', cutoff=weekly, mode='weekly_reconcile', expected=2)
+        self.publish_browser('week', 'firefox', self.browser_choices('week', 'firefox'))
+        rel = browser_status.detail_path('weekly_reconcile', weekly)
+        detail = read(self.repo / rel)
+        self.assertEqual('2026-01-01', detail['scope']['start'][:10])
+        self.assertIn('brave', detail['scope']['expected'])
+        self.payloads[edge] = recovered
+        self.cli('week', cutoff=weekly, mode='weekly_reconcile', extra=['--resume'])
+        choices = self.browser_choices('week', 'edge')
+        paths = [self.repo / rel, self.repo / collect.FEATURE_CATALOG]
+        before = [p.read_bytes() for p in paths]
+        original = run_daily.store_changes
+
+        def interrupted(root, txn, changes, previous, writer):
+            def crash(path, raw):
+                run_daily.durable(path, raw)
+                if path == root / rel:
+                    raise KeyboardInterrupt()
+            return original(root, txn, changes, previous, writer, replace=crash)
+
+        with patch.object(collect, 'store_changes', interrupted), self.assertRaises(KeyboardInterrupt):
+            self.publish_browser('week', 'edge', choices)
+        with run_lock(self.repo) as writer:
+            run_daily.pending_recovery(self.repo.resolve(), writer)
+        self.assertEqual(before, [p.read_bytes() for p in paths])
+        self.assertFalse((self.repo / 'data/source-items/edge/edge-beta.json').exists())
+        self.publish_browser('week', 'edge', choices)
+        self.assertEqual(1, read(paths[0])['browsers']['edge']['change_count'])
+        self.assertFalse((self.repo / 'data/daily-status').exists())
+        with self.assertRaisesRegex(ValueError, 'finish this cutoff'):
+            self.save('week', self.decisions('week'))
+        validate_tree(self.repo)
+
+    def test_browser_cli_refuses_shared_unpinned_foreign_owner(self):
+        self.configure_small_registry()
+        self.cli('manual-seed', ['firefox-beta'], cutoff=STATUS_CUTOFF, mode='manual')
+        self.save('manual-seed', self.classified('manual-seed', 'firefox-beta'))
+        catalog = self.repo / collect.FEATURE_CATALOG
+        owner, = read(catalog)
+        foreign = dict(owner, browser='edge', feature_id='feature-foreign', canonical_key='legacy-attachment')
+        foreign.pop('source_revision_ids')
+        catalog.write_bytes(encoded([owner, foreign]))
+        url = self.sources['firefox-beta']['url']
+        self.payloads[url] = self.payloads[url].replace('Tab grouping added.', 'Tab grouping now supports shortcuts.')
+        self.cli('cross', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        prior = catalog.read_bytes()
+        with self.assertRaisesRegex(ValueError, 'different browser owner'):
+            self.publish_browser('cross', 'firefox', self.browser_choices('cross', 'firefox'))
+        self.assertEqual(prior, catalog.read_bytes())
+        self.assertFalse((self.repo / 'data/browser-status').exists())
+
+    def test_browser_cli_frozen_complete_and_manual_are_immutable(self):
+        self.configure_small_registry()
+        self.cli('whole', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.save('whole', self.decisions('whole'))
+        receipt = self.repo / 'data/daily-status/2026-11-24.json'
+        original = receipt.read_bytes()
+        self.cli('frozen', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaisesRegex(ValueError, 'daily status is complete'):
+            self.publish_browser('frozen', 'edge', self.browser_choices('frozen', 'edge'))
+        self.cli('frozen', cutoff=None, extra=['--record-incomplete'])
+        self.assertEqual(original, receipt.read_bytes())
+        self.cli('manual', ['brave-blog'], cutoff=STATUS_CUTOFF, mode='manual')
+        with self.assertRaisesRegex(ValueError, 'pinned daily status or weekly'):
+            self.publish_browser('manual', 'brave', self.browser_choices('manual', 'brave'))
+        self.assertFalse((self.repo / 'data/browser-status').exists())
+
+    def test_browser_cli_final_zero_and_rejects_unrelated_evidence_drift(self):
+        self.configure_small_registry()
+        self.cli('zero', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.publish_browser('zero', 'firefox', self.browser_choices('zero', 'firefox', select=False))
+        evidence = self.repo / 'data/source-items/edge/edge-beta.json'
+        evidence.parent.mkdir(parents=True)
+        evidence.write_bytes(b'[]')
+        with self.assertRaisesRegex(ValueError, 'baseline changed'):
+            self.publish_browser('zero', 'chrome', self.browser_choices('zero', 'chrome', select=False))
+        self.cli('fresh', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        scope = read(self.repo / browser_status.detail_path('daily', STATUS_CUTOFF))['scope']
+        for browser in scope['expected'].keys() - {'firefox'}:
+            self.publish_browser('fresh', browser, self.browser_choices('fresh', browser, select=False))
+        receipt = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('complete', 0, 0), (receipt['status'], receipt['change_count'], receipt['collected_feature_count']))
+        self.assertEqual(b'[]', evidence.read_bytes())
+        self.assertFalse((self.repo / collect.FEATURE_CATALOG).exists())
+        validate_tree(self.repo)
+
+    def test_browser_cli_rolls_back_after_daily_aggregate_write(self):
+        self.configure_small_registry()
+        self.cli('run', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        choices = self.browser_choices('run', 'firefox')
+        original = run_daily.store_changes
+        receipt = 'data/daily-status/2026-11-24.json'
+
+        def fail(root, txn, changes, previous, writer):
+            def fail_after_last(path, raw):
+                run_daily.durable(path, raw)
+                if path == root / receipt:
+                    raise OSError('after aggregate')
+            return original(root, txn, changes, previous, writer, replace=fail_after_last)
+
+        with patch.object(collect, 'store_changes', fail), self.assertRaisesRegex(OSError, 'after aggregate'):
+            self.publish_browser('run', 'firefox', choices)
+        self.assertEqual([], list((self.repo / 'data').rglob('*.json')))
+        self.publish_browser('run', 'firefox', choices)
+        original = (self.repo / receipt).read_bytes()
+        detail = self.repo / browser_status.detail_path('daily', STATUS_CUTOFF)
+        actual = detail.with_suffix('.backup')
+        detail.rename(actual)
+        detail.symlink_to(actual)
+        with self.assertRaisesRegex(ValueError, 'Unsafe browser publication'):
+            self.publish_browser('run', 'edge', self.browser_choices('run', 'edge'))
+        self.assertEqual(original, (self.repo / receipt).read_bytes())
+
+    def test_browser_witness_protects_against_later_manual_and_weekly_saves(self):
+        self.configure_small_registry()
+        run_daily.commit_candidate(self.repo)
+        sid = 'firefox-beta'
+        self.cli('manual', [sid], cutoff=STATUS_CUTOFF, mode='manual')
+        self.cli('week', cutoff=STATUS_CUTOFF, mode='weekly_reconcile')
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        accepted = self.browser_choices('day', 'firefox')
+        self.publish_browser('day', 'firefox', accepted)
+        run_daily.commit_candidate(self.repo)
+        detail = self.repo / browser_status.detail_path('daily', STATUS_CUTOFF)
+        catalog = self.repo / collect.FEATURE_CATALOG
+        before = detail.read_bytes(), catalog.read_bytes()
+        shorter = [dict(choice, evidence_quote='Tab grouping') for choice in accepted['decisions']]
+        for name, classification in [('manual', shorter), ('week', dict(self.decisions('week'), decisions=shorter))]:
+            path = self.folder / (name + '-overlap.json')
+            path.write_bytes(encoded(classification))
+            with self.assertRaisesRegex(ValueError, 'Accepted browser evidence or feature link changed'):
+                self.cli(name, cutoff=None, extra=['--save-features', str(path)])
+            self.assertEqual(before, (detail.read_bytes(), catalog.read_bytes()))
+        path.write_bytes(encoded(accepted['decisions']))
+        self.cli('manual', cutoff=None, extra=['--save-features', str(path)])
+        self.assertEqual(before, (detail.read_bytes(), catalog.read_bytes()))
+        validate_tree(self.repo)
+
+    def test_browser_ci_compares_receipt_inventory_and_registry_with_git_base(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        self.cli('one', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.publish_browser('one', 'firefox', self.browser_choices('one', 'firefox', select=False))
+        detail_path = self.repo / browser_status.detail_path('daily', STATUS_CUTOFF)
+        initial = detail_path.read_bytes()
+        fake = read(detail_path)
+        fake['scope']['registry'] = 'f' * 64
+        detail_path.write_bytes(encoded(browser_status.seal(fake)))
+        with self.assertRaisesRegex(ValueError, 'registry fingerprint'):
+            validate_tree(self.repo)
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaisesRegex(ValueError, 'registry fingerprint'):
+            validate_tree(self.repo, base=base)
+        detail_path.write_bytes(initial)
+        accepted = run_daily.commit_candidate(self.repo)
+        registry = read(self.registry)
+        next(s for s in registry['sources'] if s['source_id'] == 'firefox-ios')['enabled'] = True
+        self.registry.write_bytes(encoded(registry))
+        validate_tree(self.repo, base=accepted)
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=accepted)
+        shutil.rmtree(self.repo / browser_status.FOLDER)
+        with self.assertRaisesRegex(ValueError, 'Committed browser detail is missing'):
+            validate_tree(self.repo)
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaisesRegex(ValueError, 'Committed browser detail is missing'):
+            validate_tree(self.repo, base=accepted)
+
+    def test_normalize_and_browser_writers_share_one_repository_lock(self):
+        from pipeline.normalize.storage import publish
+        self.configure_small_registry()
+        self.cli('day', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        choices = self.browser_choices('day', 'firefox', select=False)
+        original = run_daily.store_changes
+
+        def competing_normalization(root, txn, changes, previous, writer):
+            with self.assertRaisesRegex(RuntimeError, 'repository lock'):
+                publish(root, {}, self.folder / 'normalize')
+            return original(root, txn, changes, previous, writer)
+
+        with patch.object(collect, 'store_changes', competing_normalization):
+            self.publish_browser('day', 'firefox', choices)
+
+        def competing_collection(source, dest):
+            with self.assertRaisesRegex(RuntimeError, 'repository lock'):
+                self.cli('competitor', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+            source.replace(dest)
+
+        publish(self.repo, {'data/aliases/corrections.json': []}, self.folder / 'normalize',
+                replace=competing_collection)
+        self.assertFalse((self.folder / 'runs/competitor/feature-run.json').exists())
+        validate_tree(self.repo)
 
     def test_daily_cli_marks_partial_and_recovers_to_complete_zero(self):
         self.configure_small_registry()

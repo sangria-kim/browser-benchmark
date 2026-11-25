@@ -57,6 +57,11 @@ def git(root, *args):
     return subprocess.check_output(['git', '-C', str(root), *args], stderr=subprocess.PIPE).decode().strip()
 
 
+def publication_commits(root):
+    code = git(Path(__file__).resolve().parents[1], 'rev-parse', 'HEAD')
+    return code, git(root, 'rev-parse', 'HEAD') if (root / '.git').exists() else code
+
+
 def private_input_inventory(directory):
     """Hash the complete regular-file set; never follow private input links."""
     if directory.is_symlink():
@@ -127,18 +132,22 @@ def recover_publication(root, run_dir):
     # Pre-feature-only runners can leave a pending journal in the same lock.
     permitted = ('data/', 'reports/generated/') if state.get('version') in (1, 2) else OUTPUTS
     from pipeline.daily_status import status_path
-    receipt_allowed = state.get('version') == 4
+    from pipeline.browser_status import is_detail, safe_path
+    version = state.get('version')
+    receipt_allowed = version in (4, 5)
     expected = state['stages']['validate']['outputs']
     changed = {p for p in set(state['inputs']) | set(expected) if state['inputs'].get(p) != expected.get(p)}
     if set(journal['files']) != changed:
         raise ValueError('Recovery journal inventory mismatch')
     for rel, row in journal['files'].items():
-        allowed = rel.startswith(permitted) or (receipt_allowed and status_path(rel))
+        allowed = rel.startswith(permitted) or (receipt_allowed and status_path(rel)) or (version == 5 and is_detail(rel))
         if (not allowed or Path(rel).is_absolute() or '..' in Path(rel).parts
                 or row != {'before': state['inputs'].get(rel), 'after': expected.get(rel)}
                 or row['after'] is None):
             raise ValueError('Unsafe recovery journal entry')
         backup = run_dir / 'backup' / rel
+        if version == 5:
+            safe_path(run_dir, 'backup/' + rel)
         if row['before'] is not None and (backup.is_symlink() or digest(backup.read_bytes()) != row['before']):
             raise ValueError('Recovery backup checksum mismatch')
     # Validate every path before rolling back any. Preserve third-party edits.
@@ -147,6 +156,8 @@ def recover_publication(root, run_dir):
         if (path.is_symlink() or root not in path.resolve().parents
                 or receipt_allowed and status_path(rel) and path.parent.is_symlink()):
             raise RuntimeError('Unsafe recovery target: ' + rel)
+        if version == 5:
+            safe_path(root, rel)
         current = digest(path.read_bytes()) if path.exists() else None
         if current not in (row['before'], row['after']):
             raise RuntimeError('Recovery conflict; preserve journal and reconcile: ' + rel)
@@ -175,25 +186,56 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
     from pipeline.daily_status import previous_receipt, scheduled_cutoff, status_path, validate_receipt
+    from pipeline import browser_status
+    details = {rel for rel in changes if browser_status.is_detail(rel)}
+    if len(details) > 1:
+        raise ValueError('Publish one browser receipt at a time')
+    for rel in details:
+        detail = changes[rel]
+        browser_status.validate_detail(rel, detail)
+        previous = browser_status.read_current(root, rel)
+        if previous is None:
+            previous = browser_status.initial(detail['scope'])
+        browser_status.transition(previous, detail)
+        browser_status.check_registry(root, detail['scope'])
+        browser_status.check_aggregate(root, detail, changes)
     receipts = {rel for rel in changes if status_path(rel)}
     for rel in receipts:
         validate_receipt(rel, changes[rel])
         scheduled_cutoff(changes[rel]['cutoff'])
+        detail_rel = browser_status.detail_path('daily', changes[rel]['cutoff'])
+        if detail_rel not in details and browser_status.read_current(root, detail_rel) is not None:
+            raise ValueError('Finish this daily cutoff with --save-browser')
         if (root / rel).parent.is_symlink():
             raise ValueError('Invalid daily status folder')
-    feature_changes = {rel: value for rel, value in changes.items() if rel not in receipts}
+    feature_changes = {rel: value for rel, value in changes.items() if rel not in receipts | details}
     # Failed collection may publish an incomplete status without touching feature data.
-    if feature_changes or not receipts or any(changes[rel]['status'] == 'complete' for rel in receipts):
-        validate_graph(root, feature_changes)
+    if details or feature_changes or not receipts or any(changes[rel]['status'] == 'complete' for rel in receipts):
+        graph = validate_graph(root, feature_changes)
+        for rel in details:
+            browser_status.check_effects(changes[rel], browser_status.effect_index(graph))
+            browser_status.check_delta(root, previous, changes[rel], graph, feature_changes)
     payloads = {p: json_bytes(rows) for p, rows in changes.items()}
     payloads = {p: raw for p, raw in payloads.items() if digest(raw) != before[p]}
+
+    def check_dependencies(expected):
+        marker = read(browser_status.safe_path(txn, 'scope.json'))
+        if publication_commits(root) != (marker['code_commit'], marker['base_commit']):
+            raise ValueError('Browser publication commit changed; use a fresh collection')
+        for rel, checksum in expected.items():
+            path = browser_status.safe_path(root, rel)
+            if (digest(path.read_bytes()) if path.exists() else None) != checksum:
+                raise ValueError('Concurrent edit to browser publication input: ' + rel)
+
+    if details:
+        check_dependencies(before)
     if not payloads:
         return
     after = {p: digest(raw) for p, raw in payloads.items()}
     inputs = {p: before[p] for p in payloads}
     for rel in payloads:
         path = root / rel
-        if path.is_symlink() or root not in path.resolve().parents or not (rel.startswith(OUTPUTS) or rel in receipts):
+        if path.is_symlink() or root not in path.resolve().parents or not (rel.startswith(OUTPUTS) or rel in receipts | details):
             raise ValueError('Invalid feature output path')
         old = path.read_bytes() if path.exists() else None
         if (digest(old) if old is not None else None) != before[rel]:
@@ -202,7 +244,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             if rel in receipts and previous_receipt(rel, old, changes[rel]['cutoff'])['status'] == 'complete':
                 raise ValueError('Cannot change data after the daily status is complete')
             durable(txn / 'backup' / rel, old)
-    state = dict(version=4 if receipts else 3, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
+    state = dict(version=5 if details else 4 if receipts else 3, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
     durable(txn / 'state.json', encoded(state))
     journal = dict(status='writing', files={p: dict(before=inputs[p], after=after[p]) for p in after})
     durable(txn / 'publication.json', encoded(journal))
@@ -212,6 +254,8 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     writer.flush()
     os.fsync(writer.fileno())
     try:
+        if details:
+            check_dependencies(before)
         for rel, raw in payloads.items():
             path = root / rel
             if (digest(path.read_bytes()) if path.exists() else None) != inputs[rel]:
@@ -219,6 +263,8 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             replace(path, raw)
         if any(digest((root / rel).read_bytes()) != after[rel] for rel in after):
             raise ValueError('Concurrent edit after feature publication')
+        if details:
+            check_dependencies({**before, **after})
         journal['status'] = 'published'
         durable(txn / 'publication.json', encoded(journal))
     except Exception:

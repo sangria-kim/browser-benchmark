@@ -39,6 +39,8 @@ git show "${sha}:$catalog" | jq '.[0] | {feature_id, title, source_item_ids}'
 
 Allowlist의 `daily_status`는 기능 근거와 별개입니다. 파일명과 날짜·마감·상태·건수 조합이 맞는 파일만 읽으세요.
 
+브라우저별 중간 결과를 읽는 소비자는 동일한 커밋의 `data/browser-status/<mode>/<UTC 시각>.json`을 함께 읽습니다. `scope.expected`에는 필수 출처가, `browsers`에는 브라우저별 완료 상태와 두 건수가 들어 있습니다. 일일 전체가 미완료여도 개별 완료 브라우저의 기능과 근거는 사용할 수 있습니다. [저장과 재시도 절차](pipeline/OPERATIONS.md#브라우저별-저장과-재시도)
+
 ## 기존 자료
 
 이전에 저장한 [기능 문서](features/README.md), [릴리스](releases/README.md), [기능 사건](data/events/README.md), [Chrome 실험](experiments/chrome/README.md), [일일 리포트](reports/generated/README.md)와 [공개 대시보드](https://sangria-kim.github.io/browser-benchmark/)를 열람할 수 있습니다. 이전 수집분에는 일반 수정과 제외 항목도 들어 있습니다. [폴더 구조](docs/data-layout.md)

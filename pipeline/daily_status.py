@@ -57,7 +57,9 @@ def validate_receipt(path, value):
         raise ValueError('Invalid daily status date, cutoff or state')
 
 
-def validate_tree(root):
+def validate_tree(root, *, base=None):
+    from pipeline import browser_status
+    browser_status.validate_tree(root.resolve(), base=base)
     folder = root / FOLDER
     if folder.is_symlink():
         raise ValueError('Invalid daily status folder')
@@ -138,4 +140,7 @@ def classified_decisions(classification, inventory):
 
 
 if __name__ == '__main__':
-    validate_tree(Path(__file__).resolve().parents[1])
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--base-commit', help='Previous push or PR base to check browser receipt immutability')
+    validate_tree(Path(__file__).resolve().parents[1], base=parser.parse_args().base_commit)
