@@ -91,9 +91,14 @@ def validate_detail(rel, detail):
         outcome = outcomes[browser]
         if outcome == dict(status='incomplete', change_count=None, collected_feature_count=None):
             continue
-        if (not isinstance(outcome, dict) or set(outcome) != {'status', 'classification', 'effects',
-                'change_count', 'collected_feature_count'} or outcome['status'] != 'complete'
-                or not valid(HASH, outcome['classification']) or not isinstance(outcome['effects'], list)):
+        incomplete = isinstance(outcome, dict) and outcome.get('status') == 'incomplete'
+        fields = {'status', 'effects', 'change_count', 'collected_feature_count'}
+        if not incomplete:
+            fields.add('classification')
+        if (not isinstance(outcome, dict) or set(outcome) != fields or not isinstance(outcome['effects'], list)
+                or incomplete and (not outcome['effects'] or outcome['change_count'] is not None
+                                   or outcome['collected_feature_count'] is not None)
+                or not incomplete and (outcome['status'] != 'complete' or not valid(HASH, outcome['classification']))):
             raise ValueError('Invalid accepted browser outcome')
         identities, changed, collected = set(), set(), set()
         for effect in outcome['effects']:
@@ -110,6 +115,8 @@ def validate_detail(rel, detail):
             collected.add(key[0])
             if effect['changed']:
                 changed.add(key[0])
+        if incomplete:
+            continue
         for key, ids in [('change_count', changed), ('collected_feature_count', collected)]:
             if type(outcome[key]) is not int or outcome[key] != len(ids):
                 raise ValueError('Invalid browser feature total')
@@ -163,10 +170,31 @@ def check_registry(root, scope, *, historical=False, facts=None):
         raise ValueError('Browser scope does not match the pinned registry')
 
 
+def effect_key(effect):
+    return effect['feature_id'], effect['item'], effect['revision']
+
+
+def merge_effects(previous, additions):
+    # Retain the original product-change decision when a retry sees the stored link.
+    effects = {effect_key(effect): effect for effect in previous}
+    for effect in additions:
+        key = effect_key(effect)
+        old = effects.get(key)
+        if old is None:
+            effects[key] = effect
+        elif dict(effect, changed=old['changed']) != old:
+            raise ValueError('Cannot replace a confirmed feature effect')
+    return [effects[key] for key in sorted(effects)]
+
+
 def transition(old, new):
     if old['scope'] != new['scope'] or any(outcome['status'] == 'complete' and outcome != new['browsers'][browser]
             for browser, outcome in old['browsers'].items()):
         raise ValueError('Cannot change pinned scope or accepted browser outcome')
+    for name, outcome in old['browsers'].items():
+        current = {effect_key(e): e for e in new['browsers'][name].get('effects', [])}
+        if any(current.get(effect_key(e)) != e for e in outcome.get('effects', [])):
+            raise ValueError('Cannot remove a previously published item effect')
 
 
 def aggregate(detail):
@@ -185,21 +213,31 @@ def check_aggregate(root, detail, changes):
             raise ValueError('Daily aggregate differs from browser outcomes')
 
 
-def check_delta(root, old, new, graph, changes):
+def check_delta(root, old, new, graph, changes, *, item_effect=None):
     """Enforce ownership at the final writer, including legacy unpinned readers."""
     from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
-    accepted = [browser for browser, row in new['browsers'].items() if row['status'] == 'complete'
-                and old['browsers'][browser]['status'] != 'complete']
-    if len(accepted) != 1:
-        raise ValueError('Publish exactly one newly verified browser')
-    browser, = accepted
+    if item_effect is None:
+        accepted = [name for name, row in new['browsers'].items() if row != old['browsers'][name]]
+        if len(accepted) != 1 or new['browsers'][accepted[0]]['status'] != 'complete':
+            raise ValueError('Publish exactly one newly verified browser')
+        browser, = accepted
+        effects = new['browsers'][browser]['effects']
+    else:
+        browser, = [name for name, ids in new['scope']['expected'].items() if item_effect['source_id'] in ids]
+        prior = old['browsers'][browser]
+        if prior['status'] != 'incomplete':
+            raise ValueError('Cannot publish an item after browser completion')
+        expected = dict(prior, effects=merge_effects(prior.get('effects', []), [item_effect]))
+        if new['browsers'] != dict(old['browsers'], **{browser: expected}):
+            raise ValueError('Item publication can only append its confirmed effect')
+        effects = [item_effect]
     selected = {}
-    for effect in new['browsers'][browser]['effects']:
+    for effect in effects:
         path = f"data/source-items/{browser}/{effect['source_id']}.json"
         if path == EDGE_POLICY and (root / EDGE_SHARDS[0]).exists():
             path = EDGE_SHARDS[int(effect['item'][4:6], 16)]
         selected.setdefault(path, set()).add(effect['item'])
-    selected_features = {e['feature_id'] for e in new['browsers'][browser]['effects']}
+    selected_features = {e['feature_id'] for e in effects}
     selected_items = set().union(*selected.values())
     advanced = set()
     for rel, rows in changes.items():

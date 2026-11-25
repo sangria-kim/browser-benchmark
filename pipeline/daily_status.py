@@ -131,7 +131,7 @@ def add_receipt(root, changes, before, cutoff, count, collected_count):
     changes[rel] = value
 
 
-def classified_decisions(classification, inventory):
+def classified_decisions(classification, inventory, *, accepted=()):
     """Require a final disposition for each exact observed candidate revision."""
     if (not isinstance(classification, dict) or set(classification) != {'decisions', 'dispositions'}
             or not all(isinstance(value, list) for value in classification.values())):
@@ -163,7 +163,10 @@ def classified_decisions(classification, inventory):
         if not isinstance(row, dict) or not all(isinstance(row.get(k), str) and row[k] for k in fields[1:]):
             raise ValueError('Invalid daily feature decision identity')
         included.add((row['source_item_id'], row['revision_id']))
-    if included != selected:
+    already = {(item, revision) for sid, item, revision in accepted if (sid, item, revision) in inventory}
+    if not already <= selected:
+        raise ValueError('Previously selected candidates must retain their final disposition')
+    if included | already != selected:
         raise ValueError('Daily decisions must match the selected candidate dispositions')
     return classification['decisions']
 

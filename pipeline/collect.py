@@ -1,6 +1,7 @@
 """Collect registered browser updates privately and save classified features."""
 import argparse
 from collections import defaultdict
+from contextlib import ExitStack
 import json
 import os
 from datetime import datetime, timezone
@@ -64,7 +65,9 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
     require_external(root, private)
     private.mkdir(mode=0o700, parents=True, exist_ok=True)
     state_path, work = private / 'feature-run.json', private / 'work'
-    with run_lock(private), run_lock(root) as writer:
+    # Only the collector owns feature-run.json while HTTP is in flight.
+    with run_lock(private), run_lock(root / '.collector-owner'), ExitStack() as setup:
+        writer = setup.enter_context(run_lock(root))
         pending_recovery(root, writer)
         if work.is_symlink() or state_path.is_symlink():
             raise ValueError('Invalid collection workspace')
@@ -115,7 +118,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
         else:
             state = dict(**inputs, repository=str(root), run_id=private.name, timezone='Asia/Seoul',
                          manual_since=since, config_hash=config_hash, workspace_id=uuid.uuid4().hex,
-                         observed={}, source_results={})
+                         observed={}, source_results={}, generations={})
             if daily_status:
                 enabled, _ = registered_sources(root, None, mode=mode)
                 state['daily_status'] = dict(enabled=sorted(s['source_id'] for s in enabled),
@@ -131,15 +134,21 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                                    (accepted or {}).get('browsers', {}).items() if row['status'] == 'complete'}
                 pin = dict(version=1, workspace=state['workspace_id'], config=config_hash, accepted=accepted_hashes,
                            scope=scope, baseline=baseline)
+                # Pending item effects precede this run and can only grow.
+                pin['prior_items'] = {name: row['effects'] for name, row in (accepted or {}).get('browsers', {}).items()
+                                      if row['status'] == 'incomplete' and row.get('effects')}
                 state['browser_pin'] = browser_status.value_hash(pin)
                 durable(work / 'browser-pin.json', encoded(pin))
                 owner += '\n' + state['browser_pin']
+            from pipeline.item_publication import pin_inputs
+            pin_inputs(root, work, state)
             durable(work / '.owner', owner.encode())
         if daily_status and not resume:
             check_status_inputs(root, state)
         state.update(status='collecting', complete=False)
         durable(state_path, encoded(state))
         fact_index = FeatureIndex(root, private)
+        setup.close()
         for source in sources:
             sid = source['source_id']
             path = work / 'candidates' / source_path(source).name
@@ -175,17 +184,19 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                         if ident in collector.classification_text:
                             row = dict(row, classification_text=collector.classification_text[ident])
                         rows.append(row)
-                if not review_only:
-                    atomic_json(path, rows)
-                state['observed'][sid] = file_digest(path)
+                jobs = collector.fact_review.run(prior_jobs) if collector.fact_review is not None else []
                 status = {k: result[k] for k in ('source_id', 'status', 'cutoff')}
                 if result.get('errors'):
                     status['errors'] = result['errors']
-                jobs = collector.fact_review.run(prior_jobs) if collector.fact_review is not None else []
-                if jobs or prior_jobs:
-                    review_path = work / 'enrichment' / (sid + '.json')
-                    atomic_json(review_path, jobs)
-                    status['enrichment_sha256'] = file_digest(review_path)
+                with run_lock(root, wait=True):
+                    if not review_only:
+                        atomic_json(path, rows)
+                    state['observed'][sid] = file_digest(path)
+                    if jobs or prior_jobs:
+                        review_path = work / 'enrichment' / (sid + '.json')
+                        atomic_json(review_path, jobs)
+                        status['enrichment_sha256'] = file_digest(review_path)
+                    publish_source(work, state, state_path, sid, status)
             except Exception as error:
                 state['observed'].pop(sid, None)
                 status = dict(source_id=sid, cutoff=cutoff, status='partial',
@@ -193,15 +204,23 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 # A damaged completed checkpoint is never replayed as a fresh snapshot.
                 if previous and (previous.get('checkpoint_invalid') or previous['status'] == 'complete'):
                     status['checkpoint_invalid'] = True
-            state['source_results'][sid] = status
-            if state.get('browser_pin'):
-                durable(work / 'checkpoints' / (sid + '.json'), encoded(source_checkpoint(state, sid)))
-            durable(state_path, encoded(state))
+                with run_lock(root, wait=True):
+                    publish_source(work, state, state_path, sid, status)
         statuses = list(state['source_results'].values())
         complete = bool(sources) and all(s['status'] == 'complete' for s in statuses)
         state.update(status='complete' if complete else 'partial', complete=complete)
         durable(state_path, encoded(state))
     return {'browser': statuses, 'complete': complete}
+
+
+def publish_source(work, state, state_path, sid, status):
+    from pipeline.item_publication import seal_source
+    state['source_results'][sid] = status
+    if 'generations' in state:
+        state['generations'][sid] = seal_source(work, state, sid)
+    if state.get('browser_pin'):
+        durable(work / 'checkpoints' / (sid + '.json'), encoded(source_checkpoint(state, sid)))
+    durable(state_path, encoded(state))
 
 
 def collect_one(collector, source, state, private):
@@ -250,7 +269,10 @@ def browser_scope(root, state):
 
 
 def source_checkpoint(state, sid):
-    return dict(pin=state['browser_pin'], result=state['source_results'][sid], observed=state['observed'].get(sid))
+    result = dict(pin=state['browser_pin'], result=state['source_results'][sid], observed=state['observed'].get(sid))
+    if sid in state.get('generations', {}):
+        result['generation'] = state['generations'][sid]
+    return result
 
 
 def collection_pin(root, work, state):
@@ -289,12 +311,16 @@ def browser_baseline(root, work, state, pin):
     scope = pin['scope']
     if publication_commits(root) != (state['code_commit'], state['base_commit']):
         raise ValueError('Browser baseline changed from the original commit; use a fresh collection at the same cutoff')
+    rel = browser_status.detail_path(scope['mode'], scope['cutoff'])
+    detail = browser_status.read_current(root, rel)
     if pin['accepted']:
-        rel = browser_status.detail_path(scope['mode'], scope['cutoff'])
-        detail = browser_status.read_current(root, rel)
         if detail is None or any(browser_status.value_hash(detail['browsers'].get(name)) != checksum
                                  for name, checksum in pin['accepted'].items()):
             raise ValueError('Previously accepted browser outcomes changed')
+    for name, prior in pin.get('prior_items', {}).items():
+        current = {browser_status.effect_key(e): e for e in (detail or {}).get('browsers', {}).get(name, {}).get('effects', [])}
+        if any(current.get(browser_status.effect_key(e)) != e for e in prior):
+            raise ValueError('Previously published item effects changed')
     baseline = dict(pin['baseline'])
     folder = work / 'browser-transactions'
     if folder.is_symlink():
@@ -311,15 +337,21 @@ def browser_baseline(root, work, state, pin):
         journal = read(journal_path)
         saved = read(browser_status.safe_path(txn, 'state.json'))
         rel = browser_status.detail_path(scope['mode'], scope['cutoff'])
-        if (marker.get('pin') != state['browser_pin'] or browser not in scope['expected'] or browser in seen
+        item_effect = marker.get('effect')
+        if (marker.get('pin') != state['browser_pin'] or browser not in scope['expected']
                 or saved.get('repository') != str(root) or saved.get('version') != 5
-                or rel not in journal['files'] or set(journal['files']) != set(saved['inputs'])):
+                or set(journal['files']) != set(saved['inputs'])):
             raise ValueError('Invalid browser publication chain')
-        detail = read(browser_status.safe_path(root, rel))
-        browser_status.validate_detail(rel, detail)
-        if detail['browsers'][browser].get('classification') != marker['classification']:
-            raise ValueError('Published browser outcome changed')
-        seen.add(browser)
+        if detail is None:
+            raise ValueError('Missing published browser detail')
+        outcome = detail['browsers'][browser]
+        if item_effect is not None:
+            if item_effect not in outcome.get('effects', []):
+                raise ValueError('Published item effect changed')
+        else:
+            if browser in seen or rel not in journal['files'] or outcome.get('classification') != marker['classification']:
+                raise ValueError('Published browser outcome changed')
+            seen.add(browser)
         for path, change in journal['files'].items():
             if change != dict(before=saved['inputs'][path], after=saved['stages']['validate']['outputs'][path]):
                 raise ValueError('Invalid browser publication journal checksums')
@@ -525,10 +557,7 @@ def save_browser(root, work, state, browser, classification, writer):
     if browser not in scope['expected']:
         raise ValueError('Browser is outside this collection mode')
     sources, _ = registered_sources(root, scope['expected'][browser], mode=state['mode'])
-    decisions = classified_decisions(classification, candidate_inventory(work, state, sources, checkpointed=True))
-    allowed = {'source_item_id', 'revision_id', 'canonical_key', 'title', 'change_kind', 'evidence_quote'}
-    if any(set(choice) - allowed for choice in decisions):
-        raise ValueError('Unexpected browser classification fields')
+    inventory = candidate_inventory(work, state, sources, checkpointed=True)
     signature = browser_status.value_hash(classification)
     rel = browser_status.detail_path(state['mode'], state['cutoff'])
     target = browser_status.safe_path(root, rel)
@@ -545,14 +574,23 @@ def save_browser(root, work, state, browser, classification, writer):
         if previous is not None and previous['status'] == 'complete' and raw is None:
             raise ValueError('Cannot change data after the daily status is complete')
     outcome = detail['browsers'][browser]
+    previous_effects = outcome.get('effects', [])
+    accepted = {(e['source_id'], e['item'], e['revision']) for e in previous_effects}
+    if outcome['status'] == 'complete' and outcome['classification'] != signature:
+        raise ValueError('This browser already has a different final classification')
+    decisions = classified_decisions(classification, inventory, accepted=accepted)
+    allowed = {'source_item_id', 'revision_id', 'canonical_key', 'title', 'change_kind', 'evidence_quote'}
+    if any(set(choice) - allowed for choice in decisions):
+        raise ValueError('Unexpected browser classification fields')
     if outcome['status'] == 'complete':
-        if outcome['classification'] != signature:
-            raise ValueError('This browser already has a different final classification')
         from pipeline.normalize import validate_graph
         browser_status.check_effects(detail, browser_status.effect_index(validate_graph(root)))
         return len(decisions)
     changes, before, changed, collected, effects = classified_delta(root, work, state, sources, decisions,
                                                                    daily_status=True, browser=browser)
+    effects = browser_status.merge_effects(previous_effects, effects)
+    changed = {e['feature_id'] for e in effects if e['changed']}
+    collected = {e['feature_id'] for e in effects}
     include_baseline(before, baseline)
     detail['browsers'][browser] = dict(status='complete', classification=signature, effects=effects,
                                        change_count=len(changed), collected_feature_count=len(collected))
@@ -751,6 +789,7 @@ def main(*, daily=False):
         parser.add_argument('--record-incomplete', action='store_true', help='Publish only the incomplete receipt')
     parser.add_argument('--save-browser', metavar='BROWSER',
                         help='Save all classified candidates of one complete browser in a scheduled run')
+    parser.add_argument('--save-item', type=Path, help='Publish one confirmed feature from a JSON object')
     parser.add_argument('--allow-partial', action='store_true')
     parser.add_argument('--source', action='append')
     parser.add_argument('--cutoff')
@@ -766,6 +805,16 @@ def main(*, daily=False):
         if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9_.-]{0,79}', args.run_id):
             parser.error('Invalid run ID')
         args.private_dir = args.private_dir / args.run_id
+    if args.save_item:
+        if (args.save_features or args.save_browser or args.resume or args.source or args.cutoff or args.allow_partial
+                or args.origin or args.since or args.reviewed_attributions or args.brave_release_metadata
+                or args.mode not in (None, 'manual') or daily and (args.daily_status or args.record_incomplete)):
+            parser.error('--save-item uses the existing run scope or a new manual workspace')
+        from pipeline.item_publication import save_item
+        effect = save_item(args.repository, args.private_dir, load_config(args.save_item),
+                           standalone=not daily or args.mode == 'manual', manual=args.mode == 'manual')
+        print(json.dumps({'feature_id': effect['feature_id'], 'changed': effect['changed']}))
+        return 0
     if args.save_browser is not None and (not args.save_features or args.resume or args.source or args.cutoff
             or args.allow_partial or args.origin or args.reviewed_attributions or args.brave_release_metadata):
         parser.error('--save-browser requires --save-features and uses the existing run scope')

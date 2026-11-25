@@ -292,16 +292,33 @@ class FeatureReviewTests(unittest.TestCase):
         self.assertNotIn('candidate', mixed[other])
         self.assertEqual([archive, api + '/versions', details], self.calls)
 
+    def store_via_cli(self, request, *, run=None):
+        decision = self.folder / 'feature.json'
+        decision.write_bytes(run_daily.encoded(request))
+        entry = 'run_daily' if run else 'collect'
+        args = [entry, '--repository', str(self.root), '--private-dir', str(self.folder / ('runs' if run else 'manual')),
+                '--save-item', str(decision)]
+        if run:
+            args += ['--run-id', run]
+        output = StringIO()
+        with patch('sys.argv', args), redirect_stdout(output), self.assertRaises(SystemExit) as end:
+            runpy.run_path(str(ROOT / 'pipeline' / (entry + '.py')), run_name='__main__')
+        self.assertEqual(0, end.exception.code)
+        return json.loads(output.getvalue())
+
     def test_operator_enrichment_from_verified_reference_with_translated_title(self):
-        first = self.select('탭 그룹', facts={'version': '150'})
-        sibling = self.select('도구 모음')
+        base = dict(browser='chrome', source_id=SID, url=URL)
+        first = self.store_via_cli(dict(base, canonical_key='tabs', title='탭 그룹', facts={'version': '150'}))['feature_id']
+        sibling = self.store_via_cli(dict(base, canonical_key='toolbar', title='도구 모음'))['feature_id']
         self.payloads[URL] = article('Tab groups is available on Windows.')
         jobs = self.cli('translation')
         self.assertTrue(jobs[first]['reference_review'])
         self.assertNotIn('candidate', jobs[first])
         request = dict(source_id=SID, url=URL, browser='chrome', feature_id=first, facts={'platform': ['Windows']})
-        checked = verified_reference(self.work, self.state, request)
-        self.assertFalse(self.apply(checked)['changed'])
+        reviewed = dict(request, reference_review=True)
+        self.assertFalse(self.store_via_cli(reviewed, run='translation')['changed'])
+        self.assertFalse(self.store_via_cli(reviewed, run='translation')['changed'])
+        self.assertFalse((self.root / 'data/daily-status').exists())
         with self.assertRaises(ValueError):
             verified_reference(self.work, self.state, dict(request, facts={'version': '151'}))
         with self.assertRaises(ValueError):
