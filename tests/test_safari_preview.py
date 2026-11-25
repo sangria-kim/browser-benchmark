@@ -87,7 +87,7 @@ class PreviewTests(unittest.TestCase):
     def run_cli(self, name, mode='daily', expected=0, extra=()):
         argv = ['pipeline.run_daily', '--repository', str(self.repo), '--private-dir', str(self.root / 'runs'),
                 '--run-id', name, '--source', SID, '--mode', mode, '--cutoff', CUTOFF, *extra]
-        with patch('sys.argv', argv), patch('pipeline.collectors.browser.collector.HTTPTransport', return_value=self.request):
+        with patch('sys.argv', argv), patch('pipeline.collectors.browser.collector.HTTPTransport', return_value=getattr(self, 'cli_transport', self.request)):
             with contextlib.redirect_stdout(StringIO()), self.assertRaises(SystemExit) as exit_status:
                 runpy.run_path(str(ROOT / 'pipeline/run_daily.py'), run_name='__main__')
         work = self.root / 'runs' / name / 'work'
@@ -217,6 +217,48 @@ class PreviewTests(unittest.TestCase):
                 state, rows = self.run_cli('pr34-' + case, extra=['--resume'])
                 self.assertEqual([APPLE_INDEX, CATEGORY, *urls], self.calls)
                 self.assertEqual((3, []), (len(rows), state['pending']))
+
+    def test_pr34_transport_defers_429_without_sending_past_deadline(self):
+        self.cli_transport = HTTPTransport()
+        now = datetime(2026, 11, 25, 12, tzinfo=timezone.utc)
+        for label, blocked in [('category', CATEGORY), ('detail', release_url(1))]:
+            clock = [0]
+            wire = []
+            refused = [False]
+            def send(request, timeout):
+                url = request.full_url
+                wire.append((url, clock[0]))
+                if url == blocked and not refused[0]:
+                    refused[0] = True
+                    clock[0] = 899
+                    raise HTTPError(url, 429, 'rate limited', {'Retry-After': '30'}, BytesIO())
+                result = BytesIO(self.pages[url].encode())
+                result.url, result.status, result.headers = url, 200, {}
+                return result
+
+            def advance(seconds):
+                clock[0] += seconds
+
+            with self.subTest(blocked=label), patch('pipeline.collectors.browser.transport.urlopen', side_effect=send), \
+                    patch('pipeline.collectors.browser.transport.build_opener') as opener, \
+                    patch('pipeline.collectors.browser.transport.time.sleep', side_effect=advance), \
+                    patch('pipeline.collectors.browser.collector.monotonic', side_effect=lambda: clock[0]), \
+                    patch('pipeline.collectors.browser.safari_preview.datetime', wraps=datetime) as wall:
+                opener.return_value.open.side_effect = send
+                wall.now.side_effect = lambda tz: now + timedelta(seconds=clock[0])
+                name = 'wire-cutoff-' + label
+                state, _ = self.run_cli(name, expected=2)
+                expected = [APPLE_INDEX, CATEGORY] + ([release_url(1)] if label == 'detail' else [])
+                self.assertEqual(expected, [u for u, _ in wire])
+                self.assertIn(blocked, state['pending'])
+                wire.clear()
+                clock[0] = 928
+                self.run_cli(name, expected=2, extra=['--resume'])
+                self.assertEqual([], wire)
+                clock[0] = 929
+                state, rows = self.run_cli(name, extra=['--resume'])
+                self.assertEqual([APPLE_INDEX, CATEGORY, release_url(1)], [u for u, _ in wire])
+                self.assertEqual((1, []), (len(rows), state['pending']))
 
     def test_verified_printed_webkit_date_controls_both_window_boundaries(self):
         # Page chrome can contain a more precise timestamp unrelated to this release.

@@ -362,7 +362,11 @@ class BrowserCollector:
             response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
-        response = self.transport(url)
+        if (self.source['source_id'] == 'safari-technology-preview' and url.startswith('https://webkit.org/')
+                and callable(getattr(type(self.transport), 'get_once', None))):
+            response = self.transport.get_once(url, before_send=self.check_time)
+        else:
+            response = self.transport(url)
         if response.status != 200:
             if self.source['source_id'] == 'safari-technology-preview' and response.status in (403, 429, 503):
                 raise HTTPError(url, response.status, 'WebKit request refused', response.headers, None)

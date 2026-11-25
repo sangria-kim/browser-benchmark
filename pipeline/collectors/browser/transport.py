@@ -29,7 +29,11 @@ class HTTPTransport:
     def __init__(self, timeout=30, max_bytes=64000000):
         self.timeout, self.max_bytes = timeout, max_bytes
 
-    def __call__(self, url, *, direct=False, if_modified_since=None, before_send=None):
+    def get_once(self, url, before_send):
+        """Let a source handle its own Retry-After checkpoint and deadline."""
+        return self(url, single_attempt=True, before_send=before_send)
+
+    def __call__(self, url, *, direct=False, if_modified_since=None, before_send=None, single_attempt=False):
         if not url.startswith('https://'):
             raise ValueError('HTTPS required')
         headers = {'User-Agent': 'browser-benchmark/1.0 (public source research)',
@@ -42,8 +46,9 @@ class HTTPTransport:
             headers['Accept-Encoding'] = 'identity'
             headers['Cache-Control'] = 'no-cache'
         request = Request(url, headers=headers)
-        opener = build_opener(NoRedirect()).open if direct else urlopen
-        for attempt in range(4):
+        opener = build_opener(NoRedirect()).open if direct or single_attempt else urlopen
+        attempts = 1 if single_attempt else 4
+        for attempt in range(attempts):
             try:
                 if before_send is not None:
                     before_send()
@@ -60,7 +65,7 @@ class HTTPTransport:
                 if error.code == 304 and if_modified_since is not None:
                     with error:
                         return Response(error.url, error.read(1), 304, error.headers)
-                if error.code != 429 or attempt == 3:
+                if error.code != 429 or attempt + 1 == attempts:
                     raise
                 delay = 30 * 2 ** attempt
                 value = error.headers.get('Retry-After') if error.headers else None

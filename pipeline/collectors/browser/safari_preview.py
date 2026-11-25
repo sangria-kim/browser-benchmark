@@ -375,6 +375,8 @@ def stop_webkit_requests(collector, error, url, pending):
                 retry_at = date.astimezone(timezone.utc)
         except (ValueError, TypeError, OverflowError):
             pass
+    if code == 429 and retry_at is None:
+        retry_at = datetime.now(timezone.utc) + timedelta(seconds=30)
     if not (code in (403, 429, 503) or retry_at or isinstance(error, TimeoutError)
             or isinstance(getattr(error, 'reason', None), TimeoutError)):
         return False
