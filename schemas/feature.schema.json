@@ -226,6 +226,25 @@
         "maxLength": 1200,
         "pattern": "\\S"
       }
+    },
+    "feature_facts": {
+      "description": "Optional, feature-specific facts. Omit unconfirmed slots. An empty object marks an individual selection for later enrichment.",
+      "type": "object",
+      "properties": {
+        "version": {
+          "$ref": "#/$defs/textFact"
+        },
+        "platform": {
+          "$ref": "#/$defs/platformFact"
+        },
+        "channel": {
+          "$ref": "#/$defs/textFact"
+        },
+        "rollout_status": {
+          "$ref": "#/$defs/textFact"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "required": [
@@ -240,5 +259,66 @@
     "lifecycle",
     "legacy"
   ],
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "fact": {
+      "type": "object",
+      "required": [
+        "source_item_id",
+        "revision_id",
+        "value"
+      ],
+      "properties": {
+        "source_item_id": {
+          "$ref": "#/properties/source_item_ids/items"
+        },
+        "revision_id": {
+          "$ref": "#/properties/source_item_ids/items"
+        },
+        "value": {}
+      },
+      "additionalProperties": false
+    },
+    "textValue": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S",
+      "not": {
+        "const": "unknown"
+      }
+    },
+    "textFact": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fact"
+        },
+        {
+          "properties": {
+            "value": {
+              "$ref": "#/$defs/textValue"
+            }
+          }
+        }
+      ]
+    },
+    "platformFact": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/fact"
+        },
+        {
+          "properties": {
+            "value": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/textValue"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
 }

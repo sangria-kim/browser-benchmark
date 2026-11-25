@@ -73,6 +73,11 @@ def validate_record(kind, record):
             if (scope['status'], scope['precision']) != (expected['status'], expected['precision']):
                 raise ContractError('Dated eligibility differs from evidence date')
     if kind == 'source_item':
+        if 'reference' in (record['record_status'], record['origin']) or record['item_key'].startswith('official-url:'):
+            from pipeline.official_reference import normalize_url, reference_row
+            expected = reference_row(record, normalize_url(record['evidence']['url']), record['observed_at'])
+            if record != expected:
+                raise ContractError('Official reference must preserve the URL snapshot without source or release facts')
         ids = [r['revision_id'] for r in record['revisions']]
         if len(ids) != len(set(ids)):
             raise ContractError('Duplicate source revision IDs')
@@ -186,6 +191,9 @@ def validate_dataset(records_by_kind, source_ids=None):
             if kind == 'feature':
                 pins_by_source = record.get('source_revision_ids', {})
                 pinned = {revision for pins in pins_by_source.values() for revision in pins}
+                for fact in record.get('feature_facts', {}).values():
+                    if fact['revision_id'] not in pins_by_source.get(fact['source_item_id'], []):
+                        raise ContractError('Optional feature fact must cite a pinned item and revision')
                 if record.get('source_revision_excerpts', {}).keys() - pinned:
                     raise ContractError('Feature excerpt must cite a confirmed source revision')
                 for ident, pins in pins_by_source.items():
