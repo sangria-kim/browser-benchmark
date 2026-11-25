@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 import json
 import os
 import re
-from urllib.parse import parse_qsl, unquote, urldefrag, urlsplit
+from urllib.parse import parse_qsl, urldefrag, urlsplit
 
 from pipeline import browser_status
 from pipeline.collectors.browser.collector import atomic_json, digest, identity, minimal
@@ -15,6 +15,7 @@ from pipeline.feature_item import FACT_FIELDS, missing_facts
 from pipeline.official_reference import ENTERPRISE_ARCHIVE, accepts_url, enterprise_archive_anchor, normalize_url
 from pipeline.run_daily import read, run_lock
 from pipeline.temporal import instant
+from pipeline.publisher_fragments import publisher_fragment, text_matches
 
 MAX_DOCUMENTS = 4
 MAX_FEATURES_PER_DOCUMENT = 16
@@ -258,10 +259,14 @@ class SourceReview:
     def evidence(self, url, halted):
         c = self.collector
         target = urldefrag(url)[0]
+        anchor, directives = publisher_fragment(url)
         if {url, target}.intersection(c.progress.get('enrichment_after_cutoff', ())):
             return None, []
         if url in self.units:
-            return None, self.units[url]
+            units = self.units[url]
+            if directives and not anchor:
+                units = [entry for entry in units if any(text_matches(entry[0]['text'], d) for d in directives)]
+            return None, units
         if self.sid == 'chrome-enterprise' and enterprise_archive_anchor(url) is not None:
             # Only the publisher's dated panel can support an archive citation.
             # Never reinterpret an absent, future or failed panel as the whole page.
@@ -292,14 +297,15 @@ class SourceReview:
             dates = published(tree, self.sid, product_body=body), modification(tree, body)
         if any(c.publication_status(value) == 'after_cutoff' for value in dates if value):
             raise ValueError('Only evidence after the run cutoff was observed')
-        anchor = unquote(urlsplit(url).fragment)
         units = blocks(body, window_anchors=bool(anchor)) if body is not None else []
         if anchor:
             units = [u for u in units if anchor in u.pop('window_anchors', [])]
+        elif directives:
+            units = [u for u in units if any(text_matches(u['text'], d) for d in directives)]
         if any(not self.eligible_unit(u) for u in units):
             self.restricted_raw.add(url)
         scoped = [(u, None, response) for u in units if self.eligible_unit(u)]
-        return (None if anchor else response), scoped
+        return (None if anchor or directives else response), scoped
 
     def note_failure(self, error, url):
         now = datetime.now(timezone.utc)

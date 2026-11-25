@@ -4,7 +4,7 @@ import json
 import os
 import re
 from pathlib import Path
-from urllib.parse import parse_qsl, unquote, urlsplit
+from urllib.parse import parse_qsl, urlsplit
 
 from pipeline import browser_status, collect, daily_status, weekly_status
 from pipeline.feature_enrichment import verified_candidate, verified_reference
@@ -12,6 +12,7 @@ from pipeline.feature_item import ALIAS_PATH, item_delta
 from pipeline.official_reference import enterprise_archive_anchor, normalize_url
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, publication_commits, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant
+from pipeline.publisher_fragments import publisher_fragment, text_matches
 
 
 def pin_inputs(root, work, state):
@@ -97,29 +98,47 @@ def window_key(url):
     query = tuple(sorted(parse_qsl(parts.query, keep_blank_values=True)))
     if enterprise_archive_anchor(url) is not None:
         query = (('hl', 'en'),)
-    return parts.netloc, path, query, unquote(parts.fragment)
+    return parts.netloc, path, query, publisher_fragment(url)[0]
 
 
 def window_index(work, state, sid):
     bounds = {}
-    for url, reason in checked_source(work, state, sid, windows=True).items():
+    checkpoint = checked_source(work, state, sid, windows=True)
+    mixed = {window_key(url)[:3]: rows for url, rows in checkpoint.pop('mixed_documents', {}).items()}
+    for url, reason in checkpoint.items():
         try:
             key = window_key(url)
         except ValueError:
             continue  # A parser's non-publisher diagnostic cannot match an official citation.
         bounds[key] = reason
-    return bounds
+    return bounds, mixed
 
 
-def require_url_window(bounds, url, *, enrichment):
+def require_url_window(index, url, *, enrichment, finalize=False, confirmed=False):
+    bounds, mixed = index
     key = window_key(url)
-    for candidate in (key, (*key[:3], '')):
-        reason = bounds.get(candidate)
-        if reason == 'after_cutoff' or reason == 'before_period' and not enrichment:
+    anchor, directives = publisher_fragment(url)
+    reasons = {bounds.get(key), bounds.get((*key[:3], ''))}
+    if 'after_cutoff' in reasons or 'before_period' in reasons and not enrichment:
+        raise ValueError('Official URL is outside the scheduled source window: ' + url)
+    passages = mixed.get(key[:3])
+    if not passages or not (anchor or directives):
+        return
+    element_statuses = {status for status, _, targets in passages if anchor and anchor in targets}
+    text_statuses = set()
+    for directive in directives:
+        matches = {status for status, text, _ in passages if text_matches(text, directive)}
+        if matches == {'after_cutoff'} or matches == {'before_period'} and not enrichment:
             raise ValueError('Official URL is outside the scheduled source window: ' + url)
+        text_statuses.update(matches or {'unknown'})
+    statuses = element_statuses or text_statuses
+    if statuses == {'after_cutoff'} or statuses == {'before_period'} and not enrichment:
+        raise ValueError('Official URL is outside the scheduled source window: ' + url)
+    if finalize and not confirmed and statuses != {'in_period'} and not (enrichment and statuses == {'before_period'}):
+        raise ValueError('Official URL target has an unresolved scheduled source window: ' + url)
 
 
-def check_prior_item_windows(root, work, state, browser, effects, inventory):
+def check_prior_item_windows(root, work, state, browser, effects, inventory, accepted):
     # A fresh survey can learn a date which a former partial survey did not know.
     by_source = {}
     for effect in effects:
@@ -127,15 +146,27 @@ def check_prior_item_windows(root, work, state, browser, effects, inventory):
             by_source.setdefault(effect['source_id'], []).append(effect)
     for sid, selected in by_source.items():
         bounds = window_index(work, state, sid)
-        if not bounds:
+        if not any(bounds):
             continue
         rel = f'data/source-items/{browser}/{sid}.json'
         files = {rel}
         if rel == collect.EDGE_POLICY and (root / collect.EDGE_SHARDS[0]).exists():
             files = {collect.EDGE_SHARDS[int(e['item'][4:6], 16)] for e in selected}
-        urls = {r['source_item_id']: r['evidence']['url'] for name in files for r in read(browser_status.safe_path(root, name))}
+        rows = {r['source_item_id']: r for name in files for r in read(browser_status.safe_path(root, name))}
+        # A current candidate must actually be selected for the same feature
+        # and publisher document before it can resolve an ambiguous citation.
+        dated = set()
+        if bounds[1]:
+            observed = {(r['source_item_id'], r['revisions'][-1]['revision_id']): r
+                        for r in checked_source(work, state, sid) if r['temporal_scope']['status'] == 'in_period'}
+            for effect in accepted:
+                row = observed.get((effect['item'], effect['revision']))
+                if effect['source_id'] == sid and row:
+                    dated.add((effect['feature_id'], window_key(row['evidence']['url'])[:3]))
         for effect in selected:
-            require_url_window(bounds, urls[effect['item']], enrichment=not effect['changed'])
+            url = rows[effect['item']]['evidence']['url']
+            require_url_window(bounds, url, enrichment=not effect['changed'], finalize=True,
+                               confirmed=(effect['feature_id'], window_key(url)[:3]) in dated)
 
 
 def checked_request(work, state, request):

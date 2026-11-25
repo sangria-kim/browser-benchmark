@@ -216,6 +216,7 @@ class BrowserCollector:
         self.pending_selections = set()
         self.window_exclusions = {}
         self.unit_windows = {}
+        self.passage_windows = {}
         self.brave_metadata_rows = None
         self.chrome_status_baselines = None
         self.github_covered, self.github_publications = set(), {}
@@ -472,7 +473,7 @@ class BrowserCollector:
         status = self.publication_status(value)
         return status != 'after_cutoff' and (current or status != 'before_period')
 
-    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=(), reviewed_document=False):
+    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=None, reviewed_document=False):
         self.check_time()
         observed_at = self.observed_at
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
@@ -532,7 +533,9 @@ class BrowserCollector:
         if parsed and not self.write_records:
             status = self.publication_status(record['temporal_scope']['evidence_date'])
             self.unit_windows.setdefault(url, set()).add(status)
-            for anchor in window_anchors:
+            if self.window_start and window_anchors is not None:
+                self.passage_windows.setdefault(url, []).append([status, unit['text'], window_anchors])
+            for anchor in window_anchors or ():
                 self.unit_windows.setdefault(url + '#' + quote(anchor, safe=''), set()).add(status)
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
         if reviewed_document:
@@ -695,7 +698,7 @@ class BrowserCollector:
                 version = version_match[1] if version_match else None
             section_day = None if timestamp or publication_verified else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
-                      version=version, channel=channel, modified=modified, window_anchors=unit.pop('window_anchors', ()))
+                      version=version, channel=channel, modified=modified, window_anchors=unit.pop('window_anchors', None))
             if edge_policy and unit['parsed']:
                 # Use visible source text for comparison. Preserve the public location key and row hash.
                 headings = unit['visible_headings']
@@ -703,6 +706,8 @@ class BrowserCollector:
                 ident = identity('src', [self.source['source_id'], canonical_url, unit['key']])
                 self.edge_content[ident] = digest(canonical([headings, unit['text'], unit.get('date'),
                                                             visible_version[1] if visible_version else None]))
+        if len(self.unit_windows.get(canonical_url, ())) <= 1:
+            self.passage_windows.pop(canonical_url, None)
         if edge_policy and units and all(unit['parsed'] for unit in units):
             content_hash = digest(response.body)
             if self.edge_documents.setdefault(canonical_url, content_hash) != content_hash:
@@ -971,6 +976,8 @@ class BrowserCollector:
             recognized_panels += 1
             day = dates.get(anchor)
             in_scope = not day or self.allowed_date(day)
+            if self.window_start and not self.write_records:
+                self.passage_windows.setdefault(archive, []).append([self.publication_status(day), panel.text(), [anchor]])
             if in_scope:
                 panels += 1
             elif not self.fact_review or not self.fact_review.archive_targets(anchor):

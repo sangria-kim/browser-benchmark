@@ -209,6 +209,15 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                             for url, statuses in collector.unit_windows.items():
                                 if statuses <= {'before_period', 'after_cutoff'}:
                                     window.setdefault(url, 'after_cutoff' if statuses == {'after_cutoff'} else 'before_period')
+                            mixed = {}
+                            for url, passages in collector.passage_windows.items():
+                                statuses = {status for status, _, _ in passages}
+                                if statuses in ({'before_period'}, {'after_cutoff'}):
+                                    window.setdefault(url, next(iter(statuses)))
+                                elif len(statuses) > 1 and statuses & {'before_period', 'after_cutoff'}:
+                                    mixed[url] = passages
+                            if mixed:
+                                window['mixed_documents'] = mixed
                             window_path = work / 'windows' / (sid + '.json')
                             atomic_json(window_path, window)
                             status['window_sha256'] = file_digest(window_path)
@@ -596,9 +605,6 @@ def save_browser(root, work, state, browser, classification, writer):
             raise ValueError('Cannot change data after the daily status is complete')
     outcome = detail['browsers'][browser]
     previous_effects = outcome.get('effects', [])
-    if previous_effects and outcome['status'] == 'incomplete':
-        from pipeline.item_publication import check_prior_item_windows
-        check_prior_item_windows(root, work, state, browser, previous_effects, inventory)
     accepted = {(e['source_id'], e['item'], e['revision']) for e in previous_effects}
     if outcome['status'] == 'complete' and outcome['classification'] != signature:
         raise ValueError('This browser already has a different final classification')
@@ -613,6 +619,9 @@ def save_browser(root, work, state, browser, classification, writer):
     changes, before, changed, collected, effects = classified_delta(root, work, state, sources, decisions,
                                                                    daily_status=True, browser=browser)
     effects = browser_status.merge_effects(previous_effects, effects)
+    if previous_effects:
+        from pipeline.item_publication import check_prior_item_windows
+        check_prior_item_windows(root, work, state, browser, previous_effects, inventory, effects)
     changed = {e['feature_id'] for e in effects if e['changed']}
     collected = {e['feature_id'] for e in effects}
     include_baseline(before, baseline)

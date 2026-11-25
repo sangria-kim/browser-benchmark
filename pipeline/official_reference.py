@@ -5,6 +5,7 @@ import subprocess
 from urllib.parse import parse_qsl, unquote, urlsplit, urlunsplit
 
 from pipeline.deduplicate import digest, stable_id
+from pipeline.publisher_fragments import publisher_fragment
 
 
 # Some parsers publish a different public address from their discovery endpoint.
@@ -29,7 +30,7 @@ def enterprise_archive_anchor(url):
     if (parts.scheme == 'https' and parts.hostname == 'support.google.com'
             and parts.path == '/chrome/a/answer/10314655'
             and parse_qsl(parts.query, keep_blank_values=True) in ([], [('hl', 'en')])):
-        return unquote(parts.fragment)
+        return publisher_fragment(url)[0]
     return None
 
 
