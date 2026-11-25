@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 from pipeline import browser_status, run_daily
 from pipeline.collectors.browser import HTTPTransport, Response
-from pipeline.feature_enrichment import read_jobs, verified_candidate
+from pipeline.feature_enrichment import read_jobs, verified_candidate, verified_reference
 from pipeline.feature_item import item_delta
 from pipeline.daily_status import receipt
 from pipeline.normalize import validate_graph
@@ -259,4 +259,46 @@ class FeatureReviewTests(unittest.TestCase):
         self.payloads[URL] = ('<div class="post-body"><h2>November 28, 2026</h2>'
                               '<p>Tab groups will ship on Windows.</p></div>')
         self.assertNotIn('candidate', self.cli('retry-age')[first])
+        self.assertEqual([], self.products)
+
+    def test_enterprise_old_public_panels_and_api_share_original_requests(self):
+        sid = 'chrome-enterprise'
+        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        details = api + '/features?version=101&lang=en'
+        ids = [self.apply(dict(browser='chrome', source_id=sid, url=url, title=title, canonical_key=key))['feature_id']
+               for url, title, key in [(archive, 'Workspaces', 'workspaces'), (details, 'Tab groups', 'tabs'),
+                                       (details, 'Hidden folders', 'folders'), (details, 'Tab themes', 'themes')]]
+        self.payloads[archive] = ('<a href="#101">April 1, 2026</a><a class="zippy" name="101">Version</a>'
+                                  '<div><p id="archive">Workspaces are available on Windows.</p></div>')
+        self.payloads[api + '/versions'] = json.dumps(dict(versions=[dict(value='101')]))
+        row = dict(id=12345, name='Tab groups', summary='Tab groups is available on Windows.',
+                   is_releasenotes_publish_ready=True, is_releasenotes_content_reviewed=True,
+                   created=dict(when='2026-04-01'), updated=dict(when='2026-04-02'))
+        self.payloads[details] = json.dumps(dict(total_count=3, features=[
+            row, dict(row, id=12346, name='Hidden folders', confidential=True, summary='Hidden folders on Windows.'),
+            dict(row, id=12347, name='Tab themes', summary='Tab themes on Windows.', created=dict(when='2026-11-30'))]))
+        jobs = self.cli('enterprise', sid=sid, expected=0)
+        self.assertEqual([archive, api + '/versions', details], self.calls)
+        self.assertEqual([], self.products)
+        self.assertTrue(all('candidate' in jobs[fid] for fid in ids[:2]))
+        self.assertTrue(all('candidate' not in jobs[fid] and not jobs[fid].get('reference_review') for fid in ids[2:]))
+
+    def test_operator_enrichment_from_verified_reference_with_translated_title(self):
+        first = self.select('탭 그룹', facts={'version': '150'})
+        sibling = self.select('도구 모음')
+        self.payloads[URL] = article('Tab groups is available on Windows.')
+        jobs = self.cli('translation')
+        self.assertTrue(jobs[first]['reference_review'])
+        self.assertNotIn('candidate', jobs[first])
+        request = dict(source_id=SID, url=URL, browser='chrome', feature_id=first, facts={'platform': ['Windows']})
+        checked = verified_reference(self.work, self.state, request)
+        self.assertFalse(self.apply(checked)['changed'])
+        with self.assertRaises(ValueError):
+            verified_reference(self.work, self.state, dict(request, facts={'version': '151'}))
+        with self.assertRaises(ValueError):
+            verified_reference(self.work, self.state, dict(request, url=HOME))
+        by_id = {f['feature_id']: f for f in run_daily.read(self.root / browser_status.CATALOG)}
+        self.assertEqual(['Windows'], by_id[first]['feature_facts']['platform']['value'])
+        self.assertEqual({}, by_id[sibling]['feature_facts'])
         self.assertEqual([], self.products)

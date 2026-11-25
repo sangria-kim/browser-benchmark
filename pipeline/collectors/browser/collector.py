@@ -927,13 +927,19 @@ class BrowserCollector:
                 continue
             recognized_panels += 1
             day = dates.get(anchor)
-            if day and not self.allowed_date(day):
+            in_scope = not day or self.allowed_date(day)
+            if not in_scope:
                 self.state['excluded_by_date'].append(archive + '#' + anchor)
-                continue
-            panels += 1
+                if not self.fact_review or archive not in self.fact_review.links:
+                    continue
+            else:
+                panels += 1
             for unit in blocks(panel):
                 unit['key'] = 'release:' + anchor + ':' + unit['key']
-                self.emit(archive, response, unit, date=day, version=anchor)
+                if in_scope:
+                    self.emit(archive, response, unit, date=day, version=anchor)
+                else:
+                    self.fact_review.observe(archive, response, unit, dates=(day,))
         if not recognized_panels or not dates:
             self.problem(archive, 'Enterprise dated archive inventory is not recognized')
         self.state['documents'] += 1
@@ -956,6 +962,11 @@ class BrowserCollector:
             url = api + '/features?' + urlencode({'version': version, 'lang': 'en'})
             response = self.get(url, refresh=True)
             data = json_body(response)
+            # Only this parser knows the publisher's per-row visibility gates.
+            # Never offer the unfiltered JSON or reparse it as HTML.
+            if self.fact_review and url in self.fact_review.links:
+                self.fact_review.units.setdefault(url, [])
+                self.fact_review.restricted_raw.add(url)
             rows = data.get('features')
             if not isinstance(rows, list) or data.get('total_count') != len(rows):
                 raise ValueError('Enterprise API inventory count mismatch')
@@ -978,6 +989,8 @@ class BrowserCollector:
                 created = chromestatus_date(row.get('created', {}).get('when') or '')
                 modified = chromestatus_date(changed) if changed else None
                 if self.window_start and not self.revision_in_scope(url + '#' + str(ident), created, modified):
+                    if self.fact_review:
+                        self.fact_review.observe(url, response, unit, name, dates=(created, modified))
                     continue
                 self.emit(url, response, unit, date=date_value(created), date_evidence=created,
                           revision=changed, title=name, version=version, modified=modified)
@@ -1026,10 +1039,9 @@ class BrowserCollector:
                 created = chromestatus_date(row.get('created', {}).get('when') or '')
                 updated = chromestatus_date(revision or '')
                 if self.window_start and not self.revision_in_scope(feature_url, created, updated):
-                    if (self.fact_review and feature_url in self.fact_review.links
-                            and 'after_cutoff' not in (self.publication_status(created), self.publication_status(updated))):
+                    if self.fact_review and feature_url in self.fact_review.links:
                         unit = self.chromestatus_unit(row, feature_url, revision, compare=False)
-                        self.fact_review.observe(feature_url, response, unit, row.get('name'))
+                        self.fact_review.observe(feature_url, response, unit, row.get('name'), dates=(created, updated))
                     self.document_done(marker)
                     continue
                 unit = self.chromestatus_unit(row, feature_url, revision)

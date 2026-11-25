@@ -48,6 +48,7 @@ class SourceReview:
         self.document_owners = defaultdict(dict)
         self.by_id = {row['source_item_id']: row for row in previous}
         self.units = defaultdict(list)
+        self.restricted_raw, self.hashes = set(), {}
         self.wait = self.prior.get('retry_after')
         self.wait = self.wait if self.wait and instant(self.wait) > datetime.now(timezone.utc) else None
         for feature in index.by_browser[source['browser']]:
@@ -70,6 +71,8 @@ class SourceReview:
             units = self.units[url]
             if self.eligible_unit(unit, dates):
                 units.append((unit, title, response))
+            else:
+                self.restricted_raw.add(url)
 
     def linked_facts(self, features):
         rows = dict(self.by_id)
@@ -156,11 +159,18 @@ class SourceReview:
                             job['candidate'] = self.candidate(feature, url, unit, evidence)
                         except TimeoutError as exc:
                             job['error'] = str(exc)
-                        job['content_sha256'] = c.cache_body(evidence.body, verify=True)
-                    elif response is not None:
-                        job['content_sha256'] = c.cache_body(response.body, verify=True)
+                        job['content_sha256'] = self.raw_hash(evidence)
                     else:
-                        job['observed_sha256'] = sorted({c.cache_body(e.body, verify=True) for _, _, e in units})
+                        # An explicitly reviewed URL can supplement the existing
+                        # feature even when its catalog title is translated.
+                        # Never offer an unfiltered API envelope or a future unit.
+                        observed = [response] if response is not None else [e for _, _, e in units]
+                        hashes = sorted({self.raw_hash(e) for e in observed})
+                        if len(hashes) == 1:
+                            job['content_sha256'] = hashes[0]
+                        if (len(hashes) == 1 and url not in self.restricted_raw
+                                and all(urldefrag(e.url)[0] == urldefrag(url)[0] for e in observed)):
+                            job['reference_review'] = True
                 jobs.append(job)
         if touched or enrolled_now:
             with run_lock(self.history):
@@ -175,6 +185,12 @@ class SourceReview:
                         entry.setdefault('tried', {}).update(dict.fromkeys(touched[url], c.observed_at))
                 atomic_json(self.history, history)
         return jobs
+
+    def raw_hash(self, response):
+        key = id(response)
+        if key not in self.hashes:
+            self.hashes[key] = self.collector.cache_body(response.body, verify=True)
+        return self.hashes[key]
 
     def evidence(self, url, halted):
         c = self.collector
@@ -196,8 +212,6 @@ class SourceReview:
             raise ValueError('Truncated HTML evidence')
         tree = Tree(rendered).root
         body = boundary(tree, self.sid, document_url=target)
-        if body is None:
-            return response, []
         if self.sid == 'safari-technology-preview':
             match = re.fullmatch(c.source['discovery']['include_url_pattern'], target)
             if not match:
@@ -207,7 +221,10 @@ class SourceReview:
             dates = published(tree, self.sid, product_body=body), modification(tree, body)
         if any(c.publication_status(value) == 'after_cutoff' for value in dates if value):
             raise ValueError('Only evidence after the run cutoff was observed')
-        return response, [(u, None, response) for u in blocks(body) if self.eligible_unit(u)]
+        units = blocks(body) if body is not None else []
+        if any(not self.eligible_unit(u) for u in units):
+            self.restricted_raw.add(url)
+        return response, [(u, None, response) for u in units if self.eligible_unit(u)]
 
     def note_failure(self, error, url):
         now = datetime.now(timezone.utc)
@@ -286,10 +303,27 @@ def verified_candidate(work, state, request):
             or request.get('change_kind', 'evidence_only') != 'evidence_only'
             or set(request.get('facts', {})) - set(job['missing_fields'])):
         raise ValueError('Reinspection requires the observed revision and only missing facts')
-    checksum = row['evidence']['content_sha256']
+    verify_body(work, job, row['evidence']['content_sha256'])
+    return row
+
+
+def verify_body(work, job, checksum):
     if not re.fullmatch('[0-9a-f]{64}', checksum):
         raise ValueError('Invalid reinspection raw evidence hash')
     path = browser_status.safe_path(work, 'browser/cache/' + checksum)
     if path.is_symlink() or job['content_sha256'] != checksum or digest(path.read_bytes()) != checksum:
         raise ValueError('Feature reinspection raw evidence checksum mismatch')
-    return row
+
+
+def verified_reference(work, state, request):
+    """Validate an operator's explicit missing-fact decision against a checked URL."""
+    url = normalize_url(request.get('url'))
+    matches = [job for job in read_jobs(work, state, request['source_id'])
+               if job['feature_id'] == request.get('feature_id') and job['url'] == url and job.get('reference_review')]
+    if (len(matches) != 1 or 'source_item_id' in request or 'revision_id' in request
+            or request.get('change_kind', 'evidence_only') != 'evidence_only'
+            or set(request.get('facts', {})) - set(matches[0]['missing_fields'])):
+        raise ValueError('Reference review needs the observed URL, selected feature and only missing facts')
+    job = matches[0]
+    verify_body(work, job, job['content_sha256'])
+    return dict(request, url=url, change_kind='evidence_only')
