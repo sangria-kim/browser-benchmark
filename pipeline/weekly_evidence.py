@@ -2,10 +2,10 @@
 from functools import lru_cache
 import hashlib
 import json
+import os
 from pathlib import Path
 import subprocess
 
-from pipeline.run_daily import git
 from pipeline.source_item_shards import EDGE_PART, EDGE_POLICY, EDGE_SHARDS
 from pipeline.temporal import instant
 
@@ -54,21 +54,35 @@ def committed_windows(root, oid):
         return None  # This version supplies no bound. Still check the preceding valid blobs.
 
 
-def alias_evidence_tree(root, commit):
-    """Compare logical file versions even when the correction renames DATA itself."""
+@lru_cache(maxsize=64)
+def evidence_tree(root, commit):
+    """Keep physical roots distinct, including trees that a Mac cannot check out together."""
     from pipeline.normalize.storage import PATHS
     from pipeline.receipt_history import direct_git_children
     found = {}
-    for name, (_, kind, tree) in direct_git_children(root, commit).items():
-        if name.casefold() != 'data' or kind != b'tree':
+    for folder, (_, kind, tree) in direct_git_children(root, commit).items():
+        if folder.casefold() != 'data' or kind != b'tree':
             continue
-        for line in git(root, '-c', 'core.quotePath=true', 'ls-tree', '-r', tree.decode(), '--',
-                        'catalog/features', 'source-items').splitlines():
-            info, name = line.split('\t', 1)
-            rel = 'data/' + name
-            mode, _, oid = info.split()
-            if mode in ('100644', '100755') and any(Path(rel).match(PATHS[k]) for k in ('feature', 'source_item')):
-                found.setdefault(rel, set()).add(oid)
+        raw = subprocess.check_output(['git', '-C', str(root), 'ls-tree', '-rz', tree, '--',
+                                       'catalog/features', 'source-items'])
+        for entry in raw.split(b'\0'):
+            if not entry:
+                continue
+            info, name = entry.split(b'\t', 1)
+            suffix = os.fsdecode(name)
+            mode, _, oid = info.decode('ascii').split()
+            canonical = Path('data') / suffix
+            if mode in ('100644', '100755') and any(canonical.match(PATHS[k]) for k in ('feature', 'source_item')):
+                found[folder + '/' + suffix] = oid
+    return found
+
+
+def alias_evidence_tree(root, commit):
+    # Only a same-byte spelling repair compares the logical data paths.
+    found = {}
+    for physical, oid in evidence_tree(root, commit).items():
+        _, suffix = physical.split('/', 1)
+        found.setdefault(suffix, set()).add(oid)
     return found
 
 
@@ -96,25 +110,20 @@ def check_alias_transition(root, parent, child, since, cutoff):
 def evidence_versions(root, ref):
     """Use tree metadata only. Keep the tip and distinct prior blobs for each JSON file."""
     from pipeline.normalize.storage import PATHS
-    patterns = (PATHS['feature'], PATHS['source_item'])
-    output = git(root, '-c', 'core.quotePath=true', 'log', '--format=', '--raw', '-m', '--root',
-                 '--full-history', '--no-renames', '--no-abbrev', ref, '--', *ROOTS)
+    # Fold just the reserved root and preserve every physical spelling in Git output.
+    patterns = [':(glob)[dD][aA][tT][aA]/' + PATHS[k].split('/', 1)[1] for k in ('feature', 'source_item')]
+    output = subprocess.check_output(['git', '-C', str(root), 'log', '--format=', '--raw', '-z', '-m', '--root',
+                                      '--full-history', '--no-renames', '--no-abbrev', ref, '--', *patterns])
     versions = {}
-    for line in output.splitlines():
-        if not line.startswith(':'):
+    fields = iter(output.split(b'\0'))
+    for header in fields:
+        if not header:
             continue
-        info, rel = line.split('\t', 1)
-        if any(Path(rel).match(pattern) for pattern in patterns):
-            old_mode, new_mode, old, new, _ = info[1:].split()
-            versions.setdefault(rel, set()).update(oid for mode, oid in ((old_mode, old), (new_mode, new))
-                                                   if mode in ('100644', '100755'))
-    tips = {}
-    for line in git(root, '-c', 'core.quotePath=true', 'ls-tree', '-r', ref, '--', *ROOTS).splitlines():
-        info, rel = line.split('\t', 1)
-        mode, _, oid = info.split()
-        if mode in ('100644', '100755') and rel in versions:
-            tips[rel] = oid
-    return tips, versions
+        rel = os.fsdecode(next(fields))
+        old_mode, new_mode, old, new, _ = header.strip().decode('ascii').removeprefix(':').split()
+        versions.setdefault(rel, set()).update(oid for mode, oid in ((old_mode, old), (new_mode, new))
+                                               if mode in ('100644', '100755'))
+    return evidence_tree(root, ref), versions
 
 
 @lru_cache(maxsize=256)
@@ -122,11 +131,12 @@ def check_committed(root, ref, since, cutoff, *, checked_earlier=False):
     """A surviving source row cannot go back to an earlier cutoff in a normal save."""
     tips, versions = evidence_versions(root, ref)
     inspect = set()
-    if not checked_earlier:
-        for rel, oid in tips.items():
-            scopes = committed_windows(root, oid)
-            if scopes is None or needs_history(scopes, since, cutoff):
-                inspect.add(rel)
+    for rel, oid in tips.items():
+        if checked_earlier and rel.startswith('data/'):
+            continue  # The validated working graph covers this exact physical root.
+        scopes = committed_windows(root, oid)
+        if scopes is None or needs_history(scopes, since, cutoff):
+            inspect.add(rel)
     # Retired data files have no surviving timestamp bound. The Edge migration
     # preserved every row in the current shards, which provide the same bound.
     earlier_shards = set(EDGE_SHARDS).issubset(tips) and not any(path.startswith(EDGE_PART) for path in inspect)

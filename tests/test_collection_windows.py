@@ -986,6 +986,69 @@ class WindowTests(unittest.TestCase):
                 validate_tree(self.repo, base=ref)
             self.cli(f'pending-{index}', cutoff=None, extra=['--record-incomplete'])
 
+    def test_weekly_ci_checks_evidence_from_a_mixed_case_data_root_after_repair(self):
+        self.configure_small_registry()
+        entry = self.repo / 'pipeline/daily_status.py'
+        entry.parent.mkdir()
+        shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
+        base = run_daily.commit_candidate(self.repo)
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        rel = weekly_status.path(cutoff)
+        self.cli('empty-week', cutoff=cutoff, mode='weekly_reconcile')
+        excluded = self.decisions('empty-week')
+        excluded['decisions'] = []
+        for row in excluded['dispositions']:
+            row['disposition'] = 'excluded'
+        self.save('empty-week', excluded)
+        zero = (self.repo / rel).read_bytes()
+        run_daily.commit_candidate(self.repo)
+        git(self.repo, 'switch', '-qc', 'misnamed-positive', base)
+        self.cli('positive-week', cutoff=cutoff, mode='weekly_reconcile')
+        self.save('positive-week', self.decisions('positive-week'))
+        self.assertEqual(1, read(self.repo / rel)['collected_feature_count'])
+        alias = self.repo / 'DaTa'
+        bridge = self.repo / 'temporary-name'
+        (self.repo / 'data').rename(bridge)
+        bridge.rename(alias)
+        wrong = run_daily.commit_candidate(self.repo)
+        template = self.repo
+        for strategy in ('direct', 'retired', 'coexisting'):
+            self.repo = self.folder / f'repair-{strategy}'
+            shutil.copytree(template, self.repo)
+            alias = self.repo / 'DaTa'
+            canonical = self.repo / 'data'
+            bridge = self.repo / 'temporary-name'
+            if strategy == 'coexisting':
+                # Stage both physical roots in Git even on a case-insensitive disk.
+                git(self.repo, 'config', 'core.ignoreCase', 'false')
+                empty = self.folder / 'empty.json'
+                empty.write_bytes(encoded([]))
+                oid = git(self.repo, 'hash-object', '-w', str(empty))
+                for path in (collect.FEATURE_CATALOG, 'data/source-items/firefox/firefox-beta.json'):
+                    git(self.repo, 'update-index', '--add', '--cacheinfo', '100644', oid, path)
+                git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=test@example.invalid',
+                    '-c', 'core.hooksPath=/dev/null', 'commit', '-qm', 'Keep both physical data roots')
+                names = git(self.repo, 'ls-tree', '--name-only', 'HEAD').splitlines()
+                self.assertEqual({'DaTa', 'data'}, {n for n in names if n.casefold() == 'data'})
+                git(self.repo, 'read-tree', '--empty')
+                alias.rename(bridge)
+                bridge.rename(canonical)
+            elif strategy == 'retired':
+                kept = self.folder / 'saved-inputs'
+                alias.rename(kept)
+                run_daily.commit_candidate(self.repo)
+                shutil.copytree(kept, canonical)
+            else:
+                git(self.repo, 'mv', '--', str(alias), str(bridge))
+                git(self.repo, 'mv', '--', str(bridge), str(canonical))
+            (self.repo / rel).write_bytes(zero)
+            run_daily.commit_candidate(self.repo)
+            entry = self.repo / 'pipeline/daily_status.py'
+            for ref in (base, wrong):
+                with self.subTest(strategy=strategy, ref=ref), self.assertRaisesRegex(ValueError, 'original publication'):
+                    with patch('sys.argv', [str(entry), '--base-commit', ref]):
+                        runpy.run_path(str(entry), run_name='__main__')
+
     def test_invalid_first_daily_blob_cannot_claim_the_cutoff(self):
         self.configure_small_registry()
         initial = run_daily.commit_candidate(self.repo)
