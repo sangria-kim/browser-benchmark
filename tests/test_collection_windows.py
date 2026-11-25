@@ -1104,7 +1104,7 @@ class WindowTests(unittest.TestCase):
             self.cli('merged', cutoff=None, extra=['--record-incomplete'])
         self.assertFalse((self.repo / 'data').exists())
 
-    def test_new_weekly_cutoff_works_in_a_shallow_data_only_clone(self):
+    def test_new_weekly_cutoff_saves_after_deepening_the_same_data_only_clone(self):
         self.configure_small_registry()
         run_daily.commit_candidate(self.repo)
         run_daily.commit_candidate(self.repo)
@@ -1116,10 +1116,133 @@ class WindowTests(unittest.TestCase):
         base = git(shallow, 'rev-parse', 'HEAD')
         cutoff = '2026-11-29T01:00:00Z'
         self.cli('shallow', cutoff=cutoff, mode='weekly_reconcile')
-        self.save('shallow', self.decisions('shallow'))
+        pm = self.folder / 'new-week.json'
+        pm.write_bytes(encoded(self.decisions('shallow')))
+        save = ['--save-features', str(pm)]
+        with self.assertRaisesRegex(ValueError, 'full history'):
+            self.cli('shallow', cutoff=None, extra=save)
+        self.assertFalse((shallow / 'data').exists())
+        git(shallow, 'fetch', '-q', '--unshallow', 'origin')
+        self.cli('shallow', cutoff=None, extra=save)
         accepted = read(shallow / weekly_status.path(cutoff))
         self.assertEqual(1, accepted['collected_feature_count'])
         validate_tree(shallow, base=base)
+
+    def test_shallow_weekly_retry_cannot_change_routes_after_later_manual_evidence(self):
+        self.configure_small_registry()
+        template = self.repo
+        sid = 'firefox-beta'
+        url = self.sources[sid]['url']
+        source = self.payloads[url]
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        for first in ('whole', 'browser'):
+            self.repo = self.folder / ('original-' + first)
+            shutil.copytree(template, self.repo)
+            self.payloads[url] = source
+            run_daily.commit_candidate(self.repo)
+            self.cli(first, cutoff=cutoff, mode='weekly_reconcile')
+            if first == 'whole':
+                self.save(first, self.decisions(first))
+                path = self.repo / weekly_status.path(cutoff)
+                self.assertEqual(1, read(path)['collected_feature_count'])
+            else:
+                self.publish_browser(first, 'firefox', self.browser_choices(first, 'firefox'))
+                path = self.repo / browser_status.detail_path('weekly_reconcile', cutoff)
+                self.assertEqual(1, read(path)['browsers']['firefox']['collected_feature_count'])
+            run_daily.commit_candidate(self.repo)
+            self.payloads[url] = source.replace('Tab grouping added.', 'Tab grouping improved.')
+            manual = 'manual-' + first
+            self.cli(manual, [sid], cutoff='2026-12-01T07:00:00+09:00', mode='manual')
+            self.save(manual, self.classified(manual, sid))
+            run_daily.commit_candidate(self.repo)
+            path.unlink()
+            run_daily.commit_candidate(self.repo)
+            origin = self.repo
+            self.repo = self.folder / ('shallow-' + first)
+            git(self.folder, 'clone', '-q', '--depth=1', origin.as_uri(), str(self.repo))
+            fresh = 'retry-' + first
+            self.cli(fresh, cutoff=cutoff, mode='weekly_reconcile')
+            choices = self.browser_choices(fresh, 'firefox')
+            self.assertEqual([], choices['decisions'])
+            if first == 'whole':
+                attempt = lambda: self.publish_browser(fresh, 'firefox', choices)
+            else:
+                pm = self.folder / 'fresh-whole.json'
+                pm.write_bytes(encoded(self.decisions(fresh)))
+                attempt = lambda: self.cli(fresh, cutoff=None, extra=['--save-features', str(pm)])
+            files = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+            with self.subTest(first=first), self.assertRaisesRegex(ValueError, 'full history'):
+                attempt()
+            git(self.repo, 'fetch', '-q', '--unshallow', 'origin')
+            with self.assertRaisesRegex(ValueError, 'missing'):
+                attempt()
+            self.assertEqual(files, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+            later = 'later-' + first
+            self.cli(later, cutoff='2026-12-06T10:00:00+09:00', mode='weekly_reconcile')
+            self.save(later, self.decisions(later))
+
+    def test_depth_change_during_receipt_publication_blocks_success_and_rollback(self):
+        self.configure_small_registry()
+        origin = self.repo
+        run_daily.commit_candidate(origin)
+        tip = run_daily.commit_candidate(origin)
+        for name, mode, browser in (('whole-week', 'weekly_reconcile', None),
+                                    ('browser-week', 'weekly_reconcile', 'edge'),
+                                    ('browser-day', 'daily', 'edge')):
+            self.repo = self.folder / name
+            git(self.folder, 'clone', '-q', origin.as_uri(), str(self.repo))
+            cutoff = STATUS_CUTOFF if mode == 'daily' else weekly_status.FIRST_GUARDED_CUTOFF
+            self.cli(name, cutoff=cutoff, mode=mode, extra=['--daily-status'] if mode == 'daily' else [])
+            if mode == 'daily':
+                self.publish_browser(name, 'firefox', self.browser_choices(name, 'firefox', select=False))
+            if browser:
+                decisions = self.browser_choices(name, browser)
+                target = browser_status.detail_path(mode, cutoff)
+            else:
+                decisions = self.decisions(name)
+                target = weekly_status.path(cutoff)
+            pm = self.folder / (name + '.json')
+            pm.write_bytes(encoded(decisions))
+            args = ['--save-features', str(pm)] + (['--save-browser', browser] if browser else [])
+            store = run_daily.store_changes
+
+            def shrink_after_last(root, txn, changes, before, writer):
+                if mode == 'daily':
+                    # The aggregate is still incomplete. Publish only the changed detail.
+                    day = 'data/daily-status/2026-11-24.json'
+                    self.assertEqual(read(root / day), changes[day])
+                    changes = {path: value for path, value in changes.items() if path != day}
+                def replace(path, raw):
+                    run_daily.durable(path, raw)
+                    if path == root / target:
+                        git(root, 'fetch', '-q', '--depth=1', 'origin', tip)
+                return store(root, txn, changes, before, writer, replace=replace)
+
+            with self.subTest(name=name), patch.object(collect, 'store_changes', shrink_after_last):
+                with self.assertRaisesRegex(ValueError, 'full history'):
+                    self.cli(name, cutoff=None, extra=args)
+            self.assertEqual(tip, git(self.repo, 'rev-parse', 'HEAD'))
+            pending = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+            with self.assertRaisesRegex(ValueError, 'full history'):
+                self.cli(name, cutoff=None, extra=args)
+            self.assertEqual(pending, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+            git(self.repo, 'fetch', '-q', '--unshallow', 'origin')
+            self.cli(name, cutoff=None, extra=args)
+            self.assertEqual(pending, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+            git(self.repo, 'fetch', '-q', '--depth=1', 'origin', tip)
+            with self.assertRaisesRegex(ValueError, 'full history'):
+                self.cli(name, cutoff=None, extra=args)
+
+            if name == 'whole-week':
+                # Older saved runs have no recorded marker checksum.
+                state_path = self.folder / 'runs' / name / 'feature-run.json'
+                old_state = read(state_path)
+                old_state.pop('weekly_publication')
+                state_path.write_bytes(encoded(old_state))
+                with self.assertRaisesRegex(ValueError, 'full history'):
+                    self.cli(name, cutoff=None, extra=args)
+                git(self.repo, 'fetch', '-q', '--unshallow', 'origin')
+                self.cli(name, cutoff=None, extra=args)
 
     def test_unmarked_prior_full_window_blocks_same_cutoff_but_not_next(self):
         self.configure_small_registry()

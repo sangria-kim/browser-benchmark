@@ -138,6 +138,10 @@ def changed_groups(root, commits, pathspec):
     return groups
 
 
+def verify_publication(root, rel):
+    verify(root, paths=paths_for(rel), complete_history=True)
+
+
 def verify(root, *, base=None, paths=(), complete_history=False):
     head = repository_head(root)
     if paths:  # Writers, including no-op retries, must also reject present-day invalid names.

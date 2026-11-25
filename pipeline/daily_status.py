@@ -102,7 +102,7 @@ def read_current(root, cutoff):
         raise ValueError('Unsafe daily status target')
     raw = target.read_bytes() if target.exists() else None
     from pipeline import receipt_history
-    receipt_history.verify(root, paths=receipt_history.paths_for(rel), complete_history=True)
+    receipt_history.verify_publication(root, rel)
     check_committed(root, rel, raw)
     return raw, previous_receipt(rel, raw, expected['cutoff']) if raw is not None else None
 

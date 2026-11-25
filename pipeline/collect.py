@@ -700,9 +700,9 @@ def saved_count(state, signature):
         if (accepted is None or accepted['status'] != 'complete'
                 or 'daily_publication' in state and accepted != state['daily_publication']):
             raise ValueError('The accepted daily status is missing or changed')
-    if 'weekly_publication' in state:
+    if state.get('mode') == 'weekly_reconcile' or 'weekly_publication' in state:
         accepted = weekly_status.read_current(Path(state['repository']), state['cutoff'])
-        if accepted is None or accepted['checksum'] != state['weekly_publication']:
+        if 'weekly_publication' in state and (accepted is None or accepted['checksum'] != state['weekly_publication']):
             raise ValueError('The accepted whole weekly result is missing or changed')
     return state['saved_items']
 

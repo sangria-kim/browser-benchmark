@@ -184,7 +184,7 @@ def recover_publication(root, run_dir):
     permitted = ('data/', 'reports/generated/') if state.get('version') in (1, 2) else OUTPUTS
     from pipeline import receipt_history
     from pipeline.daily_status import status_path
-    from pipeline.browser_status import FOLDER as browser_folder, is_detail, safe_path
+    from pipeline.browser_status import is_detail, safe_path
     from pipeline.weekly_status import is_receipt as weekly_path
     version = state.get('version')
     receipt_allowed = version in (4, 5)
@@ -215,10 +215,9 @@ def recover_publication(root, run_dir):
         current = digest(path.read_bytes()) if path.exists() else None
         if current not in (row['before'], row['after']):
             raise RuntimeError('Recovery conflict; preserve journal and reconcile: ' + rel)
-    # Later browser saves can journal only the daily detail when the aggregate stays incomplete.
     for rel in changed:
-        if status_path(rel) or (is_detail(rel) and rel.startswith(browser_folder + '/daily/')):
-            receipt_history.verify(root, paths=receipt_history.paths_for(rel), complete_history=True)
+        if status_path(rel) or weekly_path(rel) or is_detail(rel):
+            receipt_history.verify_publication(root, rel)
     check_rollback_commit(root, state, journal['files'])
     for rel, row in journal['files'].items():
         path = root / rel
@@ -245,7 +244,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
     from pipeline.daily_status import previous_receipt, read_current as current_daily_receipt, scheduled_cutoff, status_path, validate_receipt
-    from pipeline import browser_status, weekly_status
+    from pipeline import browser_status, receipt_history, weekly_status
     whole = {rel for rel in changes if weekly_status.is_receipt(rel)}
     details = {rel for rel in changes if browser_status.is_detail(rel)}
     if len(details) + len(whole) > 1:
@@ -312,9 +311,12 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             if (digest(path.read_bytes()) if path.exists() else None) != checksum:
                 raise ValueError('Concurrent edit to browser publication input: ' + rel)
 
-    def check_daily_commits():
+    def check_receipt_commits():
         for rel in receipts:
             current_daily_receipt(root, changes[rel]['cutoff'])
+        # A depth change can hide parents without changing HEAD or the output bytes.
+        for rel in details | whole:
+            receipt_history.verify_publication(root, rel)
 
     if details or whole:
         check_dependencies(before)
@@ -345,7 +347,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     writer.flush()
     os.fsync(writer.fileno())
     try:
-        check_daily_commits()
+        check_receipt_commits()
         if details or whole:
             check_dependencies(before)
         for rel, raw in payloads.items():
@@ -357,7 +359,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             raise ValueError('Concurrent edit after feature publication')
         if details or whole:
             check_dependencies({**before, **after})
-        check_daily_commits()
+        check_receipt_commits()
         journal['status'] = 'published'
         durable(txn / 'publication.json', encoded(journal))
     except Exception:
