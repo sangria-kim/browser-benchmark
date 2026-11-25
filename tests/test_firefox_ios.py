@@ -142,7 +142,7 @@ class FirefoxIosTests(unittest.TestCase):
             '3.0': release('3.0', '2026-10-25', [note(3, 'Lower edit.', '2026-10-25T22:00:00Z'),
                                                     note(4, 'Earlier edit.', '2026-10-25T21:59:59Z'),
                                                     note(5, 'Upper edit.', '2026-11-24T22:00:00Z')]),
-            '4.0': release('4.0', '2026-11-26', [note(6, 'Future release.')]),
+            '4.0': release('4.0', '2026-11-27', [note(6, 'Future release.')]),
         })
         self.pages[SHIPS].append(ship(10, 'firefox-v1.0', '2025-01-01T00:00:00Z'))
         self.prepare()
@@ -241,3 +241,45 @@ class FirefoxIosTests(unittest.TestCase):
         state, _ = self.cli('limited', expected=2, resume=True)
         self.assertIn('Mutable enumeration changed', str(state['errors']))
         self.assertEqual([SHIPS], self.calls)
+
+    def test_precise_publication_controls_items_and_empty_releases_at_both_boundaries(self):
+        cases = [
+            ('31.0', '2026-11-25', '2026-11-25T07:00:01+09:00'),
+            ('32.0', '2026-10-26', '2026-10-26T06:59:59+09:00'),
+            ('33.0', '2026-11-25', '2026-11-25T07:00:00+09:00'),
+            ('34.0', '2026-10-26', '2026-10-26T07:00:00+09:00'),
+            ('35.0', '2026-10-25', '2026-10-25T22:00:00Z'),
+        ]
+        for version, day, stamp in cases:
+            ident = int(version.split('.')[0])
+            self.rows[version] = release(version, day, [note(ident, 'A new feature.', '2026-10-01T00:00:00Z')])
+            empty_version = '1' + version
+            self.rows[empty_version] = release(empty_version, day, [])
+            self.rows[empty_version]['modified'] = '2026-10-01T00:00:00Z'
+        self.prepare()
+        for version, day, stamp in cases:
+            for v in (version, '1' + version):
+                url = detail_url(v)
+                self.pages[url] = self.pages[url].replace('</head>',
+                    f'<meta property="article:published_time" content="{stamp}"></head>')
+        state, rows = self.cli('precise-pub')
+        self.assertEqual({'note-33', 'note-34', 'note-35'}, {r['item_key'] for r in rows})
+        self.assertTrue(all(r['temporal_scope']['precision'] == 'timestamp' for r in rows))
+        self.assertEqual({'161.0', '133.0', '134.0', '135.0'}, set(state['firefox_ios_inventory']['empty_versions']))
+        self.assertTrue({detail_url(v) for v in ('31.0', '32.0', '131.0', '132.0')} <= set(state['excluded_by_date']))
+
+    def test_conflicting_owned_timestamps_and_unrelated_page_times(self):
+        url = detail_url('160.0')
+        original = self.pages[url]
+        meta = '<meta property="article:published_time" content="2026-11-10T11:00:00Z">'
+        self.pages[url] = original.replace('</head>', meta + meta.replace('11:00:', '12:00:') + '</head>')
+        state, _ = self.cli('conflicting-times', expected=2)
+        self.assertIn('Conflicting Firefox iOS publication dates', str(state['errors']))
+        self.pages[url] = original.replace('2026-11-10</p>',
+            '<time datetime="2026-11-10T11:00:00">2026-11-10</time></p>')
+        state, _ = self.cli('no-offset', expected=2)
+        self.assertIn('Unverified Firefox iOS publication', str(state['errors']))
+        self.pages[url] = original.replace('</html>', '<footer><time datetime="2026-12-01T00:00:00Z">December</time>'
+                                           + meta.replace('2026-11-10', '2026-12-01') + '</footer></html>')
+        state, _ = self.cli('footer-time')
+        self.assertEqual(1, state['duplicate'])

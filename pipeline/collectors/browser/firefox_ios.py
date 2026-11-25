@@ -3,12 +3,12 @@ import hashlib
 import io
 import json
 import re
-from datetime import date, timezone
+from datetime import date, timedelta, timezone
 from urllib.parse import urlencode
 from zipfile import ZipFile
 
 from pipeline.temporal import instant, policy_day
-from .html import Tree, blocks, date_value, modification, publication_value
+from .html import Tree, blocks, date_value, modification, publication_value, reconcile_modification
 
 
 NOTES_API = 'https://api.github.com/repos/mozilla/release-notes'
@@ -204,7 +204,7 @@ def matches_note(note, unit, node):
             and unit['text'] == ' '.join(text.split()) and None not in hrefs and hrefs == actual_links)
 
 
-def document_units(response, version, row, notes, cutoff):
+def document_metadata(response, version, day, cutoff):
     expected_url = detail_url(version)
     text = response.text()
     root = Tree(text).root
@@ -212,26 +212,40 @@ def document_units(response, version, row, notes, cutoff):
     def values(cls):
         return [n.text() for n in nodes if n.has_class(cls)]
     canonical = [n.attrs.get('href') for n in nodes if n.tag == 'link' and 'canonical' in n.attrs.get('rel', '').split()]
-    dates = values('c-release-date')
+    dates = [n for n in nodes if n.has_class('c-release-date')]
     bodies = [n for n in nodes if n.has_class('c-release-notes')]
     if (response.url != expected_url or canonical != [expected_url] or '</html>' not in text.lower()
             or [n.attrs.get('lang') for n in nodes if n.tag == 'html'] != ['en-US']
             or values('c-release-version') != [version] or values('c-release-product') != ['Firefox for iOS Release']
-            or len(dates) != 1 or date_value(dates[0]) != row['release_date'] or len(bodies) != 1):
+            or len(dates) != 1 or date_value(dates[0].text()) != day or len(bodies) != 1):
         raise ValueError('Inconsistent Firefox iOS version, locale, product or publication day')
+    # Only the canonical page head and the version's release-date field own its
+    # publication time. Generic <time> elements can date unrelated page content.
+    publications = [day, publication_value(dates[0].text())]
+    publications.extend(publication_value(n.attrs['datetime']) for n in dates[0].walk()
+                        if n.tag == 'time' and 'datetime' in n.attrs)
     for n in nodes:
-        if n.tag == 'meta' and n.attrs.get('property') in ('article:published_time', 'article:modified_time'):
-            stamp = publication_value(n.attrs.get('content'))
-            if not stamp or (n.attrs['property'] == 'article:published_time' and stamp[:10] != row['release_date']):
-                raise ValueError('Unverified Firefox iOS page date metadata')
+        if n.tag == 'meta' and n.parent.tag == 'head':
+            field = n.attrs.get('property') or n.attrs.get('name')
+            if field == 'article:published_time':
+                publications.append(publication_value(n.attrs.get('content')))
+            elif field == 'article:modified_time' and not publication_value(n.attrs.get('content')):
+                raise ValueError('Unverified Firefox iOS page modification metadata')
+    if not all(publications):
+        raise ValueError('Unverified Firefox iOS publication metadata')
+    publication = reconcile_modification(publications, 'Firefox iOS publication dates')
     modified = modification(root, bodies[0])
     if modified and (instant(modified) > instant(cutoff) if len(modified) > 10 else modified > policy_day(cutoff)):
         raise ValueError('Only a Firefox iOS HTML revision after cutoff is available')
-    units = blocks(bodies[0])
+    return publication, bodies[0]
+
+
+def document_units(body, notes):
+    units = blocks(body)
     if ({u['key'] for u in units} != set(notes) or len(units) != len(notes)
-            or (not notes and bodies[0].text())):
+            or (not notes and body.text())):
         raise ValueError('Firefox iOS HTML note IDs disagree with the pinned release record')
-    locations = {n.attrs['id']: n for n in bodies[0].walk() if n.tag == 'li' and n.attrs.get('id') in notes}
+    locations = {n.attrs['id']: n for n in body.walk() if n.tag == 'li' and n.attrs.get('id') in notes}
     for unit in units:
         note = notes[unit['key']]
         # Only accept text for which the live rendering agrees with the cutoff snapshot.
@@ -259,31 +273,42 @@ def collect_firefox_ios(collector):
             collector.problem(detail_url(version), 'Shipped Firefox iOS version lacks a public Mozilla note record')
     if history['older_undated_shipping_versions']:
         collector.problem(SHIPPING, 'Older Firefox iOS shipments lack dated Mozilla records; note dates unverified')
+    start_day = date.fromisoformat(policy_day(collector.window_start) if collector.window_start else collector.since)
+    end_day = date.fromisoformat(policy_day(collector.cutoff))
     previous = {(r['evidence']['url'], r['item_key']): r for r in collector.previous}
     for version, row in records.items():
         url = detail_url(version)
         try:
             notes = checked_notes(collector, row)
             day = row['release_date']
-            day_status = collector.publication_status(day)
-            eligible = {key for key, note in notes.items() if day_status == 'in_period'
-                        or collector.publication_status(note['modified']) == 'in_period'}
-            empty_in_scope = not notes and (day_status == 'in_period'
-                                            or collector.publication_status(row['modified']) == 'in_period')
-            if day_status == 'after_cutoff' or not (eligible or empty_in_scope):
+            changed = {key for key, note in notes.items() if collector.publication_status(note['modified']) == 'in_period'}
+            empty_change = not notes and collector.publication_status(row['modified']) == 'in_period'
+            # A local printed day adjacent to either bound can resolve to a
+            # qualifying offset timestamp on the versioned product page.
+            printed = date.fromisoformat(day)
+            if (printed > end_day + timedelta(days=1)
+                    or printed < start_day - timedelta(days=1) and not (changed or empty_change)):
                 collector.state['excluded_by_date'].append(url)
                 continue
             if not collector.budget(url, 'documents'):
                 break
             collector.state['documents'] += 1
             response = collector.get(url)
-            units = document_units(response, version, row, notes, collector.cutoff)
+            publication, body = document_metadata(response, version, day, collector.cutoff)
+            status = collector.publication_status(publication)
+            eligible = set(notes) if status == 'in_period' else changed
+            if status == 'after_cutoff' or not (eligible or not notes and (status == 'in_period' or empty_change)):
+                collector.state['excluded_by_date'].append(url)
+                collector.document_done(url)
+                continue
+            units = document_units(body, notes)
             for unit in units:
                 key = unit['key']
                 if key in eligible:
                     old = previous.get((url, key))
-                    collector.emit(url, response, unit, date=day, version=old['version'] if old else version,
-                                   modified=notes[key]['modified'] if day_status == 'before_period' else None)
+                    collector.emit(url, response, unit, date=day, date_evidence=publication,
+                                   version=old['version'] if old else version,
+                                   modified=notes[key]['modified'] if status == 'before_period' else None)
             history['verified_versions'].append(version)
             if not notes:
                 history['empty_versions'].append(version)
