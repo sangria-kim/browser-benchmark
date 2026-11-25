@@ -5,7 +5,7 @@ from datetime import datetime, timedelta, timezone
 import json
 import os
 import re
-from urllib.parse import urldefrag
+from urllib.parse import parse_qsl, urldefrag, urlsplit
 
 from pipeline import browser_status
 from pipeline.collectors.browser.collector import atomic_json, digest, identity, minimal
@@ -18,6 +18,13 @@ from pipeline.temporal import instant
 
 MAX_DOCUMENTS = 4
 MAX_FEATURES_PER_DOCUMENT = 16
+
+
+def enterprise_version_query(url):
+    parts = urlsplit(url)
+    if (parts.hostname, parts.path) == ('release-notes-787862449254.us-central1.run.app', '/features'):
+        return tuple(sorted(parse_qsl(parts.query)))
+    return None
 
 
 class FeatureIndex:
@@ -48,6 +55,7 @@ class SourceReview:
         self.document_owners = defaultdict(dict)
         self.by_id = {row['source_item_id']: row for row in previous}
         self.units = defaultdict(list)
+        self.enterprise_urls = defaultdict(set)
         self.restricted_raw, self.hashes = set(), {}
         self.wait = self.prior.get('retry_after')
         self.wait = self.wait if self.wait and instant(self.wait) > datetime.now(timezone.utc) else None
@@ -58,21 +66,51 @@ class SourceReview:
                     url = normalize_url(row['evidence']['url'])
                     if accepts_url(source, url, observed=True):
                         self.links[url].append((feature, row))
-                        self.document_owners[urldefrag(url)[0]][feature['feature_id']] = feature
+                        self.document_owners[self.document_key(url)][feature['feature_id']] = feature
+                        if self.sid == 'chrome-enterprise':
+                            query = enterprise_version_query(url)
+                            if query is not None:
+                                self.enterprise_urls[query].add(url)
+
+    def document_key(self, url):
+        if self.sid == 'chrome-enterprise':
+            query = enterprise_version_query(url)
+            if query is not None:
+                return ('enterprise', query)
+        return urldefrag(url)[0]
+
+    def after_cutoff(self, url):
+        # The same resume can skip the product parser of a completed source.
+        # Keep its authoritative document exclusion with the response checkpoint.
+        if url in self.document_owners:
+            blocked = self.collector.progress.setdefault('enrichment_after_cutoff', [])
+            if url not in blocked:
+                blocked.append(url)
+                self.collector.write_progress()
+
+    def begin_enterprise_page(self, url):
+        for target in self.enterprise_urls.get(enterprise_version_query(url), ()):
+            self.units.setdefault(target, [])
+            self.restricted_raw.add(target)
 
     def eligible_unit(self, unit, dates=()):
         return unit['parsed'] and all(self.collector.publication_status(value) != 'after_cutoff'
                                       for value in (*dates, unit.get('date')) if value)
 
     def observe(self, url, response, unit, title=None, *, dates=()):
-        if url in self.links:
+        targets = (url,)
+        if self.enterprise_urls:
+            targets = self.enterprise_urls.get(enterprise_version_query(url), targets)
+        for target in targets:
+            if target not in self.links:
+                continue
             # Remember that the registered parser examined this document even
             # if it supplied no eligible unit. HTML fallback must not undo it.
-            units = self.units[url]
+            units = self.units[target]
             if self.eligible_unit(unit, dates):
                 units.append((unit, title, response))
             else:
-                self.restricted_raw.add(url)
+                self.restricted_raw.add(target)
 
     def linked_facts(self, features):
         rows = dict(self.by_id)
@@ -194,9 +232,13 @@ class SourceReview:
 
     def evidence(self, url, halted):
         c = self.collector
+        target = urldefrag(url)[0]
+        if target in c.progress.get('enrichment_after_cutoff', ()):
+            return None, []
         if url in self.units:
             return None, self.units[url]
-        target = urldefrag(url)[0]
+        if self.sid == 'chrome-enterprise' and enterprise_version_query(url) is not None:
+            raise ValueError('No publisher-filtered Enterprise observations for this version in the current run')
         if any(e['url'] == target for e in c.state['errors']):
             raise ValueError('The registered collector could not verify this document')
         if target not in c.cache and target not in c.progress['responses']:
@@ -259,7 +301,7 @@ class SourceReview:
             quotes = feature.get('source_revision_excerpts', {})
             if not any(quotes.get(pin) and quotes[pin].casefold() in passage for pin in pins):
                 return False
-        return not any(named(sibling) for fid, sibling in self.document_owners[urldefrag(url)[0]].items()
+        return not any(named(sibling) for fid, sibling in self.document_owners[self.document_key(url)].items()
                        if fid != feature['feature_id'])
 
     def candidate(self, feature, url, unit, response):

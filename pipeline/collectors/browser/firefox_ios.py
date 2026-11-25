@@ -313,7 +313,7 @@ def collect_firefox_ios(collector):
             printed = date.fromisoformat(day)
             if (printed > end_day + timedelta(days=1)
                     or printed < start_day - timedelta(days=1) and not (changed or empty_change)):
-                collector.state['excluded_by_date'].append(url)
+                collector.exclude_document(url, day)
                 continue
             if not collector.budget(url, 'documents'):
                 break
@@ -323,7 +323,7 @@ def collect_firefox_ios(collector):
             status = collector.publication_status(publication)
             eligible = set(notes) if status == 'in_period' else changed
             if status == 'after_cutoff' or not (eligible or not notes and (status == 'in_period' or empty_change)):
-                collector.state['excluded_by_date'].append(url)
+                collector.exclude_document(url, publication)
                 collector.document_done(url)
                 continue
             units = document_units(body, notes)

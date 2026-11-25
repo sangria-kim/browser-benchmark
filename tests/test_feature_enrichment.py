@@ -283,6 +283,14 @@ class FeatureReviewTests(unittest.TestCase):
         self.assertEqual([], self.products)
         self.assertTrue(all('candidate' in jobs[fid] for fid in ids[:2]))
         self.assertTrue(all('candidate' not in jobs[fid] and not jobs[fid].get('reference_review') for fid in ids[2:]))
+        alternate = details.replace('version=101&lang=en', 'lang=en&version=101#theme')
+        other = self.apply(dict(browser='chrome', source_id=sid, url=alternate, title='Group layouts', canonical_key='layouts'))['feature_id']
+        self.payloads[details] = json.dumps(dict(total_count=1, features=[
+            dict(row, summary='Tab groups and Group layouts are available on Windows.')]))
+        mixed = self.cli('enterprise-mixed', sid=sid)
+        self.assertNotIn('candidate', mixed[ids[1]])
+        self.assertNotIn('candidate', mixed[other])
+        self.assertEqual([archive, api + '/versions', details], self.calls)
 
     def test_operator_enrichment_from_verified_reference_with_translated_title(self):
         first = self.select('탭 그룹', facts={'version': '150'})
@@ -302,3 +310,44 @@ class FeatureReviewTests(unittest.TestCase):
         self.assertEqual(['Windows'], by_id[first]['feature_facts']['platform']['value'])
         self.assertEqual({}, by_id[sibling]['feature_facts'])
         self.assertEqual([], self.products)
+
+    def test_unlisted_enterprise_version_cannot_bypass_publisher_visibility(self):
+        sid = 'chrome-enterprise'
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        stale = api + '/features?version=101&lang=en'
+        current = api + '/features?version=102&lang=en'
+        saved_url = stale.replace('version=101&lang=en', 'lang=en&version=101#item')
+        fid = self.apply(dict(browser='chrome', source_id=sid, url=saved_url, title='Tab groups', canonical_key='tabs'))['feature_id']
+        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        self.payloads[archive] = ('<a href="#101">April 1, 2026</a><a class="zippy" name="101">Version</a>'
+                                  '<div><p>Historical public notes.</p></div>')
+        self.payloads[api + '/versions'] = json.dumps(dict(versions=[dict(value='102')]))
+        self.payloads[current] = json.dumps(dict(total_count=0, features=[]))
+        self.payloads[stale] = json.dumps(dict(total_count=1, features=[dict(id=12345, confidential=True)]))
+        job = self.cli('unlisted', sid=sid)[fid]
+        self.assertFalse(job.get('reference_review'))
+        self.assertNotIn('candidate', job)
+        self.assertEqual([archive, api + '/versions', current], self.calls)
+        request = dict(feature_id=fid, browser='chrome', source_id=sid, url=saved_url, facts={'platform': ['Windows']})
+        with self.assertRaises(ValueError):
+            verified_reference(self.work, self.state, request)
+
+    def test_future_index_prevents_detail_reinspection_across_resume(self):
+        future = HOME + '2026/11/upcoming.html'
+        fid = self.select('Upcoming tabs', future)
+        peer = self.select('Toolbars', URL)
+        self.payloads[HOME] = card(future).replace('2026-04-01', '2026-11-28') + card(URL)
+        self.payloads[future] = '<div class="post-body"><p>Upcoming tabs will ship on Windows.</p></div>'
+        self.payloads[URL] = OSError('try peer later')
+        jobs = self.cli('fixed')
+        self.assertNotIn('candidate', jobs[fid])
+        self.assertNotIn(future, self.calls)
+        self.assertIn('error', jobs[peer])
+        self.payloads[URL] = '<div class="post-body"><p>Toolbars on ChromeOS.</p></div>'
+        jobs = self.cli('fixed', resume=True)
+        self.assertNotIn('candidate', jobs[fid])
+        self.assertFalse(jobs[fid].get('reference_review'))
+        self.assertIn('candidate', jobs[peer])
+        self.assertNotIn(future, self.calls)
+        jobs = self.cli('available', '2026-11-30T07:00:00+09:00')
+        self.assertIn('candidate', jobs[fid])

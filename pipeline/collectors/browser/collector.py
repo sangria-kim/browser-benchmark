@@ -450,8 +450,12 @@ class BrowserCollector:
     def revision_in_scope(self, url, publication, modified):
         # A release published after cutoff could not have existed in the window.
         if self.publication_status(publication) == 'after_cutoff':
+            if self.fact_review:
+                self.fact_review.after_cutoff(url)
             return False
         if modified and self.publication_status(modified) == 'after_cutoff':
+            if self.fact_review:
+                self.fact_review.after_cutoff(url)
             self.problem(url, 'Only a revision after cutoff is available')
             return False
         return self.allowed_publication(modified or publication) or self.publication_status(publication) == 'in_period'
@@ -587,12 +591,17 @@ class BrowserCollector:
             atomic_json(self.destination, sorted(self.records.values(), key=lambda r: r['source_item_id']))
         atomic_json(self.state_path, self.state)
 
+    def exclude_document(self, url, *dates):
+        self.state['excluded_by_date'].append(url)
+        if self.fact_review and any(self.publication_status(d) == 'after_cutoff' for d in dates if d):
+            self.fact_review.after_cutoff(url)
+
     def rolling_revision_after_cutoff(self, root, url):
         if self.window_start:
             modified = modification(root, page_metadata_only=True)
             if self.publication_status(modified) == 'after_cutoff':
                 self.problem(url, 'Only a rolling document revision after cutoff is available')
-                self.state['excluded_by_date'].append(url)
+                self.exclude_document(url, modified)
                 return True
         return False
 
@@ -623,7 +632,7 @@ class BrowserCollector:
         else:
             eligible = self.allowed_publication(publication, current)
         if not eligible:
-            self.state['excluded_by_date'].append(url)
+            self.exclude_document(url, publication, modified)
             return root
         if body is None:
             self.unresolved(url, response)
@@ -755,7 +764,7 @@ class BrowserCollector:
                         continue
                     relevant = self.possible_index_date(changed or date) or (date and self.possible_index_date(date))
                     if not relevant or (year and not changed and not date and int(year[1]) < int(self.since[:4])):
-                        self.state['excluded_by_date'].append(doc)
+                        self.exclude_document(doc, date, changed)
                         continue
                     if doc not in document_set:
                         document_set.add(doc)
@@ -879,7 +888,7 @@ class BrowserCollector:
                 if date:
                     dates.append(date_value(date))
                 if not self.possible_index_date(date):
-                    self.state['excluded_by_date'].append(document_url)
+                    self.exclude_document(document_url, date)
                     continue
                 if not self.budget(document_url, 'documents'):
                     return
@@ -964,9 +973,8 @@ class BrowserCollector:
             data = json_body(response)
             # Only this parser knows the publisher's per-row visibility gates.
             # Never offer the unfiltered JSON or reparse it as HTML.
-            if self.fact_review and url in self.fact_review.links:
-                self.fact_review.units.setdefault(url, [])
-                self.fact_review.restricted_raw.add(url)
+            if self.fact_review:
+                self.fact_review.begin_enterprise_page(url)
             rows = data.get('features')
             if not isinstance(rows, list) or data.get('total_count') != len(rows):
                 raise ValueError('Enterprise API inventory count mismatch')
@@ -1132,7 +1140,7 @@ class BrowserCollector:
                     for unit in units:
                         self.emit(url, document, unit, date=date)
                 else:
-                    self.state['excluded_by_date'].append(url)
+                    self.exclude_document(url, date)
                 self.document_done(url)
                 # A topic's publication does not establish the dates of its children.
                 for section in data.get('topicSections', []):
