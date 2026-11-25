@@ -502,7 +502,7 @@
     {
       "source_id": "safari-technology-preview",
       "browser": "safari",
-      "url": "https://webkit.org/blog/",
+      "url": "https://webkit.org/blog/category/safari-technology-preview/",
       "parser": "html_index",
       "channels": [
         "technology_preview"
@@ -513,11 +513,11 @@
       "language": "en",
       "enabled": true,
       "discovery": {
-        "include_url_pattern": "^https://webkit\\.org/blog/\\d+/release-notes-for-safari-technology-preview-[^/]+/$",
+        "include_url_pattern": "^https://webkit\\.org/blog/\\d+/(?:release-notes-for-)?safari-technology-preview-(?:release-)?([1-9]\\d*)(?:-[a-z0-9-]+)?/$",
         "pagination": "next_link",
         "max_pages": 100,
         "max_documents": 5000,
-        "follow_related_documents": true
+        "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
       "scope_note": "Infer each item channel and platform from evidence; the lists are source bounds, not a cross product."

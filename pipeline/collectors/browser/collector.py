@@ -18,6 +18,7 @@ from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, modification, reconcile_modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
+from .safari_preview import collect_safari_preview
 from .transport import HTTPTransport, Response
 from pipeline.temporal import SEOUL, dated_scope, instant, window_status
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
@@ -270,6 +271,8 @@ class BrowserCollector:
                 self.collect_whale()
             elif source['source_id'] == 'chrome-enterprise':
                 self.collect_enterprise()
+            elif source['source_id'] == 'safari-technology-preview':
+                collect_safari_preview(self)
             elif source['source_id'] == 'chrome-blog':
                 self.collect_google_blog()
             elif parser == 'chromestatus':
@@ -706,13 +709,9 @@ class BrowserCollector:
                 if source['source_id'] == 'whale-notices':
                     found = [(urlparse(u)._replace(query='').geturl(), n) for u, n in found]
                 if not found:
-                    # WebKit's general blog has archive pages with other product
-                    # posts. They are valid index pages, not missing TP articles.
-                    valid_webkit = source['source_id'] == 'safari-technology-preview' and any(n.attrs.get('id') == 'posts' for n in root.walk())
-                    if not valid_webkit:
-                        self.unresolved(url, response, key='index')
-                        self.problem(url, 'No registered document links in index')
-                        enumeration_valid = False
+                    self.unresolved(url, response, key='index')
+                    self.problem(url, 'No registered document links in index')
+                    enumeration_valid = False
                 for doc, node in found:
                     date = self.index_date(node, doc)
                     article = next((a for a in node.ancestors() if a.tag == 'article'), None)
