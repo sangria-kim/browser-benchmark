@@ -275,6 +275,12 @@ def receipt_inventory(root, head):
     """Check current names and file types in both the working tree and the committed tip."""
     from pipeline import receipt_history, weekly_status
 
+    receipt_history.check_spelling((p.name for p in root.iterdir()), {'data'})
+    data = root / 'data'
+    if data.is_symlink() or data.exists() and not data.is_dir():
+        raise ValueError('Invalid data directory')
+    if data.exists():
+        receipt_history.check_spelling((p.name for p in data.iterdir()), receipt_history.FOLDER_NAMES)
     folder = root / FOLDER
     if folder.is_symlink() or folder.exists() and not folder.is_dir():
         raise ValueError('Invalid browser status folder')

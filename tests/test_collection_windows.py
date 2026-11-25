@@ -939,6 +939,53 @@ class WindowTests(unittest.TestCase):
             '-c', 'core.hooksPath=/dev/null', 'merge', '-q', '--no-ff', '-m', 'Merge repair', branch)
         ci(accepted)
 
+    def test_current_receipt_folder_case_is_exact_in_the_checkout_and_head(self):
+        self.configure_small_registry()
+        template = self.repo
+        initial = run_daily.commit_candidate(template)
+        self.cli('canonical-week', cutoff=weekly_status.FIRST_GUARDED_CUTOFF, mode='weekly_reconcile')
+        self.save('canonical-week', self.decisions('canonical-week'))
+        self.cli('canonical-detail', cutoff='2026-12-06T10:00:00+09:00', mode='weekly_reconcile')
+        self.publish_browser('canonical-detail', 'edge', self.browser_choices('canonical-detail', 'edge'))
+        self.cli('canonical-day', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.save('canonical-day', self.decisions('canonical-day'))
+        # None of the three correctly named receipt directories is in Git yet.
+        for index, rel in enumerate(('data', 'data/daily-status', 'data/weekly-status', 'data/browser-status')):
+            self.repo = self.folder / f'case-{index}'
+            shutil.copytree(template, self.repo)
+            git(self.repo, 'config', 'core.ignoreCase', 'false')
+            self.cli(f'pending-{index}', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+            folder = self.repo / rel
+            alias = folder.with_name(folder.name.upper())
+            intermediate = folder.with_name('move-between-spellings')
+            folder.rename(intermediate)
+            intermediate.rename(alias)
+            for state in ('working', 'committed', 'corrected-worktree'):
+                if state == 'committed':
+                    incorrect = run_daily.commit_candidate(self.repo)
+                if state == 'corrected-worktree':
+                    alias.rename(intermediate)
+                    intermediate.rename(folder)
+                with self.subTest(rel=rel, state=state):
+                    with self.assertRaises(ValueError):
+                        validate_tree(self.repo, base=initial)
+                    with self.assertRaises(ValueError):
+                        self.cli(f'pending-{index}', cutoff=None, extra=['--record-incomplete'])
+            # Stage both spellings explicitly even on a case-insensitive filesystem.
+            folder.rename(intermediate)
+            intermediate.rename(alias)
+            git(self.repo, 'mv', '--', str(alias), str(intermediate))
+            git(self.repo, 'mv', '--', str(intermediate), str(folder))
+            # Similar names elsewhere do not reserve a receipt namespace.
+            for other in ('data/WEEKLY-STATUS-ARCHIVE', 'data/archive/BROWSER-STATUS', 'DATA-LAKE'):
+                directory = self.repo / other
+                directory.mkdir(parents=True)
+                (directory / 'notes').write_text('unrelated')
+            corrected = run_daily.commit_candidate(self.repo)
+            for ref in (initial, incorrect, corrected):
+                validate_tree(self.repo, base=ref)
+            self.cli(f'pending-{index}', cutoff=None, extra=['--record-incomplete'])
+
     def test_invalid_first_daily_blob_cannot_claim_the_cutoff(self):
         self.configure_small_registry()
         initial = run_daily.commit_candidate(self.repo)

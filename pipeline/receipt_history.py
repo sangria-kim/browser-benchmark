@@ -8,6 +8,7 @@ from pipeline import browser_status, daily_status, weekly_status
 from pipeline.run_daily import git, repository_head
 
 FOLDERS = (daily_status.FOLDER, weekly_status.FOLDER, browser_status.FOLDER)
+FOLDER_NAMES = frozenset(path.split('/')[1] for path in FOLDERS)
 EMPTY = (None, None)
 
 
@@ -41,8 +42,34 @@ def paths_for(rel):
     return pair
 
 
+def check_spelling(names, reserved):
+    for name in names:
+        if name.casefold() in reserved and name not in reserved:
+            raise ValueError('Invalid spelling of reserved receipt directory: ' + name)
+
+
+def direct_git_children(root, tree):
+    raw = subprocess.check_output(['git', '-C', str(root), 'ls-tree', '-z', tree])
+    children = {}
+    for entry in raw.split(b'\0'):
+        if entry:
+            info, name = entry.split(b'\t', 1)
+            _, kind, oid = info.split()
+            children[name.decode('utf-8', 'surrogateescape')] = (kind, oid)
+    return children
+
+
 @lru_cache(maxsize=64)
 def tracked_paths(root, head):
+    # Literal Git pathspecs can miss a differently cased prefix. Inspect the
+    # immediate names, independently of the checkout filesystem's case rules.
+    top = direct_git_children(root, head)
+    check_spelling(top, {'data'})
+    if 'data' in top:
+        kind, oid = top['data']
+        if kind != b'tree':
+            raise ValueError('Invalid committed data directory')
+        check_spelling(direct_git_children(root, oid), FOLDER_NAMES)
     entries = subprocess.check_output(['git', '-C', str(root), 'ls-tree', '-rz', head, '--', *FOLDERS])
     tracked = set()
     for entry in entries.split(b'\0'):
