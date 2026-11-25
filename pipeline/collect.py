@@ -9,7 +9,7 @@ import shutil
 import re
 import uuid
 
-from pipeline import browser_status
+from pipeline import browser_status, weekly_status
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
@@ -379,9 +379,7 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
         signature = digest(encoded(decisions))
         txn = work / 'transaction'
         if state['status'] == 'saved':
-            if state['decisions'] != signature:
-                raise ValueError('This run already has a different final classification')
-            return state['saved_items']
+            return saved_count(state, signature)
         if state['status'] == 'cleaning' and not work.exists():
             return finish_run(state_path, work, state, signature)
         verify_workspace(work, state)
@@ -390,6 +388,8 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
                                                and read(journal)['status'] == 'published'):
             return finish_run(state_path, work, state, signature)
         pin = collection_pin(root, work, state)
+        if weekly and weekly_status.read_current(root, state['cutoff']) is not None:
+            raise ValueError('This cutoff already has a completed whole weekly publication')
         if daily_status or weekly:
             rel = browser_status.detail_path(state['mode'], state['cutoff'])
             if browser_status.read_current(root, rel) is not None:
@@ -422,6 +422,15 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
             root, work, state, sources, decisions, daily_status=daily_status)
         if daily_status:
             add_receipt(root, changes, before, state['cutoff'], len(changed_features), len(collected_features))
+        if weekly:
+            scope = pin['scope'] if pin is not None else browser_scope(root, state)[0]
+            rel = weekly_status.path(scope['cutoff'])
+            changes[rel] = weekly_status.receipt(scope, signature, collected_features)
+            state['weekly_publication'] = changes[rel]['checksum']
+            before.update({rel: None, 'config/sources.yml': state['registry'],
+                           browser_status.detail_path('weekly_reconcile', scope['cutoff']): None})
+            code, base = publication_commits(root)
+            durable(txn / 'scope.json', encoded(dict(code_commit=code, base_commit=base)))
         state.update(status='saving', decisions=signature, saved_items=len(decisions))
         durable(state_path, encoded(state))
         store_changes(root, txn, changes, before, writer)
@@ -469,6 +478,8 @@ def candidate_inventory(work, state, sources, *, checkpointed=False):
 def save_browser(root, work, state, browser, classification, writer):
     pin = collection_pin(root, work, state)
     scope, baseline = browser_baseline(root, work, state, pin)
+    if scope['mode'] == 'weekly_reconcile':
+        weekly_status.require_unclaimed(root, scope, scoped=True)
     if browser not in scope['expected']:
         raise ValueError('Browser is outside this collection mode')
     sources, _ = registered_sources(root, scope['expected'][browser], mode=state['mode'])
@@ -511,6 +522,8 @@ def save_browser(root, work, state, browser, classification, writer):
                                        change_count=len(changed), collected_feature_count=len(collected))
     changes[rel] = browser_status.seal(detail)
     before[rel] = digest(raw) if raw is not None else None
+    if scope['mode'] == 'weekly_reconcile':
+        before[weekly_status.path(scope['cutoff'])] = None
     if scope['mode'] == 'daily':
         add_receipt(root, changes, before, scope['cutoff'], *browser_status.aggregate(detail))
     folder = work / 'browser-transactions'
@@ -631,6 +644,8 @@ def classified_delta(root, work, state, sources, decisions, *, daily_status, bro
                     features[key] = feature
                     catalog.append(feature)
                 feature = features[key]
+                if state.get('mode') == 'weekly_reconcile':
+                    collected_features.add(feature['feature_id'])
                 # An undated citation cannot displace known in-period evidence.
                 if feature.get('temporal_scope', {}).get('status') != 'in_period' or row['temporal_scope']['status'] == 'in_period':
                     feature['temporal_scope'] = row['temporal_scope']
@@ -658,9 +673,18 @@ def classified_delta(root, work, state, sources, decisions, *, daily_status, bro
     return changes, before, changed_features, collected_features, effects
 
 
-def finish_run(state_path, work, state, signature):
+def saved_count(state, signature):
     if state['decisions'] != signature:
         raise ValueError('This run already has a different final classification')
+    if 'weekly_publication' in state:
+        accepted = weekly_status.read_current(Path(state['repository']), state['cutoff'])
+        if accepted is None or accepted['checksum'] != state['weekly_publication']:
+            raise ValueError('The accepted whole weekly result is missing or changed')
+    return state['saved_items']
+
+
+def finish_run(state_path, work, state, signature):
+    count = saved_count(state, signature)
     state.update(status='cleaning')
     durable(state_path, encoded(state))
     retired = work.with_name('.finished-' + state['workspace_id'])
@@ -673,7 +697,7 @@ def finish_run(state_path, work, state, signature):
     state.update(status='saved')
     state.pop('observed', None)
     durable(state_path, encoded(state))
-    return state['saved_items']
+    return count
 
 
 def main(*, daily=False):

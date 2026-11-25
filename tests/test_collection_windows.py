@@ -9,7 +9,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from pipeline import browser_status, collect, run_daily
+from pipeline import browser_status, collect, run_daily, weekly_status
 from pipeline.daily_status import validate_tree
 from pipeline.collectors.browser import Response
 from pipeline.run_daily import encoded, git, read, run_lock
@@ -402,6 +402,181 @@ class WindowTests(unittest.TestCase):
         day.write_bytes(encoded(dict(read(day), status='complete', change_count=0, collected_feature_count=0)))
         with self.assertRaisesRegex(ValueError, 'pinned registry'):
             validate_tree(self.repo)
+
+    def test_full_weekly_freezes_cutoff_before_fresh_browser_save(self):
+        self.configure_small_registry()
+        run_daily.commit_candidate(self.repo)
+        cutoff = '2026-11-29T10:00:00+09:00'
+        self.cli('whole', cutoff=cutoff, mode='weekly_reconcile')
+        classification = self.decisions('whole')
+        firefox, = classification['decisions']
+        firefox.pop('change_kind')  # Original whole-weekly classification contract.
+        pm = self.folder / 'whole-weekly.json'
+        pm.write_bytes(encoded(classification))
+        self.cli('whole', cutoff=None, extra=['--save-features', str(pm)])
+        catalog = self.repo / collect.FEATURE_CATALOG
+        self.assertEqual(['firefox'], [row['browser'] for row in read(catalog)])
+        run_daily.commit_candidate(self.repo)
+        self.cli('fresh', cutoff='2026-11-29T01:00:00Z', mode='weekly_reconcile')
+        fresh = self.browser_choices('fresh', 'firefox')
+        self.assertEqual([], fresh['decisions'])
+        prior = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+        try:
+            self.publish_browser('fresh', 'firefox', fresh)
+        except ValueError:
+            self.assertEqual(prior, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+        else:
+            rel = browser_status.detail_path('weekly_reconcile', cutoff)
+            total = read(self.repo / rel)['browsers']['firefox']['collected_feature_count']
+            self.fail(f'Fresh scoped save accepted {total} Firefox features after whole weekly saved one')
+
+    def test_full_weekly_zero_is_atomic_and_same_run_recovery_is_idempotent(self):
+        self.configure_small_registry()
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        self.cli('whole', cutoff=cutoff, mode='weekly_reconcile')
+        decisions = self.decisions('whole')
+        for d in decisions['dispositions']:
+            d['disposition'] = 'excluded'
+        decisions['decisions'] = []
+        pm = self.folder / 'zero.json'
+        pm.write_bytes(encoded(decisions))
+        save = ['--save-features', str(pm)]
+        rel = weekly_status.path(cutoff)
+        original = run_daily.store_changes
+
+        def interrupted(root, txn, changes, before, writer):
+            def crash(path, raw):
+                run_daily.durable(path, raw)
+                if path == root / rel:
+                    raise KeyboardInterrupt()
+            return original(root, txn, changes, before, writer, replace=crash)
+
+        with patch.object(collect, 'store_changes', interrupted), self.assertRaises(KeyboardInterrupt):
+            self.cli('whole', cutoff=None, extra=save)
+        with run_lock(self.repo) as writer:
+            run_daily.pending_recovery(self.repo.resolve(), writer)
+        self.assertFalse((self.repo / rel).exists())
+        with patch.object(collect, 'finish_run', side_effect=OSError('after publication')), self.assertRaises(OSError):
+            self.cli('whole', cutoff=None, extra=save)
+        record = read(self.repo / rel)
+        self.assertEqual((0, []), (record['collected_feature_count'], record['feature_ids']))
+        self.assertEqual(self.state('whole')['status'], 'saving')
+        self.assertEqual([self.repo / rel], list((self.repo / 'data').rglob('*.json')))
+        raw = (self.repo / rel).read_bytes()
+        for _ in range(2):
+            self.cli('whole', cutoff=None, extra=save)
+            self.assertEqual(raw, (self.repo / rel).read_bytes())
+        self.assertEqual('saved', self.state('whole')['status'])
+        self.cli('fresh', cutoff=cutoff, mode='weekly_reconcile')
+        with self.assertRaisesRegex(ValueError, 'completed whole weekly'):
+            self.cli('fresh', cutoff=None, extra=save)
+        self.assertFalse((self.repo / 'data/daily-status').exists())
+
+    def test_full_weekly_deduplicates_evidence_and_ci_preserves_first_marker(self):
+        self.configure_small_registry()
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        sid = 'firefox-beta'
+        url = self.sources[sid]['url']
+        self.cli('initial', [sid], cutoff=STATUS_CUTOFF, mode='manual')
+        self.save('initial', self.classified('initial', sid))
+        self.payloads[url] = self.payloads[url].replace('Tab grouping added.</p>',
+            'Tab grouping documentation.</p><p id="another-tab">Tab grouping help.</p>')
+        self.cli('full', cutoff=cutoff, mode='weekly_reconcile')
+        choices = self.decisions('full')
+        self.assertEqual(2, len(choices['decisions']))
+        choices['decisions'][0]['change_kind'] = 'evidence_only'
+        choices['decisions'][1].pop('change_kind')
+        pm = self.folder / 'week.json'
+        pm.write_bytes(encoded(choices))
+        self.cli('full', cutoff=None, extra=['--save-features', str(pm)])
+        marker = self.repo / weekly_status.path(cutoff)
+        record = read(marker)
+        self.assertEqual(1, record['collected_feature_count'])
+        self.assertEqual([read(self.repo / collect.FEATURE_CATALOG)[0]['feature_id']], record['feature_ids'])
+        self.assertNotIn('change_count', record)
+        commit = run_daily.commit_candidate(self.repo)
+        raw = marker.read_bytes()
+        marker.write_bytes(raw + b'\n')
+        with self.assertRaisesRegex(ValueError, 'Cannot change'):
+            validate_tree(self.repo, base=commit)
+        altered = browser_status.seal(dict(record, feature_ids=[], collected_feature_count=0))
+        marker.write_bytes(encoded(altered))
+        with self.assertRaisesRegex(ValueError, 'Cannot change'):
+            validate_tree(self.repo, base=commit)
+        marker.write_bytes(raw)
+        rel = browser_status.detail_path('weekly_reconcile', cutoff)
+        conflicting = self.repo / rel
+        conflicting.parent.mkdir(parents=True)
+        conflicting.write_bytes(encoded(browser_status.seal(browser_status.initial(record['scope']))))
+        with self.assertRaisesRegex(ValueError, 'Conflicting'):
+            validate_tree(self.repo)
+        conflicting.unlink()
+        marker.unlink()
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaisesRegex(ValueError, 'missing'):
+            validate_tree(self.repo, base=commit)
+
+    def test_weekly_migration_keeps_historical_scope_and_blocks_unproven_counts(self):
+        self.configure_small_registry()
+        old = '2026-11-22T10:00:00+09:00'
+        self.cli('early', cutoff=old, mode='weekly_reconcile')
+        with self.assertRaisesRegex(ValueError, 'predates'):
+            self.publish_browser('early', 'firefox', self.browser_choices('early', 'firefox'))
+        just_before = '2026-11-29T00:59:59.999999Z'
+        self.cli('before', cutoff=just_before, mode='weekly_reconcile')
+        with self.assertRaisesRegex(ValueError, 'predates'):
+            self.publish_browser('before', 'firefox', self.browser_choices('before', 'firefox'))
+        # Existing v1 results carry their own scope and accepted effect.
+        with patch.object(weekly_status, 'guarded', return_value=True):
+            self.publish_browser('early', 'firefox', self.browser_choices('early', 'firefox'))
+        self.publish_browser('early', 'edge', self.browser_choices('early', 'edge'))
+        with self.assertRaisesRegex(ValueError, 'finish this cutoff'):
+            self.save('early', self.decisions('early'))
+        self.cli('historic-full', cutoff=just_before, mode='weekly_reconcile')
+        self.save('historic-full', self.decisions('historic-full'))
+        record = read(self.repo / weekly_status.path(just_before))
+        self.assertIsNone(record['feature_ids'])
+        self.assertIsNone(record['collected_feature_count'])
+        self.assertFalse((self.repo / 'data/daily-status').exists())
+        validate_tree(self.repo)
+
+    def test_new_weekly_cutoff_works_in_a_shallow_data_only_clone(self):
+        self.configure_small_registry()
+        run_daily.commit_candidate(self.repo)
+        run_daily.commit_candidate(self.repo)
+        shallow = self.folder / 'shallow'
+        git(self.folder, 'clone', '--quiet', '--depth=1', self.repo.as_uri(), str(shallow))
+        self.repo = shallow
+        self.assertEqual('true', git(shallow, 'rev-parse', '--is-shallow-repository'))
+        self.assertFalse((shallow / 'pipeline').exists())
+        base = git(shallow, 'rev-parse', 'HEAD')
+        cutoff = '2026-11-29T01:00:00Z'
+        self.cli('shallow', cutoff=cutoff, mode='weekly_reconcile')
+        self.save('shallow', self.decisions('shallow'))
+        accepted = read(shallow / weekly_status.path(cutoff))
+        self.assertEqual(1, accepted['collected_feature_count'])
+        validate_tree(shallow, base=base)
+
+    def test_unmarked_prior_full_window_blocks_same_cutoff_but_not_next(self):
+        self.configure_small_registry()
+        sid = 'firefox-beta'
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        # A historical whole or manual full-window publication can leave identical public facts.
+        self.cli('old-writer', [sid], cutoff=cutoff, mode='manual', extra=['--since', '2026-01-01'])
+        self.save('old-writer', self.classified('old-writer', sid))
+        prior = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+        self.cli('new', cutoff='2026-11-29T01:00:00Z', mode='weekly_reconcile')
+        with self.assertRaisesRegex(ValueError, 'original publication'):
+            self.publish_browser('new', 'edge', self.browser_choices('new', 'edge'))
+        with self.assertRaisesRegex(ValueError, 'original publication'):
+            self.save('new', self.decisions('new'))
+        self.assertEqual(prior, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+        later = '2026-12-06T10:00:00+09:00'
+        self.cli('next', cutoff=later, mode='weekly_reconcile')
+        self.publish_browser('next', 'edge', self.browser_choices('next', 'edge'))
+        accepted = read(self.repo / browser_status.detail_path('weekly_reconcile', later))
+        self.assertEqual(1, accepted['browsers']['edge']['collected_feature_count'])
+        self.assertFalse((self.repo / weekly_status.path(later)).exists())
 
     def test_browser_cli_weekly_journal_recovery_and_same_run_resume(self):
         self.configure_small_registry()
@@ -1176,7 +1351,7 @@ class WindowTests(unittest.TestCase):
         self.save('footer', self.decisions('footer'))
         self.assertEqual((prior_evidence, prior_catalog), (evidence.read_bytes(), catalog.read_bytes()))
         self.payloads[url] = self.payloads[url].replace('Tab grouping added.', 'Share tab groups.')
-        self.cli('product', mode='weekly_reconcile')
+        self.cli('product', cutoff='2026-12-06T10:00:00+09:00', mode='weekly_reconcile')
         item, = self.candidates('product', sid)
         self.assertEqual(first['source_item_id'], item['source_item_id'])
         self.save('product', self.decisions('product'))

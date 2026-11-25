@@ -53,25 +53,19 @@ def valid(pattern, value):
     return isinstance(value, str) and bool(pattern.fullmatch(value))
 
 
-def validate_detail(rel, detail):
-    if (not isinstance(detail, dict) or set(detail) != {'version', 'scope', 'browsers', 'checksum'}
-            or type(detail['version']) is not int or detail['version'] != 1
-            or detail['checksum'] != value_hash({k: v for k, v in detail.items() if k != 'checksum'})):
-        raise ValueError('Invalid browser detail or checksum')
-    scope = detail['scope']
+def validate_scope(scope):
     if (not isinstance(scope, dict) or set(scope) != {'mode', 'cutoff', 'start', 'origin', 'registry', 'expected'}
             or scope['origin'] not in ('daily', 'baseline', 'backfill') or not valid(HASH, scope['registry'])
             or scope['cutoff'] != instant(scope['cutoff']).astimezone(timezone.utc).isoformat()
-            or instant(scope['start']) > instant(scope['cutoff']) or rel != detail_path(scope['mode'], scope['cutoff'])):
+            or instant(scope['start']) > instant(scope['cutoff']) or scope['mode'] not in MODES):
         raise ValueError('Invalid browser status scope')
     if scope['mode'] == 'daily':
         daily_status.scheduled_cutoff(scope['cutoff'])
         if scope['origin'] != 'daily':
             raise ValueError('Invalid daily browser origin')
     groups = scope['expected']
-    outcomes = detail['browsers']
     all_ids = set()
-    if not isinstance(groups, dict) or not groups or not isinstance(outcomes, dict) or groups.keys() != outcomes.keys():
+    if not isinstance(groups, dict) or not groups:
         raise ValueError('Invalid expected browsers')
     for browser, sources in groups.items():
         if (not re.fullmatch('[a-z]+', browser) or not isinstance(sources, list) or not sources
@@ -79,6 +73,22 @@ def validate_detail(rel, detail):
                 or all_ids.intersection(sources)):
             raise ValueError('Invalid expected sources')
         all_ids.update(sources)
+
+
+def validate_detail(rel, detail):
+    if (not isinstance(detail, dict) or set(detail) != {'version', 'scope', 'browsers', 'checksum'}
+            or type(detail['version']) is not int or detail['version'] != 1
+            or detail['checksum'] != value_hash({k: v for k, v in detail.items() if k != 'checksum'})):
+        raise ValueError('Invalid browser detail or checksum')
+    scope = detail['scope']
+    validate_scope(scope)
+    if rel != detail_path(scope['mode'], scope['cutoff']):
+        raise ValueError('Invalid browser detail path')
+    groups = scope['expected']
+    outcomes = detail['browsers']
+    if not isinstance(outcomes, dict) or groups.keys() != outcomes.keys():
+        raise ValueError('Invalid browser outcome scope')
+    for browser, sources in groups.items():
         outcome = outcomes[browser]
         if outcome == dict(status='incomplete', change_count=None, collected_feature_count=None):
             continue
@@ -128,7 +138,9 @@ def check_registry(root, scope, *, historical=False):
         if historical:
             return
         raise ValueError('Browser scope does not match the current registry fingerprint')
-    sources, _ = registered_sources(root, None, mode=scope['mode'])
+    sources, since = registered_sources(root, None, mode=scope['mode'])
+    if scope['mode'] == 'weekly_reconcile' and instant(scope['start']) != instant(since + 'T00:00:00+09:00'):
+        raise ValueError('Weekly result requires the full registered history')
     expected = {}
     for source in sources:
         expected.setdefault(source['browser'], []).append(source['source_id'])
@@ -247,6 +259,7 @@ def check_effects(detail, index):
 def validate_tree(root, *, graph=None, base=None):
     """Check durable effects against proposed data, including absent Git-tracked receipts."""
     from pipeline.normalize.storage import load_dataset
+    from pipeline import weekly_status
 
     folder = root / FOLDER
     if folder.is_symlink() or folder.exists() and not folder.is_dir():
@@ -262,6 +275,16 @@ def validate_tree(root, *, graph=None, base=None):
                     raise ValueError('Invalid browser status file')
                 paths.add(rel)
 
+    weekly_folder = root / weekly_status.FOLDER
+    if weekly_folder.is_symlink() or weekly_folder.exists() and not weekly_folder.is_dir():
+        raise ValueError('Invalid whole weekly status folder')
+    if weekly_folder.exists():
+        for path in weekly_folder.iterdir():
+            rel = path.relative_to(root).as_posix()
+            if not weekly_status.is_receipt(rel) or not safe_path(root, rel).is_file():
+                raise ValueError('Invalid whole weekly status file')
+            paths.add(rel)
+
     tracked, modified = set(), set()
     # HEAD anchors local writes. CI passes the previous push or PR base so a deletion
     # already committed in the checked-out head is also visible.
@@ -274,12 +297,12 @@ def validate_tree(root, *, graph=None, base=None):
         if head.returncode not in (0, 1) or base and head.returncode:
             raise ValueError('Cannot verify browser status comparison commit')
         if head.returncode == 0:
-            names = git(root, 'ls-tree', '-r', '-z', '--name-only', ref, '--', FOLDER)
+            names = git(root, 'ls-tree', '-r', '-z', '--name-only', ref, '--', FOLDER, weekly_status.FOLDER)
             tracked = set(filter(None, names.split('\0')))
             if not tracked <= paths:
                 raise ValueError('Committed browser detail is missing: ' + ', '.join(sorted(tracked - paths)))
             if tracked:
-                names = git(root, 'diff', '--name-only', '--no-renames', '-z', ref, '--', FOLDER)
+                names = git(root, 'diff', '--name-only', '--no-renames', '-z', ref, '--', FOLDER, weekly_status.FOLDER)
                 modified = set(filter(None, names.split('\0')))
     elif base:
         raise ValueError('Browser status comparison needs a Git checkout')
@@ -290,9 +313,21 @@ def validate_tree(root, *, graph=None, base=None):
     checked_scopes = set()
     for rel in sorted(paths):
         detail = read(safe_path(root, rel))
-        validate_detail(rel, detail)
+        whole = weekly_status.is_receipt(rel)
+        if whole:
+            weekly_status.validate(rel, detail)
+            if detail_path('weekly_reconcile', detail['scope']['cutoff']) in paths:
+                raise ValueError('Conflicting whole and browser weekly publications')
+            weekly_status.check_features(detail, index[0])
+        else:
+            validate_detail(rel, detail)
         historical = rel in tracked
+        if (base and not whole and not historical and detail['scope']['mode'] == 'weekly_reconcile'
+                and not weekly_status.guarded(detail['scope']['cutoff'])):
+            raise ValueError('New unmarked historical weekly browser result has no authoritative base')
         if historical and rel in modified:
+            if whole:
+                raise ValueError('Cannot change an accepted whole weekly result')
             previous = json.loads(git(root, 'show', ref + ':' + rel))
             validate_detail(rel, previous)
             transition(previous, detail)
@@ -302,5 +337,6 @@ def validate_tree(root, *, graph=None, base=None):
         if key not in checked_scopes:
             check_registry(root, scope, historical=historical)
             checked_scopes.add(key)
-        check_aggregate(root, detail, {})
-        check_effects(detail, index)
+        if not whole:
+            check_aggregate(root, detail, {})
+            check_effects(detail, index)

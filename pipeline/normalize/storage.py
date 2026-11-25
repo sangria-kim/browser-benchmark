@@ -102,7 +102,7 @@ def publish(repository, replacements, private_dir, *, replace=os.replace, text_f
     all_files = dict(replacements, **text_files)
     if private == root or root in private.parents:
         raise ValueError('Transaction state must be outside the repository')
-    if any(rel.startswith(('data/browser-status/', 'data/daily-status/')) for rel in all_files):
+    if any(rel.startswith(('data/browser-status/', 'data/daily-status/', 'data/weekly-status/')) for rel in all_files):
         raise ContractError('Collection receipts require the collection publication transaction')
     private.mkdir(parents=True, exist_ok=True)
     with run_lock(root) as writer, open(private / 'normalize.lock', 'a') as lock:

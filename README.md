@@ -41,6 +41,12 @@ Allowlist의 `daily_status`는 기능 근거와 별개입니다. 파일명과 �
 
 브라우저별 중간 결과를 읽는 소비자는 동일한 커밋의 `data/browser-status/<mode>/<UTC 시각>.json`을 함께 읽습니다. `scope.expected`에는 필수 출처가, `browsers`에는 브라우저별 완료 상태와 두 건수가 들어 있습니다. 일일 전체가 미완료여도 개별 완료 브라우저의 기능과 근거는 사용할 수 있습니다. [저장과 재시도 절차](pipeline/OPERATIONS.md#브라우저별-저장과-재시도)
 
+주간 전체 대조의 완료 기록은 별도 경로 `data/weekly-status/<UTC 시각>.json`에 있습니다.
+동일 마감에는 주간 전체 기록과 주간 브라우저별 기록 중 하나만 존재합니다.
+2026년 11월 29일 10:00 한국시간부터 `collected_feature_count`는 중복을 제거한 채택 기능 수입니다.
+그 이전 마감의 전역 기록은 과거 채택 수를 알 수 없어 `null`로 표시합니다.
+[주간 마감과 이전 형식 처리](pipeline/OPERATIONS.md#주간-마감과-이전-형식-처리)
+
 ## 기존 자료
 
 이전에 저장한 [기능 문서](features/README.md), [릴리스](releases/README.md), [기능 사건](data/events/README.md), [Chrome 실험](experiments/chrome/README.md), [일일 리포트](reports/generated/README.md)와 [공개 대시보드](https://sangria-kim.github.io/browser-benchmark/)를 열람할 수 있습니다. 이전 수집분에는 일반 수정과 제외 항목도 들어 있습니다. [폴더 구조](docs/data-layout.md)
