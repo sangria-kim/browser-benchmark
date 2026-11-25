@@ -166,6 +166,71 @@ class PreviewTests(unittest.TestCase):
                     self.assertEqual(previous_ids, ids)
                 previous_ids = ids
 
+    def test_pr34_owned_byline_permalinks_at_all_six_signed_boundaries(self):
+        moments = ['2026-10-25T21:59:59Z', '2026-10-25T22:00:00Z', '2026-10-25T22:00:01Z',
+                   '2026-11-25T06:59:59+09:00', '2026-11-25T07:00:00+09:00', '2026-11-25T07:00:01+09:00']
+        self.pages[APPLE_INDEX] = apple(range(1, 7))
+        self.pages[CATEGORY] = page(range(1, 7))
+        expected = {(release_url(n), moments[n - 1], 'timestamp') for n in (2, 3, 4, 5)}
+        stable_ids = None
+        for layout in ('direct', 'neutral', 'bookmark', 'absolute', 'metadata-wrapper', 'mixed'):
+            for n, at in enumerate(moments, 1):
+                url = release_url(n)
+                day = 'Oct 25, 2026' if n <= 3 else 'Nov 25, 2026'
+                stamp = f'<time class="entry-date published" datetime="{at}">{day}</time>'
+                if layout == 'neutral':
+                    stamp = '<span><em>' + stamp + '</em></span>'
+                elif layout != 'direct':
+                    permalink = url if layout == 'absolute' else url.removeprefix('https://webkit.org')
+                    stamp = f'<span class="posted-on"><a href="{permalink}" rel="bookmark"><span>{stamp}</span></a></span>'
+                if layout == 'mixed':
+                    other = ('<a rel="bookmark" href="https://example.org/other"><time class="date published" '
+                             'itemprop="datePublished" datetime="2025-02-01T12:00:00Z">Feb 1, 2025</time></a>')
+                    stamp = other + stamp
+                byline = f'<div class="byline"><p class="date">{day}</p>{stamp}</div>'
+                if layout == 'metadata-wrapper':
+                    byline = f'<header><div class="entry-meta">{byline}</div></header>'
+                self.pages[url] = article(n, None).replace('</h1>', '</h1>' + byline)
+            with self.subTest(layout=layout):
+                _, rows = self.run_cli('six-' + layout)
+                self.assertEqual(expected, {(r['evidence']['url'], r['temporal_scope']['evidence_date'],
+                                             r['temporal_scope']['precision']) for r in rows})
+                ids = {r['source_item_id'] for r in rows}
+                if stable_ids is not None:
+                    self.assertEqual(stable_ids, ids)
+                stable_ids = ids
+
+    def test_pr34_byline_dates_keep_author_publication_and_update_roles(self):
+        url = release_url(1)
+        published = '2026-02-01T12:00:00Z'
+        updated = '2026-11-02T12:00:00Z'
+        byline = (f'<div class="byline"><a rel="bookmark" href="{url}"><span class="date">'
+                  f'<time class="entry-date published" datetime="{published}">Feb 1, 2026</time></span></a>'
+                  '<span class="date"><span class="updated">'
+                  f'<time datetime="{updated}">Nov 2, 2026</time></span></span>'
+                  '<a rel="author" href="/author/alice/"><span class="date">'
+                  '<time itemprop="datePublished dateModified" datetime="2027-01-01">Jan 1, 2027</time>'
+                  '</span></a></div>')
+        self.pages[url] = article(1, None).replace('</h1>', '</h1>' + byline)
+        _, rows = self.run_cli('byline-owner-roles')
+        row, = rows
+        self.assertEqual((published[:10], updated, 'item_change'),
+                         (row['published_at'], row['temporal_scope']['evidence_date'], row['temporal_scope']['basis']))
+
+    def test_pr34_uncertain_or_conflicting_published_permalink_cannot_downgrade_to_day(self):
+        own = release_url(1)
+        stamp = '<time class="entry-date published" datetime="2026-11-02T00:00:00Z">Nov 2, 2026</time>'
+        for name, anchor in [('unowned', '<a rel="bookmark">'), ('different', f'<a rel="bookmark" href="{release_url(2)}">'),
+                             ('conflict', f'<a rel="bookmark" href="{own}">')]:
+            byline = '<div class="byline"><p class="date">Nov 2, 2026</p>' + anchor + stamp + '</a></div>'
+            if name == 'conflict':
+                byline = byline.replace('>Nov 2, 2026</time>', '>Oct 3, 2026</time>')
+            self.pages[own] = article(1, None).replace('</h1>', '</h1>' + byline)
+            with self.subTest(name=name):
+                state, rows = self.run_cli('wrong-bookmark-' + name, expected=2)
+                self.assertIn(own, state['pending'])
+                self.assertEqual([], rows)
+
     def test_pr34_reconciles_only_article_owned_revision_fields(self):
         url = release_url(1)
         original = article(1, '2026-02-15').replace('<article>', '<article><meta name="dateModified" content="2026-11-01">')

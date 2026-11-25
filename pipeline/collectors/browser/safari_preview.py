@@ -120,40 +120,78 @@ def verified_release_dates(response, version, year, source_id):
     if canonical != [response.url] or titles != [version]:
         raise ValueError('Cannot verify canonical WebKit release identity')
     publications, modifications = [], []
+    foreign_publication_time = False
     product_path = {body, *body.ancestors()}
+    # The linked article determines ownership even when neutral presentation
+    # wrappers separate a timestamp from its byline. Exclude linked authors and
+    # other articles from both metadata and the surrounding printed date.
+    def unrelated(n):
+        rel = (n.attrs.get('rel') or '').lower().split()
+        return (n.tag in ('aside', 'footer', 'nav', 'li', 'blockquote', 'figure', 'template', 'script', 'style')
+                or any(n.has_class(c) for c in ('comment', 'comments', 'author', 'vcard', 'p-author', 'related-posts'))
+                or 'author' in rel or (n.tag in ('article', 'section') or 'itemscope' in n.attrs) and n not in product_path)
+
+    other_contexts = {n for n in article.walk() if unrelated(n)}
+    other_links = {n for n in article.walk() if n.tag == 'a' and
+                   (not n.attrs.get('href', '').strip() or urljoin(response.url, n.attrs['href']) != response.url)}
+    excluded_text = {id(n) for n in other_contexts | other_links}
     for node in root.walk():
         head = (node.tag == 'meta' and node.parent.tag == 'head' and node.parent.parent.tag == 'html'
                 and node.parent.parent.parent is root)
+        fields = {word.lower() for attr in ('property', 'name', 'itemprop')
+                  for word in (node.attrs.get(attr) or '').split()}
+        published = bool(fields & {'article:published_time', 'datepublished', 'date', 'publication_date'})
+        modified = bool(fields & {'article:modified_time', 'datemodified'})
+        ambiguous_fields = published and modified
         byline_date = False
         if not head:
             ancestors = list(node.ancestors())
             if article not in ancestors:
                 continue
             lineage = [node, *ancestors[:ancestors.index(article)]]
-            if any(n.tag in ('aside', 'footer', 'nav', 'li', 'blockquote', 'figure', 'template', 'script', 'style')
-                   or n.has_class('comment') or n.has_class('comments')
-                   or (n.tag in ('article', 'section') or 'itemscope' in n.attrs) and n not in product_path
-                   for n in lineage):
+            if any(n in other_contexts for n in lineage):
                 continue
-            release_byline = any(n.has_class('byline') and (n.parent is article or
-                                 n.parent.tag == 'header' and n.parent.parent is article) for n in lineage)
-            byline_date = release_byline and (node.has_class('date') or node.tag == 'time' and
-                          (node.parent.has_class('byline') or any(n.has_class('date') for n in lineage)))
-        fields = {word.lower() for attr in ('property', 'name', 'itemprop')
-                  for word in (node.attrs.get(attr) or '').split()}
-        published = bool(fields & {'article:published_time', 'datepublished', 'date', 'publication_date'})
-        modified = bool(fields & {'article:modified_time', 'datemodified'})
-        if published and modified:
+            byline = next((n for n in lineage if n.has_class('byline')), None)
+            byline_date = byline is not None and body not in lineage and (node.tag == 'time' or node.has_class('date'))
+            if byline_date:
+                classes = {c for n in lineage[:lineage.index(byline) + 1] for c in (n.attrs.get('class') or '').split()}
+                reports_publication = bool(classes & {'published', 'dt-published'})
+                reports_update = bool(classes & {'updated', 'modified', 'dt-updated'})
+                if not (reports_publication and reports_update):
+                    ambiguous_fields |= reports_publication and modified or reports_update and published
+                published |= reports_publication
+                modified |= reports_update
+                if not modified:
+                    published = True
+            if any(n in other_links for n in lineage):
+                if byline_date and published and node.tag == 'time' and node.attrs.get('datetime'):
+                    foreign_publication_time = True
+                continue
+        if ambiguous_fields:
             raise ValueError('Conflicting WebKit date field roles')
-        if not (published or modified or byline_date):
+        if not (published or modified):
             continue
         values = [publication_value(node.attrs[key]) for key in ('datetime', 'content') if key in node.attrs]
-        if not values or (byline_date or node.tag == 'time') and node.text():
-            values.append(publication_value(node.text()))
-        if not all(values):
+        # A surrounding date label must not repeat a nested clock as a
+        # different role (e.g. publication outside, modification inside).
+        ignored = excluded_text
+        if byline_date and node.tag != 'time':
+            ignored = excluded_text | {id(n) for n in node.walk() if n is not node and n.tag == 'time'}
+        label = node.text(ignored)
+        if label and (not values or byline_date or node.tag == 'time'):
+            values.append(publication_value(label))
+        if not values and byline_date and node.tag != 'time' and not label:
+            # A date wrapper can contain only a nested time or foreign link.
+            continue
+        if not values or not all(values):
             raise ValueError('Malformed WebKit publication or modification date')
-        (modifications if modified else publications).extend(values)
+        if published:
+            publications.extend(values)
+        if modified:
+            modifications.extend(values)
     date = reconcile_modification(publications, 'WebKit publication dates')
+    if foreign_publication_time and (not date or len(date) == 10):
+        raise ValueError('Cannot attribute exact WebKit byline publication time to this release')
     if not date or (year and int(date[:4]) != year):
         raise ValueError('Unverified WebKit Technology Preview publication date')
     return date, reconcile_modification(modifications, 'WebKit modification dates')
