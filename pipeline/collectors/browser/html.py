@@ -296,27 +296,35 @@ def remove_chrome_post_signoff(fragment, author, template_hash, reviewed_signoff
         for index, child in enumerate(node.children):
             if isinstance(child, Node):
                 visit(child)
-            elif child.strip():
-                lines[-1].append((node, index, child.strip()))
+            else:
+                lines[-1].append((node, index, child))
         if separates_lines and lines[-1]:
             lines.append([])
 
     visit(fragment)
-    lines = [line for line in lines if line]
+    lines = [line for line in lines if any(text.strip() for _, _, text in line)]
     if len(lines) < 2:
         return
-    publisher = ' '.join(' '.join(text for _, _, text in lines[-1]).split())
+    # Inline elements do not introduce spaces: adjacent fragments must not
+    # turn an unrecognized token into an audited signature.
+    publisher = ' '.join(''.join(text for _, _, text in lines[-1]).split())
     if publisher not in {'Google Chrome', 'Google ChromeOS', 'Google Chrome OS'}:
         return
-    for node, index, _ in lines[-1]:
-        node.children[index] = ''
     # A structured product unit (for example a list item or linked feature)
     # keeps its own text and identity even when it uses a known byline string.
     plain = {'document', 'p', 'div', 'span', 'b', 'strong', 'i', 'em', 'font', 'u', 'small'}
+    publisher_nodes = {a for node, _, part in lines[-1] if part.strip() for a in (node, *node.ancestors())}
+    if any(a.tag not in plain and a.tag != 'a' for a in publisher_nodes):
+        return
+    if any(a.tag == 'a' and a.attrs.get('href') not in {
+            'https://www.google.com/chrome', 'https://www.google.com/chrome/'} for a in publisher_nodes):
+        author = None
+    for node, index, _ in lines[-1]:
+        node.children[index] = ''
     signature_line = lines[-2]
     if any(a.tag not in plain for node, _, _ in signature_line for a in (node, *node.ancestors())):
         return
-    text = ' '.join(' '.join(part for _, _, part in signature_line).split())
+    text = ''.join(part for _, _, part in signature_line).strip()
     if len(text) > 64:
         return
     for node, index, _ in signature_line:

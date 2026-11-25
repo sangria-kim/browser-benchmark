@@ -54,6 +54,8 @@ class SignoffTests(unittest.TestCase):
         for line, card, publisher in [
             ('Pin tabs.', author(), 'Google Chrome'),
             ('<span>Pin</span> <em>tabs.</em>', author(), 'Google Chrome'),
+            ('<span>Chrome</span><b>Release Team</b>', author(), 'Google Chrome'),
+            ('Chrome Release Team', author(), '<a href="/other-product">Google Chrome</a>'),
             ('Chrome Release Team', '', 'Google Chrome'),
             ('Chrome Release Team', author(''), 'Google Chrome'),
             ('Chrome Release Team', author(PROFILE.replace('116899029375914044550', '123')), 'Google Chrome'),
@@ -86,6 +88,9 @@ class SignoffTests(unittest.TestCase):
                          [(r['key'], r['text']) for r in rows])
         rows = units(document('<ul><li id="feature">Chrome Release Team</li></ul>'))
         self.assertEqual('Chrome Release Team', rows[-1]['text'])
+        product = document('<p id="before">Pin tabs.</p>').replace('<p>Google Chrome</p>',
+                                                                  '<ul><li id="last">Google Chrome</li></ul>')
+        self.assertEqual(['tabs', 'before', 'last'], [r['key'] for r in units(product)])
 
     def test_daily_cli_keeps_product_identity_and_reopens_changed_unreviewed_tail(self):
         with tempfile.TemporaryDirectory() as temp:
