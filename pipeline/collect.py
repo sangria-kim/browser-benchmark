@@ -181,7 +181,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 status = {k: result[k] for k in ('source_id', 'status', 'cutoff')}
                 if result.get('errors'):
                     status['errors'] = result['errors']
-                jobs = collector.fact_review.run(prior_jobs)
+                jobs = collector.fact_review.run(prior_jobs) if collector.fact_review is not None else []
                 if jobs or prior_jobs:
                     review_path = work / 'enrichment' / (sid + '.json')
                     atomic_json(review_path, jobs)

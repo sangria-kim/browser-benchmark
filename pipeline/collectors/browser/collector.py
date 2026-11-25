@@ -393,7 +393,10 @@ class BrowserCollector:
             response.observed_at = cached.get('observed_at')
         self.cache_body(response.body)
         self.cache[url] = response
-        self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
+        # Direct urllib responses retain HTTPMessage for proof checks. Cache
+        # the serializable header view used by ordinary response replay.
+        headers = {key.lower(): value for key, value in response.headers.items()}
+        self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': headers}
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
             response.observed_at = response.observed_at or datetime.now(timezone.utc).isoformat()
             self.progress['responses'][url]['observed_at'] = response.observed_at
@@ -481,7 +484,7 @@ class BrowserCollector:
             return
         self.seen[ident] = fingerprint
         if self.fact_review is not None:
-            self.fact_review.observe(url, response, unit, title)
+            self.fact_review.observe(url, response, unit, title, dates=(date_evidence or date, modified))
         parsed = unit['parsed']
         self.state['processed' if parsed else 'unparsed'] += 1
         content_hash = digest(response.body)

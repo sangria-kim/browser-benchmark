@@ -1,6 +1,7 @@
 """Drive the collection CLIs with a local transport and an isolated feature graph."""
 from contextlib import redirect_stdout
-from io import StringIO
+from email.message import Message
+from io import BytesIO, StringIO
 import json
 from pathlib import Path
 import runpy
@@ -10,7 +11,7 @@ import unittest
 from unittest.mock import patch
 
 from pipeline import browser_status, run_daily
-from pipeline.collectors.browser import Response
+from pipeline.collectors.browser import HTTPTransport, Response
 from pipeline.feature_enrichment import read_jobs, verified_candidate
 from pipeline.feature_item import item_delta
 from pipeline.daily_status import receipt
@@ -67,7 +68,7 @@ class FeatureReviewTests(unittest.TestCase):
             return result
         return Response(url, result.encode())
 
-    def cli(self, name, cutoff=NOW, *, resume=False, manual=False, expected=0, sid=SID):
+    def cli(self, name, cutoff=NOW, *, resume=False, manual=False, expected=0, sid=SID, transport=None):
         self.calls.clear()
         private = self.folder / 'runs' / name
         entry = 'collect' if manual else 'run_daily'
@@ -77,7 +78,7 @@ class FeatureReviewTests(unittest.TestCase):
         args += ['--resume'] if resume else ['--cutoff', cutoff, '--source', sid]
         if manual and not resume:
             args += ['--mode', 'manual', '--since', '2026-11-01']
-        with patch('sys.argv', args), patch('pipeline.collectors.browser.collector.HTTPTransport', return_value=self.transport):
+        with patch('sys.argv', args), patch('pipeline.collectors.browser.collector.HTTPTransport', return_value=transport or self.transport):
             with redirect_stdout(StringIO()), self.assertRaises(SystemExit) as end:
                 runpy.run_path(str(ROOT / 'pipeline' / (entry + '.py')), run_name='__main__')
         self.assertEqual(expected, end.exception.code)
@@ -221,4 +222,41 @@ class FeatureReviewTests(unittest.TestCase):
         self.assertEqual({first, other}, set(jobs))
         self.assertFalse(any('candidate' in job for job in jobs.values()))
         self.assertTrue(all('content_sha256' in job for job in jobs.values()))
+        self.assertEqual([], self.products)
+
+    def test_direct_wire_response_headers_survive_source_checkpoint(self):
+        self.select()
+        calls = []
+        def open_request(request, timeout):
+            url = request.full_url
+            calls.append(url)
+            body = self.payloads[url].encode()
+            response = BytesIO(body)
+            response.url, response.status, response.headers = url, 200, Message()
+            response.headers['Content-Length'] = str(len(body))
+            response.headers['Content-Type'] = 'text/html'
+            return response
+        with patch('pipeline.collectors.browser.transport.urlopen', side_effect=open_request), patch(
+                'pipeline.collectors.browser.transport.build_opener') as opener:
+            opener.return_value.open.side_effect = open_request
+            jobs = self.cli('real-headers', transport=HTTPTransport())
+        self.assertEqual([HOME, URL], calls)
+        self.assertIn('candidate', next(iter(jobs.values())))
+        checkpoint = run_daily.read(self.work / 'browser' / (SID + '-progress.json'))
+        self.assertEqual('text/html', checkpoint['responses'][URL]['headers']['content-type'])
+
+    def test_rolling_and_retry_only_document_exclude_future_sections(self):
+        sid = 'edge-stable'
+        edge = next(s['url'] for s in self.sources if s['source_id'] == sid)
+        fid = self.apply(dict(browser='edge', canonical_key='tabs', title='Tab groups', source_id=sid, url=edge))['feature_id']
+        self.payloads[edge] = ('<div class="content"><h2>Version 151, November 28, 2026</h2>'
+                               '<p>Tab groups will ship on Windows.</p></div>')
+        job = self.cli('rolling', sid=sid)[fid]
+        self.assertEqual([], self.products)
+        self.assertNotIn('candidate', job)
+        self.assertIn('candidate', self.cli('later', '2026-11-30T07:00:00+09:00', sid=sid)[fid])
+        first = self.select()
+        self.payloads[URL] = ('<div class="post-body"><h2>November 28, 2026</h2>'
+                              '<p>Tab groups will ship on Windows.</p></div>')
+        self.assertNotIn('candidate', self.cli('retry-age')[first])
         self.assertEqual([], self.products)

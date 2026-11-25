@@ -59,9 +59,17 @@ class SourceReview:
                         self.links[url].append((feature, row))
                         self.document_owners[urldefrag(url)[0]][feature['feature_id']] = feature
 
-    def observe(self, url, response, unit, title=None):
-        if unit['parsed'] and url in self.links:
-            self.units[url].append((unit, title, response))
+    def eligible_unit(self, unit, dates=()):
+        return unit['parsed'] and all(self.collector.publication_status(value) != 'after_cutoff'
+                                      for value in (*dates, unit.get('date')) if value)
+
+    def observe(self, url, response, unit, title=None, *, dates=()):
+        if url in self.links:
+            # Remember that the registered parser examined this document even
+            # if it supplied no eligible unit. HTML fallback must not undo it.
+            units = self.units[url]
+            if self.eligible_unit(unit, dates):
+                units.append((unit, title, response))
 
     def linked_facts(self, features):
         rows = dict(self.by_id)
@@ -170,7 +178,7 @@ class SourceReview:
 
     def evidence(self, url, halted):
         c = self.collector
-        if self.units.get(url):
+        if url in self.units:
             return None, self.units[url]
         target = urldefrag(url)[0]
         if any(e['url'] == target for e in c.state['errors']):
@@ -199,7 +207,7 @@ class SourceReview:
             dates = published(tree, self.sid, product_body=body), modification(tree, body)
         if any(c.publication_status(value) == 'after_cutoff' for value in dates if value):
             raise ValueError('Only evidence after the run cutoff was observed')
-        return response, [(u, None, response) for u in blocks(body) if u['parsed']]
+        return response, [(u, None, response) for u in blocks(body) if self.eligible_unit(u)]
 
     def note_failure(self, error, url):
         now = datetime.now(timezone.utc)
