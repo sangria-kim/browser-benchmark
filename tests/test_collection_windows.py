@@ -1049,6 +1049,67 @@ class WindowTests(unittest.TestCase):
                     with patch('sys.argv', [str(entry), '--base-commit', ref]):
                         runpy.run_path(str(entry), run_name='__main__')
 
+    def test_exact_weekly_data_root_can_be_restored_after_it_was_deleted(self):
+        self.configure_small_registry()
+        entry = self.repo / 'pipeline/daily_status.py'
+        entry.parent.mkdir()
+        shutil.copyfile(ROOT / 'pipeline/daily_status.py', entry)
+        base = run_daily.commit_candidate(self.repo)
+        git(self.repo, 'config', 'core.ignoreCase', 'false')
+        cutoff = weekly_status.FIRST_GUARDED_CUTOFF
+        self.cli('first', cutoff=cutoff, mode='weekly_reconcile')
+        pm = self.folder / 'first.json'
+        pm.write_bytes(encoded(self.decisions('first')))
+        args = ['--save-features', str(pm)]
+        self.cli('first', cutoff=None, extra=args)
+        marker = self.repo / weekly_status.path(cutoff)
+        self.assertEqual(1, read(marker)['collected_feature_count'])
+        data = self.repo / 'data'
+        backup = self.folder / 'original'
+        alias = self.repo / 'DaTa'
+        data.rename(backup)
+        backup.rename(alias)
+        first = run_daily.commit_candidate(self.repo)
+        alias.rename(backup)
+        deleted = run_daily.commit_candidate(self.repo)
+        # The original registry applies even if the repair comes after a policy change.
+        registry = read(self.registry)
+        registry['baseline']['daily_window_days'] = 4
+        self.registry.write_bytes(encoded(registry))
+        run_daily.commit_candidate(self.repo)
+        backup.rename(data)
+        restored = run_daily.commit_candidate(self.repo)
+        self.assertEqual(git(self.repo, 'rev-parse', first + ':DaTa'), git(self.repo, 'rev-parse', restored + ':data'))
+        for ref in (base, first, deleted, restored):
+            with patch('sys.argv', [str(entry), '--base-commit', ref]):
+                runpy.run_path(str(entry), run_name='__main__')
+        self.cli('first', cutoff=None, extra=args)
+        self.assertEqual(1, read(marker)['collected_feature_count'])
+
+        def commit_tree(tree, *parents):
+            args = [arg for parent in parents for arg in ('-p', parent)]
+            return git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=t@example.invalid',
+                       'commit-tree', tree, *args, '-m', 'Synthetic repair history')
+
+        # The same marker with different evidence bytes is a different proposal.
+        source = self.repo / 'data/source-items/firefox/firefox-beta.json'
+        source.write_bytes(source.read_bytes() + b'\\n')
+        git(self.repo, 'add', '--', str(source))
+        different = commit_tree(git(self.repo, 'write-tree'), deleted)
+        git(self.repo, 'switch', '-q', '--detach', different)
+        with self.assertRaisesRegex(ValueError, 'original publication'):
+            validate_tree(self.repo, base=deleted)
+
+        # An empty merge cannot hide a different submission on its other side.
+        empty = git(self.repo, 'rev-parse', deleted + '^{tree}')
+        removed = commit_tree(empty, different)
+        merged = commit_tree(empty, deleted, removed)
+        after_merge = commit_tree(git(self.repo, 'rev-parse', restored + '^{tree}'), merged)
+        git(self.repo, 'switch', '-q', '--detach', after_merge)
+        for ref in (base, removed, merged):
+            with self.assertRaisesRegex(ValueError, 'original publication'):
+                validate_tree(self.repo, base=ref)
+
     def test_invalid_first_daily_blob_cannot_claim_the_cutoff(self):
         self.configure_small_registry()
         initial = run_daily.commit_candidate(self.repo)

@@ -142,25 +142,81 @@ def has_receipt_alias(root, commit, rel, oid):
     return False
 
 
+def data_roots(root, commit):
+    return {name: entry for name, entry in direct_git_children(root, commit).items() if name.casefold() == 'data'}
+
+
+def prior_deleted_aliases(root, restored, parent, ancestry):
+    """Prove the entire restored Git tree was deleted, on every side of the gap."""
+    # A normal repair commit restores a single base. Merges still have to
+    # satisfy the existing checks separately on every branch being combined.
+    if len(ancestry[restored]) != 1:
+        return set()
+    destination = data_roots(root, restored)
+    if set(destination) != {'data'} or destination['data'][1] != b'tree' or data_roots(root, parent):
+        return set()
+    expected = destination['data']
+    sources = set()
+    pending = [parent]
+    visited = set()
+    while pending:
+        revision = pending.pop()
+        if revision in visited:
+            continue
+        visited.add(revision)
+        entries = data_roots(root, revision)
+        if entries:
+            # A remaining file, a competing root or a different proposal breaks
+            # provenance. The tree ID includes all paths, modes and blob bytes.
+            if len(entries) != 1 or 'data' in entries or next(iter(entries.values())) != expected:
+                return set()
+            sources.add(revision)
+        elif ancestry[revision]:
+            pending.extend(ancestry[revision])
+        else:
+            return set()
+    return sources
+
+
 def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_parents, inherited):
     oid = git(root, 'rev-parse', commit + ':' + rel).encode()
-    pending = [commit]
+    since, cutoff = scope['start'][:10], instant(scope['cutoff'])
+    pending = [(commit, None)]
     seen = set()
     while pending:
-        child = pending.pop()
-        if child in seen:
+        child, original_tree = pending.pop()
+        if (child, original_tree) in seen:
             continue
-        seen.add(child)
+        seen.add((child, original_tree))
         parents = first_parents if child == commit else ancestry[child]
-        aliases = {p for p in parents if has_receipt_alias(root, p, rel, oid)}
-        if not aliases and (child != commit or not inherited):
-            browser_status.check_registry(root, scope, facts=registry(child, scope['mode']))
+        continuing = False
         for parent in parents:
-            if parent in aliases:
-                weekly_evidence.check_alias_transition(root, parent, child, scope['start'][:10], instant(scope['cutoff']))
-                pending.append(parent)
+            if has_receipt_alias(root, parent, rel, oid):
+                if original_tree is not None and list(data_roots(root, parent).values()) != [original_tree]:
+                    raise ValueError('The original weekly submission differs from the restored data tree')
+                weekly_evidence.check_alias_transition(root, parent, child, since, cutoff)
+                pending.append((parent, original_tree))
+                continuing = True
             else:
-                weekly_evidence.check_committed(root, parent, scope['start'][:10], instant(scope['cutoff']))
+                if original_tree is not None:
+                    # A different receipt on this side might have no feature
+                    # evidence (for example, an older zero). It is not this submission.
+                    names = [':(icase,literal)' + path + suffix for path in paths_for(rel) for suffix in ('', '.bak')]
+                    if git(root, 'rev-list', '-1', '--full-history', parent, '--', *names):
+                        raise ValueError('An earlier weekly receipt conflicts with the original publication')
+                try:
+                    weekly_evidence.check_committed(root, parent, since, cutoff)
+                except weekly_evidence.ExistingWeeklyEvidence:
+                    # A rare corrective commit can restore the very same proposal
+                    # after a complete deletion. Prove the gap before using its source.
+                    sources = prior_deleted_aliases(root, child, parent, ancestry)
+                    if not sources:
+                        raise
+                    tree = data_roots(root, child)['data']
+                    pending.extend((source, tree) for source in sources)
+                    continuing = True
+        if not continuing and (child != commit or not inherited):
+            browser_status.check_registry(root, scope, facts=registry(child, scope['mode']))
 
 
 def check_publication_policy(root, files, candidate, prior, commit, registry, reviewed, ancestry, first_parents):
