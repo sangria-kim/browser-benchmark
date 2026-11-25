@@ -135,6 +135,41 @@ def commit_candidate(root):
     return git(root, 'rev-parse', 'HEAD')
 
 
+def repository_head(root):
+    if not (root / '.git').exists():
+        return None
+    head = subprocess.run(['git', '-C', str(root), 'rev-parse', '--verify', '--quiet', 'HEAD'],
+                          capture_output=True, text=True)
+    if head.returncode == 1:  # Unborn repository.
+        return None
+    head.check_returncode()
+    return head.stdout.strip()
+
+
+def check_rollback_commit(root, state, files):
+    """An external commit can accept some or all files of an interrupted writer."""
+    head = repository_head(root)
+    if head == state.get('publication_base'):
+        return
+    if head is None:
+        raise RuntimeError('Recovery conflict; publication base is unavailable')
+    affected = set(files)
+    base = state.get('publication_base')
+    if base is not None:
+        if not re.fullmatch(r'[a-f0-9]{40}|[a-f0-9]{64}', base):
+            raise ValueError('Invalid recovery comparison commit')
+        names = git(root, 'diff', '--no-renames', '--name-only', '-z', base, head, '--', *files)
+        affected.intersection_update(names.split('\0'))
+    for rel in affected:
+        present = git(root, 'ls-tree', head, '--', rel)
+        committed = (digest(subprocess.check_output(['git', '-C', str(root), 'show', f'{head}:{rel}']))
+                     if present else None)
+        # Older journals have no comparison commit. Protect a proven accepted
+        # after-image without treating an unrelated baseline as a new commit.
+        if committed != files[rel]['before'] and ('publication_base' in state or committed == files[rel]['after']):
+            raise RuntimeError('Recovery conflict; Git accepted a transaction output: ' + rel)
+
+
 def recover_publication(root, run_dir):
     journal_path = run_dir / 'publication.json'
     if not journal_path.exists():
@@ -179,6 +214,7 @@ def recover_publication(root, run_dir):
         current = digest(path.read_bytes()) if path.exists() else None
         if current not in (row['before'], row['after']):
             raise RuntimeError('Recovery conflict; preserve journal and reconcile: ' + rel)
+    check_rollback_commit(root, state, journal['files'])
     for rel, row in journal['files'].items():
         path = root / rel
         if row['before'] is None:
@@ -203,7 +239,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     """Validate the graph, then journal only the files that will change."""
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
-    from pipeline.daily_status import previous_receipt, scheduled_cutoff, status_path, validate_receipt
+    from pipeline.daily_status import previous_receipt, read_current as current_daily_receipt, scheduled_cutoff, status_path, validate_receipt
     from pipeline import browser_status, weekly_status
     whole = {rel for rel in changes if weekly_status.is_receipt(rel)}
     details = {rel for rel in changes if browser_status.is_detail(rel)}
@@ -221,6 +257,10 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
         first_browser = previous is None
         if detail['scope']['mode'] == 'weekly_reconcile':
             weekly_status.require_unclaimed(root, detail['scope'], scoped=True)
+        else:
+            _, day = current_daily_receipt(root, detail['scope']['cutoff'])
+            if first_browser and day is not None and day['status'] == 'complete':
+                raise ValueError('Cannot add browser outcomes after the daily status is complete')
         if previous is None:
             previous = browser_status.initial(detail['scope'])
         browser_status.transition(previous, detail)
@@ -232,6 +272,10 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     for rel in receipts:
         validate_receipt(rel, changes[rel])
         scheduled_cutoff(changes[rel]['cutoff'])
+        _, accepted = current_daily_receipt(root, changes[rel]['cutoff'])
+        if accepted is not None and accepted['status'] == 'complete' and (accepted != changes[rel] or any(
+                digest(json_bytes(rows)) != before[name] for name, rows in changes.items())):
+            raise ValueError('Cannot change data after the daily status is complete')
         detail_rel = browser_status.detail_path('daily', changes[rel]['cutoff'])
         if detail_rel not in details and browser_status.read_current(root, detail_rel) is not None:
             raise ValueError('Finish this daily cutoff with --save-browser')
@@ -263,6 +307,10 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             if (digest(path.read_bytes()) if path.exists() else None) != checksum:
                 raise ValueError('Concurrent edit to browser publication input: ' + rel)
 
+    def check_daily_commits():
+        for rel in receipts:
+            current_daily_receipt(root, changes[rel]['cutoff'])
+
     if details or whole:
         check_dependencies(before)
     if not payloads:
@@ -281,7 +329,8 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
                 raise ValueError('Cannot change data after the daily status is complete')
             durable(txn / 'backup' / rel, old)
     version = 6 if whole else 5 if details else 4 if receipts else 3
-    state = dict(version=version, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
+    state = dict(version=version, repository=str(root), publication_base=repository_head(root),
+                 inputs=inputs, stages={'validate': {'outputs': after}})
     durable(txn / 'state.json', encoded(state))
     journal = dict(status='writing', files={p: dict(before=inputs[p], after=after[p]) for p in after})
     durable(txn / 'publication.json', encoded(journal))
@@ -291,6 +340,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     writer.flush()
     os.fsync(writer.fileno())
     try:
+        check_daily_commits()
         if details or whole:
             check_dependencies(before)
         for rel, raw in payloads.items():
@@ -302,6 +352,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             raise ValueError('Concurrent edit after feature publication')
         if details or whole:
             check_dependencies({**before, **after})
+        check_daily_commits()
         journal['status'] = 'published'
         durable(txn / 'publication.json', encoded(journal))
     except Exception:

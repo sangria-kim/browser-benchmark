@@ -403,6 +403,168 @@ class WindowTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'pinned registry'):
             validate_tree(self.repo)
 
+    def test_committed_whole_daily_receipt_protects_every_retry(self):
+        self.configure_small_registry()
+        run_daily.commit_candidate(self.repo)
+        day = self.repo / 'data/daily-status/2026-11-24.json'
+        self.cli('whole', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        original = self.folder / 'whole.json'
+        original.write_bytes(encoded(self.decisions('whole')))
+        self.cli('whole', cutoff=None, extra=['--save-features', str(original)])
+        accepted = run_daily.commit_candidate(self.repo)
+        record = read(day)
+        self.assertEqual((1, 1), (record['collected_feature_count'], record['change_count']))
+        self.cli('fresh', cutoff='2026-11-23T22:00:00Z', extra=['--daily-status'])
+        empty = self.folder / 'fresh.json'
+        empty.write_bytes(encoded(self.decisions('fresh')))
+        self.assertEqual([], read(empty)['decisions'])
+        after = encoded(dict(record, collected_feature_count=0, change_count=0))
+        original_bytes = day.read_bytes()
+        def final_writer():
+            rel = day.relative_to(self.repo).as_posix()
+            with run_lock(self.repo) as writer:
+                run_daily.store_changes(self.repo.resolve(), self.folder / 'direct-txn',
+                    {rel: json.loads(after)}, {rel: run_daily.digest(day.read_bytes()) if day.exists() else None}, writer)
+
+        actions = {
+            'saved replay': lambda: self.cli('whole', cutoff=None, extra=['--save-features', str(original)]),
+            'scoped zero': lambda: self.publish_browser('fresh', 'firefox', self.browser_choices('fresh', 'firefox')),
+            'record incomplete': lambda: self.cli('fresh', cutoff=None, extra=['--record-incomplete']),
+            'strict zero': lambda: self.cli('fresh', cutoff=None, extra=['--save-features', str(empty)]),
+            'final writer': final_writer,
+            'CI': lambda: validate_tree(self.repo, base=accepted),
+        }
+        for raw in (None, after):
+            for name, action in actions.items():
+                with self.subTest(action=name, removed=raw is None):
+                    if raw is None:
+                        day.unlink(missing_ok=True)
+                    else:
+                        day.write_bytes(raw)
+                    with self.assertRaises(ValueError):
+                        action()
+                    self.assertEqual(raw, day.read_bytes() if day.exists() else None)
+                    self.assertFalse((self.repo / browser_status.FOLDER).exists())
+        for raw in (None, after):
+            if raw is None:
+                day.unlink(missing_ok=True)
+            else:
+                day.write_bytes(raw)
+            run_daily.commit_candidate(self.repo)
+            with self.subTest(committed_change=raw), self.assertRaises(ValueError):
+                validate_tree(self.repo, base=accepted)
+        day.write_bytes(original_bytes)
+        run_daily.commit_candidate(self.repo)
+        self.cli('whole', cutoff=None, extra=['--save-features', str(original)])
+        self.cli('tomorrow', cutoff='2026-11-25T07:00:00+09:00', extra=['--daily-status'])
+        self.save('tomorrow', self.decisions('tomorrow'))
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=accepted)
+        self.assertEqual(original_bytes, day.read_bytes())
+
+    def test_ci_cannot_add_browser_detail_to_a_committed_whole_daily_zero(self):
+        self.configure_small_registry()
+        self.cli('zero', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        for browser in ('chrome', 'edge', 'firefox', 'safari', 'whale'):
+            self.publish_browser('zero', browser, self.browser_choices('zero', browser, select=False))
+        detail = self.repo / browser_status.detail_path('daily', STATUS_CUTOFF)
+        raw = detail.read_bytes()
+        detail.unlink()
+        accepted = run_daily.commit_candidate(self.repo)
+        detail.write_bytes(raw)
+        run_daily.commit_candidate(self.repo)
+        with self.assertRaises(ValueError):
+            validate_tree(self.repo, base=accepted)
+
+    def test_recovery_preserves_committed_outputs_and_allows_unrelated_commits(self):
+        self.configure_small_registry()
+        template = self.repo
+        for accepted in (False, True):
+            with self.subTest(accepted=accepted):
+                name = 'accepted' if accepted else 'unrelated'
+                self.repo = self.folder / name
+                shutil.copytree(template, self.repo)
+                run_daily.commit_candidate(self.repo)
+                self.cli(name, cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+                day = self.repo / 'data/daily-status/2026-11-24.json'
+                original = run_daily.store_changes
+
+                def interrupt(*args):
+                    def stop_at_receipt(path, raw):
+                        run_daily.durable(path, raw)
+                        if path == day.resolve():
+                            raise KeyboardInterrupt()
+                    return original(*args, replace=stop_at_receipt)
+
+                with patch.object(collect, 'store_changes', interrupt), self.assertRaises(KeyboardInterrupt):
+                    self.save(name, self.decisions(name))
+                if accepted:
+                    run_daily.commit_candidate(self.repo)
+                    files = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+                    with self.assertRaisesRegex(RuntimeError, 'Git accepted'):
+                        self.cli(name, cutoff=None, extra=['--record-incomplete'])
+                    self.assertEqual(files, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+                else:
+                    git(self.repo, '-c', 'user.name=Fixture', '-c', 'user.email=test@example.invalid',
+                        '-c', 'core.hooksPath=/dev/null', 'commit', '--allow-empty', '-qm', 'Unrelated commit')
+                    self.cli(name, cutoff=None, extra=['--record-incomplete'])
+                    self.assertIsNone(read(day)['collected_feature_count'])
+                    self.assertFalse((self.repo / collect.FEATURE_CATALOG).exists())
+
+    def test_new_daily_window_uses_registered_policy_at_writer_and_ci(self):
+        self.configure_small_registry()
+        policy = read(self.registry)
+        policy['baseline']['daily_window_days'] = 4
+        policy['baseline']['backfill_since'] = '2026-11-22'
+        self.registry.write_bytes(encoded(policy))
+        base = run_daily.commit_candidate(self.repo)
+        cutoff = '2026-11-23T22:00:00Z'
+        # Simulate a producer that consistently pins the wrong window in all private files.
+        with patch.object(collect, 'window_start', return_value=cutoff), patch.object(browser_status, 'check_window'):
+            self.cli('short', cutoff=cutoff, extra=['--daily-status'])
+        pm = self.folder / 'short.json'
+        pm.write_bytes(encoded(self.decisions('short')))
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.cli('short', cutoff=None, extra=['--save-features', str(pm)])
+        self.assertFalse((self.repo / 'data').exists())
+        self.cli('floor', cutoff=cutoff, extra=['--daily-status'])
+        detail = self.repo / browser_status.detail_path('daily', cutoff)
+        choices = self.browser_choices('floor', 'firefox', select=False)
+        original = run_daily.store_changes
+
+        def tamper(root, txn, changes, before, writer):
+            row = changes[detail.relative_to(self.repo).as_posix()]
+            row['scope']['start'] = cutoff
+            browser_status.seal(row)
+            return original(root, txn, changes, before, writer)
+
+        with patch.object(collect, 'store_changes', tamper), self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('floor', 'firefox', choices)
+        self.assertFalse(detail.exists())
+        self.publish_browser('floor', 'firefox', choices)
+        self.assertEqual('2026-11-22T00:00:00+09:00', read(detail)['scope']['start'])
+        later = '2026-12-01T07:00:00+09:00'
+        self.cli('four', cutoff=later, extra=['--daily-status'])
+        self.publish_browser('four', 'firefox', self.browser_choices('four', 'firefox', select=False))
+        second = self.repo / browser_status.detail_path('daily', later)
+        row = read(second)
+        self.assertEqual('2026-11-27T07:00:00+09:00', row['scope']['start'])
+        row['scope']['start'] = '2026-11-26T22:00:00Z'  # Same instant.
+        second.write_bytes(encoded(browser_status.seal(row)))
+        validate_tree(self.repo, base=base)
+        accepted = run_daily.commit_candidate(self.repo)
+        fixed = second.read_bytes()
+        for invalid in (row['scope']['cutoff'], '2026-11-26T22:00:00.000001Z'):
+            row['scope']['start'] = invalid
+            second.write_bytes(encoded(browser_status.seal(row)))
+            with self.subTest(start=invalid), self.assertRaisesRegex(ValueError, 'window'):
+                validate_tree(self.repo, base=base)
+        second.write_bytes(fixed)
+        policy['baseline']['daily_window_days'] = 7
+        self.registry.write_bytes(encoded(policy))
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=accepted)
+
     def test_full_weekly_freezes_cutoff_before_fresh_browser_save(self):
         self.configure_small_registry()
         run_daily.commit_candidate(self.repo)

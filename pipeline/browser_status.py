@@ -6,7 +6,7 @@ import subprocess
 
 from pipeline import daily_status
 from pipeline.run_daily import digest, encoded, git, read
-from pipeline.temporal import instant
+from pipeline.temporal import instant, window_start
 
 FOLDER = 'data/browser-status'
 MODES = ('daily', 'weekly_reconcile')
@@ -132,22 +132,31 @@ def read_current(root, rel):
 
 
 def registry_facts(root, mode):
-    from pipeline.collect import registered_sources
-    sources, since = registered_sources(root, None, mode=mode)
+    from pipeline.collect import select_sources
+    raw = (root / 'config/sources.yml').read_bytes()
+    registry = json.loads(raw)
     groups = {}
-    for source in sources:
+    for source in select_sources(registry, None, mode=mode):
         groups.setdefault(source['browser'], []).append(source['source_id'])
-    return digest((root / 'config/sources.yml').read_bytes()), since, {k: sorted(v) for k, v in groups.items()}
+    return digest(raw), registry['baseline'], {k: sorted(v) for k, v in groups.items()}
+
+
+def check_window(scope, policy):
+    mode = scope['mode']
+    start = window_start(mode, scope['cutoff'], policy['backfill_since'], policy.get('daily_window_days', 30))
+    if re.search(r'[.,]\d{6}\d*[1-9]', scope['start']) or instant(scope['start']) != instant(start):
+        if mode == 'weekly_reconcile':
+            raise ValueError('Weekly result requires the full registered history')
+        raise ValueError('Daily window differs from the registered policy')
 
 
 def check_registry(root, scope, *, historical=False, facts=None):
-    fingerprint, since, expected = facts if facts is not None else registry_facts(root, scope['mode'])
+    fingerprint, policy, expected = facts if facts is not None else registry_facts(root, scope['mode'])
     if fingerprint != scope['registry']:
         if historical:
             return
         raise ValueError('Browser scope does not match the current registry fingerprint')
-    if scope['mode'] == 'weekly_reconcile' and instant(scope['start']) != instant(since + 'T00:00:00+09:00'):
-        raise ValueError('Weekly result requires the full registered history')
+    check_window(scope, policy)
     if expected != scope['expected']:
         raise ValueError('Browser scope does not match the pinned registry')
 
@@ -289,7 +298,10 @@ def validate_tree(root, *, graph=None, base=None):
                 raise ValueError('Invalid whole weekly status file')
             paths.add(rel)
 
+    daily_paths = daily_status.tree_paths(root)
+    all_paths = paths | daily_paths
     tracked, modified = set(), set()
+    folders = (FOLDER, weekly_status.FOLDER, daily_status.FOLDER)
     # HEAD anchors local writes. CI passes the previous push or PR base so a deletion
     # already committed in the checked-out head is also visible.
     ref = base or 'HEAD'
@@ -301,15 +313,23 @@ def validate_tree(root, *, graph=None, base=None):
         if head.returncode not in (0, 1) or base and head.returncode:
             raise ValueError('Cannot verify browser status comparison commit')
         if head.returncode == 0:
-            names = git(root, 'ls-tree', '-r', '-z', '--name-only', ref, '--', FOLDER, weekly_status.FOLDER)
+            names = git(root, 'ls-tree', '-r', '-z', '--name-only', ref, '--', *folders)
             tracked = set(filter(None, names.split('\0')))
-            if not tracked <= paths:
-                raise ValueError('Committed browser detail is missing: ' + ', '.join(sorted(tracked - paths)))
+            missing = tracked - all_paths
+            if any(daily_status.status_path(rel) for rel in missing):
+                raise ValueError('Committed daily status is missing: ' + ', '.join(sorted(missing)))
+            if missing:
+                raise ValueError('Committed browser detail is missing: ' + ', '.join(sorted(missing)))
             if tracked:
-                names = git(root, 'diff', '--name-only', '--no-renames', '-z', ref, '--', FOLDER, weekly_status.FOLDER)
+                names = git(root, 'diff', '--name-only', '--no-renames', '-z', ref, '--', *folders)
                 modified = set(filter(None, names.split('\0')))
     elif base:
         raise ValueError('Browser status comparison needs a Git checkout')
+    for rel in daily_paths:
+        raw = safe_path(root, rel).read_bytes()
+        daily_status.validate_receipt(rel, json.loads(raw))
+        if rel in tracked and rel in modified:
+            daily_status.check_committed(root, rel, raw, ref=ref, tracked=True)
     if not paths:
         return
 
@@ -338,6 +358,10 @@ def validate_tree(root, *, graph=None, base=None):
             historical = previous == detail
         scope = detail['scope']
         mode = scope['mode']
+        if mode == 'daily' and rel not in tracked:
+            day, _ = daily_status.receipt(scope['cutoff'], None, None)
+            if day in tracked and json.loads(git(root, 'show', ref + ':' + day))['status'] == 'complete':
+                raise ValueError('Cannot add browser outcomes after the daily status is complete')
         if mode not in facts_by_mode:
             facts_by_mode[mode] = registry_facts(root, mode)
         check_registry(root, scope, historical=historical, facts=facts_by_mode[mode])

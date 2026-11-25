@@ -13,7 +13,7 @@ from pipeline import browser_status, weekly_status
 from pipeline.collectors.browser import BrowserCollector
 from pipeline.collectors.browser.collector import EXCERPT_LIMIT, atomic_json
 from pipeline.deduplicate import feature_identity
-from pipeline.daily_status import add_receipt, classified_decisions, scheduled_cutoff
+from pipeline.daily_status import add_receipt, classified_decisions, read_current as current_daily_receipt, receipt, scheduled_cutoff
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, predates_browser_pins, publication_commits, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant, window_start
@@ -25,6 +25,10 @@ WEEKLY_ONLY_BROWSERS = frozenset({'brave', 'opera', 'vivaldi'})
 
 def registered_sources(root, requested, *, mode):
     registry = load_config(root / 'config/sources.yml')
+    return select_sources(registry, requested, mode=mode), registry['baseline']['backfill_since']
+
+
+def select_sources(registry, requested, *, mode):
     validate_record('sources_config', registry)
     enabled = {s['source_id']: s for s in registry['sources'] if s['enabled']}
     missing = set(requested or ()) - enabled.keys()
@@ -37,7 +41,7 @@ def registered_sources(root, requested, *, mode):
             raise ValueError('Weekly-only sources require --mode manual for on-demand collection: '
                              + ', '.join(sorted(weekly_only)))
         enabled = daily
-    return [s for key, s in enabled.items() if not requested or key in requested], registry['baseline']['backfill_since']
+    return [s for key, s in enabled.items() if not requested or key in requested]
 
 
 def source_path(source):
@@ -320,9 +324,10 @@ def include_baseline(before, baseline):
 
 def check_status_inputs(root, state):
     pinned = state['daily_status']
-    enabled, _ = registered_sources(root, None, mode=state['mode'])
-    if (pinned['registry'] != file_digest(root / 'config/sources.yml')
-            or pinned['enabled'] != sorted(s['source_id'] for s in enabled)
+    fingerprint, policy, expected = browser_status.registry_facts(root, state['mode'])
+    browser_status.check_window(state, policy)
+    if (pinned['registry'] != fingerprint
+            or pinned['enabled'] != sorted(sid for ids in expected.values() for sid in ids)
             or pinned['catalog'] != file_digest(root / FEATURE_CATALOG)):
         raise ValueError('Daily status baseline changed; use a fresh collection at the same cutoff')
 
@@ -348,10 +353,12 @@ def mark_incomplete(repository, private_dir):
         verify_workspace(work, state)
         journal = work / 'transaction/publication.json'
         if state['status'] == 'saving' and journal.exists() and read(journal)['status'] == 'published':
+            saved_count(state, state['decisions'])
             return
         rel = browser_status.detail_path(state['mode'], state['cutoff'])
         detail = browser_status.read_current(root, rel)
         if detail is not None:
+            current_daily_receipt(root, state['cutoff'])
             browser_status.check_aggregate(root, detail, {})
             return
         changes, before = {}, {}
@@ -432,7 +439,9 @@ def save_features(repository, private_dir, decisions, *, allow_partial=False, br
         changes, before, changed_features, collected_features, _ = classified_delta(
             root, work, state, sources, decisions, daily_status=daily_status)
         if daily_status:
-            add_receipt(root, changes, before, state['cutoff'], len(changed_features), len(collected_features))
+            counts = len(changed_features), len(collected_features)
+            add_receipt(root, changes, before, state['cutoff'], *counts)
+            state['daily_publication'] = receipt(state['cutoff'], *counts)[1]
         if weekly:
             scope = pin['scope'] if pin is not None else browser_scope(root, state)[0]
             rel = weekly_status.path(scope['cutoff'])
@@ -515,13 +524,9 @@ def save_browser(root, work, state, browser, classification, writer):
             raise ValueError('Browser scope differs from the first published result')
         browser_status.check_aggregate(root, detail, {})
     if scope['mode'] == 'daily':
-        from pipeline.daily_status import receipt, previous_receipt
-        daily_rel, daily_value = receipt(scope['cutoff'], None, None)
-        daily_file = browser_status.safe_path(root, daily_rel)
-        if daily_file.exists():
-            previous = previous_receipt(daily_rel, daily_file.read_bytes(), daily_value['cutoff'])
-            if previous['status'] == 'complete' and raw is None:
-                raise ValueError('Cannot change data after the daily status is complete')
+        _, previous = current_daily_receipt(root, scope['cutoff'])
+        if previous is not None and previous['status'] == 'complete' and raw is None:
+            raise ValueError('Cannot change data after the daily status is complete')
     outcome = detail['browsers'][browser]
     if outcome['status'] == 'complete':
         if outcome['classification'] != signature:
@@ -690,6 +695,11 @@ def classified_delta(root, work, state, sources, decisions, *, daily_status, bro
 def saved_count(state, signature):
     if state['decisions'] != signature:
         raise ValueError('This run already has a different final classification')
+    if 'daily_status' in state:
+        _, accepted = current_daily_receipt(Path(state['repository']), state['cutoff'])
+        if (accepted is None or accepted['status'] != 'complete'
+                or 'daily_publication' in state and accepted != state['daily_publication']):
+            raise ValueError('The accepted daily status is missing or changed')
     if 'weekly_publication' in state:
         accepted = weekly_status.read_current(Path(state['repository']), state['cutoff'])
         if accepted is None or accepted['checksum'] != state['weekly_publication']:
