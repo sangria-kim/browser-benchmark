@@ -21,6 +21,18 @@ DETAIL_URLS = {
 }
 
 
+ENTERPRISE_ARCHIVE = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+
+
+def enterprise_archive_anchor(url):
+    parts = urlsplit(url)
+    if (parts.scheme == 'https' and parts.hostname == 'support.google.com'
+            and parts.path == '/chrome/a/answer/10314655'
+            and parse_qsl(parts.query, keep_blank_values=True) in ([], [('hl', 'en')])):
+        return unquote(parts.fragment)
+    return None
+
+
 def normalize_url(value):
     if not isinstance(value, str) or re.search(r'[\s\\\x00-\x1f\x7f]', value):
         raise ValueError('Invalid official URL')

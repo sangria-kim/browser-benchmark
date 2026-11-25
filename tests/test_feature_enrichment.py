@@ -328,6 +328,130 @@ class FeatureReviewTests(unittest.TestCase):
         self.assertEqual({}, by_id[sibling]['feature_facts'])
         self.assertEqual([], self.products)
 
+    def test_standalone_fact_uses_official_reference_and_preserves_original_parsed_bytes(self):
+        self.cli('before', APRIL)
+        row = next(r for r in self.products if r['item_key'] == 'tabs')
+        old = row['revisions'][-1]
+        selection = dict(browser='chrome', source_id=SID, source_item_id=row['source_item_id'],
+                         revision_id=old['revision_id'], canonical_key='tabs', title='탭 그룹')
+        fid = self.store_via_cli(selection, run='before')['feature_id']
+        req = dict(browser='chrome', source_id=SID, feature_id=fid, url=URL, facts={'platform': ['Windows']})
+        self.assertFalse(self.store_via_cli(req)['changed'])
+        graph = validate_graph(self.root)
+        f, = graph['feature']
+        cited = f['feature_facts']['platform']
+        sources = {r['source_item_id']: r for r in graph['source_item']}
+        self.assertEqual('reference', sources[cited['source_item_id']]['record_status'])
+        self.assertEqual(URL, sources[cited['source_item_id']]['evidence']['url'])
+        self.assertEqual('', sources[cited['source_item_id']]['evidence']['excerpt'])
+        self.assertNotEqual(old['revision_id'], cited['revision_id'])
+        self.assertEqual(old, sources[row['source_item_id']]['revisions'][-1])
+        self.assertFalse(self.store_via_cli(req)['changed'])
+        self.assertEqual(graph, validate_graph(self.root))
+
+    def test_reference_decision_pins_the_reviewed_bytes_and_preserves_prior_citation(self):
+        self.payloads[URL] = article('Tab groups are supported.')
+        self.cli('first', APRIL)
+        row = next(r for r in self.products if r['item_key'] == 'tabs')
+        original_revision = row['revisions'][-1]
+        request = dict(browser='chrome', source_id=SID, source_item_id=row['source_item_id'],
+                       revision_id=original_revision['revision_id'], canonical_key='tabs', title='탭 그룹',
+                       facts={'version': '150'})
+        fid = self.store_via_cli(request, run='first')['feature_id']
+        peer = self.store_via_cli(dict(request, canonical_key='folders', title='탭 폴더'), run='first')['feature_id']
+        before = {f['feature_id']: f for f in validate_graph(self.root)['feature']}
+        day, history = receipt(APRIL, 2, 2)
+        historical = self.root / day
+        historical.parent.mkdir(parents=True)
+        historical.write_bytes(run_daily.encoded(history))
+        frozen = historical.read_bytes()
+        self.payloads[URL] = article('Tab groups are available on Windows.')
+        job = self.cli('later')[fid]
+        self.assertTrue(job['reference_review'])
+        raw_hash = run_daily.digest(self.payloads[URL].encode())
+        decision = dict(browser='chrome', source_id=SID, url=URL, feature_id=fid,
+                        reference_review=True, facts={'platform': ['Windows']})
+        self.assertFalse(self.store_via_cli(decision, run='later')['changed'])
+        def state():
+            return {p: p.read_bytes() for p in (self.root / 'data').rglob('*.json')}
+        first_save = state()
+        self.assertFalse(self.store_via_cli(decision, run='later')['changed'])
+        self.assertEqual(first_save, state())
+        graph = validate_graph(self.root)
+        features = {f['feature_id']: f for f in graph['feature']}
+        evidence = {r['source_item_id']: r for r in graph['source_item']}
+        fact = features[fid]['feature_facts']['platform']
+        actual = next(r for r in evidence[fact['source_item_id']]['revisions'] if r['revision_id'] == fact['revision_id'])
+        progress = run_daily.read(self.work / 'browser' / (SID + '-progress.json'))
+        checked_at = progress['responses'][URL]['observed_at']
+        self.assertEqual(checked_at, actual['observed_at'])
+        self.assertEqual(checked_at, actual['evidence']['observed_at'])
+        self.assertEqual(raw_hash, actual['content_sha256'])
+        self.assertEqual(raw_hash, actual['evidence']['content_sha256'])
+        self.assertEqual('', actual['evidence']['excerpt'])
+        self.assertNotEqual(original_revision['revision_id'], actual['revision_id'])
+        self.assertEqual(original_revision, evidence[row['source_item_id']]['revisions'][-1])
+        self.assertEqual(before[fid]['feature_facts']['version'], features[fid]['feature_facts']['version'])
+        self.assertEqual(before[peer], features[peer])
+        self.assertEqual(frozen, historical.read_bytes())
+
+    def test_enterprise_anchor_enrichment_keeps_publisher_panel_and_cutoff(self):
+        sid = 'chrome-enterprise'
+        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        def select(anchor, title, key):
+            return self.store_via_cli(dict(browser='chrome', source_id=sid, url=archive + '#' + anchor,
+                                           canonical_key=key, title=title))['feature_id']
+        future = select('165', 'Workspaces', 'future-workspaces')
+        current = select('164', 'Team menus', 'current-menus')
+        translated = select('164', '탭 폴더', 'current-folders')
+        old = select('100', 'Old shortcuts', 'old-shortcuts')
+        absent = select('166', 'Missing panel', 'missing')
+        self.payloads[archive] = (
+            '<a href="#100">April 1, 2026</a><a class="zippy" name="100">Version</a><div><p>Old shortcuts on Mac.</p></div>'
+            '<a href="#164">November 11, 2026</a><a class="zippy" name="164">Version</a><div><p>Team menus on Linux.</p><p>Tab folders support ChromeOS.</p></div>'
+            '<a href="#165">November 28, 2026</a><a class="zippy" name="165">Version</a><div><p>Workspaces run on Windows.</p></div>'
+            '<a href="#166">November 29, 2026</a>')
+        self.payloads[api + '/versions'] = json.dumps({'versions': [{'value': '164'}]})
+        self.payloads[api + '/features?version=164&lang=en'] = json.dumps({'total_count': 0, 'features': []})
+        req = dict(browser='chrome', source_id=sid, feature_id=future, facts={'platform': ['Windows']})
+        for name in ('plain', 'wrapped'):
+            if name == 'wrapped':
+                self.payloads[archive] = '<div class="answer">' + self.payloads[archive] + '</div>'
+            with self.subTest(layout=name):
+                jobs = self.cli(name, sid=sid)
+                window = run_daily.read(self.work / 'windows' / (sid + '.json'))
+                self.assertEqual('after_cutoff', window[archive + '#165'])
+                self.assertEqual('after_cutoff', window[archive + '#166'])
+                self.assertEqual('before_period', window[archive + '#100'])
+                self.assertEqual([archive, api + '/versions', api + '/features?version=164&lang=en'], self.calls)
+                for fid in (future, absent):
+                    self.assertFalse(jobs[fid].get('candidate') or jobs[fid].get('reference_review'))
+                with self.assertRaises(ValueError):
+                    self.store_via_cli(dict(req, url=archive + '#165', reference_review=True), run=name)
+        later = self.cli('later', '2026-11-30T07:00:00+09:00', sid=sid)[future]['candidate']
+        self.assertIn('Windows', later['classification_text'])
+        with self.assertRaises(ValueError):
+            self.store_via_cli(dict(req, source_item_id=later['source_item_id'],
+                                    revision_id=later['revisions'][-1]['revision_id']), run='wrapped')
+        self.assertTrue(jobs[translated]['reference_review'])
+        self.assertEqual(['Team menus on Linux.', 'Tab folders support ChromeOS.'], jobs[translated]['review_passages'])
+        raw_req = dict(req, feature_id=translated, url=archive + '#164', reference_review=True,
+                       facts={'platform': ['ChromeOS']})
+        self.store_via_cli(raw_req, run='wrapped')
+        for fid, value in ((old, 'Mac'), (current, 'Linux')):
+            row = jobs[fid]['candidate']
+            self.assertIn(value, row['classification_text'])
+            self.assertNotIn('Windows', row['classification_text'])
+            self.store_via_cli(dict(req, feature_id=fid, source_item_id=row['source_item_id'],
+                                    revision_id=row['revisions'][-1]['revision_id'], facts={'platform': [value]}),
+                               run='wrapped')
+        features = {f['feature_id']: f for f in validate_graph(self.root)['feature']}
+        self.assertEqual({}, features[future]['feature_facts'])
+        self.assertEqual(['Linux'], features[current]['feature_facts']['platform']['value'])
+        self.assertEqual(['Mac'], features[old]['feature_facts']['platform']['value'])
+        self.assertEqual(['ChromeOS'], features[translated]['feature_facts']['platform']['value'])
+
     def test_unlisted_enterprise_version_cannot_bypass_publisher_visibility(self):
         sid = 'chrome-enterprise'
         api = 'https://release-notes-787862449254.us-central1.run.app'

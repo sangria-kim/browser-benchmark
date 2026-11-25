@@ -193,7 +193,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                         if ident in collector.classification_text:
                             row = dict(row, classification_text=collector.classification_text[ident])
                         rows.append(row)
-                jobs = collector.fact_review.run(prior_jobs) if collector.fact_review is not None else []
+                jobs = collector.fact_review.run(prior_jobs, review_only=review_only) if collector.fact_review is not None else []
                 status = {k: result[k] for k in ('source_id', 'status', 'cutoff')}
                 if result.get('errors'):
                     status['errors'] = result['errors']

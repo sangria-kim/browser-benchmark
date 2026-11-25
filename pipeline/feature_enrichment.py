@@ -5,14 +5,14 @@ from datetime import datetime, timedelta, timezone
 import json
 import os
 import re
-from urllib.parse import parse_qsl, urldefrag, urlsplit
+from urllib.parse import parse_qsl, unquote, urldefrag, urlsplit
 
 from pipeline import browser_status
 from pipeline.collectors.browser.collector import atomic_json, digest, identity, minimal
 from pipeline.collectors.browser.html import Tree, blocks, boundary, modification, published
 from pipeline.collectors.browser.safari_preview import retry_deadline, stop_safari_requests, verified_release_dates
 from pipeline.feature_item import FACT_FIELDS, missing_facts
-from pipeline.official_reference import accepts_url, normalize_url
+from pipeline.official_reference import accepts_url, enterprise_archive_anchor, normalize_url
 from pipeline.run_daily import read, run_lock
 from pipeline.temporal import instant
 
@@ -56,6 +56,7 @@ class SourceReview:
         self.by_id = {row['source_item_id']: row for row in previous}
         self.units = defaultdict(list)
         self.enterprise_urls = defaultdict(set)
+        self.archive_links = defaultdict(set)
         self.restricted_raw, self.hashes = set(), {}
         self.wait = self.prior.get('retry_after')
         self.wait = self.wait if self.wait and instant(self.wait) > datetime.now(timezone.utc) else None
@@ -71,6 +72,9 @@ class SourceReview:
                             query = enterprise_version_query(url)
                             if query is not None:
                                 self.enterprise_urls[query].add(url)
+                            anchor = enterprise_archive_anchor(url)
+                            if anchor is not None:
+                                self.archive_links[anchor].add(url)
 
     def document_key(self, url):
         if self.sid == 'chrome-enterprise':
@@ -82,11 +86,14 @@ class SourceReview:
     def after_cutoff(self, url):
         # The same resume can skip the product parser of a completed source.
         # Keep its authoritative document exclusion with the response checkpoint.
-        if url in self.document_owners:
+        if url in self.links or url in self.document_owners:
             blocked = self.collector.progress.setdefault('enrichment_after_cutoff', [])
             if url not in blocked:
                 blocked.append(url)
                 self.collector.write_progress()
+
+    def archive_targets(self, anchor):
+        return self.archive_links.get('', set()) | self.archive_links.get(anchor, set())
 
     def begin_enterprise_page(self, url):
         for target in self.enterprise_urls.get(enterprise_version_query(url), ()):
@@ -99,8 +106,12 @@ class SourceReview:
 
     def observe(self, url, response, unit, title=None, *, dates=()):
         targets = (url,)
-        if self.enterprise_urls:
-            targets = self.enterprise_urls.get(enterprise_version_query(url), targets)
+        if self.sid == 'chrome-enterprise':
+            if enterprise_archive_anchor(url) is not None:
+                release = re.match(r'release:(\d+):', unit['key'])
+                targets = self.archive_targets(release[1]) if release else ()
+            else:
+                targets = self.enterprise_urls.get(enterprise_version_query(url), targets)
         for target in targets:
             if target not in self.links:
                 continue
@@ -132,7 +143,7 @@ class SourceReview:
                         remaining.remove(ident)
         return rows
 
-    def run(self, prior_jobs=()):
+    def run(self, prior_jobs=(), *, review_only=False):
         c = self.collector
         previous_urls = {job['url'] for job in prior_jobs}
         previous_jobs = {(job['url'], job['feature_id']): job for job in prior_jobs}
@@ -169,7 +180,7 @@ class SourceReview:
                 continue
             # A complete product checkpoint can resume a failed supplemental
             # read without regenerating earlier, possibly API-backed evidence.
-            if prior_jobs:
+            if review_only:
                 for fid in list(by_feature):
                     prior = previous_jobs.get((url, fid))
                     if prior and 'error' not in prior:
@@ -208,7 +219,13 @@ class SourceReview:
                             job['content_sha256'] = hashes[0]
                         if (len(hashes) == 1 and url not in self.restricted_raw
                                 and all(urldefrag(e.url)[0] == urldefrag(url)[0] for e in observed)):
-                            job['reference_review'] = True
+                            try:
+                                observation = self.candidate(feature, url, None, observed[0])
+                            except TimeoutError as exc:
+                                job['error'] = str(exc)
+                            else:
+                                job.update(reference_review=True, reviewed_observation=observation,
+                                           review_passages=[minimal(unit['text'], None) for unit, _, _ in units])
                 jobs.append(job)
         if touched or enrolled_now:
             with run_lock(self.history):
@@ -233,10 +250,14 @@ class SourceReview:
     def evidence(self, url, halted):
         c = self.collector
         target = urldefrag(url)[0]
-        if target in c.progress.get('enrichment_after_cutoff', ()):
+        if {url, target}.intersection(c.progress.get('enrichment_after_cutoff', ())):
             return None, []
         if url in self.units:
             return None, self.units[url]
+        if self.sid == 'chrome-enterprise' and enterprise_archive_anchor(url) is not None:
+            # Only the publisher's dated panel can support an archive citation.
+            # Never reinterpret an absent, future or failed panel as the whole page.
+            return None, []
         if self.sid == 'chrome-enterprise' and enterprise_version_query(url) is not None:
             raise ValueError('No publisher-filtered Enterprise observations for this version in the current run')
         if any(e['url'] == target for e in c.state['errors']):
@@ -263,10 +284,14 @@ class SourceReview:
             dates = published(tree, self.sid, product_body=body), modification(tree, body)
         if any(c.publication_status(value) == 'after_cutoff' for value in dates if value):
             raise ValueError('Only evidence after the run cutoff was observed')
-        units = blocks(body) if body is not None else []
+        anchor = unquote(urlsplit(url).fragment)
+        units = blocks(body, window_anchors=bool(anchor)) if body is not None else []
+        if anchor:
+            units = [u for u in units if anchor in u.pop('window_anchors', [])]
         if any(not self.eligible_unit(u) for u in units):
             self.restricted_raw.add(url)
-        return response, [(u, None, response) for u in units if self.eligible_unit(u)]
+        scoped = [(u, None, response) for u in units if self.eligible_unit(u)]
+        return (None if anchor else response), scoped
 
     def note_failure(self, error, url):
         now = datetime.now(timezone.utc)
@@ -313,10 +338,15 @@ class SourceReview:
         c.write_records = True
         c.state = dict(discovered=0, processed=0, duplicate=0, unparsed=0)
         c.seen, c.parsed_ids, c.classification_text = {}, set(), {}
+        raw_review = unit is None
         key = 'feature-facts:' + feature['feature_id']
+        if raw_review:
+            key += ':reviewed-document'
+            unit = dict(section='', text='', parsed=True)
         ident = identity('src', [self.sid, url, key])
         c.records = {ident: copy.deepcopy(self.by_id[ident])} if ident in self.by_id else {}
-        c.emit(url, response, dict(unit, key=key), title=feature['title'])
+        c.emit(url, response, dict(unit, key=key), title=None if raw_review else feature['title'],
+               reviewed_document=raw_review)
         row = c.records[ident]
         return dict(row, classification_text=minimal(unit['text'], None))
 
@@ -367,5 +397,17 @@ def verified_reference(work, state, request):
             or set(request.get('facts', {})) - set(matches[0]['missing_fields'])):
         raise ValueError('Reference review needs the observed URL, selected feature and only missing facts')
     job = matches[0]
-    verify_body(work, job, job['content_sha256'])
-    return dict(request, url=url, change_kind='evidence_only')
+    observed = job.get('reviewed_observation')
+    if (not observed or observed['item_key'] != 'feature-facts:' + job['feature_id'] + ':reviewed-document'
+            or observed['source_id'] != request['source_id'] or observed['evidence']['url'] != url):
+        raise ValueError('A checked publisher observation is required for reference review')
+    verify_body(work, job, observed['evidence']['content_sha256'])
+    quote = request.get('evidence_quote')
+    if quote:
+        passage = next((text for text in job['review_passages'] if quote in text), None)
+        if not passage:
+            raise ValueError('Quote must match a passage from the selected official observation')
+        observed = dict(observed, classification_text=passage)
+    selected = dict(request, url=url, change_kind='evidence_only', source_item_id=observed['source_item_id'],
+                    revision_id=observed['revisions'][-1]['revision_id'])
+    return selected, observed

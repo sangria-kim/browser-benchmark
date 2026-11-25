@@ -144,13 +144,13 @@ def selected_source(sources, request, candidate):
     return matches[0], url
 
 
-def choose_evidence(feature, rows, source, url, candidate, observed_at):
+def choose_evidence(feature, rows, source, url, candidate, observed_at, *, reference_only=False):
     if candidate is None:
         # Prefer the already confirmed citation of this feature, never a sibling
         # entry just because it uses the same document URL.
         for ident in feature['source_item_ids']:
             old = rows.get(ident)
-            if old is None:
+            if old is None or reference_only and old['record_status'] != 'reference':
                 continue
             pins = feature.get('source_revision_ids', {}).get(ident)
             for snap in reversed(old['revisions']):
@@ -227,29 +227,6 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
     rows = {r['source_item_id']: r for r in read_rows(target)}
     if candidate is None and not accepts_url(source, url) and (sid, url) not in observed_publisher_urls(rows.values()):
         raise ValueError('This URL requires a confirmed item from the publisher index')
-    row, snap, passage = choose_evidence(feature, rows, source, url, candidate, observed_at)
-    validate_record('source_item', row)
-    ident, revision = row['source_item_id'], snap['revision_id']
-    prior = rows.get(ident)
-    previously_linked = ident in feature['source_item_ids']
-    old_head = prior['revisions'][-1]['revision_id'] if prior else None
-    if prior and row['revisions'][-1]['revision_id'] != old_head:
-        # Before appending a source revision, freeze legacy readers at their old head.
-        display = next((r['revision_id'] for r in row['revisions'][len(prior['revisions']):]
-                        if r.get('restores_revision_id') == old_head), old_head)
-        for owner in catalog:
-            if ident in owner['source_item_ids'] and ident not in owner.get('source_revision_ids', {}):
-                owner.setdefault('source_revision_ids', {})[ident] = [display]
-    pins = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
-    already = previously_linked and (revision in pins or not pins and revision == old_head)
-    quote = request.get('evidence_quote')
-    if quote not in (None, ''):
-        if already:
-            if quote != browser_status.displayed_excerpt(feature, snap):
-                raise ValueError('Cannot replace a confirmed excerpt')
-        elif not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in passage:
-            raise ValueError('Quote must match a passage from the selected revision')
-        feature.setdefault('source_revision_excerpts', {})[revision] = quote
     facts = request.get('facts', {})
     if not isinstance(facts, dict) or facts.keys() - set(FACT_FIELDS):
         raise ValueError('Unknown feature fact')
@@ -266,6 +243,47 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
             others = read_rows(path.relative_to(root).as_posix())
             linked.update((r['source_item_id'], r) for r in others if r['source_item_id'] in outstanding)
             outstanding -= linked.keys()
+    # A fact submitted with just a URL cannot be attributed to an older
+    # parsed body, even if that body once confirmed this feature at the URL.
+    reference_only = False
+    quote = request.get('evidence_quote')
+    if candidate is None and any(value is not None for value in normalized.values()):
+        known = confirmed_facts(feature, linked)
+        ref_id = reference_row(source, url, observed_at)['source_item_id']
+        reference_only = any(value is not None and (slot not in known or known[slot]['source_item_id'] == ref_id)
+                             for slot, value in normalized.items())
+        if reference_only and quote:
+            # Repeating an already confirmed quote does not move it onto the new URL-only citation.
+            for ident, record in linked.items():
+                pins = feature.get('source_revision_ids', {}).get(ident)
+                snapshots = [r for r in record['revisions'] if r['revision_id'] in pins] if pins else record['revisions'][-1:]
+                if any(r['evidence']['url'] == url and browser_status.displayed_excerpt(feature, r) == quote for r in snapshots):
+                    quote = None
+                    break
+    cited_url = candidate is None and any(ident in rows and rows[ident]['evidence']['url'] == url
+                                           for ident in feature['source_item_ids'])
+    row, snap, passage = choose_evidence(feature, rows, source, url, candidate, observed_at, reference_only=reference_only)
+    validate_record('source_item', row)
+    ident, revision = row['source_item_id'], snap['revision_id']
+    prior = rows.get(ident)
+    previously_linked = ident in feature['source_item_ids']
+    old_head = prior['revisions'][-1]['revision_id'] if prior else None
+    if prior and row['revisions'][-1]['revision_id'] != old_head:
+        # Before appending a source revision, freeze legacy readers at their old head.
+        display = next((r['revision_id'] for r in row['revisions'][len(prior['revisions']):]
+                        if r.get('restores_revision_id') == old_head), old_head)
+        for owner in catalog:
+            if ident in owner['source_item_ids'] and ident not in owner.get('source_revision_ids', {}):
+                owner.setdefault('source_revision_ids', {})[ident] = [display]
+    pins = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
+    already = previously_linked and (revision in pins or not pins and revision == old_head)
+    if quote not in (None, ''):
+        if already:
+            if quote != browser_status.displayed_excerpt(feature, snap):
+                raise ValueError('Cannot replace a confirmed excerpt')
+        elif not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in passage:
+            raise ValueError('Quote must match a passage from the selected revision')
+        feature.setdefault('source_revision_excerpts', {})[revision] = quote
     feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
     if revision not in pins:
         pins.append(revision)
@@ -275,8 +293,13 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
         confirmed = confirmed_facts(feature, linked)
         for slot in sorted(open_inputs):
             fact = confirmed.get(slot)
-            if fact is None or normalized[slot] == fact['value']:
+            if fact is None:
                 slots[slot] = dict(value=normalized[slot], source_item_id=ident, revision_id=revision)
+            elif normalized[slot] == fact['value']:
+                slots[slot] = fact
+                fact_pins = feature['source_revision_ids'].setdefault(fact['source_item_id'], [])
+                if fact['revision_id'] not in fact_pins:
+                    fact_pins.append(fact['revision_id'])
     scope = row.get('temporal_scope') if candidate is not None else None
     if scope and (feature.get('temporal_scope', {}).get('status') != 'in_period' or scope['status'] == 'in_period'):
         feature['temporal_scope'] = scope
@@ -291,5 +314,5 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
         changes[browser_status.CATALOG] = sorted(catalog, key=lambda f: f['feature_id'])
     effect = dict(feature_id=feature['feature_id'], source_id=sid, item=ident, revision=revision,
                   snapshot=browser_status.value_hash(snap), quote=browser_status.value_hash(browser_status.displayed_excerpt(feature, snap)),
-                  changed=kind == 'product_change' and not already)
+                  changed=kind == 'product_change' and not already and not cited_url)
     return ItemDelta(changes, before, effect)

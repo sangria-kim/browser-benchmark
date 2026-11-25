@@ -289,7 +289,11 @@ class FeatureItemTests(unittest.TestCase):
         effect, updated = self.apply(request)
         self.assertFalse(effect['changed'])
         self.assertIn(sibling, updated['feature'])
-        self.assertEqual(graph['source_item'], updated['source_item'])
+        self.assertEqual(graph['source_item'], [r for r in updated['source_item'] if r['record_status'] != 'reference'])
+        citation, = [r for r in updated['source_item'] if r['record_status'] == 'reference']
+        self.assertEqual(row['evidence']['url'], citation['evidence']['url'])
+        selected = next(f for f in updated['feature'] if f['canonical_key'] == choice['canonical_key'])
+        self.assertEqual(citation['source_item_id'], selected['feature_facts']['platform']['source_item_id'])
         updated_row = copy.deepcopy(row)
         tail = dict(row['revisions'][-1], revision_id='sr-new-product', version='161')
         updated_row['revisions'].append(tail)

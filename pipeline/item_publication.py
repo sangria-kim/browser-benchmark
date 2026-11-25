@@ -9,7 +9,7 @@ from urllib.parse import parse_qsl, unquote, urlsplit
 from pipeline import browser_status, collect, daily_status, weekly_status
 from pipeline.feature_enrichment import verified_candidate, verified_reference
 from pipeline.feature_item import ALIAS_PATH, item_delta
-from pipeline.official_reference import normalize_url
+from pipeline.official_reference import enterprise_archive_anchor, normalize_url
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, publication_commits, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant
 
@@ -94,7 +94,10 @@ def window_key(url):
         char = chr(int(match[0][1:], 16))
         return char if char.isascii() and (char.isalnum() or char in '-._~') else match[0].upper()
     path = re.sub(r'%[0-9a-fA-F]{2}', unreserved, parts.path)
-    return parts.netloc, path, tuple(sorted(parse_qsl(parts.query, keep_blank_values=True))), unquote(parts.fragment)
+    query = tuple(sorted(parse_qsl(parts.query, keep_blank_values=True)))
+    if enterprise_archive_anchor(url) is not None:
+        query = (('hl', 'en'),)
+    return parts.netloc, path, query, unquote(parts.fragment)
 
 
 def window_index(work, state, sid):
@@ -149,7 +152,7 @@ def checked_request(work, state, request):
         raise ValueError('A checkpoint selection needs its original run and source_id')
     candidates = checked_source(work, state, sid)
     if via_reference:
-        return verified_reference(work, state, selected), None
+        return verified_reference(work, state, selected)
     if not selected.get('source_item_id') or not selected.get('revision_id'):
         raise ValueError('A checkpoint selection needs the observed item and revision')
     matches = [r for r in candidates if r['source_item_id'] == selected['source_item_id']]
@@ -259,7 +262,8 @@ def save_item(repository, private_dir, request, *, standalone=False, manual=Fals
             sources, _ = collect.registered_sources(root, None, mode='manual')
         selected, candidate = checked_request(work, state, request)
         delta = item_delta(root, selected, sources, observed_at=datetime.now(timezone.utc).isoformat(), candidate=candidate)
-        fact_review = candidate is not None and candidate['item_key'] == 'feature-facts:' + str(selected.get('feature_id'))
+        fact_review = bool(request.get('reference_review')) or (
+            candidate is not None and candidate['item_key'] == 'feature-facts:' + str(selected.get('feature_id')))
         if state and state['mode'] in browser_status.MODES and (candidate is None or fact_review):
             sid = delta.effect['source_id']
             # A classifier's independent citation can arrive before this source.

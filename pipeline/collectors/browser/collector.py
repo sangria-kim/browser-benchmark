@@ -472,7 +472,7 @@ class BrowserCollector:
         status = self.publication_status(value)
         return status != 'after_cutoff' and (current or status != 'before_period')
 
-    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=()):
+    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=(), reviewed_document=False):
         self.check_time()
         observed_at = self.observed_at
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
@@ -535,7 +535,11 @@ class BrowserCollector:
             for anchor in window_anchors:
                 self.unit_windows.setdefault(url + '#' + quote(anchor, safe=''), set()).add(status)
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
-        if parsed:
+        if reviewed_document:
+            # This observation identifies verified publisher bytes without claiming
+            # a parsed product passage, release date or DOM location.
+            record.update(item_type='unknown', source_location=url, source_symbol=None)
+        elif parsed:
             record['item_content_sha256'] = digest(canonical([unit['section'], unit['text']]))
         old = self.records.get(ident)
         if old:
@@ -934,7 +938,8 @@ class BrowserCollector:
         self.state['latest_publication_date'] = max(dates, default=None)
 
     def collect_enterprise_archive(self):
-        archive = 'https://support.google.com/chrome/a/answer/10314655?hl=en'
+        from pipeline.official_reference import ENTERPRISE_ARCHIVE
+        archive = ENTERPRISE_ARCHIVE
         response = self.get(archive)
         root = Tree(response.text()).root
         if self.rolling_revision_after_cutoff(root, archive):
@@ -949,6 +954,9 @@ class BrowserCollector:
                     if anchor in dates and dates[anchor] != date:
                         raise ValueError('Conflicting enterprise release dates')
                     dates[anchor] = date
+        for anchor, day in dates.items():
+            if not self.allowed_date(day):
+                self.exclude_document(archive + '#' + anchor, day)
         panels = 0
         recognized_panels = 0
         for node in root.walk():
@@ -963,12 +971,10 @@ class BrowserCollector:
             recognized_panels += 1
             day = dates.get(anchor)
             in_scope = not day or self.allowed_date(day)
-            if not in_scope:
-                self.state['excluded_by_date'].append(archive + '#' + anchor)
-                if not self.fact_review or archive not in self.fact_review.links:
-                    continue
-            else:
+            if in_scope:
                 panels += 1
+            elif not self.fact_review or not self.fact_review.archive_targets(anchor):
+                continue
             for unit in blocks(panel):
                 unit['key'] = 'release:' + anchor + ':' + unit['key']
                 if in_scope:
