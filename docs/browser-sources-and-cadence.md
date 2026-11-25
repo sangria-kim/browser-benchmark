@@ -2,6 +2,8 @@
 
 활성 출처 전체와 채널별 수집 범위는 [출처 설정](../config/sources.yml)에 있습니다.
 
+일일 수집은 한국시간 07:00에 Chrome, Edge, Firefox, Safari, Whale의 활성 출처를 확인합니다. Brave, Vivaldi, Opera를 포함한 모든 활성 출처는 일요일 10:00 주간 대조에서 확인합니다. 필요할 때는 `--mode manual --source SOURCE_ID`로 세 브라우저의 출처를 수동 조사할 수 있습니다.
+
 기능의 공식 설명·릴리스·지원 조건을 확인하는 출처입니다. 공지 언어만으로 해당 지역에서 기능이 제공된다고 판단하지 않습니다.
 
 - https://blog.google/intl/ko-kr/

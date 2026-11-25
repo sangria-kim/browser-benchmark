@@ -32,12 +32,20 @@ git show "${sha}:$catalog" | jq '.[0] | {feature_id, title, source_item_ids}'
 `{"date":"2026-11-24","cutoff":"2026-11-24T07:00:00+09:00","status":"complete","collected_feature_count":1,"change_count":0}`
 
 - `collected_feature_count`: 분류 후 채택한 고유 기능 수입니다. 공식 근거만 보강한 기능도 포함합니다. 제외한 후보나 기존 전체 카탈로그는 세지 않습니다.
-- `complete` + `change_count: 0`: 오늘 업데이트 없음. 전체 활성 출처의 수집과 분류·검증이 끝났습니다.
+- `complete` + `change_count: 0`: 오늘 업데이트 없음. 일일 대상 출처의 수집과 분류·검증이 끝났습니다. Brave, Vivaldi, Opera는 주간 대조와 수동 수집에서 확인합니다.
 - `complete` + 양의 `change_count`: 확인된 실질 변경이 있는 기능 수입니다. 여러 근거가 한 기능을 설명하면 한 번만 셉니다.
 - `incomplete` + 두 건수 모두 `null`: 수집 또는 분류·검증 미완료입니다. 변경 없음으로 표시하지 않습니다.
 - 파일 없음, 아직 미병합 또는 미동기화: 오늘 결과 미반영입니다. 이전 날짜의 결과를 오늘의 결과로 쓰지 않습니다.
 
 Allowlist의 `daily_status`는 기능 근거와 별개입니다. 파일명과 날짜·마감·상태·건수 조합이 맞는 파일만 읽으세요.
+
+브라우저별 중간 결과를 읽는 소비자는 동일한 커밋의 `data/browser-status/<mode>/<UTC 시각>.json`을 함께 읽습니다. `scope.expected`에는 필수 출처가, `browsers`에는 브라우저별 완료 상태와 두 건수가 들어 있습니다. 일일 전체가 미완료여도 개별 완료 브라우저의 기능과 근거는 사용할 수 있습니다. [저장과 재시도 절차](pipeline/OPERATIONS.md#브라우저별-저장과-재시도)
+
+주간 전체 대조의 완료 기록은 별도 경로 `data/weekly-status/<UTC 시각>.json`에 있습니다.
+동일 마감에는 주간 전체 기록과 주간 브라우저별 기록 중 하나만 존재합니다.
+2026년 11월 29일 10:00 한국시간부터 `collected_feature_count`는 중복을 제거한 채택 기능 수입니다.
+그 이전 마감의 전역 기록은 과거 채택 수를 알 수 없어 `null`로 표시합니다.
+[주간 마감과 이전 형식 처리](pipeline/OPERATIONS.md#주간-마감과-이전-형식-처리)
 
 ## 기존 자료
 

@@ -7,6 +7,7 @@ import tempfile
 from pathlib import Path
 
 from pipeline.deduplicate import AliasIndex
+from pipeline.run_daily import pending_recovery, run_lock
 from pipeline.source_item_shards import EDGE_PART, MAX_SHARD_BYTES, edge_policy_paths, validate_edge_policy_shard
 from schemas.validate import ContractError, load_config, validate_dataset, validate_transition, validate_record, KINDS
 
@@ -80,6 +81,10 @@ def validate_graph(repository, replacements=None):
         aliases = load_config(path) if path.exists() else []
     AliasIndex(aliases, {k: {r[k + '_id'] for r in dataset[k]} for k in ('feature', 'experiment')},
                {s['source_item_id'] for s in dataset['source_item']})
+    # Every feature/evidence writer shares this validation. A later run may append
+    # evidence, but cannot replace a quote or revision certified at an earlier cutoff.
+    from pipeline.browser_status import validate_tree as validate_browser_status
+    validate_browser_status(Path(repository).resolve(), graph=dataset)
     return dataset
 
 
@@ -97,8 +102,11 @@ def publish(repository, replacements, private_dir, *, replace=os.replace, text_f
     all_files = dict(replacements, **text_files)
     if private == root or root in private.parents:
         raise ValueError('Transaction state must be outside the repository')
+    if any(rel.startswith(('data/browser-status/', 'data/daily-status/', 'data/weekly-status/')) for rel in all_files):
+        raise ContractError('Collection receipts require the collection publication transaction')
     private.mkdir(parents=True, exist_ok=True)
-    with open(private / 'normalize.lock', 'a') as lock:
+    with run_lock(root) as writer, open(private / 'normalize.lock', 'a') as lock:
+        pending_recovery(root, writer)
         fcntl.flock(lock, fcntl.LOCK_EX)
         initial = {str(p.relative_to(root)): p.read_bytes() for pattern in PATHS.values() for p in root.glob(pattern)}
         initial.update({p: (root / p).read_bytes() if (root / p).exists() else None for p in all_files})

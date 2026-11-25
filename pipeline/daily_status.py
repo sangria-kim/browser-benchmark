@@ -3,6 +3,7 @@ from datetime import time, timedelta, timezone
 import json
 from pathlib import Path
 import re
+import subprocess
 
 from pipeline.temporal import instant
 
@@ -57,18 +58,53 @@ def validate_receipt(path, value):
         raise ValueError('Invalid daily status date, cutoff or state')
 
 
-def validate_tree(root):
+def validate_tree(root, *, base=None, complete_history=False):
+    from pipeline import browser_status
+    browser_status.validate_tree(root.resolve(), base=base, complete_history=complete_history)
+
+
+def tree_paths(root):
     folder = root / FOLDER
-    if folder.is_symlink():
+    if folder.is_symlink() or folder.exists() and not folder.is_dir():
         raise ValueError('Invalid daily status folder')
-    if not folder.exists():
+    paths = set()
+    if folder.exists():
+        for target in folder.iterdir():
+            rel = target.relative_to(root).as_posix()
+            if target.is_symlink() or not target.is_file() or not status_path(rel):
+                raise ValueError('Invalid daily status file')
+            paths.add(rel)
+    return paths
+
+
+def check_committed(root, rel, raw, *, ref='HEAD', tracked=None):
+    """Preserve the committed bytes of a complete day and the cutoff of an incomplete day."""
+    from pipeline.run_daily import git
+    if tracked is None:
+        tracked = (root / '.git').exists() and git(root, 'ls-tree', ref, '--', rel)
+    if not tracked:
         return
-    if not folder.is_dir():
-        raise ValueError('Invalid daily status folder')
-    for target in folder.iterdir():
-        if target.is_symlink() or not target.is_file():
-            raise ValueError('Invalid daily status file')
-        validate_receipt(target.relative_to(root).as_posix(), json.loads(target.read_bytes()))
+    if raw is None:
+        raise ValueError('Committed daily status is missing: ' + rel)
+    prior = subprocess.check_output(['git', '-C', str(root), 'show', f'{ref}:{rel}'], stderr=subprocess.PIPE)
+    if prior != raw:
+        value = json.loads(raw)
+        validate_receipt(rel, value)
+        if previous_receipt(rel, prior, value['cutoff'])['status'] == 'complete':
+            raise ValueError('Cannot change a committed complete daily status: ' + rel)
+
+
+def read_current(root, cutoff):
+    # Previously published 08:00 results can still be read and replayed.
+    rel, expected = _receipt(instant(cutoff).astimezone(KST), None, None)
+    target = root / rel
+    if target.is_symlink() or target.parent.is_symlink() or root not in target.resolve().parents:
+        raise ValueError('Unsafe daily status target')
+    raw = target.read_bytes() if target.exists() else None
+    from pipeline import receipt_history
+    receipt_history.verify_publication(root, rel)
+    check_committed(root, rel, raw)
+    return raw, previous_receipt(rel, raw, expected['cutoff']) if raw is not None else None
 
 
 def previous_receipt(rel, raw, cutoff):
@@ -85,17 +121,12 @@ def add_receipt(root, changes, before, cutoff, count, collected_count):
     from pipeline.collectors.browser.collector import json_bytes
 
     rel, value = receipt(cutoff, count, collected_count)
-    target = root / rel
-    if target.is_symlink() or target.parent.is_symlink() or root not in target.resolve().parents:
-        raise ValueError('Unsafe daily status target')
-    raw = target.read_bytes() if target.exists() else None
-    if raw is not None:
-        previous = previous_receipt(rel, raw, value['cutoff'])
-        if previous['status'] == 'complete':
-            if count is not None and (previous != value or any(
-                    digest(json_bytes(rows)) != before[name] for name, rows in changes.items())):
-                raise ValueError('Cannot change data after the daily status is complete')
-            return
+    raw, previous = read_current(root, cutoff)
+    if previous is not None and previous['status'] == 'complete':
+        if count is not None and (previous != value or any(
+                digest(json_bytes(rows)) != before[name] for name, rows in changes.items())):
+            raise ValueError('Cannot change data after the daily status is complete')
+        return
     before[rel] = digest(raw) if raw is not None else None
     changes[rel] = value
 
@@ -138,4 +169,8 @@ def classified_decisions(classification, inventory):
 
 
 if __name__ == '__main__':
-    validate_tree(Path(__file__).resolve().parents[1])
+    import argparse
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--base-commit', help='Previous push or PR base to check collection receipt immutability')
+    base = parser.parse_args().base_commit
+    validate_tree(Path(__file__).resolve().parents[1], base=base, complete_history=True)

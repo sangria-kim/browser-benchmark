@@ -8,6 +8,7 @@ import hashlib
 import json
 import os
 from pathlib import Path
+import re
 import stat
 import subprocess
 import tempfile
@@ -15,6 +16,7 @@ import tempfile
 
 # Only these outputs may replace public files. All other inputs are read-only.
 OUTPUTS = ('data/source-items/', 'data/catalog/features/')
+CODE_REPOSITORY = Path(__file__).resolve().parents[1]
 
 
 def digest(value):
@@ -55,6 +57,25 @@ def read(path):
 
 def git(root, *args):
     return subprocess.check_output(['git', '-C', str(root), *args], stderr=subprocess.PIPE).decode().strip()
+
+
+def publication_commits(root):
+    code = git(CODE_REPOSITORY, 'rev-parse', 'HEAD')
+    return code, git(root, 'rev-parse', 'HEAD') if (root / '.git').exists() else code
+
+
+def predates_browser_pins(commit):
+    """Identify the producing collector from its local Git tree, including on shallow clones."""
+    if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}|[0-9a-f]{64}', commit):
+        return False
+    try:
+        if git(CODE_REPOSITORY, 'cat-file', '-t', commit) != 'commit':
+            return False
+        entries = git(CODE_REPOSITORY, 'ls-tree', '--name-only', commit, '--',
+                      'pipeline/collect.py', 'pipeline/browser_status.py')
+    except subprocess.CalledProcessError:
+        return False
+    return entries.splitlines() == ['pipeline/collect.py']
 
 
 def private_input_inventory(directory):
@@ -114,6 +135,41 @@ def commit_candidate(root):
     return git(root, 'rev-parse', 'HEAD')
 
 
+def repository_head(root):
+    if not (root / '.git').exists():
+        return None
+    head = subprocess.run(['git', '-C', str(root), 'rev-parse', '--verify', '--quiet', 'HEAD'],
+                          capture_output=True, text=True)
+    if head.returncode == 1:  # Unborn repository.
+        return None
+    head.check_returncode()
+    return head.stdout.strip()
+
+
+def check_rollback_commit(root, state, files):
+    """An external commit can accept some or all files of an interrupted writer."""
+    head = repository_head(root)
+    if head == state.get('publication_base'):
+        return
+    if head is None:
+        raise RuntimeError('Recovery conflict; publication base is unavailable')
+    affected = set(files)
+    base = state.get('publication_base')
+    if base is not None:
+        if not re.fullmatch(r'[a-f0-9]{40}|[a-f0-9]{64}', base):
+            raise ValueError('Invalid recovery comparison commit')
+        names = git(root, 'diff', '--no-renames', '--name-only', '-z', base, head, '--', *files)
+        affected.intersection_update(names.split('\0'))
+    for rel in affected:
+        present = git(root, 'ls-tree', head, '--', rel)
+        committed = (digest(subprocess.check_output(['git', '-C', str(root), 'show', f'{head}:{rel}']))
+                     if present else None)
+        # Older journals have no comparison commit. Protect a proven accepted
+        # after-image without treating an unrelated baseline as a new commit.
+        if committed != files[rel]['before'] and ('publication_base' in state or committed == files[rel]['after']):
+            raise RuntimeError('Recovery conflict; Git accepted a transaction output: ' + rel)
+
+
 def recover_publication(root, run_dir):
     journal_path = run_dir / 'publication.json'
     if not journal_path.exists():
@@ -126,19 +182,26 @@ def recover_publication(root, run_dir):
         raise ValueError('Recovery journal belongs to another repository')
     # Pre-feature-only runners can leave a pending journal in the same lock.
     permitted = ('data/', 'reports/generated/') if state.get('version') in (1, 2) else OUTPUTS
+    from pipeline import receipt_history
     from pipeline.daily_status import status_path
-    receipt_allowed = state.get('version') == 4
+    from pipeline.browser_status import is_detail, safe_path
+    from pipeline.weekly_status import is_receipt as weekly_path
+    version = state.get('version')
+    receipt_allowed = version in (4, 5)
     expected = state['stages']['validate']['outputs']
     changed = {p for p in set(state['inputs']) | set(expected) if state['inputs'].get(p) != expected.get(p)}
-    if set(journal['files']) != changed:
+    if set(journal['files']) != changed or (version == 6 and sum(weekly_path(p) for p in changed) != 1):
         raise ValueError('Recovery journal inventory mismatch')
     for rel, row in journal['files'].items():
-        allowed = rel.startswith(permitted) or (receipt_allowed and status_path(rel))
+        allowed = rel.startswith(permitted) or (receipt_allowed and status_path(rel)) or (version == 5 and is_detail(rel))
+        allowed = allowed or (version == 6 and weekly_path(rel))
         if (not allowed or Path(rel).is_absolute() or '..' in Path(rel).parts
                 or row != {'before': state['inputs'].get(rel), 'after': expected.get(rel)}
                 or row['after'] is None):
             raise ValueError('Unsafe recovery journal entry')
         backup = run_dir / 'backup' / rel
+        if version in (5, 6):
+            safe_path(run_dir, 'backup/' + rel)
         if row['before'] is not None and (backup.is_symlink() or digest(backup.read_bytes()) != row['before']):
             raise ValueError('Recovery backup checksum mismatch')
     # Validate every path before rolling back any. Preserve third-party edits.
@@ -147,9 +210,15 @@ def recover_publication(root, run_dir):
         if (path.is_symlink() or root not in path.resolve().parents
                 or receipt_allowed and status_path(rel) and path.parent.is_symlink()):
             raise RuntimeError('Unsafe recovery target: ' + rel)
+        if version in (5, 6):
+            safe_path(root, rel)
         current = digest(path.read_bytes()) if path.exists() else None
         if current not in (row['before'], row['after']):
             raise RuntimeError('Recovery conflict; preserve journal and reconcile: ' + rel)
+    for rel in changed:
+        if status_path(rel) or weekly_path(rel) or is_detail(rel):
+            receipt_history.verify_publication(root, rel)
+    check_rollback_commit(root, state, journal['files'])
     for rel, row in journal['files'].items():
         path = root / rel
         if row['before'] is None:
@@ -174,26 +243,90 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     """Validate the graph, then journal only the files that will change."""
     from pipeline.normalize import validate_graph
     from pipeline.collectors.browser.collector import json_bytes
-    from pipeline.daily_status import previous_receipt, scheduled_cutoff, status_path, validate_receipt
+    from pipeline.daily_status import previous_receipt, read_current as current_daily_receipt, scheduled_cutoff, status_path, validate_receipt
+    from pipeline import browser_status, receipt_history, weekly_status
+    whole = {rel for rel in changes if weekly_status.is_receipt(rel)}
+    details = {rel for rel in changes if browser_status.is_detail(rel)}
+    if len(details) + len(whole) > 1:
+        raise ValueError('Publish one weekly or browser result at a time')
+    for rel in whole:
+        result = changes[rel]
+        weekly_status.validate(rel, result)
+        weekly_status.require_unclaimed(root, result['scope'], scoped=False)
+        browser_status.check_registry(root, result['scope'])
+    for rel in details:
+        detail = changes[rel]
+        browser_status.validate_detail(rel, detail)
+        previous = browser_status.read_current(root, rel)
+        first_browser = previous is None
+        if detail['scope']['mode'] == 'weekly_reconcile':
+            weekly_status.require_unclaimed(root, detail['scope'], scoped=True)
+        else:
+            _, day = current_daily_receipt(root, detail['scope']['cutoff'])
+            if first_browser and day is not None and day['status'] == 'complete':
+                raise ValueError('Cannot add browser outcomes after the daily status is complete')
+        if previous is None:
+            previous = browser_status.initial(detail['scope'])
+        browser_status.transition(previous, detail)
+        browser_status.check_registry(root, detail['scope'])
+        browser_status.check_aggregate(root, detail, changes)
     receipts = {rel for rel in changes if status_path(rel)}
+    if whole and receipts:
+        raise ValueError('Whole weekly publication cannot write a daily receipt')
     for rel in receipts:
         validate_receipt(rel, changes[rel])
         scheduled_cutoff(changes[rel]['cutoff'])
+        _, accepted = current_daily_receipt(root, changes[rel]['cutoff'])
+        if accepted is not None and accepted['status'] == 'complete' and (accepted != changes[rel] or any(
+                digest(json_bytes(rows)) != before[name] for name, rows in changes.items())):
+            raise ValueError('Cannot change data after the daily status is complete')
+        detail_rel = browser_status.detail_path('daily', changes[rel]['cutoff'])
+        if detail_rel not in details and browser_status.read_current(root, detail_rel) is not None:
+            raise ValueError('Finish this daily cutoff with --save-browser')
         if (root / rel).parent.is_symlink():
             raise ValueError('Invalid daily status folder')
-    feature_changes = {rel: value for rel, value in changes.items() if rel not in receipts}
+    status_files = receipts | details | whole
+    feature_changes = {rel: value for rel, value in changes.items() if rel not in status_files}
     # Failed collection may publish an incomplete status without touching feature data.
-    if feature_changes or not receipts or any(changes[rel]['status'] == 'complete' for rel in receipts):
-        validate_graph(root, feature_changes)
+    if whole or details or feature_changes or not receipts or any(changes[rel]['status'] == 'complete' for rel in receipts):
+        graph = validate_graph(root, feature_changes)
+        for rel in whole:
+            result = changes[rel]
+            weekly_status.check_prior_evidence(root, result['scope'], graph, feature_changes)
+            weekly_status.check_features(result, {f['feature_id']: f for f in graph['feature']})
+        for rel in details:
+            if first_browser and changes[rel]['scope']['mode'] == 'weekly_reconcile':
+                weekly_status.check_prior_evidence(root, changes[rel]['scope'], graph, feature_changes)
+            browser_status.check_effects(changes[rel], browser_status.effect_index(graph))
+            browser_status.check_delta(root, previous, changes[rel], graph, feature_changes)
     payloads = {p: json_bytes(rows) for p, rows in changes.items()}
     payloads = {p: raw for p, raw in payloads.items() if digest(raw) != before[p]}
+
+    def check_dependencies(expected):
+        marker = read(browser_status.safe_path(txn, 'scope.json'))
+        if publication_commits(root) != (marker['code_commit'], marker['base_commit']):
+            raise ValueError('Browser publication commit changed; use a fresh collection')
+        for rel, checksum in expected.items():
+            path = browser_status.safe_path(root, rel)
+            if (digest(path.read_bytes()) if path.exists() else None) != checksum:
+                raise ValueError('Concurrent edit to browser publication input: ' + rel)
+
+    def check_receipt_commits():
+        for rel in receipts:
+            current_daily_receipt(root, changes[rel]['cutoff'])
+        # A depth change can hide parents without changing HEAD or the output bytes.
+        for rel in details | whole:
+            receipt_history.verify_publication(root, rel)
+
+    if details or whole:
+        check_dependencies(before)
     if not payloads:
         return
     after = {p: digest(raw) for p, raw in payloads.items()}
     inputs = {p: before[p] for p in payloads}
     for rel in payloads:
         path = root / rel
-        if path.is_symlink() or root not in path.resolve().parents or not (rel.startswith(OUTPUTS) or rel in receipts):
+        if path.is_symlink() or root not in path.resolve().parents or not (rel.startswith(OUTPUTS) or rel in status_files):
             raise ValueError('Invalid feature output path')
         old = path.read_bytes() if path.exists() else None
         if (digest(old) if old is not None else None) != before[rel]:
@@ -202,7 +335,9 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             if rel in receipts and previous_receipt(rel, old, changes[rel]['cutoff'])['status'] == 'complete':
                 raise ValueError('Cannot change data after the daily status is complete')
             durable(txn / 'backup' / rel, old)
-    state = dict(version=4 if receipts else 3, repository=str(root), inputs=inputs, stages={'validate': {'outputs': after}})
+    version = 6 if whole else 5 if details else 4 if receipts else 3
+    state = dict(version=version, repository=str(root), publication_base=repository_head(root),
+                 inputs=inputs, stages={'validate': {'outputs': after}})
     durable(txn / 'state.json', encoded(state))
     journal = dict(status='writing', files={p: dict(before=inputs[p], after=after[p]) for p in after})
     durable(txn / 'publication.json', encoded(journal))
@@ -212,6 +347,9 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
     writer.flush()
     os.fsync(writer.fileno())
     try:
+        check_receipt_commits()
+        if details or whole:
+            check_dependencies(before)
         for rel, raw in payloads.items():
             path = root / rel
             if (digest(path.read_bytes()) if path.exists() else None) != inputs[rel]:
@@ -219,6 +357,9 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable):
             replace(path, raw)
         if any(digest((root / rel).read_bytes()) != after[rel] for rel in after):
             raise ValueError('Concurrent edit after feature publication')
+        if details or whole:
+            check_dependencies({**before, **after})
+        check_receipt_commits()
         journal['status'] = 'published'
         durable(txn / 'publication.json', encoded(journal))
     except Exception:

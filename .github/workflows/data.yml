@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          filter: blob:none
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -18,8 +21,18 @@ jobs:
       - run: python -m unittest discover -s schemas/tests -v
       - name: Validate committed records and references
         run: python -c "from pipeline.normalize import validate_graph; validate_graph('.')"
-      - name: Validate daily status receipts
-        run: python -m pipeline.daily_status
+      - name: Validate daily and browser status receipts
+        env:
+          BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+        run: |
+          if [[ -z "$BASE" || "$BASE" =~ ^0+$ ]]; then
+            python -m pipeline.daily_status
+          else
+            if ! git cat-file -e "$BASE^{commit}" 2>/dev/null; then
+              git fetch --no-tags --filter=blob:none origin "$BASE"
+            fi
+            python -m pipeline.daily_status --base-commit "$BASE"
+          fi
       - name: Test data processing
         run: |
           for suite in tests/test_*.py; do
