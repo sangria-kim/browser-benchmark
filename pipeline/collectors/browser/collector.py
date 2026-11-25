@@ -622,7 +622,7 @@ class BrowserCollector:
             if version is None:
                 version_match = DOCUMENT_VERSION.search(unit['section'] + ' ' + document_title)
                 version = version_match[1] if version_match else None
-            section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
+            section_day = None if timestamp or publication_verified else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
                       version=version, channel=channel, modified=modified)
             if edge_policy and unit['parsed']:

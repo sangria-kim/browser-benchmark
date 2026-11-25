@@ -1,7 +1,8 @@
 """Join Apple's numbered release inventory to WebKit's canonical article evidence."""
 import re
+from urllib.parse import urljoin
 
-from .html import Tree, boundary, links, next_links, publication_value, reconcile_modification
+from .html import Tree, boundary, next_links, publication_value, reconcile_modification
 
 
 APPLE_INDEX = 'https://developer.apple.com/documentation/safari-technology-preview-release-notes.md'
@@ -48,15 +49,44 @@ def category_page(response, page, urls, detail_pattern):
     posts = [n for n in root.walk() if n.attrs.get('id') == 'posts']
     if len(posts) != 1 or '</html>' not in text.lower():
         raise ValueError('Incomplete WebKit Technology Preview category')
-    cards = [(url, label) for url, label, node in links(posts[0], response.url) if node.has_class('tile-link')]
+    for node in root.walk():
+        if node.tag in ('button', 'a') or node.attrs.get('role') == 'button':
+            label = ' '.join((node.text(), node.attrs.get('aria-label', ''), node.attrs.get('class', '')))
+            if re.search(r'(?:load|show|view)[ -]+(?:more|older)|더 보기', label, re.I):
+                raise ValueError('Unsupported dynamic WebKit category pagination')
+    # Validate each raw card before resolving its URL. A link iterator can
+    # discard a malformed release and turn incomplete coverage into success.
+    cards = [node for node in posts[0].walk() if node.has_class('tile-link')]
     if not cards:
-        raise ValueError('WebKit Technology Preview category has no release cards')
-    for url, label in cards:
-        match = detail_pattern.fullmatch(url)
+        raise ValueError('WebKit Technology Preview category has no cards')
+    for tile in (n for n in posts[0].walk() if n.has_class('tile')):
+        if sum(n.has_class('tile-link') for n in tile.walk()) != 1:
+            raise ValueError('Incomplete WebKit Technology Preview category card')
+    page_versions = set()
+    for card in cards:
+        href = card.attrs.get('href')
+        label = card.text()
+        if card.tag != 'a' or not href or not label:
+            raise ValueError('Missing WebKit Technology Preview card title or URL')
+        url = urljoin(response.url, href)
         version = title_version(label)
+        match = detail_pattern.fullmatch(url)
+        if not match and version is None:
+            # A non-release news tile can share the category. Unknown release
+            # layouts must not silently become unrelated news.
+            if (re.fullmatch(r'https://webkit\.org/blog/\d+/[a-z0-9-]+/', url)
+                    and not re.search(r'release notes|technology preview.*(?:\d|release)', label, re.I)
+                    and not re.search(r'technology-preview.*\d|release-notes', url)):
+                continue
         if not match or version != int(match[1]) or (version in urls and urls[version] != url):
             raise ValueError('Unverified WebKit Technology Preview card: ' + url)
         urls[version] = url
+        page_versions.add(version)
+    for n in posts[0].walk():
+        if n.tag in ('h1', 'h2', 'h3', 'a'):
+            version = title_version(n.text())
+            if version is not None and version not in page_versions:
+                raise ValueError('WebKit release heading has no matching card URL')
     nav = [n for n in root.walk() if n.tag == 'nav' and n.has_class('pagination')]
     if len(nav) != 1:
         raise ValueError('Missing WebKit category pagination')

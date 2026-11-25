@@ -139,6 +139,14 @@ class PreviewTests(unittest.TestCase):
                          {(r['evidence']['url'], r['published_at']) for r in rows})
         self.assertTrue(all(r['temporal_scope']['precision'] == 'day' for r in rows))
 
+    def test_dated_section_cannot_redate_a_verified_release(self):
+        self.pages[release_url(1)] = article(1, None).replace('</h1>', '</h1><div class="byline"><p class="date">Nov 2, 2026</p></div>').replace(
+            '<p id="tabs">', '<h2>Compared with Feb 1, 2026</h2><p id="tabs">')
+        _, rows = self.run_cli('dated-heading')
+        row, = rows
+        self.assertEqual(('2026-11-02', 'day', 'in_period'),
+                         (row['published_at'], row['temporal_scope']['precision'], row['temporal_scope']['status']))
+
     def test_uncovered_older_version_and_conflicting_or_truncated_evidence(self):
         self.pages[APPLE_INDEX] = apple([1, 2], year=2020)
         self.pages[CATEGORY] = page([2])
@@ -162,6 +170,24 @@ class PreviewTests(unittest.TestCase):
                 result, rows = self.run_cli(name, expected=2)
                 self.assertTrue(result['errors'])
                 self.assertEqual([], rows)
+
+    def test_archive_rejects_unusable_release_cards_and_dynamic_pagination(self):
+        first = page([1])
+        for name, attributes in [('insecure', f'href="{release_url(2).replace("https:", "http:")}"'),
+                                 ('missing-link', '')]:
+            with self.subTest(name=name):
+                second = f'<a class="tile-link" {attributes}>Release Notes for Safari Technology Preview 2</a>'
+                self.pages[CATEGORY] = first.replace('</div>', second + '</div>', 1)
+                state, _ = self.run_cli(name, expected=2)
+                self.assertTrue(state['pending'])
+        self.pages[CATEGORY] = first.replace('</div>', '<button>Load more</button></div>', 1)
+        state, _ = self.run_cli('load-more', expected=2)
+        self.assertIn('pagination', str(state['errors']))
+        news = '<a class="tile-link" href="https://webkit.org/blog/999/engine-news/">A WebKit engineering update</a>'
+        self.pages[CATEGORY] = first.replace('</div>', news + '</div>', 1)
+        _, rows = self.run_cli('news-card')
+        self.assertEqual([release_url(1)], [r['evidence']['url'] for r in rows])
+        self.assertNotIn('https://webkit.org/blog/999/engine-news/', self.calls)
 
     def test_limits_and_revalidation_on_resume(self):
         registry = json.loads(self.registry.read_text())
