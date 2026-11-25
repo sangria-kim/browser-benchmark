@@ -1,6 +1,8 @@
 import contextlib
 import copy
-from io import StringIO
+from email.message import Message
+from io import BytesIO, StringIO
+from urllib.error import HTTPError
 import json
 from pathlib import Path
 import runpy
@@ -10,6 +12,7 @@ import unittest
 from unittest.mock import patch
 
 from pipeline.collectors.browser import BrowserCollector, Response
+from pipeline.collectors.browser.transport import HTTPTransport
 from pipeline.collectors.browser.safari_preview import (
     APPLE_INDEX, CATEGORY, RELEASE_ONE_BUNDLE, RELEASE_ONE_DOCC, RELEASE_ONE_MARKDOWN, RELEASE_ONE_TITLE)
 
@@ -64,8 +67,11 @@ class PreviewTests(unittest.TestCase):
         self.proof_calls = []
         self.proof = {}
 
-    def request(self, url, *, direct=False, if_modified_since=None):
+    def request(self, url, *, direct=False, if_modified_since=None, before_send=None):
         if direct:
+            if getattr(self, 'real_direct_transport', False):
+                return HTTPTransport()(url, direct=True, if_modified_since=if_modified_since, before_send=before_send)
+            before_send()
             self.proof_calls.append((url, if_modified_since))
             result = self.proof[url, if_modified_since]
             if isinstance(result, Exception):
@@ -227,6 +233,9 @@ class PreviewTests(unittest.TestCase):
             self.proof[url, None] = Response(url, body.encode(), 200, {
                 'Content-Type': media, 'ETag': tag, 'Last-Modified': 'Thu, 06 Aug 2026 02:56:49 GMT', 'Vary': 'Accept-Encoding'})
             self.proof[url, since] = Response(url, b'', 304, {'ETag': tag, 'Vary': 'Accept-Encoding'})
+        for response in self.proof.values():
+            response.observed_at = '2026-11-25T12:00:52Z'
+            response.headers.update({'Date': 'Wed, 25 Nov 2026 12:00:50 GMT', 'Age': '2', 'Cache-Control': 'public, max-age=300'})
         return since
 
     def test_release_one_four_live_requests_and_only_daily_coverage(self):
@@ -288,6 +297,80 @@ class PreviewTests(unittest.TestCase):
                 self.assertEqual(1, len(state['errors']))
                 self.assertIn('#stp-release-1', state['pending'][0])
                 self.assertNotIn('release_one_exclusion', state['preview_inventory'])
+
+    def test_release_one_stale_freshness_or_duplicate_response_fields_block(self):
+        since = self.configure_release_one()
+        original = copy.deepcopy(self.proof)
+        for i, (condition, headers) in enumerate([
+                (None, {'Date': 'Mon, 23 Nov 2026 12:00:50 GMT', 'Age': '7200', 'Cache-Control': 'max-age=300, stale-if-error=14400',
+                        'Warning': '110 cache "Response is stale"'}),
+                (since, {'Date': 'Tue, 24 Nov 2026 21:59:59 GMT'}),
+                (since, {'Date': 'Wed, 25 Nov 2026 12:10:00 GMT'}),
+                (None, {'Age': '301'}), (since, {'Age': 'invalid'}), (since, {'Age': '300'}),
+                (since, {'Warning': '111 cache "Revalidation failed"'}),
+                (None, {'Cache-Status': 'edge; hit; ttl=-5'}), (since, {'Expires': 'Mon, 23 Nov 2026 12:00:50 GMT'}),
+                (since, {'ETag': '"wrong"', 'etag': '"md"'}),
+                (None, {'last-modified': 'Thu, 06 Aug 2026 02:56:49 GMT'}),
+                (since, {'date': 'Wed, 25 Nov 2026 12:00:50 GMT'}),
+                (None, {'content-type': 'text/markdown'})]):
+            with self.subTest(case=i):
+                self.proof = copy.deepcopy(original)
+                self.proof[RELEASE_ONE_MARKDOWN, condition].headers.update(headers)
+                state, rows = self.run_cli('stale-' + str(i), expected=2)
+                self.assertTrue(state['pending'])
+                self.assertEqual([], rows)
+                self.assertNotIn('release_one_exclusion', state['preview_inventory'])
+
+    def test_real_direct_transport_charges_retries_and_keeps_duplicate_wire_headers(self):
+        since = self.configure_release_one()
+        self.real_direct_transport = True
+        wire = []
+        duplicate = False
+        stop_after_first = False
+        clock = [0]
+
+        def send(request, timeout):
+            nonlocal duplicate
+            fields = {k.lower(): v for k, v in request.header_items()}
+            self.assertEqual(('GET', 'no-cache', 'identity'), (request.get_method(), fields['cache-control'], fields['accept-encoding']))
+            self.assertNotIn('if-none-match', fields)
+            key = (request.full_url, fields.get('if-modified-since'))
+            wire.append(key)
+            if len(wire) == 1:
+                if stop_after_first:
+                    clock[0] += 901
+                raise HTTPError(key[0], 429, 'Rate limit', Message(), BytesIO())
+            fixture = self.proof[key]
+            headers = Message()
+            for k, v in fixture.headers.items():
+                headers[k] = v
+            if key[1] is not None:
+                if duplicate:
+                    headers['etag'] = headers['ETag']
+                raise HTTPError(key[0], 304, 'Not modified', headers, BytesIO())
+            result = BytesIO(fixture.body)
+            result.url, result.status, result.headers = key[0], fixture.status, headers
+            return result
+
+        with patch('pipeline.collectors.browser.transport.build_opener') as opener, patch('pipeline.collectors.browser.transport.time.sleep'), \
+                patch('pipeline.collectors.browser.collector.monotonic', side_effect=lambda: clock[0]), \
+                patch('pipeline.collectors.browser.safari_preview.datetime') as clock_timestamp:
+            from datetime import datetime
+            clock_timestamp.now.return_value = datetime.fromisoformat('2026-11-25T12:00:52+00:00')
+            opener.return_value.open.side_effect = send
+            state, _ = self.run_cli('wire-retry')
+            self.assertEqual(5, len(wire))
+            self.assertEqual(6, state['documents'])  # One WebKit detail plus five Apple attempts.
+            self.assertEqual([2, 1, 1, 1], [v['http_attempts'] for v in state['preview_inventory']['release_one_requests']])
+            wire.clear()
+            duplicate = True
+            state, _ = self.run_cli('wire-duplicate', expected=2)
+            self.assertIn('Duplicate Apple release-1 HTTP header: etag', str(state['errors']))
+            wire.clear()
+            stop_after_first = True
+            state, _ = self.run_cli('wire-deadline', expected=2)
+            self.assertEqual([(RELEASE_ONE_MARKDOWN, None)], wire)
+            self.assertIn('time budget', str(state['errors']))
 
     def test_release_one_budget_resume_fresh_gets_and_cache_integrity(self):
         since = self.configure_release_one()

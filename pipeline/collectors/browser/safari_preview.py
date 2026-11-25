@@ -210,26 +210,81 @@ def release_one_docc(response):
     return lines
 
 
+PROOF_HEADERS = {'date', 'age', 'cache-control', 'expires', 'cache-status', 'warning', 'etag', 'last-modified',
+                 'content-type', 'content-encoding', 'content-length', 'content-range', 'vary'}
+
+
+def http_date(value):
+    result = parsedate_to_datetime(value or '')
+    if result.tzinfo is None or format_datetime(result, usegmt=True) != value:
+        raise ValueError('Invalid Apple release-1 HTTP date')
+    return result
+
+
+def verify_freshness(headers, observed, cutoff):
+    issued = http_date(headers.get('date'))
+    raw_age = headers.get('age', '0')
+    if not re.fullmatch(r'[0-9]+', raw_age):
+        raise ValueError('Invalid Apple release-1 HTTP Age')
+    age = max(int(raw_age), (observed - issued).total_seconds())
+    if issued > observed or age > (observed - cutoff).total_seconds():
+        raise ValueError('Apple release-1 response does not establish freshness at cutoff')
+    if (re.search(r'(?:^|,)\s*11[0-3]\b', headers.get('warning', ''))
+            or re.search(r'\b(?:fwd\s*=\s*stale\b|ttl\s*=\s*-\d+)', headers.get('cache-status', ''), re.I)):
+        raise ValueError('Stale Apple release-1 HTTP response')
+
+    # Compare both the age reported by the cache and the apparent age at the
+    # client. An age equal to the freshness lifetime is already stale.
+    lifetimes = {}
+    for directive in headers.get('cache-control', '').lower().split(','):
+        name, _, value = directive.strip().partition('=')
+        if name.strip() in ('max-age', 's-maxage'):
+            name = name.strip()
+            if name in lifetimes or not re.fullmatch(r'[0-9]+', value.strip()):
+                raise ValueError('Ambiguous Apple release-1 cache lifetime')
+            lifetimes[name] = int(value.strip())
+    if 'expires' in headers:
+        lifetimes['expires'] = (http_date(headers['expires']) - issued).total_seconds()
+    if not lifetimes or age >= min(lifetimes.values()):
+        raise ValueError('Insufficient Apple release-1 cache freshness')
+
+
 def apple_proof_request(collector, url, since, journal):
-    # Each request, including each live 304 on resume, consumes a detail slot.
-    if not collector.budget(url, 'documents'):
-        raise ValueError('Apple release-1 proof request exceeds source budget')
-    collector.state['documents'] += 1
     attempts = collector.state['preview_inventory'].setdefault('release_one_requests', [])
-    event = {'url': url, 'if_modified_since': since}
+    event = {'url': url, 'if_modified_since': since, 'http_attempts': 0, 'request_cache_control': 'no-cache'}
     attempts.append(event)
-    response = collector.transport(url, direct=True, if_modified_since=since)
-    headers = {k.lower(): v for k, v in response.headers.items()}
-    facts = dict(event, final_url=response.url, status=response.status, sha256=collector.cache_body(response.body, verify=True),
+    progress = collector.progress['apple_release_one']
+
+    def before_send():
+        # Charge actual transport attempts, including retries after HTTP 429.
+        if not collector.budget(url, 'documents'):
+            raise ValueError('Apple release-1 proof request exceeds source budget')
+        collector.state['documents'] += 1
+        event['http_attempts'] += 1
+        progress['http_attempts'] = progress.get('http_attempts', 0) + 1
+        collector.write_progress()
+
+    response = collector.transport(url, direct=True, if_modified_since=since, before_send=before_send)
+    if not event['http_attempts']:
+        raise ValueError('Unaccounted Apple release-1 HTTP request')
+    headers = {}
+    for name, value in response.headers.items():
+        name = name.lower()
+        if name in PROOF_HEADERS:
+            if name in headers:
+                raise ValueError('Duplicate Apple release-1 HTTP header: ' + name)
+            headers[name] = value
+    facts = dict(url=url, if_modified_since=since, final_url=response.url, status=response.status, sha256=collector.cache_body(response.body, verify=True),
                  etag=headers.get('etag'), last_modified=headers.get('last-modified'), content_type=headers.get('content-type'),
                  content_encoding=headers.get('content-encoding'), vary=headers.get('vary'))
-    event.update(facts, observed_at=response.observed_at or datetime.now(timezone.utc).isoformat())
+    event.update(facts, observed_at=response.observed_at or datetime.now(timezone.utc).isoformat(),
+                 request_cache_control='no-cache', response_headers=headers)
+    verify_freshness(headers, instant(event['observed_at']), instant(collector.cutoff))
     key = url + ' ' + (since or 'full')
     prior = journal.get(key)
     if prior and {k: prior.get(k) for k in facts} != facts:
         raise ValueError('Apple release-1 proof changed on resume; start a fresh run')
-    if not prior:
-        journal[key] = dict(event)
+    journal[key] = dict(event)
     collector.write_progress()
     collector.check_time()
     if (response.url != url or instant(event['observed_at']) < instant(collector.cutoff)
@@ -259,8 +314,8 @@ def exclude_old_apple_release_one(collector):
         if (response.status != 200 or (facts['content_type'] or '').split(';')[0].lower() != media
                 or not re.fullmatch(r'"[\x21\x23-\x7e\x80-\xff]+"', facts['etag'] or '')):
             raise ValueError('Unverified Apple release-1 full response or ETag')
-        modified = parsedate_to_datetime(facts['last_modified'] or '')
-        if modified.tzinfo is None or format_datetime(modified, usegmt=True) != facts['last_modified'] or modified > before:
+        modified = http_date(facts['last_modified'])
+        if modified > before:
             raise ValueError('Apple release-1 representation not verified before the window')
         documents.append((url, facts, parse(response)))
     if documents[0][2] != documents[1][2]:
