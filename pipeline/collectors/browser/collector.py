@@ -18,6 +18,7 @@ from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, modification, reconcile_modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
+from .firefox_ios import collect_firefox_ios
 from .safari_preview import collect_safari_preview
 from .transport import HTTPTransport, Response
 from pipeline.temporal import SEOUL, dated_scope, instant, window_status
@@ -271,6 +272,8 @@ class BrowserCollector:
                 self.collect_whale()
             elif source['source_id'] == 'chrome-enterprise':
                 self.collect_enterprise()
+            elif source['source_id'] == 'firefox-ios':
+                collect_firefox_ios(self)
             elif source['source_id'] == 'safari-technology-preview':
                 collect_safari_preview(self)
             elif source['source_id'] == 'chrome-blog':
