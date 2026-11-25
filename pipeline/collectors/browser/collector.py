@@ -564,7 +564,7 @@ class BrowserCollector:
                 return True
         return False
 
-    def document(self, url, response=None, current=False, publication_date=None, modified=None):
+    def document(self, url, response=None, current=False, publication_date=None, modified=None, *, publication_verified=False):
         response = response or self.get(url)
         text = response.text()
         root = Tree(text).root
@@ -579,7 +579,7 @@ class BrowserCollector:
         reviewed = self.reviewed_attributions.get(digest(response.body), []) if self.source['source_id'] == 'chrome-releases' else ()
         body = boundary(root, self.source['source_id'], reviewed)
         publication = None if multi else publication_date
-        if not multi and (not publication or len(publication) == 10):
+        if not multi and not publication_verified and (not publication or len(publication) == 10):
             page_date = published(root, self.source['source_id'], product_body=body if self.window_start else None)
             if not publication or (page_date and len(page_date) > 10):
                 publication = page_date

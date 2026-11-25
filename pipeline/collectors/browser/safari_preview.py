@@ -184,7 +184,7 @@ def collect_safari_preview(collector):
             if response.url != url:
                 raise ValueError('Unexpected redirect from canonical WebKit release URL')
             date = verified_publication(response, version, years.get(version), collector.source['source_id'])
-            collector.document(url, response=response, publication_date=date)
+            collector.document(url, response=response, publication_date=date, publication_verified=True)
             collector.document_done(url)
         except Exception as error:
             collector.problem(url, str(error))

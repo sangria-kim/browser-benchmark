@@ -121,6 +121,24 @@ class PreviewTests(unittest.TestCase):
         self.assertEqual({release_url(1), release_url(5)}, set(state['pending']))
         self.assertEqual({release_url(2), release_url(3)}, {r['evidence']['url'] for r in rows})
 
+    def test_verified_printed_webkit_date_controls_both_window_boundaries(self):
+        # Page chrome can contain a more precise timestamp unrelated to this release.
+        dates = [
+            ('Oct 26, 2026', '2026-02-01T12:00:00Z'),
+            ('Nov 25, 2026', '2026-12-01T12:00:00Z'),
+            ('Oct 25, 2026', '2026-11-02T12:00:00Z'),
+            ('Nov 26, 2026', '2026-11-02T12:00:00Z'),
+        ]
+        self.pages[APPLE_INDEX] = apple(range(1, 5))
+        self.pages[CATEGORY] = page(range(1, 5))
+        for n, (printed, unrelated) in enumerate(dates, 1):
+            detail = article(n, None).replace('<article>', f'<time datetime="{unrelated}"></time><article>')
+            self.pages[release_url(n)] = detail.replace('</h1>', f'</h1><div class="byline"><p class="date">{printed}</p></div>')
+        _, rows = self.run_cli('printed')
+        self.assertEqual({(release_url(1), '2026-10-26'), (release_url(2), '2026-11-25')},
+                         {(r['evidence']['url'], r['published_at']) for r in rows})
+        self.assertTrue(all(r['temporal_scope']['precision'] == 'day' for r in rows))
+
     def test_uncovered_older_version_and_conflicting_or_truncated_evidence(self):
         self.pages[APPLE_INDEX] = apple([1, 2], year=2020)
         self.pages[CATEGORY] = page([2])
