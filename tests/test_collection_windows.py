@@ -678,6 +678,27 @@ class WindowTests(unittest.TestCase):
         self.assertNotIn(url + '#unknown', read(self.folder / 'runs/undated/work/windows/edge-beta.json'))
         self.item('manual', dict(req, url=url + '#unknown', canonical_key='independent', title='Independent feature'), standalone=True)
 
+    def test_mixed_document_url_stays_provisional_without_a_dated_feature(self):
+        self.configure_small_registry()
+        sid = 'edge-beta'
+        url = self.sources[sid]['url']
+        self.payloads[url] = ('<div class="content"><h2>November 28, 2026</h2><p>Share tabs.</p>'
+                              '<h2>November 20, 2026</h2><p id="save">Save tabs.</p></div>')
+        for day, suffix in ((22, ''), (23, '#'), (24, '#:~:bogus=Share')):
+            with self.subTest(suffix=suffix):
+                name = f'mixed-{day}'
+                self.cli(name, cutoff=f'2026-11-{day}T07:00:00+09:00', extra=['--daily-status'])
+                req = dict(browser='edge', source_id=sid, canonical_key='share-tabs', title='Share tabs', url=url + suffix)
+                self.item(name, req)
+                self.assertIn('share-tabs', {f['canonical_key'] for f in read(self.repo / collect.FEATURE_CATALOG)})
+                for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
+                    if browser != 'edge':
+                        self.publish_browser(name, browser, self.browser_choices(name, browser, select=False))
+                with self.assertRaisesRegex(ValueError, 'window'):
+                    self.publish_browser(name, 'edge', self.browser_choices(name, 'edge', select=False))
+                receipt = read(self.repo / f'data/daily-status/2026-11-{day}.json')
+                self.assertEqual(('incomplete', None, None), tuple(receipt[k] for k in ('status', 'collected_feature_count', 'change_count')))
+
     def test_unresolved_fragment_on_mixed_page_needs_current_feature_to_finish(self):
         self.configure_small_registry()
         sid = 'edge-beta'
@@ -689,6 +710,7 @@ class WindowTests(unittest.TestCase):
                    url=url + '#:~:text=on%20Windows')
         self.item('mixed', req)
         self.item('mixed', dict(req, url=url + '#missing'))
+        self.item('mixed', dict(req, url=url))
         for browser in browser_status.registry_facts(self.repo, 'daily')[2]:
             if browser != 'edge':
                 self.publish_browser('mixed', browser, self.browser_choices('mixed', browser, select=False))
@@ -707,6 +729,7 @@ class WindowTests(unittest.TestCase):
         self.assertEqual(('complete', 1, 1), tuple(read(position)[k] for k in ('status', 'collected_feature_count', 'change_count')))
         self.cli('next', cutoff='2026-11-30T07:00:00+09:00', extra=['--daily-status'])
         self.item('next', dict(req, url=url + '#:~:text=not%20on%20the%20page'))
+        self.item('next', dict(req, url=url))
         self.publish_browser('next', 'edge', self.browser_choices('next', 'edge', select=False))
 
     def test_survey_cannot_finalize_nested_future_anchor_saved_before_source_returns(self):

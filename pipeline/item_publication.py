@@ -122,7 +122,7 @@ def require_url_window(index, url, *, enrichment, finalize=False, confirmed=Fals
     if 'after_cutoff' in reasons or 'before_period' in reasons and not enrichment:
         raise ValueError('Official URL is outside the scheduled source window: ' + url)
     passages = mixed.get(key[:3])
-    if not passages or not (anchor or directives):
+    if not passages:
         return
     element_statuses = {status for status, _, targets in passages if anchor and anchor in targets}
     text_statuses = set()
