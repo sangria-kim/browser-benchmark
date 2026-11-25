@@ -364,6 +364,8 @@ class BrowserCollector:
             return response
         response = self.transport(url)
         if response.status != 200:
+            if self.source['source_id'] == 'safari-technology-preview' and response.status in (403, 429, 503):
+                raise HTTPError(url, response.status, 'WebKit request refused', response.headers, None)
             raise ValueError('Unexpected HTTP status %s' % response.status)
         if not response.body:
             raise ValueError('Empty response')
@@ -592,7 +594,7 @@ class BrowserCollector:
             page_date = published(root, self.source['source_id'], product_body=body if self.window_start else None)
             if not publication or (page_date and len(page_date) > 10):
                 publication = page_date
-        if not multi and self.window_start:
+        if not multi and self.window_start and not publication_verified:
             page_modified = modification(root, body)
             modified = reconcile_modification((modified, page_modified), 'index and document modification dates')
         if modified:

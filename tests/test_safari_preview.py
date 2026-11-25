@@ -1,8 +1,9 @@
 import contextlib
 import copy
+from datetime import datetime, timedelta, timezone
 from email.message import Message
 from io import BytesIO, StringIO
-from urllib.error import HTTPError
+from urllib.error import HTTPError, URLError
 import json
 from pathlib import Path
 import runpy
@@ -137,6 +138,85 @@ class PreviewTests(unittest.TestCase):
         state, rows = self.run_cli('blocked', expected=2)
         self.assertEqual({release_url(1), release_url(5)}, set(state['pending']))
         self.assertEqual({release_url(2), release_url(3)}, {r['evidence']['url'] for r in rows})
+
+    def test_pr34_exact_publication_timestamp_from_head_or_article_byline(self):
+        dates = [('Nov 25, 2026', '2026-11-25T07:00:01+09:00'), ('Oct 25, 2026', '2026-10-25T22:00:00Z'),
+                 ('Nov 24, 2026', '2026-11-24T22:00:00Z'), ('Oct 25, 2026', '2026-10-25T21:59:59Z')]
+        self.pages[APPLE_INDEX] = apple(range(1, 5))
+        self.pages[CATEGORY] = page(range(1, 5))
+        previous_ids = None
+        for field in ('head', 'byline', 'article'):
+            for version, (day, stamp) in enumerate(dates, 1):
+                text = article(version, None)
+                printed = f'<p class="date">{day}</p>'
+                if field == 'head':
+                    text = text.replace('</head>', f'<meta name="datePublished" content="{stamp}"></head>')
+                elif field == 'byline':
+                    printed = f'<time class="date" datetime="{stamp}">{day}</time>'
+                else:
+                    text = text.replace('<article>', f'<article><meta itemprop="datePublished" content="{stamp}">')
+                self.pages[release_url(version)] = text.replace('</h1>', f'</h1><div class="byline">{printed}</div>')
+            with self.subTest(field=field):
+                _, rows = self.run_cli('pr34-' + field)
+                actual = {(row['evidence']['url'], row['temporal_scope']['evidence_date'],
+                           row['temporal_scope']['precision']) for row in rows}
+                self.assertEqual({(release_url(v), dates[v - 1][1], 'timestamp') for v in (2, 3)}, actual)
+                ids = {r['source_item_id'] for r in rows}
+                if previous_ids is not None:
+                    self.assertEqual(previous_ids, ids)
+                previous_ids = ids
+
+    def test_pr34_reconciles_only_article_owned_revision_fields(self):
+        url = release_url(1)
+        original = article(1, '2026-02-15').replace('<article>', '<article><meta name="dateModified" content="2026-11-01">')
+        unrelated = ('<section><div class="byline"><time class="date" datetime="2027-01-01">Jan 1, 2027</time></div>'
+                     '<meta itemprop="dateModified" content="2027-01-01"></section>'
+                     '<footer><meta property="article:modified_time" content="2027-01-01"></footer>')
+        self.pages[url] = original.replace('</article>', unrelated + '</article>').replace(
+            '<p id="tabs">', '<div class="byline"><time class="date" datetime="2027-01-01">Jan 1, 2027</time></div><p id="tabs">')
+        _, rows = self.run_cli('pr34-related')
+        row, = rows
+        self.assertEqual(('2026-02-15', '2026-11-01', 'item_change'),
+                         (row['published_at'], row['temporal_scope']['evidence_date'], row['temporal_scope']['basis']))
+        for name, conflict in [('modified', '<meta property="dateModified" content="2026-11-02">'),
+                               ('published', '<meta name="datePublished" content="2026-02-20">'),
+                               ('roles', '<meta itemprop="dateModified datePublished" content="2026-11-01">'),
+                               ('late', '<meta name="article:modified_time" content="2026-11-25T07:00:01+09:00">')]:
+            with self.subTest(name=name):
+                self.pages[url] = original.replace('</head>', conflict + '</head>')
+                state, rows = self.run_cli('pr34-conflict-' + name, expected=2)
+                self.assertIn(url, state['pending'])
+                self.assertEqual([], rows)
+
+    def test_pr34_stop_blocked_webkit_host_and_resume(self):
+        self.pages[APPLE_INDEX] = apple([3, 2, 1])
+        self.pages[CATEGORY] = page([3, 2, 1])
+        urls = [release_url(v) for v in (3, 2, 1)]
+        now = datetime(2026, 11, 25, 12, tzinfo=timezone.utc)
+        for case, failure in [('limited', HTTPError(urls[0], 429, 'rate limited', {'Retry-After': '3600'}, None)),
+                              ('forbidden', HTTPError(urls[0], 403, 'forbidden', {}, None)),
+                              ('timeout', TimeoutError('timeout')), ('url-timeout', URLError(TimeoutError('timeout')))]:
+            with self.subTest(case=case), patch('pipeline.collectors.browser.safari_preview.datetime', wraps=datetime) as clock:
+                clock.now.return_value = now
+                for v in (1, 2, 3):
+                    self.pages[release_url(v)] = article(v, '2026-11-01')
+                self.pages[urls[0]] = failure
+                self.calls.clear()
+                state, _ = self.run_cli('pr34-' + case, expected=2)
+                self.assertEqual([APPLE_INDEX, CATEGORY, urls[0]], self.calls)
+                self.assertEqual(set(urls), set(state['pending']))
+                self.pages[urls[0]] = article(3, '2026-11-01')
+                if case == 'limited':
+                    self.calls.clear()
+                    clock.now.return_value = now + timedelta(seconds=3599)
+                    state, _ = self.run_cli('pr34-' + case, expected=2, extra=['--resume'])
+                    self.assertEqual([], self.calls)
+                    self.assertEqual(set(urls), set(state['pending']))
+                    clock.now.return_value = now + timedelta(hours=1)
+                self.calls.clear()
+                state, rows = self.run_cli('pr34-' + case, extra=['--resume'])
+                self.assertEqual([APPLE_INDEX, CATEGORY, *urls], self.calls)
+                self.assertEqual((3, []), (len(rows), state['pending']))
 
     def test_verified_printed_webkit_date_controls_both_window_boundaries(self):
         # Page chrome can contain a more precise timestamp unrelated to this release.

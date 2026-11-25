@@ -111,7 +111,7 @@ def category_page(response, page, urls, detail_pattern):
     return max(numbered), next_links(nav[0], response.url)
 
 
-def verified_publication(response, version, year, source_id):
+def verified_release_dates(response, version, year, source_id):
     root = Tree(response.text()).root
     canonical = [n.attrs.get('href') for n in root.walk() if n.tag == 'link' and n.attrs.get('rel') == 'canonical']
     body = boundary(root, source_id)
@@ -119,20 +119,44 @@ def verified_publication(response, version, year, source_id):
     titles = [title_version(n.text()) for n in article.children if getattr(n, 'tag', None) == 'h1'] if article else []
     if canonical != [response.url] or titles != [version]:
         raise ValueError('Cannot verify canonical WebKit release identity')
-    dates = [publication_value(n.attrs.get('content')) for n in root.walk()
-             if n.tag == 'meta' and n.parent.tag == 'head' and n.attrs.get('property') == 'article:published_time']
-    dates.extend(publication_value(n.text()) for n in article.walk()
-                 if n.has_class('date') and n.parent.has_class('byline'))
-    if None in dates:
-        raise ValueError('Malformed WebKit publication date')
-    for n in root.walk():
-        if (n.tag == 'meta' and n.parent.tag == 'head' and n.attrs.get('property') == 'article:modified_time'
-                and not publication_value(n.attrs.get('content'))):
-            raise ValueError('Malformed WebKit modification date')
-    date = reconcile_modification(dates, 'WebKit publication dates')
+    publications, modifications = [], []
+    product_path = {body, *body.ancestors()}
+    for node in root.walk():
+        head = (node.tag == 'meta' and node.parent.tag == 'head' and node.parent.parent.tag == 'html'
+                and node.parent.parent.parent is root)
+        byline_date = False
+        if not head:
+            ancestors = list(node.ancestors())
+            if article not in ancestors:
+                continue
+            lineage = [node, *ancestors[:ancestors.index(article)]]
+            if any(n.tag in ('aside', 'footer', 'nav', 'li', 'blockquote', 'figure', 'template', 'script', 'style')
+                   or n.has_class('comment') or n.has_class('comments')
+                   or (n.tag in ('article', 'section') or 'itemscope' in n.attrs) and n not in product_path
+                   for n in lineage):
+                continue
+            release_byline = any(n.has_class('byline') and (n.parent is article or
+                                 n.parent.tag == 'header' and n.parent.parent is article) for n in lineage)
+            byline_date = release_byline and (node.has_class('date') or node.tag == 'time' and
+                          (node.parent.has_class('byline') or any(n.has_class('date') for n in lineage)))
+        fields = {word.lower() for attr in ('property', 'name', 'itemprop')
+                  for word in (node.attrs.get(attr) or '').split()}
+        published = bool(fields & {'article:published_time', 'datepublished', 'date', 'publication_date'})
+        modified = bool(fields & {'article:modified_time', 'datemodified'})
+        if published and modified:
+            raise ValueError('Conflicting WebKit date field roles')
+        if not (published or modified or byline_date):
+            continue
+        values = [publication_value(node.attrs[key]) for key in ('datetime', 'content') if key in node.attrs]
+        if not values or (byline_date or node.tag == 'time') and node.text():
+            values.append(publication_value(node.text()))
+        if not all(values):
+            raise ValueError('Malformed WebKit publication or modification date')
+        (modifications if modified else publications).extend(values)
+    date = reconcile_modification(publications, 'WebKit publication dates')
     if not date or (year and int(date[:4]) != year):
         raise ValueError('Unverified WebKit Technology Preview publication date')
-    return date
+    return date, reconcile_modification(modifications, 'WebKit modification dates')
 
 
 RELEASE_ONE_PATH = '/documentation/safari-technology-preview-release-notes/stp-release-1'
@@ -334,7 +358,42 @@ def exclude_old_apple_release_one(collector):
     collector.state['excluded_by_date'].append(RELEASE_ONE_MARKDOWN)
 
 
+def stop_webkit_requests(collector, error, url, pending):
+    code = getattr(error, 'code', None)
+    headers = {k.lower(): v for k, v in (getattr(error, 'headers', None) or {}).items()}
+    value = headers.get('retry-after', '').strip()
+    retry_at = None
+    if value.isdigit():
+        try:
+            retry_at = datetime.now(timezone.utc) + timedelta(seconds=int(value))
+        except (ValueError, OverflowError):
+            retry_at = datetime.max.replace(tzinfo=timezone.utc)
+    elif value:
+        try:
+            date = parsedate_to_datetime(value)
+            if date.tzinfo is not None:
+                retry_at = date.astimezone(timezone.utc)
+        except (ValueError, TypeError, OverflowError):
+            pass
+    if not (code in (403, 429, 503) or retry_at or isinstance(error, TimeoutError)
+            or isinstance(getattr(error, 'reason', None), TimeoutError)):
+        return False
+    collector.state['pending'] = list(pending)
+    if retry_at:
+        collector.progress['webkit_retry_after'] = dict(url=url, until=retry_at.isoformat(), pending=list(pending))
+        collector.write_progress()
+    return True
+
+
 def collect_safari_preview(collector):
+    wait = collector.progress.get('webkit_retry_after')
+    if wait and datetime.now(timezone.utc) < instant(wait['until']):
+        collector.state['pending'] = list(wait['pending'])
+        collector.problem(wait['url'], 'WebKit requested retry after ' + wait['until'])
+        return
+    if wait:
+        del collector.progress['webkit_retry_after']
+        collector.write_progress()
     previous_proof = collector.progress.get('apple_release_one', {})
     if previous_proof.pop('verified', None):
         collector.write_progress()
@@ -354,6 +413,8 @@ def collect_safari_preview(collector):
             return response
         except Exception as error:
             collector.problem(url, str(error))
+            if url.startswith(CATEGORY):
+                stop_webkit_requests(collector, error, url, [url])
             return None
 
     apple = index(APPLE_INDEX)
@@ -405,7 +466,9 @@ def collect_safari_preview(collector):
         prior = version
     evidence['historical_fallbacks'] = sorted(v for v in urls if urls[v] and not categories.get(v))
     state['pagination_exhausted'] = True
-    for version in reversed(versions):
+    versions.reverse()
+    targets = [urls.get(v) or APPLE_INDEX + '#stp-release-' + str(v) for v in versions]
+    for position, version in enumerate(versions):
         url = urls.get(version)
         if not url:
             target = APPLE_INDEX + '#stp-release-' + str(version)
@@ -420,15 +483,19 @@ def collect_safari_preview(collector):
             continue
         # Undated category cards cannot exclude an older article modified in
         # the window. Keep the normal detail-side publication and revision rules.
-        if not collector.budget(url, 'documents'):
-            return
-        state['documents'] += 1
         try:
+            if not collector.budget(url, 'documents'):
+                state['pending'] = targets[position:]
+                return
+            state['documents'] += 1
             response = collector.get(url)
             if response.url != url:
                 raise ValueError('Unexpected redirect from canonical WebKit release URL')
-            date = verified_publication(response, version, years.get(version), collector.source['source_id'])
-            collector.document(url, response=response, publication_date=date, publication_verified=True)
+            date, modified = verified_release_dates(response, version, years.get(version), collector.source['source_id'])
+            collector.document(url, response=response, publication_date=date, publication_verified=True,
+                               modified=modified if collector.window_start else None)
             collector.document_done(url)
         except Exception as error:
             collector.problem(url, str(error))
+            if stop_webkit_requests(collector, error, url, targets[position:]):
+                return
