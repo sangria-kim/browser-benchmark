@@ -41,10 +41,6 @@ class UnresolvedChromeSignoff(Node):
     pass
 
 
-class ReviewedChromeSignoff(Node):
-    pass
-
-
 class Tree(HTMLParser):
     def __init__(self, text):
         super().__init__(convert_charrefs=True)
@@ -232,7 +228,85 @@ def chrome_post_header(link):
     return headers[0] if len(headers) == 1 else None
 
 
-def remove_chrome_post_signoff(fragment, reviewed_signoffs=()):
+# Chrome Releases uses a shared Blogger profile. The profile identifies the
+# publisher; the exact terminal byline AND organization identify the signature.
+# SHA-256(byline + newline + organization) keeps names out of product data.
+CHROME_BYLINES = {
+    # Chrome release team and release managers, confirmed by the publisher:
+    # https://developer.chrome.com/blog/chrome-updates
+    # https://groups.google.com/a/chromium.org/g/chromium-dev/c/_lQnOytt6-0
+    '54ec03626e5944437d9581b7591c38ac18b91ca98eb9b97be02e0e607c306210',
+    'b3d0566429985ce0d830337725b01cc74dcd30eaac586259cc5401efa8ca2c62',
+    'a3652cc2cae1578adefe85ec71ff5d2b3a3c142ba15ebf4497b8e624b8307cd1',
+    '589546fe23ed1e6eb5d2c4ea4eba3121e738c95cb082770ad46669f67d1a6ca8',
+    '7a0278ff9e86653af7198d6bc0ec8f3bd57b1eb8d9858aa7e949196d6be055d4',
+}
+
+
+# These two ChromeOS signatures recur in the publisher's archive, but the
+# shared profile does not identify the signer. Bind this narrower review to
+# the exact inert article template. A page footer can change independently.
+# https://chromereleases.googleblog.com/2025/11/
+# https://chromereleases.googleblog.com/2026/07/long-term-support-channel-update-for.html
+REVIEWED_CHROME_TEMPLATES = {
+    'https://chromereleases.googleblog.com/2026/10/beta-channel-update-for-chromeos_0669100502.html':
+        'd2c7b5c6bf08b688a370379fd8186234b724b7d52d35340363c25f88fb7280ff',
+    'https://chromereleases.googleblog.com/2026/10/dev-channel-update-for-chromeos_0448562495.html':
+        '6500b52b994e67d38d550a92fa50d04ba6cb31aa3b800d693aacd21cd17b2af4',
+    'https://chromereleases.googleblog.com/2026/10/early-stable-update-for-desktop_01255863767.html':
+        'd4414328a55f6777ca578462df7eeadf2038021b6efb69f5e57a1ea0b57a429d',
+    'https://chromereleases.googleblog.com/2026/10/long-term-support-channel-update-for_0661547040.html':
+        '79c1b1575a2f8635f931d0345b0dde1de2be210df010848f55b7c29262dc5951',
+    'https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_0562499947.html':
+        '257e6dc64ad28e78984f0e6320ee5455414abdc896e4d18ddab7b0c84433fb8a',
+    'https://chromereleases.googleblog.com/2026/11/beta-channel-update-for-chromeos.html':
+        '72f1fc7a630046761383732f8569c94e6f21c03efece221363ed1e48e7a161c2',
+    'https://chromereleases.googleblog.com/2026/11/beta-channel-update-for-chromeos_01835406967.html':
+        'd6f77237d38bf16ab61231387decf14b12242c7130b39bfd44d88cb51e1f4268',
+    'https://chromereleases.googleblog.com/2026/11/long-term-support-channel-update-for.html':
+        '7f79a3b3e2bf1a98751706f9e0fce79b7f1ea2a8c1c2760b7ff7f6a0a5ed4a5a',
+    'https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-chromeos_01089491269.html':
+        '40b94389aabfe379499f6af4421ede374c8ac9d983b1c8b0e4d7d8c840c72724',
+    'https://chromereleases.googleblog.com/2026/11/stable-channel-update-for-chromeos_01679457768.html':
+        'c39a8b2dd45a729d9450dc8951219511f8a5eaaa621ef11e69e02bbab6838d22',
+}
+
+
+def chrome_byline_matches(author, text, publisher, reviewed_template):
+    if (author is None or author.tag != 'span' or 'itemscope' not in author.attrs or
+            author.attrs.get('itemtype') not in {'http://schema.org/Person', 'https://schema.org/Person'}):
+        return False
+    # Only direct fields of the terminal Person card describe this author.
+    fields = [child for child in author.children if isinstance(child, Node) or child.strip()]
+    if not all(isinstance(child, Node) and child.tag == 'meta' for child in fields):
+        return False
+    names = [field.attrs.get('content') for field in fields if field.attrs.get('itemprop') == 'name']
+    if names:
+        return names == [text]
+    urls = [field.attrs.get('content') for field in fields if field.attrs.get('itemprop') == 'url']
+    signature = hashlib.sha256((text + '\n' + publisher).encode()).hexdigest()
+    if urls != ['https://plus.google.com/116899029375914044550']:
+        return False
+    return signature in CHROME_BYLINES or reviewed_template
+
+
+def inline_product_container(node):
+    inline_tags = {'a', 'span', 'strong', 'b', 'em', 'i', 'u', 'code', 'br', 'small', 'sup', 'sub', 'font'}
+    return node.tag in {'div', 'span'} and all(c is node or c.tag in inline_tags for c in node.walk())
+
+
+def anchored_chrome_line(line):
+    # blocks() can also emit an ordinary node's direct text with that node's
+    # own ID. A wrapper around several paragraphs does not own their units.
+    for node, _, text in line:
+        if text.strip() and any(a.attrs.get('id') and
+                                (a is node or a.tag == 'p' or inline_product_container(a))
+                                for a in (node, *node.ancestors())):
+            return True
+    return False
+
+
+def remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_signoffs):
     # Blogger places the unmarked byline on its own line before the publisher
     # label, in adjacent paragraphs or on opposite sides of a line break.
     lines = [[]]
@@ -246,31 +320,56 @@ def remove_chrome_post_signoff(fragment, reviewed_signoffs=()):
         for index, child in enumerate(node.children):
             if isinstance(child, Node):
                 visit(child)
-            elif child.strip():
-                lines[-1].append((node, index, child.strip()))
+            else:
+                lines[-1].append((node, index, child))
         if separates_lines and lines[-1]:
             lines.append([])
 
     visit(fragment)
-    lines = [line for line in lines if line]
+    lines = [line for line in lines if any(text.strip() for _, _, text in line)]
     if len(lines) < 2:
         return
-    publisher = ' '.join(' '.join(text for _, _, text in lines[-1]).split())
+    # Inline elements do not introduce spaces: adjacent fragments must not
+    # turn an unrecognized token into an audited signature.
+    publisher = ' '.join(''.join(text for _, _, text in lines[-1]).split())
     if publisher not in {'Google Chrome', 'Google ChromeOS', 'Google Chrome OS'}:
         return
-    for node, index, _ in lines[-1]:
-        node.children[index] = ''
-    # The preceding line has no author marker. Keep its location without
-    # exposing possible personal text or assuming that it is a byline.
-    if len(lines[-2]) == 1:
-        node, index, text = lines[-2][0]
-        if len(text) <= 64 and not any(a.tag in {'li', 'a'} for a in (node, *node.ancestors())):
+    # A structured product unit (for example a list item or linked feature)
+    # keeps its own text and identity even when it uses a known byline string.
+    plain = {'document', 'p', 'div', 'span', 'b', 'strong', 'i', 'em', 'font', 'u', 'small'}
+    publisher_nodes = {a for node, _, part in lines[-1] if part.strip() for a in (node, *node.ancestors())}
+    if anchored_chrome_line(lines[-1]) or any(a.tag not in plain and a.tag != 'a' for a in publisher_nodes):
+        return
+    signature_line = lines[-2]
+    signature_nodes = {a for node, _, part in signature_line if part.strip() for a in (node, *node.ancestors())}
+    product_link = any(a.tag == 'a' and a.attrs.get('href') not in {
+        'https://www.google.com/chrome', 'https://www.google.com/chrome/',
+    } for a in publisher_nodes)
+    if product_link:
+        author = None
+    # A separate product link owns its normal row. A combined, unanchored
+    # signoff + link in the same paragraph stays private pending review.
+    shares_block = any(a.tag == 'p' or inline_product_container(a) for a in publisher_nodes & signature_nodes)
+    anchored = anchored_chrome_line(signature_line)
+    if not product_link or (shares_block and not anchored):
+        for node, index, _ in lines[-1]:
             node.children[index] = ''
-            marker = ReviewedChromeSignoff if hashlib.sha256(text.encode()).hexdigest() in reviewed_signoffs else UnresolvedChromeSignoff
-            fragment.children.append(marker('document', parent=fragment))
+    if anchored or any(a.tag not in plain for a in signature_nodes):
+        return
+    text = ''.join(part for _, _, part in signature_line).strip()
+    confirmed = (hashlib.sha256(text.encode()).hexdigest() in reviewed_signoffs
+                 or chrome_byline_matches(author, text, publisher, reviewed_template))
+    if len(text) > 64 and not confirmed:
+        return
+    for node, index, _ in signature_line:
+        node.children[index] = ''
+    # Raw ambiguous content remains in the private response cache. Its stable
+    # unresolved key prevents completion; a confirmed credit is not a feature.
+    if not confirmed:
+        fragment.children.append(UnresolvedChromeSignoff('document', parent=fragment))
 
 
-def expand_chrome_post_templates(body, reviewed_signoffs=()):
+def expand_chrome_post_templates(body, reviewed_signoffs, document_url):
     # Chrome Releases stores the article markup in an inert Blogger template.
     # Its noscript copy remains excluded by SKIP.
     for content in body.children:
@@ -280,20 +379,25 @@ def expand_chrome_post_templates(body, reviewed_signoffs=()):
             if (not isinstance(child, Node) or child.tag != 'script' or
                     child.attrs.get('type') != 'text/template' or 'src' in child.attrs):
                 continue
-            fragment = Tree(''.join(child.children)).root
-            has_author_metadata = False
+            template = ''.join(child.children)
+            fragment = Tree(template).root
+            children = [part for part in fragment.children if isinstance(part, Node) or part.strip()]
+            authors = [n for n in fragment.walk() if n.attrs.get('itemprop') == 'author']
+            template_hash = hashlib.sha256(template.encode()).hexdigest()
+            reviewed_template = REVIEWED_CHROME_TEMPLATES.get(document_url) == template_hash
+            author = None
+            if authors and authors[-1] is children[-1]:
+                if len(authors) == 1 or reviewed_template:
+                    author = authors[-1]
             for node in list(fragment.walk())[1:]:
-                is_author = node.attrs.get('itemprop') == 'author'
-                has_author_metadata |= is_author
-                if is_author or node.tag == 'header':
+                if node.attrs.get('itemprop') == 'author' or node.tag == 'header':
                     node.parent.children.remove(node)
-            if has_author_metadata:
-                remove_chrome_post_signoff(fragment, reviewed_signoffs)
+            remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_signoffs if authors else ())
             fragment.parent = content
             content.children[index] = fragment
 
 
-def boundary(tree, source_id, reviewed_signoffs=()):
+def boundary(tree, source_id, reviewed_signoffs=(), *, document_url=None):
     nodes = list(tree.walk())
     # Select the publisher's product body, never navigation, replies or author cards.
     selectors = {
@@ -321,7 +425,7 @@ def boundary(tree, source_id, reviewed_signoffs=()):
                 matches.append(n)
         if matches:
             if key == 'chrome-releases':
-                expand_chrome_post_templates(matches[0], reviewed_signoffs)
+                expand_chrome_post_templates(matches[0], reviewed_signoffs, document_url)
             # Learn has a title-only .content before its complete article body.
             return max(matches, key=lambda n: len(n.text())) if key == 'edge' else matches[0]
     return None
@@ -514,10 +618,6 @@ def blocks(body, *, visible_sections=False):
             result.append({'key': 'chrome-post-signoff', 'text': '',
                            'section': 'post sign-off', 'parsed': False})
             continue
-        if isinstance(n, ReviewedChromeSignoff):
-            result.append({'key': 'chrome-post-signoff', 'text': 'Publisher attribution omitted.',
-                           'section': 'post sign-off', 'parsed': True})
-            continue
         # Suppression must also apply to ancestor aggregates and headings, not
         # only to the traversal of the author/reporter node itself.
         text = n.text(suppressed)
@@ -535,8 +635,7 @@ def blocks(body, *, visible_sections=False):
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
             continue
-        inline_container = n.tag in {'div', 'span'} and all(c is n or c.tag in {'a', 'span', 'strong', 'b', 'em', 'i', 'u', 'code', 'br', 'small', 'sup', 'sub', 'font'} for c in n.walk())
-        if (n.tag in {'p', 'li', 'tr', 'pre', 'blockquote', 'dt', 'dd'} or inline_container) and (text or (n.tag in {'li', 'tr'} and any(c.tag in {'img', 'iframe', 'object'} for c in n.walk()))):
+        if (n.tag in {'p', 'li', 'tr', 'pre', 'blockquote', 'dt', 'dd'} or inline_product_container(n)) and (text or (n.tag in {'li', 'tr'} and any(c.tag in {'img', 'iframe', 'object'} for c in n.walk()))):
             # Parent list entries own their complete nested definition.
             key = n.attrs.get('id')
             issue = re.search(r'\b(?:CVE-\d{4}-\d+|VB-\d+|DNA-\d+)\b|\((\d{7,})\)', text)

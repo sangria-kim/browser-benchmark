@@ -18,6 +18,8 @@ from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, modification, reconcile_modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
+from .firefox_ios import collect_firefox_ios
+from .safari_preview import collect_safari_preview, safari_request
 from .transport import HTTPTransport, Response
 from pipeline.temporal import SEOUL, dated_scope, instant, window_status
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
@@ -198,6 +200,7 @@ class BrowserCollector:
     """
     def __init__(self, repository, private_dir, transport=None, resume=False, reviewed_attributions=None, brave_release_metadata=None, *, write_records=True):
         self.write_records = write_records
+        self.collection_mode = None
         self.policy_since = self.window_start = self.checkpoint_context = self.attempt_seconds = None
         self.deadline = None
         self.repository = Path(repository).resolve()
@@ -270,6 +273,10 @@ class BrowserCollector:
                 self.collect_whale()
             elif source['source_id'] == 'chrome-enterprise':
                 self.collect_enterprise()
+            elif source['source_id'] == 'firefox-ios':
+                collect_firefox_ios(self)
+            elif source['source_id'] == 'safari-technology-preview':
+                collect_safari_preview(self)
             elif source['source_id'] == 'chrome-blog':
                 self.collect_google_blog()
             elif parser == 'chromestatus':
@@ -355,7 +362,10 @@ class BrowserCollector:
             response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
-        response = self.transport(url)
+        if self.source['source_id'] == 'safari-technology-preview':
+            response = safari_request(self, url, before_send=self.check_time)
+        else:
+            response = self.transport(url)
         if response.status != 200:
             raise ValueError('Unexpected HTTP status %s' % response.status)
         if not response.body:
@@ -366,11 +376,7 @@ class BrowserCollector:
             if (digest(response.body), response.url, next_link) != (cached['sha256'], cached['url'], prior_link):
                 raise ValueError('Mutable enumeration changed on resume; start a fresh run')
             response.observed_at = cached.get('observed_at')
-        # Keep bytes private. Cache filenames are hashes, not author/URL names.
-        cache_path = self.private_dir / 'cache' / digest(response.body)
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        if not cache_path.exists():
-            atomic_bytes(cache_path, response.body)
+        self.cache_body(response.body)
         self.cache[url] = response
         self.progress['responses'][url] = {'url': response.url, 'sha256': digest(response.body), 'headers': response.headers}
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
@@ -379,6 +385,15 @@ class BrowserCollector:
         self.write_progress()
         self.check_time()
         return response
+
+    def cache_body(self, body, *, verify=False):
+        checksum = digest(body)
+        path = self.private_dir / 'cache' / checksum
+        if not path.exists():
+            atomic_bytes(path, body)
+        elif verify and path.read_bytes() != body:
+            raise ValueError('Cached response checksum mismatch')
+        return checksum
 
     def budget(self, url, kind):
         self.check_time()
@@ -561,7 +576,7 @@ class BrowserCollector:
                 return True
         return False
 
-    def document(self, url, response=None, current=False, publication_date=None, modified=None):
+    def document(self, url, response=None, current=False, publication_date=None, modified=None, *, publication_verified=False):
         response = response or self.get(url)
         text = response.text()
         root = Tree(text).root
@@ -574,13 +589,13 @@ class BrowserCollector:
         if multi and self.rolling_revision_after_cutoff(root, url):
             return root
         reviewed = self.reviewed_attributions.get(digest(response.body), []) if self.source['source_id'] == 'chrome-releases' else ()
-        body = boundary(root, self.source['source_id'], reviewed)
+        body = boundary(root, self.source['source_id'], reviewed, document_url=canonical_url)
         publication = None if multi else publication_date
-        if not multi and (not publication or len(publication) == 10):
+        if not multi and not publication_verified and (not publication or len(publication) == 10):
             page_date = published(root, self.source['source_id'], product_body=body if self.window_start else None)
             if not publication or (page_date and len(page_date) > 10):
                 publication = page_date
-        if not multi and self.window_start:
+        if not multi and self.window_start and not publication_verified:
             page_modified = modification(root, body)
             modified = reconcile_modification((modified, page_modified), 'index and document modification dates')
         if modified:
@@ -619,7 +634,7 @@ class BrowserCollector:
             if version is None:
                 version_match = DOCUMENT_VERSION.search(unit['section'] + ' ' + document_title)
                 version = version_match[1] if version_match else None
-            section_day = None if timestamp else unit.get('date') or date_value(unit['section'])
+            section_day = None if timestamp or publication_verified else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
                       version=version, channel=channel, modified=modified)
             if edge_policy and unit['parsed']:
@@ -706,13 +721,9 @@ class BrowserCollector:
                 if source['source_id'] == 'whale-notices':
                     found = [(urlparse(u)._replace(query='').geturl(), n) for u, n in found]
                 if not found:
-                    # WebKit's general blog has archive pages with other product
-                    # posts. They are valid index pages, not missing TP articles.
-                    valid_webkit = source['source_id'] == 'safari-technology-preview' and any(n.attrs.get('id') == 'posts' for n in root.walk())
-                    if not valid_webkit:
-                        self.unresolved(url, response, key='index')
-                        self.problem(url, 'No registered document links in index')
-                        enumeration_valid = False
+                    self.unresolved(url, response, key='index')
+                    self.problem(url, 'No registered document links in index')
+                    enumeration_valid = False
                 for doc, node in found:
                     date = self.index_date(node, doc)
                     article = next((a for a in node.ancestors() if a.tag == 'article'), None)
