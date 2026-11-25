@@ -63,7 +63,6 @@ class SignoffTests(unittest.TestCase):
             ('Pin tabs.', author(), 'Google Chrome'),
             ('<span>Pin</span> <em>tabs.</em>', author(), 'Google Chrome'),
             ('<span>Chrome</span><b>Release Team</b>', author(), 'Google Chrome'),
-            ('Chrome Release Team', author(), '<a href="/other-product">Google Chrome</a>'),
             ('Chrome Release Team', '', 'Google Chrome'),
             ('Chrome Release Team', author(''), 'Google Chrome'),
             ('Chrome Release Team', author(PROFILE.replace('116899029375914044550', '123')), 'Google Chrome'),
@@ -114,10 +113,15 @@ class SignoffTests(unittest.TestCase):
                 ('anchored', '<p id="share-tabs">Share tabs.</p>', 0, {'share-tabs': 'Share tabs.'}),
                 ('same-label', '<p id="release-team">Chrome Release Team</p>', 0,
                  {'release-team': 'Chrome Release Team'}),
+                ('publisher-link', '<p id="real-change">Pin more tabs.</p>', 0,
+                 {'real-change': 'Pin more tabs.', 'document:p:3': 'Google Chrome'}),
                 ('publisher-anchor', '<p id="share-tabs">Share tabs.</p>', 0,
                  {'share-tabs': 'Share tabs.', 'new-search-feature': 'Google Chrome'}),
             ]:
                 pages[URL] = document(line)
+                if run == 'publisher-link':
+                    pages[URL] = pages[URL].replace('<p>Google Chrome</p>',
+                        '<p><a href="https://developer.chrome.com/docs/capabilities/web-apis">Google Chrome</a></p>')
                 if run == 'publisher-anchor':
                     pages[URL] = pages[URL].replace('<p>Google Chrome</p>',
                         '<p id="new-search-feature"><a href="/new-feature">Google Chrome</a></p>')

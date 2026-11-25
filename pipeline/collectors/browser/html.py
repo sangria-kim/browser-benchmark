@@ -333,14 +333,20 @@ def remove_chrome_post_signoff(fragment, author, reviewed_template, reviewed_sig
     publisher_nodes = {a for node, _, part in lines[-1] if part.strip() for a in (node, *node.ancestors())}
     if any(anchored_chrome_unit(a) or (a.tag not in plain and a.tag != 'a') for a in publisher_nodes):
         return
-    if any(a.tag == 'a' and a.attrs.get('href') not in {
-            'https://www.google.com/chrome', 'https://www.google.com/chrome/'} for a in publisher_nodes):
-        author = None
-    for node, index, _ in lines[-1]:
-        node.children[index] = ''
     signature_line = lines[-2]
-    if any(anchored_chrome_unit(a) or a.tag not in plain
-           for node, _, part in signature_line if part.strip() for a in (node, *node.ancestors())):
+    signature_nodes = {a for node, _, part in signature_line if part.strip() for a in (node, *node.ancestors())}
+    product_link = any(a.tag == 'a' and a.attrs.get('href') not in {
+        'https://www.google.com/chrome', 'https://www.google.com/chrome/',
+    } for a in publisher_nodes)
+    if product_link:
+        author = None
+    # A separate product link owns its normal row. A combined, unanchored
+    # signoff + link in the same paragraph stays private pending review.
+    shares_block = any(a.tag == 'p' or inline_product_container(a) for a in publisher_nodes & signature_nodes)
+    if not product_link or (shares_block and not any(anchored_chrome_unit(a) for a in signature_nodes)):
+        for node, index, _ in lines[-1]:
+            node.children[index] = ''
+    if any(anchored_chrome_unit(a) or a.tag not in plain for a in signature_nodes):
         return
     text = ''.join(part for _, _, part in signature_line).strip()
     confirmed = (hashlib.sha256(text.encode()).hexdigest() in reviewed_signoffs
