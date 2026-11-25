@@ -182,8 +182,9 @@ def recover_publication(root, run_dir):
         raise ValueError('Recovery journal belongs to another repository')
     # Pre-feature-only runners can leave a pending journal in the same lock.
     permitted = ('data/', 'reports/generated/') if state.get('version') in (1, 2) else OUTPUTS
+    from pipeline import receipt_history
     from pipeline.daily_status import status_path
-    from pipeline.browser_status import is_detail, safe_path
+    from pipeline.browser_status import FOLDER as browser_folder, is_detail, safe_path
     from pipeline.weekly_status import is_receipt as weekly_path
     version = state.get('version')
     receipt_allowed = version in (4, 5)
@@ -214,6 +215,10 @@ def recover_publication(root, run_dir):
         current = digest(path.read_bytes()) if path.exists() else None
         if current not in (row['before'], row['after']):
             raise RuntimeError('Recovery conflict; preserve journal and reconcile: ' + rel)
+    # Later browser saves can journal only the daily detail when the aggregate stays incomplete.
+    for rel in changed:
+        if status_path(rel) or (is_detail(rel) and rel.startswith(browser_folder + '/daily/')):
+            receipt_history.verify(root, paths=receipt_history.paths_for(rel), complete_history=True)
     check_rollback_commit(root, state, journal['files'])
     for rel, row in journal['files'].items():
         path = root / rel

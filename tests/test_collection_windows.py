@@ -872,6 +872,117 @@ class WindowTests(unittest.TestCase):
         self.assertFalse((self.repo / 'data/daily-status').exists())
         validate_tree(self.repo)
 
+    def test_shallow_daily_writers_require_history_for_every_snapshot_and_new_date(self):
+        self.configure_small_registry()
+        original = self.repo
+        legacy = original / 'data/daily-status/2026-11-23.json'
+        legacy.parent.mkdir(parents=True)
+        legacy.write_bytes(encoded(dict(date='2026-11-23', cutoff='2026-11-23T08:00:00+09:00',
+                                       status='complete', change_count=0, collected_feature_count=0)))
+        run_daily.commit_candidate(original)
+        self.cli('positive', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.save('positive', self.decisions('positive'))
+        day = 'data/daily-status/2026-11-24.json'
+        accepted = read(original / day)
+        self.assertEqual((1, 1), (accepted['change_count'], accepted['collected_feature_count']))
+        for case in ('present', 'zero', 'missing'):
+            if case == 'zero':
+                (original / day).write_bytes(encoded(dict(accepted, change_count=0, collected_feature_count=0)))
+            elif case == 'missing':
+                (original / day).unlink()
+            run_daily.commit_candidate(original)
+            self.repo = self.folder / case
+            git(self.folder, 'clone', '-q', '--depth=1', original.as_uri(), str(self.repo))
+            validate_tree(self.repo)  # Readers still accept the public 08:00 receipt.
+            self.cli(case, cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+            files = {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')}
+            with self.subTest(case=case, writer='incomplete'), self.assertRaisesRegex(ValueError, 'full history'):
+                self.cli(case, cutoff=None, extra=['--record-incomplete'])
+            with self.subTest(case=case, writer='browser'), self.assertRaisesRegex(ValueError, 'full history'):
+                self.publish_browser(case, 'firefox', self.browser_choices(case, 'firefox'))
+            pm = self.folder / (case + '.json')
+            pm.write_bytes(encoded(self.decisions(case)))
+            with self.subTest(case=case, writer='whole'), self.assertRaisesRegex(ValueError, 'full history'):
+                self.cli(case, cutoff=None, extra=['--save-features', str(pm)])
+            self.assertEqual(files, {p: p.read_bytes() for p in (self.repo / 'data').rglob('*.json')})
+            self.assertEqual('true', git(self.repo, 'rev-parse', '--is-shallow-repository'))
+        self.cli('tomorrow', cutoff='2026-11-25T07:00:00+09:00', extra=['--daily-status'])
+        pm.write_bytes(encoded(self.decisions('tomorrow')))
+        with self.assertRaisesRegex(ValueError, 'full history'):
+            self.cli('tomorrow', cutoff=None, extra=['--save-features', str(pm)])
+        git(self.repo, 'fetch', '-q', '--unshallow', 'origin')
+        self.cli('tomorrow', cutoff=None, extra=['--save-features', str(pm)])
+        self.assertEqual(0, read(self.repo / 'data/daily-status/2026-11-25.json')['change_count'])
+        with self.assertRaisesRegex(ValueError, 'missing'):
+            self.cli('missing', cutoff=None, extra=['--record-incomplete'])
+
+    def test_shallow_daily_signed_retry_and_detail_only_rollback_preserve_outputs(self):
+        self.configure_small_registry()
+        original = self.repo
+        run_daily.commit_candidate(original)
+        tip = run_daily.commit_candidate(original)
+        self.repo = self.folder / 'clone'
+        git(self.folder, 'clone', '-q', original.as_uri(), str(self.repo))
+        self.cli('saved', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        pm = self.folder / 'saved.json'
+        pm.write_bytes(encoded(self.decisions('saved')))
+        self.cli('saved', cutoff=None, extra=['--save-features', str(pm)])
+        git(self.repo, 'fetch', '-q', '--depth=1', 'origin', tip)
+        with self.assertRaisesRegex(ValueError, 'full history'):
+            self.cli('saved', cutoff=None, extra=['--save-features', str(pm)])
+        git(self.repo, 'fetch', '-q', '--unshallow', 'origin')
+        self.cli('saved', cutoff=None, extra=['--save-features', str(pm)])
+
+        cutoff = '2026-11-25T07:00:00+09:00'
+        self.cli('partial', cutoff=cutoff, extra=['--daily-status'])
+        self.publish_browser('partial', 'firefox', self.browser_choices('partial', 'firefox', select=False))
+        choice = self.browser_choices('partial', 'edge', select=False)
+        detail = self.repo / browser_status.detail_path('daily', cutoff)
+        prior = detail.read_bytes()
+        store = run_daily.store_changes
+
+        def interrupt(*args):
+            def stop_after_detail(path, raw):
+                run_daily.durable(path, raw)
+                if path == detail.resolve():
+                    raise KeyboardInterrupt()
+            return store(*args, replace=stop_after_detail)
+
+        with patch.object(collect, 'store_changes', interrupt), self.assertRaises(KeyboardInterrupt):
+            self.publish_browser('partial', 'edge', choice)
+        pending = detail.read_bytes()
+        self.assertNotEqual(prior, pending)
+        git(self.repo, 'fetch', '-q', '--depth=1', 'origin', tip)
+        with self.assertRaisesRegex(ValueError, 'full history'):
+            self.cli('partial', cutoff=None, extra=['--record-incomplete'])
+        self.assertEqual(pending, detail.read_bytes())
+        git(self.repo, 'fetch', '-q', '--unshallow', 'origin')
+        self.cli('partial', cutoff=None, extra=['--record-incomplete'])
+        self.assertEqual(prior, detail.read_bytes())
+
+    def test_daily_save_detects_a_shallow_second_merge_parent(self):
+        self.configure_small_registry()
+        original = self.repo
+        base = run_daily.commit_candidate(original)
+        git(original, 'switch', '-qc', 'side')
+        (original / 'side.txt').write_text('side history')
+        side = run_daily.commit_candidate(original)
+        git(original, 'switch', '-qc', 'first', base)
+        run_daily.commit_candidate(original)
+        git(original, '-c', 'user.name=Test', '-c', 'user.email=test@example.invalid',
+            '-c', 'core.hooksPath=/dev/null', 'merge', '--no-ff', '-qm', 'Merge side', side)
+        tip = git(original, 'rev-parse', 'HEAD')
+        self.repo = self.folder / 'one-shallow-parent'
+        git(self.folder, 'clone', '-q', '--depth=1', '--branch', 'side', original.as_uri(), str(self.repo))
+        git(self.repo, 'fetch', '-q', 'origin', tip)
+        git(self.repo, 'switch', '-q', '--detach', tip)
+        self.assertEqual(side, (self.repo / '.git/shallow').read_text().strip())
+        self.assertEqual(2, len(git(self.repo, 'rev-list', '--parents', '-1', tip).split()) - 1)
+        self.cli('merged', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaisesRegex(ValueError, 'full history'):
+            self.cli('merged', cutoff=None, extra=['--record-incomplete'])
+        self.assertFalse((self.repo / 'data').exists())
+
     def test_new_weekly_cutoff_works_in_a_shallow_data_only_clone(self):
         self.configure_small_registry()
         run_daily.commit_candidate(self.repo)
