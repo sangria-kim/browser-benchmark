@@ -8,6 +8,7 @@ import re
 from urllib.parse import parse_qsl, urldefrag, urlsplit
 
 from pipeline import browser_status
+from pipeline.collectors.browser import firefox_ios
 from pipeline.collectors.browser.collector import atomic_json, canonical, digest, identity, minimal
 from pipeline.collectors.browser.html import Tree, blocks, boundary, modification, published
 from pipeline.collectors.browser.safari_preview import retry_deadline, stop_safari_requests, verified_release_dates
@@ -56,6 +57,7 @@ class SourceReview:
         self.document_owners = defaultdict(dict)
         self.by_id = {row['source_item_id']: row for row in previous}
         self.units = defaultdict(list)
+        self.firefox_records = None
         self.enterprise_urls = defaultdict(set)
         self.archive_links = defaultdict(set)
         self.restricted_raw, self.hashes = set(), {}
@@ -312,6 +314,19 @@ class SourceReview:
             raise ValueError('No publisher-filtered Enterprise observations for this version in the current run')
         if any(e['url'] == target for e in c.state['errors']):
             raise ValueError('The registered collector could not verify this document')
+        firefox_record = None
+        if self.sid == 'firefox-ios':
+            # A review-only resume skips collection. Replay its verified archive
+            # from the same checkpoint without starting another inventory request.
+            if self.firefox_records is None:
+                _, self.firefox_records = firefox_ios.release_archive(c, cached_only=True)
+            firefox_record = next((row for v, row in self.firefox_records.items()
+                                   if firefox_ios.detail_url(v) == target), None)
+            if firefox_record is None:
+                raise ValueError('No pinned public Firefox iOS release record for this URL')
+            notes = firefox_ios.checked_notes(c, firefox_record)
+            if not notes:
+                return None, []
         if target not in c.cache and target not in c.progress['responses']:
             used = max(c.new_documents, c.state['documents'])
             if self.wait or halted or c.enrichment_blocked or used >= c.source['discovery']['max_documents']:
@@ -320,21 +335,29 @@ class SourceReview:
         response = c.get(target, direct=True)
         if urldefrag(normalize_url(response.url))[0] != target:
             raise ValueError('Official evidence URL redirected')
-        rendered = response.text()
-        if '<html' in rendered.lower() and '</html>' not in rendered.lower():
-            raise ValueError('Truncated HTML evidence')
-        tree = Tree(rendered).root
-        body = boundary(tree, self.sid, document_url=target)
-        if self.sid == 'safari-technology-preview':
-            match = re.fullmatch(c.source['discovery']['include_url_pattern'], target)
-            if not match:
-                raise ValueError('Unrecognized WebKit release evidence')
-            dates = verified_release_dates(response, int(match[1]), None, self.sid)
+        if firefox_record is not None:
+            published_at, body = firefox_ios.document_metadata(response, firefox_record['version'],
+                                                              firefox_record['release_date'], c.cutoff)
+            dates = (published_at,)
+            units = firefox_ios.document_units(body, notes, window_anchors=bool(anchor))
+            if re.fullmatch(r'note-\d+', anchor):
+                units = [unit for unit in units if unit['key'] == anchor]
         else:
-            dates = published(tree, self.sid, product_body=body), modification(tree, body)
+            rendered = response.text()
+            if '<html' in rendered.lower() and '</html>' not in rendered.lower():
+                raise ValueError('Truncated HTML evidence')
+            tree = Tree(rendered).root
+            body = boundary(tree, self.sid, document_url=target)
+            if self.sid == 'safari-technology-preview':
+                match = re.fullmatch(c.source['discovery']['include_url_pattern'], target)
+                if not match:
+                    raise ValueError('Unrecognized WebKit release evidence')
+                dates = verified_release_dates(response, int(match[1]), None, self.sid)
+            else:
+                dates = published(tree, self.sid, product_body=body), modification(tree, body)
+            units = blocks(body, window_anchors=bool(anchor)) if body is not None else []
         if any(c.publication_status(value) == 'after_cutoff' for value in dates if value):
             raise ValueError('Only evidence after the run cutoff was observed')
-        units = blocks(body, window_anchors=bool(anchor)) if body is not None else []
         if anchor:
             units = [u for u in units if anchor in u.pop('window_anchors', [])]
         elif directives:
@@ -342,7 +365,7 @@ class SourceReview:
         if any(not self.eligible_unit(u) for u in units):
             self.restricted_raw.add(url)
         scoped = [(u, None, response) for u in units if self.eligible_unit(u)]
-        return (None if anchor or directives else response), scoped
+        return (None if firefox_record is not None or anchor or directives else response), scoped
 
     def note_failure(self, error, url):
         now = datetime.now(timezone.utc)

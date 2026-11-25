@@ -24,20 +24,24 @@ def detail_url(version):
     return f'https://www.firefox.com/en-US/firefox/ios/{version}/releasenotes/'
 
 
-def page(collector, url, *, mutable=False):
-    if not collector.budget(url, 'pages'):
-        raise ValueError('Firefox iOS inventory page limit reached')
-    collector.state['pages'] += 1
+def page(collector, url, *, mutable=False, cached_only=False):
+    if cached_only:
+        if url not in collector.progress['responses']:
+            raise ValueError('Missing cutoff-pinned Firefox iOS snapshot response')
+    else:
+        if not collector.budget(url, 'pages'):
+            raise ValueError('Firefox iOS inventory page limit reached')
+        collector.state['pages'] += 1
     response = collector.get_page(url) if mutable else collector.get(url)
     if response.url != url:
         raise ValueError('Unexpected final Mozilla inventory URL')
     return response
 
 
-def release_archive(collector):
+def release_archive(collector, *, cached_only=False):
     end = instant(collector.cutoff).astimezone(timezone.utc).isoformat().replace('+00:00', 'Z')
     query = urlencode({'sha': 'master', 'until': end, 'per_page': 1})
-    commits = json.loads(page(collector, f'{NOTES_API}/commits?{query}').body)
+    commits = json.loads(page(collector, f'{NOTES_API}/commits?{query}', cached_only=cached_only).body)
     if not isinstance(commits, list) or len(commits) != 1:
         raise ValueError('Missing Mozilla release-note snapshot at cutoff')
     commit = commits[0]
@@ -46,7 +50,7 @@ def release_archive(collector):
     if (not re.fullmatch(SHA, sha) or not re.fullmatch(SHA, tree)
             or instant(commit['commit']['committer']['date']) > instant(collector.cutoff)):
         raise ValueError('Invalid Mozilla snapshot identity or commit time')
-    index = json.loads(page(collector, f'{NOTES_API}/git/trees/{tree}?recursive=1').body)
+    index = json.loads(page(collector, f'{NOTES_API}/git/trees/{tree}?recursive=1', cached_only=cached_only).body)
     if index['sha'] != tree or index['truncated'] is not False:
         raise ValueError('Incomplete Mozilla release-note tree')
     expected = {}
@@ -59,7 +63,7 @@ def release_archive(collector):
             expected[path] = entry['sha']
     if not expected:
         raise ValueError('Missing Firefox iOS release records in Mozilla tree')
-    archive = page(collector, f'https://codeload.github.com/mozilla/release-notes/zip/{sha}')
+    archive = page(collector, f'https://codeload.github.com/mozilla/release-notes/zip/{sha}', cached_only=cached_only)
     records = {}
     total = 0
     with ZipFile(io.BytesIO(archive.body)) as zipped:
@@ -282,6 +286,8 @@ def document_units(body, notes, *, window_anchors=False):
 
 def collect_firefox_ios(collector):
     sha, records = release_archive(collector)
+    if collector.fact_review:
+        collector.fact_review.firefox_records = records
     history = collector.state['firefox_ios_inventory'] = {
         'snapshot': sha, 'public_records': len(records), 'verified_versions': [], 'empty_versions': [],
         'missing_shipping_versions': [], 'older_undated_shipping_versions': []}

@@ -92,9 +92,9 @@ class FirefoxIosTests(unittest.TestCase):
             value = json.dumps(value)
         return Response(url, value.encode() if isinstance(value, str) else value)
 
-    def cli(self, name, expected=0, mode='daily', resume=False):
+    def cli(self, name, expected=0, mode='daily', resume=False, cutoff=CUTOFF):
         args = ['pipeline.run_daily', '--repository', str(self.repo), '--private-dir', str(self.root / 'runs'),
-                '--run-id', name, '--source', 'firefox-ios', '--cutoff', CUTOFF, '--mode', mode]
+                '--run-id', name, '--source', 'firefox-ios', '--cutoff', cutoff, '--mode', mode]
         if mode == 'daily':
             args.append('--daily-status')
         if resume:
@@ -163,6 +163,65 @@ class FirefoxIosTests(unittest.TestCase):
         state, rows = self.cli('future', expected=2)
         self.assertIn('after cutoff', str(state['errors']))
         self.assertNotIn('note-3', {r['item_key'] for r in rows})
+
+    def test_old_feature_review_uses_pinned_notes_and_verified_version_html(self):
+        version, day = '3.0', '2026-04-01'
+        url = detail_url(version)
+        stamp = day + 'T12:00:00Z'
+        def record(text):
+            return dict(release(version, day, [note(4, text, stamp)] if text else []), modified=stamp)
+        text = 'Mute tabs is available on iPadOS.'
+        live = html(record(text)).replace(text, f'<span id="note-9">{text}</span>')
+        missing = detail_url('3.1')
+        for target, key, title in ((url, 'mute', 'Mute tabs'), (url + '#note-4', 'translated', '음소거'),
+                                   (url + '#note-9', 'wrong', 'Missing note'), (missing, 'absent', 'Absent version')):
+            request = self.root / 'decision.json'
+            request.write_text(json.dumps(dict(browser='firefox', source_id='firefox-ios', url=target,
+                                               canonical_key=key, title=title)))
+            args = ['collect', '--repository', str(self.repo), '--private-dir', str(self.root / 'manual'),
+                    '--save-item', str(request)]
+            with patch('sys.argv', args), contextlib.redirect_stdout(io.StringIO()), self.assertRaises(SystemExit) as rc:
+                runpy.run_path(str(ROOT / 'pipeline/collect.py'), run_name='__main__')
+            self.assertEqual(0, rc.exception.code)
+        def reviews(name):
+            path = self.root / 'runs' / name / 'work/enrichment/firefox-ios.json'
+            return {j['url']: j for j in json.loads(path.read_bytes())}
+        self.pages[SHIPS].append(ship(30, 'firefox-v3.0', stamp))
+        def prepare_version(pinned, rendered):
+            self.rows[version] = record(pinned)
+            self.prepare()
+            self.pages[url] = rendered
+        for name, pinned, rendered in (
+                ('empty', None, live), ('changed', 'Mute tabs.', live),
+                ('wrong-version', text, live.replace('>3.0<', '>3.1<')),
+                ('wrong-note', text, live.replace('id="note-4"', 'id="note-8"')),
+                ('future-metadata', text, live.replace('</head>', '<meta itemprop="dateModified" content="2026-12-01"></head>'))):
+            with self.subTest(name=name):
+                prepare_version(pinned, rendered)
+                self.cli(name)
+                self.assertFalse(any(j.get('candidate') or j.get('reference_review') for j in reviews(name).values()))
+        prepare_version(text, OSError('detail temporarily unavailable'))
+        self.cli('retry')
+        self.assertFalse(any(j.get('candidate') or j.get('reference_review') for j in reviews('retry').values()))
+        self.pages[url] = live
+        cached_zip = (self.root / 'runs/retry/work/browser/cache' / hashlib.sha256(self.pages[ARCHIVE]).hexdigest())
+        cached_zip.write_bytes(b'tampered')
+        self.calls.clear()
+        self.cli('retry', resume=True)
+        self.assertEqual([], self.calls)
+        self.assertIn('checksum', reviews('retry')[url]['error'])
+        cached_zip.write_bytes(self.pages[ARCHIVE])
+        self.cli('retry', resume=True)
+        jobs = reviews('retry')
+        self.assertEqual([url], self.calls)
+        self.assertEqual(text, jobs[url]['candidate']['classification_text'])
+        self.assertEqual([text], jobs[url + '#note-4']['review_passages'])
+        self.assertFalse(jobs[url + '#note-9'].get('candidate') or jobs[url + '#note-9'].get('reference_review'))
+        self.assertIn('No pinned public', jobs[missing]['error'])
+        self.pages[COMMIT.replace('11-24', '11-25')] = self.pages[COMMIT]
+        self.cli('next-day', cutoff=CUTOFF.replace('11-25', '11-26'))
+        self.assertEqual(jobs[url]['content_sha256'], reviews('next-day')[url]['content_sha256'])
+        self.assertNotIn(missing, self.calls)
 
     def test_unknown_record_is_never_empty_or_complete(self):
         for label, changes in [('null', {'notes': None}), ('missing', {}), ('wrong-type', {'notes': {}}),
