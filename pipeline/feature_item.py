@@ -6,7 +6,7 @@ from pathlib import Path
 
 from pipeline import browser_status
 from pipeline.deduplicate import AliasIndex, digest as value_digest, feature_identity
-from pipeline.official_reference import accepts_url, normalize_url, reference_row
+from pipeline.official_reference import accepts_url, normalize_url, observed_publisher_urls, reference_row
 from pipeline.run_daily import digest
 from pipeline.source_item_shards import EDGE_POLICY, EDGE_SHARDS
 from pipeline.temporal import instant
@@ -49,33 +49,37 @@ def confirmed_fact(value, slot):
     return text(value)
 
 
-def missing_facts(feature, sources_by_id):
+def confirmed_facts(feature, sources_by_id):
     """Old parsed rows only supply feature-level facts their pinned citation identifies."""
-    known = set(feature.get('feature_facts', {}))
+    known = dict(feature.get('feature_facts', {}))
     for ident in feature['source_item_ids']:
         row = sources_by_id.get(ident)
         if row is None:
             continue
         pins = feature.get('source_revision_ids', {}).get(ident, [])
-        snapshot = next((s for s in reversed(row['revisions']) if not pins or s['revision_id'] == pins[-1]), None)
-        if snapshot is None:
-            continue
-        quote = feature.get('source_revision_excerpts', {}).get(snapshot['revision_id'])
-        # ChromeStatus has one upstream feature per record. Other publishers can
-        # list unrelated products in one release, or supply platform defaults.
-        specific = row['source_id'] == 'chrome-platform-status' and row['item_key'].isdigit()
-        versioned_note = ((row['source_id'] == 'chrome-enterprise' and row['item_key'].isdigit())
-                          or (row['source_id'] in ('firefox-beta', 'firefox-releases', 'firefox-ios', 'firefox-android')
-                              and re.fullmatch(r'note-[0-9]+', row['item_key'])))
-        for slot in ('version', 'platform', 'channel'):
-            facts = snapshot if slot in snapshot or snapshot != row['revisions'][-1] else row
-            value = confirmed_fact(facts.get(slot), slot)
-            if not value:
-                continue
-            values = value if isinstance(value, list) else [value]
-            cited = quote and all(re.search(r'(?<!\w)' + re.escape(v) + r'(?!\w)', quote, re.I) for v in values)
-            if specific or cited or slot == 'version' and versioned_note:
-                known.add(slot)
+        selected = [s for s in row['revisions'] if s['revision_id'] in pins] if pins else row['revisions'][-1:]
+        for snapshot in selected:
+            quote = feature.get('source_revision_excerpts', {}).get(snapshot['revision_id'])
+            # ChromeStatus has one upstream feature per record. Other publishers can
+            # list unrelated products in one release, or supply platform defaults.
+            specific = row['source_id'] == 'chrome-platform-status' and row['item_key'].isdigit()
+            versioned_note = ((row['source_id'] == 'chrome-enterprise' and row['item_key'].isdigit())
+                              or (row['source_id'] in ('firefox-beta', 'firefox-releases', 'firefox-ios', 'firefox-android')
+                                  and re.fullmatch(r'note-[0-9]+', row['item_key'])))
+            for slot in ('version', 'platform', 'channel'):
+                facts = snapshot if slot in snapshot or snapshot != row['revisions'][-1] else row
+                value = confirmed_fact(facts.get(slot), slot)
+                if not value:
+                    continue
+                values = value if isinstance(value, list) else [value]
+                cited = quote and all(re.search(r'(?<!\w)' + re.escape(v) + r'(?!\w)', quote, re.I) for v in values)
+                if specific or cited or slot == 'version' and versioned_note:
+                    known.setdefault(slot, dict(value=value, source_item_id=ident, revision_id=snapshot['revision_id']))
+    return known
+
+
+def missing_facts(feature, sources_by_id):
+    known = confirmed_facts(feature, sources_by_id)
     return tuple(slot for slot in FACT_FIELDS if slot not in known)
 
 
@@ -134,7 +138,7 @@ def selected_source(sources, request, candidate):
     else:
         url, sid = normalize_url(request.get('url')), request.get('source_id')
     matches = [s for s in sources if s['enabled'] and s['browser'] == request['browser']
-               and (sid is None or sid == s['source_id']) and accepts_url(s, url, observed=candidate is not None)]
+               and (sid is None or sid == s['source_id']) and accepts_url(s, url, observed=True)]
     if len(matches) != 1:
         raise ValueError('Official URL needs one matching registered publisher source')
     return matches[0], url
@@ -221,13 +225,15 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
         ident = candidate['source_item_id'] if candidate else reference_row(source, url, observed_at)['source_item_id']
         target = EDGE_SHARDS[int(ident[4:6], 16)]
     rows = {r['source_item_id']: r for r in read_rows(target)}
+    if candidate is None and not accepts_url(source, url) and (sid, url) not in observed_publisher_urls(rows.values()):
+        raise ValueError('This URL requires a confirmed item from the publisher index')
     row, snap, passage = choose_evidence(feature, rows, source, url, candidate, observed_at)
     validate_record('source_item', row)
     ident, revision = row['source_item_id'], snap['revision_id']
     prior = rows.get(ident)
     previously_linked = ident in feature['source_item_ids']
-    if prior:
-        old_head = prior['revisions'][-1]['revision_id']
+    old_head = prior['revisions'][-1]['revision_id'] if prior else None
+    if prior and row['revisions'][-1]['revision_id'] != old_head:
         # Before appending a source revision, freeze legacy readers at their old head.
         display = next((r['revision_id'] for r in row['revisions'][len(prior['revisions']):]
                         if r.get('restores_revision_id') == old_head), old_head)
@@ -235,13 +241,14 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
             if ident in owner['source_item_ids'] and ident not in owner.get('source_revision_ids', {}):
                 owner.setdefault('source_revision_ids', {})[ident] = [display]
     pins = feature.setdefault('source_revision_ids', {}).setdefault(ident, [])
-    already = previously_linked and revision in pins
+    already = previously_linked and (revision in pins or not pins and revision == old_head)
     quote = request.get('evidence_quote')
     if quote not in (None, ''):
-        if not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in passage:
+        if already:
+            if quote != browser_status.displayed_excerpt(feature, snap):
+                raise ValueError('Cannot replace a confirmed excerpt')
+        elif not isinstance(quote, str) or not quote.strip() or len(quote) > 1200 or quote not in passage:
             raise ValueError('Quote must match a passage from the selected revision')
-        if already and quote != browser_status.displayed_excerpt(feature, snap):
-            raise ValueError('Cannot replace a confirmed excerpt')
         feature.setdefault('source_revision_excerpts', {})[revision] = quote
     facts = request.get('facts', {})
     if not isinstance(facts, dict) or facts.keys() - set(FACT_FIELDS):
@@ -259,14 +266,17 @@ def item_delta(root, request, sources, *, observed_at, candidate=None):
             others = read_rows(path.relative_to(root).as_posix())
             linked.update((r['source_item_id'], r) for r in others if r['source_item_id'] in outstanding)
             outstanding -= linked.keys()
-    missing = missing_facts(feature, linked)
-    slots = feature.setdefault('feature_facts', {})
-    for slot, value in normalized.items():
-        if value is not None and slot in missing:
-            slots[slot] = dict(value=value, source_item_id=ident, revision_id=revision)
     feature['source_item_ids'] = sorted(set(feature['source_item_ids']) | {ident})
     if revision not in pins:
         pins.append(revision)
+    slots = feature.setdefault('feature_facts', {})
+    if open_inputs:
+        linked[ident] = row
+        confirmed = confirmed_facts(feature, linked)
+        for slot in sorted(open_inputs):
+            fact = confirmed.get(slot)
+            if fact is None or normalized[slot] == fact['value']:
+                slots[slot] = dict(value=normalized[slot], source_item_id=ident, revision_id=revision)
     scope = row.get('temporal_scope') if candidate is not None else None
     if scope and (feature.get('temporal_scope', {}).get('status') != 'in_period' or scope['status'] == 'in_period'):
         feature['temporal_scope'] = scope

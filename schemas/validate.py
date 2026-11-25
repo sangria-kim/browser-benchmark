@@ -156,7 +156,7 @@ def validate_transition(kind, previous, current):
     return current
 
 
-def validate_dataset(records_by_kind, source_ids=None):
+def validate_dataset(records_by_kind, source_ids=None, *, reference_check=None):
     """Validate a complete candidate dataset, not an isolated delta.
 
     records_by_kind maps canonical singular kind to a list of records.
@@ -258,7 +258,9 @@ def validate_dataset(records_by_kind, source_ids=None):
                     stack.append((current, True))
                     stack.extend((target, False) for target in edges[current])
     for record in records_by_kind.get('source_item', []):
-        if source_ids is not None and record['source_id'] not in source_ids:
+        if record['record_status'] == 'reference' and reference_check is not None:
+            reference_check(record)
+        elif source_ids is not None and record['source_id'] not in source_ids:
             raise ContractError('Unregistered source ID: ' + record['source_id'])
     for record in records_by_kind.get('assessment', []):
         require(record['subject_kind'], record['subject_id'])

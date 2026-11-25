@@ -1,5 +1,7 @@
 """Publisher URL scope and the immutable evidence representation for link-only citations."""
+import json
 import re
+import subprocess
 from urllib.parse import parse_qsl, unquote, urlsplit, urlunsplit
 
 from pipeline.deduplicate import digest, stable_id
@@ -38,6 +40,8 @@ def accepts_url(source, url, *, observed=False):
     parts = urlsplit(url)
     base = urlunsplit((parts.scheme, parts.netloc, parts.path, '', ''))
     sid = source['source_id']
+    if sid == 'whale-notices':
+        return bool(observed and not parts.query and not parts.fragment and re.fullmatch(DETAIL_URLS[sid], base))
     if parts.query:
         query = parse_qsl(parts.query, keep_blank_values=True)
         if sid == 'chrome-enterprise':
@@ -59,6 +63,62 @@ def accepts_url(source, url, *, observed=False):
         return re.fullmatch(DETAIL_URLS[sid], base) is not None
     pattern = source['discovery']['include_url_pattern']
     return bool(pattern and re.fullmatch(pattern, base))
+
+
+def observed_publisher_urls(rows):
+    """Public source evidence for URL shapes whose membership needs the publisher's index."""
+    return {(row['source_id'], normalize_url(snap['evidence']['url']))
+            for row in rows if (row['browser'], row['source_id']) in (('chrome', 'chrome-blog'), ('whale', 'whale-notices'))
+            for snap in row['revisions'] if snap.get('record_status', row['record_status']) == 'parsed'}
+
+
+def reference_checker(root, registry, rows):
+    """Check every link-only row, including rows introduced by another graph writer."""
+    by_id = {source['source_id']: source for source in registry['sources']}
+    observed = None
+
+    def authorized(row, source, publisher_urls):
+        url = row['evidence']['url']
+        return (source is not None and source['browser'] == row['browser']
+                and accepts_url(source, url, observed=(row['source_id'], url) in publisher_urls))
+
+    def previously_authorized(row):
+        # A registry can legitimately move. Only grandfather the exact retained
+        # row when its own committed tree also shows the authorizing registration.
+        from pipeline.run_daily import git, repository_head
+        head = repository_head(root)
+        if not head:
+            return False
+        sid = row['source_id']
+        path = f"data/source-items/{row['browser']}/{sid}.json"
+        for commit in git(root, 'log', '--format=%H', head, '--', path).splitlines():
+            try:
+                config = json.loads(git(root, 'show', commit + ':config/sources.yml'))
+                source = next((s for s in config['sources'] if s['source_id'] == sid), None)
+                if source is None or not source['enabled'] or not accepts_url(source, row['evidence']['url'], observed=True):
+                    continue
+                prior = json.loads(git(root, 'show', commit + ':' + path))
+            except subprocess.CalledProcessError:
+                continue  # Source file or registration absent at this historical commit.
+            if row in prior and authorized(row, source, observed_publisher_urls(prior)):
+                return True
+        return False
+
+    def check(row):
+        nonlocal observed
+        source = by_id.get(row['source_id'])
+        if source and source['enabled'] and source['browser'] == row['browser']:
+            if accepts_url(source, row['evidence']['url']):
+                return
+            if source['source_id'] in ('chrome-blog', 'whale-notices'):
+                if observed is None:
+                    observed = observed_publisher_urls(rows)
+                if authorized(row, source, observed):
+                    return
+        if not previously_authorized(row):
+            raise ValueError('Official reference does not match its registered browser and publisher URL')
+
+    return check
 
 
 def reference_row(source, url, observed_at):

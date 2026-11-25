@@ -110,6 +110,10 @@ the normalized `url`. The original page bytes, publication date and excerpt are
 unknown. The empty excerpt and null publication date stay intact on retry.
 `observed_at` is the first observation of the reference. If classification selects
 an observed item and revision, the feature pins that snapshot and its actual hash.
+Shared Whale forum topics and cross-category Google blog posts also need a matching
+item from the registered announcement index or Chrome feed. Community replies are
+excluded. If the source registration moves, graph validation can retain an identical
+link-only row committed under its earlier registration.
 
 Individual selections carry an optional `feature_facts` object. Its slots are
 `version`, `platform` (a list), `channel`, and `rollout_status`. Each confirmed

@@ -3,6 +3,7 @@ import copy
 import json
 from pathlib import Path
 import shutil
+import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -11,7 +12,7 @@ from pipeline import browser_status, collect
 from pipeline.collectors.browser import Response
 from pipeline.feature_item import FACT_FIELDS, item_delta, missing_facts
 from pipeline.normalize import validate_graph
-from pipeline.official_reference import accepts_url, normalize_url
+from pipeline.official_reference import accepts_url, normalize_url, reference_row
 from schemas.validate import validate_record
 from scripts import build_dashboard
 
@@ -183,6 +184,133 @@ class FeatureItemTests(unittest.TestCase):
         for invalid in (dict(REQUEST, feature_id='unknown'), dict(REQUEST, feature_id='retired-id', canonical_key='unrelated')):
             with self.assertRaises(ValueError):
                 self.apply(invalid)
+
+    def test_known_fact_from_earlier_confirmed_revision_survives_later_gap(self):
+        row, choice = self.candidate(' This feature requires version 160.')
+        row['version'] = row['revisions'][-1]['version'] = '160'
+        _, first = self.apply(dict(choice, evidence_quote='This feature requires version 160.'), candidate=row)
+        next_row = copy.deepcopy(row)
+        tail = copy.deepcopy(row['revisions'][-1])
+        tail.update(revision_id='sr-later', version=None, title='Group tabs across windows')
+        next_row.update(version=None, title=tail['title'])
+        next_row['revisions'].append(tail)
+        _, second = self.apply(dict(choice, revision_id='sr-later'), candidate=next_row, at=LATER)
+        feature, = second['feature']
+        self.assertNotIn('version', missing_facts(feature, {row['source_item_id']: next_row}))
+        _, updated = self.apply(dict(REQUEST, canonical_key=choice['canonical_key'], facts=dict(version='999')))
+        self.assertNotIn('version', updated['feature'][0]['feature_facts'])
+        saved = next(r for r in updated['source_item'] if r['source_item_id'] == row['source_item_id'])
+        self.assertEqual(first['source_item'][0]['revisions'], saved['revisions'][:1])
+
+    def test_whale_topics_require_notice_observation_and_exclude_replies(self):
+        source = self.registry['whale-notices']
+        url = 'https://forum.whale.naver.com/topic/123/'
+        request = dict(browser='whale', url=url, canonical_key='whale-tabs', title='Group tabs by project')
+        for address in (url, url + '#comment-456'):
+            with self.subTest(address=address), self.assertRaises(ValueError):
+                self.apply(dict(request, url=address))
+        private = self.root.parent / 'whale'
+        pages = {source['url']: '<a href="' + url + '">Release</a>',
+                 url: '<form><div data-role="commentContent"><p>Group tabs by project.</p></div></form>'}
+        collect.collect_sources(self.root, private, source_ids=['whale-notices'], mode='manual', cutoff=NOW,
+                                transport=lambda u: Response(u, pages[u].encode()))
+        row, = json.loads((private / 'work/candidates/whale-notices.json').read_text())
+        selected = dict(request, source_item_id=row['source_item_id'], revision_id=row['revisions'][-1]['revision_id'])
+        self.apply(selected, candidate=row)
+        _, replay = self.apply(request)
+        self.assertEqual(1, len(replay['source_item']))
+        self.apply(dict(request, canonical_key='another-whale-feature', title='Share the grouped tabs'))
+        with self.assertRaises(ValueError):
+            self.apply(dict(request, url=url + '#comment-456'))
+
+    def test_first_selection_respects_versioned_official_note(self):
+        path = ROOT / 'data/source-items/firefox/firefox-releases.json'
+        row = next(r for r in json.loads(path.read_bytes()) if r['item_key'] == 'note-792196')
+        self.assertEqual('157.0', row['version'])
+        self.write(path.relative_to(ROOT), [row])
+        choice = dict(browser='firefox', canonical_key='versioned-note', title=row['title'], facts=dict(version='999'),
+                      source_item_id=row['source_item_id'], revision_id=row['revisions'][-1]['revision_id'])
+        _, graph = self.apply(choice, candidate=row)
+        self.assertNotIn('version', graph['feature'][0]['feature_facts'])
+        self.assertNotIn('version', missing_facts(graph['feature'][0], {row['source_item_id']: row}))
+
+    def test_cross_category_blog_requires_published_chrome_feed_membership(self):
+        url = 'https://blog.google/products-and-platforms/platforms/android/switch-password-managers/'
+        rows = json.loads((ROOT / 'data/source-items/chrome/chrome-blog.json').read_bytes())
+        row = next(r for r in rows if r['evidence']['url'] == url)
+        request = dict(browser='chrome', url=url, canonical_key='switch-passwords', title='Switch password managers')
+        with self.assertRaises(ValueError):
+            self.apply(request)
+        self.write('data/source-items/chrome/chrome-blog.json', [row])
+        self.apply(dict(request, source_item_id=row['source_item_id'], revision_id=row['revisions'][-1]['revision_id']),
+                   candidate=row)
+        repeat, graph = self.apply(request)
+        self.assertFalse(repeat['changed'])
+        self.assertEqual(1, len(graph['source_item']))
+
+    def test_old_registered_citation_requires_same_row_in_authorizing_commit(self):
+        registry_path = self.root / 'config/sources.yml'
+        old_source = self.registry['edge-stable']
+        req = dict(browser='edge', canonical_key='share-links', title='Share links', url=old_source['url'])
+        _, original = self.apply(req)
+        for args in [('init', '-q'), ('add', '.'), ('-c','user.name=Fixture','-c','user.email=fixture@example.test',
+                                                     'commit','-qm','Accepted official citation')]:
+            subprocess.run(['git', '-C', str(self.root), *args], check=True)
+        registry = json.loads(registry_path.read_text())
+        source = next(s for s in registry['sources'] if s['source_id'] == 'edge-stable')
+        source['url'] += '-moved'
+        self.write('config/sources.yml', registry)
+        self.assertEqual(original['source_item'], validate_graph(self.root)['source_item'])
+        altered = reference_row(old_source, old_source['url'], LATER)
+        with self.assertRaises(ValueError):
+            validate_graph(self.root, {'data/source-items/edge/edge-stable.json': [altered]})
+
+    def test_graph_rejects_self_consistent_foreign_reference(self):
+        source = self.registry['firefox-ios']
+        rel = 'data/source-items/firefox/firefox-ios.json'
+        for publisher, address in [(source, 'https://unrelated.example.com/another-product/'),
+                                   (dict(source, browser='chrome'), URL)]:
+            row = reference_row(publisher, address, NOW)
+            validate_record('source_item', row)
+            with self.subTest(address=address, browser=publisher['browser']), self.assertRaises(ValueError):
+                validate_graph(self.root, {rel: [row]})
+
+    def test_same_source_head_leaves_unselected_legacy_sibling_untouched(self):
+        row, choice = self.candidate()
+        self.apply(choice, candidate=row)
+        _, graph = self.apply(dict(choice, canonical_key='sibling', title='Open shared groups'), candidate=row)
+        for feature in graph['feature']:
+            del feature['source_revision_ids']
+            feature.pop('feature_facts')
+        sibling = next(f for f in graph['feature'] if f['canonical_key'] == 'sibling')
+        self.write(browser_status.CATALOG, graph['feature'])
+        request = dict(browser='firefox', canonical_key=choice['canonical_key'], url=row['evidence']['url'],
+                       facts=dict(platform=['iOS']), change_kind='product_change')
+        effect, updated = self.apply(request)
+        self.assertFalse(effect['changed'])
+        self.assertIn(sibling, updated['feature'])
+        self.assertEqual(graph['source_item'], updated['source_item'])
+        updated_row = copy.deepcopy(row)
+        tail = dict(row['revisions'][-1], revision_id='sr-new-product', version='161')
+        updated_row['revisions'].append(tail)
+        updated_row['version'] = '161'
+        changed, latest = self.apply(dict(choice, revision_id='sr-new-product', change_kind='product_change'),
+                                     candidate=updated_row, at=LATER)
+        self.assertTrue(changed['changed'])
+        owner = next(f for f in latest['feature'] if f['canonical_key'] == 'sibling')
+        self.assertEqual([choice['revision_id']], owner['source_revision_ids'][row['source_item_id']])
+
+    def test_url_replay_of_confirmed_long_item_quote(self):
+        row, choice = self.candidate()
+        quote = 'Send this group to another device.'
+        self.assertNotIn(quote, row['evidence']['excerpt'])
+        effect, graph = self.apply(dict(choice, evidence_quote=quote), candidate=row)
+        request = dict(browser='firefox', url=row['evidence']['url'], feature_id=effect['feature_id'], evidence_quote=quote)
+        again, replayed = self.apply(request, at=LATER)
+        self.assertFalse(again['changed'])
+        self.assertEqual(graph, replayed)
+        with self.assertRaises(ValueError):
+            self.apply(dict(request, evidence_quote='Tab grouping added.'))
 
     def test_publisher_url_boundaries_and_nonfeatures(self):
         valid = {'firefox-ios': URL, 'brave-releases': 'https://github.com/brave/brave-browser/releases/tag/v1.99.30',
