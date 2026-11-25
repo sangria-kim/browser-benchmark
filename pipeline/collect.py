@@ -148,6 +148,14 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
         state.update(status='collecting', complete=False)
         durable(state_path, encoded(state))
         fact_index = FeatureIndex(root, private)
+        pending_selections = defaultdict(set)
+        if state.get('browser_pin'):
+            rel = browser_status.detail_path(mode, cutoff)
+            detail = browser_status.read_current(root, rel)
+            for outcome in (detail or {}).get('browsers', {}).values():
+                if outcome['status'] == 'incomplete':
+                    for effect in outcome.get('effects', []):
+                        pending_selections[effect['source_id']].add((effect['item'], effect['revision']))
         setup.close()
         for source in sources:
             sid = source['source_id']
@@ -172,6 +180,7 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 collector.checkpoint_context = digest(encoded([state['workspace_id'], config_hash, sid]))
                 collector.attempt_seconds = policy.get('source_attempt_seconds', 900)
                 collector.fact_index = fact_index
+                collector.pending_selections = pending_selections[sid]
                 if review_only:
                     collector.collect(source, cutoff, policy_day(start), origin, review_only=True)
                     result = previous
@@ -191,6 +200,18 @@ def collect_sources(repository, private_dir, *, source_ids=None, cutoff=None, tr
                 with run_lock(root, wait=True):
                     if not review_only:
                         atomic_json(path, rows)
+                    if state['mode'] in browser_status.MODES and 'generations' in state:
+                        if review_only:
+                            status['window_sha256'] = previous['window_sha256']
+                        else:
+                            window = dict.fromkeys(result.get('excluded_by_date', []), 'before_period')
+                            window.update(collector.window_exclusions)
+                            for url, statuses in collector.unit_windows.items():
+                                if statuses <= {'before_period', 'after_cutoff'}:
+                                    window.setdefault(url, 'after_cutoff' if statuses == {'after_cutoff'} else 'before_period')
+                            window_path = work / 'windows' / (sid + '.json')
+                            atomic_json(window_path, window)
+                            status['window_sha256'] = file_digest(window_path)
                     state['observed'][sid] = file_digest(path)
                     if jobs or prior_jobs:
                         review_path = work / 'enrichment' / (sid + '.json')
@@ -575,6 +596,9 @@ def save_browser(root, work, state, browser, classification, writer):
             raise ValueError('Cannot change data after the daily status is complete')
     outcome = detail['browsers'][browser]
     previous_effects = outcome.get('effects', [])
+    if previous_effects and outcome['status'] == 'incomplete':
+        from pipeline.item_publication import check_prior_item_windows
+        check_prior_item_windows(root, work, state, browser, previous_effects, inventory)
     accepted = {(e['source_id'], e['item'], e['revision']) for e in previous_effects}
     if outcome['status'] == 'complete' and outcome['classification'] != signature:
         raise ValueError('This browser already has a different final classification')

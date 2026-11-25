@@ -13,7 +13,7 @@ from time import monotonic
 import calendar
 from pathlib import Path
 from datetime import datetime, timedelta, timezone
-from urllib.parse import urljoin, urlparse, urldefrag, urlencode
+from urllib.parse import quote, urljoin, urlparse, urldefrag, urlencode
 from urllib.error import HTTPError
 
 from schemas.validate import validate_record, validate_transition, validate_dataset
@@ -213,6 +213,9 @@ class BrowserCollector:
         self.resume = resume
         self.reviewed_attributions = reviewed_attributions or {}
         self.brave_release_metadata = brave_release_metadata
+        self.pending_selections = set()
+        self.window_exclusions = {}
+        self.unit_windows = {}
         self.brave_metadata_rows = None
         self.chrome_status_baselines = None
         self.github_covered, self.github_publications = set(), {}
@@ -450,21 +453,26 @@ class BrowserCollector:
     def revision_in_scope(self, url, publication, modified):
         # A release published after cutoff could not have existed in the window.
         if self.publication_status(publication) == 'after_cutoff':
+            self.window_exclusions[url] = 'after_cutoff'
             if self.fact_review:
                 self.fact_review.after_cutoff(url)
             return False
         if modified and self.publication_status(modified) == 'after_cutoff':
+            self.window_exclusions[url] = 'after_cutoff'
             if self.fact_review:
                 self.fact_review.after_cutoff(url)
             self.problem(url, 'Only a revision after cutoff is available')
             return False
-        return self.allowed_publication(modified or publication) or self.publication_status(publication) == 'in_period'
+        eligible = self.allowed_publication(modified or publication) or self.publication_status(publication) == 'in_period'
+        if not eligible:
+            self.window_exclusions.setdefault(url, 'before_period')
+        return eligible
 
     def allowed_publication(self, value, current=False):
         status = self.publication_status(value)
         return status != 'after_cutoff' and (current or status != 'before_period')
 
-    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None):
+    def emit(self, url, response, unit, date=None, revision=None, title=None, channel=None, platform=None, version=None, date_evidence=None, modified=None, window_anchors=()):
         self.check_time()
         observed_at = self.observed_at
         if self.checkpoint_context or self.source['source_id'] == 'edge-policies':
@@ -521,6 +529,11 @@ class BrowserCollector:
             if not (self.publication_status(value) == 'before_period' and self.publication_status(date_evidence) == 'in_period'):
                 record['temporal_scope'] = dated_scope(self.since, self.cutoff, value, 'item_change',
                     'Official per-feature update; a timestamp without timezone supplies its printed calendar day only.')
+        if parsed and not self.write_records:
+            status = self.publication_status(record['temporal_scope']['evidence_date'])
+            self.unit_windows.setdefault(url, set()).add(status)
+            for anchor in window_anchors:
+                self.unit_windows.setdefault(url + '#' + quote(anchor, safe=''), set()).add(status)
         # Hash the full item, not its truncated public excerpt or sibling document bytes.
         if parsed:
             record['item_content_sha256'] = digest(canonical([unit['section'], unit['text']]))
@@ -537,6 +550,11 @@ class BrowserCollector:
                 # The daily classifier needs item changes, not a sibling edit or a new page hash.
                 self.state['processed'] -= 1
                 self.state['duplicate'] += 1
+                if (ident, old['revisions'][-1]['revision_id']) in self.pending_selections:
+                    # One selected feature did not settle this whole observation.
+                    # Use the original revision with this run's verified scope.
+                    self.parsed_ids.add(ident)
+                    self.records[ident] = dict(old, temporal_scope=record['temporal_scope'])
                 return
             if (same_item and
                     old['evidence']['content_sha256'] == content_hash and old['evidence']['source_revision'] == revision):
@@ -593,8 +611,13 @@ class BrowserCollector:
 
     def exclude_document(self, url, *dates):
         self.state['excluded_by_date'].append(url)
-        if self.fact_review and any(self.publication_status(d) == 'after_cutoff' for d in dates if d):
-            self.fact_review.after_cutoff(url)
+        future = any(self.publication_status(d) == 'after_cutoff' for d in dates if d)
+        if future:
+            self.window_exclusions[url] = 'after_cutoff'
+            if self.fact_review:
+                self.fact_review.after_cutoff(url)
+        else:
+            self.window_exclusions.setdefault(url, 'before_period')
 
     def rolling_revision_after_cutoff(self, root, url):
         if self.window_start:
@@ -633,6 +656,8 @@ class BrowserCollector:
             eligible = self.allowed_publication(publication, current)
         if not eligible:
             self.exclude_document(url, publication, modified)
+            if canonical_url != url:
+                self.exclude_document(canonical_url, publication, modified)
             return root
         if body is None:
             self.unresolved(url, response)
@@ -642,7 +667,8 @@ class BrowserCollector:
         if edge_policy and not re.fullmatch(self.source['discovery']['include_url_pattern'], canonical_url):
             raise ValueError('Unexpected final Edge policy URL')
         edge_stable = self.source['source_id'] in ('edge-stable', 'edge-stable-archive')
-        units = blocks(body, visible_sections=edge_policy or edge_stable)
+        units = blocks(body, visible_sections=edge_policy or edge_stable,
+                       window_anchors=self.window_start and not self.write_records)
         if not units:
             self.unresolved(url, response)
             self.problem(url, 'No source units in product content')
@@ -665,7 +691,7 @@ class BrowserCollector:
                 version = version_match[1] if version_match else None
             section_day = None if timestamp or publication_verified else unit.get('date') or date_value(unit['section'])
             self.emit(canonical_url, response, unit, date=section_day or publication_day, date_evidence=timestamp,
-                      version=version, channel=channel, modified=modified)
+                      version=version, channel=channel, modified=modified, window_anchors=unit.pop('window_anchors', ()))
             if edge_policy and unit['parsed']:
                 # Use visible source text for comparison. Preserve the public location key and row hash.
                 headings = unit['visible_headings']

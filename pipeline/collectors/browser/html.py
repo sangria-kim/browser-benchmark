@@ -578,7 +578,7 @@ def omit_attributions(body):
             link.attrs.pop('href', None)
 
 
-def blocks(body, *, visible_sections=False):
+def blocks(body, *, visible_sections=False, window_anchors=False):
     """Partition body into source units, retaining unsupported leaf text as unresolved.
 
     A list entry or table row is one unit. Paragraphs outside those units are
@@ -587,7 +587,7 @@ def blocks(body, *, visible_sections=False):
     """
     omit_attributions(body)
     result, counters, section, headings = [], {}, 'document', {}
-    heading_dates, visible_headings = {}, {}
+    heading_dates, visible_headings, anchor_headings = {}, {}, {}
     suppressed = set()
     # Explicit author/reporter fields are outside the public product record.
     for n in body.walk():
@@ -631,6 +631,10 @@ def blocks(body, *, visible_sections=False):
                 visible_headings = {k: v for k, v in visible_headings.items() if k < level}
                 if text:
                     visible_headings[level] = text
+            if window_anchors:
+                anchor_headings = {k: v for k, v in anchor_headings.items() if k < level}
+                if n.attrs.get('id'):
+                    anchor_headings[level] = n.attrs['id']
             headings[level] = n.attrs.get('id') or text or section
             section = ' / '.join(headings[k] for k in sorted(headings))
             covered.add(id(n))
@@ -646,6 +650,8 @@ def blocks(body, *, visible_sections=False):
             key = key or prefix + ':' + str(counters[prefix])
             result.append({'key': key, 'text': text, 'section': section, 'parsed': bool(text),
                            'date': heading_dates[max(heading_dates)] if heading_dates else None})
+            if window_anchors:
+                result[-1]['window_anchors'] = [v for v in [*anchor_headings.values(), n.attrs.get('id')] if v]
             if visible_sections:
                 result[-1]['visible_headings'] = list(visible_headings.values())
             covered.add(id(n))
@@ -659,6 +665,8 @@ def blocks(body, *, visible_sections=False):
                 result.append({'key': n.attrs.get('id') or prefix + ':' + str(counters[prefix]),
                                'text': direct if ordinary else '', 'section': section, 'parsed': ordinary,
                                'date': heading_dates[max(heading_dates)] if heading_dates else None})
+                if window_anchors:
+                    result[-1]['window_anchors'] = [v for v in [*anchor_headings.values(), n.attrs.get('id')] if v]
                 if visible_sections:
                     result[-1]['visible_headings'] = list(visible_headings.values())
     return unique_unit_keys(result)

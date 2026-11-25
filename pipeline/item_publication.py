@@ -2,11 +2,14 @@
 from datetime import datetime, timezone
 import json
 import os
+import re
 from pathlib import Path
+from urllib.parse import parse_qsl, unquote, urlsplit
 
 from pipeline import browser_status, collect, daily_status, weekly_status
 from pipeline.feature_enrichment import verified_candidate, verified_reference
 from pipeline.feature_item import ALIAS_PATH, item_delta
+from pipeline.official_reference import normalize_url
 from pipeline.run_daily import digest, durable, encoded, pending_recovery, publication_commits, read, require_external, run_lock, store_changes
 from pipeline.temporal import instant
 
@@ -38,7 +41,8 @@ def seal_source(work, state, sid):
     generation = browser_status.value_hash(info)
     folder = work / 'generations' / sid / generation
     folder.mkdir(mode=0o700, parents=True, exist_ok=True)
-    for kind, checksum in (('candidates', info['candidates']), ('enrichment', info['result'].get('enrichment_sha256'))):
+    for kind, checksum in (('candidates', info['candidates']), ('enrichment', info['result'].get('enrichment_sha256')),
+                           ('windows', info['result'].get('window_sha256'))):
         if checksum:
             path = browser_status.safe_path(work, f'{kind}/{sid}.json')
             target = browser_status.safe_path(work, f'generations/{sid}/{generation}/{kind}.json')
@@ -50,7 +54,7 @@ def seal_source(work, state, sid):
     return generation
 
 
-def checked_source(work, state, sid):
+def checked_source(work, state, sid, *, windows=False):
     generation = state.get('generations', {}).get(sid)
     if (sid not in state['sources'] or not browser_status.valid(browser_status.IDENT, sid)
             or not browser_status.valid(browser_status.HASH, generation)):
@@ -66,17 +70,69 @@ def checked_source(work, state, sid):
         checkpoint = read(browser_status.safe_path(work, f'checkpoints/{sid}.json'))
         if checkpoint != collect.source_checkpoint(state, sid):
             raise ValueError('Invalid selected source checkpoint')
-    candidates = []
-    for kind, checksum in (('candidates', info['candidates']), ('enrichment', result.get('enrichment_sha256'))):
+    files = [('candidates', info['candidates']), ('enrichment', result.get('enrichment_sha256'))]
+    if windows:
+        if not result.get('window_sha256'):
+            raise ValueError('A scheduled URL needs its source window checkpoint')
+        files = [('windows', result['window_sha256'])]
+    selected = []
+    for kind, checksum in files:
         if checksum:
             target = browser_status.safe_path(work, prefix + kind + '.json')
             current = browser_status.safe_path(work, f'{kind}/{sid}.json')
             raw = target.read_bytes()
             if digest(raw) != checksum or not current.samefile(target) and collect.file_digest(current) != checksum:
                 raise ValueError('Selected private source checksum mismatch')
-            if kind == 'candidates':
-                candidates = json.loads(raw)
-    return candidates
+            if kind in ('candidates', 'windows'):
+                selected = json.loads(raw)
+    return selected
+
+
+def window_key(url):
+    parts = urlsplit(normalize_url(url))
+    def unreserved(match):
+        char = chr(int(match[0][1:], 16))
+        return char if char.isascii() and (char.isalnum() or char in '-._~') else match[0].upper()
+    path = re.sub(r'%[0-9a-fA-F]{2}', unreserved, parts.path)
+    return parts.netloc, path, tuple(sorted(parse_qsl(parts.query, keep_blank_values=True))), unquote(parts.fragment)
+
+
+def window_index(work, state, sid):
+    bounds = {}
+    for url, reason in checked_source(work, state, sid, windows=True).items():
+        try:
+            key = window_key(url)
+        except ValueError:
+            continue  # A parser's non-publisher diagnostic cannot match an official citation.
+        bounds[key] = reason
+    return bounds
+
+
+def require_url_window(bounds, url, *, enrichment):
+    key = window_key(url)
+    for candidate in (key, (*key[:3], '')):
+        reason = bounds.get(candidate)
+        if reason == 'after_cutoff' or reason == 'before_period' and not enrichment:
+            raise ValueError('Official URL is outside the scheduled source window: ' + url)
+
+
+def check_prior_item_windows(root, work, state, browser, effects, inventory):
+    # A fresh survey can learn a date which a former partial survey did not know.
+    by_source = {}
+    for effect in effects:
+        if (effect['source_id'], effect['item'], effect['revision']) not in inventory:
+            by_source.setdefault(effect['source_id'], []).append(effect)
+    for sid, selected in by_source.items():
+        bounds = window_index(work, state, sid)
+        if not bounds:
+            continue
+        rel = f'data/source-items/{browser}/{sid}.json'
+        files = {rel}
+        if rel == collect.EDGE_POLICY and (root / collect.EDGE_SHARDS[0]).exists():
+            files = {collect.EDGE_SHARDS[int(e['item'][4:6], 16)] for e in selected}
+        urls = {r['source_item_id']: r['evidence']['url'] for name in files for r in read(browser_status.safe_path(root, name))}
+        for effect in selected:
+            require_url_window(bounds, urls[effect['item']], enrichment=not effect['changed'])
 
 
 def checked_request(work, state, request):
@@ -203,6 +259,17 @@ def save_item(repository, private_dir, request, *, standalone=False, manual=Fals
             sources, _ = collect.registered_sources(root, None, mode='manual')
         selected, candidate = checked_request(work, state, request)
         delta = item_delta(root, selected, sources, observed_at=datetime.now(timezone.utc).isoformat(), candidate=candidate)
+        fact_review = candidate is not None and candidate['item_key'] == 'feature-facts:' + str(selected.get('feature_id'))
+        if state and state['mode'] in browser_status.MODES and (candidate is None or fact_review):
+            sid = delta.effect['source_id']
+            # A classifier's independent citation can arrive before this source.
+            # Its effect stays provisional until the browser validates the survey.
+            if (state['status'] != 'collecting' or sid in state['source_results'] or sid in state['observed']
+                    or sid in state.get('generations', {}) or (work / 'generations' / sid).exists()
+                    or (work / 'checkpoints' / (sid + '.json')).exists()):
+                bounds = window_index(work, state, sid)
+                url = candidate['evidence']['url'] if fact_review else selected['url']
+                require_url_window(bounds, url, enrichment=fact_review or request.get('reference_review', False))
         if any(rel in baseline and baseline[rel] != checksum for rel, checksum in delta.before.items()):
             raise ValueError('Stale item publication input')
         delta.before.update(baseline)

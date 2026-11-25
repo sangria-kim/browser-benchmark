@@ -412,9 +412,13 @@ class WindowTests(unittest.TestCase):
             self.item('day', request)
         self.payloads[edge] = original
         self.cli('retry', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
-        self.assertNotIn('tabs', [r['item_key'] for r in self.candidates('retry', 'firefox-beta')])
+        self.assertIn('tabs', [r['item_key'] for r in self.candidates('retry', 'firefox-beta')])
         for name in read(self.repo / rel)['scope']['expected']:
-            self.publish_browser('retry', name, self.browser_choices('retry', name, select=False))
+            choice = self.browser_choices('retry', name, select=False)
+            for disposition in choice['dispositions']:
+                if disposition['source_item_id'] == selected['source_item_id']:
+                    disposition['disposition'] = 'selected'
+            self.publish_browser('retry', name, choice)
         self.assertEqual((1, 1), tuple(read(self.repo / day)[k] for k in ('collected_feature_count', 'change_count')))
         self.assertEqual(['groups'], [f['canonical_key'] for f in read(self.repo / collect.FEATURE_CATALOG)])
         run_daily.commit_candidate(self.repo)
@@ -532,6 +536,154 @@ class WindowTests(unittest.TestCase):
             self.assertEqual(catalog[published['canonical_key']], published)
         self.assertEqual(frozen, april.read_bytes())
         validate_tree(self.repo, complete_history=True)
+
+    def test_scheduled_url_respects_known_future_and_independent_manual(self):
+        self.configure_small_registry()
+        sid = 'chrome-releases'
+        registry = read(self.registry)
+        next(s for s in registry['sources'] if s['source_id'] == sid)['parser'] = self.sources[sid]['parser']
+        self.registry.write_bytes(encoded(registry))
+        url = HOME + '2026/11/future-release.html'
+        self.payloads[HOME] = self.card(url, '2026-11-24')
+        self.payloads[url] = self.article('2026-11-24T07:00:01+09:00')
+        request = dict(browser='chrome', source_id=sid, url=url + '#tabs', canonical_key='preview', title='Tab preview')
+        self.cli('survey', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.assertIn(url, self.calls)
+        self.assertEqual([], self.candidates('survey', sid))
+        for address in (request['url'], request['url'].replace('/future-', '/%66uture-')):
+            with self.assertRaisesRegex(ValueError, 'window'):
+                self.item('survey', dict(request, url=address))
+        window = self.folder / 'runs/survey/work/windows' / (sid + '.json')
+        sealed = window.read_bytes()
+        window.write_bytes(encoded({}))
+        with self.assertRaisesRegex(ValueError, 'checksum'):
+            self.item('survey', request)
+        window.write_bytes(sealed)
+        self.assertFalse((self.repo / collect.FEATURE_CATALOG).exists())
+        for name in browser_status.registry_facts(self.repo, 'daily')[2]:
+            self.publish_browser('survey', name, self.browser_choices('survey', name, select=False))
+        receipt = self.repo / 'data/daily-status/2026-11-24.json'
+        original = receipt.read_bytes()
+        self.assertEqual(0, read(receipt)['change_count'])
+        self.cli('next', cutoff='2026-11-25T07:00:00+09:00', extra=['--daily-status'])
+        self.item('next', request)
+        self.item('manual', request, standalone=True)
+        self.assertEqual(1, len(read(self.repo / collect.FEATURE_CATALOG)))
+        self.assertEqual(original, receipt.read_bytes())
+
+    def test_url_can_be_stored_while_its_source_is_pending_but_cannot_settle_as_future_product(self):
+        self.configure_small_registry()
+        sid = 'chrome-releases'
+        registry = read(self.registry)
+        next(s for s in registry['sources'] if s['source_id'] == sid)['parser'] = self.sources[sid]['parser']
+        self.registry.write_bytes(encoded(registry))
+        url = HOME + '2026/11/future-release.html'
+        self.payloads[HOME] = self.card(url, '2026-11-24')
+        self.payloads[url] = self.article('2026-11-24T07:00:01+09:00')
+        request = dict(browser='chrome', source_id=sid, url=url, title='Tab preview', canonical_key='preview')
+        original_fetch = self.request
+        early = []
+        def fetch(address):
+            if address == url and not early:
+                self.item('held', request)
+                early.extend(read(self.repo / collect.FEATURE_CATALOG))
+            return original_fetch(address)
+        with patch.object(self, 'request', fetch):
+            self.cli('held', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.assertEqual(['preview'], [f['canonical_key'] for f in early])
+        self.assertEqual([], self.candidates('held', sid))
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('held', 'chrome', self.browser_choices('held', 'chrome', select=False))
+        pending = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('incomplete', None, None), tuple(pending[k] for k in ('status', 'change_count', 'collected_feature_count')))
+
+    def test_mixed_document_keeps_each_real_anchor_in_its_own_window(self):
+        self.configure_small_registry()
+        sid = 'edge-beta'
+        url = self.sources[sid]['url']
+        self.payloads[url] = ('<div class="content"><h2 id="future-release">Version 160, November 28, 2026</h2>'
+                              '<p id="share">Share tab groups.</p><h2 id="current-release">Version 159, November 20, 2026</h2>'
+                              '<p id="save">Save tab groups.</p></div>')
+        self.cli('mixed', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        present, = self.candidates('mixed', sid)
+        self.assertEqual('save', present['item_key'])
+        req = dict(browser='edge', source_id=sid, canonical_key='save-tabs', title='Save tab groups')
+        for anchor in ('share', '%73hare', 'future-release'):
+            with self.subTest(anchor=anchor), self.assertRaisesRegex(ValueError, 'window'):
+                self.item('mixed', dict(req, url=url + '#' + anchor))
+        self.item('mixed', dict(req, url=url + '#save'))
+        self.item('mixed', dict(req, source_item_id=present['source_item_id'],
+                                revision_id=present['revisions'][-1]['revision_id']))
+        choices = self.browser_choices('mixed', 'edge')
+        choices['decisions'] = []
+        self.publish_browser('mixed', 'edge', choices)
+        self.assertEqual(1, len(read(self.repo / collect.FEATURE_CATALOG)))
+
+    def test_fresh_survey_cannot_finalize_a_reference_now_known_after_cutoff(self):
+        self.configure_small_registry()
+        sid = 'chrome-releases'
+        registry = read(self.registry)
+        next(s for s in registry['sources'] if s['source_id'] == sid)['parser'] = self.sources[sid]['parser']
+        self.registry.write_bytes(encoded(registry))
+        base, emerging = HOME + '2026/11/indexed.html', HOME + '2026/11/emerging.html'
+        self.payloads[HOME] = self.card(base, '2026-11-22')
+        self.payloads[base] = self.article('2026-11-22')
+        self.cli('first', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        req = dict(browser='chrome', source_id=sid, url=emerging, canonical_key='tabs', title='Tab preview')
+        self.item('first', req)
+        run_daily.commit_candidate(self.repo)
+        self.payloads[HOME] += self.card(emerging, '2026-11-24')
+        self.payloads[emerging] = self.article('2026-11-24T07:00:01+09:00')
+        self.cli('updated', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaisesRegex(ValueError, 'window'):
+            self.publish_browser('updated', 'chrome', self.browser_choices('updated', 'chrome', select=False))
+        day = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual(('incomplete', None), (day['status'], day['change_count']))
+        self.cli('following', cutoff='2026-11-25T07:00:00+09:00', extra=['--daily-status'])
+        row = next(r for r in self.candidates('following', sid) if r['evidence']['url'] == emerging)
+        self.item('following', dict(req, source_item_id=row['source_item_id'], revision_id=row['revisions'][-1]['revision_id'],
+                                    change_kind='product_change'))
+        for name in browser_status.registry_facts(self.repo, 'daily')[2]:
+            choice = self.browser_choices('following', name, select=False)
+            for disposition in choice['dispositions']:
+                if disposition['source_item_id'] == row['source_item_id']:
+                    disposition['disposition'] = 'selected'
+            self.publish_browser('following', name, choice)
+        self.assertEqual(1, read(self.repo / 'data/daily-status/2026-11-25.json')['change_count'])
+        self.assertEqual(day, read(self.repo / 'data/daily-status/2026-11-24.json'))
+
+    def test_committed_shared_original_revision_remains_open_for_another_feature(self):
+        self.configure_small_registry()
+        sid = 'firefox-beta'
+        url = self.sources[sid]['url']
+        self.payloads[url] = self.payloads[url].replace('Tab grouping added.', 'Save tab groups. Share tab groups.')
+        self.cli('first', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        row, = self.candidates('first', sid)
+        request = dict(browser='firefox', source_id=sid, source_item_id=row['source_item_id'],
+                       revision_id=row['revisions'][-1]['revision_id'], canonical_key='tab-save', title='Save tab groups')
+        self.item('first', request)
+        evidence = self.repo / 'data/source-items/firefox/firefox-beta.json'
+        first_bytes = evidence.read_bytes()
+        first_effect, = read(self.repo / browser_status.detail_path('daily', STATUS_CUTOFF))['browsers']['firefox']['effects']
+        run_daily.commit_candidate(self.repo)
+        self.cli('fresh', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        with self.assertRaises(ValueError):
+            self.publish_browser('fresh', 'firefox', dict(decisions=[], dispositions=[]))
+        self.assertEqual([row['source_item_id']], [r['source_item_id'] for r in self.candidates('fresh', sid)])
+        second = dict(request, canonical_key='tab-share', title='Share tab groups')
+        self.item('fresh', second)
+        self.item('fresh', second)
+        for name in browser_status.registry_facts(self.repo, 'daily')[2]:
+            choice = self.browser_choices('fresh', name, select=name == 'firefox')
+            choice['decisions'] = []
+            self.publish_browser('fresh', name, choice)
+        receipt = read(self.repo / 'data/daily-status/2026-11-24.json')
+        self.assertEqual((2, 2), (receipt['change_count'], receipt['collected_feature_count']))
+        detail = read(self.repo / browser_status.detail_path('daily', STATUS_CUTOFF))
+        self.assertIn(first_effect, detail['browsers']['firefox']['effects'])
+        self.assertEqual(first_bytes, evidence.read_bytes())
+        self.cli('following', cutoff='2026-11-25T07:00:00+09:00', extra=['--daily-status'])
+        self.assertEqual([], self.candidates('following', sid))
 
     def test_item_cli_checkpoint_from_incomplete_source_and_atomic_rollback(self):
         from pipeline import item_publication
