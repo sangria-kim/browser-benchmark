@@ -12,7 +12,7 @@ from pipeline.collectors.browser.collector import atomic_json, digest, identity,
 from pipeline.collectors.browser.html import Tree, blocks, boundary, modification, published
 from pipeline.collectors.browser.safari_preview import retry_deadline, stop_safari_requests, verified_release_dates
 from pipeline.feature_item import FACT_FIELDS, missing_facts
-from pipeline.official_reference import accepts_url, enterprise_archive_anchor, normalize_url
+from pipeline.official_reference import ENTERPRISE_ARCHIVE, accepts_url, enterprise_archive_anchor, normalize_url
 from pipeline.run_daily import read, run_lock
 from pipeline.temporal import instant
 
@@ -76,12 +76,17 @@ class SourceReview:
                             if anchor is not None:
                                 self.archive_links[anchor].add(url)
 
+    def publisher_page(self, url):
+        if self.sid == 'chrome-enterprise' and enterprise_archive_anchor(url) is not None:
+            return ENTERPRISE_ARCHIVE
+        return urldefrag(url)[0]
+
     def document_key(self, url):
         if self.sid == 'chrome-enterprise':
             query = enterprise_version_query(url)
             if query is not None:
                 return ('enterprise', query)
-        return urldefrag(url)[0]
+        return self.publisher_page(url)
 
     def after_cutoff(self, url):
         # The same resume can skip the product parser of a completed source.
@@ -94,6 +99,10 @@ class SourceReview:
 
     def archive_targets(self, anchor):
         return self.archive_links.get('', set()) | self.archive_links.get(anchor, set())
+
+    def archive_unit_targets(self, unit):
+        release = re.match(r'release:(\d+):', unit['key'])
+        return self.archive_targets(release[1]) if release else ()
 
     def begin_enterprise_page(self, url):
         for target in self.enterprise_urls.get(enterprise_version_query(url), ()):
@@ -108,8 +117,7 @@ class SourceReview:
         targets = (url,)
         if self.sid == 'chrome-enterprise':
             if enterprise_archive_anchor(url) is not None:
-                release = re.match(r'release:(\d+):', unit['key'])
-                targets = self.archive_targets(release[1]) if release else ()
+                targets = self.archive_unit_targets(unit)
             else:
                 targets = self.enterprise_urls.get(enterprise_version_query(url), targets)
         for target in targets:
@@ -218,7 +226,7 @@ class SourceReview:
                         if len(hashes) == 1:
                             job['content_sha256'] = hashes[0]
                         if (len(hashes) == 1 and url not in self.restricted_raw
-                                and all(urldefrag(e.url)[0] == urldefrag(url)[0] for e in observed)):
+                                and all(self.publisher_page(e.url) == self.publisher_page(url) for e in observed)):
                             try:
                                 observation = self.candidate(feature, url, None, observed[0])
                             except TimeoutError as exc:
@@ -326,8 +334,11 @@ class SourceReview:
             quotes = feature.get('source_revision_excerpts', {})
             if not any(quotes.get(pin) and quotes[pin].casefold() in passage for pin in pins):
                 return False
-        return not any(named(sibling) for fid, sibling in self.document_owners[self.document_key(url)].items()
-                       if fid != feature['feature_id'])
+        if self.sid == 'chrome-enterprise' and enterprise_archive_anchor(url) is not None:
+            owners = (owner for target in self.archive_unit_targets(unit) for owner, _ in self.links[target])
+        else:
+            owners = self.document_owners[self.document_key(url)].values()
+        return not any(named(owner) for owner in owners if owner['feature_id'] != feature['feature_id'])
 
     def candidate(self, feature, url, unit, response):
         # Reuse the normal source-row hash, revision and validation code, keeping

@@ -452,6 +452,52 @@ class FeatureReviewTests(unittest.TestCase):
         self.assertEqual(['Mac'], features[old]['feature_facts']['platform']['value'])
         self.assertEqual(['ChromeOS'], features[translated]['feature_facts']['platform']['value'])
 
+    def test_enterprise_archive_spellings_share_panel_owners_and_verified_passages(self):
+        sid = 'chrome-enterprise'
+        base = 'https://support.google.com/chrome/a/answer/10314655'
+        archive = base + '?hl=en'
+        api = 'https://release-notes-787862449254.us-central1.run.app'
+        def feature(title, key, url):
+            return self.store_via_cli(dict(browser='chrome', source_id=sid, title=title,
+                                           canonical_key=key, url=url))['feature_id']
+        groups = feature('Tab groups', 'groups', archive + '#164')
+        menus = feature('Team menus', 'menus', base + '#164')
+        folders = feature('탭 폴더', 'folders', base + '#164')
+        spaces = feature('Private spaces', 'spaces', base + '#163')
+        with self.assertRaises(ValueError):
+            feature('Other language', 'other-language', base + '?hl=fr#164')
+        mixed = 'Compared with Team menus, Tab groups now ship on Windows.'
+        quote = 'Tab folders on Linux.'
+        self.payloads[archive] = (
+            '<a href="#164">November 11, 2026</a><a class="zippy" name="164">Version</a>'
+            f'<div><p>{mixed}</p><p>{quote}</p></div>'
+            '<a href="#163">November 3, 2026</a><a class="zippy" name="163">Version</a>'
+            '<div><p>Unlike Team menus, Private spaces now work on Android.</p></div>')
+        self.payloads[api + '/versions'] = json.dumps({'versions': [{'value': '164'}]})
+        self.payloads[api + '/features?version=164&lang=en'] = json.dumps({'total_count': 0, 'features': []})
+        jobs = self.cli('aliases', sid=sid)
+        self.assertEqual([archive, api + '/versions', api + '/features?version=164&lang=en'], self.calls)
+        with self.subTest('ambiguous paragraph'):
+            self.assertFalse(any(jobs[fid].get('candidate') for fid in (groups, menus)))
+        with self.subTest('other panel'):
+            self.assertEqual('Unlike Team menus, Private spaces now work on Android.', jobs[spaces]['candidate']['classification_text'])
+        with self.subTest('explicit verified passage'):
+            self.assertTrue(jobs[folders].get('reference_review'))
+            self.assertEqual([mixed, quote], jobs[folders]['review_passages'])
+            request = dict(browser='chrome', source_id=sid, url=base + '#164', feature_id=folders,
+                           reference_review=True, facts={'platform': ['Linux']})
+            with self.assertRaises(ValueError):
+                self.store_via_cli(dict(request, evidence_quote='Unlike Team menus, Private spaces now work on Android.'), run='aliases')
+            result = self.store_via_cli(dict(request, evidence_quote=quote), run='aliases')
+            self.assertEqual((folders, False), (result['feature_id'], result['changed']))
+            graph = validate_graph(self.root)
+            features = {f['feature_id']: f for f in graph['feature']}
+            self.assertFalse(features[menus]['feature_facts'])
+            fact = features[folders]['feature_facts']['platform']
+            row = next(r for r in graph['source_item'] if r['source_item_id'] == fact['source_item_id'])
+            self.assertEqual(base + '#164', row['evidence']['url'])
+            self.assertEqual(quote, features[folders]['source_revision_excerpts'][fact['revision_id']])
+
     def test_unlisted_enterprise_version_cannot_bypass_publisher_visibility(self):
         sid = 'chrome-enterprise'
         api = 'https://release-notes-787862449254.us-central1.run.app'
