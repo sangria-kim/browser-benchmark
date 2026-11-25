@@ -29,9 +29,9 @@ class HTTPTransport:
     def __init__(self, timeout=30, max_bytes=64000000):
         self.timeout, self.max_bytes = timeout, max_bytes
 
-    def get_once(self, url, before_send):
+    def get_once(self, url, before_send, **options):
         """Let a source handle its own Retry-After checkpoint and deadline."""
-        return self(url, single_attempt=True, before_send=before_send)
+        return self(url, single_attempt=True, before_send=before_send, **options)
 
     def __call__(self, url, *, direct=False, if_modified_since=None, before_send=None, single_attempt=False):
         if not url.startswith('https://'):

@@ -4,6 +4,7 @@ import json
 import re
 from datetime import datetime, timedelta, timezone
 from email.utils import format_datetime, parsedate_to_datetime
+from urllib.error import HTTPError
 from urllib.parse import urljoin
 
 from pipeline.temporal import instant
@@ -324,6 +325,20 @@ def verify_freshness(headers, observed, cutoff):
         raise ValueError('Insufficient Apple release-1 cache freshness')
 
 
+def safari_request(collector, url, *, before_send, **proof):
+    """Each Safari wire request gets one attempt under the source deadline."""
+    if callable(getattr(type(collector.transport), 'get_once', None)):
+        response = collector.transport.get_once(url, before_send=before_send, **proof)
+    elif proof:
+        response = collector.transport(url, before_send=before_send, **proof)
+    else:
+        before_send()
+        response = collector.transport(url)
+    if response.status != 200 and not (response.status == 304 and proof.get('if_modified_since')):
+        raise HTTPError(url, response.status, 'Safari TP publisher refused request', response.headers, None)
+    return response
+
+
 def apple_proof_request(collector, url, since, journal):
     attempts = collector.state['preview_inventory'].setdefault('release_one_requests', [])
     event = {'url': url, 'if_modified_since': since, 'http_attempts': 0, 'request_cache_control': 'no-cache'}
@@ -331,15 +346,29 @@ def apple_proof_request(collector, url, since, journal):
     progress = collector.progress['apple_release_one']
 
     def before_send():
-        # Charge actual transport attempts, including retries after HTTP 429.
+        # Charge each proof send to this attempt's document/time budget.
         if not collector.budget(url, 'documents'):
             raise ValueError('Apple release-1 proof request exceeds source budget')
         collector.state['documents'] += 1
         event['http_attempts'] += 1
         progress['http_attempts'] = progress.get('http_attempts', 0) + 1
         collector.write_progress()
+        # A durable reservation may itself consume the last slice of time.
+        # Cancel it before dispatch so the journal counts only actual sends.
+        try:
+            collector.check_time()
+        except TimeoutError:
+            progress['http_attempts'] -= 1
+            event['http_attempts'] -= 1
+            collector.state['documents'] -= 1
+            collector.write_progress()
+            raise
 
-    response = collector.transport(url, direct=True, if_modified_since=since, before_send=before_send)
+    try:
+        response = safari_request(collector, url, direct=True, if_modified_since=since, before_send=before_send)
+    except Exception as error:
+        stop_safari_requests(collector, error, url, [APPLE_INDEX + '#stp-release-1'])
+        raise
     if not event['http_attempts']:
         raise ValueError('Unaccounted Apple release-1 HTTP request')
     headers = {}
@@ -409,43 +438,51 @@ def exclude_old_apple_release_one(collector):
     collector.state['excluded_by_date'].append(RELEASE_ONE_MARKDOWN)
 
 
-def stop_webkit_requests(collector, error, url, pending):
-    code = getattr(error, 'code', None)
-    headers = {k.lower(): v for k, v in (getattr(error, 'headers', None) or {}).items()}
-    value = headers.get('retry-after', '').strip()
-    retry_at = None
+def retry_deadline(value, now):
+    value = value.strip()
     if value.isdigit():
         try:
-            retry_at = datetime.now(timezone.utc) + timedelta(seconds=int(value))
+            return now + timedelta(seconds=int(value))
         except (ValueError, OverflowError):
-            retry_at = datetime.max.replace(tzinfo=timezone.utc)
-    elif value:
-        try:
-            date = parsedate_to_datetime(value)
-            if date.tzinfo is not None:
-                retry_at = date.astimezone(timezone.utc)
-        except (ValueError, TypeError, OverflowError):
-            pass
+            return datetime.max.replace(tzinfo=timezone.utc)
+    try:
+        date = parsedate_to_datetime(value)
+        if date.tzinfo is not None:
+            return date.astimezone(timezone.utc)
+    except (ValueError, TypeError, OverflowError):
+        pass
+    return None
+
+
+def stop_safari_requests(collector, error, url, pending):
+    code = getattr(error, 'code', None)
+    headers = getattr(error, 'headers', None) or {}
+    now = datetime.now(timezone.utc)
+    deadlines = [retry_deadline(v, now) for k, v in headers.items() if k.lower() == 'retry-after']
+    retry_at = max((when for when in deadlines if when), default=None)
     if code == 429 and retry_at is None:
-        retry_at = datetime.now(timezone.utc) + timedelta(seconds=30)
+        retry_at = now + timedelta(seconds=30)
     if not (code in (403, 429, 503) or retry_at or isinstance(error, TimeoutError)
             or isinstance(getattr(error, 'reason', None), TimeoutError)):
         return False
     collector.state['pending'] = list(pending)
     if retry_at:
-        collector.progress['webkit_retry_after'] = dict(url=url, until=retry_at.isoformat(), pending=list(pending))
+        collector.progress['safari_retry_after'] = dict(url=url, until=retry_at.isoformat(), pending=list(pending))
         collector.write_progress()
     return True
 
 
 def collect_safari_preview(collector):
-    wait = collector.progress.get('webkit_retry_after')
+    # Older checkpoints stored a WebKit-only wait. Both publishers now share
+    # a source-wide gate before any network access on the same run.
+    wait = collector.progress.get('safari_retry_after') or collector.progress.get('webkit_retry_after')
     if wait and datetime.now(timezone.utc) < instant(wait['until']):
         collector.state['pending'] = list(wait['pending'])
-        collector.problem(wait['url'], 'WebKit requested retry after ' + wait['until'])
+        collector.problem(wait['url'], 'Safari TP publisher requested retry after ' + wait['until'])
         return
     if wait:
-        del collector.progress['webkit_retry_after']
+        collector.progress.pop('safari_retry_after', None)
+        collector.progress.pop('webkit_retry_after', None)
         collector.write_progress()
     previous_proof = collector.progress.get('apple_release_one', {})
     if previous_proof.pop('verified', None):
@@ -466,8 +503,7 @@ def collect_safari_preview(collector):
             return response
         except Exception as error:
             collector.problem(url, str(error))
-            if url.startswith(CATEGORY):
-                stop_webkit_requests(collector, error, url, [url])
+            stop_safari_requests(collector, error, url, [url])
             return None
 
     apple = index(APPLE_INDEX)
@@ -550,5 +586,5 @@ def collect_safari_preview(collector):
             collector.document_done(url)
         except Exception as error:
             collector.problem(url, str(error))
-            if stop_webkit_requests(collector, error, url, targets[position:]):
+            if stop_safari_requests(collector, error, url, targets[position:]):
                 return

@@ -19,7 +19,7 @@ from urllib.error import HTTPError
 from schemas.validate import validate_record, validate_transition, validate_dataset
 from .html import Tree, boundary, blocks, links, next_links, published, modification, reconcile_modification, chrome_post_header, publication_value, date_value, item_type, unique_unit_keys
 from .firefox_ios import collect_firefox_ios
-from .safari_preview import collect_safari_preview
+from .safari_preview import collect_safari_preview, safari_request
 from .transport import HTTPTransport, Response
 from pipeline.temporal import SEOUL, dated_scope, instant, window_status
 from pipeline.source_item_shards import edge_policy_shards, read_edge_policies
@@ -362,14 +362,11 @@ class BrowserCollector:
             response = Response(cached['url'], raw, 200, cached['headers'], cached.get('observed_at'))
             self.cache[url] = response
             return response
-        if (self.source['source_id'] == 'safari-technology-preview' and url.startswith('https://webkit.org/')
-                and callable(getattr(type(self.transport), 'get_once', None))):
-            response = self.transport.get_once(url, before_send=self.check_time)
+        if self.source['source_id'] == 'safari-technology-preview':
+            response = safari_request(self, url, before_send=self.check_time)
         else:
             response = self.transport(url)
         if response.status != 200:
-            if self.source['source_id'] == 'safari-technology-preview' and response.status in (403, 429, 503):
-                raise HTTPError(url, response.status, 'WebKit request refused', response.headers, None)
             raise ValueError('Unexpected HTTP status %s' % response.status)
         if not response.body:
             raise ValueError('Empty response')

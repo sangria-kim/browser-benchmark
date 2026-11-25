@@ -2,6 +2,7 @@ import contextlib
 import copy
 from datetime import datetime, timedelta, timezone
 from email.message import Message
+from email.utils import format_datetime
 from io import BytesIO, StringIO
 from urllib.error import HTTPError, URLError
 import json
@@ -70,8 +71,6 @@ class PreviewTests(unittest.TestCase):
 
     def request(self, url, *, direct=False, if_modified_since=None, before_send=None):
         if direct:
-            if getattr(self, 'real_direct_transport', False):
-                return HTTPTransport()(url, direct=True, if_modified_since=if_modified_since, before_send=before_send)
             before_send()
             self.proof_calls.append((url, if_modified_since))
             result = self.proof[url, if_modified_since]
@@ -540,25 +539,114 @@ class PreviewTests(unittest.TestCase):
                 self.assertEqual([], rows)
                 self.assertNotIn('release_one_exclusion', state['preview_inventory'])
 
-    def test_real_direct_transport_charges_retries_and_keeps_duplicate_wire_headers(self):
+    def test_all_safari_wire_requests_respect_retry_after_on_resume(self):
         since = self.configure_release_one()
-        self.real_direct_transport = True
+        self.cli_transport = HTTPTransport()
+        start = datetime(2026, 11, 25, 12, 0, 52, tzinfo=timezone.utc)
+        order = [(APPLE_INDEX, None), (CATEGORY, None), (release_url(2), None),
+                 (RELEASE_ONE_MARKDOWN, None), (RELEASE_ONE_DOCC, None),
+                 (RELEASE_ONE_MARKDOWN, since), (RELEASE_ONE_DOCC, since)]
+        for position, blocked in enumerate(order):
+            for wait in (30, 3600):
+                name = f'wire-publisher-{position}-{wait}'
+                elapsed = [0]
+                refused = [False]
+                wire = []
+
+                def send(request, timeout):
+                    url = request.full_url
+                    key = (url, request.get_header('If-modified-since'))
+                    wire.append(key)
+                    if key == blocked and not refused[0]:
+                        refused[0] = True
+                        elapsed[0] = 899
+                        delay = str(wait)
+                        if wait == 3600 and position % 2 == 0:
+                            delay = format_datetime(start + timedelta(seconds=899 + wait), usegmt=True)
+                        status = 503 if position == 4 and wait == 3600 else 429
+                        headers = Message()
+                        headers['Retry-After'] = delay
+                        if status == 503:
+                            headers['Retry-After'] = '2'
+                        raise HTTPError(url, status, 'Retry later', headers, BytesIO())
+                    result = self.proof.get(key)
+                    if result:
+                        headers = dict(result.headers, Date=format_datetime(start + timedelta(seconds=elapsed[0]-2), usegmt=True))
+                        if key[1]:
+                            raise HTTPError(url, 304, 'Not modified', headers, BytesIO())
+                        body = result.body
+                    else:
+                        body, headers = self.pages[url].encode(), {}
+                    response = BytesIO(body)
+                    response.url, response.status, response.headers = url, 200, headers
+                    return response
+
+                def advance(seconds):
+                    elapsed[0] += seconds
+
+                with self.subTest(position=position, wait=wait), patch('pipeline.collectors.browser.transport.urlopen', side_effect=send), \
+                        patch('pipeline.collectors.browser.transport.build_opener') as opener, \
+                        patch('pipeline.collectors.browser.transport.time.sleep', side_effect=advance) as sleep, \
+                        patch('pipeline.collectors.browser.collector.monotonic', side_effect=lambda: elapsed[0]), \
+                        patch('pipeline.collectors.browser.safari_preview.datetime', wraps=datetime) as wall:
+                    opener.return_value.open.side_effect = send
+                    wall.now.side_effect = lambda tz: start + timedelta(seconds=elapsed[0])
+                    state, _ = self.run_cli(name, expected=2)
+                    self.assertTrue(state['pending'])
+                    self.assertEqual(order[:position + 1], wire)
+                    sleep.assert_not_called()
+                    for second in (1, wait-1):
+                        wire.clear()
+                        elapsed[0] = 899 + second
+                        state, _ = self.run_cli(name, expected=2, extra=['--resume'])
+                        self.assertEqual([], wire)
+                        self.assertTrue(state['pending'])
+                    elapsed[0] = 899 + wait
+                    state, _ = self.run_cli(name, extra=['--resume'])
+                    expected = order if position <= 2 else order[:2] + order[3:]
+                    self.assertEqual(expected, wire)
+                    self.assertIn('release_one_exclusion', state['preview_inventory'])
+                    self.assertEqual([], state['pending'])
+                    sleep.assert_not_called()
+
+    def test_proof_deadline_expires_during_presend_checkpoint(self):
+        self.configure_release_one()
+        elapsed = [0]
+        write = BrowserCollector.write_progress
+
+        def persist(collector):
+            write(collector)
+            if collector.progress.get('apple_release_one', {}).get('http_attempts') == 1:
+                elapsed[0] = 900
+
+        with patch.object(BrowserCollector, 'write_progress', persist), \
+                patch('pipeline.collectors.browser.collector.monotonic', side_effect=lambda: elapsed[0]):
+            state, _ = self.run_cli('presend-checkpoint', expected=2)
+            self.assertEqual([], self.proof_calls)
+            self.assertEqual(1, state['documents'])
+            self.assertEqual(0, state['preview_inventory']['release_one_requests'][0]['http_attempts'])
+            self.assertTrue(state['pending'])
+
+    def test_real_proof_transport_counts_sends_and_keeps_duplicate_wire_headers(self):
+        since = self.configure_release_one()
+        self.cli_transport = HTTPTransport()
         wire = []
         duplicate = False
         stop_after_first = False
         clock = [0]
 
         def send(request, timeout):
-            nonlocal duplicate
+            if request.full_url in self.pages:
+                result = BytesIO(self.pages[request.full_url].encode())
+                result.url, result.status, result.headers = request.full_url, 200, {}
+                return result
             fields = {k.lower(): v for k, v in request.header_items()}
             self.assertEqual(('GET', 'no-cache', 'identity'), (request.get_method(), fields['cache-control'], fields['accept-encoding']))
             self.assertNotIn('if-none-match', fields)
             key = (request.full_url, fields.get('if-modified-since'))
             wire.append(key)
-            if len(wire) == 1:
-                if stop_after_first:
-                    clock[0] += 901
-                raise HTTPError(key[0], 429, 'Rate limit', Message(), BytesIO())
+            if stop_after_first:
+                clock[0] += 901
             fixture = self.proof[key]
             headers = Message()
             for k, v in fixture.headers.items():
@@ -577,10 +665,10 @@ class PreviewTests(unittest.TestCase):
             from datetime import datetime
             clock_timestamp.now.return_value = datetime.fromisoformat('2026-11-25T12:00:52+00:00')
             opener.return_value.open.side_effect = send
-            state, _ = self.run_cli('wire-retry')
-            self.assertEqual(5, len(wire))
-            self.assertEqual(6, state['documents'])  # One WebKit detail plus five Apple attempts.
-            self.assertEqual([2, 1, 1, 1], [v['http_attempts'] for v in state['preview_inventory']['release_one_requests']])
+            state, _ = self.run_cli('wire-counts')
+            self.assertEqual(4, len(wire))
+            self.assertEqual(5, state['documents'])  # One WebKit detail plus four Apple attempts.
+            self.assertEqual([1, 1, 1, 1], [v['http_attempts'] for v in state['preview_inventory']['release_one_requests']])
             wire.clear()
             duplicate = True
             state, _ = self.run_cli('wire-duplicate', expected=2)
