@@ -231,6 +231,38 @@ class PreviewTests(unittest.TestCase):
                 self.assertIn(own, state['pending'])
                 self.assertEqual([], rows)
 
+    def test_pr34_foreign_publication_all_values_and_document_base(self):
+        own, other = release_url(1), release_url(2)
+        late = '2026-11-25T07:00:01+09:00'
+        day = '<p class="date">Nov 25, 2026</p>'
+        clock = f'<time class="published" datetime="{late}">Nov 25, 2026</time>'
+        cases = [
+            ('text', '', other, f'<time class="published">{late}</time>'),
+            ('content', '', other, f'<meta itemprop="datePublished" content="{late}">'),
+            ('named-text', '', other, f'<span itemprop="datePublished">{late}</span>'),
+            ('rebase', f'<base href="{other}">', './', clock),
+        ]
+        for name, base, href, value in cases:
+            byline = f'<div class="byline">{day}<a rel="bookmark" href="{href}">{value}</a></div>'
+            self.pages[own] = article(1, None).replace('</head>', base + '</head>').replace('</h1>', '</h1>' + byline)
+            with self.subTest(name=name):
+                state, rows = self.run_cli('foreign-proof-' + name, expected=2)
+                self.assertIn(own, state['pending'])
+                self.assertEqual([], rows)
+
+        for name, base, href in [('relative-self', own, './'), ('absolute-self', other, own)]:
+            within = '2026-11-25T07:00:00+09:00'
+            byline = (f'<div class="byline">{day}<a rel="bookmark" href="{other}">'
+                      f'<meta itemprop="datePublished" content="{late}"></a>'
+                      f'<a rel="bookmark" href="{href}"><time class="published">{within}</time></a></div>')
+            self.pages[own] = article(1, None).replace('</head>', f'<base href="{base}"></head>').replace(
+                '</h1>', '</h1>' + byline)
+            with self.subTest(name=name):
+                _, rows = self.run_cli('self-proof-' + name)
+                row, = rows
+                self.assertEqual((own, within, 'timestamp'), (row['evidence']['url'], row['temporal_scope']['evidence_date'],
+                                                              row['temporal_scope']['precision']))
+
     def test_pr34_reconciles_only_article_owned_revision_fields(self):
         url = release_url(1)
         original = article(1, '2026-02-15').replace('<article>', '<article><meta name="dateModified" content="2026-11-01">')

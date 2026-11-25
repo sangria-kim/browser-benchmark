@@ -131,9 +131,13 @@ def verified_release_dates(response, version, year, source_id):
                 or any(n.has_class(c) for c in ('comment', 'comments', 'author', 'vcard', 'p-author', 'related-posts'))
                 or 'author' in rel or (n.tag in ('article', 'section') or 'itemscope' in n.attrs) and n not in product_path)
 
+    # HTML resolves relative permalinks against the first active base href.
+    base_href = next((n.attrs['href'] for n in root.walk() if n.tag == 'base' and 'href' in n.attrs
+                      and not any(a.tag in ('template', 'noscript') for a in n.ancestors())), '')
+    document_base = urljoin(response.url, base_href or '')
     other_contexts = {n for n in article.walk() if unrelated(n)}
     other_links = {n for n in article.walk() if n.tag == 'a' and
-                   (not n.attrs.get('href', '').strip() or urljoin(response.url, n.attrs['href']) != response.url)}
+                   (not (n.attrs.get('href') or '').strip() or urljoin(document_base, n.attrs['href']) != response.url)}
     excluded_text = {id(n) for n in other_contexts | other_links}
     for node in root.walk():
         head = (node.tag == 'meta' and node.parent.tag == 'head' and node.parent.parent.tag == 'html'
@@ -144,6 +148,7 @@ def verified_release_dates(response, version, year, source_id):
         modified = bool(fields & {'article:modified_time', 'datemodified'})
         ambiguous_fields = published and modified
         byline_date = False
+        foreign_date = False
         if not head:
             ancestors = list(node.ancestors())
             if article not in ancestors:
@@ -164,10 +169,10 @@ def verified_release_dates(response, version, year, source_id):
                 if not modified:
                     published = True
             if any(n in other_links for n in lineage):
-                if byline_date and published and node.tag == 'time' and node.attrs.get('datetime'):
-                    foreign_publication_time = True
-                continue
-        if ambiguous_fields:
+                if byline is None or body in lineage or not published:
+                    continue
+                foreign_date = True
+        if ambiguous_fields and not foreign_date:
             raise ValueError('Conflicting WebKit date field roles')
         if not (published or modified):
             continue
@@ -177,9 +182,17 @@ def verified_release_dates(response, version, year, source_id):
         ignored = excluded_text
         if byline_date and node.tag != 'time':
             ignored = excluded_text | {id(n) for n in node.walk() if n is not node and n.tag == 'time'}
+        if foreign_date and id(node) in ignored:
+            ignored = ignored - {id(node)}
         label = node.text(ignored)
         if label and (not values or byline_date or node.tag == 'time'):
             values.append(publication_value(label))
+        if foreign_date:
+            # Use the same text/content/datetime precision as an owned date.
+            # Without a verified publication instant this link prevents a
+            # lower-precision day from settling a cutoff boundary.
+            foreign_publication_time |= any(not value or len(value) > 10 for value in values)
+            continue
         if not values and byline_date and node.tag != 'time' and not label:
             # A date wrapper can contain only a nested time or foreign link.
             continue
