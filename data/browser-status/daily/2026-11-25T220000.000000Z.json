@@ -1,0 +1,606 @@
+{
+  "version": 1,
+  "scope": {
+    "cutoff": "2026-11-25T22:00:00+00:00",
+    "expected": {
+      "chrome": [
+        "chrome-blog",
+        "chrome-enterprise",
+        "chrome-platform-status",
+        "chrome-releases"
+      ],
+      "edge": [
+        "edge-beta",
+        "edge-beta-archive",
+        "edge-mobile-beta",
+        "edge-mobile-stable",
+        "edge-security",
+        "edge-stable",
+        "edge-stable-archive"
+      ],
+      "firefox": [
+        "firefox-android",
+        "firefox-beta",
+        "firefox-ios",
+        "firefox-releases",
+        "firefox-security"
+      ],
+      "safari": [
+        "safari-release-notes",
+        "safari-security",
+        "safari-technology-preview"
+      ],
+      "whale": [
+        "whale-notices",
+        "whale-release-history"
+      ]
+    },
+    "mode": "daily",
+    "origin": "daily",
+    "registry": "6310072cd3aa18abf400acaa694b8a9c0b155dc4fed55047f864783c47e2d1d9",
+    "start": "2026-10-27T07:00:00+09:00"
+  },
+  "browsers": {
+    "chrome": {
+      "status": "complete",
+      "classification": "fef67bdf012df89c555066ddcdeddd0ef88ddd9ac0f0504d9bc7ab61167eafde",
+      "effects": [
+        {
+          "feature_id": "feature-33078f2cef2dc223b8ee5033",
+          "source_id": "chrome-platform-status",
+          "item": "src-93fa95c39092e00f9b7e6318",
+          "revision": "sr-41bb22bad07b19da0287f550",
+          "snapshot": "356f572f9f9a2b5e33c4f72f05b6c2965b8d0e0be71811ccca0c9f084083b26a",
+          "quote": "7f6b03e2c26732302b81ac23e48b2a90277b7de1cf186552f5ece56bc709bd87",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-459571abaf580750eaf917c6",
+          "source_id": "chrome-platform-status",
+          "item": "src-b2d1192de9dda9c75bd0d44c",
+          "revision": "sr-37d331d3c3ebc91a4cd7ac43",
+          "snapshot": "dc099ffb1b30991f4495dd1be9e050f82b126c26cfe1d9d3f31d1b5677ef8fd4",
+          "quote": "68741ac0c47bd92340df590c34cc6c2efd5faa323ca38e1b76ca5e554ccbb6b6",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-df0d7e00e7c258bc6c2a2172",
+          "source_id": "chrome-platform-status",
+          "item": "src-6780ff095601c7757540640e",
+          "revision": "sr-1ec23e4cce9a2cc0d89569cb",
+          "snapshot": "7f504d7280887ee277d62e00b1715706244b3628b15916f9e71402b2305778f1",
+          "quote": "b46adee387bd75543c7ac4a84813b3d7f5aa1177bda20820d0d0d37da4431be7",
+          "changed": true
+        }
+      ],
+      "change_count": 2,
+      "collected_feature_count": 3
+    },
+    "edge": {
+      "status": "complete",
+      "classification": "5b3134226b9228d6d2f61ff983c37e2e99047d7bad4bf2a06035454990cccd1d",
+      "effects": [
+        {
+          "feature_id": "feature-125f1189ab64099d03df19af",
+          "source_id": "edge-stable",
+          "item": "src-ef44d84d9ce35f054817e5c8",
+          "revision": "sr-88f60cc8e555f4997669149d",
+          "snapshot": "ae00d5e2bfd16b46d341988ab6eb9d5f4acf15d670b94b8a31efaf64fcd6d333",
+          "quote": "912dc7b2943721343237beb8df6cfb012aaf1c7cae204c7f05f3210f67e94b70",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-33671aa6b7dee181bc1fc12e",
+          "source_id": "edge-stable",
+          "item": "src-d61517e9e1bdbb2519f42700",
+          "revision": "sr-4c3ca78a475162aaad87ef56",
+          "snapshot": "86064f814e630aa2b446401c85fcaf7d0a858577c6c647b36b383a14fef081c9",
+          "quote": "f3d38c18462c2c637ca5b37075323469e36b5f9f4c227e2159d196746289c053",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-33d064d10b59dd6ebea6e3bc",
+          "source_id": "edge-stable",
+          "item": "src-981dd0ffe4c6c89f864e8254",
+          "revision": "sr-b38e05b043b20a9e25ffb5f6",
+          "snapshot": "05469c12edd881ea1770ebe067377c57c4538a51e3f4816a2bb565e734bab1d8",
+          "quote": "d579b6e0a0ee0e59e325c9f3920606c48bbab48f1820a167b0706d782298e9f6",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-3e0b7a021c14a4a071629a37",
+          "source_id": "edge-stable-archive",
+          "item": "src-72732c90c40b5751a5df2b6a",
+          "revision": "sr-5f69bf8f690e3708a3ff5fb2",
+          "snapshot": "6e6f598e8067d9ff2e04905c0e8b21b8f67112aea2770e8d23eb5f85c63ccf3e",
+          "quote": "b4d9b6b0a3431f630477d4a609475650b9cd67459a7ced4aba0e05ca703f1c69",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-45c68992353dfb785280c3e4",
+          "source_id": "edge-stable",
+          "item": "src-821bacbf74dca1b5dfa26c4e",
+          "revision": "sr-83d039b64a6c68aaa259e0f7",
+          "snapshot": "f124303cdfbf9d47779402d945f731f64f7e1fdfab01017c00c32334809ad2de",
+          "quote": "7dcb32a7443793334eb9ca74dd5c5f34d437340f35c5f52037be074d31b9f7dc",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-57a41b890977b77f9452fe77",
+          "source_id": "edge-mobile-stable",
+          "item": "src-715d8ded5e00d69e0f8d2c23",
+          "revision": "sr-4cae959bc462b56dcfb6568f",
+          "snapshot": "aece7d650c791c2745f18e5b2a7a0bac242f194e11d9da12a364e64f09210ff2",
+          "quote": "85383ccd22e860df9fd1b93681502a698e62cde102c6165b1a6cf219add96f34",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-5a39a5df207f7a78e33d00cf",
+          "source_id": "edge-stable",
+          "item": "src-d3d93ac9e7d912943000c2df",
+          "revision": "sr-9378d757f69ce268a001feb7",
+          "snapshot": "f4a9d1ca471cc47bb50dd673375db53c289abc5ce5f1af5c2840fcac1aac431a",
+          "quote": "34bcbc949373a0d05c41b0bdd664b902ffcb8cb5eb37a725193f626aed99d5e8",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-60d5a22650a263b4f7f63da3",
+          "source_id": "edge-stable",
+          "item": "src-198d3bc9c7a71117c716a651",
+          "revision": "sr-1b54f01a7da3b59003e1d4d6",
+          "snapshot": "b556ba5d6af78d36032e740605d1ba9b3badef3db3ad97aa977ff0d563e376c0",
+          "quote": "ba9cfb29a46098d5e3d5b2db250a37dd863a572780cc150783dbd2a48512cd99",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-61eb1aca6a2916a8bfac2010",
+          "source_id": "edge-stable-archive",
+          "item": "src-3cdb821c5f263df0be707fef",
+          "revision": "sr-ea22bbdf01b8e95335d24557",
+          "snapshot": "5f1c4bb1d2e5d7bf2416436ad12646d08e7a7c00b5ed0bfa27130dfd97b6076a",
+          "quote": "5df01455ca10682d79972ae5c875d5008399576f16d65722110e2972555590f7",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-64e7b9f6ecd90720db58c965",
+          "source_id": "edge-stable",
+          "item": "src-d7a5234b19005436f247ff64",
+          "revision": "sr-58e249ca3bbaa8d285e327bb",
+          "snapshot": "6d91b4d41673a56a53618a671e5caad938c69168851ddebad45ef21531975695",
+          "quote": "687bad67b5a35588fae597df94c697a6d41943a9a76ab25c90c0b860cf755964",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-80fdea4c1f7bd16551191a3f",
+          "source_id": "edge-stable",
+          "item": "src-977ccbf988f4857c26a7f2a0",
+          "revision": "sr-4f1405cfda5a9d883cd6a3a8",
+          "snapshot": "1a45e40299bccd51361f12a11f280ca62de5c77b53146118a3d01518628568df",
+          "quote": "d4381fdf1328a6297d027be9c98bb13924e5ead9bfdfe64c58b514a286fb5985",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-b624de07c7bb5abcca2f80a1",
+          "source_id": "edge-stable-archive",
+          "item": "src-ee6a97c7f1308c23f5895261",
+          "revision": "sr-4f19818f0107bc4e69d7590e",
+          "snapshot": "a863c59d5d8eaca6905356695f2d4419fc7c0ac51310f943bbe5a477a21d91c2",
+          "quote": "f67795af85b918f35b4112951aa7edf3bd5bb8ded226313cb1cf871578320d06",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-e3183ec3b9cc12e41aad3220",
+          "source_id": "edge-mobile-stable",
+          "item": "src-bdd148ae0d83334d390e9b26",
+          "revision": "sr-8da490a8c9d42eb2521a0894",
+          "snapshot": "d508199d9f84dca666c99c7cff2b088d6d9149e76cdb96159d96f0d709452231",
+          "quote": "41e6477987134e815e13060aeb8ba31e13e7a403c070f227707f3acdcfccb40c",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ec266e97a8489b5f45a0a86e",
+          "source_id": "edge-mobile-stable",
+          "item": "src-7db1a30dd367faa909688181",
+          "revision": "sr-198a59129d751e5b59566fc7",
+          "snapshot": "3333f50d762887bccc9c16c8144e659bf9d6887bfcecb361608737f482ba7e07",
+          "quote": "37833588c80ec419a706bff8c7d6e102dea93b25e3ce6de694a162bcd1b5150c",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ecd7a53093bdab1c7d3cb769",
+          "source_id": "edge-stable",
+          "item": "src-1b1b62f53d89827d4f02cbed",
+          "revision": "sr-9a16772b6307f959d6ea4e81",
+          "snapshot": "47b134b7051abfb52a04d40b4ae6167f9aaf796233b94dbd0f8d8c171484c7ec",
+          "quote": "34fd3d39a986b031a7f52b92612764dfe9868ebf50c9b7c4bf9ad9ddd078b0dc",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ef52f67914e35fd5b3a96416",
+          "source_id": "edge-mobile-stable",
+          "item": "src-4b54d45144512187713e3645",
+          "revision": "sr-f9b166dd5150bd5b196dd015",
+          "snapshot": "c171964ab4621130289bec6f1b9c913b6e577c16f9ac1f010b3fb17a5f0b5356",
+          "quote": "28f58d03b622033a099bb86c87a95b2bfce3386ccd938d9c7a24deea06388da9",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ef52f67914e35fd5b3a96416",
+          "source_id": "edge-stable-archive",
+          "item": "src-a89b33fc63a11cfd6cea37b2",
+          "revision": "sr-0badc4dbf68308b505266481",
+          "snapshot": "c00a2d23d39b9dec3601c58538bfe003fedb7c3c8509bab4f645753af059b4d3",
+          "quote": "acc0aac34bfb8a6d66e763c291c8bc439ee2926b4b86842d97dcd813be9a0cb7",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-f2dc9a7933db1e8b69523fb4",
+          "source_id": "edge-mobile-stable",
+          "item": "src-330f779a6ad028eb8ea7102b",
+          "revision": "sr-b0edcf982ff6e7e051ad9cc6",
+          "snapshot": "e2599eba0cae0315214cc3925f25cb48b61d1d0aed3e21c5dbee6ccf4de8befa",
+          "quote": "d6ddfbab1c669e51f08ff7e002fc9e5aec9b6bf65e7e978e2ae5b9faaa3bc610",
+          "changed": true
+        }
+      ],
+      "change_count": 17,
+      "collected_feature_count": 17
+    },
+    "firefox": {
+      "status": "incomplete",
+      "change_count": null,
+      "collected_feature_count": null,
+      "effects": [
+        {
+          "feature_id": "feature-03b1e910caf60a9840cf002c",
+          "source_id": "firefox-beta",
+          "item": "src-4ac6bc1818979a92a8f9e19c",
+          "revision": "sr-ad45cd7efa1697acb87f5e99",
+          "snapshot": "2afaeb34c2c8dfa4802b77c5520bdb9ddef3915c278120db904e5d21e2d1bdf2",
+          "quote": "35e780cce346e2338417b591f99ee340a643fc02da6c0be70a9cbd569c9f5507",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-092fe6fb1dff23978dac2cc4",
+          "source_id": "firefox-releases",
+          "item": "src-0e0a9f3027d215286f812075",
+          "revision": "sr-0eab1109972d2489c7dc5cbe",
+          "snapshot": "f7aee5ebb35e0280254cb1f864a83c4c66da4c76497ea344fee1db255a04264f",
+          "quote": "6437bed9dbd48ef90b7684ccc0fdf612b84ea267f6d9f09559bbebac1c0b2c56",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-12a34159ba7712cf9b116602",
+          "source_id": "firefox-android",
+          "item": "src-fd813f99cee4bff24a83f542",
+          "revision": "sr-98f499f8e81ff7320182ed3b",
+          "snapshot": "7a42ac6fc3de12280ad42f25dce374f81a1fc44f6ec0feb576becdaaad02f8ae",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-1538b83e1972dc5fa16866e8",
+          "source_id": "firefox-beta",
+          "item": "src-6ffb8d1c22e4de2466ce3a36",
+          "revision": "sr-ed0cf9f41b8d2c9a6cb73705",
+          "snapshot": "79108e3fdb7dedf1ef408317d5985e032b70b4632fceb8b4469e3bd32db062e8",
+          "quote": "65683c36c495a9b6baae092229ffbbd52f51f9bf1460b8301721a30f65590610",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-40ca85b24ac4b6e71531dcb4",
+          "source_id": "firefox-beta",
+          "item": "src-9b314640aba27447eadd78a6",
+          "revision": "sr-71a2bbc2038c2d8cd7ef1f59",
+          "snapshot": "1a7a87d28f41875857cbc5fffa1f5037b832066fb9211af49e9ead9763d4df2a",
+          "quote": "1f0683ed922833890b6b00c6f7f681096310b781f4040eea3973401d4195f4c0",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-4ef6e44bf5a7faaab1626893",
+          "source_id": "firefox-releases",
+          "item": "src-3cb2fe7a2c3e77913570dd4e",
+          "revision": "sr-28cfbe375141a59f0d00b1f8",
+          "snapshot": "44fdfaa8179c1a1ccf929cb71c6ae1fb3f317b546876b1c714fa163e63f055e9",
+          "quote": "ab04b6b99a76e3d8eb419d4d6e30c37a4d270e98fe873b8c9c5e17ee34e65347",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-56939d95e3a00ca2898a81f5",
+          "source_id": "firefox-android",
+          "item": "src-95451c300b9bf0eb37f57bf5",
+          "revision": "sr-c3696aa406ec227c43bfe000",
+          "snapshot": "f3d5c7bb64a33fbcbe076ed271261987174ed615eacebab6a6850b45c4cba679",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-5ac26c86926784cc6e12f0c1",
+          "source_id": "firefox-releases",
+          "item": "src-cadfd7e28b354f47520c1fc4",
+          "revision": "sr-f79bb4d7e89c903368be6aa1",
+          "snapshot": "244ef3d92e5fc6b3bf73df1d894d765431a2fec578ea5abaf23a11e05a18cc4e",
+          "quote": "a40db7c3befd7bed03de3338cb9315b4d2afe164882177b53e53e413f092bd9b",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-5c2045e905aa13b010e6f434",
+          "source_id": "firefox-releases",
+          "item": "src-2596c840afd08e568424562e",
+          "revision": "sr-39c25455d2110cc73ac2cbaa",
+          "snapshot": "86eb1a49d38f3bef27214d8499d328ca954046b7d342679e86a5624f55733372",
+          "quote": "001724cabdae3c543628de5fea2bbed74f2785790699c2c59118c005e2667448",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-6899196cfc8aee129fce5559",
+          "source_id": "firefox-beta",
+          "item": "src-413dd99bae95380747ce4576",
+          "revision": "sr-59575c3dc45bfe01d5348ab2",
+          "snapshot": "340bb37b109269086f001b4cfc55dd9be3b91cd4b1921dfc292ff6fe71646684",
+          "quote": "77505001968f5bc5cc3019c9d83fbe68ef61536b663c38195f75f6864bf8f174",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-6a4b0a042cc838e55eda99c5",
+          "source_id": "firefox-beta",
+          "item": "src-a5ddefdb14c48b3f4cb674e4",
+          "revision": "sr-8b9e71857c7f90f1c996a5d6",
+          "snapshot": "41c6c44e1e0f325d53fc020dc13644b7f43859c3e1318bed7cae941a511da325",
+          "quote": "11a1af273bc8d6d74bcf175de383f5042c88740a530f37d70743a9d7705a2545",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-6ad693a2870c79b9197a5dbe",
+          "source_id": "firefox-releases",
+          "item": "src-37e08ba32e0f27853c70e0ed",
+          "revision": "sr-aa59a0be5ba6d8d9444d1a1b",
+          "snapshot": "20301a8e49bd3901e82b6a5ae377548a76bd2a0573593b625c3ce1eb94bdcc48",
+          "quote": "10aba6278368dbc0882be4d1dd0fb6d9f573035f0e605109c549d28a72111736",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-7de06545701beadf06015cd2",
+          "source_id": "firefox-beta",
+          "item": "src-2dad78ea91d9ea99f20ffb5e",
+          "revision": "sr-3d52229aef92e9be4b164111",
+          "snapshot": "304300128a7ca16d0dd3e0a348b7037404c09f17e8533bf935b44155c66ecfbb",
+          "quote": "5a48a14971fc024d54ab1f6744e35bbdd3859f4d7225f6a5cd17fa4a509672db",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-913df7d1b0b52e8d36442a4c",
+          "source_id": "firefox-beta",
+          "item": "src-b89a8f9e4300b29a72f8502d",
+          "revision": "sr-a1d961c2ba16098456ed612a",
+          "snapshot": "f7d8abffe1ae93f40765a706274a03b2773e7c747ae7dec0846fc1468416985a",
+          "quote": "4d2c2c982dd718919da7c0072fca518b09915573daecb7e8867fe8d6aeb2b657",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-9cdc2542e74f8bc5ad4e7a2e",
+          "source_id": "firefox-android",
+          "item": "src-997614d6672ffc1c51942aad",
+          "revision": "sr-712a3718f82ae66ac488ef67",
+          "snapshot": "e21913796841599f612bca23a522605d0d090410c294fd0ef9db0c3f5d30e438",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-9d4fcf0e0bab5c2ce528a307",
+          "source_id": "firefox-releases",
+          "item": "src-84682c00af08914d18aabe52",
+          "revision": "sr-d5a771274f602c5ee1b12587",
+          "snapshot": "3470170b66c6f811ee03a45e8c6b90b03cfcefe82e2132be3e0b808bce80f3a7",
+          "quote": "59a352601cc1e7d9acca5d9d6e643824560cd876073445176d1e609fbdc3e1f5",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ad541ad39926d5aad6871380",
+          "source_id": "firefox-beta",
+          "item": "src-d1063d17f2052b47dcb2e67b",
+          "revision": "sr-79e641a8cbfcac062fa7d956",
+          "snapshot": "ab651eda486b76a651138a3d3b56c850c46b850fe570e356dd13007ac11de640",
+          "quote": "2cf7e9a040479a33abe6c5618a965572d9130311962981160cf50fd03c883e5b",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-b097857ce2ae91bce1df1d9d",
+          "source_id": "firefox-releases",
+          "item": "src-aab9b896685ca24f0f14d0ac",
+          "revision": "sr-d6eea69a5d514b1bd2ffbaac",
+          "snapshot": "3f59e074010bcbfa115a381d7512578c7b94aae3e1ac71ea9c0147dad8c70426",
+          "quote": "3e785db1eaac054e62c53239a4f9db1eee73c57a4a917127e45029b949528fb5",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-b5de0d0da96e626b5699f38a",
+          "source_id": "firefox-beta",
+          "item": "src-2b611e2da911b39b616deedb",
+          "revision": "sr-e8c7f8e8ff5a18a75cfad7a1",
+          "snapshot": "c1c9c1e710a94be5f7999fd06589d41af70e03e63b4f93fc678c7266aa0595ff",
+          "quote": "f59455c14cdfe76dfb69b93df924fbf36f6a30e91af5bc95179eb78b82a48457",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-c05a2ce916969c5165f1b0d6",
+          "source_id": "firefox-beta",
+          "item": "src-85017762e84a278a18ea742b",
+          "revision": "sr-5caca93f06ae378c3174b152",
+          "snapshot": "0bb135121087ebf3571074fbba0dee14f3bae1aed0cb8df68fde542b2f4800b8",
+          "quote": "935dca5e119b45727ca4e5b018daf84059495b5cb2b02565fd3a48e912ddce87",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-caf3a7856bf4124c87a1571c",
+          "source_id": "firefox-beta",
+          "item": "src-8703b18dacdd838dec017676",
+          "revision": "sr-455321c766ac4bd726808fa8",
+          "snapshot": "74bbd6f08425d3c7f2a7dc44c69fcd1d7d04dfb3c5a5b36fa257db7e90321761",
+          "quote": "99aa56f9f37b6e0183c2369f517823461c8765a48981c27c59d20bd10fba977d",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ccec0c249169375336cb671d",
+          "source_id": "firefox-beta",
+          "item": "src-c23d9be398bc695a1fa01da8",
+          "revision": "sr-9531127934186ed1518200a1",
+          "snapshot": "c9fc76deef8871ef4ef70dba71816da269951c0c4503bffeb16a4d1fb5ef82b6",
+          "quote": "8614cd43afd4d669882b6d53c8eb6cba5d99acd6c69586eeb48a26785692aadc",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-dec669396c2e71aaaadc6461",
+          "source_id": "firefox-beta",
+          "item": "src-926259df56e00f0a8c8322ed",
+          "revision": "sr-90199fc9086285938c4b71ac",
+          "snapshot": "44866ea98fd8bd485759958ca237ce9389f3804e6150a55c562b79954cd48792",
+          "quote": "1c9770b86c2469d3d585f2b9bc521b25cb899a502821f0650e5cab6dea868344",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-df760edfc50a86243a7ed7b7",
+          "source_id": "firefox-beta",
+          "item": "src-b909e74656e3ca32d76bc15e",
+          "revision": "sr-044150bb74a0b6b1ac08a03d",
+          "snapshot": "5b8b5ae405fdf3c78809947999113a739babd653700cea27e9bb564bde193a2e",
+          "quote": "f997020bf2b2a78814960bb3710390fdefa0e7f5e23fb9d791c81e52b75ec513",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-f4505f1ab75199a72330fbb8",
+          "source_id": "firefox-beta",
+          "item": "src-48ad5bd2c370ce2fc461bdc5",
+          "revision": "sr-855ab65e101697fe6da7a8db",
+          "snapshot": "7f984cfad2be0aa0c12080eb110c1c3a16d928c5531eeb3dc8d2049d92b98ef5",
+          "quote": "373b102a44c6f9e4e1ebccbd7f74de40b1733713507b8a802685874f2aefaf5e",
+          "changed": true
+        },
+        {
+          "feature_id": "firefox-android-extension-update-consent-prominence",
+          "source_id": "firefox-android",
+          "item": "src-4d4e95f8353d42c7aad9f7c3",
+          "revision": "sr-ebd376eb25deb5927f4e4ffe",
+          "snapshot": "56bb906e8914d0ba2ed6503a743e93d8389e9753460867fd92e994dae4cc2dd4",
+          "quote": "617ce604e4eed6df94af00a111c839ad39b5fc25311cbcb72a83404c37cc3eb2",
+          "changed": false
+        },
+        {
+          "feature_id": "firefox-chrome-history-import-visit-frequency",
+          "source_id": "firefox-releases",
+          "item": "src-74fef7a684417dea5ccc94ae",
+          "revision": "sr-0e069eb105aaab0dc928c2a2",
+          "snapshot": "6a619debace82e008c857fcd81d32562eee57c39ca84fa49456893be475a201b",
+          "quote": "c3dc61560d8f691e76265e3cd66fb1f9e9b93a13656a63c81045238ab7bb036e",
+          "changed": true
+        },
+        {
+          "feature_id": "firefox-copy-current-tab-url-shortcut",
+          "source_id": "firefox-releases",
+          "item": "src-54add92eb6faaca194fb85c9",
+          "revision": "sr-df56b4da70524374505cd0cb",
+          "snapshot": "d2aa074d520c86cdfc69bb8d821d9ab0e0791efccc5f8c47e8a6d71e7f3cd0ab",
+          "quote": "fcbb0358c90c1f1c37e453a40b647a242e2d3d5dc659b696bec32cbd3ec587e9",
+          "changed": true
+        },
+        {
+          "feature_id": "firefox-copy-current-tab-url-shortcut",
+          "source_id": "firefox-beta",
+          "item": "src-a12f4607bfd9d9a2a35f7f7d",
+          "revision": "sr-5dbb5d505becfb135515921c",
+          "snapshot": "a0cdf84c56ca934d5ae72c6f25b893829cdb8451fa66579da34f77143edcd048",
+          "quote": "0d5d948a95bcbe17319bfe58672d310a8474f39683dc229d4162083d36d04a75",
+          "changed": true
+        },
+        {
+          "feature_id": "firefox-web-custom-clipboard-formats",
+          "source_id": "firefox-releases",
+          "item": "src-6a1dd0f3fc718d079cad5bbb",
+          "revision": "sr-f47f719ec1736e2a7a311f88",
+          "snapshot": "0e06037631c75730a66cbdb16c72675a534e6431715b040ffcfda5e12fe7eeba",
+          "quote": "1db3ef74b625714b145c51ff9f8f11d0c8d28b5f6ce8eba2ca29e1694791aaf4",
+          "changed": true
+        }
+      ]
+    },
+    "safari": {
+      "status": "incomplete",
+      "change_count": null,
+      "collected_feature_count": null,
+      "effects": [
+        {
+          "feature_id": "feature-04bc0f08ada2646f1bf5f2aa",
+          "source_id": "safari-technology-preview",
+          "item": "src-551be836c3181b0cb1a7fbc7",
+          "revision": "sr-b52a4abe78c21a61306014d4",
+          "snapshot": "e435476a66f185011879a4f1705c28ea6e98ce51db2778929323d5bc484feeee",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-1e21df82c2d6938e5bbfe891",
+          "source_id": "safari-technology-preview",
+          "item": "src-551be836c3181b0cb1a7fbc7",
+          "revision": "sr-b52a4abe78c21a61306014d4",
+          "snapshot": "e435476a66f185011879a4f1705c28ea6e98ce51db2778929323d5bc484feeee",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-3130d1eff9b81f119f0aff43",
+          "source_id": "safari-technology-preview",
+          "item": "src-551be836c3181b0cb1a7fbc7",
+          "revision": "sr-b52a4abe78c21a61306014d4",
+          "snapshot": "e435476a66f185011879a4f1705c28ea6e98ce51db2778929323d5bc484feeee",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-332b533be963d6281e2536a5",
+          "source_id": "safari-technology-preview",
+          "item": "src-551be836c3181b0cb1a7fbc7",
+          "revision": "sr-b52a4abe78c21a61306014d4",
+          "snapshot": "e435476a66f185011879a4f1705c28ea6e98ce51db2778929323d5bc484feeee",
+          "quote": "bd85bcdb8d4e613a79cb62d0903946ad10c83e63dc75f67614c159c0dbf4d184",
+          "changed": true
+        }
+      ]
+    },
+    "whale": {
+      "status": "complete",
+      "classification": "d2a6a95ece35b604c8f722d7f89dcacfd10a9d1a75cc99ce6767bf229d725a7b",
+      "effects": [
+        {
+          "feature_id": "feature-051e46ac483c15983841f33b",
+          "source_id": "whale-release-history",
+          "item": "src-0b69e38005a98aacb7bfbf77",
+          "revision": "sr-ebb37d7bbcdf4a310bafe039",
+          "snapshot": "13af8eb83257f9aa9dd0059602468bb9d31b5526fd3cd2eb2d22fab380b79d09",
+          "quote": "7691002827069f0cf82ad3e9ab0bfc1afa9f6edac0e55599b665111dcae245c5",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-4d91905700a4d0682d46fe9c",
+          "source_id": "whale-release-history",
+          "item": "src-7b614d106aa368042b3343a1",
+          "revision": "sr-b8e53b3a61cd4d03eff4a584",
+          "snapshot": "13a60e35e21f95d2ecda790e24e8653b8fb1c70180164592517fe89435e6d5d1",
+          "quote": "c33837bc1caab8463de9f3f9da0f8062fab8ae078443effe8342a1a5be3f8a20",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-a7645e844cb537e899c600a4",
+          "source_id": "whale-release-history",
+          "item": "src-4f5724f8dc70071f97dace8e",
+          "revision": "sr-965c98ca89635775d1df8f0c",
+          "snapshot": "43be2a25870faba92f26381c78ab10e2418dc757d74dde0930dccd90d782af0e",
+          "quote": "abb9ee143c164215908cfb045aaa9e5e7451516481d3d767fe19a39be75644b6",
+          "changed": true
+        }
+      ],
+      "change_count": 3,
+      "collected_feature_count": 3
+    }
+  },
+  "checksum": "cc44cd135577a99fda9ed0acd6e89332283ac2c93f98ff2a1075466b40ecdc7d"
+}

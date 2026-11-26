@@ -3507,6 +3507,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-03b1e910caf60a9840cf002c",
+    "browser": "firefox",
+    "canonical_key": "firefox-android-collections-to-tab-groups",
+    "title": "Firefox Android Beta: 저장한 컬렉션을 탭 그룹으로 자동 이전",
+    "aliases": [],
+    "source_item_ids": [
+      "src-4ac6bc1818979a92a8f9e19c"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-4ac6bc1818979a92a8f9e19c": [
+        "sr-ad45cd7efa1697acb87f5e99"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ad45cd7efa1697acb87f5e99": "On Firefox for Android , Saved Collections are now automatically moved into tab groups."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-03b329a8358a0b3d48e37760",
     "browser": "chrome",
     "canonical_key": "chromestatus:5088568590598144",
@@ -4022,6 +4058,44 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-04bc0f08ada2646f1bf5f2aa",
+    "browser": "safari",
+    "canonical_key": "safari-tp-document-edge-spring-scroll",
+    "title": "Safari 기술 미리보기: 문서 끝 스크롤에 스프링 효과",
+    "aliases": [],
+    "source_item_ids": [
+      "src-551be836c3181b0cb1a7fbc7"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-551be836c3181b0cb1a7fbc7": [
+        "sr-b52a4abe78c21a61306014d4"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "technology_preview",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "platform": {
+        "value": [
+          "macOS"
+        ],
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "version": {
+        "value": "257",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      }
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-04bff152653d10e060c11f2a",
     "browser": "chrome",
     "canonical_key": "chromestatus:4887385041010688",
@@ -4180,6 +4254,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-051e46ac483c15983841f33b",
+    "browser": "whale",
+    "canonical_key": "whale-ios-poor-network-notice",
+    "title": "Whale iOS: 연결이 불안정할 때 즉시 안내 표시",
+    "aliases": [],
+    "source_item_ids": [
+      "src-0b69e38005a98aacb7bfbf77"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-0b69e38005a98aacb7bfbf77": [
+        "sr-ebb37d7bbcdf4a310bafe039"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ebb37d7bbcdf4a310bafe039": "네트워크 연결이 원활하지 않을 때 안내가 즉시 표시되도록 개선했어요."
     }
   },
   {
@@ -5889,6 +5998,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-092fe6fb1dff23978dac2cc4",
+    "browser": "firefox",
+    "canonical_key": "firefox-css-typed-om",
+    "title": "Firefox 161: CSS Typed Object Model 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-0e0a9f3027d215286f812075"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-0e0a9f3027d215286f812075": [
+        "sr-0eab1109972d2489c7dc5cbe"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-0eab1109972d2489c7dc5cbe": "Firefox now supports the CSS Typed Object Model , which lets scripts read and write CSS values as typed JavaScript objects instead of strings. Color values, such as CSSColorValue , are not supported yet."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -9164,6 +9309,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-125f1189ab64099d03df19af",
+    "browser": "edge",
+    "canonical_key": "edge-global-secure-access-work-profile",
+    "title": "Edge for Business 미리보기: 업무 프로필에서 Entra Global Secure Access",
+    "aliases": [],
+    "source_item_ids": [
+      "src-ef44d84d9ce35f054817e5c8"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-ef44d84d9ce35f054817e5c8": [
+        "sr-88f60cc8e555f4997669149d"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-88f60cc8e555f4997669149d": "Global Secure Access integration (Preview) . Microsoft Edge for Business integrates with Microsoft Entra Global Secure Access. Users can access supported internet resources, Microsoft 365, and private web applications directly from the Edge work profile without installing the Global Secure Access client or a VPN. The preview supports Windows and macOS. For more information, see Global Secure Access with Microsoft Edge for Business ."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-12642908b4d2569e8cf8058d",
     "browser": "chrome",
     "canonical_key": "chromestatus:4560781148946432",
@@ -9268,6 +9448,44 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-12a34159ba7712cf9b116602",
+    "browser": "firefox",
+    "canonical_key": "firefox-android-automotive-google-play",
+    "title": "Google built-in 차량에서 주차 중 Firefox 브라우징",
+    "aliases": [],
+    "source_item_ids": [
+      "src-fd813f99cee4bff24a83f542"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-fd813f99cee4bff24a83f542": [
+        "sr-98f499f8e81ff7320182ed3b"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-fd813f99cee4bff24a83f542",
+        "revision_id": "sr-98f499f8e81ff7320182ed3b"
+      },
+      "platform": {
+        "value": [
+          "Android Automotive"
+        ],
+        "source_item_id": "src-fd813f99cee4bff24a83f542",
+        "revision_id": "sr-98f499f8e81ff7320182ed3b"
+      },
+      "version": {
+        "value": "161.0",
+        "source_item_id": "src-fd813f99cee4bff24a83f542",
+        "revision_id": "sr-98f499f8e81ff7320182ed3b"
+      }
     }
   },
   {
@@ -10111,6 +10329,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-1538b83e1972dc5fa16866e8",
+    "browser": "firefox",
+    "canonical_key": "firefox-declarative-web-push",
+    "title": "Firefox Beta: 서비스 워커 없는 선언형 웹 푸시",
+    "aliases": [],
+    "source_item_ids": [
+      "src-6ffb8d1c22e4de2466ce3a36"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-6ffb8d1c22e4de2466ce3a36": [
+        "sr-ed0cf9f41b8d2c9a6cb73705"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ed0cf9f41b8d2c9a6cb73705": "Firefox now accepts declarative push messages . Push messages sent in the declarative format are shown directly shown as notifications without involving a service worker, and push subscriptions can now be managed through window.pushManager ."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -13668,6 +13922,44 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-1e21df82c2d6938e5bbfe891",
+    "browser": "safari",
+    "canonical_key": "safari-tp-webauthn-cross-device-fallback-url",
+    "title": "Safari 기술 미리보기: WebAuthn 교차 기기 대체 URL",
+    "aliases": [],
+    "source_item_ids": [
+      "src-551be836c3181b0cb1a7fbc7"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-551be836c3181b0cb1a7fbc7": [
+        "sr-b52a4abe78c21a61306014d4"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "technology_preview",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "platform": {
+        "value": [
+          "macOS"
+        ],
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "version": {
+        "value": "257",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      }
     }
   },
   {
@@ -21180,6 +21472,49 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-3130d1eff9b81f119f0aff43",
+    "browser": "safari",
+    "canonical_key": "safari-tp-enhanced-select-multiple-selectedcontent",
+    "title": "Safari 기술 미리보기: 다중 선택을 selectedcontent에 반영",
+    "aliases": [],
+    "source_item_ids": [
+      "src-551be836c3181b0cb1a7fbc7"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-551be836c3181b0cb1a7fbc7": [
+        "sr-b52a4abe78c21a61306014d4"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "technology_preview",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "platform": {
+        "value": [
+          "macOS"
+        ],
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "rollout_status": {
+        "value": "off_by_default",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "version": {
+        "value": "257",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      }
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-3151217c66e5a918c901522d",
     "browser": "chrome",
     "canonical_key": "chromestatus:5134470074597376",
@@ -21888,6 +22223,7 @@
     "title": "AV2 Decoder",
     "aliases": [],
     "source_item_ids": [
+      "src-93fa95c39092e00f9b7e6318",
       "src-f5dfcc078c1e2ddcaecaf6b3"
     ],
     "event_ids": [],
@@ -21905,6 +22241,25 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "source_revision_ids": {
+      "src-93fa95c39092e00f9b7e6318": [
+        "sr-41bb22bad07b19da0287f550"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-41bb22bad07b19da0287f550": "The AV2 decoder will be added to Chrome Desktop builds (Windows, macOS, Linux) based on the official bitstream specification."
+    },
+    "feature_facts": {
+      "platform": {
+        "value": [
+          "Linux",
+          "Windows",
+          "macOS"
+        ],
+        "source_item_id": "src-93fa95c39092e00f9b7e6318",
+        "revision_id": "sr-41bb22bad07b19da0287f550"
+      }
     }
   },
   {
@@ -21964,6 +22319,44 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-332b533be963d6281e2536a5",
+    "browser": "safari",
+    "canonical_key": "safari-tp-audioworklet-direct-message-port",
+    "title": "Safari 기술 미리보기: AudioWorklet 직접 메시지 포트",
+    "aliases": [],
+    "source_item_ids": [
+      "src-551be836c3181b0cb1a7fbc7"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-551be836c3181b0cb1a7fbc7": [
+        "sr-b52a4abe78c21a61306014d4"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "technology_preview",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "platform": {
+        "value": [
+          "macOS"
+        ],
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      },
+      "version": {
+        "value": "257",
+        "source_item_id": "src-551be836c3181b0cb1a7fbc7",
+        "revision_id": "sr-b52a4abe78c21a61306014d4"
+      }
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-334927866029542936a284b0",
     "browser": "chrome",
     "canonical_key": "chromestatus:5072685886078976",
@@ -22014,6 +22407,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-33671aa6b7dee181bc1fc12e",
+    "browser": "edge",
+    "canonical_key": "edge-xslt-default-disable",
+    "title": "Edge의 브라우저 내장 XSLT 기본 비활성화 일정",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d61517e9e1bdbb2519f42700"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-d61517e9e1bdbb2519f42700": [
+        "sr-4c3ca78a475162aaad87ef56"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-4c3ca78a475162aaad87ef56": "Microsoft Edge is deprecating browser-native Extensible Stylesheet Language Transformations (XSLT) . Microsoft Edge will disable the XSLTProcessor JavaScript API and XML processing instructions that reference XSLT stylesheets by default. XML processing instructions that reference CSS stylesheets are not affected. Rollout timeline Microsoft Edge 157: Browser-native XSLT is off by default in the Canary, Dev, and Beta channels. Microsoft Edge 159: Browser-native XSLT will be off by default in the Stable channel. The existing XSLTEnabled policy can explicitly enable or disable XSLT regardless of the browser default. If the policy is not configured, XSLT follows the browser default behavior. Site owners can temporarily use the XSLT deprecation origin trial to keep browser-native XSLT enabled"
     }
   },
   {
@@ -22311,6 +22739,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-33d064d10b59dd6ebea6e3bc",
+    "browser": "edge",
+    "canonical_key": "edge-managed-windows-autolaunch-opt-in",
+    "title": "Edge 관리 Windows 기기에서 자동 실행 여부 선택 순차 배포",
+    "aliases": [],
+    "source_item_ids": [
+      "src-981dd0ffe4c6c89f864e8254"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-981dd0ffe4c6c89f864e8254": [
+        "sr-b38e05b043b20a9e25ffb5f6"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-b38e05b043b20a9e25ffb5f6": "Autolaunch opt-in experience for managed devices . Microsoft Edge will introduce an opt-in experience that allows users on managed devices to choose whether Edge launches automatically when Windows starts. Administrators can also manage this behavior through the LaunchEdgeOnWindowsStartupEnabled policy with opt-in, opt-out, and user-choice configurations. Note: This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout."
     }
   },
   {
@@ -26272,6 +26735,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-3e0b7a021c14a4a071629a37",
+    "browser": "edge",
+    "canonical_key": "edge-enterprise-copilot-new-tab-page",
+    "title": "Edge 업무용 새 탭 검색창에서 Copilot 채팅과 제안 작업",
+    "aliases": [],
+    "source_item_ids": [
+      "src-72732c90c40b5751a5df2b6a"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-05",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-72732c90c40b5751a5df2b6a": [
+        "sr-5f69bf8f690e3708a3ff5fb2"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-5f69bf8f690e3708a3ff5fb2": "Upgraded Copilot new tab page . Search, chat, and explore the web from one search box with Copilot-suggested actions and curated work content on the Copilot new tab page. Users now see upgraded Copilot new tab page functionality and features."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-3e367082b5e8c6d7fd4b1e7e",
     "browser": "chrome",
     "canonical_key": "chromestatus:4680129030651904",
@@ -27331,6 +27829,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-40ca85b24ac4b6e71531dcb4",
+    "browser": "firefox",
+    "canonical_key": "firefox-fetch-streaming-uploads",
+    "title": "Firefox Beta: Fetch API에서 요청 본문 스트리밍 업로드",
+    "aliases": [],
+    "source_item_ids": [
+      "src-9b314640aba27447eadd78a6"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-9b314640aba27447eadd78a6": [
+        "sr-71a2bbc2038c2d8cd7ef1f59"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-71a2bbc2038c2d8cd7ef1f59": "Firefox now supports streaming uploads with the Fetch API , allowing web applications to send request bodies incrementally using a ReadableStream without buffering the entire body first."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -29213,6 +29747,76 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-459571abaf580750eaf917c6",
+    "browser": "chrome",
+    "canonical_key": "chromestatus:5115032697438208",
+    "title": "Chrome 제안: 다중 선택을 selectedcontent에 동기화",
+    "aliases": [],
+    "source_item_ids": [
+      "src-b2d1192de9dda9c75bd0d44c"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-25",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "source_revision_ids": {
+      "src-b2d1192de9dda9c75bd0d44c": [
+        "sr-37d331d3c3ebc91a4cd7ac43"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-37d331d3c3ebc91a4cd7ac43": "Chrome status: Proposed. Today, the selectedcontent element works for single-selects but does nothing in a multi-select. This feature makes the selectedcontent element start working for multi-selects by cloning all options into the selectedcontent element and keeping their selectedness in sync in order to represent each selected option inside of the selectedcontent element. Authors can still style the cloned option and the original option independently, and the cloned but not selected options will be hidden by default in UA styles."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-45c68992353dfb785280c3e4",
+    "browser": "edge",
+    "canonical_key": "edge-extension-leak-control",
+    "title": "Edge for Business 미리보기: 보호 페이지에서 사용자 확장 동작 제한",
+    "aliases": [],
+    "source_item_ids": [
+      "src-821bacbf74dca1b5dfa26c4e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-821bacbf74dca1b5dfa26c4e": [
+        "sr-83d039b64a6c68aaa259e0f7"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-83d039b64a6c68aaa259e0f7": "Extension Leak Control (Preview) . Microsoft Edge for Business adds protection for sensitive work content by restricting how user-installed extensions interact with protected pages. Administrators can enable this capability through the Microsoft Edge management service alongside existing extension management controls. For more information, see Microsoft Edge Extension leak control ."
     }
   },
   {
@@ -32107,6 +32711,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-4d91905700a4d0682d46fe9c",
+    "browser": "whale",
+    "canonical_key": "whale-ios-expand-long-url",
+    "title": "Whale iOS: 긴 웹 주소 여러 줄로 펼쳐 보기",
+    "aliases": [],
+    "source_item_ids": [
+      "src-7b614d106aa368042b3343a1"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-7b614d106aa368042b3343a1": [
+        "sr-b8e53b3a61cd4d03eff4a584"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-b8e53b3a61cd4d03eff4a584": "긴 웹 주소 펼쳐 보기 주소창을 탭하거나 드래그하면 긴 웹 주소가 여러 줄로 펼쳐져 전체 주소를 확인할 수 있어요."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-4d9b1887b6832f47f81fbf8f",
     "browser": "chrome",
     "canonical_key": "chromestatus:4506322921848832",
@@ -32903,6 +33542,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-4ef6e44bf5a7faaab1626893",
+    "browser": "firefox",
+    "canonical_key": "firefox-css-nested-substitution-functions",
+    "title": "Firefox 161: CSS var·attr·env에서 함수 중첩",
+    "aliases": [],
+    "source_item_ids": [
+      "src-3cb2fe7a2c3e77913570dd4e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-3cb2fe7a2c3e77913570dd4e": [
+        "sr-28cfbe375141a59f0d00b1f8"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-28cfbe375141a59f0d00b1f8": "Firefox now supports nested arbitrary substitution functions in the primary parameters of var() , attr() , and env() ; for example, var(attr(data-theme-prop type(<custom-ident>))) and env(var(--safe-area-block-start)) ."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -36175,6 +36850,44 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-56939d95e3a00ca2898a81f5",
+    "browser": "firefox",
+    "canonical_key": "firefox-android-homepage-shortcuts-personalization",
+    "title": "Firefox Android 홈 바로가기에 자주 방문한 사이트 반영 및 추가 개수 제한 해제",
+    "aliases": [],
+    "source_item_ids": [
+      "src-95451c300b9bf0eb37f57bf5"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-95451c300b9bf0eb37f57bf5": [
+        "sr-c3696aa406ec227c43bfe000"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-95451c300b9bf0eb37f57bf5",
+        "revision_id": "sr-c3696aa406ec227c43bfe000"
+      },
+      "platform": {
+        "value": [
+          "Android"
+        ],
+        "source_item_id": "src-95451c300b9bf0eb37f57bf5",
+        "revision_id": "sr-c3696aa406ec227c43bfe000"
+      },
+      "version": {
+        "value": "161.0",
+        "source_item_id": "src-95451c300b9bf0eb37f57bf5",
+        "revision_id": "sr-c3696aa406ec227c43bfe000"
+      }
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-569f3dffb5894fc05aa0656d",
     "browser": "chrome",
     "canonical_key": "chromestatus:6266249336586240",
@@ -36441,6 +37154,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-57a41b890977b77f9452fe77",
+    "browser": "edge",
+    "canonical_key": "edge-ios-mam-tunnel-reauth",
+    "title": "Edge iOS에서 MAM Tunnel 토큰 만료 시 대화형 재인증",
+    "aliases": [],
+    "source_item_ids": [
+      "src-715d8ded5e00d69e0f8d2c23"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-09",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-715d8ded5e00d69e0f8d2c23": [
+        "sr-4cae959bc462b56dcfb6568f"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-4cae959bc462b56dcfb6568f": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires."
     }
   },
   {
@@ -37364,6 +38112,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-5a39a5df207f7a78e33d00cf",
+    "browser": "edge",
+    "canonical_key": "edge-intune-protected-downloads",
+    "title": "Edge for Business에서 Intune으로 보호 다운로드 설정",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d3d93ac9e7d912943000c2df"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-d3d93ac9e7d912943000c2df": [
+        "sr-9378d757f69ce268a001feb7"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-9378d757f69ce268a001feb7": "Configure Protected Downloads through Intune . Administrators can configure Protected Downloads for Microsoft Edge for Business through Windows app protection policies in Microsoft Intune. Downloads are redirected to OneDrive for Business when it is configured as the allowed data destination. For more information, see Protected Downloads ."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-5a3a868bc2480750b6eae149",
     "browser": "chrome",
     "canonical_key": "chromestatus:4993617147985920",
@@ -37468,6 +38251,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-5ac26c86926784cc6e12f0c1",
+    "browser": "firefox",
+    "canonical_key": "firefox-css-random-function",
+    "title": "Firefox 161: CSS random() 함수 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-cadfd7e28b354f47520c1fc4"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-cadfd7e28b354f47520c1fc4": [
+        "sr-f79bb4d7e89c903368be6aa1"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-f79bb4d7e89c903368be6aa1": "Firefox now supports the random() CSS function, which allows authors to introduce randomness into their styles, generating a random value in a given range (with an optional increment) that is usable anywhere that math functions can be specified. Learn more ."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -37954,6 +38773,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-5c2045e905aa13b010e6f434",
+    "browser": "firefox",
+    "canonical_key": "firefox-macos-system-menu-shortcuts",
+    "title": "Firefox 161 macOS: 시스템에서 지정한 메뉴 단축키 우선",
+    "aliases": [],
+    "source_item_ids": [
+      "src-2596c840afd08e568424562e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-2596c840afd08e568424562e": [
+        "sr-39c25455d2110cc73ac2cbaa"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-39c25455d2110cc73ac2cbaa": "On macOS, keyboard shortcuts assigned to Firefox menu items in System Settings now replace the built-in shortcuts for those items."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -40042,6 +40897,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-60d5a22650a263b4f7f63da3",
+    "browser": "edge",
+    "canonical_key": "edge-redaction-leak-protection",
+    "title": "Edge for Business 미리보기: 보호 페이지의 민감 콘텐츠 마스킹",
+    "aliases": [],
+    "source_item_ids": [
+      "src-198d3bc9c7a71117c716a651"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-198d3bc9c7a71117c716a651": [
+        "sr-1b54f01a7da3b59003e1d4d6"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-1b54f01a7da3b59003e1d4d6": "Redaction leak protection (Preview) . Microsoft Edge for Business can visually mask supported sensitive content on protected web pages, helping reduce exposure while users continue working. Users can temporarily reveal hidden information through review controls. Administrators can enable redaction through the Microsoft Edge management service. For more information, see Microsoft Edge Redaction leak protection ."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-60fd2dfadae139c98f6d9e13",
     "browser": "chrome",
     "canonical_key": "chromestatus:5196081949442048",
@@ -40390,6 +41280,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-61eb1aca6a2916a8bfac2010",
+    "browser": "edge",
+    "canonical_key": "edge-proxy-http-auth-schemes-policy",
+    "title": "관리자가 모든 HTTP 인증 방식을 허용할 프록시 지정",
+    "aliases": [],
+    "source_item_ids": [
+      "src-3cdb821c5f263df0be707fef"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-05",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-3cdb821c5f263df0be707fef": [
+        "sr-ea22bbdf01b8e95335d24557"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ea22bbdf01b8e95335d24557": "AllHttpAuthSchemesAllowedForProxies - List of proxy servers that allow all HTTP authentication schemes"
     }
   },
   {
@@ -41578,6 +42503,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-64e7b9f6ecd90720db58c965",
+    "browser": "edge",
+    "canonical_key": "edge-remix-webpage-personalization",
+    "title": "Edge Remix로 지원 웹페이지를 프로필별로 맞춤 설정",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d7a5234b19005436f247ff64"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-d7a5234b19005436f247ff64": [
+        "sr-58e249ca3bbaa8d285e327bb"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-58e249ca3bbaa8d285e327bb": "Personalize webpages with Remix . Microsoft Edge Remix lets users personalize supported webpages with built-in appearance controls or natural-language requests. Changes remain personal to the user's browser profile, with visible controls to pause or remove them. Commercial availability includes controls that let organizations disable Remix or require its toolbar entry to remain pinned using the RemixAvailability policy."
     }
   },
   {
@@ -42851,6 +43811,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-6899196cfc8aee129fce5559",
+    "browser": "firefox",
+    "canonical_key": "firefox-arc-browser-import",
+    "title": "Firefox Beta: Arc 브라우저에서 데이터 가져오기",
+    "aliases": [],
+    "source_item_ids": [
+      "src-413dd99bae95380747ce4576"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-413dd99bae95380747ce4576": [
+        "sr-59575c3dc45bfe01d5348ab2"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-59575c3dc45bfe01d5348ab2": "Firefox can now import data from the Arc browser."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-689a1116951789032472cf32",
     "browser": "chrome",
     "canonical_key": "chromestatus:5520028858318848",
@@ -43665,6 +44661,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-6a4b0a042cc838e55eda99c5",
+    "browser": "firefox",
+    "canonical_key": "firefox-back-forward-mouse-button-events",
+    "title": "Firefox Beta: 마우스 뒤로·앞으로 버튼 이벤트 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-a5ddefdb14c48b3f4cb674e4"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-a5ddefdb14c48b3f4cb674e4": [
+        "sr-8b9e71857c7f90f1c996a5d6"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-8b9e71857c7f90f1c996a5d6": "Firefox now fires mousedown , mouseup , and auxclick events for the back and forward mouse buttons (X1 and X2), with button set to 3 and 4 respectively. Calling preventDefault() on the mouseup event prevents the default action of the button, which is usually to navigate back or forward."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-6a4f14c05e926a09086bbe38",
     "browser": "chrome",
     "canonical_key": "chromestatus:5309598397497344",
@@ -43914,6 +44946,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-6ad693a2870c79b9197a5dbe",
+    "browser": "firefox",
+    "canonical_key": "firefox-vpn-per-site-rules",
+    "title": "Firefox 161: 사이트별 내장 VPN 실행 규칙",
+    "aliases": [],
+    "source_item_ids": [
+      "src-37e08ba32e0f27853c70e0ed"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-37e08ba32e0f27853c70e0ed": [
+        "sr-aa59a0be5ba6d8d9444d1a1b"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-aa59a0be5ba6d8d9444d1a1b": "Firefox’s built-in VPN can now be turned on or off for specific sites, so it only runs where extra privacy or a different location is wanted. Learn more ."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -51559,6 +52627,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-7de06545701beadf06015cd2",
+    "browser": "firefox",
+    "canonical_key": "firefox-macos-right-click-text-selection",
+    "title": "Firefox Beta macOS: 우클릭 위치의 단어·링크 선택",
+    "aliases": [],
+    "source_item_ids": [
+      "src-2dad78ea91d9ea99f20ffb5e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-2dad78ea91d9ea99f20ffb5e": [
+        "sr-3d52229aef92e9be4b164111"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-3d52229aef92e9be4b164111": "Right-clicking on text on macOS now selects the word or link under the pointer, matching other macOS apps."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-7dee376d461f02b69eccb721",
     "browser": "chrome",
     "canonical_key": "chromestatus:5915984063889408",
@@ -52907,6 +54011,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-80fdea4c1f7bd16551191a3f",
+    "browser": "edge",
+    "canonical_key": "edge-copilot-protected-sessions",
+    "title": "Edge for Business 미리보기: Copilot 보호 세션",
+    "aliases": [],
+    "source_item_ids": [
+      "src-977ccbf988f4857c26a7f2a0"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-977ccbf988f4857c26a7f2a0": [
+        "sr-4f1405cfda5a9d883cd6a3a8"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-4f1405cfda5a9d883cd6a3a8": "Protected Sessions (Preview) . Users can summarize, rewrite, and ask questions about supported protected content in Microsoft Copilot in Edge for Business. During preview, sessions are temporary and block actions that move responses outside the session. Administrators can enable this capability through the Microsoft Edge management service. For more information, see Microsoft Edge Protected Session ."
     }
   },
   {
@@ -59149,6 +60288,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-913df7d1b0b52e8d36442a4c",
+    "browser": "firefox",
+    "canonical_key": "firefox-suggest-canada",
+    "title": "Firefox Beta: 캐나다에서 Firefox Suggest 주소창 제안",
+    "aliases": [],
+    "source_item_ids": [
+      "src-b89a8f9e4300b29a72f8502d"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-b89a8f9e4300b29a72f8502d": [
+        "sr-a1d961c2ba16098456ed612a"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-a1d961c2ba16098456ed612a": "Firefox Suggest now offers suggestions in the address bar in Canada. They can be controlled in the Firefox Suggest settings. Learn more ."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-91501f697c00d382e0c8f143",
     "browser": "chrome",
     "canonical_key": "chromestatus:5727099325251584",
@@ -63557,6 +64732,44 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-9cdc2542e74f8bc5ad4e7a2e",
+    "browser": "firefox",
+    "canonical_key": "firefox-android-search-widget-modes",
+    "title": "Firefox Android 홈 화면 검색 위젯에 이미지·시크릿·음성 검색 옵션 추가",
+    "aliases": [],
+    "source_item_ids": [
+      "src-997614d6672ffc1c51942aad"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-997614d6672ffc1c51942aad": [
+        "sr-712a3718f82ae66ac488ef67"
+      ]
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-997614d6672ffc1c51942aad",
+        "revision_id": "sr-712a3718f82ae66ac488ef67"
+      },
+      "platform": {
+        "value": [
+          "Android"
+        ],
+        "source_item_id": "src-997614d6672ffc1c51942aad",
+        "revision_id": "sr-712a3718f82ae66ac488ef67"
+      },
+      "version": {
+        "value": "161.0",
+        "source_item_id": "src-997614d6672ffc1c51942aad",
+        "revision_id": "sr-712a3718f82ae66ac488ef67"
+      }
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-9ce922c386a559a388dbb503",
     "browser": "chrome",
     "canonical_key": "chromestatus:4988534620422144",
@@ -63688,6 +64901,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-9d4fcf0e0bab5c2ce528a307",
+    "browser": "firefox",
+    "canonical_key": "firefox-addon-manager-classic-themes",
+    "title": "Firefox 161 부가 기능 관리자에 Classic 테마 모음 추가",
+    "aliases": [],
+    "source_item_ids": [
+      "src-84682c00af08914d18aabe52"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-84682c00af08914d18aabe52": [
+        "sr-d5a771274f602c5ee1b12587"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-d5a771274f602c5ee1b12587": "The Themes page in the Add-ons Manager now includes a Classic themes section, with the Proton theme from earlier versions of Firefox, a Firefox OLED theme, and a selection of solid-colored themes."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -67792,6 +69041,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-a7645e844cb537e899c600a4",
+    "browser": "whale",
+    "canonical_key": "whale-ios-address-search-layout",
+    "title": "Whale iOS: 주소창 검색 화면의 항목 순서·표시 설정",
+    "aliases": [],
+    "source_item_ids": [
+      "src-4f5724f8dc70071f97dace8e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-4f5724f8dc70071f97dace8e": [
+        "sr-965c98ca89635775d1df8f0c"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-965c98ca89635775d1df8f0c": "주소창 검색 화면의 콘텐츠 구성 변경 주소창 아래에 표시되는 콘텐츠의 순서를 변경할 수 있어요. 콘텐츠 영역 맨 아래의 '레이아웃 설정'에서 즐겨찾기, 자주 방문한 사이트, 방문 기록 등의 순서를 바꾸거나 항목별로 표시 여부를 설정할 수 있어요."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-a7714c0b6f8154e8c2a5fd90",
     "browser": "chrome",
     "canonical_key": "chromestatus:5099147002904576",
@@ -70502,6 +71786,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-ad541ad39926d5aad6871380",
+    "browser": "firefox",
+    "canonical_key": "firefox-macos-use-selection-for-find",
+    "title": "Firefox Beta macOS: 선택 내용으로 찾기 메뉴",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d1063d17f2052b47dcb2e67b"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-d1063d17f2052b47dcb2e67b": [
+        "sr-79e641a8cbfcac062fa7d956"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-79e641a8cbfcac062fa7d956": "On macOS, Use Selection for Find (Command+E) is now listed in the Edit menu, as in other macOS apps."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-ad5ea099a5f80c5aa02aedd1",
     "browser": "chrome",
     "canonical_key": "chromestatus:6186023867908096",
@@ -71970,6 +73290,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-b097857ce2ae91bce1df1d9d",
+    "browser": "firefox",
+    "canonical_key": "firefox-menu-tab-groups",
+    "title": "Firefox 161 앱 메뉴에서 탭 그룹 찾기·다시 열기",
+    "aliases": [],
+    "source_item_ids": [
+      "src-aab9b896685ca24f0f14d0ac"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-aab9b896685ca24f0f14d0ac": [
+        "sr-d6eea69a5d514b1bd2ffbaac"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-d6eea69a5d514b1bd2ffbaac": "Tab groups are now listed in the application menu, making it easier to find and reopen them."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -74292,6 +75648,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-b5de0d0da96e626b5699f38a",
+    "browser": "firefox",
+    "canonical_key": "firefox-html-headingoffset-headingreset",
+    "title": "Firefox Beta: HTML 제목 수준 조정 속성 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-2b611e2da911b39b616deedb"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-2b611e2da911b39b616deedb": [
+        "sr-e8c7f8e8ff5a18a75cfad7a1"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-e8c7f8e8ff5a18a75cfad7a1": "Firefox now supports the headingoffset and headingreset attributes, which let authors shift the level of headings inside an element, or reset that shift, without changing the heading elements themselves."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-b5f09c4597080707f7de3704",
     "browser": "chrome",
     "canonical_key": "chromestatus:5487434799513600",
@@ -74369,6 +75761,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-b624de07c7bb5abcca2f80a1",
+    "browser": "edge",
+    "canonical_key": "edge-fading-inactive-tabs-retirement",
+    "title": "Edge 비활성 탭 흐리게 표시 설정 제거",
+    "aliases": [],
+    "source_item_ids": [
+      "src-ee6a97c7f1308c23f5895261"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-05",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-ee6a97c7f1308c23f5895261": [
+        "sr-4f19818f0107bc4e69d7590e"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-4f19818f0107bc4e69d7590e": "Fading tabs experience retired . The fading tabs experience is removed from Microsoft Edge. The Fade inactive tabs setting is no longer available in edge://settings/system/managePerformance , and tabs no longer fade."
     }
   },
   {
@@ -78353,6 +79780,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-c05a2ce916969c5165f1b0d6",
+    "browser": "firefox",
+    "canonical_key": "firefox-android-standard-etp-fingerprinting",
+    "title": "Firefox Android Beta: 표준 추적 방지의 디지털 지문 보호 강화",
+    "aliases": [],
+    "source_item_ids": [
+      "src-85017762e84a278a18ea742b"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-85017762e84a278a18ea742b": [
+        "sr-5caca93f06ae378c3174b152"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-5caca93f06ae378c3174b152": "Firefox for Android now includes stronger protection against fingerprinting in Standard Enhanced Tracking Protection, making it harder for websites to track people across sites by limiting the amount of information revealed about their device and browser. ( Learn more )"
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -82882,6 +84345,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-caf3a7856bf4124c87a1571c",
+    "browser": "firefox",
+    "canonical_key": "firefox-regexp-buffer-boundaries",
+    "title": "Firefox Beta: 정규식 버퍼 경계 표시 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-8703b18dacdd838dec017676"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-8703b18dacdd838dec017676": [
+        "sr-455321c766ac4bd726808fa8"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-455321c766ac4bd726808fa8": "Firefox now supports the Regular Expression Buffer Boundaries proposal , adding \\A , \\z , and \\Z character escapes to Unicode-mode regular expressions."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-caf68bf049752f815a32f25f",
     "browser": "chrome",
     "canonical_key": "chromestatus:5703036164898816",
@@ -83801,6 +85300,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-ccec0c249169375336cb671d",
+    "browser": "firefox",
+    "canonical_key": "firefox-cli-start-maximized",
+    "title": "Firefox Beta: 시작 시 창 최대화 옵션",
+    "aliases": [],
+    "source_item_ids": [
+      "src-c23d9be398bc695a1fa01da8"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-c23d9be398bc695a1fa01da8": [
+        "sr-9531127934186ed1518200a1"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-9531127934186ed1518200a1": "Firefox now supports the command line parameter --start-maximized to open maximized."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -90976,6 +92511,42 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-dec669396c2e71aaaadc6461",
+    "browser": "firefox",
+    "canonical_key": "firefox-css-background-clip-border-area",
+    "title": "Firefox Beta: CSS background-clip의 border-area 값 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-926259df56e00f0a8c8322ed"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-926259df56e00f0a8c8322ed": [
+        "sr-90199fc9086285938c4b71ac"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-90199fc9086285938c4b71ac": "Firefox now supports the border-area value for the CSS background-clip property, which clips a background to the area where the element's border is painted."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-dec9e918af04be781117d5d5",
     "browser": "chrome",
     "canonical_key": "chromestatus:5197936839491584",
@@ -91273,6 +92844,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-df0d7e00e7c258bc6c2a2172",
+    "browser": "chrome",
+    "canonical_key": "chromestatus:5206462350622720",
+    "title": "Chrome 계획: Shadow DOM 내부 요소의 View Transition 참여",
+    "aliases": [],
+    "source_item_ids": [
+      "src-6780ff095601c7757540640e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-25",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "source_revision_ids": {
+      "src-6780ff095601c7757540640e": [
+        "sr-1ec23e4cce9a2cc0d89569cb"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-1ec23e4cce9a2cc0d89569cb": "Chrome status: Proposed. Chrome milestones: Desktop 161, Android 161, WebView 161. Adds a `shadowRoots` sequence to `StartViewTransitionOptions` (defaulting to `[]`). This allows `document.startViewTransition()` and `element.startViewTransition()` to discover participating elements (`view-transition-name`, `view-transition-class`, and `view-transition-group`) inside specified descendant `ShadowRoot`s while preserving shadow DOM encapsulation."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-df0e06c5fb0e9d570bd1819a",
     "browser": "chrome",
     "canonical_key": "chromestatus:5125651610861568",
@@ -91458,6 +93064,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-df760edfc50a86243a7ed7b7",
+    "browser": "firefox",
+    "canonical_key": "firefox-multiple-import-maps",
+    "title": "Firefox Beta: 여러 import map 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-b909e74656e3ca32d76bc15e"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-b909e74656e3ca32d76bc15e": [
+        "sr-044150bb74a0b6b1ac08a03d"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-044150bb74a0b6b1ac08a03d": "Firefox now allows web pages to use multiple import maps."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -93051,6 +94693,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-e3183ec3b9cc12e41aad3220",
+    "browser": "edge",
+    "canonical_key": "edge-android-remote-debugging-policy",
+    "title": "Edge Android의 MAM·MDM 원격 디버깅 허용 정책",
+    "aliases": [],
+    "source_item_ids": [
+      "src-bdd148ae0d83334d390e9b26"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-bdd148ae0d83334d390e9b26": [
+        "sr-8da490a8c9d42eb2521a0894"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-8da490a8c9d42eb2521a0894": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM."
     }
   },
   {
@@ -96450,6 +98127,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-ec266e97a8489b5f45a0a86e",
+    "browser": "edge",
+    "canonical_key": "edge-android-audio-capture-permission-policy",
+    "title": "Edge Android에서 사이트 오디오 캡처 권한 요청 정책 지원",
+    "aliases": [],
+    "source_item_ids": [
+      "src-7db1a30dd367faa909688181"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-7db1a30dd367faa909688181": [
+        "sr-198a59129d751e5b59566fc7"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-198a59129d751e5b59566fc7": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-ec29dd91ac1807b2cb95599f",
     "browser": "chrome",
     "canonical_key": "chromestatus:4655740933373952",
@@ -96721,6 +98433,41 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-ecd7a53093bdab1c7d3cb769",
+    "browser": "edge",
+    "canonical_key": "edge-cloud-enrollment-token-macos",
+    "title": "Edge 158의 클라우드 등록 토큰 정책에 macOS 지원 추가",
+    "aliases": [],
+    "source_item_ids": [
+      "src-1b1b62f53d89827d4f02cbed"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-1b1b62f53d89827d4f02cbed": [
+        "sr-9a16772b6307f959d6ea4e81"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-9a16772b6307f959d6ea4e81": "CloudManagementEnrollmentToken - Added support for macOS in Microsoft Edge 158."
     }
   },
   {
@@ -97694,6 +99441,46 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-ef52f67914e35fd5b3a96416",
+    "browser": "edge",
+    "canonical_key": "edge-apple-account-signin",
+    "title": "Apple 계정으로 Edge 개인 프로필에 로그인",
+    "aliases": [],
+    "source_item_ids": [
+      "src-4b54d45144512187713e3645",
+      "src-a89b33fc63a11cfd6cea37b2"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-05",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-4b54d45144512187713e3645": [
+        "sr-f9b166dd5150bd5b196dd015"
+      ],
+      "src-a89b33fc63a11cfd6cea37b2": [
+        "sr-0badc4dbf68308b505266481"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-f9b166dd5150bd5b196dd015": "[iOS & Android] Support sign in to Microsoft Edge with an Apple account as a personal account.",
+      "sr-0badc4dbf68308b505266481": "Sign in to Edge with an Apple account . Users can now sign in to Microsoft Edge using an Apple account, in addition to a Microsoft account, from the profile menu and Microsoft Edge sign-in screen. Admins can control the availability of this feature using the NonMicrosoftAccountSignInEnabled policy."
     }
   },
   {
@@ -99210,6 +100997,41 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-f2dc9a7933db1e8b69523fb4",
+    "browser": "edge",
+    "canonical_key": "edge-mobile-intune-check-compliance-action",
+    "title": "Edge iOS·Android 진단 페이지에 Intune 준수 문제 해결 동작 추가",
+    "aliases": [],
+    "source_item_ids": [
+      "src-330f779a6ad028eb8ea7102b"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-09",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-330f779a6ad028eb8ea7102b": [
+        "sr-b0edcf982ff6e7e051ad9cc6"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-b0edcf982ff6e7e051ad9cc6": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-f2e304b5318caf485f69bd34",
     "browser": "chrome",
     "canonical_key": "chromestatus:6290352295247872",
@@ -99895,6 +101717,42 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-f4505f1ab75199a72330fbb8",
+    "browser": "firefox",
+    "canonical_key": "firefox-android-save-link-to-tab-group",
+    "title": "Firefox Android Beta: 링크를 열지 않고 탭 그룹에 저장",
+    "aliases": [],
+    "source_item_ids": [
+      "src-48ad5bd2c370ce2fc461bdc5"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-48ad5bd2c370ce2fc461bdc5": [
+        "sr-855ab65e101697fe6da7a8db"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-855ab65e101697fe6da7a8db": "You can now save a link straight into a tab group without opening it first in Firefox for Android . Long-press any link, choose Open in tab group, and pick a group or create a new one. The link will be waiting in that group when you want to read it later."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -104816,6 +106674,7 @@
     "title": "Android 확장 업데이트 동의 안내 강화",
     "aliases": [],
     "source_item_ids": [
+      "src-4d4e95f8353d42c7aad9f7c3",
       "src-legacy-b6d0d13e9863ccd0bdba281d"
     ],
     "event_ids": [
@@ -104825,17 +106684,26 @@
     "legacy": true,
     "temporal_scope": {
       "version": 1,
-      "since": "2026-01-01",
-      "cutoff": "2026-11-18T23:38:06.026986+00:00",
-      "status": "unknown",
-      "basis": "unknown",
-      "evidence_date": null,
-      "precision": "unknown",
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
       "change": null,
-      "reason": "No supported item date."
-    }
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-4d4e95f8353d42c7aad9f7c3": [
+        "sr-ebd376eb25deb5927f4e4ffe"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-ebd376eb25deb5927f4e4ffe": "Extension users now see a more prominent message when an extension has an update pending that requires approval for new permissions or data collection consent."
+    },
+    "feature_facts": {}
   },
   {
     "schema_version": 2,
@@ -104874,6 +106742,7 @@
     "title": "Chrome 방문 횟수를 보존하는 Firefox 가져오기",
     "aliases": [],
     "source_item_ids": [
+      "src-74fef7a684417dea5ccc94ae",
       "src-legacy-c4e34abeac8cb4320e8b4222"
     ],
     "event_ids": [
@@ -104883,17 +106752,26 @@
     "legacy": true,
     "temporal_scope": {
       "version": 1,
-      "since": "2026-01-01",
-      "cutoff": "2026-11-18T23:38:06.026986+00:00",
-      "status": "unknown",
-      "basis": "unknown",
-      "evidence_date": null,
-      "precision": "unknown",
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
       "change": null,
-      "reason": "No supported item date."
-    }
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-74fef7a684417dea5ccc94ae": [
+        "sr-0e069eb105aaab0dc928c2a2"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-0e069eb105aaab0dc928c2a2": "Browsing history imported from Chrome now includes how often you visited each page, so the sites you use most rank higher in address bar suggestions and shortcuts."
+    },
+    "feature_facts": {}
   },
   {
     "schema_version": 2,
@@ -104903,6 +106781,8 @@
     "title": "현재 탭 URL 복사 단축키의 Beta 도입",
     "aliases": [],
     "source_item_ids": [
+      "src-54add92eb6faaca194fb85c9",
+      "src-a12f4607bfd9d9a2a35f7f7d",
       "src-legacy-d3f578cd3976dfdf2add4844"
     ],
     "event_ids": [
@@ -104912,17 +106792,30 @@
     "legacy": true,
     "temporal_scope": {
       "version": 1,
-      "since": "2026-01-01",
-      "cutoff": "2026-11-18T23:38:06.026986+00:00",
-      "status": "unknown",
-      "basis": "unknown",
-      "evidence_date": null,
-      "precision": "unknown",
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
       "change": null,
-      "reason": "No supported item date."
-    }
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-a12f4607bfd9d9a2a35f7f7d": [
+        "sr-5dbb5d505becfb135515921c"
+      ],
+      "src-54add92eb6faaca194fb85c9": [
+        "sr-df56b4da70524374505cd0cb"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-5dbb5d505becfb135515921c": "The keyboard shortcut for copying the current tab's URL now removes tracking parameters from the copied link.",
+      "sr-df56b4da70524374505cd0cb": "You can now copy the current tab's URL with a keyboard shortcut. No shortcut is assigned by default, so you can choose your own key combination in Customize keyboard shortcuts in Firefox Settings. Learn more"
+    },
+    "feature_facts": {}
   },
   {
     "schema_version": 2,
@@ -105176,6 +107069,7 @@
     "title": "같은 출처 웹앱 사이의 사용자 지정 데이터 복사·붙여넣기 Beta 안내",
     "aliases": [],
     "source_item_ids": [
+      "src-6a1dd0f3fc718d079cad5bbb",
       "src-legacy-4120cd9bc182e7bd82f80d53"
     ],
     "event_ids": [
@@ -105185,17 +107079,26 @@
     "legacy": true,
     "temporal_scope": {
       "version": 1,
-      "since": "2026-01-01",
-      "cutoff": "2026-11-18T23:38:06.026986+00:00",
-      "status": "unknown",
-      "basis": "unknown",
-      "evidence_date": null,
-      "precision": "unknown",
+      "since": "2026-10-27",
+      "cutoff": "2026-11-26T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
       "change": null,
-      "reason": "No supported item date."
-    }
+      "reason": "Official item date."
+    },
+    "source_revision_ids": {
+      "src-6a1dd0f3fc718d079cad5bbb": [
+        "sr-f47f719ec1736e2a7a311f88"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-f47f719ec1736e2a7a311f88": "Firefox now supports web custom formats in the Async Clipboard API ( navigator.clipboard.read() and write() ), letting websites copy and paste their own data formats between pages of the same origin."
+    },
+    "feature_facts": {}
   },
   {
     "schema_version": 2,
