@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "scope": {
+    "cutoff": "2026-11-26T22:00:00+00:00",
+    "expected": {
+      "chrome": [
+        "chrome-blog",
+        "chrome-enterprise",
+        "chrome-platform-status",
+        "chrome-releases"
+      ],
+      "edge": [
+        "edge-beta",
+        "edge-beta-archive",
+        "edge-mobile-beta",
+        "edge-mobile-stable",
+        "edge-security",
+        "edge-stable",
+        "edge-stable-archive"
+      ],
+      "firefox": [
+        "firefox-android",
+        "firefox-beta",
+        "firefox-ios",
+        "firefox-releases",
+        "firefox-security"
+      ],
+      "safari": [
+        "safari-release-notes",
+        "safari-security",
+        "safari-technology-preview"
+      ],
+      "whale": [
+        "whale-notices",
+        "whale-release-history"
+      ]
+    },
+    "mode": "daily",
+    "origin": "daily",
+    "registry": "6310072cd3aa18abf400acaa694b8a9c0b155dc4fed55047f864783c47e2d1d9",
+    "start": "2026-10-28T07:00:00+09:00"
+  },
+  "browsers": {
+    "chrome": {
+      "status": "complete",
+      "classification": "a6dbec1a3fa1080e3f9b1caa5841c1d79d7c483c0a08c2a899bb0435fcc69fde",
+      "effects": [
+        {
+          "feature_id": "feature-3084de7e54233f945b25ade9",
+          "source_id": "chrome-platform-status",
+          "item": "src-a4be8078b2dfe5d017e168ab",
+          "revision": "sr-f5d2a21b8721c02eb6dbc48c",
+          "snapshot": "8bb2ca638a0227f933ecf43a462a5e2cdebdfea4d4681655b42daa4184c7d08c",
+          "quote": "795b42daccca27f5177d06a8c2195f259a3ace9823aa7042b412bdf962ee6ffb",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-7c639e96fd214ee6aa4967da",
+          "source_id": "chrome-enterprise",
+          "item": "src-2f781940caa2c49030c8b08a",
+          "revision": "sr-1174d0f5c265311007d7e1ab",
+          "snapshot": "f4cd02f11aa0265f144272f86a739db8602a4ae4bfcd076e455256e455130567",
+          "quote": "287307919f9de9efa8b9bde8ba2a278b539f6c1ab39aa7eb927358133b600dfc",
+          "changed": true
+        }
+      ],
+      "change_count": 2,
+      "collected_feature_count": 2
+    },
+    "edge": {
+      "status": "complete",
+      "classification": "fac296efaa4d3db33c78024ecc2d1ecb20b874219a0555a8ba41c74b789e1041",
+      "effects": [
+        {
+          "feature_id": "feature-52f5159ef6a381bd47bcaf43",
+          "source_id": "edge-stable",
+          "item": "src-d16f55ecfd9db8dc864645d3",
+          "revision": "sr-9787501d2c508882759a0bab",
+          "snapshot": "257a8b0c0f63ed4f6759e82a25e4abc3c4e93bf3abafb2e8461696e7f2507511",
+          "quote": "d2e37ad6776d6b8f4f2c8bbc0279f83ee8a6ec4990f49d08ce9cdaebe847a281",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-57a41b890977b77f9452fe77",
+          "source_id": "edge-mobile-stable",
+          "item": "src-307064bc4fea5908f0da8530",
+          "revision": "sr-edba4c9871aeff5b7586e6f0",
+          "snapshot": "6b11890114f8ed76a7cebb9453080f563611f5ff489e5e100c5488b5a6f783ac",
+          "quote": "85383ccd22e860df9fd1b93681502a698e62cde102c6165b1a6cf219add96f34",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-da44a497d0d54f5c3e51b446",
+          "source_id": "edge-stable",
+          "item": "src-7f51f9dfbcd0d570f73eb830",
+          "revision": "sr-0533088fc8c465e895850fe0",
+          "snapshot": "14eec0bb3f9b131c7d76baf89c6fc5f9fd5ead681503f3607fa273ef910c97c9",
+          "quote": "7de6a31eaef5da6bd7cdba47c94f85a5bfd3f6dc19cd43de49203eb49c4b9755",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-e3183ec3b9cc12e41aad3220",
+          "source_id": "edge-mobile-stable",
+          "item": "src-7e114b6a2deaf918a62d7ff0",
+          "revision": "sr-a2b1ab607a1cb609b6d5ec82",
+          "snapshot": "09b7be66094ca6b7f1a86cd53661f47376507ad8ca6aeafa958f0f6449ca006b",
+          "quote": "41e6477987134e815e13060aeb8ba31e13e7a403c070f227707f3acdcfccb40c",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-ec266e97a8489b5f45a0a86e",
+          "source_id": "edge-mobile-stable",
+          "item": "src-5f61eefe5eacb8a2f6491f0f",
+          "revision": "sr-f6640e972a79d27d0c2fc608",
+          "snapshot": "0f4e355cce415b102de2f7e545a1a44e27a686e1cc76f968b129ed35da024a0d",
+          "quote": "37833588c80ec419a706bff8c7d6e102dea93b25e3ce6de694a162bcd1b5150c",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-f2dc9a7933db1e8b69523fb4",
+          "source_id": "edge-mobile-stable",
+          "item": "src-004c84090ba0476e2c3eb7bb",
+          "revision": "sr-4f667e2186a6ae23e739ada6",
+          "snapshot": "5c38e4de30e1b7676f1d2c64802cc8ecbd7c70965b44405b229c21967c8cf099",
+          "quote": "d6ddfbab1c669e51f08ff7e002fc9e5aec9b6bf65e7e978e2ae5b9faaa3bc610",
+          "changed": false
+        }
+      ],
+      "change_count": 2,
+      "collected_feature_count": 6
+    },
+    "firefox": {
+      "status": "incomplete",
+      "change_count": null,
+      "collected_feature_count": null,
+      "effects": [
+        {
+          "feature_id": "feature-51d7f572ac639b622385f36b",
+          "source_id": "firefox-releases",
+          "item": "src-ee01c75da10fe3091ab954d7",
+          "revision": "sr-e9ec93698005cbe395f05b40",
+          "snapshot": "b72994a5f1921df1592320411f5c81d240a0617bdca366d77f67ca042a961e82",
+          "quote": "327936bf29304966e92438fb2bb9606b650965e7f5201655ab208a1734a91bd2",
+          "changed": true
+        }
+      ]
+    },
+    "safari": {
+      "status": "complete",
+      "classification": "e45f775cc0201f6441ad4b4cbe610d0a90a01d8f93a8145b814ffc716963f1e9",
+      "effects": [],
+      "change_count": 0,
+      "collected_feature_count": 0
+    },
+    "whale": {
+      "status": "complete",
+      "classification": "f2200a4f8b07d0411a7f450ea32740175ab9be4f90bfb075b19af42ad704d7bc",
+      "effects": [
+        {
+          "feature_id": "feature-051e46ac483c15983841f33b",
+          "source_id": "whale-release-history",
+          "item": "src-6792f20bafcf2f933ef8174d",
+          "revision": "sr-1100f82d00bf0a880a9b4459",
+          "snapshot": "a55eeaaf73583c4579794323bf2619e9cbcf3800afd21404cb2b774cdcf83dba",
+          "quote": "7691002827069f0cf82ad3e9ab0bfc1afa9f6edac0e55599b665111dcae245c5",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-4d91905700a4d0682d46fe9c",
+          "source_id": "whale-release-history",
+          "item": "src-d9d5dc9869f84fe1e9fa26d8",
+          "revision": "sr-0b7122ec85b2a39c32a36dc2",
+          "snapshot": "5d06f5c94390e902e8b2aca84638dfd1dcae3c182a8723f7f2b5f7aa8d147da6",
+          "quote": "c33837bc1caab8463de9f3f9da0f8062fab8ae078443effe8342a1a5be3f8a20",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-a7645e844cb537e899c600a4",
+          "source_id": "whale-release-history",
+          "item": "src-30d52761c15e76bbdf49cdc9",
+          "revision": "sr-6938ef51b37a5bbd3592ed1f",
+          "snapshot": "97f9b89313984d6166bb3efb44b928dd81666feb159b36e692efd31b2f794e3e",
+          "quote": "abb9ee143c164215908cfb045aaa9e5e7451516481d3d767fe19a39be75644b6",
+          "changed": false
+        }
+      ],
+      "change_count": 0,
+      "collected_feature_count": 3
+    }
+  },
+  "checksum": "f3dd43109a47c63121ca1a3b7b5b6ec2389d5c259778218ca5fcb65dc7895dd8"
+}

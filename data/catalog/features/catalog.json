@@ -4264,7 +4264,8 @@
     "title": "Whale iOS: 연결이 불안정할 때 즉시 안내 표시",
     "aliases": [],
     "source_item_ids": [
-      "src-0b69e38005a98aacb7bfbf77"
+      "src-0b69e38005a98aacb7bfbf77",
+      "src-6792f20bafcf2f933ef8174d"
     ],
     "event_ids": [],
     "lifecycle": "unknown",
@@ -4285,10 +4286,28 @@
     "source_revision_ids": {
       "src-0b69e38005a98aacb7bfbf77": [
         "sr-ebb37d7bbcdf4a310bafe039"
+      ],
+      "src-6792f20bafcf2f933ef8174d": [
+        "sr-1100f82d00bf0a880a9b4459"
       ]
     },
     "source_revision_excerpts": {
-      "sr-ebb37d7bbcdf4a310bafe039": "네트워크 연결이 원활하지 않을 때 안내가 즉시 표시되도록 개선했어요."
+      "sr-ebb37d7bbcdf4a310bafe039": "네트워크 연결이 원활하지 않을 때 안내가 즉시 표시되도록 개선했어요.",
+      "sr-1100f82d00bf0a880a9b4459": "네트워크 연결이 원활하지 않을 때 안내가 즉시 표시되도록 개선했어요."
+    },
+    "feature_facts": {
+      "platform": {
+        "value": [
+          "iOS"
+        ],
+        "source_item_id": "src-6792f20bafcf2f933ef8174d",
+        "revision_id": "sr-1100f82d00bf0a880a9b4459"
+      },
+      "version": {
+        "value": "4.1",
+        "source_item_id": "src-6792f20bafcf2f933ef8174d",
+        "revision_id": "sr-1100f82d00bf0a880a9b4459"
+      }
     }
   },
   {
@@ -21229,6 +21248,48 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-3084de7e54233f945b25ade9",
+    "browser": "chrome",
+    "canonical_key": "chromestatus:5107498989256704",
+    "title": "Chrome 확장 프로그램의 기본 사이트 접근을 클릭 시로 바꾸는 제안",
+    "aliases": [],
+    "source_item_ids": [
+      "src-a4be8078b2dfe5d017e168ab"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-a4be8078b2dfe5d017e168ab": [
+        "sr-f5d2a21b8721c02eb6dbc48c"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-f5d2a21b8721c02eb6dbc48c": "Chrome status: Proposed. This launch changes the default installation permission state for newly installed extensions requesting host access from \"All Sites\" to \"On-Click\" (withheld). While this directly modifies default extension execution behavior and introduces new install-time radio options, enterprise force-installed and policy-managed extensions are strictly exempted from these restrictions to prevent any disruption to managed corporate"
+    },
+    "feature_facts": {
+      "rollout_status": {
+        "value": "proposed",
+        "source_item_id": "src-a4be8078b2dfe5d017e168ab",
+        "revision_id": "sr-f5d2a21b8721c02eb6dbc48c"
+      }
+    },
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-26",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-3087a86cb0586e95c9284015",
     "browser": "chrome",
     "canonical_key": "chromestatus:5153002833313792",
@@ -32717,7 +32778,8 @@
     "title": "Whale iOS: 긴 웹 주소 여러 줄로 펼쳐 보기",
     "aliases": [],
     "source_item_ids": [
-      "src-7b614d106aa368042b3343a1"
+      "src-7b614d106aa368042b3343a1",
+      "src-d9d5dc9869f84fe1e9fa26d8"
     ],
     "event_ids": [],
     "lifecycle": "unknown",
@@ -32738,10 +32800,28 @@
     "source_revision_ids": {
       "src-7b614d106aa368042b3343a1": [
         "sr-b8e53b3a61cd4d03eff4a584"
+      ],
+      "src-d9d5dc9869f84fe1e9fa26d8": [
+        "sr-0b7122ec85b2a39c32a36dc2"
       ]
     },
     "source_revision_excerpts": {
-      "sr-b8e53b3a61cd4d03eff4a584": "긴 웹 주소 펼쳐 보기 주소창을 탭하거나 드래그하면 긴 웹 주소가 여러 줄로 펼쳐져 전체 주소를 확인할 수 있어요."
+      "sr-b8e53b3a61cd4d03eff4a584": "긴 웹 주소 펼쳐 보기 주소창을 탭하거나 드래그하면 긴 웹 주소가 여러 줄로 펼쳐져 전체 주소를 확인할 수 있어요.",
+      "sr-0b7122ec85b2a39c32a36dc2": "긴 웹 주소 펼쳐 보기 주소창을 탭하거나 드래그하면 긴 웹 주소가 여러 줄로 펼쳐져 전체 주소를 확인할 수 있어요."
+    },
+    "feature_facts": {
+      "platform": {
+        "value": [
+          "iOS"
+        ],
+        "source_item_id": "src-d9d5dc9869f84fe1e9fa26d8",
+        "revision_id": "sr-0b7122ec85b2a39c32a36dc2"
+      },
+      "version": {
+        "value": "4.1",
+        "source_item_id": "src-d9d5dc9869f84fe1e9fa26d8",
+        "revision_id": "sr-0b7122ec85b2a39c32a36dc2"
+      }
     }
   },
   {
@@ -35152,6 +35232,65 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-51d7f572ac639b622385f36b",
+    "browser": "firefox",
+    "canonical_key": "firefox-desktop-fire-button",
+    "title": "Firefox 데스크톱 도구 모음에서 탐색 기록을 빠르게 삭제하는 불꽃 버튼",
+    "aliases": [],
+    "source_item_ids": [
+      "src-ee01c75da10fe3091ab954d7"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-ee01c75da10fe3091ab954d7": [
+        "sr-e9ec93698005cbe395f05b40"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-e9ec93698005cbe395f05b40": "Firefox now has a fire button in the toolbar for quickly deleting browsing data, either all at once or by choosing what to delete. When history is deleted, Firefox closes open windows and starts fresh with a new one, keeping pinned tabs. This feature is rolling out gradually, so it may not be available to everyone right away."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-ee01c75da10fe3091ab954d7",
+        "revision_id": "sr-e9ec93698005cbe395f05b40"
+      },
+      "platform": {
+        "value": [
+          "Desktop"
+        ],
+        "source_item_id": "src-ee01c75da10fe3091ab954d7",
+        "revision_id": "sr-e9ec93698005cbe395f05b40"
+      },
+      "rollout_status": {
+        "value": "rolling_out",
+        "source_item_id": "src-ee01c75da10fe3091ab954d7",
+        "revision_id": "sr-e9ec93698005cbe395f05b40"
+      },
+      "version": {
+        "value": "161.0",
+        "source_item_id": "src-ee01c75da10fe3091ab954d7",
+        "revision_id": "sr-e9ec93698005cbe395f05b40"
+      }
+    },
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-24",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-5209c71e4fc1fcb61cca3909",
     "browser": "chrome",
     "canonical_key": "chromestatus:6304275594477568",
@@ -35426,6 +35565,61 @@
       "current_revision": null,
       "change": null,
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-52f5159ef6a381bd47bcaf43",
+    "browser": "edge",
+    "canonical_key": "edge-component-updates-mode-policy",
+    "title": "Edge 관리자가 구성 요소 업데이트 범위를 선택하는 정책",
+    "aliases": [],
+    "source_item_ids": [
+      "src-d16f55ecfd9db8dc864645d3"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-d16f55ecfd9db8dc864645d3": [
+        "sr-9787501d2c508882759a0bab"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-9787501d2c508882759a0bab": "ComponentUpdatesMode - Configure component updates"
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-d16f55ecfd9db8dc864645d3",
+        "revision_id": "sr-9787501d2c508882759a0bab"
+      },
+      "platform": {
+        "value": [
+          "Windows",
+          "macOS"
+        ],
+        "source_item_id": "src-d16f55ecfd9db8dc864645d3",
+        "revision_id": "sr-9787501d2c508882759a0bab"
+      },
+      "version": {
+        "value": "158",
+        "source_item_id": "src-d16f55ecfd9db8dc864645d3",
+        "revision_id": "sr-9787501d2c508882759a0bab"
+      }
+    },
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -37164,6 +37358,7 @@
     "title": "Edge iOS에서 MAM Tunnel 토큰 만료 시 대화형 재인증",
     "aliases": [],
     "source_item_ids": [
+      "src-307064bc4fea5908f0da8530",
       "src-715d8ded5e00d69e0f8d2c23"
     ],
     "event_ids": [],
@@ -37185,10 +37380,33 @@
     "source_revision_ids": {
       "src-715d8ded5e00d69e0f8d2c23": [
         "sr-4cae959bc462b56dcfb6568f"
+      ],
+      "src-307064bc4fea5908f0da8530": [
+        "sr-edba4c9871aeff5b7586e6f0"
       ]
     },
     "source_revision_excerpts": {
-      "sr-4cae959bc462b56dcfb6568f": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires."
+      "sr-4cae959bc462b56dcfb6568f": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires.",
+      "sr-edba4c9871aeff5b7586e6f0": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-307064bc4fea5908f0da8530",
+        "revision_id": "sr-edba4c9871aeff5b7586e6f0"
+      },
+      "platform": {
+        "value": [
+          "iOS"
+        ],
+        "source_item_id": "src-307064bc4fea5908f0da8530",
+        "revision_id": "sr-edba4c9871aeff5b7586e6f0"
+      },
+      "version": {
+        "value": "157.0.4341.42",
+        "source_item_id": "src-307064bc4fea5908f0da8530",
+        "revision_id": "sr-edba4c9871aeff5b7586e6f0"
+      }
     }
   },
   {
@@ -51921,6 +52139,55 @@
       "current_revision": null,
       "change": null,
       "reason": "Official public enterprise-feature update; timezone-unspecified API timestamp retains its printed day."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-7c639e96fd214ee6aa4967da",
+    "browser": "chrome",
+    "canonical_key": "chromeos-isolated-web-app-manual-updates",
+    "title": "ChromeOS 격리 웹 앱의 수동 업데이트 확인과 알림 예고",
+    "aliases": [],
+    "source_item_ids": [
+      "src-2f781940caa2c49030c8b08a"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-2f781940caa2c49030c8b08a": [
+        "sr-1174d0f5c265311007d7e1ab"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-1174d0f5c265311007d7e1ab": "Improved update behavior for Isolated Web Apps As early as ChromeOS 159, managed and unmanaged users of Isolated Web Apps ( IWAs ) will have the option to: manually check for updates be notified when a new update is available IWA updates will continue to happen automatically. But the user can now choose to do an earlier manual check and update immediately once an update is available For more details, see Automatically install web apps and"
+    },
+    "feature_facts": {
+      "platform": {
+        "value": [
+          "ChromeOS"
+        ],
+        "source_item_id": "src-2f781940caa2c49030c8b08a",
+        "revision_id": "sr-1174d0f5c265311007d7e1ab"
+      },
+      "rollout_status": {
+        "value": "planned",
+        "source_item_id": "src-2f781940caa2c49030c8b08a",
+        "revision_id": "sr-1174d0f5c265311007d7e1ab"
+      }
+    },
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-11",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
     }
   },
   {
@@ -69047,6 +69314,7 @@
     "title": "Whale iOS: 주소창 검색 화면의 항목 순서·표시 설정",
     "aliases": [],
     "source_item_ids": [
+      "src-30d52761c15e76bbdf49cdc9",
       "src-4f5724f8dc70071f97dace8e"
     ],
     "event_ids": [],
@@ -69068,10 +69336,28 @@
     "source_revision_ids": {
       "src-4f5724f8dc70071f97dace8e": [
         "sr-965c98ca89635775d1df8f0c"
+      ],
+      "src-30d52761c15e76bbdf49cdc9": [
+        "sr-6938ef51b37a5bbd3592ed1f"
       ]
     },
     "source_revision_excerpts": {
-      "sr-965c98ca89635775d1df8f0c": "주소창 검색 화면의 콘텐츠 구성 변경 주소창 아래에 표시되는 콘텐츠의 순서를 변경할 수 있어요. 콘텐츠 영역 맨 아래의 '레이아웃 설정'에서 즐겨찾기, 자주 방문한 사이트, 방문 기록 등의 순서를 바꾸거나 항목별로 표시 여부를 설정할 수 있어요."
+      "sr-965c98ca89635775d1df8f0c": "주소창 검색 화면의 콘텐츠 구성 변경 주소창 아래에 표시되는 콘텐츠의 순서를 변경할 수 있어요. 콘텐츠 영역 맨 아래의 '레이아웃 설정'에서 즐겨찾기, 자주 방문한 사이트, 방문 기록 등의 순서를 바꾸거나 항목별로 표시 여부를 설정할 수 있어요.",
+      "sr-6938ef51b37a5bbd3592ed1f": "주소창 검색 화면의 콘텐츠 구성 변경 주소창 아래에 표시되는 콘텐츠의 순서를 변경할 수 있어요. 콘텐츠 영역 맨 아래의 '레이아웃 설정'에서 즐겨찾기, 자주 방문한 사이트, 방문 기록 등의 순서를 바꾸거나 항목별로 표시 여부를 설정할 수 있어요."
+    },
+    "feature_facts": {
+      "platform": {
+        "value": [
+          "iOS"
+        ],
+        "source_item_id": "src-30d52761c15e76bbdf49cdc9",
+        "revision_id": "sr-6938ef51b37a5bbd3592ed1f"
+      },
+      "version": {
+        "value": "4.1",
+        "source_item_id": "src-30d52761c15e76bbdf49cdc9",
+        "revision_id": "sr-6938ef51b37a5bbd3592ed1f"
+      }
     }
   },
   {
@@ -90715,6 +91001,48 @@
   },
   {
     "schema_version": 2,
+    "feature_id": "feature-da44a497d0d54f5c3e51b446",
+    "browser": "edge",
+    "canonical_key": "edge-microsoft-sentinel-integration",
+    "title": "Edge for Business의 관리 브라우저 이벤트를 Microsoft Sentinel에 연결하는 미리보기",
+    "aliases": [],
+    "source_item_ids": [
+      "src-7f51f9dfbcd0d570f73eb830"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-7f51f9dfbcd0d570f73eb830": [
+        "sr-0533088fc8c465e895850fe0"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-0533088fc8c465e895850fe0": "Microsoft Sentinel integration (Preview) . Microsoft Edge for Business integrates with Microsoft Sentinel to bring supported browser security events into security operations workflows. Security teams can use these events alongside other Sentinel data to investigate browser activity. For more information, see Set up Microsoft Sentinel ."
+    },
+    "feature_facts": {
+      "rollout_status": {
+        "value": "preview",
+        "source_item_id": "src-7f51f9dfbcd0d570f73eb830",
+        "revision_id": "sr-0533088fc8c465e895850fe0"
+      }
+    },
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "publication",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official item date."
+    }
+  },
+  {
+    "schema_version": 2,
     "feature_id": "feature-da51614c714fe530ae06c7dd",
     "browser": "chrome",
     "canonical_key": "chromestatus:5649291471224832",
@@ -94703,6 +95031,7 @@
     "title": "Edge Android의 MAM·MDM 원격 디버깅 허용 정책",
     "aliases": [],
     "source_item_ids": [
+      "src-7e114b6a2deaf918a62d7ff0",
       "src-bdd148ae0d83334d390e9b26"
     ],
     "event_ids": [],
@@ -94724,10 +95053,33 @@
     "source_revision_ids": {
       "src-bdd148ae0d83334d390e9b26": [
         "sr-8da490a8c9d42eb2521a0894"
+      ],
+      "src-7e114b6a2deaf918a62d7ff0": [
+        "sr-a2b1ab607a1cb609b6d5ec82"
       ]
     },
     "source_revision_excerpts": {
-      "sr-8da490a8c9d42eb2521a0894": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM."
+      "sr-8da490a8c9d42eb2521a0894": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM.",
+      "sr-a2b1ab607a1cb609b6d5ec82": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-7e114b6a2deaf918a62d7ff0",
+        "revision_id": "sr-a2b1ab607a1cb609b6d5ec82"
+      },
+      "platform": {
+        "value": [
+          "Android"
+        ],
+        "source_item_id": "src-7e114b6a2deaf918a62d7ff0",
+        "revision_id": "sr-a2b1ab607a1cb609b6d5ec82"
+      },
+      "version": {
+        "value": "158.0.4370.33",
+        "source_item_id": "src-7e114b6a2deaf918a62d7ff0",
+        "revision_id": "sr-a2b1ab607a1cb609b6d5ec82"
+      }
     }
   },
   {
@@ -98133,6 +98485,7 @@
     "title": "Edge Android에서 사이트 오디오 캡처 권한 요청 정책 지원",
     "aliases": [],
     "source_item_ids": [
+      "src-5f61eefe5eacb8a2f6491f0f",
       "src-7db1a30dd367faa909688181"
     ],
     "event_ids": [],
@@ -98154,10 +98507,33 @@
     "source_revision_ids": {
       "src-7db1a30dd367faa909688181": [
         "sr-198a59129d751e5b59566fc7"
+      ],
+      "src-5f61eefe5eacb8a2f6491f0f": [
+        "sr-f6640e972a79d27d0c2fc608"
       ]
     },
     "source_revision_excerpts": {
-      "sr-198a59129d751e5b59566fc7": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device."
+      "sr-198a59129d751e5b59566fc7": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device.",
+      "sr-f6640e972a79d27d0c2fc608": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-5f61eefe5eacb8a2f6491f0f",
+        "revision_id": "sr-f6640e972a79d27d0c2fc608"
+      },
+      "platform": {
+        "value": [
+          "Android"
+        ],
+        "source_item_id": "src-5f61eefe5eacb8a2f6491f0f",
+        "revision_id": "sr-f6640e972a79d27d0c2fc608"
+      },
+      "version": {
+        "value": "158.0.4370.33",
+        "source_item_id": "src-5f61eefe5eacb8a2f6491f0f",
+        "revision_id": "sr-f6640e972a79d27d0c2fc608"
+      }
     }
   },
   {
@@ -101003,6 +101379,7 @@
     "title": "Edge iOS·Android 진단 페이지에 Intune 준수 문제 해결 동작 추가",
     "aliases": [],
     "source_item_ids": [
+      "src-004c84090ba0476e2c3eb7bb",
       "src-330f779a6ad028eb8ea7102b"
     ],
     "event_ids": [],
@@ -101024,10 +101401,34 @@
     "source_revision_ids": {
       "src-330f779a6ad028eb8ea7102b": [
         "sr-b0edcf982ff6e7e051ad9cc6"
+      ],
+      "src-004c84090ba0476e2c3eb7bb": [
+        "sr-4f667e2186a6ae23e739ada6"
       ]
     },
     "source_revision_excerpts": {
-      "sr-b0edcf982ff6e7e051ad9cc6": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page."
+      "sr-b0edcf982ff6e7e051ad9cc6": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page.",
+      "sr-4f667e2186a6ae23e739ada6": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-004c84090ba0476e2c3eb7bb",
+        "revision_id": "sr-4f667e2186a6ae23e739ada6"
+      },
+      "platform": {
+        "value": [
+          "Android",
+          "iOS"
+        ],
+        "source_item_id": "src-004c84090ba0476e2c3eb7bb",
+        "revision_id": "sr-4f667e2186a6ae23e739ada6"
+      },
+      "version": {
+        "value": "157.0.4341.42",
+        "source_item_id": "src-004c84090ba0476e2c3eb7bb",
+        "revision_id": "sr-4f667e2186a6ae23e739ada6"
+      }
     }
   },
   {
