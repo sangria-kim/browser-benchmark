@@ -342,7 +342,8 @@ def build_research(output, legacy, base):
         if read_resource(output / entry['path']) != read_json(source):
             raise ValueError('Dashboard differs from report ' + entry['report_id'])
     from scripts.build_daily_dashboard import write_home
-    write_home(output, ROOT, legacy, reports, projections.get('features', {}))
+    write_home(output, ROOT, legacy, reports, projections.get('features', {}),
+               features=groups['feature'], sources=groups['source_item'])
     return initial
 
 
