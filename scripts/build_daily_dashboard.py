@@ -24,8 +24,16 @@ def write_home(output, root, payload, reports, selection, *, features=(), source
     statuses, collected_cards = daily_board(root, features, sources)
     # Keep the legacy board where no matching per-browser receipt exists.
     # Do not feed unreviewed collection cards into the editorial newsletter.
-    board_cards = [c for c in cards if not statuses.get(c['day'], {}).get('has_detail')]
-    data = dict(cards=board_cards + collected_cards, daily_status=statuses, drafts=drafts, issues=sorted(editions.values(), key=lambda i: (i['day'], i['revision']), reverse=True),
+    board_cards, detail_cards = [], []
+    for card in cards:
+        if statuses.get(card['day'], {}).get('has_detail'):
+            # Newsletter stories still refer to these original card IDs.
+            detail_cards.append(card)
+        else:
+            board_cards.append(card)
+    data = dict(cards=board_cards + collected_cards, detail_cards=detail_cards,
+                daily_status=statuses, drafts=drafts,
+                issues=sorted(editions.values(), key=lambda i: (i['day'], i['revision']), reverse=True),
                 source=payload['source'])
     encoded = json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('<', r'\u003c')
     html = (daily / 'page.html').read_text()

@@ -3,8 +3,8 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 
-function loadDaily(cards, stored = new Map(), daily_status = {}) {
-  const node = {textContent:JSON.stringify({cards,issues:[],drafts:[],daily_status}),addEventListener(){}};
+function loadDaily(cards, stored = new Map(), daily_status = {}, extra = {}) {
+  const node = {textContent:JSON.stringify({cards,issues:[],drafts:[],daily_status,...extra}),addEventListener(){}};
   const context = vm.createContext({
     URL,location:{protocol:'https:'},window:{addEventListener(){}},
     document:{getElementById:()=>node,addEventListener(){}},
@@ -75,4 +75,24 @@ test('board shows saved cards in partial runs and keeps a confirmed zero day', (
   `, context);
   assert.match(zero,/수집 완료 · 오늘 업데이트 없음/);
   assert.match(zero,/오늘 저장된 기능 카드가 없습니다/);
+});
+
+test('newsletter keeps details for a legacy card hidden from the same-day board', () => {
+  const day = '2026-11-26';
+  const card = {id:'daily-edge', day, title:'아침 수집 기능', browser:'edge', media:[]};
+  const story = {id:'editorial-edge', day, title:'편집 제목', browser:'edge',
+    stage:'정식판', platform:['Windows'], version:'158', media:[], question:'질문'};
+  const context = loadDaily([card], new Map(), {}, {
+    detail_cards:[story], drafts:[{day,revision:0,stories:[story],count:1}],
+  });
+  const rendered = vm.runInContext(`
+    state={issue:editions[0]};
+    (()=>{ const nodes={}; document.getElementById=id=>nodes[id] ||= {};
+      letter();
+      return [nodes.panel.innerHTML, byDay.get('${day}').length, byId.get('editorial-edge').title];
+    })();
+  `, context);
+  assert.match(rendered[0],/<button data-card="editorial-edge">편집 제목<\/button>/);
+  assert.equal(rendered[1], 1);
+  assert.equal(rendered[2], '편집 제목');
 });

@@ -36,6 +36,24 @@ class DailyBoardTests(TestCase):
         self.assertEqual(receipt, {k: data['daily_status'][day][k] for k in receipt})
         self.assertFalse(any(i['day'] == day for i in data['drafts']))
 
+    def test_same_day_editorial_card_stays_available_only_for_details(self):
+        day = '2026-11-26'
+        event = json.loads(next((ROOT / 'data/events').glob('*.json')).read_text())
+        event.update(event_id='editorial-overlap-fixture', observed_at=f'{day}T09:00:00+09:00',
+                     title='독립 뉴스레터 상세 제목', summary='독립 뉴스레터 상세 제목')
+        payload = dict(events=[event], catalog={}, source={'sha': '0' * 40})
+        features = json.loads((ROOT / browser_status.CATALOG).read_text())
+        with TemporaryDirectory() as temp:
+            output = Path(temp)
+            write_home(output, ROOT, payload, [], {}, features=features, sources=load_source_items(ROOT))
+            rendered = (output / 'index.html').read_text().split('id="daily-data">')[1].split('</script>')[0]
+            data = json.loads(rendered)
+        issue = next(i for i in data['drafts'] if i['day'] == day)
+        self.assertEqual([event['event_id']], [s['id'] for s in issue['stories']])
+        self.assertNotIn(event['event_id'], [c['id'] for c in data['cards']])
+        self.assertEqual([event['event_id']], [c['id'] for c in data['detail_cards']])
+        self.assertTrue(all(c['id'].startswith(f'daily-{day}-') for c in data['cards'] if c['day'] == day))
+
     def test_empty_confirmed_and_incomplete_remain_distinct_without_detail(self):
         with TemporaryDirectory() as temp:
             root = Path(temp)

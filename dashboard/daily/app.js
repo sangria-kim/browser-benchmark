@@ -17,8 +17,9 @@ const brands = {
   vivaldi: ['Vivaldi', '비발디'],
 };
 const brand = (id) => brands[id]?.[0] || id;
-const byId = new Map(data.cards.map((c) => [c.id, c]));
-for (const c of data.cards) {
+const detailCards = [...data.cards, ...(data.detail_cards || [])];
+const byId = new Map(detailCards.map((c) => [c.id, c]));
+for (const c of detailCards) {
   for (const source of c.related_sources || []) byId.set(source.id, source);
 }
 const byDay = new Map();
