@@ -26,7 +26,8 @@ for (const c of data.cards) {
   if (!byDay.has(c.day)) byDay.set(c.day, []);
   byDay.get(c.day).push(c);
 }
-const days = [...byDay.keys()].sort().reverse();
+const dailyStatus = data.daily_status || {};
+const days = [...new Set([...byDay.keys(), ...Object.keys(dailyStatus)])].sort().reverse();
 const editions = [...data.drafts, ...data.issues];
 const issueDays = [...new Set(editions.map((i) => i.day))].sort().reverse();
 const layoutNames = { board: '브라우저 보드', observatory: '관측소' };
@@ -124,7 +125,7 @@ function mediaLabel(c) {
 function archive() {
   const { layout, section, day, issue } = state;
   const issues = data.issues.filter((i) => !generated || i.generated === generated);
-  const entries = section === 'updates' ? days.map((d) => ({ day: d, count: byDay.get(d).length })) : issues;
+  const entries = section === 'updates' ? days.map((d) => ({ day: d, count: (byDay.get(d) || []).length })) : issues;
   const option = (v, label, selected) =>
     '<option value="' + esc(v) + '"' + (selected ? ' selected' : '') + '>' + esc(label) + '</option>';
   const dates = entries.map((i) => {
@@ -185,6 +186,7 @@ function storyCard(c) {
     '</strong><span class="scope">' +
     esc(scopeLine(c)) +
     '</span><span class="card-foot"><span>' +
+    (c.collection_kind === '근거 보강' ? '근거 보강 · ' : '') +
     mediaLabel(c) +
     '</span><span aria-hidden="true">↗</span></span></button>'
   );
@@ -229,8 +231,12 @@ function results() {
       ? '카드 ' + rows.length + '건'
       : '전체 ' + rows.length + '건 중 ' + found.length + '건';
   if (!found.length) {
-    $('results').innerHTML =
-      '<p class="empty">조건에 맞는 기능 카드가 없습니다. <button data-reset>필터 초기화</button></p>';
+    const receipt = dailyStatus[state.day];
+    $('results').innerHTML = !rows.length && receipt
+      ? '<p class="empty">' + (receipt.status === 'incomplete' ? '이 시점에 저장된 기능 카드가 없습니다.'
+          : receipt.collected_feature_count === 0 ? '오늘 저장된 기능 카드가 없습니다.'
+          : '이 날짜에는 개별 기능 카드 기록이 없습니다.') + '</p>'
+      : '<p class="empty">조건에 맞는 기능 카드가 없습니다. <button data-reset>필터 초기화</button></p>';
   } else if (state.layout === 'board') {
     const ids = [...new Set(found.map((c) => c.browser))];
     $('results').innerHTML =
@@ -256,6 +262,12 @@ function results() {
 }
 function updates() {
   const rows = byDay.get(state.day) || [];
+  const receipt = dailyStatus[state.day];
+  const status = !receipt ? '' : receipt.status === 'incomplete'
+    ? '수집 미완료 · 저장된 기능만 표시'
+    : receipt.change_count === 0
+      ? '수집 완료 · 오늘 업데이트 없음'
+      : '수집 완료 · 기능 변경 ' + receipt.change_count + '건';
   const board = state.layout === 'board';
   const filters =
     '<div class="filters"><label class="search"><span aria-hidden="true">⌕</span><input id="query" type="search" aria-label="기능 카드 검색" placeholder="기능명, 브라우저, 플랫폼 검색" value="' +
@@ -284,6 +296,7 @@ function updates() {
     '<div class="section-title"><div><p class="kicker">DAILY UPDATES</p><h2>' +
     dateText(state.day) +
     ' 기능 변화</h2></div><span id="result-count" role="status"></span></div>' +
+    (status ? '<p class="coverage">' + esc(status) + '</p>' : '') +
     (!board ? counts(rows) : '') +
     filters +
     '<div id="results"></div>';
@@ -415,6 +428,7 @@ function showDetails(c, button) {
     ['버전', c.version],
     ['플랫폼', c.platform.join(' / ')],
     ['확인 단계', c.stage],
+    ...(c.collection_kind ? [['수집 구분', c.collection_kind]] : []),
     ['실기 검증', c.device_test],
     ['수집일 (KST)', c.day],
     ['발표일', c.announced || '미확인'],
@@ -491,7 +505,7 @@ function showDetails(c, button) {
           '한글 제목 등록',
         ) +
         ' · <code>' +
-        esc(c.id) +
+        esc(c.title_id || c.id) +
         '</code></p>'
       : '') +
     '<dl>' +

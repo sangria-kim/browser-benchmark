@@ -3,7 +3,7 @@ import json
 from pipeline.reporting.newsletter import DASHBOARD, latest_reports, make_cards, make_issue, read, source_owners
 
 
-def write_home(output, root, payload, reports, selection):
+def write_home(output, root, payload, reports, selection, *, features=(), sources=()):
     cards = make_cards(payload['events'], reports, payload['catalog'], source_owners(selection), root / 'dashboard')
     daily = DASHBOARD / 'daily'
     current = latest_reports(reports)
@@ -20,7 +20,12 @@ def write_home(output, root, payload, reports, selection):
         key = (day, report['revision'] if report else 0)
         if key not in editions:
             drafts.append(make_issue(day, cards, None, report))
-    data = dict(cards=cards, drafts=drafts, issues=sorted(editions.values(), key=lambda i: (i['day'], i['revision']), reverse=True),
+    from scripts.dashboard_collection import daily_board
+    statuses, collected_cards = daily_board(root, features, sources)
+    # Keep the legacy board where no matching per-browser receipt exists.
+    # Do not feed unreviewed collection cards into the editorial newsletter.
+    board_cards = [c for c in cards if not statuses.get(c['day'], {}).get('has_detail')]
+    data = dict(cards=board_cards + collected_cards, daily_status=statuses, drafts=drafts, issues=sorted(editions.values(), key=lambda i: (i['day'], i['revision']), reverse=True),
                 source=payload['source'])
     encoded = json.dumps(data, ensure_ascii=False, separators=(',', ':')).replace('<', r'\u003c')
     html = (daily / 'page.html').read_text()
