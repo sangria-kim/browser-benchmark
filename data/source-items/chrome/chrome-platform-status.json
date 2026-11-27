@@ -252404,6 +252404,79 @@
   },
   {
     "schema_version": 2,
+    "source_item_id": "src-a4be8078b2dfe5d017e168ab",
+    "source_id": "chrome-platform-status",
+    "browser": "chrome",
+    "item_key": "5107498989256704",
+    "item_type": "general",
+    "title": "Change default install state of site permissions for newly installed extensions from All Sites to On-Click",
+    "summary": "Chrome status: Proposed. This launch changes the default installation permission state for newly installed extensions requesting host access from \"All Sites\" to \"On-Click\" (withheld). While this directly modifies default",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": "2026-11-25",
+    "observed_at": "2026-11-26T22:12:03.274469+00:00",
+    "evidence": {
+      "url": "https://chromestatus.com/feature/5107498989256704",
+      "section": "ChromeStatus feature",
+      "source_revision": "2026-11-26 16:07:26.672645",
+      "content_sha256": "dfebd8d4ea08cce06e38e6035170360332534d3de22ebbe27c38c9bbd22cab94",
+      "observed_at": "2026-11-26T22:12:03.274469+00:00",
+      "excerpt": "Chrome status: Proposed. This launch changes the default installation permission state for newly installed extensions requesting host access from \"All Sites\" to \"On-Click\" (withheld). While this directly modifies default"
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Change default install state of site permissions for newly installed extensions from All Sites to On-Click",
+        "summary": "Chrome status: Proposed. This launch changes the default installation permission state for newly installed extensions requesting host access from \"All Sites\" to \"On-Click\" (withheld). While this directly modifies default",
+        "evidence": {
+          "url": "https://chromestatus.com/feature/5107498989256704",
+          "section": "ChromeStatus feature",
+          "source_revision": "2026-11-26 16:07:26.672645",
+          "content_sha256": "dfebd8d4ea08cce06e38e6035170360332534d3de22ebbe27c38c9bbd22cab94",
+          "observed_at": "2026-11-26T22:12:03.274469+00:00",
+          "excerpt": "Chrome status: Proposed. This launch changes the default installation permission state for newly installed extensions requesting host access from \"All Sites\" to \"On-Click\" (withheld). While this directly modifies default"
+        },
+        "published_at": "2026-11-25",
+        "observed_at": "2026-11-26T22:12:03.274469+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "bc408bdb52034800743dff0e492a715a5a08e2940fd2c1f77b3cc6a1ed2add99",
+        "revision_id": "sr-f5d2a21b8721c02eb6dbc48c",
+        "content_sha256": "dfebd8d4ea08cce06e38e6035170360332534d3de22ebbe27c38c9bbd22cab94",
+        "source_revision": "2026-11-26 16:07:26.672645"
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://chromestatus.com/feature/5107498989256704#5107498989256704",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-26",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "item_content_sha256": "bc408bdb52034800743dff0e492a715a5a08e2940fd2c1f77b3cc6a1ed2add99"
+  },
+  {
+    "schema_version": 2,
     "source_item_id": "src-a4c575146c0e36b8623d399e",
     "source_id": "chrome-platform-status",
     "browser": "chrome",

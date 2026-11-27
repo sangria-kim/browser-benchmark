@@ -1,6 +1,79 @@
 [
   {
     "schema_version": 2,
+    "source_item_id": "src-004c84090ba0476e2c3eb7bb",
+    "source_id": "edge-mobile-stable",
+    "browser": "edge",
+    "item_key": "feature-facts:feature-f2dc9a7933db1e8b69523fb4",
+    "item_type": "general",
+    "title": "Edge iOS·Android 진단 페이지에 Intune 준수 문제 해결 동작 추가",
+    "summary": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page.",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": null,
+    "observed_at": "2026-11-26T22:14:17.383257+00:00",
+    "evidence": {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "section": "version-1570434142-android-and-ios-november-9-2026 / new-enhancements-1",
+      "source_revision": null,
+      "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+      "observed_at": "2026-11-26T22:14:17.383257+00:00",
+      "excerpt": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page."
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Edge iOS·Android 진단 페이지에 Intune 준수 문제 해결 동작 추가",
+        "summary": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page.",
+        "evidence": {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+          "section": "version-1570434142-android-and-ios-november-9-2026 / new-enhancements-1",
+          "source_revision": null,
+          "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+          "observed_at": "2026-11-26T22:14:17.383257+00:00",
+          "excerpt": "[iOS & Android] Added a Remediate Intune MAM Compliance action to the Actions tab in the edge://efb-internals page."
+        },
+        "published_at": null,
+        "observed_at": "2026-11-26T22:14:17.383257+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "94179ddd8f56ee4081a7714eee42ae37fabd0e69c95cfc2d13c40036ca95ea44",
+        "revision_id": "sr-4f667e2186a6ae23e739ada6",
+        "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+        "source_revision": null
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel#feature-facts:feature-f2dc9a7933db1e8b69523fb4",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "unknown",
+      "basis": "unknown",
+      "evidence_date": null,
+      "precision": "unknown",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "No supported item date."
+    },
+    "item_content_sha256": "94179ddd8f56ee4081a7714eee42ae37fabd0e69c95cfc2d13c40036ca95ea44"
+  },
+  {
+    "schema_version": 2,
     "source_item_id": "src-00e71d65955f48b829febf4f",
     "source_id": "edge-mobile-stable",
     "browser": "edge",
@@ -6251,6 +6324,79 @@
   },
   {
     "schema_version": 2,
+    "source_item_id": "src-307064bc4fea5908f0da8530",
+    "source_id": "edge-mobile-stable",
+    "browser": "edge",
+    "item_key": "feature-facts:feature-57a41b890977b77f9452fe77",
+    "item_type": "general",
+    "title": "Edge iOS에서 MAM Tunnel 토큰 만료 시 대화형 재인증",
+    "summary": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires.",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": null,
+    "observed_at": "2026-11-26T22:14:17.383257+00:00",
+    "evidence": {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "section": "version-1570434142-android-and-ios-november-9-2026 / new-enhancements-1",
+      "source_revision": null,
+      "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+      "observed_at": "2026-11-26T22:14:17.383257+00:00",
+      "excerpt": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires."
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Edge iOS에서 MAM Tunnel 토큰 만료 시 대화형 재인증",
+        "summary": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires.",
+        "evidence": {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+          "section": "version-1570434142-android-and-ios-november-9-2026 / new-enhancements-1",
+          "source_revision": null,
+          "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+          "observed_at": "2026-11-26T22:14:17.383257+00:00",
+          "excerpt": "[iOS] Improved MAM Tunnel connectivity by enabling interactive authentication if needed when the authentication token expires."
+        },
+        "published_at": null,
+        "observed_at": "2026-11-26T22:14:17.383257+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "4fc20f806a8dcd0263a95a218ec682418158b29d9508b6c4f3016d2890f87dc6",
+        "revision_id": "sr-edba4c9871aeff5b7586e6f0",
+        "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+        "source_revision": null
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel#feature-facts:feature-57a41b890977b77f9452fe77",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "unknown",
+      "basis": "unknown",
+      "evidence_date": null,
+      "precision": "unknown",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "No supported item date."
+    },
+    "item_content_sha256": "4fc20f806a8dcd0263a95a218ec682418158b29d9508b6c4f3016d2890f87dc6"
+  },
+  {
+    "schema_version": 2,
     "source_item_id": "src-3206c26ece6af01474111fab",
     "source_id": "edge-mobile-stable",
     "browser": "edge",
@@ -11118,6 +11264,79 @@
       "reason": "Official item date."
     },
     "item_content_sha256": "5f8ed8b840878f340a7af6a7c80504769887eccfa9ae58e9f86329eba45eb5a9"
+  },
+  {
+    "schema_version": 2,
+    "source_item_id": "src-5f61eefe5eacb8a2f6491f0f",
+    "source_id": "edge-mobile-stable",
+    "browser": "edge",
+    "item_key": "feature-facts:feature-ec266e97a8489b5f45a0a86e",
+    "item_type": "general",
+    "title": "Edge Android에서 사이트 오디오 캡처 권한 요청 정책 지원",
+    "summary": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device.",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": null,
+    "observed_at": "2026-11-26T22:14:17.383257+00:00",
+    "evidence": {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "section": "version-1580437033-android-and-ios-november-23-2026 / new-policies",
+      "source_revision": null,
+      "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+      "observed_at": "2026-11-26T22:14:17.383257+00:00",
+      "excerpt": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device."
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Edge Android에서 사이트 오디오 캡처 권한 요청 정책 지원",
+        "summary": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device.",
+        "evidence": {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+          "section": "version-1580437033-android-and-ios-november-23-2026 / new-policies",
+          "source_revision": null,
+          "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+          "observed_at": "2026-11-26T22:14:17.383257+00:00",
+          "excerpt": "[Android] Added support for the AudioCaptureAllowed policy, which controls whether users can be prompted to grant a website access to their audio capture device."
+        },
+        "published_at": null,
+        "observed_at": "2026-11-26T22:14:17.383257+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "5dcd63e89d0f687c11f8c8947c60216bca6960fc8a21c560936433ed2f2c3081",
+        "revision_id": "sr-f6640e972a79d27d0c2fc608",
+        "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+        "source_revision": null
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel#feature-facts:feature-ec266e97a8489b5f45a0a86e",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "unknown",
+      "basis": "unknown",
+      "evidence_date": null,
+      "precision": "unknown",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "No supported item date."
+    },
+    "item_content_sha256": "5dcd63e89d0f687c11f8c8947c60216bca6960fc8a21c560936433ed2f2c3081"
   },
   {
     "schema_version": 2,
@@ -16139,6 +16358,79 @@
       "reason": "Official item date."
     },
     "item_content_sha256": "5dcd63e89d0f687c11f8c8947c60216bca6960fc8a21c560936433ed2f2c3081"
+  },
+  {
+    "schema_version": 2,
+    "source_item_id": "src-7e114b6a2deaf918a62d7ff0",
+    "source_id": "edge-mobile-stable",
+    "browser": "edge",
+    "item_key": "feature-facts:feature-e3183ec3b9cc12e41aad3220",
+    "item_type": "general",
+    "title": "Edge Android의 MAM·MDM 원격 디버깅 허용 정책",
+    "summary": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM.",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": null,
+    "observed_at": "2026-11-26T22:14:17.383257+00:00",
+    "evidence": {
+      "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+      "section": "version-1580437033-android-and-ios-november-23-2026 / new-policies",
+      "source_revision": null,
+      "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+      "observed_at": "2026-11-26T22:14:17.383257+00:00",
+      "excerpt": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM."
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Edge Android의 MAM·MDM 원격 디버깅 허용 정책",
+        "summary": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM.",
+        "evidence": {
+          "url": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel",
+          "section": "version-1580437033-android-and-ios-november-23-2026 / new-policies",
+          "source_revision": null,
+          "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+          "observed_at": "2026-11-26T22:14:17.383257+00:00",
+          "excerpt": "[Android] Added support for the RemoteDebuggingAllowed policy, which controls whether users can use remote debugging for both Intune MAM and MDM."
+        },
+        "published_at": null,
+        "observed_at": "2026-11-26T22:14:17.383257+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "00aa3282f68bc4e59fefd76fef0061554b07320e3651cdf94492bebffb729a19",
+        "revision_id": "sr-a2b1ab607a1cb609b6d5ec82",
+        "content_sha256": "823d21a75d01156b64b869a88f41ec0ce7ce425a80dc60a971a0aefb9340b3e2",
+        "source_revision": null
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-mobile-stable-channel#feature-facts:feature-e3183ec3b9cc12e41aad3220",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-28",
+      "cutoff": "2026-11-27T07:00:00+09:00",
+      "status": "unknown",
+      "basis": "unknown",
+      "evidence_date": null,
+      "precision": "unknown",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "No supported item date."
+    },
+    "item_content_sha256": "00aa3282f68bc4e59fefd76fef0061554b07320e3651cdf94492bebffb729a19"
   },
   {
     "schema_version": 2,
