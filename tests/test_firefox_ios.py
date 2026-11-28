@@ -16,6 +16,7 @@ from zipfile import ZipFile
 from pipeline.collectors.browser import Response
 from pipeline.collectors.browser.firefox_ios import NOTES_API, SHIPPING, detail_url
 from pipeline.collectors.browser.firefox_ios_store import APP_STORE_ID, APP_STORE_URL, MOZILLA_DEVELOPER
+from pipeline.collectors.browser.firefox_ios_schedule import meeting_requests
 from pipeline.official_reference import accepts_url
 
 
@@ -234,6 +235,147 @@ class FirefoxIosTests(unittest.TestCase):
         self.assertEqual(['99.1'], inventory['older_undated_shipping_versions'])
         self.assertEqual(['161.1'], inventory['missing_shipping_versions'])
         self.assertIn('429', str(state['errors']))
+
+    def schedule(self, *, cutoff=CUTOFF, text=None, published='2026-11-19T15:39:57Z'):
+        requests = list(meeting_requests(cutoff))
+        text = text or '** Firefox iOS 161.1 scheduled to start phased rollout at 03:00 UTC on 2026-11-26'
+        title, url = requests[0]
+        revision = dict(revid=12345, timestamp=published, slots={'main': {
+            'contentmodel': 'wikitext', 'contentformat': 'text/x-wiki',
+            'content': '== Schedule Update ==\n' + text + '\n== QA ==\n* Firefox RC 161.1 build 2 GREEN'}})
+        self.pages[url] = dict(batchcomplete=True, query={'pages': [dict(pageid=123, ns=0, title=title, revisions=[revision])]})
+        old_title, old_url = requests[1]
+        self.pages[old_url] = dict(batchcomplete=True, query={'pages': [dict(ns=0, title=old_title, missing=True)]})
+        return url
+
+    def scheduled_fixture(self):
+        self.pages[SHIPS].append(ship(4, 'firefox-v161.1', '2026-11-23T12:00:00Z'))
+        self.pages[APP_STORE_URL] = store_html(('161.0', '2026-11-23T02:08:23+00:00', 'Maintenance.'))
+        return self.schedule()
+
+    def test_pinned_future_rollout_is_scheduled_not_an_empty_release(self):
+        url = self.scheduled_fixture()
+        state, rows = self.cli('scheduled')
+        history = state['firefox_ios_inventory']
+        proof = history['scheduled_versions']['161.1']
+        self.assertEqual('scheduled', proof['state'])
+        self.assertEqual('2026-11-26T03:00:00+00:00', proof['scheduled_at'])
+        self.assertEqual(proof['scheduled_at'], proof['recheck_at'])
+        self.assertEqual(12345, proof['revision_id'])
+        self.assertEqual([], history['missing_shipping_versions'])
+        self.assertNotIn('161.1', history['empty_versions'] + history['app_store_versions'])
+        self.assertEqual([], rows)
+        self.assertEqual(1, self.calls.count(url))
+        self.cli('scheduled-weekly', mode='weekly_reconcile')
+
+    def test_schedule_expires_and_fresh_store_evidence_recovers_without_rewriting_old_run(self):
+        self.scheduled_fixture()
+        self.cli('before-rollout')
+        original = (self.root / 'runs/before-rollout/work/browser/firefox-ios.json').read_bytes()
+        cutoff = '2026-11-27T07:00:00+09:00'
+        self.pages[COMMIT.replace('11-24', '11-26')] = self.pages[COMMIT]
+        self.schedule(cutoff=cutoff, published='2026-11-26T15:00:00Z')
+        state, _ = self.cli('after-rollout', cutoff=cutoff, expected=2)
+        self.assertEqual(['161.1'], state['firefox_ios_inventory']['missing_shipping_versions'])
+        self.assertEqual({}, state['firefox_ios_inventory']['scheduled_versions'])
+        self.pages[APP_STORE_URL] = store_html(('161.1', '2026-11-26T03:08:00+00:00', 'Verified maintenance.'))
+        _, rows = self.cli('store-published', cutoff=cutoff)
+        self.assertEqual(['161.1'], [row['version'] for row in rows])
+        self.assertEqual(original, (self.root / 'runs/before-rollout/work/browser/firefox-ios.json').read_bytes())
+
+    def test_conflicting_unrecognized_or_expired_schedule_never_defers(self):
+        self.scheduled_fixture()
+        good = '** Firefox iOS 161.1 scheduled to start phased rollout at 03:00 UTC on 2026-11-26'
+        for name, text in (
+                ('expired', good.replace('2026-11-26', '2026-11-24')),
+                ('at-cutoff', good.replace('03:00 UTC on 2026-11-26', '22:00 UTC on 2026-11-24')),
+                ('too-distant', good.replace('2026-11-26', '2026-12-30')),
+                ('build-only', '** Firefox iOS 161.1 branches and gtb tomorrow'),
+                ('conflicting', good + '\n' + good.replace('03:00', '04:00')),
+                ('released', good + '\n** Firefox iOS 161.1 live @ 100% rollout'),
+                ('ambiguous-cancellation', good + '\n** 161.1 rollout cancelled'),
+                ('other-product', good.replace('Firefox iOS', 'Focus iOS')),
+                ('other-version', good.replace('161.1', '161.10')),
+                ('commented', '<!--\n' + good + '\n-->'),
+                ('no-zone', good.replace(' UTC', ''))):
+            with self.subTest(name=name):
+                self.schedule(text=text)
+                state, _ = self.cli(name, expected=2)
+                self.assertEqual({}, state['firefox_ios_inventory']['scheduled_versions'])
+
+    def test_schedule_requires_pinned_identity_time_and_readable_store(self):
+        url = self.scheduled_fixture()
+        valid = json.dumps(self.pages[url])
+        for name, change in (
+                ('later-revision', lambda d: d['query']['pages'][0]['revisions'][0].update(timestamp='2026-11-25T00:00:00Z')),
+                ('wrong-title', lambda d: d['query']['pages'][0].update(title='Other page')),
+                ('hidden-content', lambda d: d['query']['pages'][0]['revisions'][0]['slots']['main'].pop('content')),
+                ('unfinished', lambda d: d.update(batchcomplete=False))):
+            d = json.loads(valid)
+            change(d)
+            with self.subTest(name=name), patch.dict(self.pages, {url: d}):
+                state, _ = self.cli(name, expected=2)
+                self.assertIn('161.1', state['firefox_ios_inventory']['schedule_errors'])
+        with patch.dict(self.pages, {url: Response('https://example.org/', valid.encode())}):
+            self.cli('schedule-redirect', expected=2)
+        with patch.dict(self.pages, {APP_STORE_URL: OSError('Store unavailable')}):
+            self.calls.clear()
+            self.cli('no-store-proof', expected=2)
+            self.assertNotIn(url, self.calls)
+
+    def test_actual_store_publication_and_primary_notes_take_priority_over_schedule(self):
+        url = self.scheduled_fixture()
+        self.pages[APP_STORE_URL] = store_html(('161.1', '2026-11-24T02:00:00+00:00', 'Published early.'))
+        _, rows = self.cli('store-over-plan')
+        self.assertEqual(['161.1'], [row['version'] for row in rows])
+        self.assertNotIn(url, self.calls)
+        self.rows['161.1'] = release('161.1', '2026-11-24', [note(777, 'Official release feature.')])
+        self.prepare()
+        self.calls.clear()
+        _, rows = self.cli('primary-over-plan')
+        self.assertEqual(['note-777'], [row['item_key'] for row in rows])
+        self.assertNotIn(url, self.calls)
+
+    def test_newer_store_version_or_newer_cancellation_blocks_old_schedule(self):
+        url = self.scheduled_fixture()
+        original = self.pages[APP_STORE_URL]
+        self.pages[APP_STORE_URL] = store_html(('162.0', '2026-11-24T02:00:00+00:00', 'Newer publication.'))
+        self.cli('newer-store', expected=2)
+        self.assertNotIn(url, self.calls)
+        self.pages[APP_STORE_URL] = original
+        old_title, old_url = list(meeting_requests(CUTOFF))[1]
+        old = json.loads(json.dumps(self.pages[url]))
+        old['query']['pages'][0]['title'] = old_title
+        old['query']['pages'][0]['revisions'][0]['timestamp'] = '2026-11-12T15:00:00Z'
+        self.pages[old_url] = old
+        self.pages[url]['query']['pages'][0]['revisions'][0]['slots']['main']['content'] = (
+            '== Schedule Update ==\n** Firefox iOS 161.1 rollout cancelled\n== QA ==\n')
+        self.calls.clear()
+        self.cli('cancelled', expected=2)
+        self.assertNotIn(old_url, self.calls)
+
+    def test_schedule_cache_tamper_cannot_preserve_a_deferred_version_on_retry(self):
+        self.scheduled_fixture()
+        self.pages[SHIPS].append(ship(5, 'firefox-v161.2', '2026-11-23T13:00:00Z'))
+        state, _ = self.cli('schedule-cache', expected=2)
+        proof = state['firefox_ios_inventory']['scheduled_versions']['161.1']
+        cached = self.root / 'runs/schedule-cache/work/browser/cache' / proof['response_sha256']
+        cached.write_bytes(b'changed schedule')
+        state, _ = self.cli('schedule-cache', expected=2, resume=True)
+        self.assertEqual({}, state['firefox_ios_inventory']['scheduled_versions'])
+        self.assertIn('checksum', state['firefox_ios_inventory']['schedule_errors']['161.1'])
+
+    def test_previous_meeting_can_supply_schedule_when_latest_has_no_revision_at_cutoff(self):
+        url = self.scheduled_fixture()
+        old_title, old_url = list(meeting_requests(CUTOFF))[1]
+        old = json.loads(json.dumps(self.pages[url]))
+        old['query']['pages'][0]['title'] = old_title
+        old['query']['pages'][0]['revisions'][0]['timestamp'] = '2026-11-12T15:00:00Z'
+        self.pages[old_url] = old
+        self.pages[url]['query']['pages'][0]['revisions'] = []
+        state, _ = self.cli('previous-meeting')
+        self.assertIn('161.1', state['firefox_ios_inventory']['scheduled_versions'])
+        self.assertIn(old_url, self.calls)
 
     def test_store_missing_redirect_disagreement_rate_limit_and_wrong_publisher_stay_partial(self):
         self.pages[SHIPS].append(ship(4, 'firefox-v159.1'))
