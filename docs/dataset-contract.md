@@ -124,6 +124,22 @@ support several features. Their facts are independent. Enrichment fills open
 slots and preserves established values and the first confirmed citation.
 An additional citation does not by itself establish a product change.
 
+Daily dashboard cards read `feature_facts` from the catalog in the first Git
+commit that contains each browser receipt effect. The build follows all merge
+parents and requires full history. A shallow checkout, missing catalog, or
+uncommitted effect fails the build; the current catalog is not a fallback.
+Git publication is the available boundary. It does not prove the exact time a
+human confirmed a fact before that commit.
+
+For each effect, a feature fact takes precedence over source snapshot metadata
+only when both its `source_item_id` and `revision_id` match that effect. Other
+slots keep the pinned snapshot value or remain unknown. Facts from another
+feature, citation, or later enrichment cannot fill an earlier card, even when
+later enrichment reuses the same source revision. Rollout status stays separate
+from the product channel and does not prove installed availability. Receipt
+`changed` flags and nullable totals remain authoritative for change counts,
+evidence-only cards, and incomplete collection.
+
 Browser collectors also store optional `item_content_sha256`. It hashes the full
 item section and text before excerpt truncation. PM inputs use this digest instead
 of the whole-document `evidence.content_sha256`; sibling edits and HTML comments

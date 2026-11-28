@@ -461,6 +461,7 @@ class WindowTests(unittest.TestCase):
         from pipeline.feature_enrichment import read_jobs
         from pipeline.normalize import load_dataset
         from scripts import build_dashboard
+        from scripts.dashboard_collection import daily_board
         first_cutoff, next_cutoff = '2026-04-10T07:00:00+09:00', '2026-11-25T07:00:00+09:00'
         sid, url = 'chrome-releases', HOME + '2026/04/release.html'
 
@@ -492,6 +493,8 @@ class WindowTests(unittest.TestCase):
         tab = before['tabs']['feature_id']
         self.assertEqual(before['tabs']['source_item_ids'], before['toolbar']['source_item_ids'])
         run_daily.commit_candidate(self.repo)
+        graph = load_dataset(self.repo)
+        april_cards = daily_board(self.repo, graph['feature'], graph['source_item'])[1]
         self.calls.clear()
         self.cli('same', cutoff=next_cutoff, extra=['--daily-status'])
         self.assertEqual(1, self.calls.count(url))
@@ -515,6 +518,12 @@ class WindowTests(unittest.TestCase):
         current = read(self.repo / 'data/daily-status/2026-11-25.json')
         self.assertEqual(('complete', 1, 0), tuple(current[k] for k in ('status', 'collected_feature_count', 'change_count')))
         self.assertEqual(frozen, april.read_bytes())
+        # The public board reads committed collection history. Check the guard,
+        # then publish this fixture before starting the next collection.
+        graph = load_dataset(self.repo)
+        with self.assertRaisesRegex(ValueError, 'without publication history'):
+            daily_board(self.repo, graph['feature'], graph['source_item'])
+        run_daily.commit_candidate(self.repo)
         self.payloads[url] = article()
         self.cli('later', cutoff='2026-11-26T07:00:00+09:00', extra=['--daily-status'])
         self.assertNotIn('platform', jobs('later')[tab]['missing_fields'])
@@ -531,6 +540,12 @@ class WindowTests(unittest.TestCase):
         legacy = dict(events=[], flags=[], source={}, built_at=next_cutoff, updated_at=next_cutoff, catalog={})
         with patch.object(build_dashboard, 'ROOT', self.repo):
             build_dashboard.build_research(output, legacy, '')
+        rendered = (output / 'index.html').read_text().split('id="daily-data">')[1].split('</script>')[0]
+        cards = json.loads(rendered)['cards']
+        self.assertEqual(april_cards, [c for c in cards if c['day'] == '2026-04-10'])
+        enriched, = [c for c in cards if c['day'] == '2026-11-25']
+        self.assertEqual((tab, ['Windows'], '근거 보강'),
+                         (enriched['title_id'], enriched['platform'], enriched['collection_kind']))
         summaries = build_dashboard.read_resource(output / 'indexes/feature.json.gz')
         for summary in summaries:
             published = build_dashboard.read_resource(output / summary['detail'])['fact']
