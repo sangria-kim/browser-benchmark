@@ -2810,6 +2810,92 @@ class WindowTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'Committed browser detail is missing'):
             validate_tree(self.repo, base=accepted)
 
+    def test_description_change_allows_fresh_daily_and_weekly_completion_with_original_scope(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        for mode, cutoff in (('daily', STATUS_CUTOFF), ('weekly_reconcile', weekly_status.FIRST_GUARDED_CUTOFF)):
+            args = ['--daily-status'] if mode == 'daily' else []
+            self.cli(mode, cutoff=cutoff, mode=mode, extra=args)
+            self.publish_browser(mode, 'edge', self.browser_choices(mode, 'edge'))
+            rel = browser_status.detail_path(mode, cutoff)
+            original = read(self.repo / rel)
+            run_daily.commit_candidate(self.repo)
+            config = read(self.registry)
+            next(s for s in config['sources'] if s['source_id'] == 'firefox-ios')['scope_note'] += ' Verified fallback.'
+            self.registry.write_text(json.dumps(config, indent=4))
+            run_daily.commit_candidate(self.repo)
+            # An existing workspace cannot be silently repinned to the new config.
+            with self.assertRaisesRegex(ValueError, 'baseline changed'):
+                self.cli(mode, cutoff=None, mode=mode, extra=args + ['--resume'])
+            fresh = mode + '-supplement'
+            self.cli(fresh, cutoff=cutoff, mode=mode, extra=args)
+            self.publish_browser(fresh, 'firefox', self.browser_choices(fresh, 'firefox'))
+            current = read(self.repo / rel)
+            self.assertEqual(original['scope'], current['scope'])
+            self.assertEqual(original['browsers']['edge'], current['browsers']['edge'])
+            self.assertEqual('complete', current['browsers']['firefox']['status'])
+            validate_tree(self.repo, base=base)
+            self.publish_browser(fresh, 'firefox', self.browser_choices(fresh, 'firefox'))
+            run_daily.commit_candidate(self.repo)
+            validate_tree(self.repo, base=base)
+
+    def test_registry_compatibility_does_not_allow_url_policy_or_unknown_hash_changes(self):
+        self.configure_small_registry()
+        run_daily.commit_candidate(self.repo)
+        self.cli('original', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        self.publish_browser('original', 'edge', self.browser_choices('original', 'edge'))
+        rel = browser_status.detail_path('daily', STATUS_CUTOFF)
+        original = read(self.repo / rel)
+        run_daily.commit_candidate(self.repo)
+        raw = self.registry.read_bytes()
+        for label in ('url', 'parser', 'enabled', 'limit', 'policy', 'unknown-hash'):
+            config = json.loads(raw)
+            source = next(s for s in config['sources'] if s['source_id'] == 'firefox-beta')
+            if label == 'url':
+                source['url'] += '?changed=1'
+            elif label == 'parser':
+                source['parser'] = 'html_index'
+            elif label == 'enabled':
+                next(s for s in config['sources'] if s['source_id'] == 'firefox-ios')['enabled'] = True
+            elif label == 'limit':
+                source['discovery']['max_pages'] += 1
+            elif label == 'policy':
+                config['baseline']['daily_window_days'] -= 1
+            else:
+                source['scope_note'] += ' Description only.'
+            self.registry.write_bytes(encoded(config))
+            scope = dict(original['scope'], registry=browser_status.registry_facts(self.repo, 'daily')[0])
+            prior = original['scope'] if label != 'unknown-hash' else dict(original['scope'], registry='f' * 64)
+            with self.subTest(label=label), self.assertRaises(ValueError):
+                browser_status.check_continuation(self.repo, prior, scope)
+            self.assertEqual(original, read(self.repo / rel))
+        self.registry.write_bytes(raw)
+
+    def test_description_change_allows_item_supplement_and_preserves_pending_effects(self):
+        self.configure_small_registry()
+        base = run_daily.commit_candidate(self.repo)
+        self.cli('before', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        request = dict(browser='firefox', source_id='firefox-beta', **self.classified('before', 'firefox-beta')[0])
+        self.item('before', request)
+        rel = browser_status.detail_path('daily', STATUS_CUTOFF)
+        original = read(self.repo / rel)
+        run_daily.commit_candidate(self.repo)
+        config = read(self.registry)
+        config['sources'][0]['scope_note'] += ' Description only.'
+        self.registry.write_bytes(encoded(config))
+        run_daily.commit_candidate(self.repo)
+        self.cli('after', cutoff=STATUS_CUTOFF, extra=['--daily-status'])
+        request = dict(browser='edge', source_id='edge-beta', **self.classified('after', 'edge-beta')[0])
+        self.item('after', request)
+        current = read(self.repo / rel)
+        self.assertEqual(original['scope'], current['scope'])
+        self.assertEqual(original['browsers']['firefox'], current['browsers']['firefox'])
+        self.assertEqual('incomplete', current['browsers']['edge']['status'])
+        self.assertEqual(1, len(current['browsers']['edge']['effects']))
+        validate_tree(self.repo, base=base)
+        run_daily.commit_candidate(self.repo)
+        validate_tree(self.repo, base=base)
+
     def test_normalize_and_browser_writers_share_one_repository_lock(self):
         from pipeline.normalize.storage import publish
         self.configure_small_registry()

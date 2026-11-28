@@ -268,7 +268,7 @@ def store_changes(root, txn, changes, before, writer, *, replace=durable, item_e
         if previous is None:
             previous = browser_status.initial(detail['scope'])
         browser_status.transition(previous, detail)
-        browser_status.check_registry(root, detail['scope'])
+        browser_status.check_registry(root, detail['scope'], continuing=not first_browser)
         browser_status.check_aggregate(root, detail, changes)
     receipts = {rel for rel in changes if status_path(rel)}
     if whole and receipts:

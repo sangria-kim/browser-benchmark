@@ -198,6 +198,43 @@ class FirefoxIosTests(unittest.TestCase):
                       APP_STORE_URL.replace('989804926', '989804927'), APP_STORE_URL.replace('/us/', '/de/')):
             self.assertFalse(accepts_url(source, wrong))
 
+    def test_store_can_precede_github_without_changing_the_daily_window(self):
+        self.pages[SHIPS] += [ship(4, 'firefox-v152.4', '2026-07-12T23:48:12Z'),
+                              ship(5, 'firefox-v159.1', '2026-11-05T16:21:00Z')]
+        self.pages[APP_STORE_URL] = store_html(
+            ('152.4', '2026-07-12T08:01:43+00:00', 'Generic maintenance.'),
+            ('159.1', '2026-11-05T16:20:00+00:00', 'New tab feature.'))
+        state, rows = self.cli('independent-clocks')
+        self.assertEqual(['152.4', '159.1'], state['firefox_ios_inventory']['app_store_versions'])
+        self.assertEqual([], state['firefox_ios_inventory']['older_undated_shipping_versions'])
+        self.assertEqual(['159.1'], [row['version'] for row in rows])
+
+    def test_daily_backlog_survives_and_new_runs_recover_late_official_notes(self):
+        self.pages[SHIPS].append(ship(4, 'firefox-v99.1', '2025-01-01T00:00:00Z'))
+        self.pages[APP_STORE_URL] = HTTPError(APP_STORE_URL, 404, 'Not found', {}, None)
+        state, _ = self.cli('old-backlog')
+        self.assertEqual(['99.1'], state['firefox_ios_inventory']['older_undated_shipping_versions'])
+        self.assertIn('404', state['firefox_ios_inventory']['app_store_error'])
+        original = (self.root / 'runs/old-backlog/work/browser/firefox-ios.json').read_bytes()
+        self.cli('old-backlog-weekly', mode='weekly_reconcile', expected=2)
+        self.cli('old-backlog-manual', mode='manual', expected=2)
+        # The shipping date stays old. A newly published official Store row is eligible.
+        self.pages[APP_STORE_URL] = store_html(('99.1', '2026-11-20T12:00:00+00:00', 'New official note.'))
+        state, rows = self.cli('late-store-evidence')
+        self.assertEqual(['99.1'], state['firefox_ios_inventory']['app_store_versions'])
+        self.assertEqual(['99.1'], [row['version'] for row in rows])
+        self.assertEqual(original, (self.root / 'runs/old-backlog/work/browser/firefox-ios.json').read_bytes())
+
+    def test_backlog_does_not_hide_a_current_missing_release_or_store_error(self):
+        self.pages[SHIPS] += [ship(4, 'firefox-v99.1', '2025-01-01T00:00:00Z'),
+                              ship(5, 'firefox-v161.1', '2026-11-23T12:00:00Z')]
+        self.pages[APP_STORE_URL] = HTTPError(APP_STORE_URL, 429, 'Rate limited', {}, None)
+        state, _ = self.cli('current-gap', expected=2)
+        inventory = state['firefox_ios_inventory']
+        self.assertEqual(['99.1'], inventory['older_undated_shipping_versions'])
+        self.assertEqual(['161.1'], inventory['missing_shipping_versions'])
+        self.assertIn('429', str(state['errors']))
+
     def test_store_missing_redirect_disagreement_rate_limit_and_wrong_publisher_stay_partial(self):
         self.pages[SHIPS].append(ship(4, 'firefox-v159.1'))
         exact = store_html(('159.1', '2026-11-05T16:20:00+00:00', 'Feature A.'))

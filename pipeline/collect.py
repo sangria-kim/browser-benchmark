@@ -600,8 +600,7 @@ def save_browser(root, work, state, browser, classification, writer):
     if detail is None:
         detail = browser_status.initial(scope)
     else:
-        if detail['scope'] != scope:
-            raise ValueError('Browser scope differs from the first published result')
+        browser_status.check_continuation(root, detail['scope'], scope)
         browser_status.check_aggregate(root, detail, {})
     if scope['mode'] == 'daily':
         _, previous = current_daily_receipt(root, scope['cutoff'])

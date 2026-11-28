@@ -260,7 +260,7 @@ def prior_deleted_aliases(root, restored, parent, ancestry, rel, oid):
     return sources
 
 
-def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_parents, inherited):
+def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_parents, inherited, allow_continuation=False):
     info = git(root, 'ls-tree', commit, '--', rel).split()
     proposal = (rel, info[0].encode(), info[2].encode())
     oid = proposal[2]
@@ -297,7 +297,8 @@ def first_weekly_submission(root, rel, commit, ancestry, scope, registry, first_
                 else:
                     weekly_evidence.check_committed(root, parent, since, cutoff)
         if not continuing and (child != commit or not inherited):
-            browser_status.check_registry(root, scope, facts=registry(child, scope['mode']))
+            browser_status.check_registry(root, scope, facts=registry(child, scope['mode']), registry_ref=child,
+                                          continuing=allow_continuation and child == commit)
 
 
 def check_publication_policy(root, files, candidate, prior, commit, registry, reviewed, ancestry, first_parents):
@@ -309,18 +310,20 @@ def check_publication_policy(root, files, candidate, prior, commit, registry, re
     record = json.loads(raw)
     inherited = any(old[index] is not None and json.loads(old[index]) == record for old in prior)
     scope = record['scope']
+    continuing = index == 1 and any(old[1] is not None and json.loads(old[1])['scope'] == scope for old in prior)
     if (scope['mode'] == 'weekly_reconcile' and weekly_status.guarded(scope['cutoff'])
             and (first_parents or not ancestry[commit])):
         # Receiving the other parent's accepted marker is still a first
         # settlement on a side that had no marker. Inspect that side's evidence.
-        first_weekly_submission(root, files[index], commit, ancestry, scope, registry, first_parents, inherited)
+        first_weekly_submission(root, files[index], commit, ancestry, scope, registry, first_parents, inherited, continuing)
         return
     if inherited:
         return  # The existing result can retain the policy under which it was authored.
     if (reviewed and index == 1 and scope['mode'] == 'weekly_reconcile'
             and not any(old[1] for old in prior) and not weekly_status.guarded(scope['cutoff'])):
         raise ValueError('New unmarked historical weekly browser result has no authoritative base')
-    browser_status.check_registry(root, scope, facts=registry(commit, scope['mode']))
+    browser_status.check_registry(root, scope, facts=registry(commit, scope['mode']),
+                                  continuing=continuing, registry_ref=commit)
 
 
 def changed_groups(root, commits, pathspec):

@@ -159,15 +159,27 @@ def check_window(scope, policy):
         raise ValueError('Daily window differs from the registered policy')
 
 
-def check_registry(root, scope, *, historical=False, facts=None):
+def check_registry(root, scope, *, historical=False, facts=None, continuing=False, registry_ref=None):
     fingerprint, policy, expected = facts if facts is not None else registry_facts(root, scope['mode'])
     if fingerprint != scope['registry']:
         if historical:
             return
-        raise ValueError('Browser scope does not match the current registry fingerprint')
+        from pipeline.registry_compatibility import compatible
+        if not continuing or not compatible(root, scope['registry'], fingerprint, ref=registry_ref):
+            raise ValueError('Browser scope does not match the current registry fingerprint')
     check_window(scope, policy)
     if expected != scope['expected']:
         raise ValueError('Browser scope does not match the pinned registry')
+
+
+def check_continuation(root, previous, current):
+    """Allow new observations under the same contract; retain the original scope."""
+    validate_scope(previous)
+    validate_scope(current)
+    if dict(previous, registry=current['registry']) != current:
+        raise ValueError('Browser scope differs from the first published result')
+    check_registry(root, current)
+    check_registry(root, previous, continuing=True)
 
 
 def effect_key(effect):
@@ -414,7 +426,7 @@ def validate_tree(root, *, graph=None, base=None, complete_history=False):
                 raise ValueError('Cannot add browser outcomes after the daily status is complete')
         if mode not in facts_by_mode:
             facts_by_mode[mode] = registry_facts(root, mode)
-        check_registry(root, scope, historical=historical, facts=facts_by_mode[mode])
+        check_registry(root, scope, historical=historical, facts=facts_by_mode[mode], continuing=rel in tracked)
         if not whole:
             check_aggregate(root, detail, {})
             check_effects(detail, index)
