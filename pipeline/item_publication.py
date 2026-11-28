@@ -256,9 +256,8 @@ def append_outcome(root, scope, browser, delta):
     detail = browser_status.read_current(root, rel)
     if detail is None:
         detail = browser_status.initial(scope)
-    elif detail['scope'] != scope:
-        raise ValueError('Item scope differs from the first accepted publication')
     else:
+        browser_status.check_continuation(root, detail['scope'], scope)
         browser_status.check_aggregate(root, detail, {})
     outcome = detail['browsers'][browser]
     if outcome['status'] == 'complete':

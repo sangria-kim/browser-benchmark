@@ -296,13 +296,13 @@ def collect_firefox_ios(collector):
     shipped = shipping_versions(collector)
     store_attempt = None
 
-    def from_store(version, archived=None):
+    def from_store(version, archived=None, *, backlog=False):
         nonlocal store_attempt
         if store_attempt is None:
             try:
                 response = page(collector, APP_STORE_URL)
                 store_records = store_units(response)
-                store_attempt = (response, store_records)
+                store_attempt = (response, store_records, None)
                 if collector.fact_review:
                     # The entire mixed-version page cannot be a feature proof.
                     collector.fact_review.restricted_raw.add(APP_STORE_URL)
@@ -311,15 +311,18 @@ def collect_firefox_ios(collector):
                     if status != 'in_period':
                         collector.record_passage_window(APP_STORE_URL, status, store_unit['text'], [store_unit['key']])
             except (ValueError, KeyError, TypeError, OSError) as error:
-                collector.problem(APP_STORE_URL, f'Unverified App Store version history: {error}')
-                store_attempt = (None, {})
-        response, store_records = store_attempt
+                store_attempt = (None, {}, f'Unverified App Store version history: {error}')
+        response, store_records, error = store_attempt
+        if error:
+            history['app_store_error'] = error
+            if not backlog:
+                collector.problem(APP_STORE_URL, error)
         entry = store_records.get(version)
         if entry is None:
             return False
         stamp, unit = entry
-        if stamp < shipped[version]:
-            return False  # Do not combine conflicting release identities or chronology.
+        # Store publication and GitHub Release publication are independent clocks.
+        # The Store parser verifies the product, version, date and visible text.
         if archived is not None:
             # A Store summary cannot silently replace a known, different Mozilla note.
             # Do not let a substring or a different summary stand in for that note.
@@ -402,12 +405,16 @@ def collect_firefox_ios(collector):
         if version in records or stamp > instant(collector.cutoff):
             continue
         # GitHub's source artifact is not the App Store publication date.
-        if from_store(version):
+        older = collector.publication_status(stamp.isoformat()) == 'before_period'
+        backlog = older and collector.collection_mode == 'daily'
+        if from_store(version, backlog=backlog):
             continue
-        if collector.publication_status(stamp.isoformat()) == 'before_period':
+        if older:
             history['older_undated_shipping_versions'].append(version)
         else:
             history['missing_shipping_versions'].append(version)
             collector.problem(detail_url(version), 'Shipped Firefox iOS version lacks a verifiable publisher note')
-    if history['older_undated_shipping_versions']:
+    # Daily completion covers its window, not the entire undated legacy backlog.
+    # Recheck these versions on every fresh run; never label them empty or dated.
+    if history['older_undated_shipping_versions'] and collector.collection_mode != 'daily':
         collector.problem(SHIPPING, 'Older Firefox iOS shipments lack dated publisher records; note dates unverified')
