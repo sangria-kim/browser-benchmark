@@ -34286,6 +34286,79 @@
   },
   {
     "schema_version": 2,
+    "source_item_id": "src-13b2a11e31f51c230c4848cc",
+    "source_id": "chrome-platform-status",
+    "browser": "chrome",
+    "item_key": "5168559834660864",
+    "item_type": "general",
+    "title": "SVG Arc Path: flag interpolation threshold",
+    "summary": "Chrome status: Proposed. Updates SVG arc path flag (large_arc_flag and sweep_flag) interpolation so that any non-zero interpolated value is treated as true, rather than only values greater than 0.5. This aligns Chromium ",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": "2026-11-19",
+    "observed_at": "2026-11-27T22:14:15.895745+00:00",
+    "evidence": {
+      "url": "https://chromestatus.com/feature/5168559834660864",
+      "section": "ChromeStatus feature",
+      "source_revision": "2026-11-19 23:24:44.388863",
+      "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+      "observed_at": "2026-11-27T22:14:15.895745+00:00",
+      "excerpt": "Chrome status: Proposed. Updates SVG arc path flag (large_arc_flag and sweep_flag) interpolation so that any non-zero interpolated value is treated as true, rather than only values greater than 0.5. This aligns Chromium "
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "SVG Arc Path: flag interpolation threshold",
+        "summary": "Chrome status: Proposed. Updates SVG arc path flag (large_arc_flag and sweep_flag) interpolation so that any non-zero interpolated value is treated as true, rather than only values greater than 0.5. This aligns Chromium ",
+        "evidence": {
+          "url": "https://chromestatus.com/feature/5168559834660864",
+          "section": "ChromeStatus feature",
+          "source_revision": "2026-11-19 23:24:44.388863",
+          "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+          "observed_at": "2026-11-27T22:14:15.895745+00:00",
+          "excerpt": "Chrome status: Proposed. Updates SVG arc path flag (large_arc_flag and sweep_flag) interpolation so that any non-zero interpolated value is treated as true, rather than only values greater than 0.5. This aligns Chromium "
+        },
+        "published_at": "2026-11-19",
+        "observed_at": "2026-11-27T22:14:15.895745+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "7e2e7f1dadd237e2e684c7fe9bf6a1812c0b50aab6ba7e5687736a66f73e6d7b",
+        "revision_id": "sr-490d68238108d8c38a3bb290",
+        "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+        "source_revision": "2026-11-19 23:24:44.388863"
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://chromestatus.com/feature/5168559834660864#5168559834660864",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-29",
+      "cutoff": "2026-11-28T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-19",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "item_content_sha256": "7e2e7f1dadd237e2e684c7fe9bf6a1812c0b50aab6ba7e5687736a66f73e6d7b"
+  },
+  {
+    "schema_version": 2,
     "source_item_id": "src-13b4279b3f2f11f9d99410d8",
     "source_id": "chrome-platform-status",
     "browser": "chrome",
@@ -52873,6 +52946,79 @@
   },
   {
     "schema_version": 2,
+    "source_item_id": "src-1f7f7af6f5fbec2907ca252f",
+    "source_id": "chrome-platform-status",
+    "browser": "chrome",
+    "item_key": "5168050646155264",
+    "item_type": "general",
+    "title": "Implement CSS random-item() function",
+    "summary": "Chrome status: In development. Chrome milestones: Desktop 161, Android 161, iOS 161, WebView 161. Adds the css-values-5 random-item() arbitrary-substitution function behind the experimental CSSRandomItemFunction runtime ",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": "2026-11-27",
+    "observed_at": "2026-11-27T22:14:15.895745+00:00",
+    "evidence": {
+      "url": "https://chromestatus.com/feature/5168050646155264",
+      "section": "ChromeStatus feature",
+      "source_revision": "2026-11-27 07:58:56.273974",
+      "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+      "observed_at": "2026-11-27T22:14:15.895745+00:00",
+      "excerpt": "Chrome status: In development. Chrome milestones: Desktop 161, Android 161, iOS 161, WebView 161. Adds the css-values-5 random-item() arbitrary-substitution function behind the experimental CSSRandomItemFunction runtime "
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Implement CSS random-item() function",
+        "summary": "Chrome status: In development. Chrome milestones: Desktop 161, Android 161, iOS 161, WebView 161. Adds the css-values-5 random-item() arbitrary-substitution function behind the experimental CSSRandomItemFunction runtime ",
+        "evidence": {
+          "url": "https://chromestatus.com/feature/5168050646155264",
+          "section": "ChromeStatus feature",
+          "source_revision": "2026-11-27 07:58:56.273974",
+          "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+          "observed_at": "2026-11-27T22:14:15.895745+00:00",
+          "excerpt": "Chrome status: In development. Chrome milestones: Desktop 161, Android 161, iOS 161, WebView 161. Adds the css-values-5 random-item() arbitrary-substitution function behind the experimental CSSRandomItemFunction runtime "
+        },
+        "published_at": "2026-11-27",
+        "observed_at": "2026-11-27T22:14:15.895745+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "1f218d357b48e2e5e8fcac26e4c1090840bcaa7b1b97510611079d962581a81d",
+        "revision_id": "sr-7d3bc44bfac1514825fbbae0",
+        "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+        "source_revision": "2026-11-27 07:58:56.273974"
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://chromestatus.com/feature/5168050646155264#5168050646155264",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-29",
+      "cutoff": "2026-11-28T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-27",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "item_content_sha256": "1f218d357b48e2e5e8fcac26e4c1090840bcaa7b1b97510611079d962581a81d"
+  },
+  {
+    "schema_version": 2,
     "source_item_id": "src-1f9673709788f2061ca359ce",
     "source_id": "chrome-platform-status",
     "browser": "chrome",
@@ -68712,6 +68858,79 @@
       "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
     },
     "item_content_sha256": "5fc1f15c98ba65c8016d1efc9240a2f0bef3a4c72058245a28b83a1f1ed45881"
+  },
+  {
+    "schema_version": 2,
+    "source_item_id": "src-298a5d3316bd7c4269efeff3",
+    "source_id": "chrome-platform-status",
+    "browser": "chrome",
+    "item_key": "6233739003822080",
+    "item_type": "general",
+    "title": "Agentic extensions for WebDriver BiDi",
+    "summary": "Chrome status: Proposed. Adjustments to the WebDriver BiDi standard that allow using WebDriver BiDi for agentic browsing. See",
+    "channel": "unknown",
+    "platform": [
+      "unknown"
+    ],
+    "version": null,
+    "published_at": "2026-11-19",
+    "observed_at": "2026-11-27T22:14:15.895745+00:00",
+    "evidence": {
+      "url": "https://chromestatus.com/feature/6233739003822080",
+      "section": "ChromeStatus feature",
+      "source_revision": "2026-11-20 09:22:39.321983",
+      "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+      "observed_at": "2026-11-27T22:14:15.895745+00:00",
+      "excerpt": "Chrome status: Proposed. Adjustments to the WebDriver BiDi standard that allow using WebDriver BiDi for agentic browsing. See"
+    },
+    "record_status": "parsed",
+    "origin": "daily",
+    "lifecycle": "unknown",
+    "revisions": [
+      {
+        "title": "Agentic extensions for WebDriver BiDi",
+        "summary": "Chrome status: Proposed. Adjustments to the WebDriver BiDi standard that allow using WebDriver BiDi for agentic browsing. See",
+        "evidence": {
+          "url": "https://chromestatus.com/feature/6233739003822080",
+          "section": "ChromeStatus feature",
+          "source_revision": "2026-11-20 09:22:39.321983",
+          "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+          "observed_at": "2026-11-27T22:14:15.895745+00:00",
+          "excerpt": "Chrome status: Proposed. Adjustments to the WebDriver BiDi standard that allow using WebDriver BiDi for agentic browsing. See"
+        },
+        "published_at": "2026-11-19",
+        "observed_at": "2026-11-27T22:14:15.895745+00:00",
+        "channel": "unknown",
+        "platform": [
+          "unknown"
+        ],
+        "version": null,
+        "item_type": "general",
+        "record_status": "parsed",
+        "lifecycle": "unknown",
+        "item_content_sha256": "d56868cdafb081b88594c07eb0128dc263290e94033d694ebe471b0bca7f169c",
+        "revision_id": "sr-3152005c4d8cdf183b8ff098",
+        "content_sha256": "b967125e60f6fcb5f6b89c93f006675dff4d78bd7f8069d78405a097ccf4a3f9",
+        "source_revision": "2026-11-20 09:22:39.321983"
+      }
+    ],
+    "experiment_kind": null,
+    "source_location": "https://chromestatus.com/feature/6233739003822080#6233739003822080",
+    "source_symbol": null,
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-29",
+      "cutoff": "2026-11-28T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-20",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    },
+    "item_content_sha256": "d56868cdafb081b88594c07eb0128dc263290e94033d694ebe471b0bca7f169c"
   },
   {
     "schema_version": 2,

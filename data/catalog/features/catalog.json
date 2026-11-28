@@ -8457,6 +8457,7 @@
     "title": "입력란 메뉴에서 저장된 비밀번호 선택",
     "aliases": [],
     "source_item_ids": [
+      "src-791c74e0423a9868f2703bbf",
       "src-e101bd34209a3a570c123fd2"
     ],
     "event_ids": [],
@@ -8478,10 +8479,26 @@
     "source_revision_ids": {
       "src-e101bd34209a3a570c123fd2": [
         "sr-f93230fce499e3e1111fcae4"
+      ],
+      "src-791c74e0423a9868f2703bbf": [
+        "sr-230dc17777a96da864263b11"
       ]
     },
     "source_revision_excerpts": {
-      "sr-f93230fce499e3e1111fcae4": "Select Password from the context menu. Users can now manually access saved credentials when password suggestions don't appear automatically. When a user right-clicks a recognized username or password field, a new Select Password option appears in the context menu. From there, users with saved credentials can: Search saved credentials by domain or username Fill credentials directly into the selected field View credential details after completing OS authentication Manage saved passwords through existing Edge Password Manager surfaces This provides a reliable fallback path for sign-in scenarios where autofill suggestions are not surfaced, reducing the need for users to copy credentials manually. No configuration is required, and existing password management policies continue to apply."
+      "sr-f93230fce499e3e1111fcae4": "Select Password from the context menu. Users can now manually access saved credentials when password suggestions don't appear automatically. When a user right-clicks a recognized username or password field, a new Select Password option appears in the context menu. From there, users with saved credentials can: Search saved credentials by domain or username Fill credentials directly into the selected field View credential details after completing OS authentication Manage saved passwords through existing Edge Password Manager surfaces This provides a reliable fallback path for sign-in scenarios where autofill suggestions are not surfaced, reducing the need for users to copy credentials manually. No configuration is required, and existing password management policies continue to apply.",
+      "sr-230dc17777a96da864263b11": "Select Password from the context menu. Users can now manually access saved credentials when password suggestions don't appear automatically. When a user right-clicks a recognized username or password field, a new Select Password option appears in the context menu. From there, users with saved credentials can: Search saved credentials by domain or username Fill credentials directly into the selected field View credential details after completing OS authentication Manage saved passwords through existing Edge Password Manager surfaces This provides a reliable fallback path for sign-in scenarios where autofill suggestions are not surfaced, reducing the need for users to copy credentials manually. No configuration is required, and existing password management policies continue to apply."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "beta",
+        "source_item_id": "src-791c74e0423a9868f2703bbf",
+        "revision_id": "sr-230dc17777a96da864263b11"
+      },
+      "version": {
+        "value": "159.0.4402.7",
+        "source_item_id": "src-791c74e0423a9868f2703bbf",
+        "revision_id": "sr-230dc17777a96da864263b11"
+      }
     }
   },
   {
@@ -34161,7 +34178,8 @@
     "title": "보호된 PDF의 민감도 라벨 보기",
     "aliases": [],
     "source_item_ids": [
-      "src-17daf3c75281bba992001e98"
+      "src-17daf3c75281bba992001e98",
+      "src-25b59d155125dd3d14a8227f"
     ],
     "event_ids": [],
     "lifecycle": "unknown",
@@ -34182,10 +34200,26 @@
     "source_revision_ids": {
       "src-17daf3c75281bba992001e98": [
         "sr-ab1fc67ab4ff9a2b736f087d"
+      ],
+      "src-25b59d155125dd3d14a8227f": [
+        "sr-a5f61511f637d28b68d7c618"
       ]
     },
     "source_revision_excerpts": {
-      "sr-ab1fc67ab4ff9a2b736f087d": "Adding support for viewing Sensitivity labels applied to a Microsoft Information Protection (MIP) Protected PDF. Enterprise customers can view sensitivity labels applied to MIP protected PDF to be well informed of the data classification to enable them to handle such sensitive documents."
+      "sr-ab1fc67ab4ff9a2b736f087d": "Adding support for viewing Sensitivity labels applied to a Microsoft Information Protection (MIP) Protected PDF. Enterprise customers can view sensitivity labels applied to MIP protected PDF to be well informed of the data classification to enable them to handle such sensitive documents.",
+      "sr-a5f61511f637d28b68d7c618": "Adding support for viewing Sensitivity labels applied to a Microsoft Information Protection (MIP) Protected PDF. Enterprise customers can view sensitivity labels applied to MIP protected PDF to be well informed of the data classification to enable them to handle such sensitive documents."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "beta",
+        "source_item_id": "src-25b59d155125dd3d14a8227f",
+        "revision_id": "sr-a5f61511f637d28b68d7c618"
+      },
+      "version": {
+        "value": "159.0.4402.7",
+        "source_item_id": "src-25b59d155125dd3d14a8227f",
+        "revision_id": "sr-a5f61511f637d28b68d7c618"
+      }
     }
   },
   {
@@ -35459,7 +35493,8 @@
     "title": "강력한 비밀번호 제안 대화상자 개선",
     "aliases": [],
     "source_item_ids": [
-      "src-08adfb208c30434ce0f81351"
+      "src-08adfb208c30434ce0f81351",
+      "src-361008af8bd7fa8d14eaa14d"
     ],
     "event_ids": [],
     "lifecycle": "unknown",
@@ -35480,10 +35515,31 @@
     "source_revision_ids": {
       "src-08adfb208c30434ce0f81351": [
         "sr-f6d1c74447ee2f0c9a9e213a"
+      ],
+      "src-361008af8bd7fa8d14eaa14d": [
+        "sr-bb1abc7cf71a871f6f8bc34a"
       ]
     },
     "source_revision_excerpts": {
-      "sr-f6d1c74447ee2f0c9a9e213a": "Improved Strong Password Suggestions. The password-generation experience has been improved with a redesigned dialog that makes strong passwords easier to accept during signup and password changes. The update introduces clearer actions, pre-fills suggested passwords and removes the password-strength indicator while preserving existing sign-in eligibility, password-saving behavior, and enterprise policy controls. Administrators can manage availability through the existing PasswordGeneratorEnabled policy. Note: This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout."
+      "sr-f6d1c74447ee2f0c9a9e213a": "Improved Strong Password Suggestions. The password-generation experience has been improved with a redesigned dialog that makes strong passwords easier to accept during signup and password changes. The update introduces clearer actions, pre-fills suggested passwords and removes the password-strength indicator while preserving existing sign-in eligibility, password-saving behavior, and enterprise policy controls. Administrators can manage availability through the existing PasswordGeneratorEnabled policy. Note: This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout.",
+      "sr-bb1abc7cf71a871f6f8bc34a": "Improved Strong Password Suggestions. The password-generation experience has been improved with a redesigned dialog that makes strong passwords easier to accept during signup and password changes. The update introduces clearer actions, pre-fills suggested passwords and removes the password-strength indicator while preserving existing sign-in eligibility, password-saving behavior, and enterprise policy controls. Administrators can manage availability through the existing PasswordGeneratorEnabled policy. Note: This is a controlled feature rollout. If you don't see this change, check back as we continue the rollout."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "beta",
+        "source_item_id": "src-361008af8bd7fa8d14eaa14d",
+        "revision_id": "sr-bb1abc7cf71a871f6f8bc34a"
+      },
+      "rollout_status": {
+        "value": "gradual",
+        "source_item_id": "src-361008af8bd7fa8d14eaa14d",
+        "revision_id": "sr-bb1abc7cf71a871f6f8bc34a"
+      },
+      "version": {
+        "value": "159.0.4402.7",
+        "source_item_id": "src-361008af8bd7fa8d14eaa14d",
+        "revision_id": "sr-bb1abc7cf71a871f6f8bc34a"
+      }
     }
   },
   {
@@ -45978,6 +46034,42 @@
       "status": "before_period",
       "basis": "item_change",
       "evidence_date": "2023-06-23",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-6d1e176bcf868f07f48c5539",
+    "browser": "chrome",
+    "canonical_key": "chromestatus:6233739003822080",
+    "title": "사용자 권한으로 제한되는 WebDriver BiDi 세션 제안",
+    "aliases": [],
+    "source_item_ids": [
+      "src-298a5d3316bd7c4269efeff3"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-298a5d3316bd7c4269efeff3": [
+        "sr-3152005c4d8cdf183b8ff098"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-3152005c4d8cdf183b8ff098": "Chrome status: Proposed. Adjustments to the WebDriver BiDi standard that allow using WebDriver BiDi for agentic browsing. See"
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-29",
+      "cutoff": "2026-11-28T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-20",
       "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
@@ -61452,6 +61544,42 @@
       "status": "before_period",
       "basis": "item_change",
       "evidence_date": "2025-08-22",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-93901cca508fa454cc1df2ca",
+    "browser": "chrome",
+    "canonical_key": "chromestatus:5168050646155264",
+    "title": "CSS random-item(): 여러 값 중 하나를 고르는 실험 기능",
+    "aliases": [],
+    "source_item_ids": [
+      "src-1f7f7af6f5fbec2907ca252f"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-1f7f7af6f5fbec2907ca252f": [
+        "sr-7d3bc44bfac1514825fbbae0"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-7d3bc44bfac1514825fbbae0": "Chrome status: In development. Chrome milestones: Desktop 161, Android 161, iOS 161, WebView 161. Adds the css-values-5 random-item() arbitrary-substitution function behind the experimental CSSRandomItemFunction runtime flag, reusing random()'s base-value infrastructure and spec at Demo:"
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-29",
+      "cutoff": "2026-11-28T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-27",
       "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
@@ -98819,7 +98947,8 @@
     "title": "Edge 158의 클라우드 등록 토큰 정책에 macOS 지원 추가",
     "aliases": [],
     "source_item_ids": [
-      "src-1b1b62f53d89827d4f02cbed"
+      "src-1b1b62f53d89827d4f02cbed",
+      "src-bbd7ea23354b20f47739a443"
     ],
     "event_ids": [],
     "lifecycle": "unknown",
@@ -98840,10 +98969,33 @@
     "source_revision_ids": {
       "src-1b1b62f53d89827d4f02cbed": [
         "sr-9a16772b6307f959d6ea4e81"
+      ],
+      "src-bbd7ea23354b20f47739a443": [
+        "sr-c02fc987371bc12e08a90d3e"
       ]
     },
     "source_revision_excerpts": {
-      "sr-9a16772b6307f959d6ea4e81": "CloudManagementEnrollmentToken - Added support for macOS in Microsoft Edge 158."
+      "sr-9a16772b6307f959d6ea4e81": "CloudManagementEnrollmentToken - Added support for macOS in Microsoft Edge 158.",
+      "sr-c02fc987371bc12e08a90d3e": "CloudManagementEnrollmentToken - Added support for macOS in Microsoft Edge 158."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-bbd7ea23354b20f47739a443",
+        "revision_id": "sr-c02fc987371bc12e08a90d3e"
+      },
+      "platform": {
+        "value": [
+          "macOS"
+        ],
+        "source_item_id": "src-bbd7ea23354b20f47739a443",
+        "revision_id": "sr-c02fc987371bc12e08a90d3e"
+      },
+      "version": {
+        "value": "158",
+        "source_item_id": "src-bbd7ea23354b20f47739a443",
+        "revision_id": "sr-c02fc987371bc12e08a90d3e"
+      }
     }
   },
   {
@@ -99164,6 +99316,42 @@
       "status": "before_period",
       "basis": "item_change",
       "evidence_date": "2022-10-27",
+      "precision": "day",
+      "baseline_revision": null,
+      "current_revision": null,
+      "change": null,
+      "reason": "Official per-feature update; a timestamp without timezone supplies its printed calendar day only."
+    }
+  },
+  {
+    "schema_version": 2,
+    "feature_id": "feature-ee029a8651b41ce27c5a63c8",
+    "browser": "chrome",
+    "canonical_key": "chromestatus:5168559834660864",
+    "title": "SVG 호 보간에서 플래그 판정 기준을 표준에 맞추는 제안",
+    "aliases": [],
+    "source_item_ids": [
+      "src-13b2a11e31f51c230c4848cc"
+    ],
+    "event_ids": [],
+    "lifecycle": "unknown",
+    "legacy": false,
+    "source_revision_ids": {
+      "src-13b2a11e31f51c230c4848cc": [
+        "sr-490d68238108d8c38a3bb290"
+      ]
+    },
+    "source_revision_excerpts": {
+      "sr-490d68238108d8c38a3bb290": "Chrome status: Proposed. Updates SVG arc path flag (large_arc_flag and sweep_flag) interpolation so that any non-zero interpolated value is treated as true, rather than only values greater than 0.5. This aligns Chromium with the SVG specification and with Firefox and Safari. Developers creating SVG path animations can expect consistent arc interpolation behavior across browsers."
+    },
+    "feature_facts": {},
+    "temporal_scope": {
+      "version": 1,
+      "since": "2026-10-29",
+      "cutoff": "2026-11-28T07:00:00+09:00",
+      "status": "in_period",
+      "basis": "item_change",
+      "evidence_date": "2026-11-19",
       "precision": "day",
       "baseline_revision": null,
       "current_revision": null,
@@ -99828,6 +100016,7 @@
     "aliases": [],
     "source_item_ids": [
       "src-4b54d45144512187713e3645",
+      "src-857a740fe487fcccd74c0a36",
       "src-a89b33fc63a11cfd6cea37b2"
     ],
     "event_ids": [],
@@ -99852,11 +100041,35 @@
       ],
       "src-a89b33fc63a11cfd6cea37b2": [
         "sr-0badc4dbf68308b505266481"
+      ],
+      "src-857a740fe487fcccd74c0a36": [
+        "sr-173a80a8420295faea19c051"
       ]
     },
     "source_revision_excerpts": {
       "sr-f9b166dd5150bd5b196dd015": "[iOS & Android] Support sign in to Microsoft Edge with an Apple account as a personal account.",
-      "sr-0badc4dbf68308b505266481": "Sign in to Edge with an Apple account . Users can now sign in to Microsoft Edge using an Apple account, in addition to a Microsoft account, from the profile menu and Microsoft Edge sign-in screen. Admins can control the availability of this feature using the NonMicrosoftAccountSignInEnabled policy."
+      "sr-0badc4dbf68308b505266481": "Sign in to Edge with an Apple account . Users can now sign in to Microsoft Edge using an Apple account, in addition to a Microsoft account, from the profile menu and Microsoft Edge sign-in screen. Admins can control the availability of this feature using the NonMicrosoftAccountSignInEnabled policy.",
+      "sr-173a80a8420295faea19c051": "[iOS & Android] Support sign in to Microsoft Edge with an Apple account as a personal account."
+    },
+    "feature_facts": {
+      "channel": {
+        "value": "stable",
+        "source_item_id": "src-857a740fe487fcccd74c0a36",
+        "revision_id": "sr-173a80a8420295faea19c051"
+      },
+      "platform": {
+        "value": [
+          "Android",
+          "iOS"
+        ],
+        "source_item_id": "src-857a740fe487fcccd74c0a36",
+        "revision_id": "sr-173a80a8420295faea19c051"
+      },
+      "version": {
+        "value": "158.0.4370.33",
+        "source_item_id": "src-857a740fe487fcccd74c0a36",
+        "revision_id": "sr-173a80a8420295faea19c051"
+      }
     }
   },
   {

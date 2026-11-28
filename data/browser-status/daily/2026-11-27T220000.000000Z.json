@@ -1,0 +1,150 @@
+{
+  "version": 1,
+  "scope": {
+    "cutoff": "2026-11-27T22:00:00+00:00",
+    "expected": {
+      "chrome": [
+        "chrome-blog",
+        "chrome-enterprise",
+        "chrome-platform-status",
+        "chrome-releases"
+      ],
+      "edge": [
+        "edge-beta",
+        "edge-beta-archive",
+        "edge-mobile-beta",
+        "edge-mobile-stable",
+        "edge-security",
+        "edge-stable",
+        "edge-stable-archive"
+      ],
+      "firefox": [
+        "firefox-android",
+        "firefox-beta",
+        "firefox-ios",
+        "firefox-releases",
+        "firefox-security"
+      ],
+      "safari": [
+        "safari-release-notes",
+        "safari-security",
+        "safari-technology-preview"
+      ],
+      "whale": [
+        "whale-notices",
+        "whale-release-history"
+      ]
+    },
+    "mode": "daily",
+    "origin": "daily",
+    "registry": "6310072cd3aa18abf400acaa694b8a9c0b155dc4fed55047f864783c47e2d1d9",
+    "start": "2026-10-29T07:00:00+09:00"
+  },
+  "browsers": {
+    "chrome": {
+      "status": "incomplete",
+      "change_count": null,
+      "collected_feature_count": null,
+      "effects": [
+        {
+          "feature_id": "feature-6d1e176bcf868f07f48c5539",
+          "source_id": "chrome-platform-status",
+          "item": "src-298a5d3316bd7c4269efeff3",
+          "revision": "sr-3152005c4d8cdf183b8ff098",
+          "snapshot": "57f976cdd59c7148a24235305b18471a3e3baf488fe6d83c05ade53c09242a2d",
+          "quote": "c92ec4bbee856b98ac394df9f4d7e8c6b2b80773cb61d2df2bf8d391a0cb6537",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-93901cca508fa454cc1df2ca",
+          "source_id": "chrome-platform-status",
+          "item": "src-1f7f7af6f5fbec2907ca252f",
+          "revision": "sr-7d3bc44bfac1514825fbbae0",
+          "snapshot": "0c6b267c18bac4d838fa63d2cacc07a03f05fbc2649fe38326223047e48336fc",
+          "quote": "3e29db2e19b5c2b4279a0e476eae803f11482380d5b7e79da68846935b92745d",
+          "changed": true
+        },
+        {
+          "feature_id": "feature-ee029a8651b41ce27c5a63c8",
+          "source_id": "chrome-platform-status",
+          "item": "src-13b2a11e31f51c230c4848cc",
+          "revision": "sr-490d68238108d8c38a3bb290",
+          "snapshot": "211f26e50a4c8b014d0135d72b1e8fcb1cec461b29270c9eceb8f96090908640",
+          "quote": "8e0e87d678c3e07fbc63bd8dc933f7e8ae2cd185b5726b3b3bf9c419e5e78fee",
+          "changed": true
+        }
+      ]
+    },
+    "edge": {
+      "status": "complete",
+      "classification": "9db5984f9e7c514e1c53d556c88bf77878870bce737a5ff9186e4ff2ba50064b",
+      "effects": [
+        {
+          "feature_id": "feature-0fdd4b8e7175ae241fb9e75d",
+          "source_id": "edge-beta",
+          "item": "src-791c74e0423a9868f2703bbf",
+          "revision": "sr-230dc17777a96da864263b11",
+          "snapshot": "f04196bcf60c8a7db9308731b573e12d45904c6a3f6a246833b99578c4dc6695",
+          "quote": "3d6446b9a264cb0f15c74cf3393c87678b025556403fd5266733a217ad401891",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-4ff95e5abb8271beb513bce3",
+          "source_id": "edge-beta",
+          "item": "src-25b59d155125dd3d14a8227f",
+          "revision": "sr-a5f61511f637d28b68d7c618",
+          "snapshot": "1158d707826ec8d5ff484acd35ce373c8acf887b943c664af909f1c0e80ee675",
+          "quote": "997e6bdc154981cdf14760279024b8e1168c0611009bb9ce57c5b5d170d7ad14",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-52978585e8f80e3de853dad5",
+          "source_id": "edge-beta",
+          "item": "src-361008af8bd7fa8d14eaa14d",
+          "revision": "sr-bb1abc7cf71a871f6f8bc34a",
+          "snapshot": "2081bab7a450d6054d624b76b8c761f6b645703e5ff96793704858785238a682",
+          "quote": "da3aeeee5a50f187cfe445a34999696ba326568dbe4a32b5fce992a8e020dd6f",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-ecd7a53093bdab1c7d3cb769",
+          "source_id": "edge-stable",
+          "item": "src-bbd7ea23354b20f47739a443",
+          "revision": "sr-c02fc987371bc12e08a90d3e",
+          "snapshot": "e86a3824fbb5b55847e626875aed8b3956d8b19fb183987cece65df91bccd76b",
+          "quote": "34fd3d39a986b031a7f52b92612764dfe9868ebf50c9b7c4bf9ad9ddd078b0dc",
+          "changed": false
+        },
+        {
+          "feature_id": "feature-ef52f67914e35fd5b3a96416",
+          "source_id": "edge-mobile-stable",
+          "item": "src-857a740fe487fcccd74c0a36",
+          "revision": "sr-173a80a8420295faea19c051",
+          "snapshot": "e5d93d2967d410b7b6f94f71f2ec3f0e025fee5134476763bf18450544970436",
+          "quote": "28f58d03b622033a099bb86c87a95b2bfce3386ccd938d9c7a24deea06388da9",
+          "changed": false
+        }
+      ],
+      "change_count": 0,
+      "collected_feature_count": 5
+    },
+    "firefox": {
+      "status": "incomplete",
+      "change_count": null,
+      "collected_feature_count": null
+    },
+    "safari": {
+      "status": "incomplete",
+      "change_count": null,
+      "collected_feature_count": null
+    },
+    "whale": {
+      "status": "complete",
+      "classification": "f6ac531f9f549eb56135cf039a6c459f90684ad29c507c4f7e357dfae39b05a7",
+      "effects": [],
+      "change_count": 0,
+      "collected_feature_count": 0
+    }
+  },
+  "checksum": "46becedfbb2853c128b23d78f58928e6ec9deab0bfaf2a6797abdd6b5fa55e81"
+}
