@@ -1,6 +1,8 @@
 import contextlib
 import hashlib
 import io
+from datetime import datetime
+from html import escape
 import json
 from pathlib import Path
 import runpy
@@ -8,10 +10,13 @@ import shutil
 import tempfile
 import unittest
 from unittest.mock import patch
+from urllib.error import HTTPError
 from zipfile import ZipFile
 
 from pipeline.collectors.browser import Response
 from pipeline.collectors.browser.firefox_ios import NOTES_API, SHIPPING, detail_url
+from pipeline.collectors.browser.firefox_ios_store import APP_STORE_ID, APP_STORE_URL, MOZILLA_DEVELOPER
+from pipeline.official_reference import accepts_url
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -46,6 +51,27 @@ def html(row):
     return (f'<html lang="en-US"><head><link rel="canonical" href="{detail_url(version)}"></head>'
             f'<span class="c-release-version">{version}</span><span class="c-release-product">Firefox for iOS Release</span>'
             f'<p class="c-release-date">{row["release_date"]}</p><section class="c-release-notes">{content}</section></html>')
+
+
+def store_html(*rows):
+    structured = []
+    visible = []
+    for version, published, text in rows:
+        stamp = datetime.fromisoformat(published)
+        structured.append({'$kind': 'TitledParagraph', 'primarySubtitle': version,
+                           'secondarySubtitle': stamp.strftime('%a %b %d %Y %H:%M:%S GMT+0000')
+                           + ' (Coordinated Universal Time)', 'text': text})
+        visible.append(f'<li><p>{escape(text)}</p><div class="metadata"><span>{version}</span>'
+                       f'<time datetime="{stamp.date()}">printed date</time></div></li>')
+    shelf = {'seeAllAction': {'pageData': {'shelves': [{'items': structured}]}}}
+    product = {'intent': {'$kind': 'ProductPageIntent', 'id': APP_STORE_ID, 'storefront': 'us', 'language': 'en-US'},
+               'data': {'shelfMapping': {'mostRecentVersion': shelf}}}
+    author = json.dumps({'author': {'name': 'Mozilla', 'url': MOZILLA_DEVELOPER}})
+    data = json.dumps({'data': [product]})
+    return (f'<html lang="en-US"><head><link rel="canonical" href="{APP_STORE_URL}">'
+            f'<script id="software-application">{author}</script>'
+            f'<script id="serialized-server-data">{data}</script></head>'
+            f'<div data-testid="content-modal"><h2>Version History</h2><ul>{"".join(visible)}</ul></div></html>')
 
 
 class FirefoxIosTests(unittest.TestCase):
@@ -134,6 +160,92 @@ class FirefoxIosTests(unittest.TestCase):
         self.assertEqual((['161.0'], ['159.1'], ['99.1']), (inventory['empty_versions'],
                          inventory['missing_shipping_versions'], inventory['older_undated_shipping_versions']))
         self.assertEqual('partial', state['status'])
+
+    def test_store_fallback_matches_each_version_uses_store_time_and_keeps_primary(self):
+        self.pages[SHIPS] += [
+            ship(4, 'firefox-v159.1', '2026-11-02T03:00:00Z'),
+            ship(5, 'firefox-v161.1', '2026-11-23T12:00:00Z'),
+            ship(6, 'firefox-v99.1', '2025-01-01T00:00:00Z'),
+            ship(7, 'firefox-v159.2', '2026-11-03T12:00:00Z'),
+        ]
+        self.pages[APP_STORE_URL] = store_html(
+            ('159.1', '2026-11-05T16:20:00+00:00', 'Generic maintenance.'),
+            ('159.2', '2026-11-06T16:20:00+00:00', 'Added a new view for tabs.'),
+            ('160.0', '2026-11-10T16:20:00+00:00', 'Do not substitute an available Mozilla note.'),
+            ('161.1', '2026-11-24T22:00:01+00:00', 'Not yet published at cutoff.'),
+            ('99.1', '2025-01-03T16:20:00+00:00', 'Old notes.'),
+            ('88.2', '2026-11-24T19:00:00+00:00', 'No matching Mozilla shipping version.'),
+        )
+        state, rows = self.cli('app-store')
+        expected = {'app-store-159.1': 'Generic maintenance.', 'app-store-159.2': 'Added a new view for tabs.'}
+        self.assertEqual(expected, {r['item_key']: r['evidence']['excerpt'] for r in rows})
+        self.assertEqual(['159.1', '161.1', '99.1', '159.2'], state['firefox_ios_inventory']['app_store_versions'])
+        self.assertEqual(['161.0'], state['firefox_ios_inventory']['empty_versions'])
+        self.assertEqual(1, self.calls.count(APP_STORE_URL))
+        windows = json.loads((self.root / 'runs/app-store/work/windows/firefox-ios.json').read_text())
+        self.assertEqual('after_cutoff', windows[APP_STORE_URL + '#app-store-161.1'])
+        self.assertEqual('before_period', windows[APP_STORE_URL + '#app-store-99.1'])
+        self.assertEqual(1, state['duplicate'])
+        for row in rows:
+            self.assertEqual(APP_STORE_URL, row['evidence']['url'])
+            self.assertEqual('timestamp', row['temporal_scope']['precision'])
+        later, later_rows = self.cli('app-store-weekly', mode='weekly_reconcile')
+        self.assertNotIn('161.1', {r['version'] for r in later_rows})
+        self.assertEqual('complete', later['status'])
+        source = {'source_id': 'firefox-ios', 'url': SHIPPING}
+        self.assertTrue(accepts_url(source, APP_STORE_URL))
+        for wrong in (APP_STORE_URL + '?at=ad', APP_STORE_URL + '#made-up',
+                      APP_STORE_URL.replace('989804926', '989804927'), APP_STORE_URL.replace('/us/', '/de/')):
+            self.assertFalse(accepts_url(source, wrong))
+
+    def test_store_missing_redirect_disagreement_rate_limit_and_wrong_publisher_stay_partial(self):
+        self.pages[SHIPS].append(ship(4, 'firefox-v159.1'))
+        exact = store_html(('159.1', '2026-11-05T16:20:00+00:00', 'Feature A.'))
+        for label, store in (
+                ('app-id', exact.replace(f'"id": "{APP_STORE_ID}"', '"id": "111"')),
+                ('locale', exact.replace('lang="en-US"', 'lang="de"')),
+                ('date', exact.replace('datetime="2026-11-05"', 'datetime="2026-11-06"')),
+                ('other-version', exact.replace('159.1', '159.2')),
+                ('duplicate', store_html(*[('159.1', '2026-11-05T16:20:00+00:00', 'Feature A.')] * 2)),
+                ('publisher', exact.replace(MOZILLA_DEVELOPER, 'https://apps.apple.com/us/developer/other/id1')),
+                ('wrong-record', exact.replace('<p>Feature A.</p>', '<p>Unrelated text</p>')),
+                ('truncated', exact.removesuffix('</html>')),
+                ('redirect', Response(APP_STORE_URL.replace('/us/', '/de/'), exact.encode())),
+                ('rate-limit', HTTPError(APP_STORE_URL, 429, 'Rate limited', {}, None))):
+            with self.subTest(label=label), patch.dict(self.pages, {APP_STORE_URL: store}):
+                state, rows = self.cli(label, expected=2)
+                self.assertEqual(['159.1'], state['firefox_ios_inventory']['missing_shipping_versions'])
+                self.assertEqual('partial', state['status'])
+                self.assertEqual([], rows)
+                self.assertEqual([], state['firefox_ios_inventory']['app_store_versions'])
+
+    def test_only_unavailable_primary_page_can_use_matching_app_store_note(self):
+        url = detail_url('160.0')
+        complete = store_html(('160.0', '2026-11-10T16:20:00+00:00', DUO))
+        divergent = complete.replace(DUO, 'Different product change.')
+        not_found = HTTPError(url, 404, 'Not found', {}, None)
+        for label, detail, store, expected in (
+                ('app-404', not_found, complete, 0),
+                ('app-404-different', not_found, divergent, 2),
+                ('app-404-containing', not_found, complete.replace(DUO, 'Wrong: ' + DUO), 2),
+                ('app-403', HTTPError(url, 403, 'Denied', {}, None), complete, 2),
+                ('app-wrong-data', html(self.rows['160.0']).replace(DUO, 'Changed.'), complete, 2)):
+            with self.subTest(label=label), patch.dict(self.pages, {APP_STORE_URL: store, url: detail}):
+                self.calls.clear()
+                state, rows = self.cli(label, expected=expected)
+                self.assertEqual(expected == 0, bool(rows))
+                self.assertEqual(label.startswith('app-404'), APP_STORE_URL in self.calls)
+                self.assertEqual(['160.0'] if expected == 0 else [], state['firefox_ios_inventory']['app_store_versions'])
+
+    def test_shared_store_url_cannot_supply_another_versions_feature_facts(self):
+        from pipeline.feature_enrichment import SourceReview
+
+        review = SourceReview.__new__(SourceReview)
+        review.sid = 'firefox-ios'
+        owner = {'title': 'Tab grouping', 'aliases': []}
+        citation = {'item_key': 'app-store-159.1'}
+        other = ({'key': 'app-store-160.1', 'text': 'Tab grouping was added.'}, None, None)
+        self.assertFalse(review.matches(owner, citation, APP_STORE_URL, other))
 
     def test_dates_and_older_modified_items_use_record_and_item_not_shipping(self):
         self.rows.update({

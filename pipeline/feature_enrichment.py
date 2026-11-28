@@ -8,7 +8,7 @@ import re
 from urllib.parse import parse_qsl, urldefrag, urlsplit
 
 from pipeline import browser_status
-from pipeline.collectors.browser import firefox_ios
+from pipeline.collectors.browser import firefox_ios, firefox_ios_store
 from pipeline.collectors.browser.collector import atomic_json, canonical, digest, identity, minimal
 from pipeline.collectors.browser.html import Tree, blocks, boundary, modification, published
 from pipeline.collectors.browser.safari_preview import retry_deadline, stop_safari_requests, verified_release_dates
@@ -306,6 +306,15 @@ class SourceReview:
             if directives and not anchor:
                 units = [entry for entry in units if any(text_matches(entry[0]['text'], d) for d in directives)]
             return None, units
+        if self.sid == 'firefox-ios' and target == firefox_ios_store.APP_STORE_URL:
+            # Reinspect only a page already obtained by this run's fallback.
+            # Never use the whole mixed-version response as a feature proof.
+            self.restricted_raw.add(url)
+            if url != target or target not in c.progress['responses']:
+                return None, []
+            response = c.get(target)
+            return None, [(unit, None, response) for stamp, unit in firefox_ios_store.units(response).values()
+                          if self.eligible_unit(unit, (stamp.isoformat(),))]
         if self.sid == 'chrome-enterprise' and enterprise_archive_anchor(url) is not None:
             # Only the publisher's dated panel can support an archive citation.
             # Never reinterpret an absent, future or failed panel as the whole page.
@@ -386,6 +395,9 @@ class SourceReview:
 
     def matches(self, feature, citation, url, entry):
         unit, title, _ = entry
+        if self.sid == 'firefox-ios' and url == firefox_ios_store.APP_STORE_URL:
+            if unit['key'] != citation['item_key']:
+                return False
         passage = ' '.join(filter(None, (title, unit['text']))).casefold()
         def named(owner):
             return any(re.search(r'(?<!\w)' + re.escape(label) + r'(?!\w)', passage)

@@ -5,6 +5,7 @@ import subprocess
 from urllib.parse import parse_qsl, unquote, urlsplit, urlunsplit
 
 from pipeline.deduplicate import digest, stable_id
+from pipeline.firefox_ios_store import APP_STORE_URL
 from pipeline.publisher_fragments import publisher_fragment
 
 
@@ -53,6 +54,8 @@ def accepts_url(source, url, *, observed=False):
     parts = urlsplit(url)
     base = urlunsplit((parts.scheme, parts.netloc, parts.path, '', ''))
     sid = source['source_id']
+    if sid == 'firefox-ios' and base == APP_STORE_URL:
+        return not parts.query and not parts.fragment
     if sid == 'whale-notices':
         return bool(observed and not parts.query and not parts.fragment and re.fullmatch(DETAIL_URLS[sid], base))
     if parts.query:
