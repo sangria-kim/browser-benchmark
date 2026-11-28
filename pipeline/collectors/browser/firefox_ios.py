@@ -10,6 +10,7 @@ from zipfile import ZipFile
 
 from pipeline.temporal import instant, policy_day
 from .firefox_ios_store import APP_STORE_URL, units as store_units
+from .firefox_ios_schedule import scheduled_release
 from .html import Tree, blocks, date_value, publication_value, reconcile_modification
 
 
@@ -292,7 +293,8 @@ def collect_firefox_ios(collector):
         collector.fact_review.firefox_records = records
     history = collector.state['firefox_ios_inventory'] = {
         'snapshot': sha, 'public_records': len(records), 'verified_versions': [], 'empty_versions': [],
-        'missing_shipping_versions': [], 'older_undated_shipping_versions': [], 'app_store_versions': []}
+        'missing_shipping_versions': [], 'older_undated_shipping_versions': [], 'app_store_versions': [],
+        'scheduled_versions': {}, 'schedule_errors': {}}
     shipped = shipping_versions(collector)
     store_attempt = None
 
@@ -412,8 +414,23 @@ def collect_firefox_ios(collector):
         if older:
             history['older_undated_shipping_versions'].append(version)
         else:
+            # A verified, readable Store history is required before relying on a
+            # schedule. An outage or a newer published version is not absence proof.
+            response, store_records, error = store_attempt
+            number = tuple(map(int, version.split('.')))
+            published = [tuple(map(int, v.split('.'))) for v, (when, _) in store_records.items()
+                         if when <= instant(collector.cutoff)]
+            if not error and published and max(published) < number:
+                try:
+                    proof = scheduled_release(version, collector.cutoff, lambda url: page(collector, url))
+                    if proof:
+                        proof['store_response_sha256'] = hashlib.sha256(response.body).hexdigest()
+                        history['scheduled_versions'][version] = proof
+                        continue
+                except (ValueError, KeyError, TypeError, OSError) as error:
+                    history['schedule_errors'][version] = str(error)
             history['missing_shipping_versions'].append(version)
-            collector.problem(detail_url(version), 'Shipped Firefox iOS version lacks a verifiable publisher note')
+            collector.problem(detail_url(version), 'Firefox iOS release lacks verified rollout status or publisher notes')
     # Daily completion covers its window, not the entire undated legacy backlog.
     # Recheck these versions on every fresh run; never label them empty or dated.
     if history['older_undated_shipping_versions'] and collector.collection_mode != 'daily':

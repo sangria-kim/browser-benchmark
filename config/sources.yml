@@ -445,7 +445,7 @@
         "follow_related_documents": false
       },
       "item_policy": "all_sections_including_security_and_fixes",
-      "scope_note": "Reconcile Mozilla’s public Firefox for iOS releases and cutoff-pinned release-note records. Prefer the versioned English Firefox release note. When it is unavailable, check the matching version in the official US Firefox App Store history."
+      "scope_note": "Reconcile Mozilla’s public Firefox for iOS releases and cutoff-pinned release-note records. Prefer the versioned English Firefox release note. When it is unavailable, check the matching version in the official US Firefox App Store history. If the version is absent, verify cutoff-pinned Mozilla channel meeting schedules before treating a GitHub source release as a missing user release. Future scheduled rollouts remain pending until their stated time."
     },
     {
       "source_id": "firefox-security",
